@@ -15,5 +15,5 @@ extensions.push(Extension.create({
 </script>
 
 <template>
-    <UEditor :key="JSON.stringify(document)" :model-value="document" content-type="json" :editable="false" :mention="false" :starter-kit="{ link: { openOnClick: true } }" :extensions="extensions" :ui="{ base: 'rich-text-content focus:outline-none' }" />
+    <UEditor :key="JSON.stringify(document)" :model-value="document" content-type="json" :editable="false" :mention="false" :image="false" :starter-kit="{ link: { openOnClick: true } }" :extensions="extensions" :ui="{ base: 'rich-text-content focus:outline-none' }" />
 </template>

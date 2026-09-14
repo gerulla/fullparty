@@ -2,6 +2,7 @@
 
 namespace App\Services\Groups\Resources;
 
+use App\Models\BozjaHolster;
 use App\Models\Group;
 use App\Models\GroupResourceCollection;
 use App\Models\GroupResourceLibrary;
@@ -73,16 +74,17 @@ class ResourceCollectionService
         DB::transaction(function () use ($group, $user, $collection, $destinationId) {
             $this->libraries->lock($group);
             $collection->refresh();
+            $resources = $collection->resources()->whereDoesntHave('holster', fn ($holster) => $holster->where('type', BozjaHolster::TYPE_REFILL));
             if ($destinationId !== null) {
                 $this->assertParent($group, $collection, $destinationId);
-                foreach ($collection->resources()->get() as $resource) {
+                foreach ((clone $resources)->get() as $resource) {
                     abort_unless($this->policy->manage($user, $resource), 403);
                     abort_if($resource->editing_expires_at?->isFuture(), 409, __('resource_errors.locked'));
                 }
-                $collection->resources()->update(['collection_id' => $destinationId, 'version' => DB::raw('version + 1')]);
+                (clone $resources)->update(['collection_id' => $destinationId, 'version' => DB::raw('version + 1')]);
                 $collection->children()->update(['parent_id' => $destinationId]);
             }
-            if ($collection->resources()->exists() || $collection->children()->exists()) {
+            if ((clone $resources)->exists() || $collection->children()->exists()) {
                 throw ValidationException::withMessages(['collection' => __('resource_errors.collection_not_empty')]);
             }
             $this->audit->record($group, $user, $collection, 'collection_deleted');
@@ -90,6 +92,9 @@ class ResourceCollectionService
                 GroupResourceLibrary::where('group_id', $group->id)->where('holster_collection_id', $collection->id)
                     ->update(['holster_collection_id' => $destinationId]);
             }
+            // Retired refill metadata must not keep an otherwise empty collection alive.
+            $collection->resources()->whereHas('holster', fn ($holster) => $holster->where('type', BozjaHolster::TYPE_REFILL))
+                ->update(['collection_id' => null]);
             $collection->delete();
         });
     }

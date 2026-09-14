@@ -190,6 +190,32 @@ it('protects images referenced by old revisions, branding, or active editors', f
     Storage::disk('local')->assertExists($image->path);
 })->with(['history', 'branding', 'editor']);
 
+it('authorizes inline image sources and tracks them through publication and deletion protection', function () {
+    $image = library_upload($this);
+    $foreign = library_upload($this);
+    $foreign->update(['group_id' => Group::factory()->create()->id]);
+    $resource = GroupResource::factory()->create(['group_id' => $this->group->id]);
+    $action = fn ($operation, $data = []) => $this->postJson(rtrim(config('app.url'), '/').route('groups.dashboard.resources.update', ['group' => $this->group, 'resource' => $resource, 'operation' => $operation], false), ['version' => $resource->fresh()->version] + $data);
+    $token = $action('acquire')->assertOk()->json('data.editing_token');
+    $content = fn ($src) => [
+        'title' => 'Inline markers', 'slug' => $resource->slug, 'description' => '',
+        'body' => ['type' => 'doc', 'content' => [['type' => 'paragraph', 'content' => [['type' => 'inlineImage', 'attrs' => ['src' => $src, 'width' => 24]]]]]],
+        'access_level' => 'everyone', 'tags' => [], 'activity_type_ids' => [], 'commands' => [],
+    ];
+    foreach (['/resource-assets/'.$foreign->uuid, 'https://example.com/map.png'] as $src) {
+        $action('save', ['editing_token' => $token, 'summary' => 'Add image', 'content' => $content($src)])
+            ->assertUnprocessable()->assertJsonValidationErrors('body');
+    }
+    $action('save', ['editing_token' => $token, 'summary' => 'Add image', 'content' => $content('/resource-assets/'.$image->uuid)])->assertOk();
+    expect($resource->fresh()->working_copy['image_ids'])->toBe([$image->uuid]);
+    $publicUrl = route('public-resources.images.show', ['image' => $image->uuid]);
+    $this->getJson($publicUrl)->assertNotFound();
+    $action('release', ['editing_token' => $token])->assertOk();
+    $action('publish')->assertOk();
+    $this->get($publicUrl)->assertOk();
+    $this->deleteJson(library_image_url($this, $image))->assertUnprocessable()->assertJsonValidationErrors('image');
+});
+
 it('deletes unused uploads with quota and audit updates', function () {
     $image = library_upload($this);
     expect($this->library->fresh()->storage_used_bytes)->toBeGreaterThan(0);

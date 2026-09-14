@@ -19,10 +19,12 @@ class ReportContentPreview
                 // Validate before rendering user content, including older retained snapshots.
                 $document = $this->documents->validate($document, resourceBlocks: true);
                 $walk = function (array $node) use (&$walk, $imageUrls): array {
-                    if (($node['type'] ?? '') === 'image') {
+                    if (in_array($node['type'] ?? '', ['image', 'inlineImage'], true)) {
                         $src = $node['attrs']['src'];
                         if ($imageUrls === null) {
-                            return ['type' => 'paragraph', 'content' => [['type' => 'text', 'text' => __('reports.admin.image_reference').': '.$src]]];
+                            $reference = ['type' => 'text', 'text' => __('reports.admin.image_reference').': '.$src];
+
+                            return $node['type'] === 'inlineImage' ? $reference : ['type' => 'paragraph', 'content' => [$reference]];
                         }
                         $uuid = basename(parse_url($src, PHP_URL_PATH) ?? '');
                         $node['attrs']['src'] = $imageUrls[$uuid] ?? $src;

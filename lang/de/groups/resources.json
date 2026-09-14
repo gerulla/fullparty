@@ -361,10 +361,10 @@
   },
   "holsters": {
     "title": "DRS-Holster",
-    "description": "Alle aktiven Holster dieser Gruppe als Ressourcen in der gewählten Sammlung anzeigen.",
+    "description": "Jedes aktive Prepop-Holster wird einmal in der gewählten Sammlung angezeigt. Alle zugehörigen aktiven Nachfülloptionen sind in derselben Ressource enthalten.",
     "sync_description": "Titel, Beschreibungen, Anleitungen und Inhalte bleiben mit dem DRS-Editor synchron. Inaktive Holster werden automatisch ausgeblendet. Es gilt die öffentliche oder gruppeninterne Sichtbarkeit der Bibliothek. Das Entfernen dieser Verknüpfung löscht keine Holster.",
     "not_listed": "Holster nicht auflisten",
-    "active_count": "{count} aktive Holster",
+    "active_count": "{count} aktive Prepop-Holster",
     "no_collections": "Erstelle zuerst eine Sammlung und wähle sie dann hier aus.",
     "save_failed": "Die Holster-Sammlung konnte nicht gespeichert werden. Bitte versuche es erneut.",
     "change_collection": "Sammlung ändern",

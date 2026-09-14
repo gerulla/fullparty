@@ -5,7 +5,6 @@ import { readFileSync } from 'node:fs'
 import { JSDOM } from 'jsdom'
 import { Editor } from '@tiptap/core'
 import StarterKit from '@tiptap/starter-kit'
-import Image from '@tiptap/extension-image'
 import { richTextExtensions } from '../../resources/js/utils/richTextExtensions.ts'
 import { emptyRichTextDocument, hasRichTextContent, richTextPlainText, safeEditorUrl } from '../../resources/js/utils/richText.ts'
 
@@ -15,7 +14,7 @@ for (const key of ['window', 'document', 'navigator', 'Node', 'HTMLElement', 'El
 }
 globalThis.requestAnimationFrame = callback => setTimeout(callback, 0)
 globalThis.cancelAnimationFrame = clearTimeout
-const createEditor = (content, options = {}) => new Editor({ element: document.createElement('div'), extensions: [StarterKit, Image, ...richTextExtensions()], content: content ?? emptyRichTextDocument(), enableContentCheck: true, ...options })
+const createEditor = (content, options = {}) => new Editor({ element: document.createElement('div'), extensions: [StarterKit, ...richTextExtensions()], content: content ?? emptyRichTextDocument(), enableContentCheck: true, ...options })
 const textDocument = text => ({ type: 'doc', content: [{ type: 'paragraph', content: [{ type: 'text', text }] }] })
 
 test('Discord article pastes keep their text, structure and links while normalizing foreign styles', () => {
@@ -154,6 +153,100 @@ test('text extraction preserves spaces and detects image-only content', () => {
     assert.equal(richTextPlainText(doc), 'before bold after')
     assert.equal(hasRichTextContent(emptyRichTextDocument()), false)
     assert.equal(hasRichTextContent({ type: 'doc', content: [{ type: 'image', attrs: { src: '/map.png' } }] }), true)
+    assert.equal(hasRichTextContent({ type: 'doc', content: [{ type: 'paragraph', content: [{ type: 'inlineImage', attrs: { src: '/map.png' } }] }] }), true)
+})
+
+const mapImage = { type: 'image', attrs: { src: '/resource-assets/11111111-1111-1111-1111-111111111111', alt: 'Bridge map', width: 640, height: 320 } }
+function selectImage(editor, type = 'image') {
+    let position
+    editor.state.doc.descendants((node, pos) => { if (position === undefined && node.type.name === type) position = pos })
+    assert.notEqual(position, undefined)
+    editor.commands.setNodeSelection(position)
+}
+
+test('image widths, wrapping and alignment survive saving and HTML reloads', () => {
+    const editor = createEditor({ type: 'doc', content: [mapImage, ...textDocument('Stand here').content] })
+    selectImage(editor)
+    assert.equal(editor.commands.setRichTextImageWidth(240), true)
+    assert.equal(editor.state.selection.node.attrs.height, null)
+    assert.equal(editor.commands.setRichTextImageWidth(0), false)
+    assert.equal(editor.commands.setRichTextImageWidth(100.5), false)
+    assert.equal(editor.commands.setRichTextImageLayout('wrap-right'), true)
+    let saved = backendDocument(editor.getJSON())
+    assert.match(saved.html, /data-image-layout="wrap-right"/)
+    assert.match(saved.html, /width="240"/)
+    const reloaded = createEditor(saved.html)
+    assert.equal(reloaded.getJSON().content[0].attrs.layout, 'wrap-right')
+    assert.equal(reloaded.getJSON().content[0].attrs.width, 240)
+    editor.commands.setRichTextImageLayout('block')
+    editor.commands.setRichTextImageAlign('center')
+    saved = backendDocument(editor.getJSON())
+    assert.match(saved.html, /data-image-align="center"/)
+    editor.commands.setRichTextImageWidth(null)
+    assert.equal(editor.state.selection.node.attrs.width, null)
+    assert.equal(editor.state.selection.node.attrs.height, null)
+    editor.destroy(); reloaded.destroy()
+})
+
+test('block images become true inline images without losing surrounding text or saved dimensions', () => {
+    for (const content of [[mapImage], [mapImage, ...textDocument('After').content], [...textDocument('Before').content, mapImage, ...textDocument('After').content]]) {
+        const editor = createEditor({ type: 'doc', content })
+        const beforeText = richTextPlainText(editor.getJSON()).replaceAll('\n', '')
+        selectImage(editor)
+        assert.equal(editor.commands.setRichTextImageLayout('inline'), true)
+        editor.state.doc.check()
+        assert.equal(editor.state.selection.node.type.name, 'inlineImage')
+        assert.equal(editor.commands.setRichTextImageWidth(80), true)
+        const saved = backendDocument(editor.getJSON())
+        const reloaded = createEditor(saved.html)
+        reloaded.state.doc.check()
+        selectImage(reloaded, 'inlineImage')
+        assert.equal(reloaded.state.selection.node.attrs.width, 80)
+        assert.match(saved.html, /<p>.*data-inline-image/s)
+        assert.equal(editor.commands.setRichTextImageLayout('wrap-left'), true)
+        editor.state.doc.check()
+        assert.equal(editor.state.selection.node.type.name, 'image')
+        assert.equal(editor.state.selection.node.attrs.layout, 'wrap-left')
+        assert.equal(richTextPlainText(editor.getJSON()).replaceAll('\n', ''), beforeText)
+        editor.destroy(); reloaded.destroy()
+    }
+})
+
+test('inline images can be extracted from text, headings, lists and tables with valid structure', () => {
+    const inline = { ...mapImage, type: 'inlineImage' }
+    for (const surrounding of [false, true]) {
+        const paragraph = { type: 'paragraph', content: [...(surrounding ? [{ type: 'text', text: 'Before ' }] : []), inline, { type: 'text', text: ' after' }] }
+        for (const content of [[paragraph], [{ ...paragraph, type: 'heading', attrs: { level: 2 } }], [{ type: 'bulletList', content: [{ type: 'listItem', content: [paragraph] }] }], [{ type: 'taskList', content: [{ type: 'taskItem', attrs: { checked: false }, content: [paragraph] }] }], [{ type: 'table', content: [{ type: 'tableRow', content: [{ type: 'tableCell', content: [paragraph] }] }] }]]) {
+            const editor = createEditor({ type: 'doc', content })
+            selectImage(editor, 'inlineImage')
+            const original = editor.getJSON()
+            assert.equal(editor.commands.setRichTextImageLayout('block'), true)
+            editor.state.doc.check()
+            backendDocument(editor.getJSON())
+            assert.equal(editor.commands.undo(), true)
+            assert.deepEqual(editor.getJSON(), original)
+            editor.destroy()
+        }
+    }
+})
+
+test('resizable image views update their actual displayed width and layout after toolbar commands', () => {
+    const editor = createEditor({ type: 'doc', content: [mapImage] }, { extensions: [StarterKit, ...richTextExtensions({ resizableImages: true })] })
+    selectImage(editor)
+    const wrapper = editor.view.dom.querySelector('[data-resize-container]')
+    const image = wrapper.querySelector('img')
+    assert.equal(image.style.width, '640px')
+    editor.commands.setRichTextImageWidth(200)
+    assert.equal(image.style.width, '200px')
+    assert.equal(image.style.height, 'auto')
+    editor.commands.setRichTextImageLayout('wrap-left')
+    assert.equal(wrapper.dataset.imageLayout, 'wrap-left')
+    editor.commands.setRichTextImageWidth(null)
+    assert.equal(image.style.width, '')
+    editor.commands.setRichTextImageLayout('inline')
+    assert.equal(editor.view.dom.querySelector('[data-resize-container]'), null)
+    assert.ok(editor.view.dom.querySelector('p img[data-inline-image]'))
+    editor.destroy()
 })
 
 test('unsafe links and image sources are rejected before insertion', () => {

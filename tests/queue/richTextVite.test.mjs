@@ -46,6 +46,13 @@ test('the actual Vite prebundled editor and custom extensions share a plugin reg
         for (const dependency of config.optimizeDeps.include) {
             modules[dependency] = await import(pathToFileURL(metadata.optimized[dependency].file).href)
         }
+        const imageSource = readFileSync(path.join(root, 'resources/js/utils/richTextImages.ts'), 'utf8')
+        const imageCompiled = ts.transpileModule(imageSource, { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } }).outputText
+        modules['./richTextImages.ts'] = {}
+        new Function('require', 'exports', imageCompiled)(name => {
+            assert.ok(modules[name], `Image extension needs prebundled ${name}`)
+            return modules[name]
+        }, modules['./richTextImages.ts'])
         const source = readFileSync(path.join(root, 'resources/js/utils/richTextExtensions.ts'), 'utf8')
         const compiled = ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } }).outputText
         const exports = {}
@@ -58,13 +65,12 @@ test('the actual Vite prebundled editor and custom extensions share a plugin reg
         const StarterKit = modules['@tiptap/starter-kit'].default
         const Code = modules['@tiptap/extension-code'].default
         const HorizontalRule = modules['@tiptap/extension-horizontal-rule'].default
-        const Image = modules['@tiptap/extension-image'].default
         const editors = []
         try {
             for (let index = 0; index < 3; index++) {
                 const editor = new Editor({
                     element: document.createElement('div'), editable: index !== 2,
-                    extensions: [StarterKit.configure({ code: false, horizontalRule: false }), Code.extend({ excludes: 'code' }), HorizontalRule, Image, ...exports.richTextExtensions()],
+                    extensions: [StarterKit.configure({ code: false, horizontalRule: false }), Code.extend({ excludes: 'code' }), HorizontalRule, ...exports.richTextExtensions()],
                     content: { type: 'doc', content: [{ type: 'paragraph', content: [{ type: 'text', text: 'Bridge positions' }] }] },
                 })
                 editors.push(editor)

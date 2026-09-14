@@ -51,6 +51,7 @@ class GroupResource extends Model
         $query->when(! $includeHidden, fn ($visible) => $visible->whereNull('group_resources.moderation_hidden_at'));
         $query->where(fn ($source) => $source->whereNull('holster_id')->orWhere(fn ($linked) => $linked
             ->whereHas('holster', fn ($holster) => $holster->whereColumn('bozja_holsters.group_id', 'group_resources.group_id')
+                ->where('type', BozjaHolster::TYPE_PREPOP)
                 ->where(fn ($state) => $state->where('is_active', true)->when($includeHidden, fn ($hidden) => $hidden->orWhereNotNull('moderation_hidden_at'))))
             ->whereExists(fn ($library) => $library->selectRaw('1')->from('group_resource_libraries')
                 ->whereColumn('group_resource_libraries.group_id', 'group_resources.group_id')->whereNotNull('holster_collection_id'))));

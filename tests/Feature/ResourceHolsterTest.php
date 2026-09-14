@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Services\Groups\Resources\ResourceHolsterService;
 use App\Services\RichText\RichTextDocument;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\DB;
 use Inertia\Testing\AssertableInertia as Assert;
 
 uses(RefreshDatabase::class);
@@ -17,6 +18,18 @@ uses(RefreshDatabase::class);
 function holster_internal_url(string $name, mixed $parameters): string
 {
     return rtrim(config('app.url'), '/').route($name, $parameters, false);
+}
+
+function legacy_refill_resource(GroupResource $prepop, BozjaHolster $refill): GroupResource
+{
+    $resource = $prepop->replicate(['uuid', 'published_revision_id']);
+    $resource->fill(['holster_id' => $refill->id, 'slug' => 'legacy-refill-'.$refill->id])->save();
+    $snapshot = array_replace($resource->working_copy, ['title' => $refill->localizedName(), 'slug' => $resource->slug]);
+    $revision = $resource->revisions()->create(['summary' => 'Legacy refill', 'state' => 'published', 'editor' => ['name' => 'Editor'], 'snapshot' => $snapshot]);
+    $resource->update(['working_copy' => $snapshot, 'published_revision_id' => $revision->id]);
+    DB::table('group_resource_slugs')->insert(['group_id' => $resource->group_id, 'resource_id' => $resource->id, 'slug' => $resource->slug]);
+
+    return $resource;
 }
 
 beforeEach(function () {
@@ -46,7 +59,8 @@ it('lets managers select a same-group collection and remove the listing while pr
     $count = GroupResource::count();
     $this->putJson($this->settingsUrl, ['collection_id' => $this->folder->id])->assertOk()
         ->assertJsonPath('data.collection_id', $this->folder->id)->assertJsonPath('data.active_count', 1)
-        ->assertJsonPath('data.resources.0.title', 'Moonlit tank')->assertJsonMissingPath('data.resources.0.body');
+        ->assertJsonPath('data.resources', []);
+    expect(GroupResource::where('holster_id', $this->holster->id)->firstOrFail()->working_copy['title'])->toBe('Moonlit tank');
     $this->putJson($this->settingsUrl, ['collection_id' => null])->assertOk()
         ->assertJsonPath('data.collection_id', null)->assertJsonPath('data.resources', []);
     expect(GroupResource::count())->toBe($count + 1)->and($this->holster->fresh()->is_active)->toBeTrue();
@@ -75,7 +89,30 @@ it('lists only this groups active holsters and includes a collection containing 
         ->assertJsonMissingPath('resources.data.0.body')->assertDontSee('secret');
     $this->actingAs($this->group->owner)->get(holster_internal_url('groups.dashboard.resources.manage', $this->group))->assertOk()
         ->assertInertia(fn (Assert $page) => $page->where('workspace.holsters.active_count', 1)
-            ->where('workspace.holsters.resources.0.holster_id', $this->holster->id));
+            ->where('workspace.holsters.resources', [])
+            ->where('workspace.resources', fn ($resources) => collect($resources)->where('holster_id', $this->holster->id)->count() === 1));
+});
+
+it('creates only one pre-pop resource and never creates standalone refill resources', function () {
+    $refill = BozjaHolster::create([
+        'group_id' => $this->group->id, 'parent_holster_id' => $this->holster->id,
+        'type' => 'refill', 'name' => ['en' => 'Moonlit refill'],
+    ]);
+    expect(GroupResource::where('group_id', $this->group->id)->whereNotNull('holster_id')->count())->toBe(0);
+    $url = holster_internal_url('groups.dashboard.resources.manage', $this->group);
+    $ids = null;
+    for ($attempt = 0; $attempt < 3; $attempt++) {
+        $this->actingAs($this->group->owner)->get($url)->assertOk()->assertInertia(fn (Assert $page) => $page
+            ->where('workspace.holsters.active_count', 1)
+            ->where('workspace.holsters.resources', [])
+            ->where('workspace.resources', fn ($resources) => collect($resources)->whereNotNull('holster_id')->pluck('holster_id')->all() === [$this->holster->id]));
+        $linked = GroupResource::where('group_id', $this->group->id)->whereNotNull('holster_id')->orderBy('holster_id')->get();
+        $ids ??= $linked->pluck('id')->all();
+        expect($linked->pluck('id')->all())->toBe($ids)
+            ->and($linked->sum(fn ($resource) => $resource->revisions()->count()))->toBe(1);
+    }
+    expect(BozjaHolster::where('group_id', $this->group->id)->count())->toBe(2);
+    $this->assertDatabaseMissing('group_resources', ['holster_id' => $refill->id]);
 });
 
 it('renders the current localized guide and quantified loadout on both reader surfaces', function (bool $public) {
@@ -94,6 +131,81 @@ it('renders the current localized guide and quantified loadout on both reader su
         $this->get($url)->assertSee('<link rel="canonical" href="'.$url.'"', false);
     }
 })->with([true, false]);
+
+it('filters existing refill resources out of listings without modifying them and keeps old links working', function () {
+    $refill = BozjaHolster::create(['group_id' => $this->group->id, 'parent_holster_id' => $this->holster->id, 'type' => 'refill', 'name' => ['en' => 'Legacy refill']]);
+    app(ResourceHolsterService::class)->synchronize($this->group);
+    $prepop = GroupResource::where('holster_id', $this->holster->id)->firstOrFail();
+    $legacy = legacy_refill_resource($prepop, $refill);
+    $legacy->update(['is_pinned' => true]);
+    $stored = $legacy->fresh()->getRawOriginal();
+    $revisions = $legacy->revisions()->get()->toArray();
+
+    $this->getJson(route('public-resources.collections.show', ['group' => $this->group, 'collectionSlug' => 'holsters']))->assertOk()
+        ->assertJsonPath('collections.0.resource_count', 1)->assertJsonPath('resources.total', 1)
+        ->assertJsonPath('resources.data.0.id', $prepop->id)->assertJsonPath('reader.pinned_resources', [])
+        ->assertJsonPath('reader.recent_resources.0.id', $prepop->id)->assertJsonCount(1, 'reader.recent_resources');
+    $this->getJson(route('public-resources.index', $this->group).'?q=Legacy%20refill')->assertOk()->assertJsonPath('resources.total', 0);
+    $this->getJson($this->articleUrl)->assertOk()->assertJsonPath('data.holster.refills.0.id', $refill->id)
+        ->assertJsonPath('data.related_resources', []);
+    foreach ([$legacy->uuid, $legacy->slug] as $slug) {
+        $this->getJson(route('public-resources.show', ['group' => $this->group, 'slug' => $slug]))
+            ->assertRedirect(route('public-resources.show', ['group' => $this->group, 'slug' => $prepop->uuid]));
+    }
+    $this->getJson(route('public-resources.show', ['group' => $this->group, 'slug' => $prepop->uuid]))->assertOk()
+        ->assertJsonPath('data.id', $prepop->id)->assertJsonPath('data.holster.refills.0.id', $refill->id);
+    $this->actingAs($this->group->owner)->get(holster_internal_url('groups.dashboard.resources.manage', $this->group))->assertOk()
+        ->assertInertia(fn (Assert $page) => $page->where('workspace.holsters.active_count', 1)
+            ->where('workspace.holsters.resources', [])
+            ->where('workspace.resources', fn ($resources) => collect($resources)->whereNotNull('holster_id')->pluck('id')->all() === [$prepop->id]));
+    $this->get(holster_internal_url('groups.dashboard.resources.show', ['group' => $this->group, 'slug' => $legacy->uuid]))
+        ->assertRedirect(route('groups.dashboard.resources.show', ['group' => $this->group, 'slug' => $prepop->uuid]));
+    expect($legacy->fresh()->getRawOriginal())->toBe($stored)->and($legacy->revisions()->get()->toArray())->toBe($revisions);
+    expect(GroupResource::where('group_id', $this->group->id)->whereNotNull('holster_id')->count())->toBe(2);
+
+    $prepop->update(['access_level' => 'admin']);
+    $this->getJson(route('public-resources.show', ['group' => $this->group, 'slug' => $legacy->uuid]))->assertNotFound();
+});
+
+it('does not create resources or expose parentless and inactive refill links', function () {
+    $orphan = BozjaHolster::create(['group_id' => $this->group->id, 'type' => 'refill']);
+    $inactive = BozjaHolster::create(['group_id' => $this->group->id, 'parent_holster_id' => $this->holster->id, 'type' => 'refill', 'is_active' => false]);
+    foreach ([$orphan, $inactive] as $refill) {
+        $this->getJson(route('public-resources.holsters.show', ['group' => $this->group, 'holster' => $refill]))->assertNotFound();
+        $this->assertDatabaseMissing('group_resources', ['holster_id' => $refill->id]);
+    }
+});
+
+it('allows deleting collections containing only retired refill metadata without deleting that metadata', function (bool $moveContents) {
+    $refill = BozjaHolster::create(['group_id' => $this->group->id, 'parent_holster_id' => $this->holster->id, 'type' => 'refill']);
+    app(ResourceHolsterService::class)->synchronize($this->group);
+    $prepop = GroupResource::where('holster_id', $this->holster->id)->firstOrFail();
+    $legacy = legacy_refill_resource($prepop, $refill);
+    $legacy->update(['editing_user_id' => $this->group->owner_id, 'editing_expires_at' => now()->addMinutes(10)]);
+    $destination = GroupResourceCollection::create(['group_id' => $this->group->id, 'name' => 'Current', 'slug' => 'current']);
+    $prepop->update(['collection_id' => $destination->id]);
+    $snapshot = $legacy->working_copy;
+    $revisionId = $legacy->published_revision_id;
+
+    $this->actingAs($this->group->owner)->deleteJson(holster_internal_url('groups.dashboard.resources.collections.destroy', [
+        'group' => $this->group, 'collection' => $this->folder,
+    ]), $moveContents ? ['destination_id' => $destination->id] : [])->assertNoContent();
+
+    expect($this->folder->fresh())->toBeNull()->and($legacy->fresh()->collection_id)->toBeNull()
+        ->and($legacy->fresh()->working_copy)->toBe($snapshot)->and($legacy->fresh()->published_revision_id)->toBe($revisionId)
+        ->and($prepop->fresh()->collection_id)->toBe($destination->id)->and($refill->fresh())->not->toBeNull();
+})->with([true, false]);
+
+it('ignores old refill editor leases when changing the holster collection', function () {
+    $refill = BozjaHolster::create(['group_id' => $this->group->id, 'parent_holster_id' => $this->holster->id, 'type' => 'refill']);
+    app(ResourceHolsterService::class)->synchronize($this->group);
+    $prepop = GroupResource::where('holster_id', $this->holster->id)->firstOrFail();
+    $legacy = legacy_refill_resource($prepop, $refill);
+    $legacy->update(['editing_user_id' => $this->group->owner_id, 'editing_expires_at' => now()->addMinutes(10)]);
+    $destination = GroupResourceCollection::create(['group_id' => $this->group->id, 'name' => 'Current', 'slug' => 'current']);
+    $this->actingAs($this->group->owner)->putJson($this->settingsUrl, ['collection_id' => $destination->id])->assertOk();
+    expect($prepop->fresh()->collection_id)->toBe($destination->id);
+});
 
 it('searches names descriptions guide text and holster tags', function (string $search) {
     $this->getJson(route('public-resources.index', $this->group).'?'.http_build_query(['q' => $search]))->assertOk()
@@ -160,12 +272,12 @@ it('keeps legacy markdown readable and sanitizes its HTML until guides are conve
 });
 
 it('shows other active holsters in the same collection', function () {
-    $other = BozjaHolster::create(['group_id' => $this->group->id, 'name' => ['en' => 'Refill'], 'type' => 'refill']);
+    $other = BozjaHolster::create(['group_id' => $this->group->id, 'name' => ['en' => 'Other pre-pop'], 'type' => 'prepop']);
     $this->getJson($this->articleUrl)->assertOk()->assertJsonPath('data.related_resources.0.holster_id', $other->id)
         ->assertJsonCount(1, 'data.related_resources');
 });
 
-it('shows every available refill on both pre-pop and refill resource pages', function (bool $public, bool $refillPage) {
+it('shows one pre-pop resource with every available refill including through legacy refill links', function (bool $public, bool $refillPage) {
     $refill = BozjaHolster::create([
         'group_id' => $this->group->id, 'parent_holster_id' => $this->holster->id,
         'type' => 'refill', 'name' => ['en' => 'Tank refill'], 'notes' => 'Bring extra actions',
@@ -177,12 +289,15 @@ it('shows every available refill on both pre-pop and refill resource pages', fun
         'type' => 'refill', 'name' => ['en' => 'Alternative tank refill'], 'notes' => 'Use for progression',
     ]);
     $alternative->items()->attach($item, ['quantity' => 2]);
-    foreach (['inactive', 'foreign'] as $hidden) {
-        BozjaHolster::create([
+    foreach (['inactive', 'foreign', 'moderated'] as $hidden) {
+        $hiddenRefill = BozjaHolster::create([
             'group_id' => $hidden === 'foreign' ? Group::factory()->create()->id : $this->group->id,
             'parent_holster_id' => $this->holster->id, 'type' => 'refill',
             'name' => ['en' => 'Secret refill'], 'is_active' => $hidden !== 'inactive',
         ]);
+        if ($hidden === 'moderated') {
+            $hiddenRefill->forceFill(['moderation_hidden_at' => now()])->save();
+        }
     }
     $parameters = ['group' => $this->group, 'holster' => $refillPage ? $refill : $this->holster];
     $url = $public ? route('public-resources.holsters.show', $parameters) : holster_internal_url('groups.dashboard.resources.holsters.show', $parameters);
@@ -190,6 +305,7 @@ it('shows every available refill on both pre-pop and refill resource pages', fun
         $this->actingAs($this->group->owner);
     }
     $this->get($url)->assertOk()->assertInertia(fn (Assert $page) => $page
+        ->where('resource.holster_id', $this->holster->id)->where('resource.title', 'Moonlit tank')
         ->where('resource.holster.prepop.id', $this->holster->id)
         ->has('resource.holster.refills', 2)->where('resource.holster.refills.0.id', $refill->id)
         ->where('resource.holster.refills.0.notes', 'Bring extra actions')
@@ -210,17 +326,17 @@ it('shows sibling refills only when their parent content is available', function
     } elseif ($parentState === 'foreign') {
         $this->holster->update(['group_id' => Group::factory()->create()->id]);
     }
-    $response = $this->getJson(route('public-resources.holsters.show', ['group' => $this->group, 'holster' => $refill]))->assertOk()
-        ->assertJsonPath('data.holster.refills.0.id', $refill->id);
+    $response = $this->getJson(route('public-resources.holsters.show', ['group' => $this->group, 'holster' => $refill]));
     if ($parentState === 'active') {
-        $response->assertJsonPath('data.holster.prepop.id', $this->holster->id)
+        $response->assertOk()->assertJsonPath('data.holster.prepop.id', $this->holster->id)
+            ->assertJsonPath('data.holster.refills.0.id', $refill->id)
             ->assertJsonCount(2, 'data.holster.refills')->assertJsonPath('data.holster.refills.1.id', $sibling->id);
     } else {
-        $response->assertJsonPath('data.holster.prepop', null)->assertJsonCount(1, 'data.holster.refills');
+        $response->assertNotFound();
     }
 })->with(['active', 'inactive', 'foreign']);
 
-it('does not expose restricted or unpublished siblings on a public refill resource page', function (string $state) {
+it('preserves restrictions on legacy refill metadata when showing the pre-pop resource', function (string $state) {
     $refill = BozjaHolster::create([
         'group_id' => $this->group->id, 'parent_holster_id' => $this->holster->id,
         'type' => 'refill', 'name' => ['en' => 'Visible refill'],
@@ -230,14 +346,16 @@ it('does not expose restricted or unpublished siblings on a public refill resour
         'type' => 'refill', 'name' => ['en' => 'Hidden sibling'],
     ]);
     app(ResourceHolsterService::class)->synchronize($this->group);
-    GroupResource::where('holster_id', $sibling->id)->update(match ($state) {
+    $legacy = legacy_refill_resource(GroupResource::where('holster_id', $this->holster->id)->firstOrFail(), $sibling);
+    $legacy->update(match ($state) {
         'restricted' => ['access_level' => 'admin'],
         'archived' => ['status' => 'archived'],
         'unpublished' => ['published_revision_id' => null],
+        'moderated' => ['moderation_hidden_at' => now()],
     });
 
     $this->getJson(route('public-resources.holsters.show', ['group' => $this->group, 'holster' => $refill]))
         ->assertOk()->assertJsonCount(1, 'data.holster.refills')
         ->assertJsonPath('data.holster.refills.0.id', $refill->id)
         ->assertDontSee('Hidden sibling');
-})->with(['restricted', 'archived', 'unpublished']);
+})->with(['restricted', 'archived', 'unpublished', 'moderated']);

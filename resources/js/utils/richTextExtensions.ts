@@ -9,9 +9,10 @@ import Superscript from '@tiptap/extension-superscript'
 import { Plugin } from '@tiptap/pm/state'
 import { Fragment, Slice, type Node as ProseMirrorNode } from '@tiptap/pm/model'
 import { normalizePastedRichText } from './richTextPaste.ts'
+import { richTextImageExtensions } from './richTextImages.ts'
 
-export function richTextExtensions() {
-    return [TableKit.configure({ table: { resizable: true } }), TextStyleKit,
+export function richTextExtensions(options: { resizableImages?: boolean } = {}) {
+    return [...richTextImageExtensions(options.resizableImages), TableKit.configure({ table: { resizable: true } }), TextStyleKit,
         TextAlign.configure({ types: ['heading', 'paragraph'] }), TaskList, TaskItem.configure({ nested: true }),
         Highlight.configure({ multicolor: true }), Subscript, Superscript,
         Extension.create({

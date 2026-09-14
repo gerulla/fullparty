@@ -13,6 +13,10 @@ const definitions = [
         iconClass: 'text-green-600 drop-shadow-[0_4px_10px_rgba(22,163,74,0.85)]', badgeClass: 'bg-green-600/10 text-green-600' },
 ] as const;
 
+export function availableSpecialistDesignations(designations: SlotDesignation[]) {
+    return definitions.filter(definition => designations.includes(definition.key));
+}
+
 export function specialistDesignationMarkers(slot: ActivitySlot, hasRightCornerMarker = false) {
     const positions = ['-right-2 -top-2', 'right-5 -top-2', 'right-12 -top-2', 'right-19 -top-2'];
     const offset = hasRightCornerMarker ? 1 : 0;
@@ -31,7 +35,7 @@ export function specialistDesignationActions(
     onSelect: (slotId: number, designation: SlotDesignation) => void,
     disabled: boolean,
 ): ContextMenuItem[] {
-    return definitions.filter(definition => slot.available_designations?.includes(definition.key)).map(definition => ({
+    return availableSpecialistDesignations(slot.available_designations ?? []).map(definition => ({
         label: t(`groups.activities.management.roster.${slot[definition.column] ? 'unmark' : 'mark'}_${definition.key}_action`),
         icon: definition.icon,
         color: definition.color,

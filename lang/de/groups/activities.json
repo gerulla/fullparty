@@ -638,6 +638,7 @@
             "no_min_item_level": "Kein Minimum"
         },
         "board": {
+            "designation_legend": "Aufstellungssymbole",
             "title": "Roster-Board",
             "subtitle": "Partys werden nebeneinander angezeigt, damit Mitglieder die aktuelle Aufstellung schnell erfassen können.",
             "party_label": "Party",

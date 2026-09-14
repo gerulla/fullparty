@@ -638,6 +638,7 @@
             "no_min_item_level": "Aucun minimum"
         },
         "board": {
+            "designation_legend": "Icônes de la formation",
             "title": "Tableau de composition",
             "subtitle": "Les parties sont présentées côte à côte pour que les membres puissent parcourir rapidement l'alignement actuel.",
             "party_label": "Party",

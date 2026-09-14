@@ -1,5 +1,6 @@
 <?php
 
+use App\Services\Moderation\ReportContentPreview;
 use App\Services\RichText\MarkdownGuideConverter;
 use App\Services\RichText\RichTextDocument;
 use Illuminate\Validation\ValidationException;
@@ -17,6 +18,43 @@ it('renders document formatting and escapes literal HTML', function () {
     expect($html)->toContain('&lt;script&gt;', 'text-align: center', 'font-size: 24px', 'line-height: 1.5', '<strong>')
         ->not->toContain('<script>');
     expect($service->text($document))->toContain('<script>alert(1)</script>');
+});
+
+it('preserves controlled image layouts and inline images through HTML conversion', function () {
+    $service = app(RichTextDocument::class);
+    $document = ['type' => 'doc', 'content' => [
+        ['type' => 'image', 'attrs' => ['src' => '/map.png', 'width' => 320, 'layout' => 'wrap-left', 'align' => 'center']],
+        ['type' => 'paragraph', 'content' => [
+            ['type' => 'text', 'text' => 'Position '],
+            ['type' => 'inlineImage', 'attrs' => ['src' => '/marker.png', 'width' => 24, 'alt' => 'A']],
+            ['type' => 'text', 'text' => ' here.'],
+        ]],
+    ]];
+    $html = $service->html($document);
+    expect($html)->toContain('data-image-layout="wrap-left"', 'data-image-align="center"', 'width="320"', 'data-inline-image="true"', 'width="24"');
+    $roundTrip = $service->validate($service->editor()->setContent($html)->getDocument());
+    expect($roundTrip['content'][0]['attrs']['layout'])->toBe('wrap-left')
+        ->and($roundTrip['content'][1]['content'][1]['type'])->toBe('inlineImage')
+        ->and($service->imageUrls($roundTrip))->toBe(['/map.png', '/marker.png']);
+});
+
+it('rejects unsafe or misplaced inline images and image layout attributes', function (array $node) {
+    expect(fn () => app(RichTextDocument::class)->validate(['type' => 'doc', 'content' => [$node]]))->toThrow(ValidationException::class);
+})->with([
+    'inline at root' => [['type' => 'inlineImage', 'attrs' => ['src' => '/map.png']]],
+    'unsafe source' => [['type' => 'paragraph', 'content' => [['type' => 'inlineImage', 'attrs' => ['src' => 'javascript:alert(1)']]]]],
+    'unsafe attribute' => [['type' => 'paragraph', 'content' => [['type' => 'inlineImage', 'attrs' => ['src' => '/map.png', 'onerror' => 'alert(1)']]]]],
+    'missing source' => [['type' => 'paragraph', 'content' => [['type' => 'inlineImage', 'attrs' => ['width' => 24]]]]],
+    'layout injection' => [['type' => 'image', 'attrs' => ['src' => '/map.png', 'layout' => 'position:fixed']]],
+    'unsupported alignment' => [['type' => 'image', 'attrs' => ['src' => '/map.png', 'align' => 'justify']]],
+]);
+
+it('retains inline image evidence in moderation previews without loading unauthorized assets', function () {
+    $image = ['type' => 'inlineImage', 'attrs' => ['src' => '/resource-assets/11111111-1111-1111-1111-111111111111', 'width' => 24]];
+    $snapshot = ['content' => ['body' => ['type' => 'doc', 'content' => [['type' => 'paragraph', 'content' => [$image]]]]]];
+    $preview = app(ReportContentPreview::class);
+    expect($preview->build($snapshot)['html'])->toContain('/resource-assets/11111111-1111-1111-1111-111111111111')->not->toContain('<img');
+    expect($preview->build($snapshot, ['11111111-1111-1111-1111-111111111111' => '/admin/reports/1/asset/1'])['html'])->toContain('src="/admin/reports/1/asset/1"', 'data-inline-image');
 });
 
 it('rejects unsafe or unsupported document structures', function (array $document) {

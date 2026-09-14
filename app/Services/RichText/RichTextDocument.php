@@ -24,7 +24,7 @@ class RichTextDocument
     public function editor(): Editor
     {
         return new Editor(['extensions' => [
-            new Extensions\StarterKit, new Nodes\Image,
+            new Extensions\StarterKit, new ImageNode, new InlineImageNode,
             new Nodes\Table, new Nodes\TableRow, new Nodes\TableCell, new Nodes\TableHeader,
             new Nodes\TaskList, new Nodes\TaskItem,
             new Marks\Link(['HTMLAttributes' => ['rel' => 'nofollow noopener noreferrer']]),
@@ -50,7 +50,7 @@ class RichTextDocument
                 $fail();
             }
             $type = $node['type'] ?? '';
-            if (! in_array($type, [...$blocks, 'doc', 'text', 'hardBreak', 'listItem', 'taskItem', 'tableRow', 'tableCell', 'tableHeader'], true)) {
+            if (! in_array($type, [...$blocks, 'doc', 'text', 'hardBreak', 'inlineImage', 'listItem', 'taskItem', 'tableRow', 'tableCell', 'tableHeader'], true)) {
                 $fail();
             }
             if ($type === 'doc' && $depth !== 0) {
@@ -80,7 +80,7 @@ class RichTextDocument
                 $result['attrs'] = $attrs;
             }
             if (isset($node['marks'])) {
-                if (! in_array($type, ['text', 'hardBreak'], true) || ! is_array($node['marks']) || ! array_is_list($node['marks']) || count($node['marks']) > 12) {
+                if (! in_array($type, ['text', 'hardBreak', 'inlineImage'], true) || ! is_array($node['marks']) || ! array_is_list($node['marks']) || count($node['marks']) > 12) {
                     $fail();
                 }
                 $seen = [];
@@ -103,7 +103,7 @@ class RichTextDocument
             }
             $allowed = match ($type) {
                 'doc', 'blockquote', 'listItem', 'taskItem', 'tableCell', 'tableHeader' => $blocks,
-                'paragraph', 'heading' => ['text', 'hardBreak'],
+                'paragraph', 'heading' => ['text', 'hardBreak', 'inlineImage'],
                 'codeBlock' => ['text'],
                 'bulletList', 'orderedList' => ['listItem'],
                 'taskList' => ['taskItem'], 'table' => ['tableRow'], 'tableRow' => ['tableCell', 'tableHeader'],
@@ -136,7 +136,8 @@ class RichTextDocument
         $allowed = match ($type) {
             'paragraph' => ['textAlign'], 'heading' => ['level', 'textAlign'],
             'orderedList' => ['start', 'type'], 'taskItem' => ['checked'], 'codeBlock' => ['language'],
-            'image' => ['src', 'alt', 'title', 'width', 'height'],
+            'image' => ['src', 'alt', 'title', 'width', 'height', 'layout', 'align'],
+            'inlineImage' => ['src', 'alt', 'title', 'width', 'height'],
             'tableCell', 'tableHeader' => ['colspan', 'rowspan', 'colwidth', 'align'],
             'link' => ['href', 'target', 'rel', 'class', 'title'],
             'textStyle' => ['color', 'backgroundColor', 'fontSize', 'fontFamily', 'lineHeight'],
@@ -163,7 +164,8 @@ class RichTextDocument
                 'start' => is_int($value) && $value >= 1 && $value <= 100000,
                 'type' => in_array($value, ['1', 'a', 'A', 'i', 'I'], true),
                 'checked' => is_bool($value),
-                'textAlign', 'align' => in_array($value, ['left', 'center', 'right', 'justify'], true),
+                'textAlign', 'align' => in_array($value, $type === 'image' ? ['left', 'center', 'right'] : ['left', 'center', 'right', 'justify'], true),
+                'layout' => in_array($value, ['block', 'wrap-left', 'wrap-right'], true),
                 'width', 'height', 'colspan', 'rowspan' => filter_var($value, FILTER_VALIDATE_INT) !== false && $value >= 1 && $value <= (in_array($key, ['width', 'height']) ? 4096 : 100),
                 'colwidth' => is_array($value) && array_is_list($value) && count($value) <= 100 && ! array_filter($value, fn ($width) => ! is_int($width) || $width < 0 || $width > 4096),
                 'src' => is_string($value) && $this->safeUrl($value, true),
@@ -185,7 +187,7 @@ class RichTextDocument
             }
         }
         unset($value);
-        if (($type === 'image' && empty($attributes['src'])) || ($type === 'link' && empty($attributes['href']))) {
+        if ((in_array($type, ['image', 'inlineImage'], true) && empty($attributes['src'])) || ($type === 'link' && empty($attributes['href']))) {
             $fail();
         }
         if ($type === 'link') {
@@ -315,7 +317,7 @@ class RichTextDocument
     {
         $urls = [];
         $walk = function (array $node) use (&$walk, &$urls): void {
-            if (($node['type'] ?? '') === 'image') {
+            if (in_array($node['type'] ?? '', ['image', 'inlineImage'], true)) {
                 $urls[] = $node['attrs']['src'];
             }
             foreach ($node['content'] ?? [] as $child) {

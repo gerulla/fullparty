@@ -12,7 +12,7 @@ export function richTextPlainText(node: JSONContent): string {
 }
 
 export function hasRichTextContent(node: JSONContent): boolean {
-    return !!node.text?.trim() || ['image', 'horizontalRule', 'resourceLink', 'videoEmbed'].includes(node.type ?? '') || (node.content ?? []).some(hasRichTextContent)
+    return !!node.text?.trim() || ['image', 'inlineImage', 'horizontalRule', 'resourceLink', 'videoEmbed'].includes(node.type ?? '') || (node.content ?? []).some(hasRichTextContent)
 }
 
 export function safeEditorUrl(url: string, image = false): boolean {

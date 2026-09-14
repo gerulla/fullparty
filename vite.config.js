@@ -100,6 +100,8 @@ export default defineConfig({
         // our extensions so every plugin uses the same ProseMirror registry.
         include: [
             '@tiptap/core',
+            '@tiptap/pm/model',
+            '@tiptap/pm/state',
             '@tiptap/vue-3',
             '@tiptap/vue-3/menus',
             '@tiptap/starter-kit',

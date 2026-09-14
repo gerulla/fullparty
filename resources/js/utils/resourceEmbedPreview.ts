@@ -1,4 +1,9 @@
 import type { WorkspaceEmbed } from '../Types/ResourceWorkspace'
+import type { ResourceLinkButton } from '../Types/GroupResources'
+
+export function resourceEmbedButtonRows(buttons: ResourceLinkButton[]): ResourceLinkButton[][] {
+    return Array.from({ length: Math.ceil(buttons.length / 5) }, (_, index) => buttons.slice(index * 5, index * 5 + 5))
+}
 
 export function resourceEmbedCharacterCount(embed: WorkspaceEmbed): number {
     return ['FullParty', embed.title, embed.description, embed.author, ...embed.fields.flatMap(field => [field.name, field.value])]

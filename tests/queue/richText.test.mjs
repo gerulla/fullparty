@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 import { spawnSync } from 'node:child_process'
+import { readFileSync } from 'node:fs'
 import { JSDOM } from 'jsdom'
 import { Editor } from '@tiptap/core'
 import StarterKit from '@tiptap/starter-kit'
@@ -14,8 +15,43 @@ for (const key of ['window', 'document', 'navigator', 'Node', 'HTMLElement', 'El
 }
 globalThis.requestAnimationFrame = callback => setTimeout(callback, 0)
 globalThis.cancelAnimationFrame = clearTimeout
-const createEditor = content => new Editor({ element: document.createElement('div'), extensions: [StarterKit, Image, ...richTextExtensions()], content: content ?? emptyRichTextDocument(), enableContentCheck: true })
+const createEditor = (content, options = {}) => new Editor({ element: document.createElement('div'), extensions: [StarterKit, Image, ...richTextExtensions()], content: content ?? emptyRichTextDocument(), enableContentCheck: true, ...options })
 const textDocument = text => ({ type: 'doc', content: [{ type: 'paragraph', content: [{ type: 'text', text }] }] })
+
+test('Discord article pastes keep their text, structure and links while normalizing foreign styles', () => {
+    const html = readFileSync(new URL('../Fixtures/rich-text/discord-guide.html', import.meta.url), 'utf8')
+    const original = createEditor(html, { enableContentCheck: false })
+    const editor = createEditor()
+    assert.equal(editor.view.pasteHTML(html, new dom.window.Event('paste')), true)
+    assert.equal(editor.getText(), original.getText())
+    assert.match(editor.getHTML(), /<h1><strong>Ray of Expulsion Afar/)
+    assert.match(editor.getHTML(), /<blockquote>/)
+    assert.match(editor.getHTML(), /<ul>/)
+    assert.match(editor.getHTML(), /sourpuh\.github\.io\/waymarkstudio\?preset=wms1\./)
+    assert.match(editor.getHTML(), /https:\/\/raidplan\.io\/plan\/EJzwrqkqyWdPlBWL/)
+    assert.doesNotMatch(editor.getHTML(), /gg sans|line-height: 22px/)
+    const saved = backendDocument(editor.getJSON())
+    const reloaded = createEditor(saved.document)
+    assert.equal(reloaded.getText(), editor.getText())
+    original.destroy(); editor.destroy(); reloaded.destroy()
+})
+
+test('formatted line breaks pasted from chat survive backend storage', () => {
+    const editor = createEditor()
+    editor.view.pasteHTML('<p><strong>First line<br>Second line</strong></p>', new dom.window.Event('paste'))
+    const saved = backendDocument(editor.getJSON())
+    assert.equal(saved.html, '<p><strong>First line<br>Second line</strong></p>')
+    editor.destroy()
+})
+
+test('already-pasted Discord styles can be saved without asking the user to rewrite their draft', () => {
+    const editor = createEditor('<p><span style="font-family: gg sans, Arial; font-size: 16px; line-height: normal; background-color: rgba(0, 0, 0, 0.2)">Existing draft</span></p>', { enableContentCheck: false })
+    const saved = backendDocument(editor.getJSON())
+    assert.match(saved.html, /font-size: 16px/)
+    assert.doesNotMatch(saved.html, /gg sans|normal|rgba/)
+    assert.equal(richTextPlainText(saved.document), 'Existing draft')
+    editor.destroy()
+})
 
 function backendDocument(document) {
     const result = spawnSync(process.env.PHP_BINARY || 'php', ['-r', `require 'vendor/autoload.php'; $app = require 'bootstrap/app.php'; $app->make(Illuminate\\Contracts\\Console\\Kernel::class)->bootstrap(); $service = app(App\\Services\\RichText\\RichTextDocument::class); $document = $service->validate(json_decode(stream_get_contents(STDIN), true)); echo json_encode(['document' => $document, 'html' => $service->html($document)]);`], { input: JSON.stringify(document), encoding: 'utf8', cwd: new URL('../../', import.meta.url) })

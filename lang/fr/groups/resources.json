@@ -164,7 +164,13 @@
     "set_on_save": "Défini à l'enregistrement",
     "no_public_link": "Aucun lien public",
     "no_group_icon": "Aucune icône de groupe",
+    "link_buttons": "Boutons de lien",
+    "add_button": "Ajouter un bouton",
+    "embed_button_number": "Bouton {number}",
+    "button_label": "Libellé du bouton",
+    "button_url": "URL de destination",
     "embed_help": {
+      "buttons": "Ajoutez jusqu’à {max} liens sous l’embed. Les boutons de lien Discord utilisent toujours un style neutre. Le bouton automatique permettant d’ouvrir la ressource reste disponible en plus.",
       "automatic_metadata": "L'auteur reprend le titre de la ressource et l'icône du groupe. Le lien apparaît uniquement pour les ressources publiques accessibles à tous.",
       "command": "Unique dans ce groupe. Lettres, chiffres et tirets simples uniquement, 64 caractères maximum. Le nom list est réservé.",
       "title": "Titre facultatif en haut de l'embed, indépendant du titre de la ressource.",

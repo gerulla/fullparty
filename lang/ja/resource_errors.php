@@ -19,6 +19,9 @@ return [
         'customization.links.*.url' => 'URL',
     ],
     'fields' => [
+        'buttons' => 'リンクボタン',
+        'buttons_item_label' => 'ボタンのラベル',
+        'buttons_item_url' => 'ボタンのURL',
         'title' => 'リソースタイトル',
         'description' => '説明',
         'body' => 'リソース本文',

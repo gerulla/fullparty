@@ -99,9 +99,16 @@ class ResourceCommandService
         }
         $embed['footer'] = ['text' => 'FullParty'];
         $url = $this->libraries->publicUrl($command->resource);
+        // Link buttons belong to the published message, alongside its embed.
+        $buttons = $url ? [['label' => __('ui.open_resource'), 'url' => $url]] : [];
+        $buttons = array_merge($buttons, $savedCommand['buttons'] ?? []);
+        $components = array_map(fn (array $row) => [
+            'type' => 1,
+            'components' => array_map(fn (array $button) => [
+                'type' => 2, 'style' => 5, 'label' => $button['label'], 'url' => $button['url'],
+            ], $row),
+        ], array_chunk($buttons, 5));
 
-        return ['command_name' => $command->name, 'embed' => $embed, 'assets' => array_values($assets), 'components' => $url ? [[
-            'type' => 1, 'components' => [['type' => 2, 'style' => 5, 'label' => __('ui.open_resource'), 'url' => $url]],
-        ]] : []];
+        return ['command_name' => $command->name, 'embed' => $embed, 'assets' => array_values($assets), 'components' => $components];
     }
 }

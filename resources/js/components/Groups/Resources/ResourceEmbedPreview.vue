@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import type { WorkspaceDocument, WorkspaceEmbed } from '@/Types/ResourceWorkspace'
-import { resourceEmbedFieldRows, resourceEmbedImage, resourceEmbedLink } from '@/utils/resourceEmbedPreview'
+import { resourceEmbedButtonRows, resourceEmbedFieldRows, resourceEmbedImage, resourceEmbedLink } from '@/utils/resourceEmbedPreview'
 import ResourceEmbedMarkdown from './ResourceEmbedMarkdown.vue'
 
 const props = defineProps<{ document: WorkspaceDocument; embed: WorkspaceEmbed; compact?: boolean; publicResource?: boolean; resourceUrl?: string }>()
@@ -14,6 +14,11 @@ const authorIcon = computed(() => resourceEmbedImage(embed.value.authorIcon))
 const thumbnail = computed(() => resourceEmbedImage(embed.value.thumbnail))
 const mainImage = computed(() => resourceEmbedImage(embed.value.image))
 const fieldRows = computed(() => resourceEmbedFieldRows(embed.value.fields, Boolean(thumbnail.value)))
+const buttonRows = computed(() => resourceEmbedButtonRows([
+    ...(props.publicResource && props.document.access === 'everyone'
+        ? [{ label: t('groups.resources.workspace.open_resource'), url: props.resourceUrl ?? '' }] : []),
+    ...(embed.value.buttons ?? []),
+]))
 const timestamp = computed(() => {
     if (!embed.value.timestamp) return ''
     const date = new Date(embed.value.timestamp)
@@ -48,7 +53,9 @@ const timestamp = computed(() => {
                 <footer class="discord-embed-footer"><span>FullParty</span><span v-if="timestamp">&bull; {{ timestamp }}</span></footer>
             </div>
         </article>
-        <UButton v-if="publicResource && document.access === 'everyone'" trailing-icon="i-lucide-external-link" color="neutral" variant="solid" size="sm" class="discord-resource-link" :label="t('groups.resources.workspace.open_resource')" :to="resourceUrl" :disabled="!resourceUrl" target="_blank" rel="noopener noreferrer" />
+        <div v-for="(row, rowIndex) in buttonRows" :key="rowIndex" class="discord-button-row">
+            <UButton v-for="(button, index) in row" :key="index" trailing-icon="i-lucide-external-link" color="neutral" variant="solid" size="sm" class="discord-resource-link" :label="button.label || t('groups.resources.workspace.button_label')" :to="resourceEmbedLink(button.url)" :disabled="!resourceEmbedLink(button.url) || !button.label.trim()" target="_blank" rel="noopener noreferrer" />
+        </div>
     </div>
 </template>
 
@@ -71,6 +78,7 @@ const timestamp = computed(() => {
 .discord-embed-field-name { margin-bottom: 2px; font-weight: 600; color: #f2f3f5; }
 .discord-embed-image { grid-column: 1 / -1; max-width: 100%; max-height: 300px; object-fit: contain; border-radius: 4px; }
 .discord-embed-footer { grid-column: 1 / -1; display: flex; align-items: center; flex-wrap: wrap; gap: 4px; font-size: 12px; line-height: 16px; }
-.discord-resource-link { margin-top: 8px; border-radius: 0; background: #4e5058; color: #f2f3f5; font-family: inherit; font-weight: 500; }
+.discord-button-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.discord-resource-link { min-width: 0; max-width: 100%; border-radius: 0; background: #4e5058; color: #f2f3f5; font-family: inherit; font-weight: 500; }
 .discord-resource-link:hover { background: #6d6f78; }
 </style>

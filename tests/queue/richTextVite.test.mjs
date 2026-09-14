@@ -9,6 +9,7 @@ import ts from 'typescript'
 import { parse } from '@vue/compiler-sfc'
 import { optimizeDeps, resolveConfig } from 'vite'
 import config from '../../vite.config.js'
+import * as pasteStyles from '../../resources/js/utils/richTextPaste.ts'
 
 const root = fileURLToPath(new URL('../../', import.meta.url))
 
@@ -41,7 +42,7 @@ test('the actual Vite prebundled editor and custom extensions share a plugin reg
         // Exercise dev prebundling, not a production build or a browser session.
         const resolved = await resolveConfig({ configFile: false, envFile: false, root, cacheDir, logLevel: 'silent', resolve: config.resolve, optimizeDeps: { ...config.optimizeDeps, noDiscovery: true } }, 'serve')
         const metadata = await optimizeDeps(resolved, true)
-        const modules = {}
+        const modules = { './richTextPaste.ts': pasteStyles }
         for (const dependency of config.optimizeDeps.include) {
             modules[dependency] = await import(pathToFileURL(metadata.optimized[dependency].file).href)
         }

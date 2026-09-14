@@ -80,7 +80,7 @@ class RichTextDocument
                 $result['attrs'] = $attrs;
             }
             if (isset($node['marks'])) {
-                if ($type !== 'text' || ! is_array($node['marks']) || ! array_is_list($node['marks']) || count($node['marks']) > 12) {
+                if (! in_array($type, ['text', 'hardBreak'], true) || ! is_array($node['marks']) || ! array_is_list($node['marks']) || count($node['marks']) > 12) {
                     $fail();
                 }
                 $seen = [];
@@ -148,6 +148,15 @@ class RichTextDocument
             $fail();
         }
         $attributes = array_filter($attributes, fn ($value) => $value !== null);
+        if (in_array($type, ['textStyle', 'highlight'], true)) {
+            // Clipboard HTML carries app-specific fonts, spacing and colors. Keep
+            // supported styles and discard benign presentation values we cannot render.
+            foreach ($attributes as $key => $value) {
+                if (! $this->validStyleValue($key, $value) && $this->ignorablePastedStyle($key, $value)) {
+                    unset($attributes[$key]);
+                }
+            }
+        }
         foreach ($attributes as $key => &$value) {
             $valid = match ($key) {
                 'level' => is_int($value) && $value >= 1 && $value <= 6,
@@ -163,10 +172,7 @@ class RichTextDocument
                 'resourceId' => is_string($value) && Str::isUuid($value),
                 'url' => is_string($value) && VideoEmbedUrl::normalize($value) !== null,
                 'language' => is_string($value) && preg_match('/^[\w+#.-]{0,50}$/D', $value),
-                'color', 'backgroundColor' => is_string($value) && (preg_match('/^#[a-f0-9]{3}(?:[a-f0-9]{3})?$/iD', $value) || preg_match('/^rgb\(\s*(?:\d{1,3}\s*,\s*){2}\d{1,3}\s*\)$/D', $value)),
-                'fontSize' => is_string($value) && preg_match('/^(?:[89]|[1-6][0-9]|7[0-2])px$/D', $value),
-                'lineHeight' => is_string($value) && in_array($value, ['1', '1.25', '1.5', '1.75', '2'], true),
-                'fontFamily' => in_array($value, ['Arial', 'Georgia', 'Verdana', 'monospace'], true),
+                'color', 'backgroundColor', 'fontSize', 'lineHeight', 'fontFamily' => $this->validStyleValue($key, $value),
                 'target' => in_array($value, ['_blank', '_self'], true),
                 'rel', 'class' => is_string($value),
                 default => false,
@@ -197,6 +203,38 @@ class RichTextDocument
         }
 
         return $attributes;
+    }
+
+    private function validStyleValue(string $key, mixed $value): bool
+    {
+        if (! is_string($value)) {
+            return false;
+        }
+
+        return match ($key) {
+            'color', 'backgroundColor' => (bool) (preg_match('/^#[a-f0-9]{3}(?:[a-f0-9]{3})?$/iD', $value) || preg_match('/^rgb\(\s*(?:\d{1,3}\s*,\s*){2}\d{1,3}\s*\)$/D', $value)),
+            'fontSize' => (bool) preg_match('/^(?:[89]|[1-6][0-9]|7[0-2])px$/D', $value),
+            'lineHeight' => in_array($value, ['1', '1.25', '1.5', '1.75', '2'], true),
+            'fontFamily' => in_array($value, ['Arial', 'Georgia', 'Verdana', 'monospace'], true),
+            default => false,
+        };
+    }
+
+    private function ignorablePastedStyle(string $key, mixed $value): bool
+    {
+        if (! is_string($value) || strlen($value) > 1000) {
+            return false;
+        }
+        if ($value === '' || in_array($value, ['normal', 'inherit', 'initial', 'unset', 'revert'], true)) {
+            return true;
+        }
+
+        return (bool) match ($key) {
+            'fontFamily' => preg_match('/^[\p{L}\p{N}\s,\'"-]+$/uD', $value),
+            'fontSize', 'lineHeight' => preg_match('/^\d+(?:\.\d+)?(?:px|pt|em|rem|%)?$/D', $value),
+            'color', 'backgroundColor' => preg_match('/^(?:[a-z]+|#[a-f0-9]{4}|#[a-f0-9]{8}|(?:rgba?|hsla?|oklab|oklch|lab|lch)\([\d\s.,%+\/-]+\)|var\(--[a-z0-9_-]+\))$/iD', $value),
+            default => false,
+        };
     }
 
     private function validateTable(array $rows, \Closure $fail): void

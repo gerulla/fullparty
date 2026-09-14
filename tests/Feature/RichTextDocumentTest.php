@@ -28,9 +28,36 @@ it('rejects unsafe or unsupported document structures', function (array $documen
     'image handler' => [['type' => 'doc', 'content' => [['type' => 'image', 'attrs' => ['src' => 'https://example.com/a.png', 'onerror' => 'alert(1)']]]]],
     'CSS injection' => [['type' => 'doc', 'content' => [['type' => 'paragraph', 'content' => [['type' => 'text', 'text' => 'bad', 'marks' => [['type' => 'textStyle', 'attrs' => ['color' => 'url(https://example.com)']]]]]]]]],
     'malformed spacing' => [['type' => 'doc', 'content' => [['type' => 'paragraph', 'content' => [['type' => 'text', 'text' => 'bad', 'marks' => [['type' => 'textStyle', 'attrs' => ['lineHeight' => []]]]]]]]]],
+    'font CSS injection' => [['type' => 'doc', 'content' => [['type' => 'paragraph', 'content' => [['type' => 'text', 'text' => 'bad', 'marks' => [['type' => 'textStyle', 'attrs' => ['fontFamily' => 'Arial; background:url(https://example.com)']]]]]]]]],
+    'unsafe link on line break' => [['type' => 'doc', 'content' => [['type' => 'paragraph', 'content' => [['type' => 'hardBreak', 'marks' => [['type' => 'link', 'attrs' => ['href' => 'javascript:alert(1)']]]]]]]]],
+    'block formatting marks' => [['type' => 'doc', 'content' => [['type' => 'paragraph', 'marks' => [['type' => 'bold']]]]]],
     'prototype attributes' => [['type' => 'doc', 'content' => [['type' => 'paragraph', 'attrs' => ['__proto__' => ['onload' => 'alert(1)']]]]]],
     'misplaced row' => [['type' => 'doc', 'content' => [['type' => 'tableRow', 'content' => [['type' => 'paragraph']]]]]],
 ]);
+
+it('preserves supported formatting while ignoring foreign clipboard presentation styles', function () {
+    $document = ['type' => 'doc', 'content' => [['type' => 'paragraph', 'content' => [[
+        'type' => 'text', 'text' => 'Demon Tablet', 'marks' => [
+            ['type' => 'bold'],
+            ['type' => 'textStyle', 'attrs' => ['fontFamily' => '"gg sans", "Noto Sans", Arial, sans-serif', 'fontSize' => '16px', 'lineHeight' => '22px', 'color' => 'rgb(219, 222, 225)', 'backgroundColor' => 'rgba(0, 0, 0, 0.2)']],
+        ],
+    ]]]]];
+    $service = app(RichTextDocument::class);
+    $normalized = $service->validate($document);
+    expect($normalized['content'][0]['content'][0]['marks'][1]['attrs'])->toBe(['fontSize' => '16px', 'color' => 'rgb(219, 222, 225)'])
+        ->and($service->text($normalized))->toBe('Demon Tablet')
+        ->and($service->html($normalized))->toContain('<strong>', 'font-size: 16px')->not->toContain('gg sans', '22px', 'rgba');
+});
+
+it('accepts marks on pasted line breaks while keeping their formatting', function () {
+    $bold = [['type' => 'bold']];
+    $document = ['type' => 'doc', 'content' => [['type' => 'paragraph', 'content' => [
+        ['type' => 'text', 'text' => 'First line', 'marks' => $bold],
+        ['type' => 'hardBreak', 'marks' => $bold],
+        ['type' => 'text', 'text' => 'Second line', 'marks' => $bold],
+    ]]]];
+    expect(app(RichTextDocument::class)->html($document))->toBe('<p><strong>First line<br>Second line</strong></p>');
+});
 
 it('converts supported Markdown guides without losing their content', function (string $markdown) {
     $document = app(MarkdownGuideConverter::class)->convert($markdown);

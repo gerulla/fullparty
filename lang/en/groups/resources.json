@@ -164,7 +164,13 @@
     "set_on_save": "Set when saved",
     "no_public_link": "No public link",
     "no_group_icon": "No group icon",
+    "link_buttons": "Link buttons",
+    "add_button": "Add button",
+    "embed_button_number": "Button {number}",
+    "button_label": "Button label",
+    "button_url": "Destination URL",
     "embed_help": {
+      "buttons": "Add up to {max} links below the embed. Discord link buttons always use its neutral style. The automatic Open resource button is kept separately.",
       "automatic_metadata": "The author uses the resource title and group icon. Its link is included only for public resources available to everyone.",
       "command": "Unique within this group. Letters, numbers and single hyphens only, up to 64 characters. The name list is reserved.",
       "title": "Optional heading at the top of the embed. Independent of the resource title.",

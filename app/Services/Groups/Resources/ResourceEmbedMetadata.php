@@ -81,6 +81,6 @@ class ResourceEmbedMetadata
         $embed = array_filter(Arr::except($command['embed'], ['author', 'timestamp']), fn ($value) => $value !== null);
         $embed['fields'] ??= [];
 
-        return ['name' => $command['name'], 'embed' => $embed];
+        return ['name' => $command['name'], 'embed' => $embed, 'buttons' => $command['buttons'] ?? []];
     }
 }

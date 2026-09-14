@@ -164,7 +164,13 @@
     "set_on_save": "Wird beim Speichern gesetzt",
     "no_public_link": "Kein öffentlicher Link",
     "no_group_icon": "Kein Gruppensymbol",
+    "link_buttons": "Linkbuttons",
+    "add_button": "Button hinzufügen",
+    "embed_button_number": "Button {number}",
+    "button_label": "Button-Beschriftung",
+    "button_url": "Ziel-URL",
     "embed_help": {
+      "buttons": "Füge bis zu {max} Links unter dem Embed hinzu. Discord-Linkbuttons verwenden immer den neutralen Stil. Der automatische Button zum Öffnen der Ressource bleibt zusätzlich erhalten.",
       "automatic_metadata": "Als Autor werden der Ressourcentitel und das Gruppensymbol verwendet. Der Link erscheint nur bei öffentlichen Ressourcen für alle.",
       "command": "Innerhalb dieser Gruppe eindeutig. Nur Buchstaben, Zahlen und einzelne Bindestriche, höchstens 64 Zeichen. Der Name list ist reserviert.",
       "title": "Optionale Überschrift des Embeds, unabhängig vom Titel der Ressource.",

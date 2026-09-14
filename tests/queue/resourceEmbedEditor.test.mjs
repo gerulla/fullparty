@@ -16,6 +16,7 @@ function editor() {
         vue, 'vue-i18n': { useI18n: () => ({ t: key => key, locale: vue.ref('en') }) },
         '@/utils/resourceEmbedPreview': preview,
         './ResourceEmbedPreview.vue': { default: {} }, './ResourceImagePicker.vue': { default: {} },
+        './ResourceDiscordButtonsEditor.vue': { default: {} },
     }
     const exports = {}
     new Function('require', 'exports', compiled)(name => {

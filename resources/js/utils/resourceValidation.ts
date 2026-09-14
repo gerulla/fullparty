@@ -1,5 +1,5 @@
 import type { WorkspaceDocument, WorkspaceResource } from '../Types/ResourceWorkspace'
-import { workspaceCommandErrors } from './resourceWorkspace.ts'
+import { MAX_RESOURCE_LINK_BUTTONS, workspaceCommandErrors } from './resourceWorkspace.ts'
 import type { ResourceFieldErrors } from '../Types/ResourceValidation'
 
 type Label = (key: string, params?: Record<string, string | number>) => string
@@ -19,7 +19,7 @@ export function resourceFieldValue(draft: WorkspaceDocument | null, path: string
         ...draft, collection_id: draft.collectionId, access_level: draft.access,
         activity_type_ids: draft.activityTypeIds, character_id: draft.authorCharacterId,
         metadata_image_id: draft.cover,
-        commands: draft.embeds.map(embed => ({ name: embed.command, embed })),
+        commands: draft.embeds.map(embed => ({ name: embed.command, buttons: embed.buttons ?? [], embed })),
     }
     return JSON.stringify(path.split('.').reduce<any>((value, part) => value?.[part], values)) ?? ''
 }
@@ -33,11 +33,11 @@ export function validateResourceFields(draft: WorkspaceDocument, resources: Work
         if (required && !value.trim()) add(path, 'validation.required')
         if ([...value].length > max) add(path, 'validation.max_characters', { max })
     }
-    const url = (path: string, value: string) => {
+    const url = (path: string, value: string, max = 2048) => {
         if (!value) return
         try { if (!['https:', 'http:'].includes(new URL(value).protocol)) throw new Error() }
         catch { add(path, 'validation.url') }
-        text(path, value, 2048)
+        text(path, value, max)
     }
     if (!resources.some(resource => resource.id === id && resource.holsterId)) {
         text('title', draft.title, 200, true)
@@ -51,6 +51,14 @@ export function validateResourceFields(draft: WorkspaceDocument, resources: Work
     if (draft.embeds.length > 15) add('commands', 'embed_limit')
     workspaceCommandErrors(draft, resources, id).forEach((error, index) => { if (error) add(`commands.${index}.name`, error) })
     draft.embeds.forEach((embed, index) => {
+        const buttonsPath = `commands.${index}.buttons`
+        const buttons = embed.buttons ?? []
+        if (buttons.length > MAX_RESOURCE_LINK_BUTTONS) add(buttonsPath, 'validation.max_items', { max: MAX_RESOURCE_LINK_BUTTONS })
+        buttons.forEach((button, buttonIndex) => {
+            text(`${buttonsPath}.${buttonIndex}.label`, button.label.trim(), 80, true)
+            text(`${buttonsPath}.${buttonIndex}.url`, button.url.trim(), 512, true)
+            url(`${buttonsPath}.${buttonIndex}.url`, button.url.trim(), 512)
+        })
         const prefix = `commands.${index}.embed`
         text(`${prefix}.title`, embed.title, 256)
         text(`${prefix}.description`, embed.description, 4096)

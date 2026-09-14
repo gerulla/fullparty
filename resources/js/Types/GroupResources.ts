@@ -72,7 +72,8 @@ export type ResourceSnapshot = {
     tags: string[]; activity_type_ids: number[]; author: ResourceAuthorData | null; metadata_image_id?: string | null
     commands?: ResourceCommandData[]
 }
-export type ResourceCommandData = { name: string; enabled: boolean; updated_at?: string; embed?: {
+export type ResourceLinkButton = { label: string; url: string }
+export type ResourceCommandData = { name: string; enabled: boolean; updated_at?: string; buttons?: ResourceLinkButton[]; embed?: {
         title?: string; description?: string; color?: number; url?: string; timestamp?: string
         author?: { name: string; url?: string; icon_url?: string }
         image?: { url?: string; asset_id?: string }; thumbnail?: { url?: string; asset_id?: string }

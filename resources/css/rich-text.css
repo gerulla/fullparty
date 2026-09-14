@@ -2,7 +2,10 @@
 .rich-text-content p { margin: 0 0 12px; }
 .rich-text-content h1 { font-size: 32px; }.rich-text-content h2 { font-size: 26px; }.rich-text-content h3 { font-size: 22px; }.rich-text-content h4 { font-size: 19px; }.rich-text-content h5 { font-size: 17px; }.rich-text-content h6 { font-size: 15px; }
 .rich-text-content :is(h1,h2,h3,h4,h5,h6) { font-weight: 600; line-height: 1.3; margin: 18px 0 10px; }
-.rich-text-content :is(ul,ol) { padding-left: 24px; margin: 10px 0; }.rich-text-content ul { list-style: disc; }.rich-text-content ol { list-style: decimal; }
+.rich-text-content :is(ul,ol) { padding-inline-start: 2rem; margin: 10px 0; }.rich-text-content ul { list-style: disc; }.rich-text-content ol { list-style: decimal; }
+/* Reserve the marker gutter beside external floats without containing a list's own images. */
+.rich-text-content :is(ul,ol):not(:has([data-image-layout="wrap-left"], [data-image-layout="wrap-right"])) { display: flow-root; }
+.rich-text-content :is(ul,ol) > li::marker { color: var(--ui-text); font-weight: 500; }
 .rich-text-content li p { margin: 0; }.rich-text-content blockquote { border-left: 3px solid var(--ui-primary); padding-left: 14px; margin: 12px 0; }
 .rich-text-content a { color: var(--ui-info); text-decoration: underline; }.rich-text-content pre { background: var(--ui-bg-elevated); padding: 12px; overflow-x: auto; margin: 12px 0; }.rich-text-content code { font-family: var(--font-mono); background: var(--ui-bg-elevated); }
 .rich-text-content img { max-width: 100%; height: auto; }.rich-text-content hr { border-top: 1px solid var(--ui-border); margin: 18px 0; }
@@ -24,8 +27,8 @@
 .rich-text-content [data-image-layout="wrap-right"] { float: right; clear: right; margin: 0 0 12px 16px; max-width: calc(100% - 32px); }
 .rich-text-content [data-resize-container][data-node="image"] img { display: block; float: none; clear: none; margin: 0; max-width: 100%; }
 .rich-text-content img[data-inline-image] { display: inline-block; vertical-align: middle; margin: 0 .2em; }
-.rich-text-content :is(h1,h2,h3,h4,h5,h6,hr,pre,table,.tableWrapper,[data-type="resourceLink"],[data-type="videoEmbed"]) { clear: both; }
-.rich-text-content :is(blockquote,li,td,th)::after { content: ''; display: block; clear: both; }
+/* Text blocks continue around floats; boxed content uses the remaining width. */
+.rich-text-content :is(blockquote,hr,pre,.tableWrapper,.resource-content-node,[data-resource-link],[data-video-embed]) { display: flow-root; }
 .rich-text-content [data-resize-handle] { width: 12px; height: 12px; background: var(--ui-primary); border: 2px solid var(--ui-bg); opacity: 0; pointer-events: none; }
 .rich-text-content [data-resize-container]:is(.ProseMirror-selectednode,[data-resize-state="true"]) [data-resize-handle] { opacity: 1; pointer-events: auto; }
 .rich-text-content [data-resize-handle="bottom-left"] { cursor: nesw-resize; }

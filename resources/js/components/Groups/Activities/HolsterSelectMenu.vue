@@ -33,12 +33,12 @@ function toggleCard(event: MouseEvent, selection: HolsterPairValue) {
 </script>
 
 <template>
-    <UModal :open="open" :title="t('holsters.choose_pairs')" :description="t(multiple ? 'holsters.choose_multiple_hint' : 'holsters.choose_single_hint')" :ui="{ content: 'sm:max-w-4xl', body: 'p-0 sm:p-0', footer: 'justify-between' }" @update:open="$emit('update:open', $event)">
+    <UModal :open="open" :title="t('holsters.choose_pairs')" :description="t(multiple ? 'holsters.choose_multiple_hint' : 'holsters.choose_single_hint')" :ui="{ content: 'sm:max-w-4xl', body: 'flex min-h-0 flex-col overflow-hidden p-0 sm:p-0', footer: 'flex-wrap justify-between gap-3' }" @update:open="$emit('update:open', $event)">
         <template #body>
-            <div class="border-b border-default p-4">
+            <div class="shrink-0 border-b border-default p-4">
                 <UInput :id="`${selectorId}-search`" :model-value="query" icon="i-lucide-search" class="w-full" :placeholder="t('holsters.search')" :aria-label="t('holsters.search')" @update:model-value="$emit('update:query', String($event))" />
             </div>
-            <div class="max-h-[60vh] overflow-y-auto overscroll-contain p-4 sm:p-5">
+            <div class="min-h-0 max-h-[60dvh] overflow-y-auto overscroll-contain p-4 sm:p-5">
                 <div v-if="groups.length" class="space-y-8">
                     <section v-for="group in groups" :key="group.prepop.id" class="grid items-start gap-4" :class="{ 'sm:grid-cols-2': !group.standalone }" :aria-label="group.prepop.name">
                         <div

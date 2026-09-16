@@ -123,10 +123,16 @@ class NotificationMessageRenderer
             return '';
         }
 
-        $translationKey = str_starts_with($key, 'notifications.')
-            ? 'email/notifications.'.substr($key, strlen('notifications.'))
-            : $key;
+        if (str_starts_with($key, 'notifications.')) {
+            $emailKey = 'email/notifications.'.substr($key, strlen('notifications.'));
 
-        return $this->translate($translationKey, $params, $locale);
+            // Email dictionaries contain overrides, not the complete notification catalog.
+            // Resolve shared copy on the server when this locale has no email override.
+            if (Lang::hasForLocale($emailKey, $locale)) {
+                return $this->translate($emailKey, $params, $locale);
+            }
+        }
+
+        return $this->translate($key, $params, $locale);
     }
 }

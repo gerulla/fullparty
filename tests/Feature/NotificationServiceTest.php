@@ -517,7 +517,9 @@ it('sends email deliveries through the email delivery service and marks them as 
     app(EmailNotificationDeliveryService::class)->send($delivery->id);
 
     Mail::assertSent(NotificationDeliveryMail::class, function (NotificationDeliveryMail $mail) {
-        return $mail->usesMailer('postmark');
+        return $mail->usesMailer('postmark')
+            && $mail->subjectLine === 'Connected account linked'
+            && $mail->bodyText === 'Your Discord account was linked to FullParty.';
     });
 
     $delivery->refresh();

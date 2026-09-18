@@ -19,6 +19,9 @@ class ReportContentPreview
                 // Validate before rendering user content, including older retained snapshots.
                 $document = $this->documents->validate($document, resourceBlocks: true);
                 $walk = function (array $node) use (&$walk, $imageUrls): array {
+                    if (($node['type'] ?? '') === 'xivGear') {
+                        return ['type' => 'paragraph', 'content' => [['type' => 'text', 'text' => $this->documents->text($node)]]];
+                    }
                     if (in_array($node['type'] ?? '', ['image', 'inlineImage'], true)) {
                         $src = $node['attrs']['src'];
                         if ($imageUrls === null) {
@@ -36,7 +39,18 @@ class ReportContentPreview
                         return ['type' => 'paragraph', 'content' => [['type' => 'text', 'text' => $text] + ($video ? ['marks' => [['type' => 'link', 'attrs' => ['href' => $node['attrs']['url']]]]] : [])]];
                     }
                     if (isset($node['content'])) {
-                        $node['content'] = array_map($walk, $node['content']);
+                        $children = [];
+                        foreach ($node['content'] as $child) {
+                            // Reference-only previews cannot keep paragraphs inside an image-only group.
+                            if (($child['type'] ?? '') === 'imageGroup' && $imageUrls === null) {
+                                foreach ($child['content'] as $image) {
+                                    $children[] = $walk($image);
+                                }
+                            } else {
+                                $children[] = $walk($child);
+                            }
+                        }
+                        $node['content'] = $children;
                     }
 
                     return $node;

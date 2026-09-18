@@ -83,6 +83,7 @@ export function pageNamespaces(name, application = 'main') {
             : Object.hasOwn(features, name) ? [...new Set([...dashboard, ...features[name]])] : null
         if (namespaces) {
             if (namespaces.includes('groups/activities') || namespaces.includes('groups/resources')) namespaces.push('holsters')
+            if (namespaces.includes('groups/resources')) namespaces.push('xivgear')
             return namespaces
         }
     }

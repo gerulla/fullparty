@@ -1,0 +1,767 @@
+{
+  "job": "PLD",
+  "level": 100,
+  "name": "CoD - PLD Min ilvl - 710 BiS",
+  "partyBonus": 5,
+  "ilvlSync": 710,
+  "sets": [
+    {
+      "name": "2.50 ✪",
+      "description": "",
+      "isSeparator": false,
+      "items": {
+        "Body": {
+          "id": 42893,
+          "materia": [
+            {
+              "id": 41771,
+              "locked": false
+            },
+            {
+              "id": 41771,
+              "locked": false
+            },
+            {
+              "id": 41771,
+              "locked": false
+            },
+            {
+              "id": 41760,
+              "locked": false
+            },
+            {
+              "id": 41758,
+              "locked": false
+            }
+          ]
+        },
+        "Ears": {
+          "id": 42927,
+          "materia": [
+            {
+              "id": 41771,
+              "locked": false
+            },
+            {
+              "id": 41771,
+              "locked": false
+            },
+            {
+              "id": 41759,
+              "locked": false
+            },
+            {
+              "id": 41759,
+              "locked": false
+            },
+            {
+              "id": 41758,
+              "locked": false
+            }
+          ]
+        },
+        "Feet": {
+          "id": 42896,
+          "materia": [
+            {
+              "id": 41772,
+              "locked": false
+            },
+            {
+              "id": 41771,
+              "locked": false
+            },
+            {
+              "id": 41771,
+              "locked": false
+            },
+            {
+              "id": 41758,
+              "locked": false
+            },
+            {
+              "id": 41758,
+              "locked": false
+            }
+          ]
+        },
+        "Hand": {
+          "id": 42894,
+          "materia": [
+            {
+              "id": 41772,
+              "locked": false
+            },
+            {
+              "id": 41771,
+              "locked": false
+            },
+            {
+              "id": 41771,
+              "locked": false
+            },
+            {
+              "id": 41758,
+              "locked": false
+            },
+            {
+              "id": 41758,
+              "locked": false
+            }
+          ]
+        },
+        "Head": {
+          "id": 42892,
+          "materia": [
+            {
+              "id": 41772,
+              "locked": false
+            },
+            {
+              "id": 41772,
+              "locked": false
+            },
+            {
+              "id": 41772,
+              "locked": false
+            },
+            {
+              "id": 41759,
+              "locked": false
+            },
+            {
+              "id": 41760,
+              "locked": false
+            }
+          ]
+        },
+        "Legs": {
+          "id": 42895,
+          "materia": [
+            {
+              "id": 41772,
+              "locked": false
+            },
+            {
+              "id": 41771,
+              "locked": false
+            },
+            {
+              "id": 41771,
+              "locked": false
+            },
+            {
+              "id": 41759,
+              "locked": false
+            },
+            {
+              "id": 41759,
+              "locked": false
+            }
+          ]
+        },
+        "Neck": {
+          "id": 42932,
+          "materia": [
+            {
+              "id": 41771,
+              "locked": false
+            },
+            {
+              "id": 41771,
+              "locked": false
+            },
+            {
+              "id": 41758,
+              "locked": false
+            },
+            {
+              "id": 41758,
+              "locked": false
+            },
+            {
+              "id": 41758,
+              "locked": false
+            }
+          ]
+        },
+        "OffHand": {
+          "id": 50053,
+          "materia": []
+        },
+        "RingLeft": {
+          "id": 42942,
+          "materia": [
+            {
+              "id": 41771,
+              "locked": false
+            },
+            {
+              "id": 41771,
+              "locked": false
+            },
+            {
+              "id": 41758,
+              "locked": false
+            },
+            {
+              "id": 41758,
+              "locked": false
+            },
+            {
+              "id": 41758,
+              "locked": false
+            }
+          ]
+        },
+        "RingRight": {
+          "id": 42942,
+          "materia": [
+            {
+              "id": 41771,
+              "locked": false
+            },
+            {
+              "id": 41771,
+              "locked": false
+            },
+            {
+              "id": 41758,
+              "locked": false
+            },
+            {
+              "id": 41758,
+              "locked": false
+            },
+            {
+              "id": 41758,
+              "locked": false
+            }
+          ]
+        },
+        "Weapon": {
+          "id": 42870,
+          "materia": [
+            {
+              "id": 41772,
+              "locked": false
+            },
+            {
+              "id": 41771,
+              "locked": false
+            },
+            {
+              "id": 41771,
+              "locked": false
+            },
+            {
+              "id": 41758,
+              "locked": false
+            },
+            {
+              "id": 41758,
+              "locked": false
+            }
+          ]
+        },
+        "Wrist": {
+          "id": 42937,
+          "materia": [
+            {
+              "id": 41771,
+              "locked": false
+            },
+            {
+              "id": 41771,
+              "locked": false
+            },
+            {
+              "id": 41759,
+              "locked": false
+            },
+            {
+              "id": 41759,
+              "locked": false
+            },
+            {
+              "id": 41758,
+              "locked": false
+            }
+          ]
+        }
+      },
+      "food": 49240,
+      "computedStats": {
+        "job": "PLD",
+        "level": 100,
+        "hp": 205077,
+        "strength": 4585,
+        "dexterity": 418,
+        "intelligence": 264,
+        "mind": 440,
+        "vitality": 5079,
+        "crit": 3008,
+        "dhit": 1878,
+        "determination": 2463,
+        "skillspeed": 420,
+        "spellspeed": 420,
+        "piety": 440,
+        "tenacity": 1120,
+        "jobStats": {
+          "aaPotency": 90,
+          "autoAttackStat": "strength",
+          "combatRole": "Tank",
+          "excludedRelicSubstats": [
+            "dhit"
+          ],
+          "jobStatMultipliers": {
+            "dexterity": 95,
+            "hp": 140,
+            "intelligence": 60,
+            "mind": 100,
+            "strength": 100,
+            "vitality": 110
+          },
+          "mainStat": "strength",
+          "maxLevel": 100,
+          "meldParamIndex": 1,
+          "minLevel": 70,
+          "secondaryStat": "tenacity",
+          "type": "Combat",
+          "irrelevantSubstats": [
+            "spellspeed",
+            "piety"
+          ],
+          "offhand": true
+        },
+        "levelStats": {
+          "baseMainStat": 440,
+          "baseSubStat": 420,
+          "hp": 4000,
+          "hpScalar": {
+            "other": 30.1,
+            "Tank": 43
+          },
+          "level": 100,
+          "levelDiv": 2780,
+          "mainStatPowerMod": {
+            "other": 237,
+            "Tank": 190
+          }
+        }
+      }
+    },
+    {
+      "name": "Ornate",
+      "description": "Ornate is a limited item, if you want these stats you have to buy them now as they are no longer able to be generated.",
+      "isSeparator": true,
+      "items": {},
+      "food": null,
+      "computedStats": {
+        "job": "PLD",
+        "level": 100,
+        "hp": 8524,
+        "strength": 462,
+        "dexterity": 418,
+        "intelligence": 264,
+        "mind": 440,
+        "vitality": 508,
+        "crit": 420,
+        "dhit": 420,
+        "determination": 440,
+        "skillspeed": 420,
+        "spellspeed": 420,
+        "piety": 440,
+        "tenacity": 420,
+        "jobStats": {
+          "aaPotency": 90,
+          "autoAttackStat": "strength",
+          "combatRole": "Tank",
+          "excludedRelicSubstats": [
+            "dhit"
+          ],
+          "jobStatMultipliers": {
+            "dexterity": 95,
+            "hp": 140,
+            "intelligence": 60,
+            "mind": 100,
+            "strength": 100,
+            "vitality": 110
+          },
+          "mainStat": "strength",
+          "maxLevel": 100,
+          "meldParamIndex": 1,
+          "minLevel": 70,
+          "secondaryStat": "tenacity",
+          "type": "Combat",
+          "irrelevantSubstats": [
+            "spellspeed",
+            "piety"
+          ],
+          "offhand": true
+        },
+        "levelStats": {
+          "baseMainStat": 440,
+          "baseSubStat": 420,
+          "hp": 4000,
+          "hpScalar": {
+            "other": 30.1,
+            "Tank": 43
+          },
+          "level": 100,
+          "levelDiv": 2780,
+          "mainStatPowerMod": {
+            "other": 237,
+            "Tank": 190
+          }
+        }
+      }
+    },
+    {
+      "name": "2.50 + Ornate ✪",
+      "description": "",
+      "isSeparator": false,
+      "items": {
+        "Body": {
+          "id": 43946,
+          "materia": [
+            {
+              "id": 41771,
+              "locked": false
+            },
+            {
+              "id": 41771,
+              "locked": false
+            },
+            {
+              "id": 41771,
+              "locked": false
+            },
+            {
+              "id": 41771,
+              "locked": false
+            },
+            {
+              "id": 41771,
+              "locked": false
+            }
+          ]
+        },
+        "Ears": {
+          "id": 42927,
+          "materia": [
+            {
+              "id": 41771,
+              "locked": false
+            },
+            {
+              "id": 41771,
+              "locked": false
+            },
+            {
+              "id": 41759,
+              "locked": false
+            },
+            {
+              "id": 41759,
+              "locked": false
+            },
+            {
+              "id": 41758,
+              "locked": false
+            }
+          ]
+        },
+        "Feet": {
+          "id": 42896,
+          "materia": [
+            {
+              "id": 41772,
+              "locked": false
+            },
+            {
+              "id": 41771,
+              "locked": false
+            },
+            {
+              "id": 41771,
+              "locked": false
+            },
+            {
+              "id": 41758,
+              "locked": false
+            },
+            {
+              "id": 41758,
+              "locked": false
+            }
+          ]
+        },
+        "Hand": {
+          "id": 42894,
+          "materia": [
+            {
+              "id": 41772,
+              "locked": false
+            },
+            {
+              "id": 41771,
+              "locked": false
+            },
+            {
+              "id": 41771,
+              "locked": false
+            },
+            {
+              "id": 41758,
+              "locked": false
+            },
+            {
+              "id": 41758,
+              "locked": false
+            }
+          ]
+        },
+        "Head": {
+          "id": 42892,
+          "materia": [
+            {
+              "id": 41772,
+              "locked": false
+            },
+            {
+              "id": 41772,
+              "locked": false
+            },
+            {
+              "id": 41772,
+              "locked": false
+            },
+            {
+              "id": 41759,
+              "locked": false
+            },
+            {
+              "id": 41760,
+              "locked": false
+            }
+          ]
+        },
+        "Legs": {
+          "id": 42895,
+          "materia": [
+            {
+              "id": 41772,
+              "locked": false
+            },
+            {
+              "id": 41771,
+              "locked": false
+            },
+            {
+              "id": 41771,
+              "locked": false
+            },
+            {
+              "id": 41759,
+              "locked": false
+            },
+            {
+              "id": 41759,
+              "locked": false
+            }
+          ]
+        },
+        "Neck": {
+          "id": 42932,
+          "materia": [
+            {
+              "id": 41771,
+              "locked": false
+            },
+            {
+              "id": 41771,
+              "locked": false
+            },
+            {
+              "id": 41758,
+              "locked": false
+            },
+            {
+              "id": 41758,
+              "locked": false
+            },
+            {
+              "id": 41758,
+              "locked": false
+            }
+          ]
+        },
+        "OffHand": {
+          "id": 50053,
+          "materia": []
+        },
+        "RingLeft": {
+          "id": 42942,
+          "materia": [
+            {
+              "id": 41771,
+              "locked": false
+            },
+            {
+              "id": 41771,
+              "locked": false
+            },
+            {
+              "id": 41758,
+              "locked": false
+            },
+            {
+              "id": 41758,
+              "locked": false
+            },
+            {
+              "id": 41758,
+              "locked": false
+            }
+          ]
+        },
+        "RingRight": {
+          "id": 42942,
+          "materia": [
+            {
+              "id": 41771,
+              "locked": false
+            },
+            {
+              "id": 41771,
+              "locked": false
+            },
+            {
+              "id": 41758,
+              "locked": false
+            },
+            {
+              "id": 41758,
+              "locked": false
+            },
+            {
+              "id": 41758,
+              "locked": false
+            }
+          ]
+        },
+        "Weapon": {
+          "id": 42870,
+          "materia": [
+            {
+              "id": 41772,
+              "locked": false
+            },
+            {
+              "id": 41771,
+              "locked": false
+            },
+            {
+              "id": 41771,
+              "locked": false
+            },
+            {
+              "id": 41758,
+              "locked": false
+            },
+            {
+              "id": 41758,
+              "locked": false
+            }
+          ]
+        },
+        "Wrist": {
+          "id": 42937,
+          "materia": [
+            {
+              "id": 41771,
+              "locked": false
+            },
+            {
+              "id": 41771,
+              "locked": false
+            },
+            {
+              "id": 41759,
+              "locked": false
+            },
+            {
+              "id": 41759,
+              "locked": false
+            },
+            {
+              "id": 41758,
+              "locked": false
+            }
+          ]
+        }
+      },
+      "food": 49240,
+      "computedStats": {
+        "job": "PLD",
+        "level": 100,
+        "hp": 205077,
+        "strength": 4585,
+        "dexterity": 418,
+        "intelligence": 264,
+        "mind": 440,
+        "vitality": 5079,
+        "crit": 3008,
+        "dhit": 1968,
+        "determination": 2445,
+        "skillspeed": 420,
+        "spellspeed": 420,
+        "piety": 440,
+        "tenacity": 1120,
+        "jobStats": {
+          "aaPotency": 90,
+          "autoAttackStat": "strength",
+          "combatRole": "Tank",
+          "excludedRelicSubstats": [
+            "dhit"
+          ],
+          "jobStatMultipliers": {
+            "dexterity": 95,
+            "hp": 140,
+            "intelligence": 60,
+            "mind": 100,
+            "strength": 100,
+            "vitality": 110
+          },
+          "mainStat": "strength",
+          "maxLevel": 100,
+          "meldParamIndex": 1,
+          "minLevel": 70,
+          "secondaryStat": "tenacity",
+          "type": "Combat",
+          "irrelevantSubstats": [
+            "spellspeed",
+            "piety"
+          ],
+          "offhand": true
+        },
+        "levelStats": {
+          "baseMainStat": 440,
+          "baseSubStat": 420,
+          "hp": 4000,
+          "hpScalar": {
+            "other": 30.1,
+            "Tank": 43
+          },
+          "level": 100,
+          "levelDiv": 2780,
+          "mainStatPowerMod": {
+            "other": 237,
+            "Tank": 190
+          }
+        }
+      }
+    }
+  ]
+}

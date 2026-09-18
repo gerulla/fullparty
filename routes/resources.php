@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\Resources\PublicResourceController;
 use App\Http\Controllers\Resources\PublicResourceReportController;
+use App\Http\Controllers\Resources\ResourceGearsetController;
 use App\Http\Controllers\Resources\ResourceImageController;
 use Illuminate\Support\Facades\Route;
 
 Route::domain(config('group_resources.public_host'))->name('public-resources.')->middleware('throttle:120,1')->group(function () {
+    Route::get('/gearset-icons/{icon}.png', [ResourceGearsetController::class, 'icon'])->where('icon', '[1-9][0-9]{0,5}')->name('gearset-icons.show');
     Route::post('/{group:slug}/reports', [PublicResourceReportController::class, 'store'])->middleware('throttle:reports.guest')->name('reports.store');
     Route::get('/resource-assets/{image:uuid}', [ResourceImageController::class, 'show'])->name('images.show');
     Route::get('/{group:slug}', [PublicResourceController::class, 'index'])->name('index');
@@ -16,3 +18,4 @@ Route::domain(config('group_resources.public_host'))->name('public-resources.')-
 });
 
 Route::get('/resource-assets/{image:uuid}', [ResourceImageController::class, 'show'])->middleware('throttle:120,1')->name('resource-images.show');
+Route::get('/gearset-icons/{icon}.png', [ResourceGearsetController::class, 'icon'])->where('icon', '[1-9][0-9]{0,5}')->name('gearset-icons.show');

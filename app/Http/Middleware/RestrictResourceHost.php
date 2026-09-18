@@ -16,7 +16,7 @@ class RestrictResourceHost
         }
 
         $response = $next($request);
-        if ($request->routeIs('public-resources.*') && ! $request->routeIs('public-resources.images.show')) {
+        if ($request->routeIs('public-resources.*') && ! $request->routeIs('public-resources.images.show', 'public-resources.gearset-icons.show')) {
             $response->headers->set('Cache-Control', 'no-store');
         }
 

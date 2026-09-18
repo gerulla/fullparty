@@ -1,8 +1,13 @@
 import { Node } from '@tiptap/core'
 import { VueNodeViewRenderer } from '@tiptap/vue-3'
 import ResourceContentNode from '@/components/Groups/Resources/ResourceContentNode.vue'
+import ResourceGearsetNode from '@/components/Groups/Resources/ResourceGearsetNode.vue'
+import { xivGearExtension } from '@/utils/xivGear'
 
 export const resourceContentExtensions = () => [
+    xivGearExtension().extend({
+        addNodeView: () => VueNodeViewRenderer(ResourceGearsetNode),
+    }),
     Node.create({
         name: 'resourceLink', group: 'block', atom: true, draggable: true,
         addAttributes: () => ({ resourceId: { default: null, parseHTML: element => element.getAttribute('data-resource-link') } }),

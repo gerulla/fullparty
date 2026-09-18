@@ -19,6 +19,7 @@ import ResourceSaveModal from './ResourceSaveModal.vue'
 import ResourceUploadsBrowser from './ResourceUploadsBrowser.vue'
 import ResourceImageInspector from './ResourceImageInspector.vue'
 import { resourceImageLibraryKey, useResourceImages } from '@/composables/useResourceImages'
+import { gearsetImportKey } from '@/Types/XivGear'
 
 const props = defineProps<{ groupSlug: string; collections: ResourceCollectionData[]; data: ResourceWorkspaceData; resource?: ResourceDetailData; library?: ResourceLibrary }>()
 const emit = defineEmits<{ libraryChanged: [] }>()
@@ -33,6 +34,7 @@ const editingEmbed = computed(() => state.editorPane === 'embed' ? state.draft?.
 const imageLibrary = { groupSlug: () => props.groupSlug, changed: () => emit('libraryChanged') }
 provide(resourceImageLibraryKey, { ...imageLibrary, resourceId: () => state.mode === 'editor' ? state.selectedId : null })
 const images = useResourceImages(imageLibrary)
+provide(gearsetImportKey, { groupSlug: () => props.groupSlug })
 const { t, locale } = useI18n()
 const l = (key: string) => t(`groups.resources.workspace.${key}`)
 const showCollections = ref(false)

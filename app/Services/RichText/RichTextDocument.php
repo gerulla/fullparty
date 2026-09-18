@@ -3,6 +3,7 @@
 namespace App\Services\RichText;
 
 use App\Support\VideoEmbedUrl;
+use App\Support\XivGearSnapshot;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Tiptap\Editor;
@@ -14,7 +15,9 @@ class RichTextDocument
 {
     public const FORMAT = 'tiptap';
 
-    private const BLOCKS = ['paragraph', 'heading', 'blockquote', 'bulletList', 'orderedList', 'taskList', 'codeBlock', 'horizontalRule', 'image', 'table'];
+    private const BLOCKS = ['paragraph', 'heading', 'blockquote', 'bulletList', 'orderedList', 'taskList', 'codeBlock', 'horizontalRule', 'image', 'imageGroup', 'table'];
+
+    public function __construct(private GameIconCatalog $gameIcons) {}
 
     public static function empty(): array
     {
@@ -24,7 +27,7 @@ class RichTextDocument
     public function editor(): Editor
     {
         return new Editor(['extensions' => [
-            new Extensions\StarterKit, new ImageNode, new InlineImageNode,
+            new Extensions\StarterKit, new ImageNode, new InlineImageNode, new ImageGroupNode, new GameIconNode,
             new Nodes\Table, new Nodes\TableRow, new Nodes\TableCell, new Nodes\TableHeader,
             new Nodes\TaskList, new Nodes\TaskItem,
             new Marks\Link(['HTMLAttributes' => ['rel' => 'nofollow noopener noreferrer']]),
@@ -32,7 +35,7 @@ class RichTextDocument
             new Marks\Highlight(['multicolor' => true]), new Marks\TextStyle,
             new Extensions\Color, new Extensions\FontFamily,
             new DocumentStyles,
-            new ResourceLinkNode, new VideoEmbedNode,
+            new ResourceLinkNode, new VideoEmbedNode, new XivGearNode,
         ]]);
     }
 
@@ -44,13 +47,13 @@ class RichTextDocument
         }
         $count = 0;
         $length = 0;
-        $blocks = [...self::BLOCKS, ...($resourceBlocks ? ['resourceLink', 'videoEmbed'] : [])];
+        $blocks = [...self::BLOCKS, ...($resourceBlocks ? ['resourceLink', 'videoEmbed', 'xivGear'] : [])];
         $walk = function (mixed $node, int $depth = 0) use (&$walk, &$count, &$length, $maxText, $fail, $blocks): array {
             if (! is_array($node) || array_is_list($node) || ++$count > 20000 || $depth > 32 || array_diff(array_keys($node), ['type', 'attrs', 'content', 'marks', 'text'])) {
                 $fail();
             }
             $type = $node['type'] ?? '';
-            if (! in_array($type, [...$blocks, 'doc', 'text', 'hardBreak', 'inlineImage', 'listItem', 'taskItem', 'tableRow', 'tableCell', 'tableHeader'], true)) {
+            if (! in_array($type, [...$blocks, 'doc', 'text', 'hardBreak', 'inlineImage', 'gameIcon', 'listItem', 'taskItem', 'tableRow', 'tableCell', 'tableHeader'], true)) {
                 $fail();
             }
             if ($type === 'doc' && $depth !== 0) {
@@ -76,11 +79,17 @@ class RichTextDocument
                     $fail();
                 }
             }
+            if ($type === 'xivGear') {
+                $length += mb_strlen($this->text(['type' => $type, 'attrs' => $attrs]));
+                if ($length > $maxText) {
+                    $fail();
+                }
+            }
             if ($attrs !== []) {
                 $result['attrs'] = $attrs;
             }
             if (isset($node['marks'])) {
-                if (! in_array($type, ['text', 'hardBreak', 'inlineImage'], true) || ! is_array($node['marks']) || ! array_is_list($node['marks']) || count($node['marks']) > 12) {
+                if (! in_array($type, ['text', 'hardBreak', 'inlineImage', 'gameIcon'], true) || ! is_array($node['marks']) || ! array_is_list($node['marks']) || count($node['marks']) > 12) {
                     $fail();
                 }
                 $seen = [];
@@ -103,8 +112,9 @@ class RichTextDocument
             }
             $allowed = match ($type) {
                 'doc', 'blockquote', 'listItem', 'taskItem', 'tableCell', 'tableHeader' => $blocks,
-                'paragraph', 'heading' => ['text', 'hardBreak', 'inlineImage'],
+                'paragraph', 'heading' => ['text', 'hardBreak', 'inlineImage', 'gameIcon'],
                 'codeBlock' => ['text'],
+                'imageGroup' => ['image'],
                 'bulletList', 'orderedList' => ['listItem'],
                 'taskList' => ['taskItem'], 'table' => ['tableRow'], 'tableRow' => ['tableCell', 'tableHeader'],
                 default => [],
@@ -115,7 +125,7 @@ class RichTextDocument
                 }
                 $result['content'][] = $walk($child, $depth + 1);
             }
-            if (in_array($type, ['doc', 'blockquote', 'listItem', 'taskItem', 'table', 'tableCell', 'tableHeader', 'bulletList', 'orderedList', 'taskList']) && ! $children) {
+            if (in_array($type, ['doc', 'blockquote', 'listItem', 'taskItem', 'table', 'tableCell', 'tableHeader', 'bulletList', 'orderedList', 'taskList', 'imageGroup']) && ! $children) {
                 $fail();
             }
             if (in_array($type, ['listItem', 'taskItem']) && ($children[0]['type'] ?? null) !== 'paragraph') {
@@ -133,11 +143,44 @@ class RichTextDocument
 
     private function attributes(string $type, mixed $attributes, \Closure $fail): array
     {
+        if ($type === 'gameIcon') {
+            if (! is_array($attributes) || array_diff(array_keys($attributes), ['key', 'shortcode', 'src']) || ! is_string($attributes['key'] ?? null)) {
+                $fail();
+            }
+            $icon = $this->gameIcons->find($attributes['key']);
+            if ($icon === null) {
+                $fail();
+            }
+
+            // Never trust image URLs supplied by the editor or pasted HTML.
+            return array_intersect_key($icon, array_flip(['key', 'shortcode', 'src']));
+        }
+        if ($type === 'xivGear') {
+            if (! is_array($attributes) || array_diff(array_keys($attributes), ['display', 'snapshots'])
+                || ! in_array($attributes['display'] ?? null, ['expanded', 'compact'], true)
+                || ! is_array($attributes['snapshots'] ?? null) || ! array_is_list($attributes['snapshots'])
+                || count($attributes['snapshots']) < 1 || count($attributes['snapshots']) > 20) {
+                $fail();
+            }
+            foreach ($attributes['snapshots'] as &$snapshot) {
+                // Laravel's request middleware converts empty description strings to null.
+                if (is_array($snapshot) && array_key_exists('description', $snapshot) && $snapshot['description'] === null) {
+                    $snapshot['description'] = '';
+                }
+                if (! XivGearSnapshot::valid($snapshot)) {
+                    $fail();
+                }
+            }
+            unset($snapshot);
+
+            return $attributes;
+        }
         $allowed = match ($type) {
             'paragraph' => ['textAlign'], 'heading' => ['level', 'textAlign'],
             'orderedList' => ['start', 'type'], 'taskItem' => ['checked'], 'codeBlock' => ['language'],
             'image' => ['src', 'alt', 'title', 'width', 'height', 'layout', 'align'],
             'inlineImage' => ['src', 'alt', 'title', 'width', 'height'],
+            'imageGroup' => ['align'],
             'tableCell', 'tableHeader' => ['colspan', 'rowspan', 'colwidth', 'align'],
             'link' => ['href', 'target', 'rel', 'class', 'title'],
             'textStyle' => ['color', 'backgroundColor', 'fontSize', 'fontFamily', 'lineHeight'],
@@ -164,7 +207,7 @@ class RichTextDocument
                 'start' => is_int($value) && $value >= 1 && $value <= 100000,
                 'type' => in_array($value, ['1', 'a', 'A', 'i', 'I'], true),
                 'checked' => is_bool($value),
-                'textAlign', 'align' => in_array($value, $type === 'image' ? ['left', 'center', 'right'] : ['left', 'center', 'right', 'justify'], true),
+                'textAlign', 'align' => in_array($value, in_array($type, ['image', 'imageGroup'], true) ? ['left', 'center', 'right'] : ['left', 'center', 'right', 'justify'], true),
                 'layout' => in_array($value, ['block', 'wrap-left', 'wrap-right'], true),
                 'width', 'height', 'colspan', 'rowspan' => filter_var($value, FILTER_VALIDATE_INT) !== false && $value >= 1 && $value <= (in_array($key, ['width', 'height']) ? 4096 : 100),
                 'colwidth' => is_array($value) && array_is_list($value) && count($value) <= 100 && ! array_filter($value, fn ($width) => ! is_int($width) || $width < 0 || $width > 4096),
@@ -302,8 +345,14 @@ class RichTextDocument
             if (($node['type'] ?? '') === 'hardBreak') {
                 return "\n";
             }
+            if (($node['type'] ?? '') === 'gameIcon') {
+                return ':'.($node['attrs']['shortcode'] ?? '').':';
+            }
             if (($node['type'] ?? '') === 'videoEmbed') {
                 return $node['attrs']['title'] ?? '';
+            }
+            if (($node['type'] ?? '') === 'xivGear') {
+                return implode("\n", array_map(fn ($snapshot) => $snapshot['name']."\n".$snapshot['description']."\n".implode(' ', array_map(fn ($item) => implode(' ', $item['names']), $snapshot['items'])), $node['attrs']['snapshots']));
             }
             $separator = in_array($node['type'], ['paragraph', 'heading', 'codeBlock']) ? '' : "\n";
 

@@ -82,7 +82,7 @@ function saveLink() {
         </UPopover>
         <UDropdownMenu v-if="editor.isActive('table')" :items="tableActions"><UButton icon="i-lucide-table-properties" color="neutral" variant="outline" size="xs" :label="l('table_actions')" /></UDropdownMenu>
         <slot />
-        <RichTextImageControls :editor="editor" />
+        <RichTextImageControls :editor="editor" @image="emit('image')" />
     </div>
     <UModal v-model:open="linkOpen" :title="l('link')">
         <template #body><form class="space-y-4" @submit.prevent="saveLink"><UFormField :label="l('url')" :error="href && !safeEditorUrl(href) ? l('invalid_url') : undefined"><UInput v-model="href" autofocus class="w-full" /></UFormField><div class="flex justify-end gap-2"><UButton v-if="editor.isActive('link')" color="error" variant="soft" :label="l('remove_link')" @click="editor.chain().focus().unsetLink().run(); linkOpen = false" /><UButton type="submit" :label="l('apply')" :disabled="!safeEditorUrl(href)" /></div></form></template>

@@ -6,6 +6,7 @@ import { resourceContentKey } from '@/Types/ResourceContent'
 import { parseResourceVideo } from '@/utils/resourceVideo'
 import ResourceReaderRow from './ResourceReaderRow.vue'
 import ResourceVideoPlayer from './ResourceVideoPlayer.vue'
+import ResourceGearsetTools from './ResourceGearsetTools.vue'
 
 const props = defineProps<{ editor: Editor; currentResourceId?: string }>()
 const { t } = useI18n()
@@ -42,6 +43,7 @@ function insert(node: JSONContent) {
 </script>
 
 <template>
+    <ResourceGearsetTools :editor="editor" />
     <UButton icon="i-lucide-files" size="xs" color="neutral" variant="outline" :label="l('resource_link')" :disabled="!editor.isEditable" @click="open('resource')" />
     <UButton icon="i-lucide-video" size="xs" color="neutral" variant="outline" :label="l('video_embed')" :disabled="!editor.isEditable" @click="open('video')" />
     <UModal v-model:open="resourceOpen" :title="l('resource_link')" :description="l('resource_help')" :ui="{ content: 'max-w-2xl' }">

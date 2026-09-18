@@ -32,7 +32,7 @@ const BlockImage = Image.extend({
             },
         }
     },
-    parseHTML: () => [{ tag: 'img[src]:not([data-inline-image]):not([src^="data:"])' }],
+    parseHTML: () => [{ tag: 'img[src]:not([data-inline-image]):not([data-game-icon-key]):not([src^="data:"])' }],
     addNodeView() {
         const create = this.parent?.()
         if (!create) return null
@@ -86,6 +86,7 @@ const BlockImage = Image.extend({
             setRichTextImageLayout: layout => ({ state, tr, dispatch }) => {
                 const { selection, schema } = state
                 if (!(selection instanceof NodeSelection) || !isImage(selection.node.type.name) || !['block', 'wrap-left', 'wrap-right', 'inline'].includes(layout)) return false
+                if (selection.$from.parent.type.name === 'imageGroup') return false
                 const { node, from, to, $from } = selection
                 const attrs = { ...node.attrs, layout: layout === 'inline' ? 'block' : layout }
                 if ((node.type.name === 'inlineImage') === (layout === 'inline')) {

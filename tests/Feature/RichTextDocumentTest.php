@@ -38,6 +38,51 @@ it('preserves controlled image layouts and inline images through HTML conversion
         ->and($service->imageUrls($roundTrip))->toBe(['/map.png', '/marker.png']);
 });
 
+it('preserves aligned image groups, individual sizes and asset references through HTML conversion', function () {
+    $service = app(RichTextDocument::class);
+    $document = ['type' => 'doc', 'content' => [
+        ['type' => 'imageGroup', 'attrs' => ['align' => 'center'], 'content' => [
+            ['type' => 'image', 'attrs' => ['src' => '/first.png', 'width' => 240, 'alt' => 'First position']],
+            ['type' => 'image', 'attrs' => ['src' => '/second.png', 'width' => 320, 'alt' => 'Second position']],
+        ]],
+        ['type' => 'paragraph', 'content' => [['type' => 'text', 'text' => 'After the images.']]],
+    ]];
+    $html = $service->html($document);
+    expect($html)->toContain('data-image-group="true"', 'data-image-group-align="center"', 'width="240"', 'width="320"');
+    $roundTrip = $service->validate($service->editor()->setContent($html)->getDocument());
+    expect($roundTrip['content'][0]['type'])->toBe('imageGroup')
+        ->and($roundTrip['content'][0]['attrs']['align'])->toBe('center')
+        ->and($roundTrip['content'][0]['content'])->toHaveCount(2)
+        ->and($roundTrip['content'][0]['content'][1]['attrs']['width'])->toBe(320)
+        ->and($service->imageUrls($roundTrip))->toBe(['/first.png', '/second.png'])
+        ->and($service->text($roundTrip))->toContain('After the images.');
+});
+
+it('rejects empty, malformed and unsafe image groups', function (array $group) {
+    expect(fn () => app(RichTextDocument::class)->validate(['type' => 'doc', 'content' => [$group]]))->toThrow(ValidationException::class);
+})->with([
+    'empty' => [['type' => 'imageGroup', 'content' => []]],
+    'text child' => [['type' => 'imageGroup', 'content' => [['type' => 'paragraph']]]],
+    'inline child' => [['type' => 'imageGroup', 'content' => [['type' => 'inlineImage', 'attrs' => ['src' => '/map.png']]]]],
+    'nested group' => [['type' => 'imageGroup', 'content' => [['type' => 'imageGroup', 'content' => [['type' => 'image', 'attrs' => ['src' => '/map.png']]]]]]],
+    'unsafe source' => [['type' => 'imageGroup', 'content' => [['type' => 'image', 'attrs' => ['src' => 'javascript:alert(1)']]]]],
+    'unsafe attribute' => [['type' => 'imageGroup', 'attrs' => ['onclick' => 'alert(1)'], 'content' => [['type' => 'image', 'attrs' => ['src' => '/map.png']]]]],
+    'unsupported alignment' => [['type' => 'imageGroup', 'attrs' => ['align' => 'justify'], 'content' => [['type' => 'image', 'attrs' => ['src' => '/map.png']]]]],
+]);
+
+it('keeps grouped image evidence in moderation previews and uses authorized asset URLs', function () {
+    $uuid = '11111111-1111-1111-1111-111111111111';
+    $snapshot = ['content' => ['body' => ['type' => 'doc', 'content' => [[
+        'type' => 'imageGroup', 'attrs' => ['align' => 'right'], 'content' => [
+            ['type' => 'image', 'attrs' => ['src' => '/resource-assets/'.$uuid, 'width' => 240]],
+            ['type' => 'image', 'attrs' => ['src' => '/another.png', 'width' => 200]],
+        ],
+    ]]]]];
+    $preview = app(ReportContentPreview::class);
+    expect($preview->build($snapshot)['html'])->toContain('/resource-assets/'.$uuid, '/another.png')->not->toContain('<img');
+    expect($preview->build($snapshot, [$uuid => '/admin/reports/1/asset/1'])['html'])->toContain('src="/admin/reports/1/asset/1"', 'data-image-group-align="right"', 'width="240"');
+});
+
 it('rejects unsafe or misplaced inline images and image layout attributes', function (array $node) {
     expect(fn () => app(RichTextDocument::class)->validate(['type' => 'doc', 'content' => [$node]]))->toThrow(ValidationException::class);
 })->with([

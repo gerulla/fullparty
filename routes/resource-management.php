@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Resources\ResourceCollectionController;
+use App\Http\Controllers\Resources\ResourceGearsetController;
 use App\Http\Controllers\Resources\ResourceHolsterController;
 use App\Http\Controllers\Resources\ResourceImageController;
 use App\Http\Controllers\Resources\ResourceLibraryController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\Resources\ResourceOrganizationController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('content/resources')->name('groups.dashboard.resources.')->middleware('throttle:120,1')->group(function () {
+    Route::post('/gearsets/import', [ResourceGearsetController::class, 'store'])->middleware('throttle:10,1')->name('gearsets.import');
     Route::put('/library', [ResourceLibraryController::class, 'update'])->name('library.update');
     Route::put('/library/holsters', [ResourceHolsterController::class, 'update'])->name('library.holsters.update');
     Route::delete('/library/resources', [ResourceLibraryController::class, 'destroyResources'])->name('library.resources.destroy');

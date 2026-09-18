@@ -8,7 +8,7 @@ class ImageNode extends Image
 {
     public function parseHTML(): array
     {
-        return [['tag' => 'img[src]', 'getAttrs' => fn ($element) => $element->hasAttribute('data-inline-image') ? false : null]];
+        return [['tag' => 'img[src]', 'getAttrs' => fn ($element) => $element->hasAttribute('data-inline-image') || $element->hasAttribute('data-game-icon-key') ? false : null]];
     }
 
     public function addAttributes(): array

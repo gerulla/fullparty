@@ -1,5 +1,6 @@
 import type { JSONContent } from '@tiptap/core'
 import type { RichTextDocument } from '../Types/RichText'
+import type { GearsetSnapshot } from '../Types/XivGear'
 
 export function emptyRichTextDocument(): RichTextDocument {
     return { type: 'doc', content: [{ type: 'paragraph' }] }
@@ -7,12 +8,14 @@ export function emptyRichTextDocument(): RichTextDocument {
 
 export function richTextPlainText(node: JSONContent): string {
     if (node.type === 'text') return node.text ?? ''
+    if (node.type === 'gameIcon') return `:${node.attrs?.shortcode ?? ''}:`
     if (node.type === 'videoEmbed') return node.attrs?.title ?? ''
+    if (node.type === 'xivGear') return ((node.attrs?.snapshots ?? []) as GearsetSnapshot[]).map(set => [set.name, set.description, set.items.map(item => Object.values(item.names).join(' ')).join(' ')].join('\n')).join('\n')
     return (node.content ?? []).map(richTextPlainText).join(['paragraph', 'heading'].includes(node.type ?? '') ? '' : '\n')
 }
 
 export function hasRichTextContent(node: JSONContent): boolean {
-    return !!node.text?.trim() || ['image', 'inlineImage', 'horizontalRule', 'resourceLink', 'videoEmbed'].includes(node.type ?? '') || (node.content ?? []).some(hasRichTextContent)
+    return !!node.text?.trim() || ['image', 'inlineImage', 'gameIcon', 'horizontalRule', 'resourceLink', 'videoEmbed', 'xivGear'].includes(node.type ?? '') || (node.content ?? []).some(hasRichTextContent)
 }
 
 export function safeEditorUrl(url: string, image = false): boolean {

@@ -420,6 +420,7 @@ Route::prefix('{locale?}')
         */
 
         Route::middleware(['auth', 'verified'])->group(function () {
+            Route::get('/editor/game-icons', \App\Http\Controllers\GameIconController::class)->name('editor.game-icons');
             require __DIR__.'/reports.php';
             /*
             |--------------------------------------------------------------------------

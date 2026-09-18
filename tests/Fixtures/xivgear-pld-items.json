@@ -1,0 +1,276 @@
+{
+  "schema": "exdschema@2:rev:e773c41a90aed788cf4c1c48469fa85618ef01fb",
+  "version": "541c0c12e07da325",
+  "rows": [
+    {
+      "row_id": 41758,
+      "fields": {
+        "Icon": {
+          "id": 20297,
+          "path": "ui/icon/020000/020297.tex",
+          "path_hr1": "ui/icon/020000/020297_hr1.tex"
+        },
+        "LevelItem@as(raw)": 690,
+        "Name": "Heavens' Eye Materia XI",
+        "Name@lang(de)": "Hellseher-Materia XI",
+        "Name@lang(fr)": "Matéria du regard divin XI",
+        "Name@lang(ja)": "天眼のハイオメガマテリジャ"
+      }
+    },
+    {
+      "row_id": 41759,
+      "fields": {
+        "Icon": {
+          "id": 20297,
+          "path": "ui/icon/020000/020297.tex",
+          "path_hr1": "ui/icon/020000/020297_hr1.tex"
+        },
+        "LevelItem@as(raw)": 690,
+        "Name": "Savage Aim Materia XI",
+        "Name@lang(de)": "Strategen-Materia XI",
+        "Name@lang(fr)": "Matéria de la barbarie maîtrisée XI",
+        "Name@lang(ja)": "武略のハイオメガマテリジャ"
+      }
+    },
+    {
+      "row_id": 41760,
+      "fields": {
+        "Icon": {
+          "id": 20297,
+          "path": "ui/icon/020000/020297.tex",
+          "path_hr1": "ui/icon/020000/020297_hr1.tex"
+        },
+        "LevelItem@as(raw)": 690,
+        "Name": "Savage Might Materia XI",
+        "Name@lang(de)": "Assassinen-Materia XI",
+        "Name@lang(fr)": "Matéria de la barbarie percutante XI",
+        "Name@lang(ja)": "雄略のハイオメガマテリジャ"
+      }
+    },
+    {
+      "row_id": 41771,
+      "fields": {
+        "Icon": {
+          "id": 20298,
+          "path": "ui/icon/020000/020298.tex",
+          "path_hr1": "ui/icon/020000/020298_hr1.tex"
+        },
+        "LevelItem@as(raw)": 690,
+        "Name": "Heavens' Eye Materia XII",
+        "Name@lang(de)": "Hellseher-Materia XII",
+        "Name@lang(fr)": "Matéria du regard divin XII",
+        "Name@lang(ja)": "天眼のハイアルテマテリジャ"
+      }
+    },
+    {
+      "row_id": 41772,
+      "fields": {
+        "Icon": {
+          "id": 20298,
+          "path": "ui/icon/020000/020298.tex",
+          "path_hr1": "ui/icon/020000/020298_hr1.tex"
+        },
+        "LevelItem@as(raw)": 690,
+        "Name": "Savage Aim Materia XII",
+        "Name@lang(de)": "Strategen-Materia XII",
+        "Name@lang(fr)": "Matéria de la barbarie maîtrisée XII",
+        "Name@lang(ja)": "武略のハイアルテマテリジャ"
+      }
+    },
+    {
+      "row_id": 42870,
+      "fields": {
+        "Icon": {
+          "id": 30683,
+          "path": "ui/icon/030000/030683.tex",
+          "path_hr1": "ui/icon/030000/030683_hr1.tex"
+        },
+        "LevelItem@as(raw)": 710,
+        "Name": "Archeo Kingdom Broadsword",
+        "Name@lang(de)": "Altkönigreich-Breitschwert",
+        "Name@lang(fr)": "Épée large de l'ancien royaume",
+        "Name@lang(ja)": "オールドキングダム・ブロードソード"
+      }
+    },
+    {
+      "row_id": 42892,
+      "fields": {
+        "Icon": {
+          "id": 56760,
+          "path": "ui/icon/056000/056760.tex",
+          "path_hr1": "ui/icon/056000/056760_hr1.tex"
+        },
+        "LevelItem@as(raw)": 710,
+        "Name": "Archeo Kingdom Helm of Fending",
+        "Name@lang(de)": "Altkönigreich-Helm der Verteidigung",
+        "Name@lang(fr)": "Casque de protecteur de l'ancien royaume",
+        "Name@lang(ja)": "オールドキングダム・ディフェンダーヘルム"
+      }
+    },
+    {
+      "row_id": 42893,
+      "fields": {
+        "Icon": {
+          "id": 57148,
+          "path": "ui/icon/057000/057148.tex",
+          "path_hr1": "ui/icon/057000/057148_hr1.tex"
+        },
+        "LevelItem@as(raw)": 710,
+        "Name": "Archeo Kingdom Cuirass of Fending",
+        "Name@lang(de)": "Altkönigreich-Kürass der Verteidigung",
+        "Name@lang(fr)": "Cuirasse de protecteur de l'ancien royaume",
+        "Name@lang(ja)": "オールドキングダム・ディフェンダーキュイラス"
+      }
+    },
+    {
+      "row_id": 42894,
+      "fields": {
+        "Icon": {
+          "id": 56271,
+          "path": "ui/icon/056000/056271.tex",
+          "path_hr1": "ui/icon/056000/056271_hr1.tex"
+        },
+        "LevelItem@as(raw)": 710,
+        "Name": "Archeo Kingdom Vambraces of Fending",
+        "Name@lang(de)": "Altkönigreich-Unterarmschienen der Verteidigung",
+        "Name@lang(fr)": "Canons d'avant-bras de protecteur de l'ancien royaume",
+        "Name@lang(ja)": "オールドキングダム・ディフェンダーヴァンブレイス"
+      }
+    },
+    {
+      "row_id": 42895,
+      "fields": {
+        "Icon": {
+          "id": 57674,
+          "path": "ui/icon/057000/057674.tex",
+          "path_hr1": "ui/icon/057000/057674_hr1.tex"
+        },
+        "LevelItem@as(raw)": 710,
+        "Name": "Archeo Kingdom Poleyns of Fending",
+        "Name@lang(de)": "Altkönigreich-Knieschützer der Verteidigung",
+        "Name@lang(fr)": "Genouillères de protecteur de l'ancien royaume",
+        "Name@lang(ja)": "オールドキングダム・ディフェンダーポレイン"
+      }
+    },
+    {
+      "row_id": 42896,
+      "fields": {
+        "Icon": {
+          "id": 49766,
+          "path": "ui/icon/049000/049766.tex",
+          "path_hr1": "ui/icon/049000/049766_hr1.tex"
+        },
+        "LevelItem@as(raw)": 710,
+        "Name": "Archeo Kingdom Sabatons of Fending",
+        "Name@lang(de)": "Altkönigreich-Bärlatschen der Verteidigung",
+        "Name@lang(fr)": "Sabatons de protecteur de l'ancien royaume",
+        "Name@lang(ja)": "オールドキングダム・ディフェンダーサバトン"
+      }
+    },
+    {
+      "row_id": 42927,
+      "fields": {
+        "Icon": {
+          "id": 55539,
+          "path": "ui/icon/055000/055539.tex",
+          "path_hr1": "ui/icon/055000/055539_hr1.tex"
+        },
+        "LevelItem@as(raw)": 710,
+        "Name": "Archeo Kingdom Earrings of Fending",
+        "Name@lang(de)": "Altkönigreich-Ohrringe der Verteidigung",
+        "Name@lang(fr)": "Boucles d'oreilles de protecteur de l'ancien royaume",
+        "Name@lang(ja)": "オールドキングダム・ディフェンダーイヤリング"
+      }
+    },
+    {
+      "row_id": 42932,
+      "fields": {
+        "Icon": {
+          "id": 55091,
+          "path": "ui/icon/055000/055091.tex",
+          "path_hr1": "ui/icon/055000/055091_hr1.tex"
+        },
+        "LevelItem@as(raw)": 710,
+        "Name": "Archeo Kingdom Choker of Fending",
+        "Name@lang(de)": "Altkönigreich-Halsberge der Verteidigung",
+        "Name@lang(fr)": "Ras de cou de protecteur de l'ancien royaume",
+        "Name@lang(ja)": "オールドキングダム・ディフェンダーチョーカー"
+      }
+    },
+    {
+      "row_id": 42937,
+      "fields": {
+        "Icon": {
+          "id": 55890,
+          "path": "ui/icon/055000/055890.tex",
+          "path_hr1": "ui/icon/055000/055890_hr1.tex"
+        },
+        "LevelItem@as(raw)": 710,
+        "Name": "Archeo Kingdom Wristband of Fending",
+        "Name@lang(de)": "Altkönigreich-Armband-Bund der Verteidigung",
+        "Name@lang(fr)": "Poignet de protecteur de l'ancien royaume",
+        "Name@lang(ja)": "オールドキングダム・ディフェンダーリストバンド"
+      }
+    },
+    {
+      "row_id": 42942,
+      "fields": {
+        "Icon": {
+          "id": 54741,
+          "path": "ui/icon/054000/054741.tex",
+          "path_hr1": "ui/icon/054000/054741_hr1.tex"
+        },
+        "LevelItem@as(raw)": 710,
+        "Name": "Archeo Kingdom Ring of Fending",
+        "Name@lang(de)": "Altkönigreich-Ring der Verteidigung",
+        "Name@lang(fr)": "Bague de protecteur de l'ancien royaume",
+        "Name@lang(ja)": "オールドキングダム・ディフェンダーリング"
+      }
+    },
+    {
+      "row_id": 43946,
+      "fields": {
+        "Icon": {
+          "id": 57148,
+          "path": "ui/icon/057000/057148.tex",
+          "path_hr1": "ui/icon/057000/057148_hr1.tex"
+        },
+        "LevelItem@as(raw)": 710,
+        "Name": "Ornate Archeo Kingdom Cuirass of Fending",
+        "Name@lang(de)": "Kunstvoller Altkönigreich-Kürass der Verteidigung",
+        "Name@lang(fr)": "Cuirasse de protecteur de l'ancien royaume supra",
+        "Name@lang(ja)": "オールドキングダム・ディフェンダーキュイラスSP"
+      }
+    },
+    {
+      "row_id": 49240,
+      "fields": {
+        "Icon": {
+          "id": 24229,
+          "path": "ui/icon/024000/024229.tex",
+          "path_hr1": "ui/icon/024000/024229_hr1.tex"
+        },
+        "LevelItem@as(raw)": 770,
+        "Name": "Caramel Popcorn",
+        "Name@lang(de)": "Popcorn",
+        "Name@lang(fr)": "Pop-corn au caramel",
+        "Name@lang(ja)": "キャラメルポップコーン"
+      }
+    },
+    {
+      "row_id": 50053,
+      "fields": {
+        "Icon": {
+          "id": 30288,
+          "path": "ui/icon/030000/030288.tex",
+          "path_hr1": "ui/icon/030000/030288_hr1.tex"
+        },
+        "LevelItem@as(raw)": 775,
+        "Name": "Phantom Shield Obscurum",
+        "Name@lang(de)": "Phantom-Schild Obscurum",
+        "Name@lang(fr)": "Bouclier fantôme obscurum",
+        "Name@lang(ja)": "ファントムオブスキュラム・シールド"
+      }
+    }
+  ]
+}

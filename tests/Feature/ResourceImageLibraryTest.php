@@ -190,7 +190,7 @@ it('protects images referenced by old revisions, branding, or active editors', f
     Storage::disk('local')->assertExists($image->path);
 })->with(['history', 'branding', 'editor']);
 
-it('authorizes inline image sources and tracks them through publication and deletion protection', function () {
+it('authorizes nested image sources and tracks them through publication and deletion protection', function (string $layout) {
     $image = library_upload($this);
     $foreign = library_upload($this);
     $foreign->update(['group_id' => Group::factory()->create()->id]);
@@ -199,7 +199,7 @@ it('authorizes inline image sources and tracks them through publication and dele
     $token = $action('acquire')->assertOk()->json('data.editing_token');
     $content = fn ($src) => [
         'title' => 'Inline markers', 'slug' => $resource->slug, 'description' => '',
-        'body' => ['type' => 'doc', 'content' => [['type' => 'paragraph', 'content' => [['type' => 'inlineImage', 'attrs' => ['src' => $src, 'width' => 24]]]]]],
+        'body' => ['type' => 'doc', 'content' => [['type' => $layout === 'group' ? 'imageGroup' : 'paragraph', 'content' => [['type' => $layout === 'group' ? 'image' : 'inlineImage', 'attrs' => ['src' => $src, 'width' => 24]]]]]],
         'access_level' => 'everyone', 'tags' => [], 'activity_type_ids' => [], 'commands' => [],
     ];
     foreach (['/resource-assets/'.$foreign->uuid, 'https://example.com/map.png'] as $src) {
@@ -214,7 +214,7 @@ it('authorizes inline image sources and tracks them through publication and dele
     $action('publish')->assertOk();
     $this->get($publicUrl)->assertOk();
     $this->deleteJson(library_image_url($this, $image))->assertUnprocessable()->assertJsonValidationErrors('image');
-});
+})->with(['inline', 'group']);
 
 it('deletes unused uploads with quota and audit updates', function () {
     $image = library_upload($this);

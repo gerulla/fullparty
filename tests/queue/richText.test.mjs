@@ -249,8 +249,108 @@ test('resizable image views update their actual displayed width and layout after
     editor.destroy()
 })
 
+test('adjacent images become one centered group with independent sizes and survive backend and HTML reloads', () => {
+    const second = { type: 'image', attrs: { src: '/second.png', width: 180, layout: 'wrap-right' } }
+    const editor = createEditor({ type: 'doc', content: [...textDocument('Before').content, mapImage, second, ...textDocument('After').content, mapImage] })
+    selectImage(editor)
+    const original = editor.getJSON()
+    assert.equal(editor.can().createImageGroup(), true)
+    assert.deepEqual(editor.getJSON(), original)
+    assert.equal(editor.commands.createImageGroup(), true)
+    assert.deepEqual(editor.getJSON().content.map(node => node.type), ['paragraph', 'imageGroup', 'paragraph', 'image', 'paragraph'])
+    let group = editor.getJSON().content[1]
+    assert.equal(group.attrs.align, 'center')
+    assert.equal(group.content.length, 2)
+    assert.ok(group.content.every(image => image.attrs.layout === 'block'))
+    assert.equal(editor.commands.createImageGroup(), false)
+    assert.equal(editor.commands.setRichTextImageLayout('inline'), false)
+    assert.equal(editor.commands.setRichTextImageWidth(240), true)
+    assert.equal(editor.commands.setImageGroupAlign('right'), true)
+    assert.equal(editor.commands.setImageGroupAlign('justify'), false)
+    const saved = backendDocument(editor.getJSON())
+    for (const content of [saved.document, saved.html]) {
+        const reloaded = createEditor(content)
+        reloaded.state.doc.check()
+        group = reloaded.getJSON().content[1]
+        assert.equal(group.type, 'imageGroup')
+        assert.equal(group.attrs.align, 'right')
+        assert.deepEqual(group.content.map(image => image.attrs.width), [240, 180])
+        assert.equal(reloaded.getText(), editor.getText())
+        reloaded.destroy()
+    }
+    editor.destroy()
+})
+
+test('groups accept more images and ungroup without replacing existing images or losing their order', () => {
+    const editor = createEditor({ type: 'doc', content: [mapImage] })
+    selectImage(editor)
+    editor.commands.createImageGroup()
+    assert.equal(editor.commands.addImageToGroup({ src: '/second.png', alt: 'Second' }), true)
+    assert.equal(editor.commands.addImageToGroup({ src: '/third.png', alt: 'Third' }), true)
+    assert.equal(editor.getJSON().content[0].content.length, 3)
+    assert.equal(editor.state.selection.node.attrs.src, '/third.png')
+    editor.commands.setImageGroupAlign('right')
+    assert.equal(editor.commands.ungroupImages(), true)
+    editor.state.doc.check()
+    const images = editor.getJSON().content.filter(node => node.type === 'image')
+    assert.deepEqual(images.map(node => node.attrs.src), [mapImage.attrs.src, '/second.png', '/third.png'])
+    assert.ok(images.every(node => node.attrs.align === 'right' && node.attrs.width === 640))
+    assert.equal(editor.commands.addImageToGroup({ src: '/outside.png' }), false)
+    editor.destroy()
+})
+
+test('grouping supports undo, list items and table cells without damaging surrounding content', () => {
+    for (const content of [
+        [...textDocument('Before').content, mapImage, mapImage],
+        [{ type: 'bulletList', content: [{ type: 'listItem', content: [...textDocument('Before').content, mapImage, mapImage] }] }],
+        [{ type: 'table', content: [{ type: 'tableRow', content: [{ type: 'tableCell', content: [mapImage, mapImage] }] }] }],
+    ]) {
+        const editor = createEditor({ type: 'doc', content })
+        selectImage(editor)
+        const original = editor.getJSON()
+        assert.equal(editor.commands.createImageGroup(), true)
+        editor.state.doc.check()
+        backendDocument(editor.getJSON())
+        assert.equal(editor.commands.undo(), true)
+        assert.deepEqual(editor.getJSON(), original)
+        editor.destroy()
+    }
+})
+
+test('deleting grouped images leaves no empty image and Enter continues below the row', () => {
+    const editor = createEditor({ type: 'doc', content: [mapImage, mapImage, ...textDocument('After').content] })
+    selectImage(editor)
+    editor.commands.createImageGroup()
+    assert.equal(editor.commands.deleteRichTextImage(), true)
+    assert.equal(editor.getJSON().content[0].content.length, 1)
+    selectImage(editor)
+    editor.view.dom.dispatchEvent(new dom.window.KeyboardEvent('keydown', { key: 'Enter', bubbles: true }))
+    assert.deepEqual(editor.getJSON().content.map(node => node.type), ['imageGroup', 'paragraph', 'paragraph'])
+    editor.commands.insertContent('Below')
+    assert.equal(editor.getJSON().content[1].content[0].text, 'Below')
+    selectImage(editor)
+    editor.view.dom.dispatchEvent(new dom.window.KeyboardEvent('keydown', { key: 'Backspace', bubbles: true }))
+    editor.state.doc.check()
+    assert.equal(editor.getJSON().content.some(node => node.type === 'imageGroup'), false)
+    assert.equal(editor.getText(), 'Below\n\nAfter')
+    backendDocument(editor.getJSON())
+    editor.destroy()
+})
+
 test('unsafe links and image sources are rejected before insertion', () => {
     for (const url of ['javascript:alert(1)', 'data:image/svg+xml,bad', '//evil.test', '/\\evil.test', 'https://example.com/a b']) assert.equal(safeEditorUrl(url, true), false)
     assert.equal(safeEditorUrl('/resource-assets/image', true), true)
     assert.equal(safeEditorUrl('https://example.com/map.gif', true), true)
+})
+
+test('cutting the last grouped image removes its group without creating a broken placeholder image', () => {
+    const editor = createEditor({ type: 'doc', content: [mapImage, ...textDocument('Keep this article').content] })
+    selectImage(editor)
+    editor.commands.createImageGroup()
+    editor.commands.deleteSelection()
+    editor.state.doc.check()
+    assert.equal(editor.getJSON().content.some(node => node.type === 'imageGroup' || node.type === 'image'), false)
+    assert.equal(editor.getText(), 'Keep this article')
+    backendDocument(editor.getJSON())
+    editor.destroy()
 })

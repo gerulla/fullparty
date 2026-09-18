@@ -18,7 +18,9 @@
 
 /* Match stored image layouts in both the editor's resize wrapper and the reader. */
 .rich-text-content { display: flow-root; container: rich-text / inline-size; }
-.rich-text-content :where(img:not([data-inline-image]), [data-resize-container][data-node="image"]) { display: block; clear: both; max-width: 100%; margin: 12px 0; }
+.rich-text-content :where(img:not([data-inline-image]):not([data-game-icon-key]), [data-resize-container][data-node="image"]) { display: block; clear: both; max-width: 100%; margin: 12px 0; }
+.rich-text-content img[data-game-icon-key] { display: inline-block; float: none; clear: none; width: 1.5em; height: 1.5em; max-width: none; margin: -.2em .12em 0; vertical-align: middle; object-fit: contain; }
+.game-icon-suggestions { z-index: 100; max-width: min(25rem, calc(100vw - 24px)); max-height: calc(100dvh - 24px); overflow: hidden; }
 .rich-text-content [data-resize-container][data-node="image"] { width: fit-content; }
 .rich-text-content [data-resize-wrapper] { max-width: 100%; }
 .rich-text-content [data-image-layout="block"][data-image-align="center"] { margin-left: auto; margin-right: auto; }
@@ -34,6 +36,12 @@
 .rich-text-content [data-resize-handle="bottom-left"] { cursor: nesw-resize; }
 .rich-text-content [data-resize-handle="bottom-right"] { cursor: nwse-resize; }
 .rich-text-content[contenteditable="false"] .ProseMirror-selectednode { outline: none; }
+/* Image groups align as one row and shrink to fit narrower article columns. */
+.rich-text-content [data-image-group] { display: flex; flex-wrap: nowrap; align-items: center; gap: 12px; clear: both; max-width: 100%; margin: 12px 0; }
+.rich-text-content [data-image-group][data-image-group-align="center"] { justify-content: center; }
+.rich-text-content [data-image-group][data-image-group-align="right"] { justify-content: flex-end; }
+.rich-text-content [data-image-group] > :is(img, [data-resize-container][data-node="image"]) { flex: 0 1 auto; min-width: 0; max-width: 100%; margin: 0; float: none; clear: none; }
+.rich-text-content [data-image-group] > [data-resize-container][data-node="image"] { width: max-content; }
 @container rich-text (max-width: 480px) {
     .rich-text-content :is([data-image-layout="wrap-left"], [data-image-layout="wrap-right"]) { float: none; clear: both; max-width: 100%; margin: 12px 0; }
     .rich-text-content [data-resize-container][data-node="image"] img { margin: 0; }

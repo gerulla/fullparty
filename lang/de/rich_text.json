@@ -1,5 +1,9 @@
 {
     "game_icons": "Spiel-Symbole",
+    "game_icons_search": "Namen oder :kurzcodes: suchen…",
+    "game_icons_category": "Symbolkategorie",
+    "game_icons_all_categories": "Alle Kategorien",
+    "game_icons_count": "Symbole: {count}",
     "game_icons_hint": ":name: eingeben · ↑↓ zum Auswählen · Enter zum Einfügen · Esc zum Schließen",
     "game_icons_loading": "Spiel-Symbole werden geladen…",
     "game_icons_failed": "Die Spiel-Symbole konnten nicht geladen werden.",

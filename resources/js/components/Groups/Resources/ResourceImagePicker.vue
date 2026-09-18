@@ -4,7 +4,7 @@ import { useI18n } from 'vue-i18n'
 import type { ResourceImageSelection } from '@/Types/ResourceImages'
 import ResourceImageLibraryModal from './ResourceImageLibraryModal.vue'
 
-const props = defineProps<{ label: string; compact?: boolean; description?: string; error?: string; name?: string; valueType?: 'url' | 'uuid' }>()
+const props = defineProps<{ label: string; compact?: boolean; description?: string; error?: string; name?: string; valueType?: 'url' | 'uuid'; allowGameIcons?: boolean }>()
 const model = defineModel<string>({ required: true })
 const { t } = useI18n()
 const l = (key: string) => t(`groups.resources.workspace.${key}`)
@@ -26,6 +26,6 @@ function choose(image: ResourceImageSelection) { model.value = props.valueType =
             <UButton v-else icon="i-lucide-image-plus" color="neutral" variant="outline" size="sm" :label="l('choose_image')" @click="show" />
             <UTooltip v-if="model" :text="l('remove_image')"><UButton icon="i-lucide-x" color="neutral" variant="ghost" :aria-label="l('remove_image')" @click="model = ''; chosenName = ''" /></UTooltip>
         </div>
-        <ResourceImageLibraryModal v-model:open="open" :selected="imageUrl" @select="choose" />
+        <ResourceImageLibraryModal v-model:open="open" :selected="imageUrl" :allow-game-icons="allowGameIcons && valueType !== 'uuid'" @select="choose" />
     </UFormField>
 </template>

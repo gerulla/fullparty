@@ -177,7 +177,7 @@
       "description": "Texte principal du message. Accepte le Markdown Discord, notamment le gras, les listes et les liens.",
       "title_url": "Destination HTTPS ou HTTP facultative pour le titre de l'embed.",
       "color": "Couleur de la ligne d'accent à gauche de l'embed, au format hexadécimal.",
-      "thumbnail": "Petite image en haut à droite, provenant de la bibliothèque du groupe.",
+      "thumbnail": "Petite image en haut à droite, choisie parmi les fichiers du groupe ou les icônes du jeu.",
       "image": "Grande image sous le message et les champs, provenant de la bibliothèque du groupe.",
       "fields": "Jusqu'à 25 sections nommées, affichées dans cet ordre. Chacune contient un nom et une valeur ; les valeurs acceptent le Markdown Discord.",
       "inline": "Permet d'afficher ce champ à côté d'autres champs en ligne si l'espace le permet.",

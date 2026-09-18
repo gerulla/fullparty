@@ -1,5 +1,9 @@
 {
     "game_icons": "Game icons",
+    "game_icons_search": "Search names or :shortcodes:…",
+    "game_icons_category": "Icon category",
+    "game_icons_all_categories": "All categories",
+    "game_icons_count": "Icons: {count}",
     "game_icons_hint": "Type :name: · ↑↓ to browse · Enter to insert · Esc to close",
     "game_icons_loading": "Loading game icons…",
     "game_icons_failed": "Game icons could not be loaded.",

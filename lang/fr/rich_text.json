@@ -1,5 +1,9 @@
 {
     "game_icons": "Icônes du jeu",
+    "game_icons_search": "Rechercher un nom ou un :code:…",
+    "game_icons_category": "Catégorie d’icône",
+    "game_icons_all_categories": "Toutes les catégories",
+    "game_icons_count": "Icônes : {count}",
     "game_icons_hint": "Saisissez :nom: · ↑↓ pour parcourir · Entrée pour insérer · Échap pour fermer",
     "game_icons_loading": "Chargement des icônes du jeu…",
     "game_icons_failed": "Impossible de charger les icônes du jeu.",

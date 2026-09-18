@@ -1,5 +1,9 @@
 {
     "game_icons": "ゲームアイコン",
+    "game_icons_search": "名前や :ショートコード: で検索…",
+    "game_icons_category": "アイコンのカテゴリ",
+    "game_icons_all_categories": "すべてのカテゴリ",
+    "game_icons_count": "アイコン数：{count}",
     "game_icons_hint": ":名前: を入力 · ↑↓で選択 · Enterで挿入 · Escで閉じる",
     "game_icons_loading": "ゲームアイコンを読み込み中…",
     "game_icons_failed": "ゲームアイコンを読み込めませんでした。",

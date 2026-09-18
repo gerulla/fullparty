@@ -177,7 +177,7 @@
       "description": "Nachrichtentext. Unterstützt Discord-Markdown, einschließlich Fettdruck, Listen und Links.",
       "title_url": "Optionales HTTPS- oder HTTP-Linkziel für den Embed-Titel.",
       "color": "Farbe der linken Akzentlinie des Embeds im Hexadezimalformat.",
-      "thumbnail": "Kleines Bild oben rechts aus der Bildbibliothek der Gruppe.",
+      "thumbnail": "Kleines Bild oben rechts aus den Uploads der Gruppe oder den Spiel-Symbolen.",
       "image": "Großes Bild unter der Nachricht und den Feldern aus der Bildbibliothek der Gruppe.",
       "fields": "Bis zu 25 beschriftete Abschnitte in dieser Reihenfolge. Jeder hat einen Namen und einen Wert; Werte unterstützen Discord-Markdown.",
       "inline": "Zeigt dieses Feld bei ausreichend Platz neben anderen Inline-Feldern an.",

@@ -79,7 +79,7 @@ function moveField(index: number, offset: number) {
         <section class="embed-editor-section">
             <h3>{{ l('embed_media') }}</h3>
             <div class="embed-editor-grid">
-                <ResourceImagePicker v-model="embed.thumbnail" :name="path('thumbnail')" :data-resource-field="path('thumbnail')" :error="error('thumbnail')" :label="l('thumbnail')" :description="help('thumbnail')" />
+                <ResourceImagePicker v-model="embed.thumbnail" allow-game-icons :name="path('thumbnail')" :data-resource-field="path('thumbnail')" :error="error('thumbnail')" :label="l('thumbnail')" :description="help('thumbnail')" />
                 <ResourceImagePicker v-model="embed.image" :name="path('image')" :data-resource-field="path('image')" :error="error('image')" :label="l('image')" :description="help('image')" />
             </div>
         </section>

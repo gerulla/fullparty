@@ -177,7 +177,7 @@
       "description": "Main message text. Supports Discord Markdown, including bold, lists and links.",
       "title_url": "Optional HTTPS or HTTP destination for the embed title.",
       "color": "Color of the embed's left accent line, in hexadecimal format.",
-      "thumbnail": "Small image in the upper-right corner, from the group's image library.",
+      "thumbnail": "Small image in the upper-right corner, from the group's uploads or game icons.",
       "image": "Large image below the message and fields, from the group's image library.",
       "fields": "Up to 25 labeled sections, displayed in this order. Each has a name and a value; values support Discord Markdown.",
       "inline": "Allows this field to sit beside other inline fields when there is enough space.",

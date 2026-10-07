@@ -30,6 +30,7 @@ use App\Http\Controllers\GroupActivityApplicationRecordController;
 use App\Http\Controllers\GroupActivityCalendarController;
 use App\Http\Controllers\GroupActivityCompletionController;
 use App\Http\Controllers\GroupActivityController;
+use App\Http\Controllers\GroupActivityDiscordParticipantController;
 use App\Http\Controllers\GroupActivityDuplicationController;
 use App\Http\Controllers\GroupActivityFflogsCompletionPreviewController;
 use App\Http\Controllers\GroupActivityFflogsController;
@@ -647,6 +648,9 @@ Route::prefix('{locale?}')
                 */
 
                 // Roster assignment and queue state changes.
+                Route::post('/activities/{activity}/slots/{slot}/discord-participant', [GroupActivityDiscordParticipantController::class, 'store'])
+                    ->middleware('throttle:10,1')
+                    ->name('groups.dashboard.activities.discord-participants.store');
                 Route::middleware('roster.write')->group(function (): void {
                     Route::post('/activities/{activity}/slot-swaps', [GroupActivitySlotSwapController::class, 'store'])->name('groups.dashboard.activities.slot-swaps.store');
                     Route::post('/activities/{activity}/fill-ins', [GroupActivityFillInSlotController::class, 'store'])->name('groups.dashboard.activities.fill-ins.store');

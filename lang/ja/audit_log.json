@@ -208,6 +208,7 @@
                     "withdrawn": "がアクティビティ応募を取り下げました。"
                 },
                 "roster": {
+          "discord_participant_synced": "開催回の参加者をDiscordと同期しました",
                     "assigned": "がロスター枠を割り当てました。",
                     "updated": "がロスター割り当てを更新しました。",
                     "reassigned": "がロスター枠を再割り当てしました。",
@@ -494,6 +495,7 @@
                     "withdrawn": "アクティビティ応募取り下げ"
                 },
                 "roster": {
+          "discord_participant_synced": "開催回の参加者をDiscordと同期しました",
                     "assigned": "ロスター枠割り当て",
                     "updated": "ロスター割り当て更新",
                     "reassigned": "ロスター枠再割り当て",

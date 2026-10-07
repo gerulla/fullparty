@@ -52,6 +52,7 @@ class IntegrationClientController extends Controller
                     IntegrationClient::EVENT_DISCORD_GUILD_SNAPSHOT_REQUESTED,
                     IntegrationClient::EVENT_DISCORD_GUILD_MEMBERSHIP_SNAPSHOT_REQUESTED,
                     IntegrationClient::EVENT_DISCORD_GUILD_SETTINGS_UPDATED,
+                    IntegrationClient::EVENT_DISCORD_GUILD_RUN_PARTICIPANT_SYNC,
                 ],
             ],
         ]);
@@ -189,6 +190,7 @@ class IntegrationClientController extends Controller
                 IntegrationClient::EVENT_DISCORD_GUILD_SNAPSHOT_REQUESTED,
                 IntegrationClient::EVENT_DISCORD_GUILD_MEMBERSHIP_SNAPSHOT_REQUESTED,
                 IntegrationClient::EVENT_DISCORD_GUILD_SETTINGS_UPDATED,
+                IntegrationClient::EVENT_DISCORD_GUILD_RUN_PARTICIPANT_SYNC,
             ])],
         ]);
     }

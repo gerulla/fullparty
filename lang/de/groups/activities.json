@@ -125,6 +125,18 @@
         "milestones": "{count} Meilensteine"
     },
     "management": {
+        "discord_sync": {
+            "title": "Discord-ID zuweisen",
+            "description": "{character} für diesen Run mit Discord synchronisieren.",
+            "temporary_notice": "Diese Zuweisung ist vorübergehend. Die Discord-ID wird an den Bot gesendet und nicht von FullParty gespeichert. Bitte den Teilnehmer, sein FullParty-Konto für zukünftige Runs mit dem Discord-Bot zu verknüpfen.",
+            "id_label": "Discord-Benutzer-ID",
+            "submit": "An Discord senden",
+            "success": "Teilnehmer mit Discord synchronisiert.",
+            "invalid_id": "Gib eine Discord-Benutzer-ID mit 17–20 Ziffern ein, keinen Benutzernamen und keine Erwähnung.",
+            "unavailable": "Diese Aktion erfordert einen verbundenen Discord-Server und eine veröffentlichte Aufstellung. Sie ist ab einer Stunde vor Beginn verfügbar, bis der Run abgeschlossen oder abgesagt wird.",
+            "character_required": "Dem Platz muss ein Charakter mit Name und Welt zugewiesen sein. Lade die Aufstellung neu und versuche es erneut.",
+            "failed": "Der Bot konnte diesen Teilnehmer nicht synchronisieren. Prüfe die Discord-ID, die Run-Rolle, die Bot-Berechtigungen und ob die Teilnehmersynchronisierung aktiviert ist. Versuche es dann erneut."
+        },
         "title": "Run-Verwaltung",
         "subtitle": "Verwalte die aktuellen Details für diesen {type}-Run.",
         "placeholder": "Dies ist der Einstiegspunkt für Slot-Zuweisungen, Bewerbungen und Fortschritts-Updates.",

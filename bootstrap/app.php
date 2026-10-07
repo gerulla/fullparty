@@ -54,6 +54,8 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->api(append: [EnsureAccountNotBanned::class]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
+        $exceptions->dontFlash(['discord_user_id']);
+
         $exceptions->render(function (HttpExceptionInterface $exception, Request $request) {
             // Unmatched routes never reach the web locale middleware.
             $candidates = [

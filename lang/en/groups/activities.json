@@ -125,6 +125,18 @@
         "milestones": "{count} milestones"
     },
     "management": {
+        "discord_sync": {
+            "title": "Assign Discord ID",
+            "description": "Sync {character} with Discord for this run.",
+            "temporary_notice": "This is temporary. The Discord ID is sent to the bot and is not stored by FullParty. Ask the participant to link their FullParty account with the Discord bot for future runs.",
+            "id_label": "Discord user ID",
+            "submit": "Send to Discord",
+            "success": "Participant synced with Discord.",
+            "invalid_id": "Enter a Discord user ID containing 17–20 digits, not a username or mention.",
+            "unavailable": "This action requires a connected Discord server and a published roster. It is available from one hour before the start until the run is completed or cancelled.",
+            "character_required": "The slot must have an assigned character with a name and world. Refresh the roster and try again.",
+            "failed": "The bot could not sync this participant. Check the Discord ID, run role, bot permissions, and that the participant sync capability is enabled, then try again."
+        },
         "title": "Run Management",
         "subtitle": "Manage the live details for this {type} run.",
         "placeholder": "This is the entry point for slot assignment, applications, and progress updates.",

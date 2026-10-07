@@ -125,6 +125,18 @@
         "milestones": "{count}マイルストーン"
     },
     "management": {
+        "discord_sync": {
+            "title": "Discord IDを割り当て",
+            "description": "この開催回の参加者 {character} をDiscordと同期します。",
+            "temporary_notice": "これは一時的な割り当てです。Discord IDはBotに送信されますが、FullPartyには保存されません。今後の開催回では自動で連携できるよう、参加者にFullPartyアカウントをDiscord Botと連携することをお勧めしてください。",
+            "id_label": "DiscordユーザーID",
+            "submit": "Discordに送信",
+            "success": "参加者をDiscordと同期しました。",
+            "invalid_id": "ユーザー名やメンションではなく、17～20桁のDiscordユーザーIDを入力してください。",
+            "unavailable": "Discordサーバーの接続と編成の公開が必要です。開始1時間前から、開催回が完了または中止されるまで利用できます。",
+            "character_required": "この枠には、名前とワールドが設定されたキャラクターの割り当てが必要です。編成を更新してから再試行してください。",
+            "failed": "Botがこの参加者を同期できませんでした。Discord ID、開催回のロール、Botの権限、および参加者同期機能が有効かを確認してから再試行してください。"
+        },
         "title": "ラン管理",
         "subtitle": "この{type} ランの現在の詳細を管理します。",
         "placeholder": "スロット割り当て、申請、進行更新の入口です。",

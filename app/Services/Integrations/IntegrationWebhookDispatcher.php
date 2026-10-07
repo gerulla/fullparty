@@ -103,18 +103,22 @@ class IntegrationWebhookDispatcher
                 'response' => $captureResponse ? $this->decodeResponse($response) : null,
             ];
         } catch (Throwable $exception) {
+            // The participant ID is temporary. A bot error may echo it in its body.
+            $error = $event === IntegrationClient::EVENT_DISCORD_GUILD_RUN_PARTICIPANT_SYNC
+                ? 'Discord run participant synchronization failed.'
+                : $exception->getMessage();
             $client->forceFill([
                 'last_event_failed_at' => now(),
-                'last_event_error' => $exception->getMessage(),
+                'last_event_error' => $error,
             ])->save();
 
-            app(IntegrationAdminNotificationService::class)->notifyEventDeliveryFailed($client->fresh(), $event, $exception->getMessage());
+            app(IntegrationAdminNotificationService::class)->notifyEventDeliveryFailed($client->fresh(), $event, $error);
 
             return [
                 'client_id' => $client->id,
                 'delivery_id' => $deliveryId,
                 'status' => 'failed',
-                'error' => $exception->getMessage(),
+                'error' => $error,
                 'response' => null,
             ];
         }

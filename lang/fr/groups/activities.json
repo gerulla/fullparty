@@ -125,6 +125,18 @@
         "milestones": "{count} étapes"
     },
     "management": {
+        "discord_sync": {
+            "title": "Attribuer un ID Discord",
+            "description": "Synchroniser {character} avec Discord pour cette sortie.",
+            "temporary_notice": "Cette attribution est temporaire. L’ID Discord est envoyé au bot et n’est pas enregistré par FullParty. Demandez au participant de lier son compte FullParty au bot Discord pour les prochaines sorties.",
+            "id_label": "ID utilisateur Discord",
+            "submit": "Envoyer à Discord",
+            "success": "Participant synchronisé avec Discord.",
+            "invalid_id": "Saisissez un ID utilisateur Discord de 17 à 20 chiffres, et non un nom d’utilisateur ou une mention.",
+            "unavailable": "Cette action nécessite un serveur Discord connecté et une composition publiée. Elle est disponible à partir d’une heure avant le début, jusqu’à la fin ou l’annulation de la sortie.",
+            "character_required": "Un personnage avec un nom et un Monde doit être affecté à cet emplacement. Actualisez la composition et réessayez.",
+            "failed": "Le bot n’a pas pu synchroniser ce participant. Vérifiez l’ID Discord, le rôle de la sortie, les permissions du bot et l’activation de la synchronisation des participants, puis réessayez."
+        },
         "title": "Gestion du run",
         "subtitle": "Gérez les détails en direct de ce run {type}.",
         "placeholder": "C'est le point de départ pour l'affectation des emplacements, les candidatures et les mises à jour de progression.",

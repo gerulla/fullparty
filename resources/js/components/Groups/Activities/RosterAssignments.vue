@@ -6,6 +6,7 @@ import { route } from "ziggy-js";
 import { useToast } from "@nuxt/ui/composables";
 import { useI18n } from "vue-i18n";
 import { provideRosterDiscordCopy } from "@/composables/useRosterDiscordCopy";
+import { provideRosterDiscordSync } from "@/composables/useRosterDiscordSync";
 import ActivitySlotCompositionCustomModal from "@/components/Groups/Activities/ActivitySlotCompositionCustomModal.vue";
 import ActivityFillInSlotsSection from "@/components/Groups/Activities/ActivityFillInSlotsSection.vue";
 import ActivityRosterPartyView from "@/components/Groups/Activities/ActivityRosterPartyView.vue";
@@ -27,6 +28,7 @@ const props = defineProps<{
 	isFillInPending?: boolean
 	groupSlug: string
 	activityId: number
+	discordSyncAvailableFrom?: string | null
 	compositionClassOptions: ActivityCompositionClassOption[]
 }>();
 
@@ -56,6 +58,7 @@ const emit = defineEmits<{
 const { t } = useI18n();
 const toast = useToast();
 provideRosterDiscordCopy(() => props.groupSlug, () => props.activityId, () => props.slots);
+provideRosterDiscordSync(() => props.groupSlug, () => props.activityId, () => props.discordSyncAvailableFrom, () => Boolean(props.isSwapPending || props.isFillInPending));
 const draggedSlotId = ref<number | null>(null);
 const dropTargetSlotId = ref<number | null>(null);
 const isCompositionHintPending = ref(false);

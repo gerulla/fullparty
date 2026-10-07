@@ -42,6 +42,8 @@ class IntegrationClient extends Model
 
     public const EVENT_DISCORD_GUILD_RUN_STARTING_NOW = 'discord.guild.run_starting_now';
 
+    public const EVENT_DISCORD_GUILD_RUN_PARTICIPANT_SYNC = 'discord.guild.run_participant_sync';
+
     public const EVENT_DISCORD_GUILD_RUN_COMPLETED = 'discord.guild.run_completed';
 
     public const EVENT_DISCORD_GUILD_RUN_CANCELLED = 'discord.guild.run_cancelled';

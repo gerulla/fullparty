@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\FFLogs\FFLogsPlaygroundClient;
+use Illuminate\Http\Client\RequestException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
@@ -43,15 +44,17 @@ class AdminFflogsPlaygroundController extends Controller
                 ],
                 'response' => [
                     'ok' => false,
-                    'status' => null,
+                    'status' => $exception instanceof RequestException ? $exception->response->status() : null,
                     'body' => [
                         'message' => __('errors.unable_to_execute_ff_logs_request'),
                         'detail' => $exception->getMessage(),
                     ],
                 ],
-            ], 502);
+            ])->header('Cache-Control', 'private, no-store');
         }
 
+        // The diagnostic request succeeded even when FF Logs failed. Keep its status
+        // in the body so proxies do not replace the diagnostics with a gateway error.
         return response()->json([
             'request' => [
                 'endpoint' => $client->endpoint(),
@@ -62,7 +65,7 @@ class AdminFflogsPlaygroundController extends Controller
                 'status' => $response->status(),
                 'body' => $this->resolveResponseBody($response),
             ],
-        ], $response->successful() ? 200 : 502);
+        ])->header('Cache-Control', 'private, no-store');
     }
 
     /**

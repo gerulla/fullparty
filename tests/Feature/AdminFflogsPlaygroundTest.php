@@ -10,6 +10,10 @@ use Inertia\Testing\AssertableInertia as Assert;
 uses(RefreshDatabase::class);
 
 beforeEach(function () {
+    config()->set('services.ff_logs.client_id', 'client-id');
+    config()->set('services.ff_logs.client_secret', 'client-secret');
+    config()->set('services.ff_logs.token_url', 'https://fflogs.test/oauth/token');
+    Cache::flush();
     Http::preventStrayRequests();
 });
 
@@ -91,7 +95,10 @@ it('lets admins send a manual ff logs graphql payload', function () {
 it('preserves upstream errors inside a successful diagnostic response', function (int $status, array $body) {
     config()->set('services.ff_logs.graphql_url', 'https://fflogs.test/graphql');
     Cache::put('fflogs:client_credentials_token', 'cached-token');
-    Http::fake(['https://fflogs.test/graphql' => Http::response($body, $status)]);
+    Http::fake([
+        'https://fflogs.test/oauth/token' => Http::response(['access_token' => 'fresh-token', 'expires_in' => 3600]),
+        'https://fflogs.test/graphql' => Http::response($body, $status),
+    ]);
 
     $this->actingAs(User::factory()->create(['is_admin' => true]))
         ->postJson(route('admin.fflogs-playground.execute'), [
@@ -104,7 +111,7 @@ it('preserves upstream errors inside a successful diagnostic response', function
         ->assertJsonPath('response.body', $body)
         ->assertDontSee('cached-token');
 
-    Http::assertSentCount(1);
+    Http::assertSentCount($status === 401 ? 3 : 1);
 })->with([
     'authentication rejected' => [401, ['error' => 'Unauthenticated.']],
     'rate limit exceeded' => [429, ['error' => 'Too many requests.']],

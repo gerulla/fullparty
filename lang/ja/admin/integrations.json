@@ -62,6 +62,7 @@
         "guilds_write": "Discordサーバーを連携"
     },
     "events": {
+        "discord_admin_report": "Discord管理者レポート",
     "discord_guild_run_participant_sync": "Discordサーバーの開催回参加者を同期",
         "discord_user_app_installed": "Discordアプリがインストールされた",
         "discord_user_app_disconnected": "Discordアプリの連携が解除された",

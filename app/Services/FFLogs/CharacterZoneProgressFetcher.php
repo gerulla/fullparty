@@ -8,16 +8,11 @@ use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\Client\RequestException;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use RuntimeException;
 
 class CharacterZoneProgressFetcher
 {
-    private const TOKEN_CACHE_KEY = 'fflogs:client_credentials_token';
-
-    private const TOKEN_CACHE_TTL_BUFFER = 60;
-
     private const ZONE_PROGRESS_CACHE_TTL_HOURS = 24;
 
     private const FAILURE_CACHE_TTL_SECONDS = 120;
@@ -35,6 +30,8 @@ class CharacterZoneProgressFetcher
         'meteor' => 'JP',
         'materia' => 'OC',
     ];
+
+    public function __construct(private readonly FFLogsClient $client) {}
 
     public function fetchEncounterProgressForCharacter(Character $character, int $zoneId, ?int $difficulty = null): array
     {
@@ -289,13 +286,10 @@ GRAPHQL;
             throw new RuntimeException(__('errors.ff_logs_requests_are_temporarily_paused_after_a_service_failure'));
         }
         try {
-            $response = Http::withToken($this->getAccessToken())
-                ->connectTimeout(5)->timeout(15)
-                ->acceptJson()
-                ->post(config('services.ff_logs.graphql_url'), [
-                    'query' => $query,
-                    'variables' => $variables,
-                ])
+            $response = $this->client->query([
+                'query' => $query,
+                'variables' => $variables,
+            ])
                 ->throw()
                 ->json();
         } catch (ConnectionException|RequestException $exception) {
@@ -446,61 +440,6 @@ GRAPHQL;
         if ($difficulty !== null && $difficulty <= 0) {
             throw new RuntimeException('FF Logs difficulty must be a positive integer.');
         }
-    }
-
-    private function getAccessToken(): string
-    {
-        $cachedToken = Cache::get(self::TOKEN_CACHE_KEY);
-
-        if ($cachedToken) {
-            return $cachedToken;
-        }
-
-        return Cache::lock(self::TOKEN_CACHE_KEY.':fetching', 20)->block(5, function () {
-            if ($cachedToken = Cache::get(self::TOKEN_CACHE_KEY)) {
-                return $cachedToken;
-            }
-            if (Cache::has(self::TOKEN_CACHE_KEY.':failed')) {
-                throw new RuntimeException(__('errors.ff_logs_authentication_is_temporarily_unavailable'));
-            }
-            try {
-                return $this->requestAccessToken();
-            } catch (\Throwable $exception) {
-                Cache::put(self::TOKEN_CACHE_KEY.':failed', true, self::FAILURE_CACHE_TTL_SECONDS);
-                throw $exception;
-            }
-        });
-    }
-
-    private function requestAccessToken(): string
-    {
-        $clientId = config('services.ff_logs.client_id');
-        $clientSecret = config('services.ff_logs.client_secret');
-
-        if (! $clientId || ! $clientSecret) {
-            throw new RuntimeException('FF Logs credentials are not configured.');
-        }
-
-        $response = Http::asForm()
-            ->connectTimeout(5)->timeout(10)
-            ->withBasicAuth($clientId, $clientSecret)
-            ->post(config('services.ff_logs.token_url'), [
-                'grant_type' => 'client_credentials',
-            ])
-            ->throw()
-            ->json();
-
-        $token = $response['access_token'] ?? null;
-
-        if (! $token) {
-            throw new RuntimeException('FF Logs access token was not returned.');
-        }
-
-        $expiresIn = max(0, ((int) ($response['expires_in'] ?? 3600)) - self::TOKEN_CACHE_TTL_BUFFER);
-
-        Cache::put(self::TOKEN_CACHE_KEY, $token, now()->addSeconds($expiresIn));
-
-        return $token;
     }
 
     private function resolveServerSlug(string $world): string

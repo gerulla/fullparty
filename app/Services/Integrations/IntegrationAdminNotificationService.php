@@ -4,6 +4,7 @@ namespace App\Services\Integrations;
 
 use App\Models\IntegrationClient;
 use App\Models\User;
+use App\Services\Notifications\AdminReportService;
 use App\Services\Notifications\NotificationService;
 use App\Support\Notifications\NotificationCategory;
 use App\Support\Notifications\NotificationTopic;
@@ -13,10 +14,21 @@ class IntegrationAdminNotificationService
 {
     public function __construct(
         private readonly NotificationService $notificationService,
+        private readonly AdminReportService $adminReports,
     ) {}
 
     public function notifyEventDeliveryFailed(IntegrationClient $client, string $event, string $error): void
     {
+        // Keep failed admin reports in-app only, avoiding an alert delivery loop.
+        if ($event !== IntegrationClient::EVENT_DISCORD_ADMIN_REPORT) {
+            $this->adminReports->report(
+                key: 'integration.delivery.'.$client->id.'.'.$event,
+                titleKey: 'admin_reports.integration_delivery_title',
+                messageKey: 'admin_reports.integration_delivery_message',
+                params: ['client' => $client->name, 'event' => $event],
+            );
+        }
+
         $admins = User::query()
             ->where('is_admin', true)
             ->get();

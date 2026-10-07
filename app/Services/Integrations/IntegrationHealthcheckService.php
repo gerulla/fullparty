@@ -4,6 +4,7 @@ namespace App\Services\Integrations;
 
 use App\Models\IntegrationClient;
 use App\Models\IntegrationClientHealthCheck;
+use App\Services\Notifications\AdminReportService;
 use Carbon\CarbonInterface;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
@@ -12,6 +13,8 @@ use Throwable;
 
 class IntegrationHealthcheckService
 {
+    public function __construct(private readonly AdminReportService $adminReports) {}
+
     public function checkActiveClients(): void
     {
         IntegrationClient::query()
@@ -99,6 +102,16 @@ class IntegrationHealthcheckService
             'last_healthcheck_failed_at' => $this->isFailed($status) ? $checkedAt : null,
             'last_healthcheck_error' => $this->isHealthy($status) ? null : $trimmedError,
         ])->save();
+
+        if (! $this->isHealthy($status)) {
+            $this->adminReports->report(
+                key: 'integration.health.'.$client->id.'.'.$status,
+                titleKey: 'admin_reports.integration_health_title',
+                messageKey: 'admin_reports.integration_health_message',
+                params: ['client' => $client->name, 'status' => $status],
+                severity: $this->isFailed($status) ? 'error' : 'warning',
+            );
+        }
     }
 
     /**

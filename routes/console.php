@@ -13,4 +13,6 @@ Artisan::command('inspire', function () {
 Schedule::command('notifications:dispatch-run-reminders')->everyMinute()->withoutOverlapping();
 Schedule::command('resources:cleanup-images')->hourly()->withoutOverlapping();
 Schedule::job(new CheckIntegrationClientHealthJob)->everyFifteenMinutes()->withoutOverlapping();
+Schedule::command('fflogs:check-health')->everyFiveMinutes()->withoutOverlapping()->onOneServer()
+    ->when(fn () => (bool) config('services.ff_logs.healthcheck_enabled'));
 Schedule::command('model:prune', ['--model' => [PendingSocialLink::class]])->hourly()->withoutOverlapping();

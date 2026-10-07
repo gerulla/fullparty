@@ -57,6 +57,7 @@ it('renders integration clients for admins', function () {
             ->where('options.events.8', IntegrationClient::EVENT_DISCORD_GUILD_MEMBERSHIP_SNAPSHOT_REQUESTED)
             ->where('options.events.9', IntegrationClient::EVENT_DISCORD_GUILD_SETTINGS_UPDATED)
             ->where('options.events.10', IntegrationClient::EVENT_DISCORD_GUILD_RUN_PARTICIPANT_SYNC)
+            ->where('options.events.11', IntegrationClient::EVENT_DISCORD_ADMIN_REPORT)
         );
 });
 

@@ -2096,6 +2096,7 @@ onBeforeUnmount(() => {
 					:slots="currentActivity.slots"
 					:group-slug="group.slug"
 					:activity-id="activity.id"
+					:discord-sync-available-from="currentActivity.discord_participant_sync_available_from"
 					:composition-class-options="currentActivity.composition_class_options"
 					:is-swap-pending="isSlotSwapPending || isSlotAssignmentPending"
 					:is-fill-in-pending="isFillInPending"

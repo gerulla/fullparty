@@ -208,6 +208,7 @@
                     "withdrawn": "a retiré une candidature d'activité."
                 },
                 "roster": {
+          "discord_participant_synced": "Participant à la sortie synchronisé avec Discord",
                     "assigned": "a attribué un emplacement de roster.",
                     "updated": "a mis à jour une attribution de roster.",
                     "reassigned": "a réattribué un emplacement de roster.",
@@ -494,6 +495,7 @@
                     "withdrawn": "Candidature d'activité retirée"
                 },
                 "roster": {
+          "discord_participant_synced": "Participant à la sortie synchronisé avec Discord",
                     "assigned": "Emplacement de roster attribué",
                     "updated": "Attribution de roster mise à jour",
                     "reassigned": "Emplacement de roster réattribué",

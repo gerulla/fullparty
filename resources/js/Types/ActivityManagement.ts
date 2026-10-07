@@ -66,6 +66,7 @@ export type FflogsProgressResponse = {
 
 export type ActivityDetails = {
 	id: number
+	discord_participant_sync_available_from: string | null
 	activity_type: {
 		id: number | null
 		slug: string | null

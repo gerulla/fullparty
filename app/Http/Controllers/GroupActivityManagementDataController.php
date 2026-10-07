@@ -11,6 +11,7 @@ use App\Models\CharacterClass;
 use App\Models\Group;
 use App\Services\Groups\ActivityBenchSlotBackfillService;
 use App\Services\Groups\ActivityCompletionService;
+use App\Services\Groups\ActivityDiscordParticipantSyncService;
 use App\Services\Groups\ActivityRosterSummaryPresetBuilder;
 use App\Services\Groups\ActivitySlotAttendanceService;
 use App\Services\Groups\ActivitySlotBench;
@@ -32,6 +33,7 @@ class GroupActivityManagementDataController extends Controller
         ActivityRosterSummaryPresetBuilder $rosterSummaryPresetBuilder,
         ActivitySlotBench $slotBench,
         ActivitySlotKind $slotKind,
+        ActivityDiscordParticipantSyncService $discordParticipantSync,
     ): JsonResponse {
         $this->authorize('manageDashboard', [$activity, $group]);
 
@@ -77,6 +79,7 @@ class GroupActivityManagementDataController extends Controller
                 'banner_image_url' => $activity->activityTypeVersion?->banner_image_url,
                 'notes' => $activity->notes,
                 'status' => $activity->status,
+                'discord_participant_sync_available_from' => $discordParticipantSync->availableFrom($group, $activity)?->toIso8601String(),
                 'cancellation_reason' => $activity->resolvedCancellationReason(),
                 'starts_at' => $activity->starts_at?->toIso8601String(),
                 'duration_hours' => $activity->duration_hours,

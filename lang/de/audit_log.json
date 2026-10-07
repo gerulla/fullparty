@@ -208,6 +208,7 @@
                     "withdrawn": "hat eine Aktivitätsbewerbung zurückgezogen."
                 },
                 "roster": {
+          "discord_participant_synced": "Run-Teilnehmer mit Discord synchronisiert",
                     "assigned": "hat einen Roster-Slot zugewiesen.",
                     "updated": "hat eine Roster-Zuweisung aktualisiert.",
                     "reassigned": "hat einen Roster-Slot neu zugewiesen.",
@@ -494,6 +495,7 @@
                     "withdrawn": "Aktivitätsbewerbung zurückgezogen"
                 },
                 "roster": {
+          "discord_participant_synced": "Run-Teilnehmer mit Discord synchronisiert",
                     "assigned": "Roster-Slot zugewiesen",
                     "updated": "Roster-Zuweisung aktualisiert",
                     "reassigned": "Roster-Slot neu zugewiesen",

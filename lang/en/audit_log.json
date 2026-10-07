@@ -208,6 +208,7 @@
           "withdrawn": "withdrew an activity application."
         },
         "roster": {
+          "discord_participant_synced": "Run participant synced with Discord",
           "assigned": "assigned a roster slot.",
           "updated": "updated a roster assignment.",
           "reassigned": "reassigned a roster slot.",
@@ -494,6 +495,7 @@
           "withdrawn": "Activity application withdrawn"
         },
         "roster": {
+          "discord_participant_synced": "Run participant synced with Discord",
           "assigned": "Roster slot assigned",
           "updated": "Roster assignment updated",
           "reassigned": "Roster slot reassigned",

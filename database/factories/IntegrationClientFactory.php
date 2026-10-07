@@ -39,6 +39,7 @@ class IntegrationClientFactory extends Factory
                 IntegrationClient::EVENT_DISCORD_NOTIFICATION_DELIVERY,
                 IntegrationClient::EVENT_DISCORD_GUILD_RUN_STARTING_SOON,
                 IntegrationClient::EVENT_DISCORD_GUILD_RUN_STARTING_NOW,
+                IntegrationClient::EVENT_DISCORD_GUILD_RUN_PARTICIPANT_SYNC,
                 IntegrationClient::EVENT_DISCORD_GUILD_RUN_COMPLETED,
                 IntegrationClient::EVENT_DISCORD_GUILD_RUN_CANCELLED,
                 IntegrationClient::EVENT_DISCORD_GUILD_SNAPSHOT_REQUESTED,

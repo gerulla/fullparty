@@ -19,6 +19,7 @@ final class FFLogsPlaygroundClient
     public function execute(array $payload): Response
     {
         return Http::withToken($this->getAccessToken())
+            ->connectTimeout(5)->timeout(15)
             ->acceptJson()
             ->post((string) config('services.ff_logs.graphql_url'), $payload);
     }
@@ -44,6 +45,7 @@ final class FFLogsPlaygroundClient
         }
 
         $response = Http::asForm()
+            ->connectTimeout(5)->timeout(10)
             ->withBasicAuth($clientId, $clientSecret)
             ->post((string) config('services.ff_logs.token_url'), [
                 'grant_type' => 'client_credentials',

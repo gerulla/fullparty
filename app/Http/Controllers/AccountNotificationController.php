@@ -7,6 +7,7 @@ use App\Models\UserNotification;
 use App\Services\Notifications\NotificationActionUrlService;
 use App\Services\Notifications\NotificationInboxService;
 use App\Services\Notifications\NotificationRealtimeService;
+use App\Support\Integrations\MemberApi;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -56,7 +57,7 @@ class AccountNotificationController extends Controller
         ]);
     }
 
-    public function readAll(Request $request): RedirectResponse
+    public function readAll(Request $request): RedirectResponse|JsonResponse
     {
         $updated = $this->notificationInboxService->markAllRead($request->user());
 
@@ -64,10 +65,10 @@ class AccountNotificationController extends Controller
             $this->notificationRealtimeService->broadcastUserInboxUpdated($request->user());
         }
 
-        return back();
+        return MemberApi::active($request) ? MemberApi::success() : back();
     }
 
-    public function open(Request $request, UserNotification $notification): RedirectResponse
+    public function open(Request $request, UserNotification $notification): RedirectResponse|JsonResponse
     {
         abort_unless($notification->user_id === $request->user()->id, 404);
 
@@ -79,16 +80,24 @@ class AccountNotificationController extends Controller
 
         $notification->loadMissing('notificationEvent');
 
+        if (MemberApi::active($request)) {
+            return MemberApi::success(['action_url' => $notification->notificationEvent?->action_url]);
+        }
+
         return redirect()->to($this->notificationActionUrlService->forRequest(
             $request,
             $notification->notificationEvent?->action_url,
         ));
     }
 
-    public function openBroadcast(Request $request, SystemNotificationBroadcast $broadcast): RedirectResponse
+    public function openBroadcast(Request $request, SystemNotificationBroadcast $broadcast): RedirectResponse|JsonResponse
     {
         $this->notificationInboxService->markBroadcastAsRead($request->user(), $broadcast);
         $this->notificationRealtimeService->broadcastUserInboxUpdated($request->user());
+
+        if (MemberApi::active($request)) {
+            return MemberApi::success(['action_url' => $this->notificationInboxService->broadcastActionUrl($broadcast)]);
+        }
 
         return redirect()->to(
             $this->notificationActionUrlService->forRequest(

@@ -82,7 +82,7 @@ test('page resolution imports only the destination and waits for translations', 
     let layoutLoads = 0;
     const resolve = createPageResolver({
         application: 'main', composer: {}, getLocale: () => 'ja',
-        translations: { load: async (_, locale, namespaces) => { assert.equal(locale, 'ja'); assert.deepEqual(namespaces, ['general', 'meta', 'auth']); await ready; } },
+        translations: { load: async (_, locale, namespaces) => { assert.equal(locale, 'ja'); assert.deepEqual(namespaces, ['general', 'meta', 'reports', 'auth']); await ready; } },
         pages: {
             './Pages/auth/Login.vue': async () => { requested.push('login'); return login; },
             './Pages/Admin/Quotas.vue': async () => { requested.push('admin'); return {}; },

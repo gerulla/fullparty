@@ -14,7 +14,9 @@ use App\Services\Quotas\QuotaService;
 use App\Support\Audit\AuditScope;
 use App\Support\Audit\AuditSeverity;
 use App\Support\Input\RequestTextInputSanitizer;
+use App\Support\Integrations\MemberApi;
 use App\Support\Quotas\QuotaKey;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -30,7 +32,7 @@ class GroupMembershipController extends Controller
         private readonly QuotaService $quotaService,
     ) {}
 
-    public function join(Group $group): RedirectResponse
+    public function join(Group $group): RedirectResponse|JsonResponse
     {
         $group->loadMissing('memberships');
 
@@ -39,13 +41,13 @@ class GroupMembershipController extends Controller
         ]);
 
         if (! $group->allowsOpenJoin()) {
-            return redirect()->back()->withErrors([
+            return MemberApi::errors([
                 'error' => 'group_join_unavailable',
             ]);
         }
 
         if ($group->isBanned(auth()->id())) {
-            return redirect()->back()->withErrors([
+            return MemberApi::errors([
                 'error' => 'group_banned',
             ]);
         }
@@ -81,11 +83,15 @@ class GroupMembershipController extends Controller
             );
         }
 
+        if (MemberApi::active()) {
+            return MemberApi::success(['group_slug' => $group->slug]);
+        }
+
         return $this->joinRedirect($group, $validated['redirect_to'] ?? 'dashboard')
             ->with('success', 'group_joined');
     }
 
-    public function leave(Request $request, Group $group): RedirectResponse
+    public function leave(Request $request, Group $group): RedirectResponse|JsonResponse
     {
         $group->loadMissing('memberships');
 
@@ -94,7 +100,7 @@ class GroupMembershipController extends Controller
         ]);
 
         if ($group->isOwnedBy(auth()->id())) {
-            return redirect()->back()->withErrors([
+            return MemberApi::errors([
                 'error' => 'group_owner_cannot_leave',
             ]);
         }
@@ -104,7 +110,7 @@ class GroupMembershipController extends Controller
             ->first();
 
         if (! $membership) {
-            return redirect()->back()->withErrors([
+            return MemberApi::errors([
                 'error' => 'group_membership_not_found',
             ]);
         }
@@ -134,11 +140,15 @@ class GroupMembershipController extends Controller
             auth()->user(),
         );
 
+        if (MemberApi::active()) {
+            return MemberApi::success();
+        }
+
         return $this->leaveRedirect($group, $validated['redirect_to'] ?? 'back')
             ->with('success', 'group_left');
     }
 
-    public function updateNotifications(Request $request, Group $group): RedirectResponse
+    public function updateNotifications(Request $request, Group $group): RedirectResponse|JsonResponse
     {
         $validated = $request->validate([
             'enabled' => ['required', 'boolean'],
@@ -161,7 +171,7 @@ class GroupMembershipController extends Controller
             );
         }
 
-        return redirect()->back()->with('success', 'group_notifications_updated');
+        return MemberApi::saved('group_notifications_updated');
     }
 
     private function leaveRedirect(Group $group, string $target): RedirectResponse

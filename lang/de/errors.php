@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'image_dimensions_exceeded' => 'Bilder dürfen pro Seite höchstens :dimension Pixel und insgesamt höchstens :megapixels Megapixel groß sein.',
     'this_application_cannot_be_withdrawn' => 'Diese Bewerbung kann nicht zurückgezogen werden.',
     'an_english_activity_type_name_is_required' => 'Ein englischer Name für den Aktivitätstyp ist erforderlich.',
     'at_least_one_slot_group_is_required' => 'Mindestens eine Platzgruppe ist erforderlich.',

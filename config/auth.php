@@ -38,6 +38,10 @@ return [
     */
 
     'guards' => [
+        'integration-member' => [
+            'driver' => 'integration-member',
+            'provider' => 'users',
+        ],
         'web' => [
             'driver' => 'session',
             'provider' => 'users',

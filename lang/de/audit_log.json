@@ -146,6 +146,12 @@
                 "created": "hat eine Kontolimit-Ausnahme erstellt.",
                 "updated": "hat eine Kontolimit-Ausnahme aktualisiert.",
                 "deleted": "hat eine Kontolimit-Ausnahme entfernt."
+            },
+            "integration_client": {
+                "created": "hat einen Integrationsclient erstellt.",
+                "updated": "hat einen Integrationsclient und dessen Berechtigungen geändert.",
+                "api_token_rotated": "hat ein API-Token für eine Integration erneuert.",
+                "webhook_secret_rotated": "hat den Webhook-Schlüssel einer Integration erneuert."
             }
         },
         "character": {
@@ -365,7 +371,15 @@
         "scheduled_for": "Geplant für",
         "notification_event_id": "Benachrichtigungsereignis",
         "action_label": "Aktionsbeschriftung",
-        "action_url": "Aktions-URL"
+        "action_url": "Aktions-URL",
+        "scopes": "API-Berechtigungen",
+        "allowed_events": "Erlaubte Ereignisse",
+        "outbound_events_url": "Webhook-Endpunkt",
+        "healthcheck_url": "Endpunkt der Zustandsprüfung",
+        "integration_client_id": "Integrationsclient-ID",
+        "integration_client_name": "Integrationsclient",
+        "permissions": "Berechtigungen",
+        "type": "Typ"
     },
     "events": {
         "user": {
@@ -438,6 +452,12 @@
                 "created": "Kontolimit-Ausnahme erstellt",
                 "updated": "Kontolimit-Ausnahme aktualisiert",
                 "deleted": "Kontolimit-Ausnahme entfernt"
+            },
+            "integration_client": {
+                "created": "Integrationsclient erstellt",
+                "updated": "Integrationsclient aktualisiert",
+                "api_token_rotated": "Integrations-API-Token erneuert",
+                "webhook_secret_rotated": "Webhook-Schlüssel der Integration erneuert"
             }
         },
         "character": {

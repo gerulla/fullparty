@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateDashboardProfileCustomizationRequest;
 use App\Services\ManagedImageStorage;
+use App\Support\Integrations\MemberApi;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 
 class DashboardProfileCustomizationController extends Controller
@@ -14,7 +16,7 @@ class DashboardProfileCustomizationController extends Controller
         private readonly ManagedImageStorage $managedImageStorage,
     ) {}
 
-    public function update(UpdateDashboardProfileCustomizationRequest $request): RedirectResponse
+    public function update(UpdateDashboardProfileCustomizationRequest $request): RedirectResponse|JsonResponse
     {
         $validated = $request->validated();
         $homeProfile = $request->user()->homeProfile()->firstOrNew();
@@ -41,6 +43,6 @@ class DashboardProfileCustomizationController extends Controller
         $homeProfile->user()->associate($request->user());
         $homeProfile->save();
 
-        return back()->with('success', 'dashboard_profile_updated');
+        return MemberApi::saved('dashboard_profile_updated');
     }
 }

@@ -55,7 +55,48 @@
         "paused": "En pause",
         "revoked": "Révoqué"
     },
+    "permission_groups": {
+        "partial": "Les catégories partiellement activées conservent leurs autorisations tant que vous ne modifiez pas la case.",
+        "partial_label": "{label} (partiel)",
+        "lookup": {
+            "label": "Lire les données d’intégration",
+            "description": "Consulter les sorties, les personnages liés et les commandes de ressources."
+        },
+        "connections": {
+            "label": "Lier des comptes et serveurs",
+            "description": "Connecter des utilisateurs et groupes FullParty avec des codes de liaison."
+        },
+        "members_read": {
+            "label": "Lire les données des membres",
+            "description": "Lire les personnages, groupes, sorties, candidatures et préférences des utilisateurs liés."
+        },
+        "members_write": {
+            "label": "Effectuer des actions de membre",
+            "description": "Agir pour les utilisateurs liés dans les limites de leurs autorisations."
+        },
+        "accounts": {
+            "label": "Connexions de comptes",
+            "description": "Recevoir les événements de connexion et déconnexion des comptes."
+        },
+        "notifications": {
+            "label": "Notifications personnelles",
+            "description": "Transmettre les notifications FullParty aux utilisateurs Discord."
+        },
+        "runs": {
+            "label": "Automatisation des sorties",
+            "description": "Recevoir les rappels, fins et annulations de sorties et synchroniser les participants."
+        },
+        "guilds": {
+            "label": "Configuration du serveur",
+            "description": "Consulter le serveur et ses membres, modifier les paramètres et traiter les déconnexions."
+        },
+        "admin_reports": {
+            "label": "Alertes administrateur",
+            "description": "Recevoir les rapports opérationnels destinés aux administrateurs du site."
+        }
+    },
     "scopes": {
+        "resources_read": "Lire les ressources",
         "runs_read": "Lire les runs",
         "users_read": "Lire les utilisateurs liés",
         "users_write": "Lier des utilisateurs",

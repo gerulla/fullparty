@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\SafeImageDimensions;
 use App\Support\Input\RequestTextInputSanitizer;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
@@ -23,7 +24,7 @@ class UpdateDashboardProfileCustomizationRequest extends FormRequest
         return [
             'display_character_class_id' => ['nullable', 'integer', 'exists:character_classes,id'],
             'description' => ['nullable', 'string', 'max:'.self::DESCRIPTION_MAX_LENGTH],
-            'background_image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
+            'background_image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120', new SafeImageDimensions],
             'reset_background_image' => ['nullable', 'boolean'],
         ];
     }
@@ -43,6 +44,11 @@ class UpdateDashboardProfileCustomizationRequest extends FormRequest
         app(RequestTextInputSanitizer::class)->sanitize($this, [], ['description']);
 
         $normalized = [];
+
+        $reset = $this->input('reset_background_image');
+        if (is_string($reset) && in_array(strtolower($reset), ['true', 'false'], true)) {
+            $normalized['reset_background_image'] = strtolower($reset) === 'true';
+        }
 
         if ($this->exists('display_character_class_id') && blank($this->input('display_character_class_id'))) {
             $normalized['display_character_class_id'] = null;

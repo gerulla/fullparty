@@ -10,7 +10,6 @@ use App\Http\Controllers\AdminFflogsPlaygroundController;
 use App\Http\Controllers\AdminQuotaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BannedAccountController;
-use App\Http\Controllers\SocialAccountLinkController;
 use App\Http\Controllers\BozjaItemController;
 use App\Http\Controllers\Calculator\CalculatorCatalogController;
 use App\Http\Controllers\Calculator\CalculatorController;
@@ -21,8 +20,10 @@ use App\Http\Controllers\DashboardProfileCustomizationController;
 use App\Http\Controllers\DiscordAppInstallController;
 use App\Http\Controllers\DiscordAuthController;
 use App\Http\Controllers\FeaturedGroupController;
+use App\Http\Controllers\GameIconController;
 use App\Http\Controllers\GlobalSearchController;
 use App\Http\Controllers\GoogleAuthController;
+use App\Http\Controllers\GroupActivityAllianceProgressController;
 use App\Http\Controllers\GroupActivityApplicantQueueController;
 use App\Http\Controllers\GroupActivityApplicationController;
 use App\Http\Controllers\GroupActivityApplicationDeclineController;
@@ -39,8 +40,8 @@ use App\Http\Controllers\GroupActivityManagementDataController;
 use App\Http\Controllers\GroupActivityManagementWarningController;
 use App\Http\Controllers\GroupActivityManualSlotAssignmentOptionsController;
 use App\Http\Controllers\GroupActivityPartyFinderInfoController;
-use App\Http\Controllers\GroupActivityRosterExportController;
 use App\Http\Controllers\GroupActivityRosterDiscordController;
+use App\Http\Controllers\GroupActivityRosterExportController;
 use App\Http\Controllers\GroupActivitySelfAssignmentController;
 use App\Http\Controllers\GroupActivitySlotApplicationReviewWarningController;
 use App\Http\Controllers\GroupActivitySlotAssignmentContextController;
@@ -56,7 +57,6 @@ use App\Http\Controllers\GroupAuditLogController;
 use App\Http\Controllers\GroupAvailabilityController;
 use App\Http\Controllers\GroupBozjaHolsterController;
 use App\Http\Controllers\GroupContentController;
-use App\Http\Controllers\GroupResourceController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\GroupDashboardController;
 use App\Http\Controllers\GroupDiscordIntegrationController;
@@ -71,6 +71,7 @@ use App\Http\Controllers\GroupMembershipApplicationReviewController;
 use App\Http\Controllers\GroupMembershipController;
 use App\Http\Controllers\GroupMembershipRequestController;
 use App\Http\Controllers\GroupPhantomCompositionController;
+use App\Http\Controllers\GroupResourceController;
 use App\Http\Controllers\GroupRunListController;
 use App\Http\Controllers\GroupSettingsController;
 use App\Http\Controllers\GroupShortcutController;
@@ -89,6 +90,7 @@ use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SettingsLinkedSessionController;
 use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\SocialAccountController;
+use App\Http\Controllers\SocialAccountLinkController;
 use App\Http\Controllers\SystemNotificationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserOnboardingController;
@@ -97,6 +99,7 @@ use App\Http\Controllers\XivPluginDeviceAuthorizationController;
 use App\Http\Controllers\XivPluginDeviceController;
 use App\Http\Middleware\ApplyLocale;
 use App\Models\GroupInvite;
+use App\Services\Auth\PendingSocialLinkStore;
 use App\Services\Landing\LandingPageDataService;
 use App\Support\Seo\ServerMeta;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -115,6 +118,7 @@ Route::pattern('locale', implode('|', ApplyLocale::SUPPORTED_LOCALES));
 $appHost = parse_url((string) config('app.url'), PHP_URL_HOST) ?: 'fullparty.test';
 
 require __DIR__.'/resources.php';
+require __DIR__.'/api_docs.php';
 
 Route::domain('plan.'.$appHost)
     ->name('planner.')
@@ -286,7 +290,7 @@ Route::prefix('{locale?}')
             ->where('secretKey', '[A-Za-z0-9]{40}')
             ->name('groups.activities.calendar');
 
-        Route::get('/groups/{group:slug}/activities/{activity}/alliance-progress', \App\Http\Controllers\GroupActivityAllianceProgressController::class)
+        Route::get('/groups/{group:slug}/activities/{activity}/alliance-progress', GroupActivityAllianceProgressController::class)
             ->middleware('throttle:external.lookup')
             ->name('groups.activities.alliance-progress');
 
@@ -373,14 +377,14 @@ Route::prefix('{locale?}')
                 return Inertia::render('auth/VerifyEmail', [
                     'email' => request()->user()->email,
                     'status' => session('status'),
-                    'pendingSocialLinkUrl' => app(\App\Services\Auth\PendingSocialLinkStore::class)->resumeUrl(request()),
+                    'pendingSocialLinkUrl' => app(PendingSocialLinkStore::class)->resumeUrl(request()),
                 ]);
             })->middleware('auth')->name('verification.notice');
 
             Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
                 $request->fulfill();
 
-                return redirect()->to(app(\App\Services\Auth\PendingSocialLinkStore::class)->resumeUrl($request) ?? route('dashboard'));
+                return redirect()->to(app(PendingSocialLinkStore::class)->resumeUrl($request) ?? route('dashboard'));
             })->middleware(['auth', 'signed'])->name('verification.verify');
 
             Route::post('/email/verification-notification', function (Request $request) {
@@ -421,7 +425,7 @@ Route::prefix('{locale?}')
         */
 
         Route::middleware(['auth', 'verified'])->group(function () {
-            Route::get('/editor/game-icons', \App\Http\Controllers\GameIconController::class)->name('editor.game-icons');
+            Route::get('/editor/game-icons', GameIconController::class)->name('editor.game-icons');
             require __DIR__.'/reports.php';
             /*
             |--------------------------------------------------------------------------

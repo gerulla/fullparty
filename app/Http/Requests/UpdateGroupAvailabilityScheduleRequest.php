@@ -19,12 +19,14 @@ class UpdateGroupAvailabilityScheduleRequest extends FormRequest
             'starts_on' => ['required', 'date_format:Y-m-d'],
             'timezone' => ['required', 'string', 'max:64', 'timezone'],
             'windows' => ['present', 'array', 'max:224'],
+            'windows.*' => ['required', 'array'],
             'windows.*.cycle_week' => ['required', 'integer', 'min:0', 'max:3'],
             'windows.*.weekday' => ['required', 'integer', 'between:1,7'],
             'windows.*.status' => ['required', Rule::in(GroupAvailabilityWindow::STATUSES)],
             'windows.*.starts_at' => ['required', 'date_format:H:i'],
             'windows.*.ends_at' => ['required', 'date_format:H:i'],
             'exceptions' => ['present', 'array', 'max:366'],
+            'exceptions.*' => ['required', 'array'],
             'exceptions.*.date' => ['required', 'date_format:Y-m-d', 'after_or_equal:today', 'distinct'],
             'exceptions.*.starts_at' => ['nullable', 'date_format:H:i', 'required_with:exceptions.*.ends_at'],
             'exceptions.*.ends_at' => ['nullable', 'date_format:H:i', 'required_with:exceptions.*.starts_at'],
@@ -35,6 +37,10 @@ class UpdateGroupAvailabilityScheduleRequest extends FormRequest
     {
         return [
             function (Validator $validator): void {
+                if ($validator->errors()->isNotEmpty()) {
+                    return;
+                }
+
                 $cycleWeeks = (int) $this->input('cycle_weeks', 1);
                 $windowsByDay = collect($this->input('windows', []))
                     ->groupBy(fn (array $window) => sprintf('%d:%d', $window['cycle_week'] ?? -1, $window['weekday'] ?? -1));

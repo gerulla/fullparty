@@ -5,6 +5,7 @@ namespace App\Services\Integrations;
 use App\Models\IntegrationClient;
 use App\Models\IntegrationClientHealthCheck;
 use App\Services\Notifications\AdminReportService;
+use App\Support\Integrations\IntegrationEndpoint;
 use Carbon\CarbonInterface;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
@@ -50,7 +51,9 @@ class IntegrationHealthcheckService
         $startedAt = microtime(true);
 
         try {
+            IntegrationEndpoint::assertSecure((string) $client->healthcheck_url);
             $response = Http::timeout(5)
+                ->withoutRedirecting()
                 ->retry(1, 250)
                 ->withHeaders($headers)
                 ->get((string) $client->healthcheck_url);
@@ -129,6 +132,10 @@ class IntegrationHealthcheckService
      */
     private function resolveStatus(Response $response, ?array $payload): string
     {
+        if (! $response->successful()) {
+            return IntegrationClientHealthCheck::STATUS_UNHEALTHY;
+        }
+
         $payloadStatus = Str::lower((string) data_get($payload, 'status', ''));
 
         return match ($payloadStatus) {

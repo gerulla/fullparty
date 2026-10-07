@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\IntegrationClient;
 use App\Models\IntegrationClientHealthCheck;
+use App\Services\Integrations\IntegrationClientManagementService;
 use App\Services\Integrations\IntegrationHealthcheckService;
+use App\Support\Integrations\IntegrationEndpoint;
+use App\Support\Integrations\IntegrationPermissions;
 use Carbon\CarbonInterface;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -15,6 +18,8 @@ use Inertia\Response;
 
 class IntegrationClientController extends Controller
 {
+    public function __construct(private readonly IntegrationClientManagementService $clients) {}
+
     public function index(): Response
     {
         $this->authorizeAdminAccess();
@@ -34,13 +39,9 @@ class IntegrationClientController extends Controller
                     IntegrationClient::STATUS_PAUSED,
                     IntegrationClient::STATUS_REVOKED,
                 ],
-                'scopes' => [
-                    IntegrationClient::SCOPE_RUNS_READ,
-                    IntegrationClient::SCOPE_USERS_READ,
-                    IntegrationClient::SCOPE_USERS_WRITE,
-                    IntegrationClient::SCOPE_GUILDS_WRITE,
-                    IntegrationClient::SCOPE_RESOURCES_READ,
-                ],
+                'scopes' => IntegrationPermissions::scopes(),
+                'scope_groups' => IntegrationPermissions::scopeGroups(),
+                'event_groups' => IntegrationPermissions::eventGroups(),
                 'events' => [
                     IntegrationClient::EVENT_DISCORD_USER_APP_INSTALLED,
                     IntegrationClient::EVENT_DISCORD_USER_APP_DISCONNECTED,
@@ -67,12 +68,7 @@ class IntegrationClientController extends Controller
         $plainToken = IntegrationClient::makePlainApiToken();
         $plainSecret = bin2hex(random_bytes(32));
 
-        $client = IntegrationClient::query()->create([
-            ...$validated,
-            'created_by_user_id' => $request->user()->id,
-            'api_token_hash' => IntegrationClient::hashApiToken($plainToken),
-            'webhook_signing_secret' => $plainSecret,
-        ]);
+        $client = $this->clients->create($request->user(), $validated, $plainToken, $plainSecret);
 
         return back()
             ->with('success', 'integration_client_created')
@@ -90,7 +86,7 @@ class IntegrationClientController extends Controller
     {
         $this->authorizeAdminAccess();
 
-        $integrationClient->update($this->validatedClientData($request));
+        $this->clients->update($request->user(), $integrationClient, $this->validatedClientData($request));
 
         return back()->with('success', 'integration_client_updated');
     }
@@ -101,9 +97,7 @@ class IntegrationClientController extends Controller
 
         $plainToken = IntegrationClient::makePlainApiToken();
 
-        $integrationClient->update([
-            'api_token_hash' => IntegrationClient::hashApiToken($plainToken),
-        ]);
+        $this->clients->rotateApiToken(auth()->user(), $integrationClient, $plainToken);
 
         return back()
             ->with('success', 'integration_client_api_token_regenerated')
@@ -123,9 +117,7 @@ class IntegrationClientController extends Controller
 
         $plainSecret = bin2hex(random_bytes(32));
 
-        $integrationClient->update([
-            'webhook_signing_secret' => $plainSecret,
-        ]);
+        $this->clients->rotateWebhookSecret(auth()->user(), $integrationClient, $plainSecret);
 
         return back()
             ->with('success', 'integration_client_webhook_secret_regenerated')
@@ -169,16 +161,10 @@ class IntegrationClientController extends Controller
                 IntegrationClient::STATUS_PAUSED,
                 IntegrationClient::STATUS_REVOKED,
             ])],
-            'outbound_events_url' => ['nullable', 'url:http,https', 'max:2048'],
-            'healthcheck_url' => ['nullable', 'url:http,https', 'max:2048'],
+            'outbound_events_url' => ['nullable', IntegrationEndpoint::validationRule(), 'max:2048'],
+            'healthcheck_url' => ['nullable', IntegrationEndpoint::validationRule(), 'max:2048'],
             'scopes' => ['array'],
-            'scopes.*' => [Rule::in([
-                IntegrationClient::SCOPE_RUNS_READ,
-                IntegrationClient::SCOPE_USERS_READ,
-                IntegrationClient::SCOPE_USERS_WRITE,
-                IntegrationClient::SCOPE_GUILDS_WRITE,
-                IntegrationClient::SCOPE_RESOURCES_READ,
-            ])],
+            'scopes.*' => [Rule::in(IntegrationPermissions::scopes())],
             'allowed_events' => ['array'],
             'allowed_events.*' => [Rule::in([
                 IntegrationClient::EVENT_DISCORD_USER_APP_INSTALLED,

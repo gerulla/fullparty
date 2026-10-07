@@ -16,6 +16,12 @@ const vue = await import('vue')
 const tiptap = await import('@tiptap/vue-3')
 const core = await import('@tiptap/core')
 const { default: StarterKit } = await import('@tiptap/starter-kit')
+const xivGear = await import('../../resources/js/utils/xivGear.ts')
+const xivGearMateria = await import('../../resources/js/utils/xivGearMateria.ts')
+const xivGearTypes = await import('../../resources/js/Types/XivGear.ts')
+const axios = await import('axios')
+const ziggy = await import('../../vendor/tightenco/ziggy/dist/index.js')
+const gearsetImport = evaluate(readFileSync(new URL('../../resources/js/composables/useResourceGearsetImport.ts', import.meta.url), 'utf8'), { vue, axios, 'ziggy-js': ziggy })
 const width = vue.ref(720)
 const labels = JSON.parse(readFileSync(new URL('../../lang/en/groups/resources.json', import.meta.url), 'utf8')).content
 const i18n = { useI18n: () => ({ locale: vue.ref('en'), t: (key, params = {}) => Object.entries(params).reduce((value, [name, replacement]) => value.replace(`{${name}}`, replacement), labels[key.split('.').at(-1)] ?? key) }) }
@@ -36,10 +42,12 @@ function component(name, inlineTemplate = true, overrides = {}) {
         '@vueuse/core': { useElementSize: () => ({ width }) },
         '@inertiajs/vue3': { Link: vue.defineComponent({ props: ['href'], setup: (props, { slots }) => () => vue.h('a', { href: props.href }, slots.default?.()) }) },
         '@/Types/ResourceContent': { resourceContentKey }, '@/utils/resourceVideo': { parseResourceVideo, resourceVideoPlayer }, '@/utils/resourceReader': { readerDate },
+        '@/Types/XivGear': xivGearTypes, '@/utils/xivGear': xivGear, '@/utils/xivGearMateria': xivGearMateria,
+        '@/composables/useResourceGearsetImport': gearsetImport, '@/../css/resource-gearsets.css': {},
         ...overrides,
     }
-    for (const dependency of ['ResourceReaderRow', 'ResourceVideoPlayer']) {
-        if (script.content.includes(`./${dependency}.vue`)) modules[`./${dependency}.vue`] = { default: component(dependency) }
+    for (const [, dependency] of script.content.matchAll(/from ['"]\.\/(\w+)\.vue['"]/g)) {
+        modules[`./${dependency}.vue`] = { default: component(dependency) }
     }
     const result = evaluate(script.content, modules).default
     if (inlineTemplate) cache.set(name, result)
@@ -47,7 +55,11 @@ function component(name, inlineTemplate = true, overrides = {}) {
 }
 function extensions() {
     const file = new URL('../../resources/js/components/Groups/Resources/resourceContentExtensions.ts', import.meta.url)
-    return evaluate(readFileSync(file, 'utf8'), { '@tiptap/core': core, '@tiptap/vue-3': tiptap, '@/components/Groups/Resources/ResourceContentNode.vue': { default: component('ResourceContentNode') } }).resourceContentExtensions()
+    return evaluate(readFileSync(file, 'utf8'), {
+        '@tiptap/core': core, '@tiptap/vue-3': tiptap, '@/utils/xivGear': xivGear,
+        '@/components/Groups/Resources/ResourceContentNode.vue': { default: component('ResourceContentNode') },
+        '@/components/Groups/Resources/ResourceGearsetNode.vue': { default: component('ResourceGearsetNode') },
+    }).resourceContentExtensions()
 }
 function mount(render, context) {
     const element = document.createElement('div'); document.body.append(element)

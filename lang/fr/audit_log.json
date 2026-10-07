@@ -146,6 +146,12 @@
                 "created": "a créé une exception de limite de compte.",
                 "updated": "a modifié une exception de limite de compte.",
                 "deleted": "a supprimé une exception de limite de compte."
+            },
+            "integration_client": {
+                "created": "a créé un client d’intégration.",
+                "updated": "a modifié un client d’intégration et ses autorisations.",
+                "api_token_rotated": "a renouvelé un jeton API d’intégration.",
+                "webhook_secret_rotated": "a renouvelé le secret de webhook d’une intégration."
             }
         },
         "character": {
@@ -365,7 +371,15 @@
         "scheduled_for": "Prévu pour",
         "notification_event_id": "Événement de notification",
         "action_label": "Libellé d'action",
-        "action_url": "URL d'action"
+        "action_url": "URL d'action",
+        "scopes": "Autorisations API",
+        "allowed_events": "Événements autorisés",
+        "outbound_events_url": "Adresse du webhook",
+        "healthcheck_url": "Adresse de vérification de disponibilité",
+        "integration_client_id": "Identifiant du client d’intégration",
+        "integration_client_name": "Client d’intégration",
+        "permissions": "Autorisations",
+        "type": "Type"
     },
     "events": {
         "user": {
@@ -438,6 +452,12 @@
                 "created": "Exception de limite de compte créée",
                 "updated": "Exception de limite de compte modifiée",
                 "deleted": "Exception de limite de compte supprimée"
+            },
+            "integration_client": {
+                "created": "Client d’intégration créé",
+                "updated": "Client d’intégration modifié",
+                "api_token_rotated": "Jeton API d’intégration renouvelé",
+                "webhook_secret_rotated": "Secret de webhook d’intégration renouvelé"
             }
         },
         "character": {

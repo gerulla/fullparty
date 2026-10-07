@@ -55,7 +55,48 @@
         "paused": "一時停止",
         "revoked": "無効化"
     },
+    "permission_groups": {
+        "partial": "一部のみ有効なカテゴリは、チェック状態を変更するまで既存の権限を維持します。",
+        "partial_label": "{label}（一部）",
+        "lookup": {
+            "label": "連携データの参照",
+            "description": "開催回、連携済みキャラクター、リソースコマンドを取得します。"
+        },
+        "connections": {
+            "label": "アカウントとサーバーの連携",
+            "description": "連携コードでFullPartyのユーザーとグループを接続します。"
+        },
+        "members_read": {
+            "label": "メンバーデータの参照",
+            "description": "連携済みユーザーのキャラクター、グループ、開催回、申請、設定を参照します。"
+        },
+        "members_write": {
+            "label": "メンバー操作の実行",
+            "description": "連携済みユーザーの既存の権限内で操作を実行します。"
+        },
+        "accounts": {
+            "label": "アカウント連携",
+            "description": "アカウントの接続と解除のイベントを受信します。"
+        },
+        "notifications": {
+            "label": "個人通知",
+            "description": "FullPartyの通知をDiscordユーザーに配信します。"
+        },
+        "runs": {
+            "label": "開催回の自動処理",
+            "description": "開始通知、完了、キャンセル、参加者同期のイベントを受信します。"
+        },
+        "guilds": {
+            "label": "サーバー設定",
+            "description": "サーバーとメンバーの情報を取得し、設定の更新と連携解除を処理します。"
+        },
+        "admin_reports": {
+            "label": "管理者アラート",
+            "description": "サイト管理者向けの運用レポートを受信します。"
+        }
+    },
     "scopes": {
+        "resources_read": "リソースの参照",
         "runs_read": "ランを読む",
         "users_read": "連携ユーザーを読む",
         "users_write": "ユーザーを連携",

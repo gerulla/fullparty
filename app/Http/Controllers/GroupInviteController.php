@@ -11,8 +11,10 @@ use App\Services\Notifications\GroupUpdateNotificationService;
 use App\Services\Quotas\QuotaService;
 use App\Support\Audit\AuditScope;
 use App\Support\Audit\AuditSeverity;
+use App\Support\Integrations\MemberApi;
 use App\Support\Quotas\QuotaKey;
 use App\Support\Seo\ServerMeta;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -134,7 +136,7 @@ class GroupInviteController extends Controller
         return redirect()->back()->with('success', 'group_invite_created');
     }
 
-    public function accept(string $token): RedirectResponse
+    public function accept(string $token): RedirectResponse|JsonResponse
     {
         $user = auth()->user();
         $inviteGroupId = GroupInvite::query()
@@ -205,6 +207,7 @@ class GroupInviteController extends Controller
             });
 
         if (! $result['accepted']) {
+            MemberApi::validationError('invite', $result['banned'] ? 'group_banned' : 'group_invite_invalid');
             if ($result['banned']) {
                 return redirect()->route('groups.invites.show', $token)->withErrors([
                     'error' => 'group_banned',
@@ -238,7 +241,7 @@ class GroupInviteController extends Controller
             );
         }
 
-        return redirect()->route('groups.dashboard', $result['group'])->with('success', 'group_joined');
+        return MemberApi::active() ? MemberApi::success(['group_slug' => $result['group']->slug]) : redirect()->route('groups.dashboard', $result['group'])->with('success', 'group_joined');
     }
 
     public function destroy(Group $group, GroupInvite $invite): RedirectResponse

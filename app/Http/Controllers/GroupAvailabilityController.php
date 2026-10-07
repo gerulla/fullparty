@@ -15,7 +15,9 @@ use App\Services\Groups\GroupAvailabilityScheduleService;
 use App\Services\Groups\GroupAvailabilitySelectionService;
 use App\Support\Audit\AuditScope;
 use App\Support\Audit\AuditSeverity;
+use App\Support\Integrations\MemberApi;
 use Carbon\CarbonImmutable;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Cache;
 use Inertia\Inertia;
@@ -144,7 +146,7 @@ class GroupAvailabilityController extends Controller
         ));
     }
 
-    public function updateSchedule(UpdateGroupAvailabilityScheduleRequest $request, Group $group): RedirectResponse
+    public function updateSchedule(UpdateGroupAvailabilityScheduleRequest $request, Group $group): RedirectResponse|JsonResponse
     {
         $group->loadMissing(['memberships', 'features', 'availabilitySettings']);
 
@@ -156,6 +158,6 @@ class GroupAvailabilityController extends Controller
 
         $this->scheduleService->save($group, $request->user(), $request->validated());
 
-        return redirect()->back();
+        return MemberApi::active($request) ? MemberApi::success() : redirect()->back();
     }
 }

@@ -146,6 +146,12 @@
                 "created": "アカウント上限の例外を作成しました。",
                 "updated": "アカウント上限の例外を更新しました。",
                 "deleted": "アカウント上限の例外を削除しました。"
+            },
+            "integration_client": {
+                "created": "連携クライアントを作成しました。",
+                "updated": "連携クライアントとその権限を変更しました。",
+                "api_token_rotated": "連携APIトークンを更新しました。",
+                "webhook_secret_rotated": "連携Webhookのシークレットを更新しました。"
             }
         },
         "character": {
@@ -365,7 +371,15 @@
         "scheduled_for": "予定日時",
         "notification_event_id": "通知イベント",
         "action_label": "アクションラベル",
-        "action_url": "アクションURL"
+        "action_url": "アクションURL",
+        "scopes": "API権限",
+        "allowed_events": "許可されたイベント",
+        "outbound_events_url": "Webhookエンドポイント",
+        "healthcheck_url": "ヘルスチェックのエンドポイント",
+        "integration_client_id": "連携クライアントID",
+        "integration_client_name": "連携クライアント",
+        "permissions": "権限",
+        "type": "種類"
     },
     "events": {
         "user": {
@@ -438,6 +452,12 @@
                 "created": "アカウント上限の例外を作成",
                 "updated": "アカウント上限の例外を更新",
                 "deleted": "アカウント上限の例外を削除"
+            },
+            "integration_client": {
+                "created": "連携クライアントの作成",
+                "updated": "連携クライアントの更新",
+                "api_token_rotated": "連携APIトークンの更新",
+                "webhook_secret_rotated": "連携Webhookシークレットの更新"
             }
         },
         "character": {

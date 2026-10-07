@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'image_dimensions_exceeded' => '画像は各辺 :dimension ピクセル以下、合計 :megapixels メガピクセル以下にしてください。',
     'this_application_cannot_be_withdrawn' => 'この申請は取り下げられません。',
     'an_english_activity_type_name_is_required' => 'アクティビティタイプの英語名が必要です。',
     'at_least_one_slot_group_is_required' => '枠グループを1つ以上指定してください。',

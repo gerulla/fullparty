@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\DiscordUserAppDisconnected;
 use App\Http\Requests\ChangePasswordRequest;
 use App\Models\User;
+use App\Rules\SafeImageDimensions;
 use App\Services\AuditLogger;
 use App\Services\ManagedImageStorage;
 use App\Services\Notifications\NotificationPreferenceSettingsService;
@@ -13,6 +14,7 @@ use App\Services\Users\UserAccountDeletionService;
 use App\Support\Audit\AuditScope;
 use App\Support\Audit\AuditSeverity;
 use App\Support\Input\RequestTextInputSanitizer;
+use App\Support\Integrations\MemberApi;
 use App\Support\Notifications\NotificationCategory;
 use App\Support\Notifications\NotificationTopic;
 use Illuminate\Http\JsonResponse;
@@ -99,15 +101,19 @@ class UserController extends Controller
             fieldLabelKeys: self::ACCOUNT_SETTING_LABEL_KEYS,
         );
 
+        if (MemberApi::active($request)) {
+            return MemberApi::success(['name' => $updatedValues['name']]);
+        }
+
         return redirect()
             ->route('settings')
             ->with('success', ['username_updated', $validated['username']]);
     }
 
-    public function changeProfilePicture(Request $request): RedirectResponse
+    public function changeProfilePicture(Request $request): RedirectResponse|JsonResponse
     {
         $request->validate([
-            'profile_picture' => ['required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
+            'profile_picture' => ['required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120', new SafeImageDimensions],
         ]);
 
         $user = $request->user();
@@ -148,6 +154,10 @@ class UserController extends Controller
             changes: $changes,
             fieldLabelKeys: self::ACCOUNT_SETTING_LABEL_KEYS,
         );
+
+        if (MemberApi::active($request)) {
+            return MemberApi::success(['avatar_url' => $avatarUrl]);
+        }
 
         return redirect()
             ->route('settings')
@@ -354,6 +364,10 @@ class UserController extends Controller
             changes: $changes,
             fieldLabelKeys: self::PRIVACY_SETTING_LABEL_KEYS,
         );
+
+        if (MemberApi::active($request)) {
+            return MemberApi::success($validated);
+        }
 
         return redirect()
             ->route('settings')

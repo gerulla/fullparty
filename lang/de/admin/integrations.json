@@ -55,7 +55,48 @@
         "paused": "Pausiert",
         "revoked": "Widerrufen"
     },
+    "permission_groups": {
+        "partial": "Teilweise aktivierte Kategorien behalten ihre bisherigen Berechtigungen, bis du den Schalter änderst.",
+        "partial_label": "{label} (teilweise)",
+        "lookup": {
+            "label": "Integrationsdaten lesen",
+            "description": "Runs, verknüpfte Charaktere und Ressourcenbefehle abrufen."
+        },
+        "connections": {
+            "label": "Konten und Server verknüpfen",
+            "description": "FullParty-Benutzer und Gruppen mit Verknüpfungscodes verbinden."
+        },
+        "members_read": {
+            "label": "Mitgliederdaten lesen",
+            "description": "Charaktere, Gruppen, Runs, Bewerbungen und Einstellungen verknüpfter Benutzer lesen."
+        },
+        "members_write": {
+            "label": "Mitgliederaktionen ausführen",
+            "description": "Aktionen für verknüpfte Benutzer mit deren bestehenden Berechtigungen ausführen."
+        },
+        "accounts": {
+            "label": "Kontoverknüpfungen",
+            "description": "Ereignisse beim Verbinden und Trennen von Konten empfangen."
+        },
+        "notifications": {
+            "label": "Persönliche Benachrichtigungen",
+            "description": "FullParty-Benachrichtigungen an Discord-Benutzer zustellen."
+        },
+        "runs": {
+            "label": "Run-Automatisierung",
+            "description": "Run-Erinnerungen, Abschluss, Absage und Teilnehmersynchronisierung empfangen."
+        },
+        "guilds": {
+            "label": "Serverkonfiguration",
+            "description": "Server- und Mitgliederdaten abrufen, Einstellungen aktualisieren und Trennungen verarbeiten."
+        },
+        "admin_reports": {
+            "label": "Administratormeldungen",
+            "description": "Betriebsmeldungen für Website-Administratoren empfangen."
+        }
+    },
     "scopes": {
+        "resources_read": "Ressourcen lesen",
         "runs_read": "Runs lesen",
         "users_read": "Verknüpfte Benutzer lesen",
         "users_write": "Benutzer verknüpfen",

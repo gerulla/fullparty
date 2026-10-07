@@ -55,7 +55,48 @@
     "paused": "Paused",
     "revoked": "Revoked"
   },
+  "permission_groups": {
+    "partial": "Partially enabled categories keep their existing permissions until you change the toggle.",
+    "partial_label": "{label} (partial)",
+    "lookup": {
+      "label": "Read integration data",
+      "description": "Look up runs, linked characters and resource commands."
+    },
+    "connections": {
+      "label": "Link accounts and servers",
+      "description": "Connect FullParty users and groups using linking tokens."
+    },
+    "members_read": {
+      "label": "Read member data",
+      "description": "Read linked users’ characters, groups, runs, applications and preferences."
+    },
+    "members_write": {
+      "label": "Manage member actions",
+      "description": "Perform member actions for linked users, with their existing permissions."
+    },
+    "accounts": {
+      "label": "Account connections",
+      "description": "Receive account connected and disconnected events."
+    },
+    "notifications": {
+      "label": "Personal notifications",
+      "description": "Deliver FullParty notifications to Discord users."
+    },
+    "runs": {
+      "label": "Run automation",
+      "description": "Receive run reminders, completion, cancellation and participant synchronization."
+    },
+    "guilds": {
+      "label": "Server configuration",
+      "description": "Read server snapshots and membership information, update settings and handle disconnects."
+    },
+    "admin_reports": {
+      "label": "Admin alerts",
+      "description": "Receive operational reports for website administrators."
+    }
+  },
   "scopes": {
+    "resources_read": "Read resources",
     "runs_read": "Read runs",
     "users_read": "Read linked users",
     "users_write": "Link users",

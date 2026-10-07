@@ -1,0 +1,13 @@
+{
+    "docs": {
+        "title": "API Reference",
+        "description": "FullParty integration API reference, member actions and Discord webhooks.",
+        "navigation": "Documentation navigation",
+        "download": "OpenAPI specification",
+        "website": "Back to FullParty",
+        "no_script": "Enable JavaScript to browse the interactive API reference, or download the specification."
+    },
+    "actor_required": "Provide a valid X-FullParty-Discord-User-Id header.",
+    "actor_unlinked": "This Discord user has no active FullParty connection.",
+    "email_unverified": "Verify your email address on FullParty before using this integration."
+}

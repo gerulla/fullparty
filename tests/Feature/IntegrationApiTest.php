@@ -17,6 +17,23 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
 
+it('keeps bot and member run access separate and removes unversioned routes', function () {
+    $token = IntegrationClient::makePlainApiToken();
+    IntegrationClient::factory()->withApiToken($token)->create([
+        'scopes' => [IntegrationClient::SCOPE_RUNS_READ],
+    ]);
+    $activity = Activity::factory()->create();
+    $headers = ['Authorization' => 'Bearer '.$token];
+
+    expect(route('api.integrations.runs.show', $activity, false))->toBe('/api/integrations/v1/bot/runs/'.$activity->id);
+    $this->getJson('/api/integrations/v1/bot/runs/'.$activity->id, $headers)
+        ->assertOk()->assertJsonPath('data.id', $activity->id);
+    $this->getJson('/api/integrations/v1/runs/'.$activity->id, $headers)->assertForbidden();
+    $this->getJson('/api/integrations/runs/'.$activity->id, $headers)->assertNotFound();
+    $this->postJson('/api/integrations/discord-users/link', [], $headers)->assertNotFound();
+    $this->postJson('/api/integrations/resources/list', [], $headers)->assertNotFound();
+});
+
 it('requires an active integration api token', function () {
     $activity = Activity::factory()->create();
 

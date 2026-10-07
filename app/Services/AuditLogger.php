@@ -28,6 +28,10 @@ class AuditLogger
 
         $subjectPayload = $this->resolveSubject($subject);
 
+        if (request()->attributes->has('integration_member')) {
+            $metadata = [...($metadata ?? []), 'integration_client_id' => request()->attributes->get('integration_client')?->id];
+        }
+
         return AuditLog::create([
             'actor_user_id' => $this->resolveActorId($actor),
             'action' => $action,
@@ -44,14 +48,14 @@ class AuditLogger
 
     private function ensureValidSeverity(string $severity): void
     {
-        if (!in_array($severity, AuditSeverity::VALUES, true)) {
+        if (! in_array($severity, AuditSeverity::VALUES, true)) {
             throw new InvalidArgumentException("Invalid audit severity [{$severity}] supplied.");
         }
     }
 
     private function ensureValidScope(string $scopeType): void
     {
-        if (!in_array($scopeType, AuditScope::VALUES, true)) {
+        if (! in_array($scopeType, AuditScope::VALUES, true)) {
             throw new InvalidArgumentException("Invalid audit scope [{$scopeType}] supplied.");
         }
     }

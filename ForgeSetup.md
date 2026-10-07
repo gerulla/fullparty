@@ -572,7 +572,32 @@ Check that the deploy script includes:
 php artisan queue:restart
 ```
 
-## 15. Suggested Next Infrastructure Improvements
+## 15. Integration API Documentation Subdomain
+
+Add `api.fullparty.gg` (or your own `api.` subdomain) to DNS and the site's Nginx
+server names, pointing at the same release and `public` directory as the website.
+Include the hostname in the TLS certificate. Keep `APP_URL` set to the main
+website URL; optionally set `API_DOCS_HOST` if the docs hostname differs from
+`api.<APP_URL host>`.
+
+Deploy with the normal dependency installation and `npm run build`, then rebuild
+the configuration/route caches and restart queue workers. This API addition has
+no database migration or backfill. `/` serves the docs, `/openapi.json` serves the
+OpenAPI 3.1 specification, and `/api/integrations/v1/*` serves authenticated requests.
+
+Update the bot's API base path from `/api/integrations` to
+`/api/integrations/v1/bot`; all endpoint suffixes, request bodies, and response
+formats stay the same. Unversioned endpoints are removed without redirects or
+compatibility aliases, so coordinate this change with the website deployment.
+Website-to-bot webhook event names and payloads are unchanged.
+
+Existing bot scopes and tokens remain valid. In Admin Panel → Integrations, enable
+**Read member data** and/or **Manage member actions** for approved trusted clients.
+Member endpoints require both a bearer token and `X-FullParty-Discord-User-Id`,
+which must identify an active linked account. Account-security and roster-management
+actions remain website-only. Keep integration tokens on a trusted server.
+
+## 16. Suggested Next Infrastructure Improvements
 
 Not required for the current setup, but sensible later:
 

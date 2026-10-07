@@ -1,0 +1,46 @@
+:root {
+    --scalar-font: Geist, sans-serif;
+    --scalar-font-code: 'IBM Plex Mono', monospace;
+    --scalar-radius: 0;
+    --scalar-radius-lg: 0;
+    --scalar-custom-header-height: 64px;
+}
+.dark-mode {
+    --scalar-background-1: #141116;
+    --scalar-background-2: #1c1820;
+    --scalar-background-3: #28212e;
+    --scalar-background-accent: #a980c92b;
+    --scalar-color-1: #f4eff8;
+    --scalar-color-2: #beb2ca;
+    --scalar-color-3: #93889e;
+    --scalar-color-accent: #b993d7;
+    --scalar-border-color: #352c3e;
+    --scalar-button-1: #a27ac3;
+    --scalar-button-1-color: #141116;
+    --scalar-button-1-hover: #b995d5;
+    --scalar-sidebar-background-1: #18141c;
+    --scalar-sidebar-item-active-background: #a980c924;
+    --scalar-sidebar-color-active: #caa7e4;
+}
+.light-mode {
+    --scalar-background-1: #fcfaff;
+    --scalar-background-2: #f4eff8;
+    --scalar-background-3: #ebe3f2;
+    --scalar-color-1: #261c30;
+    --scalar-color-2: #584861;
+    --scalar-color-3: #76647f;
+    --scalar-color-accent: #74499c;
+    --scalar-border-color: #ded2e8;
+    --scalar-button-1: #74499c;
+    --scalar-button-1-color: #fff;
+    --scalar-sidebar-background-1: #f6f1fa;
+}
+body { margin: 0; background: var(--scalar-background-1); color: var(--scalar-color-1); font-family: Geist, sans-serif; }
+.docs-header { height: 64px; box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; padding: 0 28px; border-bottom: 1px solid var(--scalar-border-color); background: var(--scalar-background-1); position: sticky; top: 0; z-index: 50; }
+.docs-header a { color: inherit; text-decoration: none; }
+.docs-brand { font-weight: 600; letter-spacing: .09em; font-size: 18px; display: flex; align-items: center; }
+.docs-brand > span:first-child { color: var(--scalar-color-accent); }
+.docs-label { margin-left: 20px; padding-left: 20px; border-left: 1px solid var(--scalar-border-color); font-size: 12px; font-weight: 400; letter-spacing: .01em; color: var(--scalar-color-2); }
+.docs-header nav { display: flex; gap: 24px; font-size: 12px; color: var(--scalar-color-2); }
+.docs-header a:hover { color: var(--scalar-color-accent); }
+@media (max-width: 600px) { .docs-header { padding: 0 16px; } .docs-label, .docs-header nav a:last-child { display: none; } }

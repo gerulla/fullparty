@@ -10,7 +10,9 @@ use App\Services\Groups\MembershipApplicationFormSchemaService;
 use App\Services\Quotas\QuotaService;
 use App\Support\Audit\AuditScope;
 use App\Support\Audit\AuditSeverity;
+use App\Support\Integrations\MemberApi;
 use App\Support\Quotas\QuotaKey;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -24,7 +26,7 @@ class GroupMembershipApplicationController extends Controller
         private readonly QuotaService $quotaService,
     ) {}
 
-    public function create(Request $request, Group $group): Response|RedirectResponse
+    public function create(Request $request, Group $group): Response|RedirectResponse|JsonResponse
     {
         $group->loadMissing(['owner', 'memberships']);
         $this->authorizeApplicationAccess($request, $group);
@@ -37,19 +39,25 @@ class GroupMembershipApplicationController extends Controller
             ->first();
 
         if ($group->hasMember($request->user()->id)) {
+            if (MemberApi::active($request)) {
+                return MemberApi::success(['already_member' => true]);
+            }
+
             return redirect()->route('groups.dashboard', $group);
         }
 
-        return Inertia::render('Groups/MembershipApplications/Create', [
+        $payload = [
             'group' => $this->serializeGroup($group),
             'formSchema' => $application?->isPending()
                 ? ($application->form_snapshot ?? $this->schemaService->defaultSchema())
                 : ($group->membership_application_schema ?? $this->schemaService->defaultSchema()),
             'existingApplication' => $this->serializeApplication($application),
-        ]);
+        ];
+
+        return MemberApi::active($request) ? response()->json($payload) : Inertia::render('Groups/MembershipApplications/Create', $payload);
     }
 
-    public function store(Request $request, Group $group): RedirectResponse
+    public function store(Request $request, Group $group): RedirectResponse|JsonResponse
     {
         $group->loadMissing('memberships');
         $this->authorizeApplicationAccess($request, $group);
@@ -59,11 +67,15 @@ class GroupMembershipApplicationController extends Controller
         $user = $request->user();
 
         if ($group->hasMember($user->id)) {
+            if (MemberApi::active($request)) {
+                return MemberApi::success(['already_member' => true]);
+            }
+
             return redirect()->route('groups.dashboard', $group);
         }
 
         if ($this->pendingApplicationExists($group, $user->id)) {
-            return redirect()->back()->withErrors([
+            return MemberApi::errors([
                 'application' => __('groups.membership_applications.apply.validation.pending_exists'),
             ]);
         }
@@ -98,12 +110,16 @@ class GroupMembershipApplicationController extends Controller
             ],
         );
 
+        if (MemberApi::active($request)) {
+            return MemberApi::success(['data' => $this->serializeApplication($application)]);
+        }
+
         return redirect()
             ->route('groups.membership-applications.create', $group)
             ->with('success', 'membership_application_submitted');
     }
 
-    public function update(Request $request, Group $group): RedirectResponse
+    public function update(Request $request, Group $group): RedirectResponse|JsonResponse
     {
         $group->loadMissing('memberships');
         $this->authorizeApplicationAccess($request, $group);
@@ -111,6 +127,10 @@ class GroupMembershipApplicationController extends Controller
         $user = $request->user();
 
         if ($group->hasMember($user->id)) {
+            if (MemberApi::active($request)) {
+                return MemberApi::success(['already_member' => true]);
+            }
+
             return redirect()->route('groups.dashboard', $group);
         }
 
@@ -145,6 +165,10 @@ class GroupMembershipApplicationController extends Controller
                 'applicant_name' => $user->name,
             ],
         );
+
+        if (MemberApi::active($request)) {
+            return MemberApi::success(['data' => $this->serializeApplication($application)]);
+        }
 
         return redirect()
             ->route('groups.membership-applications.create', $group)

@@ -4,12 +4,14 @@ use App\Http\Controllers\Api\IntegrationGuildController;
 use App\Http\Controllers\Api\IntegrationResourceController;
 use App\Http\Controllers\Api\IntegrationRunController;
 use App\Http\Controllers\Api\IntegrationUserController;
+use App\Http\Middleware\IntegrationApiContext;
 use App\Models\IntegrationClient;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('integrations')
+Route::prefix('integrations/v1/bot')
+    ->middleware(IntegrationApiContext::class)
     ->group(function () {
-        Route::middleware(['integration.client:'.IntegrationClient::SCOPE_RESOURCES_READ, 'throttle:integration.api'])
+        Route::middleware(['integration.client:'.IntegrationClient::SCOPE_RESOURCES_READ])
             ->group(function () {
                 Route::post('/resources/list', [IntegrationResourceController::class, 'index'])->name('api.integrations.resource-commands.index');
                 Route::post('/resources/{commandName}', [IntegrationResourceController::class, 'show'])->where('commandName', '[A-Za-z0-9-]{1,64}')->name('api.integrations.resource-commands.show');
@@ -17,19 +19,19 @@ Route::prefix('integrations')
                     ->whereNumber('discordGuildId')->where('commandName', '[A-Za-z0-9-]{1,64}')->name('api.integrations.resource-commands.images.show');
             });
 
-        Route::middleware(['integration.client:'.IntegrationClient::SCOPE_USERS_READ, 'throttle:integration.api'])
+        Route::middleware(['integration.client:'.IntegrationClient::SCOPE_USERS_READ])
             ->post('/discord-users/primary-characters', [IntegrationUserController::class, 'primaryCharacters'])
             ->name('api.integrations.discord-users.primary-characters.index');
 
-        Route::middleware(['integration.client:'.IntegrationClient::SCOPE_USERS_WRITE, 'throttle:integration.api'])
+        Route::middleware(['integration.client:'.IntegrationClient::SCOPE_USERS_WRITE])
             ->post('/discord-users/link', [IntegrationUserController::class, 'link'])
             ->name('api.integrations.discord-users.link');
 
-        Route::middleware(['integration.client:'.IntegrationClient::SCOPE_GUILDS_WRITE, 'throttle:integration.api'])
+        Route::middleware(['integration.client:'.IntegrationClient::SCOPE_GUILDS_WRITE])
             ->post('/discord-guilds/link', [IntegrationGuildController::class, 'link'])
             ->name('api.integrations.discord-guilds.link');
 
-        Route::middleware(['integration.client:'.IntegrationClient::SCOPE_RUNS_READ, 'throttle:integration.api'])
+        Route::middleware(['integration.client:'.IntegrationClient::SCOPE_RUNS_READ])
             ->group(function () {
                 Route::get('/discord-guilds/{discordGuildId}/upcoming-runs', [IntegrationGuildController::class, 'upcomingRuns'])
                     ->whereNumber('discordGuildId')

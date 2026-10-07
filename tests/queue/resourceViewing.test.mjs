@@ -3,8 +3,10 @@ import test from 'node:test'
 import { readFileSync } from 'node:fs'
 import ts from 'typescript'
 import * as vue from 'vue'
+import { renderToString } from '@vue/server-renderer'
 import { parse, compileScript, compileTemplate } from '@vue/compiler-sfc'
 import * as utils from '../../resources/js/utils/resourceWorkspace.ts'
+import { useResourceBrowserPagination } from '../../resources/js/composables/useResourceBrowserPagination.ts'
 
 function component(name) {
     const filename = new URL(`../../resources/js/components/Groups/Resources/${name}.vue`, import.meta.url).pathname
@@ -15,12 +17,13 @@ function component(name) {
     return { descriptor, script, template }
 }
 
-test('resource menu View is a native new-tab link and is disabled when no reader URL exists', () => {
+test('resource menu View is a native new-tab link and is disabled when no reader URL exists', async () => {
     const { script } = component('ResourceLibraryBrowser')
     const modules = {
         vue, 'vue-i18n': { useI18n: () => ({ t: key => key, locale: vue.ref('en') }) },
         '@/utils/resourceWorkspace': utils,
         '@/composables/useResourceTreeDrag': { resourceDragType: 'resource' },
+        '@/composables/useResourceBrowserPagination': { useResourceBrowserPagination },
     }
     const code = ts.transpileModule(script.content, { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } }).outputText
     const exports = {}
@@ -33,7 +36,11 @@ test('resource menu View is a native new-tab link and is disabled when no reader
         state: { resources: [resource], checked: [], selectedId: null }, visibleResources: [resource], activities: [],
         viewUrl: item => item.readerUrl,
     })
-    const vm = exports.default.setup({ workspace }, { expose() {} })
+    let vm
+    await renderToString(vue.createSSRApp({ setup() {
+        vm = exports.default.setup({ workspace }, { expose() {} })
+        return () => null
+    } }))
     const view = vm.menu(resource).find(item => item.label.endsWith('.view'))
     assert.deepEqual(view, {
         label: 'groups.resources.workspace.view', icon: 'i-lucide-external-link', to: resource.readerUrl,

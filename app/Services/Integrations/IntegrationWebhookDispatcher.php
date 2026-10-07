@@ -3,10 +3,12 @@
 namespace App\Services\Integrations;
 
 use App\Models\IntegrationClient;
+use App\Support\Integrations\IntegrationEndpoint;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
+use RuntimeException;
 use Throwable;
 
 class IntegrationWebhookDispatcher
@@ -79,7 +81,8 @@ class IntegrationWebhookDispatcher
         $body = json_encode($payload, JSON_THROW_ON_ERROR);
 
         try {
-            $response = Http::timeout(5)->retry(2, 250)->withHeaders([
+            IntegrationEndpoint::assertSecure((string) $client->outbound_events_url);
+            $response = Http::timeout(5)->withoutRedirecting()->retry(2, 250)->withHeaders([
                 'User-Agent' => 'FullParty-Integrations/1.0',
                 'X-FullParty-Event' => $event,
                 'X-FullParty-Delivery' => $deliveryId,
@@ -88,6 +91,10 @@ class IntegrationWebhookDispatcher
             ])->withBody($body, 'application/json')
                 ->post((string) $client->outbound_events_url)
                 ->throw();
+
+            if (! $response->successful()) {
+                throw new RuntimeException('Integration endpoint returned an unexpected HTTP status '.$response->status().'.');
+            }
 
             $client->forceFill([
                 'last_event_sent_at' => now(),

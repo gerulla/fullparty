@@ -1,0 +1,13 @@
+{
+    "docs": {
+        "title": "APIリファレンス",
+        "description": "FullParty連携API、メンバー操作、Discord Webhookのリファレンス。",
+        "navigation": "ドキュメントナビゲーション",
+        "download": "OpenAPI仕様",
+        "website": "FullPartyに戻る",
+        "no_script": "対話型APIリファレンスを表示するにはJavaScriptを有効にするか、仕様をダウンロードしてください。"
+    },
+    "actor_required": "有効な X-FullParty-Discord-User-Id ヘッダーを指定してください。",
+    "actor_unlinked": "このDiscordユーザーには有効なFullParty連携がありません。",
+    "email_unverified": "この連携を使用する前に、FullPartyでメールアドレスを確認してください。"
+}

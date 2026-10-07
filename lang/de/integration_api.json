@@ -1,0 +1,13 @@
+{
+    "docs": {
+        "title": "API-Referenz",
+        "description": "Referenz der FullParty-Integrations-API, Mitgliederaktionen und Discord-Webhooks.",
+        "navigation": "Dokumentationsnavigation",
+        "download": "OpenAPI-Spezifikation",
+        "website": "Zurück zu FullParty",
+        "no_script": "Aktiviere JavaScript für die interaktive API-Referenz oder lade die Spezifikation herunter."
+    },
+    "actor_required": "Gib eine gültige X-FullParty-Discord-User-Id-Kopfzeile an.",
+    "actor_unlinked": "Dieser Discord-Nutzer hat keine aktive FullParty-Verknüpfung.",
+    "email_unverified": "Bestätige deine E-Mail-Adresse auf FullParty, bevor du diese Integration verwendest."
+}

@@ -3,12 +3,15 @@ import laravel from 'laravel-vite-plugin';
 import tailwindcss from '@tailwindcss/vite';
 import vue from '@vitejs/plugin-vue';
 import ui from '@nuxt/ui/vite'
+import { readFileSync } from 'node:fs';
 import path from 'node:path'
+
+const scalarLicense = readFileSync(new URL('./public/licenses/scalar.txt', import.meta.url), 'utf8').trim();
 
 export default defineConfig({
     plugins: [
         laravel({
-            input: ['resources/css/app.css', 'resources/js/app.js', 'resources/planner/app.js', 'resources/calculator/app.js'],
+            input: ['resources/css/app.css', 'resources/js/app.js', 'resources/planner/app.js', 'resources/calculator/app.js', 'resources/api-docs/app.js'],
             refresh: true,
             detectTls: 'fullparty.test',
         }),
@@ -80,11 +83,22 @@ export default defineConfig({
             }
         })
     ],
+    build: {
+        rolldownOptions: {
+            output: {
+                // Keep the full notice in every chunk containing Scalar, including lazy-loaded chunks.
+                postBanner: (chunk) => chunk.moduleIds.some((id) => id.replaceAll('\\', '/').includes('/node_modules/@scalar/'))
+                    ? `/*! Scalar components license; also available at /licenses/scalar.txt\n\n${scalarLicense}\n*/`
+                    : '',
+            },
+        },
+    },
     server: {
         allowedHosts: [
             'fullparty.test',
             'plan.fullparty.test',
             'math.fullparty.test',
+            'api.fullparty.test',
         ],
         cors: true,
         watch: {

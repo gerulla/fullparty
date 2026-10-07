@@ -30,9 +30,9 @@ class NotificationMessageRenderer
     /**
      * @return array{subject: string, body: ?string, action_url: ?string}
      */
-    public function render(NotificationEvent $event, User $recipient): array
+    public function render(NotificationEvent $event, User $recipient, ?string $locale = null): array
     {
-        $locale = config('app.locale');
+        $locale ??= config('app.locale');
         $params = $this->resolveParams($event->message_params ?? [], $locale);
         $designation = $event->payload['designation_key'] ?? null;
         if (in_array($designation, ['host', 'raid_leader', 'duelist', 'trapper', 'darter'], true)) {

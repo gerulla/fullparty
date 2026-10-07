@@ -146,6 +146,12 @@
         "created": "created an account limit override.",
         "updated": "updated an account limit override.",
         "deleted": "removed an account limit override."
+      },
+      "integration_client": {
+        "created": "created an integration client.",
+        "updated": "changed an integration client and its permissions.",
+        "api_token_rotated": "rotated an integration API token.",
+        "webhook_secret_rotated": "rotated an integration webhook secret."
       }
     },
     "character": {
@@ -365,7 +371,15 @@
     "scheduled_for": "Scheduled For",
     "notification_event_id": "Notification Event",
     "action_label": "Action Label",
-    "action_url": "Action URL"
+    "action_url": "Action URL",
+    "scopes": "API permissions",
+    "allowed_events": "Allowed events",
+    "outbound_events_url": "Webhook endpoint",
+    "healthcheck_url": "Healthcheck endpoint",
+    "integration_client_id": "Integration client ID",
+    "integration_client_name": "Integration client",
+    "permissions": "Permissions",
+    "type": "Type"
   },
   "events": {
     "user": {
@@ -438,6 +452,12 @@
         "created": "Account limit override created",
         "updated": "Account limit override updated",
         "deleted": "Account limit override removed"
+      },
+      "integration_client": {
+        "created": "Integration client created",
+        "updated": "Integration client updated",
+        "api_token_rotated": "Integration API token rotated",
+        "webhook_secret_rotated": "Integration webhook secret rotated"
       }
     },
     "character": {

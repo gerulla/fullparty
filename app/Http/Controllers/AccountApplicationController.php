@@ -10,6 +10,7 @@ use App\Models\CharacterClass;
 use App\Models\PhantomJob;
 use App\Models\User;
 use App\Services\Groups\ActivityApplicationWithdrawalService;
+use App\Support\Integrations\MemberApi;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Http\JsonResponse;
@@ -83,7 +84,7 @@ class AccountApplicationController extends Controller
         return response()->json($payload);
     }
 
-    public function destroy(Request $request, ActivityApplication $application): RedirectResponse
+    public function destroy(Request $request, ActivityApplication $application): RedirectResponse|JsonResponse
     {
         $user = $request->user();
         $application->loadMissing(['activity.group', 'selectedCharacter', 'user']);
@@ -100,7 +101,7 @@ class AccountApplicationController extends Controller
 
         $this->applicationWithdrawalService->withdraw($application, $user);
 
-        return redirect()->route('account.applications');
+        return MemberApi::active($request) ? MemberApi::success() : redirect()->route('account.applications');
     }
 
     /**

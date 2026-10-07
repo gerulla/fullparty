@@ -28,6 +28,7 @@ use App\Services\Notifications\ApplicationNotificationService;
 use App\Services\Quotas\QuotaService;
 use App\Support\Input\RequestTextInputSanitizer;
 use App\Support\Input\TextInputSanitizer;
+use App\Support\Integrations\MemberApi;
 use App\Support\Quotas\QuotaKey;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -61,7 +62,7 @@ class GroupActivityApplicationController extends Controller
         private readonly QuotaService $quotaService,
     ) {}
 
-    public function show(Request $request, Group $group, Activity $activity, ?string $secretKey = null): Response
+    public function show(Request $request, Group $group, Activity $activity, ?string $secretKey = null): Response|JsonResponse
     {
         $group->loadMissing('memberships');
         $this->ensureApplicationPageAccessible($request, $group, $activity, $secretKey, allowParticipationBlocked: true);
@@ -267,7 +268,7 @@ class GroupActivityApplicationController extends Controller
         ]);
     }
 
-    public function store(Request $request, Group $group, Activity $activity, ?string $secretKey = null): RedirectResponse
+    public function store(Request $request, Group $group, Activity $activity, ?string $secretKey = null): RedirectResponse|JsonResponse
     {
         $group->loadMissing('memberships');
         $this->ensureApplicationPageAccessible($request, $group, $activity, $secretKey);
@@ -386,7 +387,11 @@ class GroupActivityApplicationController extends Controller
         ?string $secretKey,
         ActivityApplication $application,
         string $mode,
-    ): RedirectResponse {
+    ): RedirectResponse|JsonResponse {
+        if (MemberApi::active($request)) {
+            return MemberApi::success(['data' => $this->serializeExistingApplication($application->loadMissing('answers'))]);
+        }
+
         $request->session()->put($this->confirmationSessionKey($activity->id), [
             'application_id' => $application->id,
             'mode' => $mode,
@@ -396,7 +401,7 @@ class GroupActivityApplicationController extends Controller
             ->route('groups.activities.application.confirmation', $this->activityAttendeeRouteParameters($group, $activity, $secretKey));
     }
 
-    public function update(Request $request, Group $group, Activity $activity, ?string $secretKey = null): RedirectResponse
+    public function update(Request $request, Group $group, Activity $activity, ?string $secretKey = null): RedirectResponse|JsonResponse
     {
         $group->loadMissing('memberships');
         $this->ensureApplicationPageAccessible($request, $group, $activity, $secretKey);
@@ -474,6 +479,10 @@ class GroupActivityApplicationController extends Controller
             application: $application->fresh(['selectedCharacter', 'user']),
             updatedSlots: $updatedSlots,
         );
+
+        if (MemberApi::active($request)) {
+            return MemberApi::success(['data' => $this->serializeExistingApplication($application->fresh('answers'))]);
+        }
 
         $request->session()->put($this->confirmationSessionKey($activity->id), [
             'application_id' => $applicationId,
@@ -630,6 +639,7 @@ class GroupActivityApplicationController extends Controller
         bool $allowParticipationBlocked = false,
     ): void {
         $this->ensureActivityBelongsToGroup($group, $activity);
+        abort_if(MemberApi::active($request) && Activity::isModeratorOnlyStatus($activity->status), 404);
 
         if (! $this->canAccessOverview($request, $group, $activity, $secretKey)) {
             abort(404);
@@ -661,7 +671,7 @@ class GroupActivityApplicationController extends Controller
         ?ActivityApplication $application,
         ?string $secretKey = null,
         ?string $guestAccessToken = null,
-    ): Response {
+    ): Response|JsonResponse {
         $acceptsApplications = $activity->acceptsApplications();
         $canUseParticipationFlow = $this->canUseActivityParticipationFlow(
             $group,
@@ -674,7 +684,7 @@ class GroupActivityApplicationController extends Controller
             && $request->user() !== null
             && ! $canUseParticipationFlow;
 
-        return Inertia::render('Groups/Activities/Application', [
+        $payload = [
             'group' => $this->serializePublicGroup($group),
             'activity' => $this->serializeAttendeeActivity($activity),
             'applicationSchema' => $this->serializeApplicationSchema($activity->activityTypeVersion, $group->id),
@@ -713,7 +723,16 @@ class GroupActivityApplicationController extends Controller
                     && $group->usesMembershipApplications()
                     && $group->is_visible,
             ],
-        ]);
+        ];
+
+        if (MemberApi::active($request)) {
+            unset($payload['guestCharacterSearch'], $payload['secretKey'], $payload['guestAccessToken']);
+            $payload['permissions']['can_manage'] = false;
+
+            return response()->json($payload);
+        }
+
+        return Inertia::render('Groups/Activities/Application', $payload);
     }
 
     /**
@@ -1034,6 +1053,10 @@ class GroupActivityApplicationController extends Controller
             'guest_applicant.datacenter' => [$userId ? 'prohibited' : 'required', 'string', 'max:255'],
             'guest_applicant.avatar_url' => [$userId ? 'prohibited' : 'nullable', 'url', 'max:2048'],
         ]);
+
+        if (MemberApi::active($request)) {
+            $request->validate(['selected_character_id' => ['required', 'integer', Rule::exists('characters', 'id')->where('user_id', $userId)->whereNotNull('verified_at')]]);
+        }
 
         $characterId = $validated['selected_character_id'] ?? null;
         $selectedCharacter = null;

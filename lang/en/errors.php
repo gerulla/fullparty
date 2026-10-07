@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'image_dimensions_exceeded' => 'Images must be at most :dimension pixels on each side and :megapixels megapixels in total.',
     'this_application_cannot_be_withdrawn' => 'This application cannot be withdrawn.',
     'an_english_activity_type_name_is_required' => 'An English activity type name is required.',
     'at_least_one_slot_group_is_required' => 'At least one slot group is required.',

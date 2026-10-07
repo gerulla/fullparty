@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import PageHeader from "@/components/PageHeader.vue";
+import IntegrationPermissionPicker from '@/components/Admin/IntegrationPermissionPicker.vue';
+import type { IntegrationPermissionGroup } from '@/Types/IntegrationPermissions';
+import { permissionGroupState } from '@/utils/integrationPermissions';
 // @ts-ignore
 import { useConfirmationModal } from "@/composables/useConfirmationModal";
 import { router, useForm, usePage } from "@inertiajs/vue3";
@@ -73,6 +76,8 @@ const props = defineProps<{
 		statuses: string[]
 		scopes: string[]
 		events: string[]
+		scope_groups: IntegrationPermissionGroup[]
+		event_groups: IntegrationPermissionGroup[]
 	}
 }>();
 
@@ -105,18 +110,13 @@ const statusOptions = computed(() => props.options.statuses.map((status) => ({
 	value: status,
 })));
 
-const scopeOptions = computed(() => props.options.scopes.map((scope) => ({
-	label: labelForScope(scope),
-	value: scope,
-})));
-
-const eventOptions = computed(() => props.options.events.map((event) => ({
-	label: labelForEvent(event),
-	value: event,
-})));
-
-const labelForScope = (scope: string) => t(`admin.integrations.scopes.${scope.replace(':', '_')}`);
-const labelForEvent = (event: string) => t(`admin.integrations.events.${event.replaceAll('.', '_')}`);
+const enabledGroups = (groups: IntegrationPermissionGroup[], selected: string[]) => groups.filter(group => permissionGroupState(group, selected) !== false);
+const labelForGroup = (group: IntegrationPermissionGroup, selected: string[]) => {
+    const label = t(`admin.integrations.permission_groups.${group.key}.label`);
+    return permissionGroupState(group, selected) === 'indeterminate'
+        ? t('admin.integrations.permission_groups.partial_label', { label })
+        : label;
+};
 const healthcheckBucketClass = (status: HealthcheckBucket['status']) => {
 	if (status === 'healthy') {
 		return 'bg-success-500';
@@ -409,11 +409,11 @@ watch(
 					</UFormField>
 
 					<UFormField :label="t('admin.integrations.fields.scopes')" :error="form.errors.scopes">
-						<UCheckboxGroup v-model="form.scopes" :items="scopeOptions" />
+						<IntegrationPermissionPicker v-model="form.scopes" :groups="options.scope_groups" />
 					</UFormField>
 
 					<UFormField :label="t('admin.integrations.fields.allowed_events')" :error="form.errors.allowed_events">
-						<UCheckboxGroup v-model="form.allowed_events" :items="eventOptions" />
+						<IntegrationPermissionPicker v-model="form.allowed_events" :groups="options.event_groups" />
 					</UFormField>
 
 					<div class="flex flex-wrap justify-end gap-2">
@@ -466,18 +466,18 @@ watch(
 
 							<div class="flex flex-wrap gap-2">
 								<UBadge
-									v-for="scope in client.scopes"
-									:key="scope"
+									v-for="group in enabledGroups(options.scope_groups, client.scopes)"
+									:key="group.key"
 									color="neutral"
 									variant="subtle"
-									:label="labelForScope(scope)"
+									:label="labelForGroup(group, client.scopes)"
 								/>
 								<UBadge
-									v-for="event in client.allowed_events"
-									:key="event"
+									v-for="group in enabledGroups(options.event_groups, client.allowed_events)"
+									:key="group.key"
 									color="info"
 									variant="subtle"
-									:label="labelForEvent(event)"
+									:label="labelForGroup(group, client.allowed_events)"
 								/>
 							</div>
 

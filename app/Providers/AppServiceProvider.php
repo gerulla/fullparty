@@ -83,6 +83,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Auth::viaRequest('integration-member', fn (Request $request) => $request->attributes->get('integration_member'));
         URL::defaults(['locale' => app()->getLocale()]);
 
         Passport::tokensCan([
@@ -211,6 +212,19 @@ class AppServiceProvider extends ServiceProvider
             return [
                 Limit::perMinute(20)->by('user:'.$request->user()->id),
                 Limit::perHour(100)->by('group:'.$groupId),
+            ];
+        });
+
+        RateLimiter::for('integration.authentication', fn (Request $request) => Limit::perMinute(360)->by('ip:'.$request->ip()));
+
+        RateLimiter::for('integration.upload', function (Request $request) {
+            if ($request->routeIs('api.members.me.profile') && ! $request->hasFile('background_image')) {
+                return Limit::none();
+            }
+
+            return [
+                Limit::perMinute(5)->by('minute:user:'.$request->user()->id),
+                Limit::perDay(30)->by('day:user:'.$request->user()->id),
             ];
         });
 

@@ -2,21 +2,26 @@
 
 use App\Http\Middleware\ApplyLocale;
 use App\Http\Middleware\AuthenticateIntegrationClient;
+use App\Http\Middleware\AuthenticateIntegrationMember;
 use App\Http\Middleware\EnsureAccountNotBanned;
 use App\Http\Middleware\EnsureGroupDashboardAccess;
 use App\Http\Middleware\EnsureWebsiteAdminAccess;
 use App\Http\Middleware\HandleInertiaRequests;
+use App\Http\Middleware\IntegrationApiContext;
 use App\Http\Middleware\RestrictResourceHost;
 use App\Http\Middleware\SecurityHeaders;
 use App\Http\Middleware\SerializeActivityRosterMutation;
 use Illuminate\Auth\AuthenticationException;
+use Illuminate\Contracts\Auth\Middleware\AuthenticatesRequests;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Middleware\ThrottleRequests;
 use Illuminate\Session\TokenMismatchException;
 use Laravel\Passport\Http\Middleware\CheckToken;
 use Laravel\Passport\Http\Middleware\CheckTokenForAnyScope;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 
 return Application::configure(basePath: dirname(__DIR__))
@@ -24,6 +29,7 @@ return Application::configure(basePath: dirname(__DIR__))
         web: __DIR__.'/../routes/web.php',
         api: [
             __DIR__.'/../routes/api.php',
+            __DIR__.'/../routes/integration_members.php',
             __DIR__.'/../routes/xivplugin.php',
         ],
         commands: __DIR__.'/../routes/console.php',
@@ -32,6 +38,10 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->trustHosts();
+        $middleware->prependToPriorityList(AuthenticatesRequests::class, RestrictResourceHost::class);
+        $middleware->prependToPriorityList(ThrottleRequests::class, AuthenticateIntegrationMember::class);
+        $middleware->prependToPriorityList(AuthenticateIntegrationMember::class, AuthenticateIntegrationClient::class);
+        $middleware->prependToPriorityList(AuthenticateIntegrationClient::class, IntegrationApiContext::class);
         // Whitespace inside rich-text runs and code blocks is document content.
         $middleware->trimStrings(except: ['content.body.*.text', 'guide.*.text']);
 
@@ -39,6 +49,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'admin' => EnsureWebsiteAdminAccess::class,
             'group.dashboard.access' => EnsureGroupDashboardAccess::class,
             'integration.client' => AuthenticateIntegrationClient::class,
+            'integration.member' => AuthenticateIntegrationMember::class,
             'scopes' => CheckToken::class,
             'scope' => CheckTokenForAnyScope::class,
             'roster.write' => SerializeActivityRosterMutation::class,
@@ -54,6 +65,14 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->api(append: [EnsureAccountNotBanned::class]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
+        $exceptions->shouldRenderJsonWhen(fn (Request $request, Throwable $e) => $request->is('api/*') || $request->expectsJson());
+        $exceptions->respond(function (Response $response) {
+            if (request()->is('api/integrations/v1/*')) {
+                $response->headers->set('Cache-Control', 'private, no-store');
+            }
+
+            return $response;
+        });
         $exceptions->dontFlash(['discord_user_id']);
 
         $exceptions->render(function (HttpExceptionInterface $exception, Request $request) {

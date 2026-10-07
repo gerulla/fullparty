@@ -24,6 +24,7 @@ use App\Services\Notifications\AccountCharacterNotificationService;
 use App\Services\Quotas\QuotaService;
 use App\Support\Audit\AuditScope;
 use App\Support\Audit\AuditSeverity;
+use App\Support\Integrations\MemberApi;
 use App\Support\Quotas\QuotaKey;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
@@ -60,7 +61,7 @@ class CharacterController extends Controller
         ]);
     }
 
-    public function exists(Request $request): RedirectResponse
+    public function exists(Request $request): RedirectResponse|JsonResponse
     {
         $validated = $request->validate([
             'lodestone_id' => ['required', 'string'],
@@ -79,7 +80,7 @@ class CharacterController extends Controller
         $character = Character::where('lodestone_id', $lodestoneId)->first();
 
         if ($character && $character->isVerified()) {
-            return Redirect::back()->with('flash_data', [
+            return MemberApi::flashData([
                 'manual_character_lookup' => [
                     'taken' => true,
                 ],
@@ -88,7 +89,7 @@ class CharacterController extends Controller
         // If the character exists but has not been verified, tell the user to claim it
         if ($character) {
             if ($character->user_id !== null && $character->user_id !== auth()->id()) {
-                return Redirect::back()->with('flash_data', [
+                return MemberApi::flashData([
                     'manual_character_lookup' => [
                         'taken' => true,
                     ],
@@ -121,14 +122,14 @@ class CharacterController extends Controller
             });
 
             if (! $character instanceof Character) {
-                return Redirect::back()->with('flash_data', [
+                return MemberApi::flashData([
                     'manual_character_lookup' => [
                         'taken' => true,
                     ],
                 ]);
             }
 
-            return Redirect::back()->with('flash_data', [
+            return MemberApi::flashData([
                 'manual_character_lookup' => [
                     'exists' => true,
                     'taken' => false,
@@ -161,7 +162,7 @@ class CharacterController extends Controller
                 'expires_at' => Carbon::now()->addDay(),
             ]));
 
-            return Redirect::back()->with('flash_data', [
+            return MemberApi::flashData([
                 'manual_character_lookup' => [
                     'exists' => true,
                     'taken' => false,
@@ -179,19 +180,19 @@ class CharacterController extends Controller
         } catch (LodestoneInvalidInputException $e) {
             throw $this->invalidLodestoneInputValidationException();
         } catch (LodestoneFetchException $e) {
-            return Redirect::back()->withErrors([
+            return MemberApi::errors([
                 'error' => $e->getCode() === 404
                     ? 'character_not_found'
                     : 'lodestone_error',
             ]);
         } catch (LodestoneParseException $e) {
-            return Redirect::back()->withErrors([
+            return MemberApi::errors([
                 'error' => 'parse_error',
             ]);
         }
     }
 
-    public function verify(Request $request): RedirectResponse
+    public function verify(Request $request): RedirectResponse|JsonResponse
     {
         $validated = $request->validate([
             'token' => ['required', 'string'],
@@ -202,14 +203,14 @@ class CharacterController extends Controller
         abort_unless($character->user_id === auth()->id(), 403);
 
         if ($character->isVerified()) {
-            return Redirect::back()->with('flash_data', [
+            return MemberApi::flashData([
                 'character_verification' => [
                     'taken' => true,
                 ],
             ]);
         }
         if (blank($character->token) || $character->isTokenExpired()) {
-            return Redirect::back()->withErrors([
+            return MemberApi::errors([
                 'error' => 'expired_token',
             ]);
         }
@@ -219,7 +220,7 @@ class CharacterController extends Controller
         try {
             $data = $scraper->scrapeProfile($character->lodestone_id, ignoreCache: true);
             if (! $data->bio || ! str_contains($data->bio, $character->token)) {
-                return Redirect::back()->withErrors([
+                return MemberApi::errors([
                     'error' => 'invalid_token',
                 ]);
             }
@@ -244,23 +245,23 @@ class CharacterController extends Controller
 
             $this->accountCharacterNotificationService->notifyCharacterAdded($character->fresh(), 'lodestone_token', auth()->user());
 
-            return Redirect::back()->with('flash_data', [
+            return MemberApi::flashData([
                 'character_verification' => [
                     'success' => true,
                 ],
             ]);
         } catch (LodestoneInvalidInputException $e) {
-            return Redirect::back()->withErrors([
+            return MemberApi::errors([
                 'error' => 'invalid_lodestone_id',
             ]);
         } catch (LodestoneFetchException $e) {
-            return Redirect::back()->withErrors([
+            return MemberApi::errors([
                 'error' => $e->getCode() === 404
                     ? 'character_not_found'
                     : 'lodestone_error',
             ]);
         } catch (LodestoneParseException $e) {
-            return Redirect::back()->withErrors([
+            return MemberApi::errors([
                 'error' => 'parse_error',
             ]);
         }
@@ -270,14 +271,14 @@ class CharacterController extends Controller
     {
         $xivauthSocial = $request->user()->socialAccounts()->where('provider', 'xivauth')->first();
         if (! $xivauthSocial) {
-            return Redirect::back()->withErrors([
+            return MemberApi::errors([
                 'error' => 'xivauth_not_linked',
             ]);
         }
         try {
             $token = XIVAuthController::getValidXivAuthAccessToken($xivauthSocial);
         } catch (\Exception $exception) {
-            return Redirect::back()->withErrors([
+            return MemberApi::errors([
                 'error' => 'xivauth_token_invalid',
             ]);
         }
@@ -289,7 +290,7 @@ class CharacterController extends Controller
 
         $data = json_decode($response->getBody(), true);
 
-        return Redirect::back()->with('flash_data', [
+        return MemberApi::flashData([
             'characters' => $data,
         ]);
     }
@@ -302,6 +303,8 @@ class CharacterController extends Controller
         $character = $result->firstCharacter();
 
         if ($result->hasConflicts() || ! $character instanceof Character) {
+            MemberApi::validationError('error', 'xivauth_character_already_claimed');
+
             return Redirect::back()
                 ->withErrors(['error' => 'xivauth_character_already_claimed'])
                 ->with('flash_data', [
@@ -311,7 +314,7 @@ class CharacterController extends Controller
                 ]);
         }
 
-        return Redirect::back()->with('flash_data', [
+        return MemberApi::flashData([
             'xivauth_character_import' => [
                 'character' => [
                     'id' => $character->id,
@@ -326,7 +329,7 @@ class CharacterController extends Controller
         ]);
     }
 
-    public function refreshCharacterData(Character $character): RedirectResponse
+    public function refreshCharacterData(Character $character): RedirectResponse|JsonResponse
     {
         if ($character->user_id !== auth()->id()) {
             abort(403);
@@ -351,6 +354,10 @@ class CharacterController extends Controller
 
             $this->accountCharacterNotificationService->notifyCharacterRefreshed($character->fresh(), auth()->user());
 
+            if (MemberApi::active()) {
+                return MemberApi::success(['partial' => filled($refreshResult['fflogs_error'] ?? null)]);
+            }
+
             $response = Redirect::back()->with('success', 'character_data_refreshed');
 
             if ($refreshResult['fflogs_error'] ?? null) {
@@ -363,21 +370,21 @@ class CharacterController extends Controller
 
             return $response;
         } catch (LodestoneInvalidInputException $e) {
-            return Redirect::back()->withErrors([
+            return MemberApi::errors([
                 'error' => 'invalid_lodestone_id',
             ]);
         } catch (LodestoneFetchException $e) {
-            return Redirect::back()->withErrors([
+            return MemberApi::errors([
                 'error' => $e->getCode() === 404
                     ? 'character_not_found'
                     : 'lodestone_error',
             ]);
         } catch (LodestoneParseException $e) {
-            return Redirect::back()->withErrors([
+            return MemberApi::errors([
                 'error' => 'parse_error',
             ]);
         } catch (\Throwable $e) {
-            return Redirect::back()->withErrors([
+            return MemberApi::errors([
                 'error' => 'character_refresh_failed',
             ]);
         }
@@ -468,7 +475,7 @@ class CharacterController extends Controller
         }
     }
 
-    public function markPreferredClass(Request $request, Character $character): RedirectResponse
+    public function markPreferredClass(Request $request, Character $character): RedirectResponse|JsonResponse
     {
         if ($character->user_id !== auth()->id()) {
             abort(403);
@@ -490,12 +497,12 @@ class CharacterController extends Controller
             ],
         ]);
 
-        return Redirect::back()->with('success', $validated['is_preferred']
+        return MemberApi::saved($validated['is_preferred']
             ? 'character_class_marked_preferred'
             : 'character_class_unmarked_preferred');
     }
 
-    public function markPreferredPhantomJob(Request $request, Character $character): RedirectResponse
+    public function markPreferredPhantomJob(Request $request, Character $character): RedirectResponse|JsonResponse
     {
         if ($character->user_id !== auth()->id()) {
             abort(403);
@@ -517,19 +524,19 @@ class CharacterController extends Controller
             ],
         ]);
 
-        return Redirect::back()->with('success', $validated['is_preferred']
+        return MemberApi::saved($validated['is_preferred']
             ? 'phantom_job_marked_preferred'
             : 'phantom_job_unmarked_preferred');
     }
 
-    public function makePrimary(Character $character): RedirectResponse
+    public function makePrimary(Character $character): RedirectResponse|JsonResponse
     {
         if ($character->user_id !== auth()->id()) {
             abort(403);
         }
 
         if (! $character->isVerified()) {
-            return Redirect::back()->withErrors([
+            return MemberApi::errors([
                 'error' => 'character_not_verified',
             ]);
         }
@@ -560,7 +567,7 @@ class CharacterController extends Controller
 
         $this->accountCharacterNotificationService->notifyPrimaryCharacterChanged($character->fresh(), auth()->user());
 
-        return Redirect::back()->with('success', 'character_marked_primary');
+        return MemberApi::saved('character_marked_primary');
     }
 
     /**
@@ -743,7 +750,7 @@ class CharacterController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Character $character): RedirectResponse
+    public function destroy(Character $character): RedirectResponse|JsonResponse
     {
         if ($character->user_id !== auth()->id()) {
             abort(403);
@@ -795,6 +802,6 @@ class CharacterController extends Controller
 
         $this->accountCharacterNotificationService->notifyCharacterUnclaimed($character->fresh(), $recipient, $recipient);
 
-        return Redirect::back()->with('success', 'character_unclaimed');
+        return MemberApi::saved('character_unclaimed');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Support\Images\ImageDimensions;
 use Illuminate\Http\Client\Response;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Http;
@@ -275,6 +276,17 @@ class ManagedImageStorage
 
     private function decodeImage(string $binary, string $field): \GdImage
     {
+        // Inspect headers before GD allocates memory for the full decoded raster.
+        $dimensions = @getimagesizefromstring($binary);
+        if ($dimensions === false) {
+            throw ValidationException::withMessages([
+                $field => __('errors.the_file_must_be_a_valid_image'),
+            ]);
+        }
+        if (! ImageDimensions::allowed($dimensions[0], $dimensions[1])) {
+            throw ValidationException::withMessages([$field => ImageDimensions::errorMessage()]);
+        }
+
         if (! function_exists('imagecreatefromstring') || ! function_exists('imagewebp')) {
             throw ValidationException::withMessages([
                 $field => __('errors.image_processing_is_not_available_on_this_server'),

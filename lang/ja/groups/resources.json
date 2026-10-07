@@ -208,7 +208,7 @@
     "collections": "コレクション",
     "collection": "コレクション",
     "new_collection": "新しいコレクション",
-    "new_collection_name": "新しいコレクション",
+        "new_collection_name": "New collection",
     "collection_name_invalid": "使用できる文字は A-Z、a-z、0-9、半角スペース、および {'.-(){}[];_&'} のみです。",
     "rename": "名前を変更",
     "edit_collection": "コレクションを編集",

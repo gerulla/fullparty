@@ -36,6 +36,8 @@ class IntegrationClient extends Model
 
     public const EVENT_DISCORD_NOTIFICATION_DELIVERY = 'discord.notification.delivery';
 
+    public const EVENT_DISCORD_ADMIN_REPORT = 'discord.admin.report';
+
     public const EVENT_DISCORD_GUILD_RUN_REMINDER = 'discord.guild.run_reminder';
 
     public const EVENT_DISCORD_GUILD_RUN_STARTING_SOON = 'discord.guild.run_starting_soon';

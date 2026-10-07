@@ -62,6 +62,7 @@
     "guilds_write": "Link Discord guilds"
   },
   "events": {
+    "discord_admin_report": "Discord admin reports",
     "discord_guild_run_participant_sync": "Discord guild run participant sync",
     "discord_user_app_installed": "Discord app installed",
     "discord_user_app_disconnected": "Discord app disconnected",

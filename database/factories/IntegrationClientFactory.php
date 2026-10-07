@@ -37,6 +37,7 @@ class IntegrationClientFactory extends Factory
                 IntegrationClient::EVENT_DISCORD_USER_APP_INSTALLED,
                 IntegrationClient::EVENT_DISCORD_USER_APP_DISCONNECTED,
                 IntegrationClient::EVENT_DISCORD_NOTIFICATION_DELIVERY,
+                IntegrationClient::EVENT_DISCORD_ADMIN_REPORT,
                 IntegrationClient::EVENT_DISCORD_GUILD_RUN_STARTING_SOON,
                 IntegrationClient::EVENT_DISCORD_GUILD_RUN_STARTING_NOW,
                 IntegrationClient::EVENT_DISCORD_GUILD_RUN_PARTICIPANT_SYNC,

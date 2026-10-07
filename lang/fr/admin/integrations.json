@@ -62,6 +62,7 @@
         "guilds_write": "Lier des serveurs Discord"
     },
     "events": {
+        "discord_admin_report": "Rapports administrateur Discord",
     "discord_guild_run_participant_sync": "Synchronisation des participants aux sorties du serveur Discord",
         "discord_user_app_installed": "Application Discord installée",
         "discord_user_app_disconnected": "Application Discord déconnectée",

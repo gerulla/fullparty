@@ -66,7 +66,12 @@ return [
         'enabled' => env('DISCORD_NOTIFICATIONS_ENABLED', false),
     ],
 
+    'admin_reports' => [
+        'enabled' => env('DISCORD_ADMIN_REPORTS_ENABLED', env('APP_ENV') === 'production'),
+    ],
+
     'ff_logs' => [
+        'healthcheck_enabled' => env('FFLOGS_HEALTHCHECK_ENABLED', env('APP_ENV') === 'production'),
         'client_id' => env('FFLOGS_CLIENT_ID'),
         'client_secret' => env('FFLOGS_CLIENT_SECRET'),
         'token_url' => env('FFLOGS_TOKEN_URL', 'https://www.fflogs.com/oauth/token'),

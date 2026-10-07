@@ -62,6 +62,7 @@
         "guilds_write": "Discord-Server verknüpfen"
     },
     "events": {
+        "discord_admin_report": "Discord-Administratormeldungen",
     "discord_guild_run_participant_sync": "Run-Teilnehmer auf dem Discord-Server synchronisieren",
         "discord_user_app_installed": "Discord-App installiert",
         "discord_user_app_disconnected": "Discord-App getrennt",

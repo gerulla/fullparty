@@ -152,6 +152,20 @@
                 "updated": "連携クライアントとその権限を変更しました。",
                 "api_token_rotated": "連携APIトークンを更新しました。",
                 "webhook_secret_rotated": "連携Webhookのシークレットを更新しました。"
+            },
+            "form": {
+                "created": "フォームを作成しました",
+                "updated": "フォームの下書きを更新しました",
+                "publish": "フォームを公開しました",
+                "unpublish": "フォームの公開を取り消しました",
+                "close": "フォームの回答受付を終了しました",
+                "open": "フォームの回答受付を再開しました"
+            },
+            "changelog": {
+                "created": "更新履歴の下書きを作成",
+                "updated": "更新履歴を編集",
+                "published": "更新履歴を公開",
+                "unpublished": "更新履歴の公開を取り消し"
             }
         },
         "character": {
@@ -178,9 +192,9 @@
                 "deleted": "リソースを削除しました。",
                 "collection_saved": "リソースコレクションを保存しました。",
                 "collection_deleted": "リソースコレクションを削除しました。",
-        "image_uploaded": "リソースの画像をアップロードしました。",
-        "image_updated": "リソース画像の詳細を更新しました。",
-        "image_deleted": "リソース画像を削除しました。"
+                "image_uploaded": "リソースの画像をアップロードしました。",
+                "image_updated": "リソース画像の詳細を更新しました。",
+                "image_deleted": "リソース画像を削除しました。"
             },
             "created": "がグループを作成しました。",
             "updated": "がグループ設定を更新しました。",
@@ -214,7 +228,7 @@
                     "withdrawn": "がアクティビティ応募を取り下げました。"
                 },
                 "roster": {
-          "discord_participant_synced": "開催回の参加者をDiscordと同期しました",
+                    "discord_participant_synced": "開催回の参加者をDiscordと同期しました",
                     "assigned": "がロスター枠を割り当てました。",
                     "updated": "がロスター割り当てを更新しました。",
                     "reassigned": "がロスター枠を再割り当てしました。",
@@ -379,7 +393,9 @@
         "integration_client_id": "連携クライアントID",
         "integration_client_name": "連携クライアント",
         "permissions": "権限",
-        "type": "種類"
+        "type": "種類",
+        "version_from": "前回のバージョン",
+        "version_to": "対象の最終バージョン"
     },
     "events": {
         "user": {
@@ -458,6 +474,20 @@
                 "updated": "連携クライアントの更新",
                 "api_token_rotated": "連携APIトークンの更新",
                 "webhook_secret_rotated": "連携Webhookシークレットの更新"
+            },
+            "form": {
+                "created": "フォームを作成しました",
+                "updated": "フォームの下書きを更新しました",
+                "publish": "フォームを公開しました",
+                "unpublish": "フォームの公開を取り消しました",
+                "close": "フォームの回答受付を終了しました",
+                "open": "フォームの回答受付を再開しました"
+            },
+            "changelog": {
+                "created": "更新履歴の下書きを作成",
+                "updated": "更新履歴を編集",
+                "published": "更新履歴を公開",
+                "unpublished": "更新履歴の公開を取り消し"
             }
         },
         "character": {
@@ -483,9 +513,9 @@
                 "deleted": "リソースを削除しました。",
                 "collection_saved": "リソースコレクションを保存しました。",
                 "collection_deleted": "リソースコレクションを削除しました。",
-        "image_uploaded": "リソースの画像をアップロードしました。",
-        "image_updated": "リソース画像の詳細を更新しました。",
-        "image_deleted": "リソース画像を削除しました。"
+                "image_uploaded": "リソースの画像をアップロードしました。",
+                "image_updated": "リソース画像の詳細を更新しました。",
+                "image_deleted": "リソース画像を削除しました。"
             },
             "created": "グループ作成",
             "updated": "グループ設定を更新",
@@ -515,7 +545,7 @@
                     "withdrawn": "アクティビティ応募取り下げ"
                 },
                 "roster": {
-          "discord_participant_synced": "開催回の参加者をDiscordと同期しました",
+                    "discord_participant_synced": "開催回の参加者をDiscordと同期しました",
                     "assigned": "ロスター枠割り当て",
                     "updated": "ロスター割り当て更新",
                     "reassigned": "ロスター枠再割り当て",

@@ -34,6 +34,8 @@ export function useAdminNavigation() {
             label: t('navigation.admin_panel.community'), icon: 'i-lucide-users',
             links: [
                 link('navigation.sidebar.system_notifications', 'admin.system-notifications.index', 'i-lucide-megaphone', ['admin.system-notifications.*']),
+                link('changelog.title', 'admin.changelog.index', 'i-lucide-scroll-text', ['admin.changelog.*']),
+                link('forms.title', 'admin.forms.index', 'i-lucide-clipboard-list', ['admin.forms.*']),
                 link('navigation.sidebar.featured_groups', 'admin.featured-groups.index', 'i-lucide-sparkles', ['admin.featured-groups.*']),
             ],
         },

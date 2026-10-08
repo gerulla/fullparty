@@ -43,7 +43,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->prependToPriorityList(AuthenticateIntegrationMember::class, AuthenticateIntegrationClient::class);
         $middleware->prependToPriorityList(AuthenticateIntegrationClient::class, IntegrationApiContext::class);
         // Whitespace inside rich-text runs and code blocks is document content.
-        $middleware->trimStrings(except: ['content.body.*.text', 'guide.*.text']);
+        $middleware->trimStrings(except: ['content.body.*.text', 'guide.*.text', 'translations.*.body.*.text', 'definition.intro.*.text']);
 
         $middleware->alias([
             'admin' => EnsureWebsiteAdminAccess::class,

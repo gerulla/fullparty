@@ -3,6 +3,7 @@ import {Link, usePage} from "@inertiajs/vue3";
 import {computed, ref, watch} from "vue";
 import {useI18n} from "vue-i18n";
 import DevelopmentNotice from "@/components/DevelopmentNotice.vue";
+import ChangelogButton from "@/components/Changelog/ChangelogButton.vue";
 
 const { t } = useI18n();
 const page = usePage()
@@ -341,12 +342,11 @@ const isGroupQuickLinkSectionActive = (section) => {
 			<div class="flex flex-col gap-4 px-4 pb-4">
 				<DevelopmentNotice v-if="!collapsed" />
 				<div
-					class="flex items-center gap-2 text-xs text-brand-100/45"
-					:class="collapsed ? 'justify-center' : 'justify-between'"
-					:title="appVersionTitle"
+					class="flex items-center gap-2 text-[10px] text-brand-100/45"
+					:class="collapsed ? 'flex-col justify-center' : 'justify-between'"
 				>
-					<span v-if="!collapsed" class="uppercase tracking-wider">FullParty</span>
-					<span class="font-mono">{{ appVersion }}</span>
+					<span class="inline-flex shrink-0 items-center gap-1.5" :title="appVersionTitle"><span v-if="!collapsed" class="uppercase tracking-wider">FullParty</span><span class="font-mono">{{ appVersion }}</span></span>
+					<ChangelogButton :collapsed="collapsed" />
 				</div>
 			</div>
 		</template>

@@ -152,6 +152,20 @@
                 "updated": "hat einen Integrationsclient und dessen Berechtigungen geändert.",
                 "api_token_rotated": "hat ein API-Token für eine Integration erneuert.",
                 "webhook_secret_rotated": "hat den Webhook-Schlüssel einer Integration erneuert."
+            },
+            "form": {
+                "created": "Formular erstellt",
+                "updated": "Formularentwurf aktualisiert",
+                "publish": "Formular veröffentlicht",
+                "unpublish": "Formularveröffentlichung aufgehoben",
+                "close": "Formularantworten geschlossen",
+                "open": "Formularantworten wieder geöffnet"
+            },
+            "changelog": {
+                "created": "Entwurf für das Änderungsprotokoll erstellt",
+                "updated": "Änderungsprotokoll aktualisiert",
+                "published": "Änderungsprotokoll veröffentlicht",
+                "unpublished": "Veröffentlichung des Änderungsprotokolls zurückgezogen"
             }
         },
         "character": {
@@ -178,9 +192,9 @@
                 "deleted": "hat eine Ressource gelöscht.",
                 "collection_saved": "hat eine Ressourcensammlung gespeichert.",
                 "collection_deleted": "hat eine Ressourcensammlung gelöscht.",
-        "image_uploaded": "hat ein Ressourcenbild hochgeladen.",
-        "image_updated": "hat die Details eines Ressourcenbildes aktualisiert.",
-        "image_deleted": "hat ein Ressourcenbild gelöscht."
+                "image_uploaded": "hat ein Ressourcenbild hochgeladen.",
+                "image_updated": "hat die Details eines Ressourcenbildes aktualisiert.",
+                "image_deleted": "hat ein Ressourcenbild gelöscht."
             },
             "created": "hat die Gruppe erstellt.",
             "updated": "hat die Gruppeneinstellungen aktualisiert.",
@@ -214,7 +228,7 @@
                     "withdrawn": "hat eine Aktivitätsbewerbung zurückgezogen."
                 },
                 "roster": {
-          "discord_participant_synced": "Run-Teilnehmer mit Discord synchronisiert",
+                    "discord_participant_synced": "Run-Teilnehmer mit Discord synchronisiert",
                     "assigned": "hat einen Roster-Slot zugewiesen.",
                     "updated": "hat eine Roster-Zuweisung aktualisiert.",
                     "reassigned": "hat einen Roster-Slot neu zugewiesen.",
@@ -379,7 +393,9 @@
         "integration_client_id": "Integrationsclient-ID",
         "integration_client_name": "Integrationsclient",
         "permissions": "Berechtigungen",
-        "type": "Typ"
+        "type": "Typ",
+        "version_from": "Vorherige Version",
+        "version_to": "Bis Version"
     },
     "events": {
         "user": {
@@ -458,6 +474,20 @@
                 "updated": "Integrationsclient aktualisiert",
                 "api_token_rotated": "Integrations-API-Token erneuert",
                 "webhook_secret_rotated": "Webhook-Schlüssel der Integration erneuert"
+            },
+            "form": {
+                "created": "Formular erstellt",
+                "updated": "Formularentwurf aktualisiert",
+                "publish": "Formular veröffentlicht",
+                "unpublish": "Formularveröffentlichung aufgehoben",
+                "close": "Formularantworten geschlossen",
+                "open": "Formularantworten wieder geöffnet"
+            },
+            "changelog": {
+                "created": "Entwurf für das Änderungsprotokoll erstellt",
+                "updated": "Änderungsprotokoll aktualisiert",
+                "published": "Änderungsprotokoll veröffentlicht",
+                "unpublished": "Veröffentlichung des Änderungsprotokolls zurückgezogen"
             }
         },
         "character": {
@@ -483,9 +513,9 @@
                 "deleted": "hat eine Ressource gelöscht.",
                 "collection_saved": "hat eine Ressourcensammlung gespeichert.",
                 "collection_deleted": "hat eine Ressourcensammlung gelöscht.",
-        "image_uploaded": "hat ein Ressourcenbild hochgeladen.",
-        "image_updated": "hat die Details eines Ressourcenbildes aktualisiert.",
-        "image_deleted": "hat ein Ressourcenbild gelöscht."
+                "image_uploaded": "hat ein Ressourcenbild hochgeladen.",
+                "image_updated": "hat die Details eines Ressourcenbildes aktualisiert.",
+                "image_deleted": "hat ein Ressourcenbild gelöscht."
             },
             "created": "Gruppe erstellt",
             "updated": "Gruppeneinstellungen aktualisiert",
@@ -515,7 +545,7 @@
                     "withdrawn": "Aktivitätsbewerbung zurückgezogen"
                 },
                 "roster": {
-          "discord_participant_synced": "Run-Teilnehmer mit Discord synchronisiert",
+                    "discord_participant_synced": "Run-Teilnehmer mit Discord synchronisiert",
                     "assigned": "Roster-Slot zugewiesen",
                     "updated": "Roster-Zuweisung aktualisiert",
                     "reassigned": "Roster-Slot neu zugewiesen",

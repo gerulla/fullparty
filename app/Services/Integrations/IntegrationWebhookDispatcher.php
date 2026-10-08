@@ -4,6 +4,7 @@ namespace App\Services\Integrations;
 
 use App\Models\IntegrationClient;
 use App\Support\Integrations\IntegrationEndpoint;
+use App\Support\Notifications\AdminReportDiagnostics;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
@@ -119,7 +120,10 @@ class IntegrationWebhookDispatcher
                 'last_event_error' => $error,
             ])->save();
 
-            app(IntegrationAdminNotificationService::class)->notifyEventDeliveryFailed($client->fresh(), $event, $error);
+            app(IntegrationAdminNotificationService::class)->notifyEventDeliveryFailed($client->fresh(), $event, $error, [
+                ...AdminReportDiagnostics::exception($exception),
+                'delivery_id' => $deliveryId,
+            ]);
 
             return [
                 'client_id' => $client->id,

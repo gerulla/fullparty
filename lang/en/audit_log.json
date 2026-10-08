@@ -152,6 +152,20 @@
         "updated": "changed an integration client and its permissions.",
         "api_token_rotated": "rotated an integration API token.",
         "webhook_secret_rotated": "rotated an integration webhook secret."
+      },
+      "form": {
+        "created": "Form created",
+        "updated": "Form draft updated",
+        "publish": "Form published",
+        "unpublish": "Form unpublished",
+        "close": "Form responses closed",
+        "open": "Form responses reopened"
+      },
+      "changelog": {
+        "created": "Created a changelog draft",
+        "updated": "Updated a changelog",
+        "published": "Published a changelog",
+        "unpublished": "Unpublished a changelog"
       }
     },
     "character": {
@@ -379,7 +393,9 @@
     "integration_client_id": "Integration client ID",
     "integration_client_name": "Integration client",
     "permissions": "Permissions",
-    "type": "Type"
+    "type": "Type",
+    "version_from": "Previous version",
+    "version_to": "Through version"
   },
   "events": {
     "user": {
@@ -458,6 +474,20 @@
         "updated": "Integration client updated",
         "api_token_rotated": "Integration API token rotated",
         "webhook_secret_rotated": "Integration webhook secret rotated"
+      },
+      "form": {
+        "created": "Form created",
+        "updated": "Form draft updated",
+        "publish": "Form published",
+        "unpublish": "Form unpublished",
+        "close": "Form responses closed",
+        "open": "Form responses reopened"
+      },
+      "changelog": {
+        "created": "Created a changelog draft",
+        "updated": "Updated a changelog",
+        "published": "Published a changelog",
+        "unpublished": "Unpublished a changelog"
       }
     },
     "character": {

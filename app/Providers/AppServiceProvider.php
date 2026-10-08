@@ -192,6 +192,10 @@ class AppServiceProvider extends ServiceProvider
             Limit::perMinute(10)->by('minute:user:'.$request->user()->id),
             Limit::perHour(30)->by('hour:user:'.$request->user()->id),
         ]);
+        RateLimiter::for('forms.submit', fn (Request $request) => [
+            Limit::perMinute(10)->by('minute:'.($request->user()?->id ?? $request->ip())),
+            Limit::perHour(60)->by('hour:ip:'.$request->ip()),
+        ]);
         RateLimiter::for('reports.submit', fn (Request $request) => [
             Limit::perMinute(5)->by('minute:'.$request->user()->id),
             Limit::perDay(30)->by('day:'.$request->user()->id),

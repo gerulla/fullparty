@@ -152,6 +152,20 @@
                 "updated": "a modifié un client d’intégration et ses autorisations.",
                 "api_token_rotated": "a renouvelé un jeton API d’intégration.",
                 "webhook_secret_rotated": "a renouvelé le secret de webhook d’une intégration."
+            },
+            "form": {
+                "created": "Formulaire créé",
+                "updated": "Brouillon du formulaire modifié",
+                "publish": "Formulaire publié",
+                "unpublish": "Formulaire dépublié",
+                "close": "Réponses au formulaire fermées",
+                "open": "Réponses au formulaire rouvertes"
+            },
+            "changelog": {
+                "created": "Brouillon de note de mise à jour créé",
+                "updated": "Note de mise à jour modifiée",
+                "published": "Note de mise à jour publiée",
+                "unpublished": "Publication d’une note de mise à jour retirée"
             }
         },
         "character": {
@@ -178,9 +192,9 @@
                 "deleted": "a supprimé une ressource.",
                 "collection_saved": "a enregistré une collection de ressources.",
                 "collection_deleted": "a supprimé une collection de ressources.",
-        "image_uploaded": "a importé une image de ressource.",
-        "image_updated": "a modifié les détails d’une image de ressource.",
-        "image_deleted": "a supprimé une image de ressource."
+                "image_uploaded": "a importé une image de ressource.",
+                "image_updated": "a modifié les détails d’une image de ressource.",
+                "image_deleted": "a supprimé une image de ressource."
             },
             "created": "a créé le groupe.",
             "updated": "a mis à jour les paramètres du groupe.",
@@ -214,7 +228,7 @@
                     "withdrawn": "a retiré une candidature d'activité."
                 },
                 "roster": {
-          "discord_participant_synced": "Participant à la sortie synchronisé avec Discord",
+                    "discord_participant_synced": "Participant à la sortie synchronisé avec Discord",
                     "assigned": "a attribué un emplacement de roster.",
                     "updated": "a mis à jour une attribution de roster.",
                     "reassigned": "a réattribué un emplacement de roster.",
@@ -379,7 +393,9 @@
         "integration_client_id": "Identifiant du client d’intégration",
         "integration_client_name": "Client d’intégration",
         "permissions": "Autorisations",
-        "type": "Type"
+        "type": "Type",
+        "version_from": "Version précédente",
+        "version_to": "Jusqu’à la version"
     },
     "events": {
         "user": {
@@ -458,6 +474,20 @@
                 "updated": "Client d’intégration modifié",
                 "api_token_rotated": "Jeton API d’intégration renouvelé",
                 "webhook_secret_rotated": "Secret de webhook d’intégration renouvelé"
+            },
+            "form": {
+                "created": "Formulaire créé",
+                "updated": "Brouillon du formulaire modifié",
+                "publish": "Formulaire publié",
+                "unpublish": "Formulaire dépublié",
+                "close": "Réponses au formulaire fermées",
+                "open": "Réponses au formulaire rouvertes"
+            },
+            "changelog": {
+                "created": "Brouillon de note de mise à jour créé",
+                "updated": "Note de mise à jour modifiée",
+                "published": "Note de mise à jour publiée",
+                "unpublished": "Publication d’une note de mise à jour retirée"
             }
         },
         "character": {
@@ -483,9 +513,9 @@
                 "deleted": "a supprimé une ressource.",
                 "collection_saved": "a enregistré une collection de ressources.",
                 "collection_deleted": "a supprimé une collection de ressources.",
-        "image_uploaded": "a importé une image de ressource.",
-        "image_updated": "a modifié les détails d’une image de ressource.",
-        "image_deleted": "a supprimé une image de ressource."
+                "image_uploaded": "a importé une image de ressource.",
+                "image_updated": "a modifié les détails d’une image de ressource.",
+                "image_deleted": "a supprimé une image de ressource."
             },
             "created": "Groupe créé",
             "updated": "Paramètres du groupe mis à jour",
@@ -515,7 +545,7 @@
                     "withdrawn": "Candidature d'activité retirée"
                 },
                 "roster": {
-          "discord_participant_synced": "Participant à la sortie synchronisé avec Discord",
+                    "discord_participant_synced": "Participant à la sortie synchronisé avec Discord",
                     "assigned": "Emplacement de roster attribué",
                     "updated": "Attribution de roster mise à jour",
                     "reassigned": "Emplacement de roster réattribué",

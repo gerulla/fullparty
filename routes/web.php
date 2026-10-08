@@ -207,6 +207,9 @@ Route::middleware(['auth', 'verified'])->prefix('auth/discord-app')->group(funct
         ->name('discord-app.guild.callback');
 });
 
+Route::get('/forms/{surveyForm:slug}', [\App\Http\Controllers\SurveyFormController::class, 'show'])->middleware('cache.headers:private;no_store')->where('surveyForm', '[a-z0-9]+(?:-[a-z0-9]+)*')->name('forms.show');
+Route::post('/forms/{surveyForm:slug}', [\App\Http\Controllers\SurveyFormController::class, 'store'])->middleware('throttle:forms.submit')->where('surveyForm', '[a-z0-9]+(?:-[a-z0-9]+)*')->name('forms.submit');
+
 foreach (['auth', 'dashboard', 'groups', 'invite', 'settings', 'account', 'characters', 'admin'] as $prefix) {
     Route::get("/{$prefix}/{path?}", fn (Request $request, ?string $path = null) => $redirectToLocalizedPath($request, trim($prefix.'/'.($path ?? ''), '/')))
         ->where('path', '.*');
@@ -220,6 +223,11 @@ Route::prefix('{locale?}')
                 'landing' => $landingPageDataService->forHome($request->user()),
             ])->withViewData('serverMeta', $serverMeta->home());
         })->name('home');
+
+        Route::get('/changelog', [\App\Http\Controllers\ChangelogController::class, 'index'])->name('changelog.index');
+        Route::get('/changelog/latest', [\App\Http\Controllers\ChangelogController::class, 'latest'])->name('changelog.latest');
+        Route::get('/changelog/{changelogEntry}', [\App\Http\Controllers\ChangelogController::class, 'show'])->whereNumber('changelogEntry')->name('changelog.show');
+        Route::post('/changelog/{changelogEntry}/read', [\App\Http\Controllers\ChangelogController::class, 'read'])->middleware('auth')->whereNumber('changelogEntry')->name('changelog.read');
 
         Route::get('/privacy-policy', function () {
             return Inertia::render('Legal/PrivacyPolicy');
@@ -775,6 +783,26 @@ Route::prefix('{locale?}')
             */
 
             Route::prefix('admin')->group(function () {
+                Route::prefix('forms')->middleware(['admin', 'cache.headers:private;no_store'])->name('admin.forms.')->group(function () {
+                    Route::get('/', [\App\Http\Controllers\AdminSurveyFormController::class, 'index'])->name('index');
+                    Route::get('/create', [\App\Http\Controllers\AdminSurveyFormController::class, 'create'])->name('create');
+                    Route::post('/', [\App\Http\Controllers\AdminSurveyFormController::class, 'store'])->middleware('throttle:admin.write')->name('store');
+                    Route::get('/{surveyForm:slug}/edit', [\App\Http\Controllers\AdminSurveyFormController::class, 'edit'])->name('edit');
+                    Route::put('/{surveyForm:slug}', [\App\Http\Controllers\AdminSurveyFormController::class, 'update'])->middleware('throttle:admin.write')->name('update');
+                    Route::post('/{surveyForm:slug}/{action}', [\App\Http\Controllers\AdminSurveyFormController::class, 'transition'])->where('action', 'publish|unpublish|open|close')->middleware('throttle:admin.write')->name('transition');
+                    Route::get('/{surveyForm:slug}/responses', [\App\Http\Controllers\AdminSurveyFormController::class, 'responses'])->name('responses');
+                    Route::get('/{surveyForm:slug}/responses/{surveyResponse}', [\App\Http\Controllers\AdminSurveyFormController::class, 'response'])->whereNumber('surveyResponse')->name('response');
+                    Route::get('/{surveyForm:slug}/export', [\App\Http\Controllers\AdminSurveyFormController::class, 'export'])->middleware('throttle:admin.write')->name('export');
+                });
+                Route::prefix('changelog')->middleware('admin')->name('admin.changelog.')->group(function () {
+                    Route::get('/', [\App\Http\Controllers\AdminChangelogController::class, 'index'])->name('index');
+                    Route::get('/create', [\App\Http\Controllers\AdminChangelogController::class, 'create'])->name('create');
+                    Route::post('/', [\App\Http\Controllers\AdminChangelogController::class, 'store'])->middleware('throttle:admin.write')->name('store');
+                    Route::get('/{changelogEntry}/edit', [\App\Http\Controllers\AdminChangelogController::class, 'edit'])->whereNumber('changelogEntry')->name('edit');
+                    Route::put('/{changelogEntry}', [\App\Http\Controllers\AdminChangelogController::class, 'update'])->middleware('throttle:admin.write')->whereNumber('changelogEntry')->name('update');
+                    Route::post('/{changelogEntry}/publish', [\App\Http\Controllers\AdminChangelogController::class, 'publish'])->middleware('throttle:admin.write')->whereNumber('changelogEntry')->name('publish');
+                    Route::post('/{changelogEntry}/unpublish', [\App\Http\Controllers\AdminChangelogController::class, 'unpublish'])->middleware('throttle:admin.write')->whereNumber('changelogEntry')->name('unpublish');
+                });
                 Route::get('/', [AdminController::class, 'index'])->middleware('admin')->name('admin.index');
                 // Admin dashboards and audit surfaces.
                 Route::get('/character-data', [AdminController::class, 'characterData'])->name('admin.character-data');

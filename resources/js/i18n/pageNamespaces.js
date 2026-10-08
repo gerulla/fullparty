@@ -1,10 +1,15 @@
 const common = ['general', 'meta', 'reports']
-const dashboard = [...common, 'applications', 'auth', 'characters', 'dashboard', 'groups/dashboard', 'groups/index', 'navigation', 'notifications', 'settings']
+const dashboard = [...common, 'applications', 'auth', 'characters', 'changelog', 'dashboard', 'forms', 'groups/dashboard', 'groups/index', 'navigation', 'notifications', 'settings']
 
 // Include modal and shared-component dictionaries, not just the page's visible labels.
 const features = {
     'Reports/Create': [],
     'Admin/Index': [],
+    'Admin/Changelog/Index': [],
+    'Admin/Changelog/Edit': ['rich_text'],
+    'Admin/Forms/Index': [],
+    'Admin/Forms/Edit': ['rich_text'],
+    'Admin/Forms/Responses': [],
     'Admin/Reports': [],
     'Admin/Reports/Show': [],
     'Admin/ActivityTypes': ['admin/activity_types'],
@@ -59,6 +64,7 @@ const features = {
 }
 
 const standalone = {
+    'Forms/Show': ['forms'],
     'auth/Banned': [],
     'Resources/Show': ['groups/resources'],
     Home: ['auth', 'groups/activities', 'landing'],

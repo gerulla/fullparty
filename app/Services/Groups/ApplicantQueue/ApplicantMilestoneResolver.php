@@ -7,6 +7,7 @@ use App\Models\Character;
 use App\Models\OccultProgress;
 use App\Services\FFLogs\CharacterZoneProgressFetcher;
 use App\Support\FFLogsDifficulty;
+use App\Support\Notifications\AdminReportDiagnostics;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 
@@ -178,7 +179,8 @@ class ApplicantMilestoneResolver
                 'lodestone_id' => $character->lodestone_id,
                 'zone_id' => $zoneId,
                 'difficulty' => $difficulty,
-                'exception' => $exception->getMessage(),
+                'exception_type' => $exception::class,
+                'exception' => $exception->getMessage() ?: AdminReportDiagnostics::exception($exception)['reason'],
             ]);
 
             return $this->encounterRankingsCache[$cacheKey] = collect();

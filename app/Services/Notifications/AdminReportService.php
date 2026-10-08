@@ -16,8 +16,9 @@ final class AdminReportService
      * Only pass safe diagnostic parameters: never credentials or request bodies.
      *
      * @param  array<string, string|int|float>  $params
+     * @param  array<string, string|int|float>  $details  Safe, structured diagnostics with labels in admin_reports.details.
      */
-    public function report(string $key, string $titleKey, string $messageKey, array $params = [], string $severity = 'error', bool $immediate = false): bool
+    public function report(string $key, string $titleKey, string $messageKey, array $params = [], string $severity = 'error', bool $immediate = false, array $details = []): bool
     {
         if (! config('services.admin_reports.enabled')) {
             return false;
@@ -34,9 +35,16 @@ final class AdminReportService
             }
 
             $locale = (string) config('app.locale', 'en');
+            $message = __($messageKey, $params, $locale);
+            foreach ($details as $name => $value) {
+                if (is_string($value) || is_int($value) || is_float($value)) {
+                    $message .= "\n".__('admin_reports.details.'.$name, [], $locale).': '.Str::limit((string) $value, 1000);
+                }
+            }
+            $timestamp = "\n".__('admin_reports.details.observed_at', [], $locale).': '.now()->utc()->toIso8601String();
             $job = new SendDiscordAdminReportJob(
                 title: Str::limit(__($titleKey, $params, $locale), 240),
-                message: Str::limit(__($messageKey, $params, $locale), 1800),
+                message: Str::limit($message, 1800 - mb_strlen($timestamp) - 3).$timestamp,
                 severity: in_array($severity, ['info', 'warning', 'error'], true) ? $severity : 'error',
             );
 

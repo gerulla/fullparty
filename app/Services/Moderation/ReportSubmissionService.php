@@ -7,13 +7,18 @@ use App\Models\Group;
 use App\Models\GroupResourceImage;
 use App\Models\ModerationCase;
 use App\Models\User;
+use App\Services\Notifications\AdminReportService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ReportSubmissionService
 {
-    public function __construct(private readonly ReportTargetRegistry $targets, private readonly PublicReportAccess $publicAccess) {}
+    public function __construct(
+        private readonly ReportTargetRegistry $targets,
+        private readonly PublicReportAccess $publicAccess,
+        private readonly AdminReportService $adminReports,
+    ) {}
 
     public function submit(User $user, array $data): void
     {
@@ -73,11 +78,13 @@ class ReportSubmissionService
                         fclose($source);
                     }
                 }
-                ContentReport::create([
+                $report = ContentReport::create([
                     'moderation_case_id' => $case->id, 'reporter_id' => $user?->id, 'guest_fingerprint' => $guestFingerprint,
                     'reason' => $data['reason'], 'details' => $data['reason'] === 'other' ? trim($data['details']) : null,
                     'snapshot' => $snapshot, 'evidence_path' => $evidence,
                 ]);
+                // Notify only for a new, committed report; retries and rolled-back evidence stay quiet.
+                DB::afterCommit(fn () => $this->notifyAdmins($report, $case));
             }, 3);
         } catch (\Throwable $exception) {
             Storage::disk('local')->delete($written);
@@ -85,5 +92,28 @@ class ReportSubmissionService
         }
         // A transaction retry may have written a file for an abandoned attempt.
         Storage::disk('local')->delete(array_values(array_diff($written, [$evidence])));
+    }
+
+    private function notifyAdmins(ContentReport $report, ModerationCase $case): void
+    {
+        $locale = (string) config('app.locale', 'en');
+        $this->adminReports->report(
+            key: 'moderation.report.'.$report->id,
+            titleKey: 'admin_reports.content_report_title',
+            messageKey: 'admin_reports.content_report_message',
+            params: [
+                'report_id' => $report->id,
+                'case_id' => $case->id,
+                'target_type' => __('reports.types.'.$case->target_type, [], $locale),
+                'target_id' => $case->target_id,
+                'reason' => __('reports.reasons.'.$report->reason, [], $locale),
+                'reporter' => $report->reporter_id
+                    ? __('admin_reports.account_reference', ['id' => $report->reporter_id], $locale)
+                    : __('admin_reports.guest_reporter', [], $locale),
+                // Guest reports originate on the resource host; review links belong to the main site.
+                'url' => rtrim(config('app.url'), '/').route('admin.reports.show', ['case' => $case->id, 'locale' => $locale], false),
+            ],
+            severity: 'warning',
+        );
     }
 }

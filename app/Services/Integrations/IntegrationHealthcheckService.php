@@ -6,6 +6,7 @@ use App\Models\IntegrationClient;
 use App\Models\IntegrationClientHealthCheck;
 use App\Services\Notifications\AdminReportService;
 use App\Support\Integrations\IntegrationEndpoint;
+use App\Support\Notifications\AdminReportDiagnostics;
 use Carbon\CarbonInterface;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
@@ -14,7 +15,10 @@ use Throwable;
 
 class IntegrationHealthcheckService
 {
-    public function __construct(private readonly AdminReportService $adminReports) {}
+    public function __construct(
+        private readonly AdminReportService $adminReports,
+        private readonly IntegrationHealthDiagnostics $diagnostics,
+    ) {}
 
     public function checkActiveClients(): void
     {
@@ -54,7 +58,6 @@ class IntegrationHealthcheckService
             IntegrationEndpoint::assertSecure((string) $client->healthcheck_url);
             $response = Http::timeout(5)
                 ->withoutRedirecting()
-                ->retry(1, 250)
                 ->withHeaders($headers)
                 ->get((string) $client->healthcheck_url);
 
@@ -68,6 +71,11 @@ class IntegrationHealthcheckService
                 responseStatus: $response->status(),
                 durationMs: $this->durationMs($startedAt),
                 error: $this->resultSummary($status, $response, $payload),
+                details: [
+                    'checks' => $this->diagnostics->summary($payload, includeHealthy: true) ?: AdminReportDiagnostics::reason('no_checks'),
+                    ...AdminReportDiagnostics::response($response),
+                    'delivery_id' => $deliveryId,
+                ],
             );
         } catch (Throwable $exception) {
             $this->recordResult(
@@ -76,7 +84,8 @@ class IntegrationHealthcheckService
                 status: IntegrationClientHealthCheck::STATUS_UNHEALTHY,
                 responseStatus: null,
                 durationMs: $this->durationMs($startedAt),
-                error: $exception->getMessage(),
+                error: AdminReportDiagnostics::exception($exception)['reason'],
+                details: [...AdminReportDiagnostics::exception($exception), 'delivery_id' => $deliveryId],
             );
         }
     }
@@ -88,6 +97,7 @@ class IntegrationHealthcheckService
         ?int $responseStatus = null,
         ?int $durationMs = null,
         ?string $error = null,
+        array $details = [],
     ): void {
         $trimmedError = $error === null ? null : Str::limit($error, 500, '...');
 
@@ -99,6 +109,7 @@ class IntegrationHealthcheckService
             'error' => $trimmedError,
         ]);
 
+        $lastHealthyAt = $client->last_healthcheck_ok_at?->toIso8601String();
         $client->forceFill([
             'last_healthcheck_at' => $checkedAt,
             'last_healthcheck_ok_at' => $this->isHealthy($status) ? $checkedAt : $client->last_healthcheck_ok_at,
@@ -111,8 +122,14 @@ class IntegrationHealthcheckService
                 key: 'integration.health.'.$client->id.'.'.$status,
                 titleKey: 'admin_reports.integration_health_title',
                 messageKey: 'admin_reports.integration_health_message',
-                params: ['client' => $client->name, 'status' => $status],
+                params: ['client' => $client->name, 'status' => __('admin_reports.health_status.'.$status, [], config('app.locale')), 'id' => $client->id],
                 severity: $this->isFailed($status) ? 'error' : 'warning',
+                details: [
+                    ...$details,
+                    'duration_ms' => $durationMs ?? 0,
+                    'last_healthy_at' => $lastHealthyAt ?? AdminReportDiagnostics::reason('never_healthy'),
+                    'admin_url' => AdminReportDiagnostics::adminUrl('admin.integrations.index'),
+                ],
             );
         }
     }
@@ -136,7 +153,7 @@ class IntegrationHealthcheckService
             return IntegrationClientHealthCheck::STATUS_UNHEALTHY;
         }
 
-        $payloadStatus = Str::lower((string) data_get($payload, 'status', ''));
+        $payloadStatus = is_string($payload['status'] ?? null) ? Str::lower($payload['status']) : '';
 
         return match ($payloadStatus) {
             IntegrationClientHealthCheck::STATUS_HEALTHY, 'ok' => IntegrationClientHealthCheck::STATUS_HEALTHY,
@@ -169,10 +186,10 @@ class IntegrationHealthcheckService
             return null;
         }
 
-        $summary = $this->checkSummaries($payload);
+        $summary = $this->diagnostics->summary($payload);
 
-        if ($summary !== []) {
-            return implode('; ', $summary);
+        if ($summary !== '') {
+            return $summary;
         }
 
         if (! $response->successful()) {
@@ -180,74 +197,6 @@ class IntegrationHealthcheckService
         }
 
         return 'Health reported '.$status.'.';
-    }
-
-    /**
-     * @param  array<string, mixed>|null  $payload
-     * @return array<int, string>
-     */
-    private function checkSummaries(?array $payload): array
-    {
-        $checks = data_get($payload, 'checks');
-
-        if (! is_array($checks)) {
-            return [];
-        }
-
-        return collect($checks)
-            ->map(function ($check, string $name): ?string {
-                if (! is_array($check)) {
-                    return null;
-                }
-
-                $status = Str::lower((string) ($check['status'] ?? ''));
-                $ok = $check['ok'] ?? null;
-
-                if (($status === '' || $status === IntegrationClientHealthCheck::STATUS_HEALTHY) && $ok !== false) {
-                    return null;
-                }
-
-                $label = Str::headline($name);
-                $details = $this->checkDetailSummary($check);
-
-                return trim($label.': '.($status ?: 'unhealthy').($details !== null ? ' ('.$details.')' : ''));
-            })
-            ->filter()
-            ->values()
-            ->all();
-    }
-
-    /**
-     * @param  array<string, mixed>  $check
-     */
-    private function checkDetailSummary(array $check): ?string
-    {
-        $details = [];
-
-        foreach ([
-            'warnCount' => 'warn',
-            'errorCount' => 'error',
-            'ignoredCount' => 'ignored',
-            'queued' => 'queued',
-            'processing' => 'processing',
-            'failedLastWindow' => 'failed',
-            'stuckProcessing' => 'stuck',
-            'ping_ms' => 'ping ms',
-        ] as $key => $label) {
-            if (array_key_exists($key, $check) && $check[$key] !== null) {
-                $details[] = $label.': '.$check[$key];
-            }
-        }
-
-        if (($check['ready'] ?? null) === false) {
-            $details[] = 'not ready';
-        }
-
-        if (isset($check['lastFailureAt'])) {
-            $details[] = 'last failure: '.$check['lastFailureAt'];
-        }
-
-        return $details === [] ? null : implode(', ', $details);
     }
 
     private function isHealthy(string $status): bool

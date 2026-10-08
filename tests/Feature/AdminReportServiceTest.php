@@ -180,11 +180,11 @@ it('reports token endpoint failures through the health check without exposing cr
         && ! str_contains($job->message, 'PRIVATE'));
 });
 
-it('reports connection failures through the health check', function () {
+it('keeps an isolated connection failure in the health check quiet', function () {
     Cache::put('fflogs:client_credentials_token', 'token');
     Http::fake(['https://fflogs.test/graphql' => Http::failedConnection()]);
     $this->artisan('fflogs:check-health')->assertFailed();
-    Queue::assertPushed(SendDiscordAdminReportJob::class, fn ($job) => $job->title === 'FF Logs connection failed');
+    Queue::assertNotPushed(SendDiscordAdminReportJob::class);
 });
 
 it('keeps admin reports disabled when configured off', function () {

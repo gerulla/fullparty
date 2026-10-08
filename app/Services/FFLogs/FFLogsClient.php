@@ -3,6 +3,7 @@
 namespace App\Services\FFLogs;
 
 use App\Services\Notifications\AdminReportService;
+use App\Support\Notifications\AdminReportDiagnostics;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Cache;
@@ -18,7 +19,10 @@ final class FFLogsClient
 
     private const AUTH_FAILURE_TTL_SECONDS = 120;
 
-    public function __construct(private readonly AdminReportService $adminReports) {}
+    public function __construct(
+        private readonly AdminReportService $adminReports,
+        private readonly FFLogsConnectionMonitor $connectionMonitor,
+    ) {}
 
     /**
      * @param  array<string, mixed>  $payload
@@ -39,7 +43,11 @@ final class FFLogsClient
 
         if ($response->status() === 401) {
             $this->backOffRejectedToken($token);
-            $this->reportAuthenticationFailure();
+            $this->reportAuthenticationFailure([
+                'stage' => AdminReportDiagnostics::reason('api_request'),
+                'reason' => AdminReportDiagnostics::reason('token_rejected_after_refresh'),
+                ...AdminReportDiagnostics::response($response),
+            ]);
         } else {
             $this->reportUnsuccessfulResponse($response);
         }
@@ -50,12 +58,15 @@ final class FFLogsClient
     private function send(array $payload, string $token): Response
     {
         try {
-            return Http::withToken($token)
+            $response = Http::withToken($token)
                 ->connectTimeout(5)->timeout(15)
                 ->acceptJson()
                 ->post((string) config('services.ff_logs.graphql_url'), $payload);
+            $this->connectionMonitor->receivedResponse('api');
+
+            return $response;
         } catch (ConnectionException $exception) {
-            $this->adminReports->report('fflogs.connection', 'admin_reports.fflogs_connection_title', 'admin_reports.fflogs_connection_message');
+            $this->connectionMonitor->connectionFailed('api', $exception);
             throw $exception;
         }
     }
@@ -86,7 +97,20 @@ final class FFLogsClient
                 return $this->requestAccessToken();
             } catch (Throwable $exception) {
                 Cache::put(self::TOKEN_CACHE_KEY.':failed', true, self::AUTH_FAILURE_TTL_SECONDS);
-                $this->reportAuthenticationFailure();
+                if ($exception instanceof ConnectionException) {
+                    $this->connectionMonitor->connectionFailed('oauth', $exception);
+                    throw $exception;
+                }
+                $details = AdminReportDiagnostics::exception($exception);
+                $reason = match ($exception->getMessage()) {
+                    'FF Logs credentials are not configured.' => 'credentials_missing',
+                    'FF Logs access token was not returned.' => 'token_missing',
+                    default => null,
+                };
+                if ($reason !== null) {
+                    $details['reason'] = AdminReportDiagnostics::reason($reason);
+                }
+                $this->reportAuthenticationFailure(['stage' => AdminReportDiagnostics::reason('oauth_request'), ...$details]);
 
                 throw $exception;
             }
@@ -105,9 +129,9 @@ final class FFLogsClient
         $response = Http::asForm()
             ->connectTimeout(5)->timeout(10)
             ->withBasicAuth($clientId, $clientSecret)
-            ->post(config('services.ff_logs.token_url'), ['grant_type' => 'client_credentials'])
-            ->throw()
-            ->json();
+            ->post(config('services.ff_logs.token_url'), ['grant_type' => 'client_credentials']);
+        $this->connectionMonitor->receivedResponse('oauth');
+        $response = $response->throw()->json();
 
         $token = $response['access_token'] ?? null;
 
@@ -136,9 +160,12 @@ final class FFLogsClient
         });
     }
 
-    private function reportAuthenticationFailure(): void
+    private function reportAuthenticationFailure(array $details): void
     {
-        $this->adminReports->report('fflogs.authentication', 'admin_reports.fflogs_auth_title', 'admin_reports.fflogs_auth_message');
+        $this->adminReports->report(
+            'fflogs.authentication', 'admin_reports.fflogs_auth_title', 'admin_reports.fflogs_auth_message',
+            details: [...$details, 'admin_url' => AdminReportDiagnostics::adminUrl('admin.fflogs-playground.index')],
+        );
     }
 
     private function reportUnsuccessfulResponse(Response $response): void
@@ -149,6 +176,11 @@ final class FFLogsClient
                 titleKey: 'admin_reports.fflogs_unavailable_title',
                 messageKey: 'admin_reports.fflogs_unavailable_message',
                 params: ['status' => $response->status()],
+                details: [
+                    'stage' => AdminReportDiagnostics::reason('api_request'),
+                    ...AdminReportDiagnostics::response($response),
+                    'admin_url' => AdminReportDiagnostics::adminUrl('admin.fflogs-playground.index'),
+                ],
             );
         }
     }

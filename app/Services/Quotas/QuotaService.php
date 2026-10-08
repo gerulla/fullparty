@@ -15,6 +15,7 @@ use App\Models\GroupUserNoteAddendum;
 use App\Models\PhantomComposition;
 use App\Models\QuotaOverride;
 use App\Models\User;
+use App\Services\Notifications\AdminReportService;
 use App\Support\Quotas\QuotaKey;
 use App\Support\Quotas\QuotaScope;
 use Carbon\CarbonImmutable;
@@ -26,8 +27,12 @@ use Illuminate\Validation\ValidationException;
 use InvalidArgumentException;
 use Throwable;
 
+use function Illuminate\Support\defer;
+
 final class QuotaService
 {
+    public function __construct(private readonly AdminReportService $adminReports) {}
+
     public function assert(QuotaCheck $check): void
     {
         $this->assertCheck($check);
@@ -163,6 +168,8 @@ final class QuotaService
             'actor_user_id' => auth()->id(),
         ]);
 
+        $this->notifyAdmins($check, $status);
+
         if (! $this->isEnforced()) {
             return;
         }
@@ -174,6 +181,30 @@ final class QuotaService
                 'limit' => $status['limit'],
             ]),
         ]);
+    }
+
+    private function notifyAdmins(QuotaCheck $check, array $status): void
+    {
+        $locale = (string) config('app.locale', 'en');
+        $mode = $this->isEnforced() ? 'enforce' : 'observe';
+        $key = 'quota.'.$status['scope'].'.'.$check->subject->getKey().'.'.$check->key.'.'.$mode;
+        $params = [
+            'quota' => __('quotas.labels.'.str_replace('.', '_', $check->key), [], $locale),
+            'subject_type' => __('admin_reports.subject_'.$status['scope'], [], $locale),
+            'subject_id' => (int) $check->subject->getKey(),
+            'usage' => $status['usage'], 'amount' => $check->amount, 'limit' => $status['limit'],
+            'url' => rtrim(config('app.url'), '/').route('admin.quotas.index', ['locale' => $locale], false),
+        ];
+
+        // Enforced limits roll back their transaction. Queue after the request/job finishes,
+        // including failed requests, so both the alert and its cooldown survive that rollback.
+        defer(fn () => $this->adminReports->report(
+            key: $key,
+            titleKey: 'admin_reports.account_limit_title',
+            messageKey: 'admin_reports.account_limit_'.$mode,
+            params: $params,
+            severity: 'warning',
+        ), name: 'admin-report:'.$key, always: true);
     }
 
     /** @param array<int, QuotaCheck> $checks */

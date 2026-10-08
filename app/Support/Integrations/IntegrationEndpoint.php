@@ -2,7 +2,7 @@
 
 namespace App\Support\Integrations;
 
-use RuntimeException;
+use App\Exceptions\InsecureIntegrationEndpointException;
 
 final class IntegrationEndpoint
 {
@@ -14,7 +14,7 @@ final class IntegrationEndpoint
     public static function assertSecure(string $url): void
     {
         if (! app()->environment('local', 'testing') && strtolower((string) parse_url($url, PHP_URL_SCHEME)) !== 'https') {
-            throw new RuntimeException('Integration delivery requires an HTTPS endpoint outside local development.');
+            throw new InsecureIntegrationEndpointException('Integration delivery requires an HTTPS endpoint outside local development.');
         }
     }
 }

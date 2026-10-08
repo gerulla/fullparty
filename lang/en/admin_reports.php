@@ -23,6 +23,7 @@ return [
         'error_count' => 'GraphQL error count',
     ],
     'reasons' => [
+        'https_required' => 'The integration endpoint was blocked because HTTPS is required outside local development. No request was sent.',
         'connection_failed' => 'The request could not reach the service.',
         'lock_timeout' => 'Timed out waiting for the shared cache lock.',
         'http_failed' => 'The endpoint returned an unsuccessful HTTP response.',

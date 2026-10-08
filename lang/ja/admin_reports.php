@@ -23,6 +23,7 @@ return [
         'error_count' => 'GraphQLエラー数',
     ],
     'reasons' => [
+        'https_required' => 'ローカル開発環境以外ではHTTPSが必須のため、連携先のエンドポイントをブロックしました。リクエストは送信されていません。',
         'connection_failed' => 'リクエストがサービスに到達できませんでした。',
         'lock_timeout' => '共有キャッシュのロック待機がタイムアウトしました。',
         'http_failed' => 'エンドポイントが失敗を示すHTTP応答を返しました。',

@@ -23,6 +23,7 @@ return [
         'error_count' => 'Nombre d’erreurs GraphQL',
     ],
     'reasons' => [
+        'https_required' => 'Le point d’accès de l’intégration a été bloqué, car HTTPS est obligatoire en dehors du développement local. Aucune requête n’a été envoyée.',
         'connection_failed' => 'La requête n’a pas pu atteindre le service.',
         'lock_timeout' => 'Délai d’attente du verrou de cache partagé dépassé.',
         'http_failed' => 'Le point d’accès a renvoyé une réponse HTTP en échec.',

@@ -23,6 +23,7 @@ return [
         'error_count' => 'Anzahl der GraphQL-Fehler',
     ],
     'reasons' => [
+        'https_required' => 'Der Integrationsendpunkt wurde blockiert, da außerhalb der lokalen Entwicklung HTTPS erforderlich ist. Es wurde keine Anfrage gesendet.',
         'connection_failed' => 'Die Anfrage konnte den Dienst nicht erreichen.',
         'lock_timeout' => 'Zeitüberschreitung beim Warten auf die gemeinsame Cache-Sperre.',
         'http_failed' => 'Der Endpunkt hat eine nicht erfolgreiche HTTP-Antwort zurückgegeben.',

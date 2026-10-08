@@ -2,6 +2,7 @@
 
 namespace App\Support\Notifications;
 
+use App\Exceptions\InsecureIntegrationEndpointException;
 use Illuminate\Contracts\Cache\LockTimeoutException;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\Client\RequestException;
@@ -39,6 +40,7 @@ final class AdminReportDiagnostics
         }
 
         $reason = match (true) {
+            $exception instanceof InsecureIntegrationEndpointException => 'https_required',
             $exception instanceof ConnectionException => 'connection_failed',
             $exception instanceof LockTimeoutException => 'lock_timeout',
             $exception instanceof RequestException => 'http_failed',

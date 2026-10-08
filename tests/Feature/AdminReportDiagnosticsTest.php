@@ -113,6 +113,24 @@ it('keeps healthy bot checks quiet', function () {
     Queue::assertNothingPushed();
 });
 
+it('explains blocked HTTPS checks in health history and admin alerts without exposing the endpoint', function (string $locale) {
+    config()->set('app.locale', $locale);
+    $this->app['env'] = 'production';
+    $client = IntegrationClient::factory()->create(['healthcheck_url' => 'http://user:PRIVATE@bot.test/health?token=PRIVATE']);
+
+    app(IntegrationHealthcheckService::class)->check($client);
+
+    $reason = __('admin_reports.reasons.https_required', [], $locale);
+    expect($client->fresh()->last_healthcheck_error)->toBe($reason)->toContain('HTTPS');
+    expect($client->healthChecks()->sole()->error)->toBe($reason);
+    Queue::assertPushed(SendDiscordAdminReportJob::class, function ($job) use ($reason) {
+        expect($job->message)->toContain($reason)->not->toContain('PRIVATE', 'user:', '?token=', 'admin_reports.');
+
+        return $job->severity === 'error';
+    });
+    Http::assertNothingSent();
+})->with(['en', 'de', 'fr', 'ja']);
+
 it('includes failed webhook status and delivery reference without temporary participant data', function () {
     $client = IntegrationClient::factory()->create();
     Http::fake([$client->outbound_events_url => Http::response(['error' => 'PRIVATE discord-user-123'], 503)]);

@@ -2286,6 +2286,40 @@ it('rejects filled roster and bench swaps while allowing empty-target moves with
         ->and($assignedCharacterIds)->toHaveCount(count(array_unique($assignedCharacterIds)));
 });
 
+it('assigns a concrete holster for any applications while rejecting unavailable or foreign loadouts', function () {
+    extract(createRosterAssignmentSetup());
+    $prepop = BozjaHolster::create(['group_id' => $group->id, 'name' => ['en' => 'Any tank']]);
+    $refill = BozjaHolster::create(['group_id' => $group->id, 'name' => ['en' => 'Tank refill'], 'type' => 'refill', 'parent_holster_id' => $prepop->id]);
+    $foreign = BozjaHolster::create(['group_id' => Group::factory()->create()->id]);
+    $inactive = BozjaHolster::create(['group_id' => $group->id, 'is_active' => false]);
+    $version = ActivityTypeVersion::findOrFail($activity->activity_type_version_id);
+    $version->update([
+        'slot_schema' => [...$version->slot_schema, ['key' => 'holster_loadouts', 'label' => ['en' => 'Holster'], 'type' => 'holster_pair', 'source' => 'bozja_holsters']],
+        'application_schema' => [...$version->application_schema, ['key' => 'holster_loadouts', 'label' => ['en' => 'Holsters'], 'type' => 'holster_pair_list', 'source' => 'bozja_holsters']],
+    ]);
+    $mainSlot->fieldValues()->create(['field_key' => 'holster_loadouts', 'field_label' => ['en' => 'Holster'], 'field_type' => 'holster_pair', 'source' => 'bozja_holsters']);
+    extract(createApplicantForAssignment($activity, $tankClass, $phantomKnight));
+    $application->answers()->updateOrCreate(['question_key' => 'holster_loadouts'], [
+        'question_label' => ['en' => 'Holsters'],
+        'question_type' => 'holster_pair_list', 'source' => 'bozja_holsters', 'value' => ['any'],
+    ]);
+    $url = route('groups.dashboard.activities.slot-assignments.store', ['group' => $group->slug, 'activity' => $activity->id, 'slot' => $mainSlot->id]);
+    $payload = fn ($prepopId, $refillId = null) => [
+        'application_id' => $application->id,
+        'expected_slot_state_token' => activity_slot_state_token($mainSlot->fresh(['fieldValues', 'assignments'])),
+        'field_values' => ['character_class' => (string) $tankClass->id, 'phantom_job' => (string) $phantomKnight->id,
+            'holster_loadouts' => ['prepop_id' => $prepopId, 'refill_id' => $refillId]],
+    ];
+    $this->actingAs($owner);
+    foreach ([$foreign->id, $inactive->id, 'any'] as $invalid) {
+        $this->postJson($url, $payload($invalid))->assertUnprocessable()->assertJsonValidationErrors('field_values.holster_loadouts');
+    }
+    $this->postJson($url, $payload($prepop->id))->assertUnprocessable()->assertJsonValidationErrors('field_values.holster_loadouts');
+    $this->postJson($url, $payload($prepop->id, $refill->id))->assertOk()
+        ->assertJsonPath('slot.application_matches.2.matches', true)
+        ->assertJsonFragment(['prepop_label' => 'Any tank', 'refill_label' => 'Tank refill']);
+});
+
 it('assigns one of the exact holster pairs submitted with an application', function () {
     extract(createRosterAssignmentSetup());
 

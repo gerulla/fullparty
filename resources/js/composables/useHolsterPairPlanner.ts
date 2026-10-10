@@ -1,16 +1,19 @@
 import { computed, ref } from 'vue'
-import type { HolsterPairOption, HolsterPairValue } from '@/Types/ActivityHolsters'
-import { filterHolsterPlannerGroups, holsterPairKey, holsterPlannerGroups, normalizeHolsterPairs } from '@/utils/holsterPlanner'
+import type { HolsterPairOption, HolsterPairSelection, HolsterPairValue } from '@/Types/ActivityHolsters'
+import { filterHolsterPlannerGroups, holsterPairKey, holsterPlannerGroups, isAnyHolsterSelection, normalizeHolsterPairs } from '@/utils/holsterPlanner'
 
 export function useHolsterPairPlanner(
-    props: { modelValue: unknown; options: HolsterPairOption[]; multiple?: boolean; disabled?: boolean; allowedPairs?: HolsterPairValue[] },
+    props: { modelValue: unknown; options: HolsterPairOption[]; multiple?: boolean; disabled?: boolean; allowedPairs?: HolsterPairValue[]; allowAny?: boolean },
     locale: () => string,
     fallback: () => string,
-    update: (value: HolsterPairValue | HolsterPairValue[]) => void,
+    update: (value: HolsterPairSelection) => void,
 ) {
     const open = ref(false)
     const query = ref('')
     const draft = ref<HolsterPairValue[]>([])
+    const canSelectAny = computed(() => Boolean(props.allowAny && props.multiple && props.allowedPairs === undefined))
+    const selectedAny = computed(() => canSelectAny.value && isAnyHolsterSelection(props.modelValue))
+    const draftAny = ref(false)
     const groups = computed(() => holsterPlannerGroups(props.options, locale(), fallback(), props.allowedPairs))
     const filteredGroups = computed(() => filterHolsterPlannerGroups(groups.value, query.value))
     const selected = computed(() => normalizeHolsterPairs(props.modelValue, Boolean(props.multiple)))
@@ -27,22 +30,33 @@ export function useHolsterPairPlanner(
     function show() {
         if (props.disabled) return
         query.value = ''
+        draftAny.value = selectedAny.value
         draft.value = selected.value.filter(pair => validKeys.value.has(holsterPairKey(pair))).map(pair => ({ ...pair }))
         open.value = true
     }
     function toggle(pair: HolsterPairValue) {
         if (props.disabled || !validKeys.value.has(holsterPairKey(pair))) return
+        draftAny.value = false
         const present = validDraft.value.some(value => holsterPairKey(value) === holsterPairKey(pair))
         draft.value = present ? validDraft.value.filter(value => holsterPairKey(value) !== holsterPairKey(pair))
             : props.multiple ? [...validDraft.value, pair] : [pair]
     }
     function confirm() {
         if (props.disabled) return
-        emitPairs(validDraft.value.map(pair => ({ ...pair })))
+        if (canSelectAny.value && draftAny.value) update(['any'])
+        else emitPairs(validDraft.value.map(pair => ({ ...pair })))
         open.value = false
     }
     function remove(pair: HolsterPairValue) {
         if (!props.disabled) emitPairs(selected.value.filter(value => holsterPairKey(value) !== holsterPairKey(pair)))
     }
-    return { open, query, groups, filteredGroups, validDraft, selectedLoadouts, show, toggle, confirm, remove }
+    function toggleAny() {
+        if (props.disabled || !canSelectAny.value) return
+        draftAny.value = !draftAny.value
+        if (draftAny.value) draft.value = []
+    }
+    function removeAny() {
+        if (!props.disabled && canSelectAny.value) update([])
+    }
+    return { open, query, groups, filteredGroups, validDraft, selectedLoadouts, canSelectAny, selectedAny, draftAny, show, toggle, toggleAny, confirm, remove, removeAny }
 }

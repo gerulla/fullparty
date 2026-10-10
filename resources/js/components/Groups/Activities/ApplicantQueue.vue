@@ -6,7 +6,7 @@ import { usePage } from "@inertiajs/vue3";
 import { useToast } from "@nuxt/ui/composables";
 import { localizedValue } from "@/utils/localizedValue";
 import { isArchivedActivityStatus } from "@/utils/activityLifecycle";
-import { matchesQueuePartyLeadFilter, matchesQueueRoleFilter } from "@/utils/applicantQueueFilters";
+import { matchesQueueBooleanFilters, matchesQueueRoleFilter } from "@/utils/applicantQueueFilters";
 import { route } from "ziggy-js";
 import ApplicantQueueItem from "@/components/Groups/Activities/ApplicantQueueItem.vue";
 import ApplicantQueueDetailsModal from "@/components/Groups/Activities/ApplicantQueueDetailsModal.vue";
@@ -44,7 +44,7 @@ const applications = ref<QueueApplication[]>([]);
 const queueFilters = ref<QueueFilters>({
 	slot_fields: [],
 	milestones: [],
-	party_lead_question_key: null,
+	boolean_questions: [],
 });
 const searchTerm = ref('');
 const sortMode = ref<'oldest' | 'newest' | 'most_group_runs' | 'least_group_runs'>('oldest');
@@ -52,7 +52,7 @@ const areFiltersOpen = ref(false);
 const milestoneFilter = ref<string[]>([]);
 const slotFieldFilters = ref<Record<string, string[]>>({});
 const roleFilter = ref<string[]>([]);
-const partyLeadsOnly = ref(false);
+const booleanFilters = ref<Record<string, boolean>>({});
 const minimumKnowledgeLevel = ref('');
 const minimumPhantomMastery = ref('');
 const isQueueDropActive = ref(false);
@@ -139,7 +139,13 @@ const slotFieldFilterItems = computed(() => queueFilters.value.slot_fields
 	})));
 
 const hasClassFilter = computed(() => queueFilters.value.slot_fields.some((field) => field.source === 'character_classes'));
-const partyLeadQuestionKey = computed(() => queueFilters.value.party_lead_question_key ?? null);
+const booleanFilterItems = computed(() => (queueFilters.value.boolean_questions ?? []).map((question) => ({
+	...question,
+	labelText: localizedText(question.label, question.key),
+})));
+const activeBooleanQuestionKeys = computed(() => booleanFilterItems.value
+	.filter((question) => booleanFilters.value[question.key] === true)
+	.map((question) => question.key));
 const roleFilterItems = computed(() => [
 	{ value: 'tank', icon: 'i-lucide-shield', label: t('groups.activities.application.class_picker.categories.tank') },
 	{ value: 'healer', icon: 'i-lucide-heart-pulse', label: t('groups.activities.application.class_picker.categories.healer') },
@@ -193,7 +199,7 @@ const activeFilterCount = computed(() => {
 
 	return slotFieldCount + scalarCount + (milestoneFilter.value.length > 0 ? 1 : 0)
 		+ (hasClassFilter.value && roleFilter.value.length > 0 ? 1 : 0)
-		+ (partyLeadQuestionKey.value && partyLeadsOnly.value ? 1 : 0);
+		+ activeBooleanQuestionKeys.value.length;
 });
 
 const normalizeAnswerValues = (rawValue: unknown): string[] => {
@@ -221,25 +227,28 @@ const submittedAtTimestamp = (application: QueueApplication): number => {
 };
 
 const groupRunCount = (application: QueueApplication): number => application.user_stats?.group_run_count ?? 0;
+const compareSubmissionOrder = (left: QueueApplication, right: QueueApplication): number => (
+	submittedAtTimestamp(left) - submittedAtTimestamp(right) || left.id - right.id
+);
 
 const sortApplications = (items: QueueApplication[]): QueueApplication[] => [...items].sort((left, right) => {
 	if (sortMode.value === 'newest') {
-		return submittedAtTimestamp(right) - submittedAtTimestamp(left);
+		return compareSubmissionOrder(right, left);
 	}
 
 	if (sortMode.value === 'most_group_runs') {
 		const groupRunDiff = groupRunCount(right) - groupRunCount(left);
 
-		return groupRunDiff !== 0 ? groupRunDiff : submittedAtTimestamp(left) - submittedAtTimestamp(right);
+		return groupRunDiff !== 0 ? groupRunDiff : compareSubmissionOrder(left, right);
 	}
 
 	if (sortMode.value === 'least_group_runs') {
 		const groupRunDiff = groupRunCount(left) - groupRunCount(right);
 
-		return groupRunDiff !== 0 ? groupRunDiff : submittedAtTimestamp(left) - submittedAtTimestamp(right);
+		return groupRunDiff !== 0 ? groupRunDiff : compareSubmissionOrder(left, right);
 	}
 
-	return submittedAtTimestamp(left) - submittedAtTimestamp(right);
+	return compareSubmissionOrder(left, right);
 });
 
 const updateSlotFieldFilter = (fieldKey: string, value: string[] | undefined) => {
@@ -252,7 +261,7 @@ const updateSlotFieldFilter = (fieldKey: string, value: string[] | undefined) =>
 const clearFilters = () => {
 	slotFieldFilters.value = {};
 	roleFilter.value = [];
-	partyLeadsOnly.value = false;
+	booleanFilters.value = {};
 	milestoneFilter.value = [];
 	minimumKnowledgeLevel.value = '';
 	minimumPhantomMastery.value = '';
@@ -312,7 +321,7 @@ const fetchQueuePayload = async (options: { announceNewApplications?: boolean } 
 		queueFilters.value = response.data?.queue_filters ?? {
 			slot_fields: [],
 			milestones: [],
-			party_lead_question_key: null,
+			boolean_questions: [],
 		};
 
 		if (options.announceNewApplications && previousApplicationIds.size > 0) {
@@ -335,7 +344,7 @@ const fetchQueuePayload = async (options: { announceNewApplications?: boolean } 
 		queueFilters.value = {
 			slot_fields: [],
 			milestones: [],
-			party_lead_question_key: null,
+			boolean_questions: [],
 		};
 	} finally {
 		isLoading.value = false;
@@ -639,7 +648,7 @@ const visibleApplications = computed(() => {
 
 	const filteredApplications = searchedApplications.filter((application) => {
 		if (!matchesQueueRoleFilter(application.answers, queueFilters.value.slot_fields, roleFilter.value)
-			|| !matchesQueuePartyLeadFilter(application.answers, partyLeadQuestionKey.value, partyLeadsOnly.value)) {
+			|| !matchesQueueBooleanFilters(application.answers, activeBooleanQuestionKeys.value)) {
 			return false;
 		}
 
@@ -799,7 +808,7 @@ const visibleApplications = computed(() => {
 				</div>
 			</div>
 
-			<div v-if="areFiltersOpen" class="mt-4 space-y-4 border-t border-default pt-4">
+			<div v-if="areFiltersOpen" class="mt-4 max-h-[min(45dvh,28rem)] space-y-4 overflow-y-auto border-t border-default pr-1 pt-4">
 				<UFormField
 					v-if="hasClassFilter"
 					:label="t('groups.activities.management.queue.role_filter')"
@@ -815,12 +824,6 @@ const visibleApplications = computed(() => {
 						:placeholder="t('groups.activities.management.queue.filter_any')"
 					/>
 				</UFormField>
-
-				<USwitch
-					v-if="partyLeadQuestionKey"
-					v-model="partyLeadsOnly"
-					:label="t('groups.activities.management.queue.party_leads_only')"
-				/>
 
 				<div
 					v-if="slotFieldFilterItems.length > 0"
@@ -881,6 +884,16 @@ const visibleApplications = computed(() => {
 							:placeholder="t('groups.activities.management.queue.minimum_value_placeholder')"
 						/>
 					</UFormField>
+				</div>
+
+				<div v-if="booleanFilterItems.length" class="space-y-3">
+					<USwitch
+						v-for="question in booleanFilterItems"
+						:key="question.key"
+						:model-value="booleanFilters[question.key] === true"
+						:label="question.labelText"
+						@update:model-value="booleanFilters[question.key] = $event"
+					/>
 				</div>
 
 				<div class="flex items-center justify-end">

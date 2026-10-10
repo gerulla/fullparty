@@ -10141,7 +10141,7 @@
           "Webhooks"
         ],
         "security": [],
-        "description": "Sent to the integration's configured webhook URL. Validate the signature and deduplicate the delivery ID.",
+        "description": "Sent to the integration's configured webhook URL. Validate the signature and deduplicate the delivery ID. Application notifications include nullable group_profile_image_url and activity_banner_image_url in data.notification.payload. These are ready-to-use FullParty image URLs: the group profile fits within 256x256; the activity banner uses the run's published activity-type version and is filled/cropped to 1200x400 (3:1), centered. Use them as the Discord embed thumbnail and image; the bot does not need to resize them. Application payloads also include character_image_url: the applied character's existing avatar URL, falling back to the application's saved avatar, or null. This character image is passed through directly and requires no bot-side processing.\n\n### Roster designations\nThe same webhook delivers assignments.designation_assigned and assignments.designation_removed in both data.type and data.notification.type, with category assignments. Read data.notification.payload.designation_key (host, raid_leader, duelist, trapper, or darter), designation_label (English display label), and designation_assigned (boolean). DRS supports duelist and trapper; BA supports trapper and darter; host and raid_leader are shared. There are no separate per-role webhook event names or additional integration capabilities.\n\nThe recipient is data.discord_user.id. data.notification.params contains activity, group, character, slot, slot_group, and designation; payload contains activity_id (the run ID), group_id, group_slug, character_id, character_name, slot_id, slot_key, slot_label, slot_group, and roster details. data.notification.action_url links to the run overview. Use the stable designation_key for logic and designation_label for display. Added and removed designations on published rosters trigger notifications; active designations selected before publication are delivered when the roster is published. Delivery respects the recipient's assignments.designations Discord preference and requires a linked Discord account and an enabled notification-delivery integration.\n\n### V2 presentation fields\nApplication, assignment, and run notifications include run_title, group_name, group_icon_url, banner_image_url, run_url, discord_url, and starts_at under data.notification.payload. The title follows the website display name, including custom run titles. Images reuse cached FullParty transformations (group icon within 256x256, published-version banner center-cropped to 1200x400); unavailable images are null. Existing activity_title, group_profile_image_url, activity_banner_image_url, and character_image_url fields remain compatible where previously present.\n\nApplication and assignment payloads also include character_world and character_avatar_url for the selected/assigned character, with saved application details as a fallback. Application payloads include application_url, applicant_name (the applicant, never the notification recipient), and applicant_profile_url. Applicant-facing links open account applications; host-facing links open run management. applicant_profile_url is currently null because user profiles have no standalone route, and applicant_name is null for guests. New buttons do not change destination authorization.\n\nRoster fields retain their existing structure; class and Phantom job images are available at roster.fields[].meta.icon_url as absolute HTTP(S) URLs when known. Phantom job icon_url values always use the transparent variant, including roster.selected_phantom_job.icon_url. transparent_icon_url is also absolute; if unavailable, no opaque fallback is supplied. Party Finder payloads additionally include datacenter and region for the listing world. party_finder.character_world is the home world of an unambiguous verified character owned by the publisher with the supplied name, or null when unknown/ambiguous; it is not assumed to equal the listing world.\n\nDelivery compatibility: applications.new_for_review remains an aggregated in-app notification and is not sent to Discord. The actual withdrawal notification types are applications.withdrawn_for_review (host) and applications.withdrawal_confirmed (applicant), not applications.withdrawn. Existing notification preferences and transport behavior are unchanged.\n\n### Fill-in assignments\nFill-ins use assignments.assigned when added to a published roster and assignments.roster_published_assigned at publication, for both applicants and manually assigned members. data.notification.params.slot, payload.slot_label, and payload.roster.slot_label include the covered party, for example Fill in 1 (Party B). payload.roster.is_fill_in is true, and filled_group_key / filled_group_label identify the covered party separately. roster.group_key / group_label still identify the Fill-ins section. Reassigning the covered party through the assignment editor sends an updated assignment notification; an identical re-save does not. Older fill-ins without a selected party retain their original slot label and have null covered-party values.",
         "parameters": [
           {
             "name": "X-FullParty-Event",
@@ -10249,7 +10249,248 @@
                               "object",
                               "null"
                             ],
-                            "additionalProperties": true
+                            "additionalProperties": true,
+                            "properties": {
+                              "group_profile_image_url": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ],
+                                "format": "uri",
+                                "description": "For application notifications: group profile image fitted within 256x256, or null when missing/unsupported."
+                              },
+                              "activity_banner_image_url": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ],
+                                "format": "uri",
+                                "description": "For application notifications: published activity-type banner, center-cropped and filled to exactly 1200x400, or null when missing/unsupported."
+                              },
+                              "character_image_url": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ],
+                                "format": "uri",
+                                "description": "For application notifications: the character selected for this application's avatar URL, falling back to the application's saved avatar; null when neither is available."
+                              },
+                              "designation_key": {
+                                "type": "string",
+                                "enum": [
+                                  "host",
+                                  "raid_leader",
+                                  "duelist",
+                                  "trapper",
+                                  "darter"
+                                ],
+                                "description": "For assignments.designation_assigned and assignments.designation_removed: stable designation identifier. DRS supports duelist/trapper; BA supports trapper/darter; host/raid_leader apply to all activities."
+                              },
+                              "designation_label": {
+                                "type": "string",
+                                "examples": [
+                                  "Duelist",
+                                  "Trapper",
+                                  "Darter"
+                                ],
+                                "description": "English designation display label. Use designation_key for bot-side logic."
+                              },
+                              "designation_assigned": {
+                                "type": "boolean",
+                                "description": "True for assignments.designation_assigned; false for assignments.designation_removed."
+                              },
+                              "run_title": {
+                                "type": "string",
+                                "description": "Website display title, including the custom run title when configured."
+                              },
+                              "group_name": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ],
+                                "description": "Hosting group display name."
+                              },
+                              "group_icon_url": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ],
+                                "description": "Group profile image fitted within 256x256; null if missing or unsupported.",
+                                "format": "uri"
+                              },
+                              "banner_image_url": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ],
+                                "description": "Published activity-type version banner, center-cropped to 1200x400 (3:1); null if missing or unsupported.",
+                                "format": "uri"
+                              },
+                              "run_url": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ],
+                                "description": "Canonical run overview URL, independent of the application/management action URL.",
+                                "format": "uri"
+                              },
+                              "discord_url": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ],
+                                "description": "Hosting group Discord invite URL, or null if not configured.",
+                                "format": "uri"
+                              },
+                              "starts_at": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ],
+                                "description": "Scheduled start including time-zone offset.",
+                                "format": "date-time"
+                              },
+                              "application_url": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ],
+                                "description": "For applications: account applications URL for the applicant, or run management URL for the host.",
+                                "format": "uri"
+                              },
+                              "character_world": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ],
+                                "description": "For applications/assignments: selected or assigned character home world, falling back to the application snapshot."
+                              },
+                              "character_avatar_url": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ],
+                                "description": "For applications/assignments: selected or assigned character avatar, falling back to the saved application avatar. No external fetch is performed.",
+                                "format": "uri"
+                              },
+                              "applicant_name": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ],
+                                "description": "For applications: FullParty name of the applicant, not the notification recipient; null for guests."
+                              },
+                              "applicant_profile_url": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ],
+                                "description": "Currently null: FullParty user profiles are modal views without a standalone profile route.",
+                                "format": "uri"
+                              },
+                              "roster": {
+                                "type": "object",
+                                "additionalProperties": true,
+                                "properties": {
+                                  "fields": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "additionalProperties": true,
+                                      "properties": {
+                                        "meta": {
+                                          "type": [
+                                            "object",
+                                            "null"
+                                          ],
+                                          "additionalProperties": true,
+                                          "properties": {
+                                            "icon_url": {
+                                              "type": [
+                                                "string",
+                                                "null"
+                                              ],
+                                              "description": "Absolute image URL for this roster field. Phantom jobs use the transparent variant; null when that variant is unavailable.",
+                                              "format": "uri"
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "is_fill_in": {
+                                    "type": "boolean",
+                                    "description": "Present and true for fill-in slots. Other roster slots omit this field."
+                                  },
+                                  "filled_group_key": {
+                                    "type": [
+                                      "string",
+                                      "null"
+                                    ],
+                                    "description": "For fill-ins: stable key of the party being covered, such as party-b; null for an older fill-in without a selected party."
+                                  },
+                                  "filled_group_label": {
+                                    "type": [
+                                      "string",
+                                      "null"
+                                    ],
+                                    "description": "For fill-ins: English display label of the party being covered, falling back to its key."
+                                  },
+                                  "slot_label": {
+                                    "type": "string",
+                                    "description": "Display label of the assignment. Fill-ins include the covered party, for example Fill in 1 (Party B)."
+                                  }
+                                }
+                              },
+                              "party_finder": {
+                                "type": "object",
+                                "additionalProperties": true,
+                                "properties": {
+                                  "character_name": {
+                                    "type": "string"
+                                  },
+                                  "world": {
+                                    "type": "string"
+                                  },
+                                  "datacenter": {
+                                    "type": [
+                                      "string",
+                                      "null"
+                                    ],
+                                    "description": "Logical data center of the PF listing world; null for an unknown world."
+                                  },
+                                  "region": {
+                                    "type": [
+                                      "string",
+                                      "null"
+                                    ],
+                                    "description": "Region of the PF listing data center (NA, EU, JP, OCE); null if unknown."
+                                  },
+                                  "character_world": {
+                                    "type": [
+                                      "string",
+                                      "null"
+                                    ],
+                                    "description": "Verified PF host home world when the publisher owns exactly one matching character, otherwise null. Can differ from world."
+                                  },
+                                  "password": {
+                                    "type": [
+                                      "string",
+                                      "null"
+                                    ],
+                                    "description": "Existing Party Finder password, sent only to eligible placed participants."
+                                  },
+                                  "published_at": {
+                                    "type": [
+                                      "string",
+                                      "null"
+                                    ],
+                                    "description": "When the Party Finder details were published.",
+                                    "format": "date-time"
+                                  }
+                                }
+                              }
+                            }
                           }
                         }
                       }
@@ -10294,7 +10535,7 @@
           "Webhooks"
         ],
         "security": [],
-        "description": "Sent to the integration's configured webhook URL. Validate the signature and deduplicate the delivery ID.",
+        "description": "Sent to the integration's configured webhook URL. Validate the signature and deduplicate the delivery ID.\n\nIncludes data.run_url: an absolute website run-overview URL for View Run buttons. The existing nested run.url remains available.",
         "parameters": [
           {
             "name": "X-FullParty-Event",
@@ -10425,6 +10666,11 @@
                       },
                       "discord_guild": {
                         "$ref": "#/components/schemas/DiscordGuild"
+                      },
+                      "run_url": {
+                        "type": "string",
+                        "format": "uri",
+                        "description": "Absolute canonical website URL for this run. Use for View Run buttons."
                       }
                     },
                     "required": [
@@ -10471,7 +10717,7 @@
           "Webhooks"
         ],
         "security": [],
-        "description": "Sent to the integration's configured webhook URL. Validate the signature and deduplicate the delivery ID.",
+        "description": "Sent to the integration's configured webhook URL. Validate the signature and deduplicate the delivery ID.\n\nIncludes data.run_url: an absolute website run-overview URL for View Run buttons. The existing nested run.url remains available.",
         "parameters": [
           {
             "name": "X-FullParty-Event",
@@ -10602,6 +10848,11 @@
                       },
                       "discord_guild": {
                         "$ref": "#/components/schemas/DiscordGuild"
+                      },
+                      "run_url": {
+                        "type": "string",
+                        "format": "uri",
+                        "description": "Absolute canonical website URL for this run. Use for View Run buttons."
                       }
                     },
                     "required": [
@@ -10648,7 +10899,7 @@
           "Webhooks"
         ],
         "security": [],
-        "description": "Sent to the integration's configured webhook URL. Validate the signature and deduplicate the delivery ID.",
+        "description": "Sent to the integration's configured webhook URL. Validate the signature and deduplicate the delivery ID.\n\nIncludes data.run_url: an absolute website run-overview URL for View Run buttons. The existing nested run.url remains available.",
         "parameters": [
           {
             "name": "X-FullParty-Event",
@@ -10779,6 +11030,11 @@
                       },
                       "discord_guild": {
                         "$ref": "#/components/schemas/DiscordGuild"
+                      },
+                      "run_url": {
+                        "type": "string",
+                        "format": "uri",
+                        "description": "Absolute canonical website URL for this run. Use for View Run buttons."
                       }
                     },
                     "required": [

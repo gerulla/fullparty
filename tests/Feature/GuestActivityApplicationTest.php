@@ -586,6 +586,39 @@ it('only offers active holsters belonging to the activity group', function () {
         );
 });
 
+it('stores any holster for members and guests and advertises it in the application schema', function (bool $guest) {
+    $activity = createGuestApplicationActivity();
+    $activity->activityTypeVersion->update(['application_schema' => [[
+        'key' => 'holster_loadouts', 'label' => ['en' => 'Holster Loadouts'],
+        'type' => 'holster_pair_list', 'source' => 'bozja_holsters', 'required' => true,
+    ]]]);
+    $payload = ['answers' => ['holster_loadouts' => ['any']]];
+    if ($guest) {
+        $payload['guest_applicant'] = [
+            'lodestone_id' => '47431834', 'name' => 'Warrior Light', 'world' => 'Twintania',
+            'datacenter' => 'Light', 'avatar_url' => 'https://example.com/avatar.png',
+        ];
+    } else {
+        $user = User::factory()->create();
+        $character = Character::factory()->primary()->create(['user_id' => $user->id]);
+        $this->actingAs($user);
+        $payload['selected_character_id'] = $character->id;
+        $payload['remember_application_defaults'] = true;
+    }
+
+    $this->get(route('groups.activities.application', ['group' => $activity->group->slug, 'activity' => $activity->id]))
+        ->assertOk()->assertInertia(fn (Assert $page) => $page
+        ->where('applicationSchema.0.accepts_any', true)
+        ->where('applicationSchema.0.options.0.key', 'any'));
+    $this->post(route('groups.activities.application.store', ['group' => $activity->group->slug, 'activity' => $activity->id]), $payload)
+        ->assertRedirect()->assertSessionHasNoErrors();
+
+    expect(ActivityApplicationAnswer::query()->sole()->value)->toBe(['any']);
+    if (! $guest) {
+        expect(UserActivityApplicationDefault::query()->sole()->answers['holster_loadouts'])->toBe(['any']);
+    }
+})->with([false, true]);
+
 it('stores valid prepop and refill pairs in application answers', function () {
     $activity = createGuestApplicationActivity([
         'allow_guest_applications' => false,

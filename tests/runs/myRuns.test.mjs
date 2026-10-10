@@ -1,11 +1,58 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { filterMyRuns as filterRuns, groupMyRunsByDay } from '../../resources/js/utils/myRuns.ts';
+import { availableActivityTypes } from '../../resources/js/utils/activityTypes.ts';
 
 const filterMyRuns = (items, state, commitments, timeZone = 'UTC') => filterRuns(items, state, commitments, '2026-09-09', timeZone);
 
-const filters = (patch = {}) => ({ date: '2026-09-09', search: '', groupIds: [1, 2], appliedOnly: false, hideOverlapping: false, ...patch });
+const filters = (patch = {}) => ({ date: '2026-09-09', search: '', activityTypeId: null, groupIds: [1, 2], appliedOnly: false, hideOverlapping: false, ...patch });
 const run = (id, starts_at, patch = {}) => ({ id, starts_at, duration_hours: 2, group: { id: 1 }, has_existing_application: false, ...patch });
+
+test('lists only activity types represented in eligible runs, once across groups and versions', () => {
+    const ba = { id: 10, slug: 'ba', draft_name: { en: 'The Baldesion Arsenal', ja: 'バルデシオンアーセナル' } };
+    const drs = { id: 20, slug: 'drs', draft_name: { en: 'Delubrum Reginae (Savage)' } };
+    const items = [
+        run(1, '2026-09-09T18:00:00Z', { activity_type: ba, activity_type_version_id: 1 }),
+        run(2, '2026-09-10T18:00:00Z', { activity_type: ba, activity_type_version_id: 2, group: { id: 2 } }),
+        run(3, '2026-09-10T18:00:00Z', { activity_type: drs }),
+        run(4, '2026-09-08T18:00:00Z', { activity_type: { id: 30 } }),
+        run(5, null, { activity_type: { id: 40 } }),
+        run(6, 'invalid', { activity_type: { id: 50 } }),
+        run(7, '2026-09-10T18:00:00Z', { activity_type: { id: 60 }, group: { id: 99 } }),
+        run(8, '2026-09-10T18:00:00Z', { activity_type: { id: null } }),
+        run(9, '2026-09-10T18:00:00Z'),
+    ];
+    assert.deepEqual(availableActivityTypes(filterMyRuns(items, filters(), [])), [ba, drs]);
+    assert.deepEqual(availableActivityTypes([]), []);
+});
+
+test('filters by stable activity type ID and restores every type when cleared', () => {
+    const items = [
+        run(1, '2026-09-09T18:00:00Z', { activity_type: { id: 10 }, activity_type_version_id: 1 }),
+        run(2, '2026-09-10T18:00:00Z', { activity_type: { id: 20 } }),
+        run(3, '2026-09-11T18:00:00Z', { activity_type: { id: 10 }, activity_type_version_id: 2 }),
+        run(4, '2026-09-12T18:00:00Z'),
+    ];
+    const filtered = filterMyRuns(items, filters({ activityTypeId: 10 }), []);
+    assert.deepEqual(filtered.map(item => item.id), [1, 3]);
+    assert.deepEqual(groupMyRunsByDay(filtered, 'UTC').map(day => day.date), ['2026-09-09', '2026-09-11']);
+    assert.deepEqual(filterMyRuns(items, filters({ activityTypeId: null }), []).map(item => item.id), [1, 2, 3, 4]);
+    assert.deepEqual(filterMyRuns(items, filters({ activityTypeId: 99 }), []), []);
+});
+
+test('activity type filtering composes with existing filters and keeps conflicts from other types', () => {
+    const items = [
+        run(1, '2026-09-09T18:00:00Z', { title: 'Reclear', activity_type: { id: 10 } }),
+        run(2, '2026-09-10T18:00:00Z', { title: 'Reclear', activity_type: { id: 10 }, has_existing_application: true }),
+        run(3, '2026-09-11T18:00:00Z', { title: 'Reclear', activity_type: { id: 20 }, has_existing_application: true }),
+        run(4, '2026-09-12T18:00:00Z', { title: 'Prog', activity_type: { id: 10 }, has_existing_application: true }),
+        run(5, '2026-09-13T18:00:00Z', { title: 'Reclear', activity_type: { id: 10 }, group: { id: 2 }, has_existing_application: true }),
+    ];
+    const busy = [run(9, '2026-09-09T18:00:00Z', { activity_type: { id: 20 }, group: { id: 99 } })];
+    const selected = filters({ activityTypeId: 10, groupIds: [1], search: 'reclear', hideOverlapping: true });
+    assert.deepEqual(filterMyRuns(items, selected, busy).map(item => item.id), [2]);
+    assert.deepEqual(filterMyRuns(items, { ...selected, hideOverlapping: false, appliedOnly: true }, []).map(item => item.id), [2]);
+});
 
 test('searches group names, titles and localized activity names without case sensitivity', () => {
     const items = [

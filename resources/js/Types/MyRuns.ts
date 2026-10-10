@@ -5,6 +5,7 @@ export type MyRunsGroup = Pick<NonNullable<ActivityIndexItem["group"]>, "id" | "
 export type MyRunsToolState = {
 	date: string
 	search: string
+	activityTypeId: number | null
 	appliedOnly: boolean
 	hideOverlapping: boolean
 	groupIds: number[]

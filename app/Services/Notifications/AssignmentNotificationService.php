@@ -20,6 +20,7 @@ class AssignmentNotificationService
 
     public function __construct(
         private readonly NotificationService $notificationService,
+        private readonly ActivityNotificationPayloadBuilder $payloadBuilder,
     ) {}
 
     public function notifyRosterPublished(Activity $activity, mixed $actor): void
@@ -93,13 +94,21 @@ class AssignmentNotificationService
                 ->with(['activity.group', 'user', 'selectedCharacter'])
                 ->find($applicationId);
 
-            if ($application && $application->activity_id === $activity->id) {
+            if (
+                $application
+                && $application->activity_id === $activity->id
+                && $application->selectedCharacter
+                && (int) $slot->assigned_character_id === (int) $application->selected_character_id
+                && in_array($application->status, [ActivityApplication::STATUS_APPROVED, ActivityApplication::STATUS_ON_BENCH], true)
+            ) {
                 $this->notifyApplicationPlacement(
                     $application,
                     $slot,
                     $actor,
                     published: true,
                 );
+
+                $this->notifySlotDesignations($activity, $application->selectedCharacter, $slot, $actor);
             }
 
             return;
@@ -275,6 +284,8 @@ class AssignmentNotificationService
             actor: $actor instanceof User ? $actor : null,
             subject: $character,
             payload: [
+                ...$this->payloadBuilder->forActivity($activity),
+                ...$this->payloadBuilder->forCharacter($character),
                 'activity_id' => $activity->id,
                 'group_id' => $activity->group?->id,
                 'group_slug' => $activity->group?->slug,
@@ -512,7 +523,11 @@ class AssignmentNotificationService
      */
     private function payload(ActivityApplication $application, ?ActivitySlot $slot): array
     {
+        $application->loadMissing('selectedCharacter');
+
         return [
+            ...$this->payloadBuilder->forActivity($application->activity),
+            ...$this->payloadBuilder->forCharacter($application->selectedCharacter, $application->applicant_world, $application->applicant_avatar_url),
             'application_id' => $application->id,
             'activity_id' => $application->activity?->id,
             'group_id' => $application->activity?->group?->id,
@@ -547,6 +562,8 @@ class AssignmentNotificationService
     private function characterPayload(Activity $activity, Character $character, ?ActivitySlot $slot): array
     {
         return [
+            ...$this->payloadBuilder->forActivity($activity),
+            ...$this->payloadBuilder->forCharacter($character),
             'application_id' => null,
             'activity_id' => $activity->id,
             'group_id' => $activity->group?->id,
@@ -617,6 +634,12 @@ class AssignmentNotificationService
             'position_in_group' => $slot->position_in_group,
         ]);
 
+        if ($slot->slot_kind === ActivitySlot::SLOT_KIND_FILL_IN) {
+            $roster['is_fill_in'] = true;
+            $roster['filled_group_key'] = $slot->filled_group_key;
+            $roster['filled_group_label'] = $this->filledGroupLabel($slot);
+        }
+
         if ($fields !== []) {
             $roster['fields'] = $fields;
         }
@@ -653,6 +676,16 @@ class AssignmentNotificationService
 
         $displayValue = $this->stringValue($this->resolveSlotFieldDisplayValue($fieldValue));
         $meta = $this->resolveSlotFieldDisplayMeta($fieldValue);
+        if ($meta === null && in_array($fieldValue->source, ['character_classes', 'phantom_jobs'], true)) {
+            $items = $this->resolveSelectionDisplayItems($fieldValue->source, $fieldValue->value);
+            $meta = count($items) === 1 ? $items[0] : null;
+        }
+        if (is_array($meta) && $fieldValue->source === 'phantom_jobs') {
+            $meta['transparent_icon_url'] = $this->payloadBuilder->publicUrl($meta['transparent_icon_url'] ?? null);
+            $meta['icon_url'] = $meta['transparent_icon_url'];
+        } elseif (is_array($meta) && array_key_exists('icon_url', $meta)) {
+            $meta['icon_url'] = $this->payloadBuilder->publicUrl($meta['icon_url']);
+        }
 
         return $this->filledValues([
             'key' => $fieldValue->field_key,
@@ -781,7 +814,19 @@ class AssignmentNotificationService
             return null;
         }
 
-        return $slot->slot_label['en'] ?? $slot->slot_key;
+        $label = $slot->slot_label['en'] ?? $slot->slot_key;
+        $filledGroupLabel = $this->filledGroupLabel($slot);
+
+        return filled($filledGroupLabel) ? $label.' ('.$filledGroupLabel.')' : $label;
+    }
+
+    private function filledGroupLabel(ActivitySlot $slot): ?string
+    {
+        if ($slot->slot_kind !== ActivitySlot::SLOT_KIND_FILL_IN) {
+            return null;
+        }
+
+        return $slot->filled_group_label['en'] ?? $slot->filled_group_key;
     }
 
     private function groupLabel(?ActivitySlot $slot): ?string

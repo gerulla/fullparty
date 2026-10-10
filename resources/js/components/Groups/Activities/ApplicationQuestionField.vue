@@ -114,6 +114,7 @@ const booleanValue = computed({
 			:model-value="modelValue"
 			:options="question.options"
 			multiple
+			:allow-any="question.accepts_any"
 			:disabled="disabled"
 			@update:model-value="emit('update:modelValue', $event)"
 		/>

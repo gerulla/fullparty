@@ -77,25 +77,33 @@ const outlookUrl = computed(() => {
 	return `https://outlook.live.com/calendar/0/deeplink/compose?${params.toString()}`
 })
 
-const openExternal = (url: string) => {
-	window.open(url, "_blank", "noopener,noreferrer")
+const handleTriggerClick = (event: MouseEvent) => {
+	// Plain clicks open the dropdown; modified clicks retain native link behavior.
+	if (event.button === 0 && !event.ctrlKey && !event.metaKey && !event.shiftKey && !event.altKey) {
+		event.preventDefault()
+	}
 }
 
 const items = computed(() => [[
 	{
 		label: t("calendar.google"),
 		icon: "logos:google-calendar",
-		onSelect: () => openExternal(googleUrl.value),
+		to: googleUrl.value,
+		external: true,
+		target: "_blank",
 	},
 	{
 		label: t("calendar.outlook"),
 		icon: "mdi:microsoft-outlook",
-		onSelect: () => openExternal(outlookUrl.value),
+		to: outlookUrl.value,
+		external: true,
+		target: "_blank",
 	},
 	{
 		label: t("calendar.apple_other"),
 		icon: "mdi:apple",
-		onSelect: () => window.location.assign(props.icsUrl),
+		to: props.icsUrl,
+		external: true,
 	},
 ]])
 </script>
@@ -103,11 +111,14 @@ const items = computed(() => [[
 <template>
 	<UDropdownMenu v-if="isAvailable" :items="items">
 		<UButton
+			:to="icsUrl"
+			external
 			color="neutral"
 			variant="outline"
 			icon="i-lucide-calendar-plus"
 			:label="t('calendar.add')"
 			:size="size"
+			@click="handleTriggerClick"
 		/>
 	</UDropdownMenu>
 </template>

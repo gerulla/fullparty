@@ -37,35 +37,16 @@ class ActivityReportProgressFetcher
                 $phaseId = isset($matcher['phase_id']) ? (int) $matcher['phase_id'] : null;
 
                 $matchingFights = collect($report['fights'])
-                    ->filter(fn (array $fight) => (int) ($fight['encounterID'] ?? 0) === $encounterId)
+                    ->filter(fn (array $fight) => $encounterId > 0 && (int) ($fight['encounterID'] ?? 0) === $encounterId)
                     ->values();
 
-                $killCount = $matchingFights
-                    ->filter(fn (array $fight) => (bool) ($fight['kill'] ?? false))
-                    ->count();
-
-                $bestEncounterProgress = $matchingFights
-                    ->map(fn (array $fight) => $this->resolveProgressPercent($fight))
-                    ->filter(fn (?float $progress) => $progress !== null)
-                    ->max();
-
-                $phaseReachedCount = $matchingFights
-                    ->filter(function (array $fight) use ($phaseId) {
-                        if ((bool) ($fight['kill'] ?? false)) {
-                            return true;
-                        }
-
-                        if ($phaseId === null) {
-                            return false;
-                        }
-
-                        return (int) ($fight['lastPhase'] ?? 0) >= $phaseId;
-                    })
-                    ->count();
-
-                $bestProgressPercent = $matcherType === 'phase'
-                    ? ($phaseReachedCount > 0 ? 100.0 : ($bestEncounterProgress ?? 0.0))
-                    : ($bestEncounterProgress ?? 0.0);
+                $fightProgress = $matchingFights->map(fn (array $fight) => $matcherType === 'phase'
+                    ? $this->resolvePhaseProgress($fight, $phaseId, $report['phases'][$encounterId] ?? [])
+                    : [
+                        'completed' => (bool) ($fight['kill'] ?? false),
+                        'reached' => true,
+                        'progress' => $this->resolveProgressPercent($fight),
+                    ]);
 
                 return [
                     'id' => $index + 1,
@@ -76,15 +57,16 @@ class ActivityReportProgressFetcher
                     'matcher_type' => $matcherType,
                     'encounter_id' => $encounterId > 0 ? $encounterId : null,
                     'phase_id' => $matcherType === 'phase' ? $phaseId : null,
-                    'kills' => $matcherType === 'phase' ? $phaseReachedCount : $killCount,
-                    'best_progress_percent' => round((float) $bestProgressPercent, 2),
+                    'kills' => $fightProgress->where('completed', true)->count(),
+                    'best_progress_percent' => round((float) ($fightProgress->max('progress') ?? 0), 2),
+                    'reached' => $fightProgress->contains('reached', true),
                 ];
             })
             ->filter(fn (array $milestone) => $milestone['milestone_key'] !== '')
             ->values();
 
         $suggestedFurthestProgressKey = $milestones
-            ->filter(fn (array $milestone) => $milestone['best_progress_percent'] > 0 || $milestone['kills'] > 0)
+            ->filter(fn (array $milestone) => $milestone['reached'])
             ->map(fn (array $milestone) => $milestone['milestone_key'])
             ->reverse()
             ->first(fn (string $key) => in_array($key, $progPointKeys, true));
@@ -94,12 +76,16 @@ class ActivityReportProgressFetcher
             'report_title' => $report['title'],
             'progress_link_url' => $reportInput,
             'suggested_furthest_progress_key' => $suggestedFurthestProgressKey,
-            'milestones' => $milestones->all(),
+            'milestones' => $milestones->map(function (array $milestone) {
+                unset($milestone['reached']);
+
+                return $milestone;
+            })->all(),
         ];
     }
 
     /**
-     * @return array{title: ?string, fights: array<int, array<string, mixed>>}
+     * @return array{title: ?string, fights: array<int, array<string, mixed>>, phases: array<int, array>}
      */
     private function queryReportFights(string $reportCode): array
     {
@@ -108,12 +94,18 @@ query ActivityReportProgress($code: String!) {
   reportData {
     report(code: $code) {
       title
+      phases {
+        encounterID
+        phases { id isIntermission }
+      }
       fights(translate: true) {
         id
         encounterID
         name
         kill
         lastPhase
+        lastPhaseAsAbsoluteIndex
+        lastPhaseIsIntermission
         bossPercentage
         fightPercentage
         startTime
@@ -148,6 +140,7 @@ GRAPHQL;
         return [
             'title' => data_get($report, 'title'),
             'fights' => is_array($fights) ? array_values(array_filter($fights, 'is_array')) : [],
+            'phases' => collect($report['phases'] ?? [])->pluck('phases', 'encounterID')->all(),
         ];
     }
 
@@ -172,14 +165,66 @@ GRAPHQL;
 
     /**
      * @param  array<string, mixed>  $fight
+     * @param  array<int, array<string, mixed>>  $phases
+     * @return array{completed: bool, reached: bool, progress: float|null}
      */
-    private function resolveProgressPercent(array $fight): ?float
+    private function resolvePhaseProgress(array $fight, ?int $phaseId, array $phases): array
+    {
+        $unreached = ['completed' => false, 'reached' => false, 'progress' => 0.0];
+
+        if ($phaseId === null || $phaseId < 1) {
+            return $unreached;
+        }
+
+        if ((bool) ($fight['kill'] ?? false)) {
+            return ['completed' => true, 'reached' => true, 'progress' => 100.0];
+        }
+
+        $lastPhase = (int) ($fight['lastPhase'] ?? 0);
+        $completedPhases = max(0, $lastPhase - 1);
+        $isIntermission = (bool) ($fight['lastPhaseIsIntermission'] ?? false);
+
+        if ($isIntermission) {
+            // FF Logs numbers intermissions separately from normal phases.
+            $absoluteIndex = $fight['lastPhaseAsAbsoluteIndex'] ?? null;
+            $orderedPhases = collect($phases)->sortBy('id')->values();
+
+            if (! is_int($absoluteIndex) || $absoluteIndex < 0
+                || ! data_get($orderedPhases->get($absoluteIndex), 'isIntermission')) {
+                return $unreached;
+            }
+
+            $completedPhases = $orderedPhases->take($absoluteIndex)
+                ->reject(fn (array $phase) => (bool) ($phase['isIntermission'] ?? false))
+                ->count();
+        }
+
+        if ($phaseId <= $completedPhases) {
+            return ['completed' => true, 'reached' => true, 'progress' => 100.0];
+        }
+
+        if ($isIntermission || $lastPhase !== $phaseId) {
+            return $unreached;
+        }
+
+        // Whole-fight percentages cannot describe damage within the active phase.
+        return [
+            'completed' => false,
+            'reached' => true,
+            'progress' => $this->resolveProgressPercent($fight, phaseOnly: true),
+        ];
+    }
+
+    /**
+     * @param  array<string, mixed>  $fight
+     */
+    private function resolveProgressPercent(array $fight, bool $phaseOnly = false): ?float
     {
         if ((bool) ($fight['kill'] ?? false)) {
             return 100.0;
         }
 
-        foreach (['bossPercentage', 'fightPercentage'] as $key) {
+        foreach ($phaseOnly ? ['bossPercentage'] : ['fightPercentage', 'bossPercentage'] as $key) {
             $value = $fight[$key] ?? null;
 
             if (is_numeric($value)) {

@@ -125,6 +125,7 @@ class GroupActivitySlotAssignmentController extends Controller
                 $fieldDefinitions,
                 (int) $request->user()->id,
                 $sourceSlot,
+                filledGroupKey: $validated['filled_group_key'] ?? null,
             );
         } else {
             /** @var ActivityApplication|null $application */
@@ -157,6 +158,7 @@ class GroupActivitySlotAssignmentController extends Controller
                 (int) $request->user()->id,
                 $sourceSlot,
                 (bool) ($validated['ignore_application_choices'] ?? false),
+                filledGroupKey: $validated['filled_group_key'] ?? null,
             );
 
             if ($wasPendingQueueApplication) {
@@ -171,14 +173,6 @@ class GroupActivitySlotAssignmentController extends Controller
                     (int) $slot->id,
                     $sourceSlot ? (int) $sourceSlot->id : null,
                 ])),
-            );
-        }
-
-        if ($slot->slot_kind === ActivitySlot::SLOT_KIND_FILL_IN) {
-            $slot = $fillInSlotService->updateFilledGroup(
-                $activity,
-                $slot,
-                $validated['filled_group_key'] ?? null,
             );
         }
 

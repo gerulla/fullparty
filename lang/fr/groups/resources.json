@@ -333,6 +333,13 @@
     "delete_collection": "Supprimer la collection ?",
     "delete_collection_description": "Cette collection vide sera retirée de la bibliothèque fictive."
   },
+  "image_viewer": {
+    "zoom": "Zoom de l’image",
+    "zoom_in": "Agrandir",
+    "zoom_out": "Réduire",
+    "fit": "Ajuster l’image",
+    "hint": "Utilisez la molette pour zoomer jusqu’à 500 %. Faites glisser l’image ou utilisez les flèches pour la déplacer. À 100 %, l’image entière tient dans la fenêtre."
+  },
   "uploads": {
     "title": "Fichiers importés",
     "search": "Rechercher des fichiers...",

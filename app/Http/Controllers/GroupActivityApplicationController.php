@@ -748,7 +748,7 @@ class GroupActivityApplicationController extends Controller
                 'source' => $question['source'] ?? null,
                 'required' => (bool) ($question['required'] ?? false),
                 'help_text' => is_array($question['help_text'] ?? null) ? $question['help_text'] : null,
-                'accepts_any' => (bool) ($question['accepts_any'] ?? false),
+                'accepts_any' => (bool) ($question['accepts_any'] ?? false) || $this->supportsAnyOption($question),
                 'any_label' => is_array($question['any_label'] ?? null) ? $question['any_label'] : null,
                 'options' => $this->resolveQuestionOptions($question, $groupId),
             ])
@@ -872,6 +872,10 @@ class GroupActivityApplicationController extends Controller
      */
     private function supportsAnyOption(array $question): bool
     {
+        if (($question['type'] ?? null) === 'holster_pair_list' && ($question['source'] ?? null) === 'bozja_holsters') {
+            return true;
+        }
+
         return (bool) ($question['accepts_any'] ?? false)
             && in_array((string) ($question['type'] ?? ''), ['single_select', 'multi_select'], true);
     }

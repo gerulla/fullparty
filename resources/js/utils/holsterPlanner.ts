@@ -4,6 +4,8 @@ import { localizedValue } from './localizedValue'
 
 export const holsterPairKey = (pair: HolsterPairValue) => `${pair.prepop_id}:${pair.refill_id}`
 
+export const isAnyHolsterSelection = (value: unknown): boolean => Array.isArray(value) && value.length === 1 && value[0] === 'any'
+
 export function normalizeHolsterPairs(value: unknown, multiple: boolean): HolsterPairValue[] {
     const values = multiple ? (Array.isArray(value) ? value : []) : [value]
     const pairs = new Map<string, HolsterPairValue>()

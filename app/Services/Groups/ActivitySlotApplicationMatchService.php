@@ -45,10 +45,11 @@ class ActivitySlotApplicationMatchService
                 }
 
                 if (($definition['source'] ?? null) === 'bozja_holsters' && ($definition['type'] ?? null) === 'holster_pair') {
+                    $acceptsAnyHolster = BozjaHolsterPairService::isAnySelection($answer->value);
                     $applicationPairs = $this->bozjaHolsterPairService->normalizePairs($answer->value);
                     $slotPair = $this->bozjaHolsterPairService->normalizePair($fieldValue->value);
 
-                    if ($applicationPairs === [] || $slotPair === null) {
+                    if ((! $acceptsAnyHolster && $applicationPairs === []) || $slotPair === null) {
                         return null;
                     }
 
@@ -57,7 +58,7 @@ class ActivitySlotApplicationMatchService
                     return $this->matchPayload(
                         answer: $answer,
                         abbreviation: $this->abbreviation($answer, 'bozja_holsters'),
-                        matches: collect($applicationPairs)->contains(
+                        matches: $acceptsAnyHolster || collect($applicationPairs)->contains(
                             fn (array $pair): bool => $this->bozjaHolsterPairService->pairKey($pair)
                                 === $this->bozjaHolsterPairService->pairKey($slotPair),
                         ),

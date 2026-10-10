@@ -333,6 +333,13 @@
     "delete_collection": "Delete collection?",
     "delete_collection_description": "This empty collection will be removed from the sample library."
   },
+  "image_viewer": {
+    "zoom": "Image zoom",
+    "zoom_in": "Zoom in",
+    "zoom_out": "Zoom out",
+    "fit": "Fit image",
+    "hint": "Scroll to zoom up to 500%. Drag to pan, or use the arrow keys. 100% fits the image in the viewer."
+  },
   "uploads": {
     "title": "Uploads",
     "search": "Search uploads...",

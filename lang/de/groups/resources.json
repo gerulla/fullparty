@@ -333,6 +333,13 @@
     "delete_collection": "Sammlung löschen?",
     "delete_collection_description": "Diese leere Sammlung wird aus der Beispielbibliothek entfernt."
   },
+  "image_viewer": {
+    "zoom": "Bildzoom",
+    "zoom_in": "Vergrößern",
+    "zoom_out": "Verkleinern",
+    "fit": "Bild einpassen",
+    "hint": "Mit dem Mausrad bis auf 500 % vergrößern. Zum Verschieben ziehen oder die Pfeiltasten verwenden. Bei 100 % passt das ganze Bild in die Ansicht."
+  },
   "uploads": {
     "title": "Uploads",
     "search": "Uploads durchsuchen...",

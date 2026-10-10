@@ -5,6 +5,8 @@ export type HolsterPairValue = {
 	refill_id: string
 }
 
+export type HolsterPairSelection = HolsterPairValue | HolsterPairValue[] | ['any']
+
 export type ActivitySlotFieldSelection = string | string[] | HolsterPairValue
 
 export type HolsterContentItem = {

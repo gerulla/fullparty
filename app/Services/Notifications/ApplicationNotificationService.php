@@ -15,6 +15,8 @@ class ApplicationNotificationService
 {
     public function __construct(
         private readonly NotificationService $notificationService,
+        private readonly ActivityNotificationPayloadBuilder $payloadBuilder,
+        private readonly NotificationActionUrlService $actionUrls,
     ) {}
 
     public function notifySubmitted(ActivityApplication $application, mixed $actor): void
@@ -31,7 +33,7 @@ class ApplicationNotificationService
                 actionUrl: $this->moderatorActionUrl($application),
                 actor: $actor instanceof User ? $actor : null,
                 subject: $application->activity,
-                payload: $this->payload($application),
+                payload: $this->payload($application, $this->moderatorActionUrl($application)),
                 topic: NotificationTopic::APPLICATIONS_REVIEW,
                 groupId: $application->activity?->group?->id,
             );
@@ -89,7 +91,7 @@ class ApplicationNotificationService
             actionUrl: $this->moderatorActionUrl($application),
             actor: $actor instanceof User ? $actor : null,
             subject: $application,
-            payload: $this->payload($application),
+            payload: $this->payload($application, $this->moderatorActionUrl($application)),
             topic: NotificationTopic::APPLICATIONS_HOST_UPDATES,
             groupId: $application->activity?->group?->id,
         );
@@ -121,7 +123,7 @@ class ApplicationNotificationService
             actionUrl: $this->moderatorActionUrl($application),
             actor: $actor instanceof User ? $actor : null,
             subject: $application,
-            payload: $this->payload($application),
+            payload: $this->payload($application, $this->moderatorActionUrl($application)),
             topic: NotificationTopic::APPLICATIONS_HOST_UPDATES,
             groupId: $application->activity?->group?->id,
         );
@@ -284,17 +286,30 @@ class ApplicationNotificationService
     /**
      * @return array<string, mixed>
      */
-    private function payload(ActivityApplication $application): array
+    private function payload(ActivityApplication $application, ?string $applicationUrl = null): array
     {
+        $application->loadMissing('activity.group', 'activity.activityTypeVersion', 'selectedCharacter', 'user');
+        $context = $this->payloadBuilder->forActivity($application->activity);
+        $character = $this->payloadBuilder->forCharacter($application->selectedCharacter, $application->applicant_world, $application->applicant_avatar_url);
+
         return [
+            ...$context,
+            ...$character,
             'application_id' => $application->id,
             'activity_id' => $application->activity?->id,
             'group_id' => $application->activity?->group?->id,
             'group_slug' => $application->activity?->group?->slug,
             'activity_title' => $this->activityTitle($application->activity),
             'character_name' => $this->characterName($application),
+            'character_image_url' => $application->selectedCharacter?->avatar_url ?: ($application->applicant_avatar_url ?: null),
             'status' => $application->status,
             'review_reason' => $application->review_reason,
+            'group_profile_image_url' => $context['group_icon_url'],
+            'activity_banner_image_url' => $context['banner_image_url'],
+            'application_url' => $this->actionUrls->forBrowserLocalePreference($applicationUrl ?? route('account.applications')),
+            'applicant_name' => $application->user?->name,
+            // User profiles currently open in modals; there is no standalone profile route.
+            'applicant_profile_url' => null,
         ];
     }
 

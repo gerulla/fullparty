@@ -1,4 +1,8 @@
 {
+    "activity_type_filter": {
+        "label": "Aktivitätstyp",
+        "all": "Alle Aktivitätstypen"
+    },
     "title": "Runs",
     "subtitle": "{group}s kommende Termine und Monatskalender auf einen Blick.",
     "header_badge": "{count} kommende",
@@ -477,7 +481,6 @@
             "filters_with_count": "Filter ({count})",
             "filter_any": "Beliebige Übereinstimmung",
             "role_filter": "Rolle",
-            "party_leads_only": "Möchte die Gruppe leiten",
             "filter_any_milestone": "Beliebiger Meilenstein erreicht",
             "milestones_reached": "Erreichte Meilensteine",
             "min_knowledge_level": "Mindest-Wissensstufe",
@@ -485,6 +488,7 @@
             "minimum_value_placeholder": "Mindestwert",
             "clear_filters": "Filter zurücksetzen",
             "pending": "Ausstehend",
+            "application_number": "Anmeldung Nr. {number}",
             "expand": "Ausklappen",
             "assign_to_roster": "Dem Roster zuweisen",
             "edit_slot_fields": "Slot-Felder bearbeiten",

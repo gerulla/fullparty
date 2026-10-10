@@ -49,6 +49,7 @@ export type QueueApplicationUserStats = {
 
 export type QueueApplication = {
 	id: number
+	application_number: number | null
 	is_guest: boolean
 	user: {
 		id: number
@@ -152,7 +153,7 @@ export type QueueFilterMilestone = {
 export type QueueFilters = {
 	slot_fields: QueueFilterField[]
 	milestones: QueueFilterMilestone[]
-	party_lead_question_key: string | null
+	boolean_questions: Array<{ key: string; label: LocalizedText }>
 }
 
 export type ManualAssignmentCharacter = {

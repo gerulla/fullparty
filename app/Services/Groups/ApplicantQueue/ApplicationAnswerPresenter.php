@@ -8,6 +8,7 @@ use App\Models\BozjaItem;
 use App\Models\CharacterClass;
 use App\Models\PhantomJob;
 use App\Models\RaidPosition;
+use App\Services\Groups\BozjaHolsterPairService;
 use Illuminate\Support\Collection;
 
 class ApplicationAnswerPresenter
@@ -76,6 +77,10 @@ class ApplicationAnswerPresenter
      */
     private function resolveDisplayValues(?string $source, mixed $value, ?array $questionDefinition): Collection
     {
+        if ($source === 'bozja_holsters' && BozjaHolsterPairService::isAnySelection($value)) {
+            return collect([$this->anyDisplayLabel($questionDefinition) ?? __('ui.any')]);
+        }
+
         if ($source === 'bozja_holsters' && $this->isHolsterPairListValue($value)) {
             return $this->resolveHolsterPairDisplayItems($value)->pluck('label');
         }
@@ -221,6 +226,10 @@ class ApplicationAnswerPresenter
      */
     private function resolveDisplayItems(?string $source, mixed $value, ?array $questionDefinition): Collection
     {
+        if ($source === 'bozja_holsters' && BozjaHolsterPairService::isAnySelection($value)) {
+            return collect([['label' => $this->anyDisplayLabel($questionDefinition) ?? __('ui.any')]]);
+        }
+
         if ($source === 'bozja_holsters' && $this->isHolsterPairListValue($value)) {
             return $this->resolveHolsterPairDisplayItems($value);
         }

@@ -82,7 +82,7 @@ const selectDay = (dayKey: string) => {
 <template>
 	<UCard class="dark:bg-elevated/25" :ui="{ body: 'p-4 sm:p-4' }">
 		<template #header>
-			<div class="flex items-start justify-between gap-4">
+			<div class="flex flex-wrap items-start justify-between gap-4">
 				<div class="flex flex-col gap-1">
 					<p class="font-semibold text-md">
 						{{ t('groups.activities.calendar.title') }}
@@ -91,11 +91,14 @@ const selectDay = (dayKey: string) => {
 						{{ t('groups.activities.calendar.subtitle') }}
 					</p>
 				</div>
-				<UBadge
-					color="neutral"
-					variant="subtle"
-					:label="t('groups.activities.calendar.month_count', { count: visibleMonthActivityCount })"
-				/>
+				<div class="ml-auto flex flex-wrap items-center justify-end gap-3">
+					<slot name="header-actions" />
+					<UBadge
+						color="neutral"
+						variant="subtle"
+						:label="t('groups.activities.calendar.month_count', { count: visibleMonthActivityCount })"
+					/>
+				</div>
 			</div>
 		</template>
 

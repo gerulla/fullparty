@@ -4,11 +4,13 @@ import { useMediaQuery } from "@vueuse/core";
 import { parseDate, type DateValue } from "@internationalized/date";
 import { useI18n } from "vue-i18n";
 import type { MyRunsGroup, MyRunsToolState } from "@/Types/MyRuns";
+import type { ActivityListType } from "@/Types/ActivityCore";
+import ActivityTypeFilter from "@/components/Runs/ActivityTypeFilter.vue";
 import MyRunsWeekCalendar from "@/components/Runs/MyRunsWeekCalendar.vue";
 import MyRunsFilterToggles from "@/components/Runs/MyRunsFilterToggles.vue";
 import MyRunsGroupPicker from "@/components/Runs/MyRunsGroupPicker.vue";
 
-const props = defineProps<{ groups: MyRunsGroup[]; runDates: string[]; minDate: string }>();
+const props = defineProps<{ groups: MyRunsGroup[]; activityTypes: ActivityListType[]; runDates: string[]; minDate: string }>();
 const model = defineModel<MyRunsToolState>({ required: true });
 const emit = defineEmits<{ dateSelected: [date: string] }>();
 const { t, locale } = useI18n();
@@ -68,7 +70,7 @@ watch(isDesktop, () => {
 			icon="i-lucide-search"
 			:placeholder="t('my_runs.tools.search_placeholder')"
 			:aria-label="t('my_runs.tools.search_label')"
-			class="order-2 mt-3 w-full lg:mt-0 lg:mb-5"
+			class="order-3 mt-3 w-full lg:mt-0 lg:mb-5"
 			:ui="{ trailing: 'pe-1', base: 'h-9' }"
 			@update:model-value="updateState({ search: String($event ?? '') })"
 			@keydown.esc="!isDesktop && closeSearch()"
@@ -101,6 +103,15 @@ watch(isDesktop, () => {
 		</UCalendar>
 		<MyRunsWeekCalendar v-else class="order-1" :date="model.date" :min-date="minDate" :run-dates="runDates" @date-selected="selectDate" />
 
+		<UFormField :label="t('groups.activities.activity_type_filter.label')" class="order-2 mt-3 w-full lg:mt-5">
+			<ActivityTypeFilter
+				:model-value="model.activityTypeId"
+				:activity-types="activityTypes"
+				class="w-full"
+				@update:model-value="updateState({ activityTypeId: $event })"
+			/>
+		</UFormField>
+
 		<template v-if="isDesktop">
 			<USeparator class="my-5" />
 			<MyRunsFilterToggles v-model="model" />
@@ -110,7 +121,7 @@ watch(isDesktop, () => {
 				<MyRunsGroupPicker :model-value="model.groupIds" :groups="groups" @update:model-value="updateState({ groupIds: $event })" />
 			</section>
 		</template>
-		<div v-else-if="!searchOpen" class="order-2 mt-3 grid grid-cols-[minmax(0,1fr)_minmax(0,1fr)_2.25rem] gap-2">
+		<div v-else-if="!searchOpen" class="order-3 mt-3 grid grid-cols-[minmax(0,1fr)_minmax(0,1fr)_2.25rem] gap-2">
 			<USelectMenu v-model:open="groupsOpen" :model-value="model.groupIds" :items="groupOptions" value-key="value" multiple :search-input="false" color="neutral" class="h-9 min-w-0" :aria-label="t('my_runs.tools.groups', { count: model.groupIds.length })" :ui="{ content: 'min-w-56 max-w-[calc(100vw-2rem)]', itemLabel: 'whitespace-normal wrap-anywhere' }" @update:model-value="updateState({ groupIds: $event })">
 				<span class="truncate">{{ t('my_runs.tools.groups', { count: model.groupIds.length }) }}</span>
 			</USelectMenu>

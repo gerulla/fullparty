@@ -213,7 +213,7 @@ const handleDragStart = (event: DragEvent) => {
 		:draggable="canDragToRoster"
 		@dragstart="handleDragStart"
 	>
-		<!-- Queue card header: applicant identity and current application status -->
+		<!-- Queue card header: applicant identity and original application number -->
 		<div class="flex items-start justify-between gap-3">
 			<UUser
 				:name="displayName"
@@ -230,9 +230,12 @@ const handleDragStart = (event: DragEvent) => {
 					:label="t('groups.activities.management.queue.guest_badge')"
 				/>
 				<UBadge
+					v-if="application.application_number"
 					color="neutral"
 					variant="subtle"
-					:label="t('groups.activities.management.queue.pending')"
+					:label="`#${application.application_number}`"
+					:title="t('groups.activities.management.queue.application_number', { number: application.application_number })"
+					:aria-label="t('groups.activities.management.queue.application_number', { number: application.application_number })"
 				/>
 			</div>
 		</div>

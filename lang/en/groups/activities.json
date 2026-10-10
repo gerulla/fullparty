@@ -1,4 +1,8 @@
 {
+    "activity_type_filter": {
+        "label": "Activity type",
+        "all": "All activity types"
+    },
     "title": "Runs",
     "subtitle": "{group}'s upcoming schedule and monthly calendar at a glance.",
     "header_badge": "{count} upcoming",
@@ -477,7 +481,6 @@
             "filters_with_count": "Filters ({count})",
             "filter_any": "Any match",
             "role_filter": "Role",
-            "party_leads_only": "Wants to Party Lead",
             "filter_any_milestone": "Any milestone reached",
             "milestones_reached": "Milestones Reached",
             "min_knowledge_level": "Minimum Knowledge Level",
@@ -485,6 +488,7 @@
             "minimum_value_placeholder": "Minimum value",
             "clear_filters": "Clear Filters",
             "pending": "Pending",
+            "application_number": "Application #{number}",
             "expand": "Expand",
             "assign_to_roster": "Assign to Roster",
             "edit_slot_fields": "Edit Slot Fields",

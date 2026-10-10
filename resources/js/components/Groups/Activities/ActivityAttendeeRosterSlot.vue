@@ -2,6 +2,8 @@
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { usePage } from "@inertiajs/vue3";
+import { useRosterSlotTextExpansion } from "@/composables/useRosterSlotTextExpansion";
+import RosterSlotShine from "@/components/Groups/Activities/RosterSlotShine.vue";
 import { localizedValue } from "@/utils/localizedValue";
 import { emptyCompositionSlotToneClass } from "@/utils/activityCompositionHints";
 import { specialistDesignationMarkers } from "@/utils/specialistDesignations";
@@ -26,6 +28,7 @@ const props = defineProps<{
 }>();
 
 const { t, locale } = useI18n();
+const { isTextExpanded, handleSlotTap } = useRosterSlotTextExpansion();
 const page = usePage();
 const fallbackLocale = computed(() => String(page.props.locale?.fallback ?? "en"));
 const viewerUserId = computed<number | null>(() => {
@@ -299,10 +302,13 @@ const designationMarkers = computed(() => {
 
 <template>
 	<div
-		class="relative border px-3 transition-colors"
+		class="group/roster-slot relative min-w-0 border px-3 transition-colors"
 		:class="[slotToneClass, slotFrameClass]"
+		:data-text-expanded="isTextExpanded || undefined"
 		:title="progressStatus ? t(`groups.activities.overview.board.progression.${progressStatus}`) : undefined"
+		@click="handleSlotTap"
 	>
+		<RosterSlotShine v-if="isViewerAssignedCharacter" />
 		<UTooltip
 			v-for="marker in designationMarkers"
 			:key="marker.key"
@@ -441,10 +447,10 @@ const designationMarkers = computed(() => {
 						<span
 							v-for="field in visibleFieldEntries"
 							:key="field.id"
-							class="inline-flex min-w-0 max-w-full items-center gap-1"
+							class="inline-flex min-w-0 max-w-full items-center gap-1 group-hover/roster-slot:items-start group-focus-within/roster-slot:items-start group-data-[text-expanded]/roster-slot:items-start"
 						>
 							<span class="shrink-0 text-muted xl:max-2xl:hidden">{{ field.label }}</span>
-							<span class="truncate font-medium text-toned">{{ field.value }}</span>
+							<span class="min-w-0 truncate font-medium text-toned group-hover/roster-slot:whitespace-normal group-hover/roster-slot:wrap-anywhere group-focus-within/roster-slot:whitespace-normal group-focus-within/roster-slot:wrap-anywhere group-data-[text-expanded]/roster-slot:whitespace-normal group-data-[text-expanded]/roster-slot:wrap-anywhere">{{ field.value }}</span>
 						</span>
 					</div>
 				</div>

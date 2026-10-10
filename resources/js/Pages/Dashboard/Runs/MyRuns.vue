@@ -15,6 +15,7 @@ import MyRunsToolColumn from "@/components/Runs/MyRunsToolColumn.vue";
 import type { MyRunsCommitment, MyRunsToolState } from "@/Types/MyRuns";
 import MyRunsResults from "@/components/Runs/MyRunsResults.vue";
 import { filterMyRuns, groupMyRunsByDay } from "@/utils/myRuns";
+import { availableActivityTypes } from "@/utils/activityTypes";
 import { useTimeDisplayMode } from "@/composables/useTimeDisplayMode";
 import { toDisplayDateKey } from "@/utils/activityCalendar";
 
@@ -36,12 +37,26 @@ const todayDateKey = computed(() => toDisplayDateKey(now.value, displayTimeZone.
 const tools = ref<MyRunsToolState>({
 	date: todayDateKey.value,
 	search: "",
+	activityTypeId: null,
 	appliedOnly: false,
 	hideOverlapping: false,
 	groupIds: props.groups.map((group) => group.id),
 });
 watch(todayDateKey, (today) => {
 	if (tools.value.date < today) tools.value = { ...tools.value, date: today };
+});
+const activityTypes = computed(() => availableActivityTypes(filterMyRuns(props.activities, {
+	date: todayDateKey.value,
+	search: '',
+	activityTypeId: null,
+	appliedOnly: false,
+	hideOverlapping: false,
+	groupIds: props.groups.map((group) => group.id),
+}, [], todayDateKey.value, displayTimeZone.value)));
+watch(activityTypes, (types) => {
+	if (tools.value.activityTypeId !== null && !types.some((type) => type.id === tools.value.activityTypeId)) {
+		tools.value = { ...tools.value, activityTypeId: null };
+	}
 });
 const resultDays = computed(() => groupMyRunsByDay(filterMyRuns(props.activities, tools.value, props.commitments, todayDateKey.value, displayTimeZone.value), displayTimeZone.value));
 const runDates = computed(() => resultDays.value.map((day) => day.date));
@@ -118,7 +133,7 @@ const browseGroups = () => {
 		</div>
 
 		<div class="mt-4 grid min-w-0 grid-cols-1 items-start gap-6 lg:h-[calc(100dvh-16rem)] lg:min-h-0 lg:grid-cols-[20rem_minmax(0,1fr)]">
-			<MyRunsToolColumn v-model="tools" :groups="groups" :run-dates="runDates" :min-date="todayDateKey" class="lg:h-full lg:overflow-y-auto" @date-selected="resultsPanel?.scrollToDate($event)" />
+			<MyRunsToolColumn v-model="tools" :groups="groups" :activity-types="activityTypes" :run-dates="runDates" :min-date="todayDateKey" class="lg:h-full lg:overflow-y-auto" @date-selected="resultsPanel?.scrollToDate($event)" />
 			<MyRunsResults ref="resultsPanel" :days="resultDays" :selected-date="tools.date" :today-date="todayDateKey" :participating-ids="participatingIds" />
 		</div>
 

@@ -4,6 +4,7 @@ namespace App\Services\Groups\ApplicantQueue;
 
 use App\Http\Controllers\Concerns\InteractsWithActivitySlotFieldDisplay;
 use App\Models\Activity;
+use App\Models\ActivityApplication;
 use App\Models\ActivityApplicationAnswer;
 use App\Models\ActivitySlot;
 use App\Models\ActivityTypeVersion;
@@ -33,6 +34,7 @@ class ApplicantQueuePayloadBuilder
     public function build(Activity $activity, int $currentUserId): array
     {
         $group = $activity->group;
+        $applicationNumbers = $this->applicationNumbers($activity->id);
         $visibleNotes = $this->visibleNotesForApplications(
             $activity->applications,
             $group,
@@ -45,10 +47,7 @@ class ApplicantQueuePayloadBuilder
             'queue_filters' => [
                 'slot_fields' => $this->serializeQueueSlotFields($activity->activityTypeVersion, $activity->group_id),
                 'milestones' => $this->serializeQueueMilestones($activity->activityTypeVersion),
-                'party_lead_question_key' => collect($activity->activityTypeVersion?->application_schema ?? [])
-                    ->first(fn ($question) => is_array($question)
-                        && ($question['key'] ?? null) === 'wants_to_party_lead'
-                        && ($question['type'] ?? null) === 'boolean')['key'] ?? null,
+                'boolean_questions' => $this->serializeQueueBooleanQuestions($activity->activityTypeVersion),
             ],
             'applications' => $activity->applications
                 ->map(fn ($application) => $this->serializeApplication(
@@ -58,6 +57,7 @@ class ApplicantQueuePayloadBuilder
                     $currentUserId,
                     $visibleNotes['group_notes_by_user_id'],
                     $visibleNotes['shared_notes_by_user_id'],
+                    $applicationNumbers->get($application->id),
                 ))
                 ->values(),
         ];
@@ -98,11 +98,13 @@ class ApplicantQueuePayloadBuilder
         int $currentUserId,
         Collection $groupNotesByUserId,
         Collection $sharedNotesByUserId,
+        ?int $applicationNumber = null,
     ): array {
         $selectedCharacter = $application->selectedCharacter;
 
         return [
             'id' => $application->id,
+            'application_number' => $applicationNumber ?? $this->applicationNumbers($application->activity_id)->get($application->id),
             'is_guest' => $application->user_id === null,
             'user' => $application->user ? [
                 'id' => $application->user->id,
@@ -190,6 +192,18 @@ class ApplicantQueuePayloadBuilder
         ];
     }
 
+    /** @return Collection<int, int> */
+    private function applicationNumbers(int $activityId): Collection
+    {
+        // Include every status so approving or withdrawing an earlier application does not renumber the queue.
+        return ActivityApplication::query()
+            ->where('activity_id', $activityId)
+            ->orderBy('created_at')
+            ->orderBy('id')
+            ->pluck('id')
+            ->mapWithKeys(fn (int $id, int $index): array => [$id => $index + 1]);
+    }
+
     /**
      * @param  Collection<int, ActivityApplicationAnswer>  $answers
      * @return Collection<int, ActivityApplicationAnswer>
@@ -220,6 +234,25 @@ class ApplicantQueuePayloadBuilder
     {
         return collect($this->slotFieldDefinitionBuilder->build($activityTypeVersion, $groupId))
             ->filter(fn (array $field) => $field['key'] !== '' && $field['application_key'] !== '' && count($field['options']) > 0)
+            ->values()
+            ->all();
+    }
+
+    /**
+     * @return array<int, array<string, mixed>>
+     */
+    private function serializeQueueBooleanQuestions(?ActivityTypeVersion $activityTypeVersion): array
+    {
+        return collect($activityTypeVersion?->application_schema ?? [])
+            ->filter(fn ($question) => is_array($question)
+                && ($question['type'] ?? null) === 'boolean'
+                && filled($question['key'] ?? null))
+            ->map(fn (array $question) => [
+                'key' => (string) $question['key'],
+                'label' => is_array($question['label'] ?? null)
+                    ? $question['label']
+                    : ['en' => (string) $question['key']],
+            ])
             ->values()
             ->all();
     }

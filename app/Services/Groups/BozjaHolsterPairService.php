@@ -9,11 +9,20 @@ class BozjaHolsterPairService
 {
     private const MAX_APPLICATION_PAIRS = 50;
 
+    public static function isAnySelection(mixed $value): bool
+    {
+        return $value === ['any'];
+    }
+
     /**
-     * @return array<int, array{prepop_id: int, refill_id: int|null}>
+     * @return array<int, array{prepop_id: int, refill_id: int|null}>|array{0: 'any'}
      */
     public function validateApplicationPairs(mixed $value, int $groupId, string $attribute): array
     {
+        if (self::isAnySelection($value)) {
+            return ['any'];
+        }
+
         if (! is_array($value) || ! array_is_list($value) || count($value) > self::MAX_APPLICATION_PAIRS) {
             $this->throwInvalid($attribute);
         }
@@ -41,7 +50,7 @@ class BozjaHolsterPairService
     }
 
     /**
-     * @return array<int, array{prepop_id: int, refill_id: int|null}>|null
+     * @return array<int, array{prepop_id: int, refill_id: int|null}>|array{0: 'any'}|null
      */
     public function filterRememberedPairs(mixed $value, int $groupId): ?array
     {

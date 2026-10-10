@@ -71,6 +71,19 @@ it('protects every administration endpoint from ordinary users', function () {
     $this->getJson(route('admin.forms.response', [$form, $response]))->assertForbidden();
 });
 
+it('preserves localized completion messages when saving, reopening and publishing a form', function () {
+    $this->actingAs($this->admin)->post(route('admin.forms.store'), ['slug' => 'feedback', 'definition' => survey_definition()])->assertRedirect();
+    $form = SurveyForm::firstOrFail();
+    $messages = ['en' => 'Thanks for your feedback!', 'de' => 'Danke für dein Feedback!', 'fr' => 'Merci pour vos commentaires !', 'ja' => 'ご回答ありがとうございます！'];
+    $definition = [...$form->draft, 'thank_you' => $messages];
+    $this->put(route('admin.forms.update', $form), ['slug' => $form->slug, 'revision' => 1, 'definition' => $definition])->assertRedirect();
+    expect($form->fresh()->draft['thank_you'])->toBe($messages);
+    $this->get(route('admin.forms.edit', $form))->assertInertia(fn (Assert $page) => $page->where('formRecord.draft.thank_you', $messages));
+    $this->put(route('admin.forms.update', $form), ['slug' => $form->slug, 'revision' => 2, 'definition' => $form->fresh()->draft])->assertRedirect();
+    $this->post(route('admin.forms.transition', [$form, 'publish']), ['revision' => 3])->assertRedirect();
+    $this->get('/forms/feedback')->assertInertia(fn (Assert $page) => $page->where('form.definition.thank_you', $messages));
+});
+
 it('requires sign in and verified email for account forms and respects account bans', function () {
     $form = survey_publish($this->admin);
     $this->get('/forms/feedback')->assertOk()->assertInertia(fn (Assert $page) => $page->where('canSubmit', false));

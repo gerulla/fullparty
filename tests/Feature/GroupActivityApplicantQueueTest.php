@@ -167,7 +167,7 @@ it('returns only pending applications in the applicant queue payload and include
     expect($guestQueueItem['applicant_character']['is_claimed'])->toBeFalse();
 });
 
-it('exposes the party lead filter only for a boolean question on the runs activity version', function (?string $questionType) {
+it('exposes filters only for boolean application questions', function (?string $questionType) {
     extract(createApplicantQueueActivity());
 
     $version = $activity->activityTypeVersion;
@@ -183,9 +183,48 @@ it('exposes the party lead filter only for a boolean question on the runs activi
         'activity' => $activity->id,
     ]))->assertOk()
         ->assertJsonCount(0, 'applications')
-        ->assertJsonPath('queue_filters.party_lead_question_key', $questionType === 'boolean' ? 'wants_to_party_lead' : null)
+        ->assertJsonPath('queue_filters.boolean_questions', $questionType === 'boolean'
+            ? [['key' => 'wants_to_party_lead', 'label' => ['en' => 'Party Lead']]]
+            : [])
         ->assertJsonPath('queue_filters.slot_fields.0.filter_options.0.meta.role', 'tank');
 })->with([null, 'boolean', 'text']);
+
+it('derives every boolean filter and its localized label from the runs pinned application schema in form order', function () {
+    extract(createApplicantQueueActivity());
+
+    $version = $activity->activityTypeVersion;
+    $questions = [
+        ['key' => 'solo_heal', 'label' => ['en' => 'Solo heal', 'de' => 'Solo heilen', 'fr' => 'Soigner en solo', 'ja' => 'ソロヒール'], 'type' => 'boolean'],
+        ['key' => 'standby', 'label' => ['en' => 'Standby'], 'type' => 'boolean'],
+        ['key' => 'wants_to_party_lead', 'label' => ['en' => 'Party lead'], 'type' => 'boolean'],
+        ['key' => 'custom_preference', 'label' => ['en' => 'A custom preference'], 'type' => 'boolean'],
+    ];
+    $version->update(['application_schema' => [
+        $questions[0],
+        ...$version->application_schema,
+        ['key' => 'notes', 'label' => ['en' => 'Notes'], 'type' => 'text'],
+        ...array_slice($questions, 1),
+    ]]);
+
+    $newerVersion = ActivityTypeVersion::factory()->create([
+        'activity_type_id' => $activity->activity_type_id,
+        'version' => 2,
+        'application_schema' => [['key' => 'new_version_only', 'label' => ['en' => 'New version only'], 'type' => 'boolean']],
+    ]);
+    $activity->activityType->update([
+        'current_published_version_id' => $newerVersion->id,
+        'draft_application_schema' => [['key' => 'draft_only', 'label' => ['en' => 'Draft only'], 'type' => 'boolean']],
+    ]);
+
+    $this->actingAs($owner)->getJson(route('groups.dashboard.activities.applicant-queue', [
+        'group' => $group->slug,
+        'activity' => $activity->id,
+    ]))->assertOk()
+        ->assertJsonCount(0, 'applications')
+        ->assertJsonPath('queue_filters.boolean_questions', array_map(fn (array $question) => [
+            'key' => $question['key'], 'label' => $question['label'],
+        ], $questions));
+});
 
 it('includes party lead preferences for both member and guest queue applications', function () {
     extract(createApplicantQueueActivity());
@@ -209,10 +248,57 @@ it('includes party lead preferences for both member and guest queue applications
     $response = $this->actingAs($owner)->getJson(route('groups.dashboard.activities.applicant-queue', [
         'group' => $group->slug,
         'activity' => $activity->id,
-    ]))->assertOk()->assertJsonPath('queue_filters.party_lead_question_key', 'wants_to_party_lead');
+    ]))->assertOk()->assertJsonPath('queue_filters.boolean_questions.0.key', 'wants_to_party_lead');
     $items = collect($response->json('applications'))->keyBy('id');
     expect(collect($items[$memberApplication->id]['answers'])->firstWhere('question_key', 'wants_to_party_lead')['raw_value'])->toBeTrue()
         ->and(collect($items[$guestApplication->id]['answers'])->firstWhere('question_key', 'wants_to_party_lead')['raw_value'])->toBeFalse();
+});
+
+it('numbers applications within each run by creation time and id across every status', function () {
+    extract(createApplicantQueueActivity());
+    $start = now()->subDays(2)->startOfSecond();
+    $third = createQueueApplication($activity, $characterClass, ['created_at' => $start->copy()->addHours(2)]);
+    $first = createQueueApplication($activity, $characterClass, [
+        'created_at' => $start, 'status' => ActivityApplication::STATUS_APPROVED,
+    ]);
+    createQueueApplication($activity, $characterClass, [
+        'created_at' => $start->copy()->addHour(), 'status' => ActivityApplication::STATUS_WITHDRAWN,
+    ]);
+    $fourth = createQueueApplication($activity, $characterClass, ['created_at' => $third->created_at]);
+    createQueueApplication($activity, $characterClass, [
+        'created_at' => $start->copy()->addHours(3), 'status' => ActivityApplication::STATUS_DECLINED,
+    ]);
+    $sixth = createQueueApplication($activity, $characterClass, ['created_at' => $start->copy()->addHours(4)]);
+    $otherActivity = Activity::factory()->create([
+        'group_id' => $group->id, 'activity_type_id' => $activity->activity_type_id,
+        'activity_type_version_id' => $activity->activity_type_version_id,
+        'organized_by_user_id' => $owner->id,
+    ]);
+    $otherApplication = createQueueApplication($otherActivity, $characterClass, ['created_at' => $start->copy()->subHour()]);
+
+    $this->actingAs($owner);
+    $queueUrl = route('groups.dashboard.activities.applicant-queue', ['group' => $group->slug, 'activity' => $activity->id]);
+    $response = $this->getJson($queueUrl)->assertOk()->assertJsonCount(3, 'applications');
+    expect(collect($response->json('applications'))->pluck('application_number', 'id')->sortKeys()->all())->toBe([
+        $third->id => 3, $fourth->id => 4, $sixth->id => 6,
+    ]);
+    $this->getJson(route('groups.dashboard.activities.applicant-queue', ['group' => $group->slug, 'activity' => $otherActivity->id]))
+        ->assertOk()->assertJsonPath('applications.0.id', $otherApplication->id)
+        ->assertJsonPath('applications.0.application_number', 1);
+
+    $third->update(['notes' => 'Edited later', 'edited_at' => now(), 'submitted_at' => now()]);
+    $fourth->update(['status' => ActivityApplication::STATUS_ON_BENCH]);
+    $first->update(['status' => ActivityApplication::STATUS_PENDING]);
+    $latest = createQueueApplication($activity, $characterClass);
+    $items = collect($this->getJson($queueUrl)->assertOk()->json('applications'))->keyBy('id');
+    expect($items[$third->id]['application_number'])->toBe(3)
+        ->and($items[$first->id]['application_number'])->toBe(1)
+        ->and($items[$sixth->id]['application_number'])->toBe(6)
+        ->and($items[$latest->id]['application_number'])->toBe(7);
+
+    $this->getJson(route('groups.dashboard.activities.applicant-queue.application', [
+        'group' => $group->slug, 'activity' => $activity->id, 'application' => $third->id,
+    ]))->assertOk()->assertJsonPath('application.application_number', 3);
 });
 
 it('keeps the original queue position and exposes the application edit time', function () {

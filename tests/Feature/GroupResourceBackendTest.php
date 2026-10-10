@@ -501,15 +501,17 @@ it('uses the existing guild group link without relinking and computes current pu
     IntegrationClient::factory()->create(['api_token_hash' => IntegrationClient::hashApiToken($otherToken), 'scopes' => [IntegrationClient::SCOPE_RESOURCES_READ]]);
     $this->withToken($otherToken)->postJson($show, $body)->assertOk()->assertJsonPath('data.command_name', 'bridges');
     $lease = resource_action($this, $resource, 'acquire')->json('data.editing_token');
-    resource_action($this, $resource, 'save', ['editing_token' => $lease, 'content' => resource_content(['command' => ['name' => 'renamed', 'enabled' => true, 'embed' => ['title' => 'Pending message']]])])->assertOk();
+    resource_action($this, $resource, 'save', ['editing_token' => $lease, 'content' => resource_content(['title' => 'Updated resource title', 'command' => ['name' => 'renamed', 'enabled' => true, 'embed' => ['title' => 'Pending message']]])])->assertOk();
     resource_action($this, $resource, 'release', ['editing_token' => $lease, 'summary' => 'Share a public version.'])->assertOk();
-    $this->withToken($token)->postJson($list, $body)->assertOk()->assertJsonPath('data.0.command_name', 'bridges')->assertJsonPath('data.0.title', 'Bridge positions');
+    $this->withToken($token)->postJson($list, $body)->assertOk()->assertJsonPath('data.0.command_name', 'bridges')->assertJsonPath('data.0.title', 'Bridge positions')
+        ->assertJsonPath('data.0.embed_title', 'Bridge positions')->assertJsonPath('data.0.resource_title', 'DRS Bridges');
     $this->withToken($token)->postJson($show, $body)->assertOk()->assertJsonPath('data.embed.title', 'Bridge positions');
     resource_action($this, $resource, 'publish')->assertOk();
     $this->withToken($token)->postJson($show, $body)->assertOk()->assertJsonPath('found', false)->assertJsonCount(0, 'data');
     GroupResourceLibrary::where('group_id', $this->group->id)->update(['visibility' => 'public']);
     $newShow = route('api.integrations.resource-commands.show', ['commandName' => 'renamed']);
-    $this->withToken($token)->postJson($list, $body)->assertOk()->assertJsonPath('data.0.command_name', 'renamed')->assertJsonPath('data.0.title', 'Pending message');
+    $this->withToken($token)->postJson($list, $body)->assertOk()->assertJsonPath('data.0.command_name', 'renamed')->assertJsonPath('data.0.title', 'Pending message')
+        ->assertJsonPath('data.0.embed_title', 'Pending message')->assertJsonPath('data.0.resource_title', 'Updated resource title');
     $this->withToken($token)->postJson($newShow, $body)->assertOk()->assertJsonCount(1, 'data.components');
     GroupResourceLibrary::where('group_id', $this->group->id)->update(['visibility' => 'private']);
     $this->withToken($token)->postJson($newShow, $body)->assertOk()->assertJsonCount(0, 'data.components');
@@ -844,7 +846,7 @@ it('accepts form POST data but not a query-only guild id and lists untitled embe
     $token = IntegrationClient::makePlainApiToken();
     IntegrationClient::factory()->create(['api_token_hash' => IntegrationClient::hashApiToken($token), 'scopes' => [IntegrationClient::SCOPE_RESOURCES_READ]]);
     $this->withToken($token)->post(route('api.integrations.resource-commands.index'), ['discord_guild_id' => '123456'])
-        ->assertOk()->assertJsonPath('data.0', ['command_name' => 'bridges', 'title' => null]);
+        ->assertOk()->assertJsonPath('data.0', ['command_name' => 'bridges', 'title' => null, 'embed_title' => null, 'resource_title' => 'DRS Bridges']);
     $this->withToken($token)->postJson(route('api.integrations.resource-commands.index', ['discord_guild_id' => '123456']), [])
         ->assertUnprocessable()->assertJsonValidationErrors('discord_guild_id');
 });

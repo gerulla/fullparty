@@ -1,4 +1,6 @@
 {
+    "any": "どれでも可",
+    "any_description": "どのホルダー構成でも対応できます。モデレーターに選んでもらえます。",
     "prepop": "事前準備",
     "refill": "補充",
     "capacity": "容量：{used} / {max}",

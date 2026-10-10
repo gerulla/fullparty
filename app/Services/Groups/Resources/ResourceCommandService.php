@@ -12,7 +12,11 @@ use Illuminate\Http\Request;
 
 class ResourceCommandService
 {
-    public function __construct(private readonly ResourceLibraryService $libraries, private readonly ResourceEmbedMetadata $embedMetadata) {}
+    public function __construct(
+        private readonly ResourceLibraryService $libraries,
+        private readonly ResourceEmbedMetadata $embedMetadata,
+        private readonly ResourceHolsterContent $holsterContent,
+    ) {}
 
     public function group(Request $request, string $discordGuildId): Group
     {
@@ -45,12 +49,20 @@ class ResourceCommandService
     public function listing(Group $group, string $guildId, int $page = 1, int $perPage = 25, ?string $search = null): array
     {
         $results = $this->available($group)
+            ->with([
+                'resource:id,holster_id,published_revision_id',
+                'resource.publishedRevision' => fn ($query) => $query->select('id', 'snapshot->title as title'),
+                'resource.holster:id,name',
+            ])
             ->when($search !== null, fn ($query) => $query->whereLike('name', '%'.addcslashes(strtolower($search), '\\%_').'%'))
-            ->orderBy('name')->paginate(perPage: $perPage, columns: ['name', 'embed'], page: $page);
+            ->orderBy('name')->paginate(perPage: $perPage, columns: ['resource_id', 'name', 'embed'], page: $page);
 
         return [
             'data' => $results->getCollection()->map(fn ($command) => [
-                'command_name' => $command->name, 'title' => $command->embed['title'] ?? null,
+                'command_name' => $command->name,
+                'title' => $command->embed['title'] ?? null,
+                'embed_title' => $command->embed['title'] ?? null,
+                'resource_title' => $this->holsterContent->title($command->resource, $command->resource->publishedRevision?->title),
             ]),
             'meta' => [
                 'group_id' => $group->id,
@@ -77,7 +89,7 @@ class ResourceCommandService
     public function payload(GroupResourceCommand $command, string $guildId): array
     {
         $embed = $command->embed;
-        $snapshot = app(ResourceHolsterContent::class)->inherit($command->resource, $command->resource->publishedRevision->snapshot);
+        $snapshot = $this->holsterContent->inherit($command->resource, $command->resource->publishedRevision->snapshot);
         $savedCommand = collect($snapshot['commands'] ?? [])->firstWhere('name', $command->name);
         $embed['author'] = $this->embedMetadata->author($command->resource->group, $snapshot);
         $embed['timestamp'] = $savedCommand['updated_at'] ?? $command->resource->publishedRevision->created_at->toIso8601String();

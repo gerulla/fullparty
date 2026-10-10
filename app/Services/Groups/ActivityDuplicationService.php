@@ -6,6 +6,7 @@ use App\DTOs\QuotaCheck;
 use App\Models\Activity;
 use App\Models\ActivitySlot;
 use App\Models\User;
+use App\Services\Integrations\DiscordGuildRunsChangedService;
 use App\Services\Quotas\QuotaService;
 use App\Support\Quotas\QuotaKey;
 use Carbon\CarbonImmutable;
@@ -16,6 +17,7 @@ class ActivityDuplicationService
         private readonly ActivitySlotAttendanceService $attendanceService,
         private readonly GroupActivityAuditService $activityAuditService,
         private readonly QuotaService $quotaService,
+        private readonly DiscordGuildRunsChangedService $discordRunsChanged,
     ) {}
 
     public function duplicate(
@@ -145,6 +147,7 @@ class ActivityDuplicationService
 
             $this->materializeProgressMilestones($duplicate, $source);
             $this->activityAuditService->logActivityCreated($duplicate, $actor);
+            $this->discordRunsChanged->notifyChanged($duplicate);
 
             return $duplicate;
         });

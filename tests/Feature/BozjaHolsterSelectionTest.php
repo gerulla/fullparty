@@ -9,6 +9,30 @@ use Illuminate\Validation\ValidationException;
 
 uses(RefreshDatabase::class);
 
+it('accepts and remembers any holster without treating it as a concrete pair', function () {
+    $group = Group::factory()->create();
+    $service = app(BozjaHolsterPairService::class);
+    expect($service->validateApplicationPairs(['any'], $group->id, 'answers.holsters'))->toBe(['any'])
+        ->and($service->filterRememberedPairs(['any'], $group->id))->toBe(['any'])
+        ->and($service->normalizePair(['prepop_id' => 'any', 'refill_id' => null]))->toBeNull();
+});
+
+it('rejects mixing any with specific or duplicate holster selections', function (array $value) {
+    $group = Group::factory()->create();
+    expect(fn () => app(BozjaHolsterPairService::class)->validateApplicationPairs($value, $group->id, 'answers.holsters'))
+        ->toThrow(ValidationException::class);
+})->with([
+    'mixed' => [['any', ['prepop_id' => 1, 'refill_id' => null]]],
+    'duplicate' => [['any', 'any']],
+]);
+
+it('renders any holster in the applicant review in every supported language', function (string $locale) {
+    app()->setLocale($locale);
+    expect(app(ApplicationAnswerPresenter::class)->presentDisplayItems('bozja_holsters', ['any']))
+        ->toBe([['label' => __('ui.any')]])
+        ->and(__('ui.any'))->not->toBe('ui.any');
+})->with(['en', 'de', 'fr', 'ja']);
+
 it('accepts standalone pre-pops only when they have no active same-group refills', function (string $refillState) {
     $group = Group::factory()->create();
     $prepop = BozjaHolster::create(['group_id' => $group->id, 'name' => ['en' => 'Standalone tank']]);

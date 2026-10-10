@@ -31,6 +31,8 @@ class RunNotificationService
     public function __construct(
         private readonly NotificationService $notificationService,
         private readonly IntegrationWebhookDispatcher $webhookDispatcher,
+        private readonly ActivityNotificationPayloadBuilder $payloadBuilder,
+        private readonly PartyFinderNotificationPayloadBuilder $partyFinderPayloadBuilder,
     ) {}
 
     /**
@@ -102,12 +104,7 @@ class RunNotificationService
                 'password' => $partyFinderInfo->password,
             ],
             payload: [
-                'party_finder' => [
-                    'character_name' => $partyFinderInfo->character_name,
-                    'world' => $partyFinderInfo->world,
-                    'password' => $partyFinderInfo->password,
-                    'published_at' => $partyFinderInfo->published_at?->toIso8601String(),
-                ],
+                'party_finder' => $this->partyFinderPayloadBuilder->build($partyFinderInfo),
             ],
         );
     }
@@ -225,6 +222,7 @@ class RunNotificationService
             actor: $actor instanceof User ? $actor : null,
             subject: $activity,
             payload: array_merge([
+                ...$this->payloadBuilder->forActivity($activity),
                 'activity_id' => $activity->id,
                 'group_id' => $activity->group?->id,
                 'group_slug' => $activity->group?->slug,
@@ -314,6 +312,7 @@ class RunNotificationService
                 'type' => $notificationType,
                 'reminder_type' => str_replace('runs.', '', $notificationType),
                 'run_id' => $activity->id,
+                'run_url' => $this->payloadBuilder->runUrl($activity),
                 'activity_id' => $activity->activity_type_id,
                 'activity_type_id' => $activity->activity_type_id,
                 'activity_type_version_id' => $activity->activity_type_version_id,
@@ -395,6 +394,7 @@ class RunNotificationService
             [
                 'type' => 'runs.completed',
                 'run_id' => $activity->id,
+                'run_url' => $this->payloadBuilder->runUrl($activity),
                 'activity_id' => $activity->id,
                 'group_id' => $group->id,
                 'group_slug' => $group->slug,
@@ -476,6 +476,7 @@ class RunNotificationService
             [
                 'type' => 'runs.cancelled',
                 'run_id' => $activity->id,
+                'run_url' => $this->payloadBuilder->runUrl($activity),
                 'activity_id' => $activity->id,
                 'group_id' => $group->id,
                 'group_slug' => $group->slug,

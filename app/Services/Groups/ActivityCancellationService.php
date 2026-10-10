@@ -4,6 +4,7 @@ namespace App\Services\Groups;
 
 use App\Models\Activity;
 use App\Models\ActivityApplication;
+use App\Services\Integrations\DiscordGuildRunsChangedService;
 use App\Services\Notifications\ApplicationNotificationService;
 use App\Services\Notifications\RunNotificationService;
 use Illuminate\Support\Collection;
@@ -17,6 +18,7 @@ class ActivityCancellationService
         private readonly GroupActivityAuditService $activityAuditService,
         private readonly ApplicationNotificationService $applicationNotificationService,
         private readonly RunNotificationService $runNotificationService,
+        private readonly DiscordGuildRunsChangedService $discordRunsChanged,
     ) {}
 
     /**
@@ -81,6 +83,8 @@ class ActivityCancellationService
                     ],
                 ),
             ]);
+
+            $this->discordRunsChanged->notifyChanged($activity);
 
             return $applicationsToCancel;
         });

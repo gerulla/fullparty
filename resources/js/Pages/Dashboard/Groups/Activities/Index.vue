@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onBeforeUnmount, onMounted, ref } from "vue";
+import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { router } from "@inertiajs/vue3";
 import { route } from "ziggy-js";
 import { useI18n } from "vue-i18n";
@@ -9,6 +9,8 @@ import ActivityMonthCalendar from "@/components/Groups/Activities/ActivityMonthC
 import ActivityResponsiveAgendaCalendar from "@/components/Groups/Activities/ActivityResponsiveAgendaCalendar.vue";
 import type { ActivityIndexItem, GroupQuickCreateShortcut } from "@/Types/ActivityCore";
 import { isArchivedActivityStatus } from "@/utils/activityLifecycle";
+import ActivityTypeFilter from "@/components/Runs/ActivityTypeFilter.vue";
+import { availableActivityTypes } from "@/utils/activityTypes";
 
 const props = defineProps<{
 	group: {
@@ -26,6 +28,18 @@ const props = defineProps<{
 
 const { t } = useI18n();
 const selectedDateKey = ref<string | null>(null);
+const selectedActivityTypeId = ref<number | null>(null);
+const activityTypes = computed(() => availableActivityTypes(props.activities.filter((activity) => (
+	activity.starts_at && Number.isFinite(new Date(activity.starts_at).getTime())
+))));
+const filteredActivities = computed(() => selectedActivityTypeId.value === null
+	? props.activities
+	: props.activities.filter((activity) => activity.activity_type?.id === selectedActivityTypeId.value));
+watch(activityTypes, (types) => {
+	if (selectedActivityTypeId.value !== null && !types.some((type) => type.id === selectedActivityTypeId.value)) {
+		selectedActivityTypeId.value = null;
+	}
+});
 const desktopMediaQueryString = '(min-width: 1280px)';
 const shouldRenderDesktopLayout = ref(
 	typeof window !== 'undefined'
@@ -59,7 +73,7 @@ const goToCreatePage = () => {
 const upcomingCount = computed(() => {
 	const now = Date.now();
 
-	return props.activities.filter((activity) => {
+	return filteredActivities.value.filter((activity) => {
 		if (!activity.starts_at) {
 			return false;
 		}
@@ -104,8 +118,12 @@ const upcomingCount = computed(() => {
 			<ActivityResponsiveAgendaCalendar
 				:group-slug="group.slug"
 				:can-manage-activities="group.permissions.can_manage_activities"
-				:activities="activities"
-			/>
+				:activities="filteredActivities"
+			>
+				<template #header-actions>
+					<ActivityTypeFilter v-model="selectedActivityTypeId" :activity-types="activityTypes" class="w-44 min-w-0 sm:w-56" />
+				</template>
+			</ActivityResponsiveAgendaCalendar>
 		</div>
 
 		<div v-if="shouldRenderDesktopLayout" class="mt-4 hidden items-start gap-6 xl:flex">
@@ -113,18 +131,22 @@ const upcomingCount = computed(() => {
 				class="w-full xl:w-1/3"
 				:group-slug="group.slug"
 				:can-manage-activities="group.permissions.can_manage_activities"
-				:activities="activities"
+				:activities="filteredActivities"
 				:selected-date-key="selectedDateKey"
 			/>
 			<ActivityMonthCalendar
 				class="w-full xl:w-2/3"
 				:group-slug="group.slug"
-				:activities="activities"
+				:activities="filteredActivities"
 				:selected-date-key="selectedDateKey"
 				:can-manage-activities="group.permissions.can_manage_activities"
 				:quick-create-shortcuts="quickCreateShortcuts"
 				@update-selected-date-key="selectedDateKey = $event"
-			/>
+			>
+				<template #header-actions>
+					<ActivityTypeFilter v-model="selectedActivityTypeId" :activity-types="activityTypes" class="w-56 min-w-0" />
+				</template>
+			</ActivityMonthCalendar>
 		</div>
 	</div>
 </template>

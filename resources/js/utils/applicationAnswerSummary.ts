@@ -14,6 +14,7 @@ export function formatApplicationAnswerSummary(
 
     if (question.type === 'holster_pair_list') {
         if (!Array.isArray(value)) return null;
+        if (value.length === 1 && value[0] === 'any') return { value: t('holsters.any'), isLongText: false };
 
         const labels = value.flatMap(pair => {
             if (!pair || typeof pair !== 'object' || Array.isArray(pair)) return [];

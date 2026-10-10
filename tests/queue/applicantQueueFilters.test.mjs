@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { matchesQueuePartyLeadFilter, matchesQueueRoleFilter } from '../../resources/js/utils/applicantQueueFilters.ts';
+import { matchesQueueBooleanFilters, matchesQueueRoleFilter } from '../../resources/js/utils/applicantQueueFilters.ts';
 
 const roles = ['tank', 'healer', 'melee dps', 'physical ranged dps', 'magic ranged dps'];
 const classField = {
@@ -41,24 +41,36 @@ test('honors the application options and accepts Any only when the form offers i
     assert.equal(matchesQueueRoleFilter([classAnswer(['any'])], [withAny], ['tank']), true);
 });
 
-test('includes only affirmative party lead answers when enabled', () => {
+test('includes only affirmative boolean answers when a filter is enabled', () => {
     for (const value of [true, 1, '1', 'true']) {
-        assert.equal(matchesQueuePartyLeadFilter([leadAnswer(value)], 'wants_to_party_lead', true), true);
+        assert.equal(matchesQueueBooleanFilters([leadAnswer(value)], ['wants_to_party_lead']), true);
     }
     for (const value of [false, 0, '0', 'false', null, undefined, '', []]) {
-        assert.equal(matchesQueuePartyLeadFilter([leadAnswer(value)], 'wants_to_party_lead', true), false);
+        assert.equal(matchesQueueBooleanFilters([leadAnswer(value)], ['wants_to_party_lead']), false);
     }
-    assert.equal(matchesQueuePartyLeadFilter([], 'wants_to_party_lead', true), false);
-    assert.equal(matchesQueuePartyLeadFilter([], 'wants_to_party_lead', false), true);
-    assert.equal(matchesQueuePartyLeadFilter([], null, true), true);
+    assert.equal(matchesQueueBooleanFilters([], ['wants_to_party_lead']), false);
+    assert.equal(matchesQueueBooleanFilters([], []), true);
 });
 
-test('combines role and party lead preferences without altering answers', () => {
+test('requires every enabled boolean using arbitrary question keys', () => {
+    const answers = [
+        leadAnswer(true),
+        { question_key: 'solo_heal', raw_value: 'true' },
+        { question_key: 'available_for_standby', raw_value: false },
+        { question_key: 'custom_preference', raw_value: 1 },
+    ];
+    assert.equal(matchesQueueBooleanFilters(answers, ['wants_to_party_lead', 'solo_heal', 'custom_preference']), true);
+    assert.equal(matchesQueueBooleanFilters(answers, ['solo_heal', 'available_for_standby']), false);
+    assert.equal(matchesQueueBooleanFilters(answers, ['missing_answer']), false);
+    assert.equal(matchesQueueBooleanFilters(answers, []), true);
+});
+
+test('combines role and boolean preferences without altering answers', () => {
     const answers = [classAnswer(['1', '2']), leadAnswer(true)];
     const original = structuredClone(answers);
     assert.equal(matchesQueueRoleFilter(answers, [classField], ['healer'])
-        && matchesQueuePartyLeadFilter(answers, 'wants_to_party_lead', true), true);
+        && matchesQueueBooleanFilters(answers, ['wants_to_party_lead']), true);
     assert.equal(matchesQueueRoleFilter(answers, [classField], ['melee dps'])
-        && matchesQueuePartyLeadFilter(answers, 'wants_to_party_lead', true), false);
+        && matchesQueueBooleanFilters(answers, ['wants_to_party_lead']), false);
     assert.deepEqual(answers, original);
 });

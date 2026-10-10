@@ -22,6 +22,7 @@ use App\Services\Groups\ActivitySlotBench;
 use App\Services\Groups\ActivitySlotFieldDefinitionBuilder;
 use App\Services\Groups\ActivitySlotSerializer;
 use App\Services\Groups\GroupActivityAuditService;
+use App\Services\Integrations\DiscordGuildRunsChangedService;
 use App\Services\Notifications\AssignmentNotificationService;
 use App\Services\Notifications\GroupUpdateNotificationService;
 use App\Services\Quotas\QuotaService;
@@ -50,6 +51,7 @@ class GroupActivityController extends Controller
         private readonly RequestTextInputSanitizer $requestTextInputSanitizer,
         private readonly ServerMeta $serverMeta,
         private readonly QuotaService $quotaService,
+        private readonly DiscordGuildRunsChangedService $discordRunsChanged,
     ) {}
 
     public function overview(
@@ -290,6 +292,7 @@ class GroupActivityController extends Controller
             return $activity;
         });
 
+        $this->discordRunsChanged->notifyChanged($activity);
         $this->groupUpdateNotificationService->notifyRunCreated(
             $activity->fresh('group'),
             auth()->user(),
@@ -434,6 +437,10 @@ class GroupActivityController extends Controller
 
         $this->activityAuditService->logActivityUpdated($activity, auth()->user(), $changes);
 
+        if ($changes !== []) {
+            $this->discordRunsChanged->notifyChanged($activity);
+        }
+
         return redirect()
             ->route('groups.dashboard.activities.show', [
                 'group' => $group,
@@ -451,6 +458,7 @@ class GroupActivityController extends Controller
 
         $this->activityAuditService->logActivityDeleted($group, $activity, auth()->user());
         $activity->delete();
+        $this->discordRunsChanged->notifyChanged($activity);
 
         return redirect()
             ->route('groups.dashboard.activities.index', $group)
@@ -513,6 +521,8 @@ class GroupActivityController extends Controller
             'status' => Activity::STATUS_SCHEDULED,
         ]);
 
+        $this->discordRunsChanged->notifyChanged($activity);
+
         $this->groupUpdateNotificationService->notifyRunScheduled(
             $activity->fresh('group'),
             auth()->user(),
@@ -548,6 +558,8 @@ class GroupActivityController extends Controller
         $activity->update([
             'status' => Activity::STATUS_ASSIGNED,
         ]);
+
+        $this->discordRunsChanged->notifyChanged($activity);
 
         $assignmentNotificationService->notifyRosterPublished(
             $activity->fresh(['group', 'applications.user', 'applications.selectedCharacter', 'slots']),

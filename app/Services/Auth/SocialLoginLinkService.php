@@ -27,6 +27,7 @@ final class SocialLoginLinkService
         private readonly AuditLogger $auditLogger,
         private readonly AccountCharacterNotificationService $notifications,
         private readonly XIVAuthCharacterSyncService $characterSync,
+        private readonly DiscordLoginWelcomeService $discordLoginWelcome,
     ) {}
 
     public function rememberOAuthRedirect(Request $request, string $provider, RedirectResponse $response): RedirectResponse
@@ -156,6 +157,9 @@ final class SocialLoginLinkService
             $identities[] = VerifiedSocialIdentity::fromArray($proof['identity']);
         }
         foreach ($identities as $authenticatedIdentity) {
+            if ($authenticatedIdentity->provider === 'discord') {
+                $this->discordLoginWelcome->recordFirstLogin($user, $authenticatedIdentity->providerUserId);
+            }
             if ($authenticatedIdentity->provider === 'xivauth') {
                 $conflicts = array_merge($conflicts, $this->characterSync->syncMany($user, $authenticatedIdentity->characters)->conflicts);
             }

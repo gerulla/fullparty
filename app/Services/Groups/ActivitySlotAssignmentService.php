@@ -26,6 +26,7 @@ class ActivitySlotAssignmentService
         private readonly BozjaHolsterPairService $bozjaHolsterPairService,
         private readonly ActivityRosterLock $rosterLock,
         private readonly ActivitySlotStateTokenService $stateTokens,
+        private readonly ActivityFillInSlotService $fillInSlotService,
     ) {}
 
     /**
@@ -40,13 +41,14 @@ class ActivitySlotAssignmentService
         int $assignedByUserId,
         ?ActivitySlot $sourceSlot = null,
         bool $ignoreApplicationChoices = false,
+        ?string $filledGroupKey = null,
     ): void {
         $expectedTarget = $this->stateTokens->generate($targetSlot);
         $expectedSource = $sourceSlot ? $this->stateTokens->generate($sourceSlot) : null;
 
         $this->rosterLock->run((int) $targetSlot->activity_id, function () use (
             $targetSlot, $sourceSlot, $application, $fieldSelections, $fieldDefinitions,
-            $assignedByUserId, $ignoreApplicationChoices, $expectedTarget, $expectedSource,
+            $assignedByUserId, $ignoreApplicationChoices, $expectedTarget, $expectedSource, $filledGroupKey,
         ): void {
             $this->rosterLock->refreshSlot($targetSlot, $expectedTarget);
             if ($sourceSlot) {
@@ -62,7 +64,7 @@ class ActivitySlotAssignmentService
                 ]);
             }
             $this->assignCurrentApplication($targetSlot, $application, $fieldSelections, $fieldDefinitions,
-                $assignedByUserId, $sourceSlot, $ignoreApplicationChoices);
+                $assignedByUserId, $sourceSlot, $ignoreApplicationChoices, $filledGroupKey);
         });
     }
 
@@ -74,6 +76,7 @@ class ActivitySlotAssignmentService
         int $assignedByUserId,
         ?ActivitySlot $sourceSlot,
         bool $ignoreApplicationChoices,
+        ?string $filledGroupKey,
     ): void {
         $targetSlot->loadMissing('fieldValues');
 
@@ -117,6 +120,7 @@ class ActivitySlotAssignmentService
             && (int) $targetPreviousCharacterId !== (int) $application->selected_character_id;
         $displacedApplication = $this->findApplicationForAssignedCharacter($targetSlot);
         $originalTargetFieldValueSnapshot = $this->attendanceService->buildFieldValueSnapshot($targetSlot);
+        $originalFilledGroupKey = $targetSlot->filled_group_key;
 
         DB::transaction(function () use (
             $targetSlot,
@@ -133,8 +137,12 @@ class ActivitySlotAssignmentService
             $targetHadDifferentOccupant,
             $displacedApplication,
             $ignoreApplicationChoices,
+            $filledGroupKey,
         ) {
             $activity = $targetSlot->activity;
+            if ($filledGroupKey !== null && $this->slotKind->isFillIn($targetSlot)) {
+                $this->fillInSlotService->updateFilledGroup($activity, $targetSlot, $filledGroupKey);
+            }
             $targetDesignationState = $this->designationState($targetSlot);
             $sourceDesignationState = $sourceSlot ? $this->designationState($sourceSlot) : $this->emptyDesignationState();
 
@@ -280,7 +288,7 @@ class ActivitySlotAssignmentService
 
         if (
             $targetSlot->activity?->status !== Activity::STATUS_ASSIGNED
-            || ($event === 'updated' && ! $targetFieldValuesChanged)
+            || ($event === 'updated' && ! $targetFieldValuesChanged && $originalFilledGroupKey === $updatedTargetSlot?->filled_group_key)
         ) {
             return;
         }
@@ -322,13 +330,14 @@ class ActivitySlotAssignmentService
         array $fieldDefinitions,
         int $assignedByUserId,
         ?ActivitySlot $sourceSlot = null,
+        ?string $filledGroupKey = null,
     ): void {
         $expectedTarget = $this->stateTokens->generate($targetSlot);
         $expectedSource = $sourceSlot ? $this->stateTokens->generate($sourceSlot) : null;
 
         $this->rosterLock->run((int) $targetSlot->activity_id, function () use (
             $targetSlot, $sourceSlot, $character, $fieldSelections, $fieldDefinitions,
-            $assignedByUserId, $expectedTarget, $expectedSource,
+            $assignedByUserId, $expectedTarget, $expectedSource, $filledGroupKey,
         ): void {
             $this->rosterLock->refreshSlot($targetSlot, $expectedTarget);
             if ($sourceSlot) {
@@ -336,7 +345,7 @@ class ActivitySlotAssignmentService
                 $this->rosterLock->refreshSlot($sourceSlot, $expectedSource);
             }
             $this->assignCurrentManualCharacter($targetSlot, $character, $fieldSelections,
-                $fieldDefinitions, $assignedByUserId, $sourceSlot);
+                $fieldDefinitions, $assignedByUserId, $sourceSlot, $filledGroupKey);
         });
     }
 
@@ -347,6 +356,7 @@ class ActivitySlotAssignmentService
         array $fieldDefinitions,
         int $assignedByUserId,
         ?ActivitySlot $sourceSlot,
+        ?string $filledGroupKey,
     ): void {
         $targetSlot->loadMissing('fieldValues');
         $character->loadMissing(['user', 'classes', 'phantomJobs']);
@@ -411,6 +421,7 @@ class ActivitySlotAssignmentService
 
         $targetPreviousCharacterId = $targetSlot->assigned_character_id;
         $originalTargetFieldValueSnapshot = $this->attendanceService->buildFieldValueSnapshot($targetSlot);
+        $originalFilledGroupKey = $targetSlot->filled_group_key;
         $isTargetBench = $this->slotBench->isBench($targetSlot);
         $targetCanCarryDesignation = $this->slotKind->isMainRoster($targetSlot);
 
@@ -425,7 +436,11 @@ class ActivitySlotAssignmentService
             $targetCanCarryDesignation,
             $activity,
             $targetPreviousCharacterId,
+            $filledGroupKey,
         ) {
+            if ($filledGroupKey !== null && $this->slotKind->isFillIn($targetSlot)) {
+                $this->fillInSlotService->updateFilledGroup($activity, $targetSlot, $filledGroupKey);
+            }
             $targetDesignationState = $this->designationState($targetSlot);
             $sourceDesignationState = $sourceSlot ? $this->designationState($sourceSlot) : $this->emptyDesignationState();
 
@@ -516,7 +531,7 @@ class ActivitySlotAssignmentService
 
         if (
             $targetSlot->activity?->status !== Activity::STATUS_ASSIGNED
-            || ($targetPreviousCharacterId === $character->id && ! $targetFieldValuesChanged)
+            || ($targetPreviousCharacterId === $character->id && ! $targetFieldValuesChanged && $originalFilledGroupKey === $updatedTargetSlot?->filled_group_key)
         ) {
             return;
         }
@@ -668,8 +683,9 @@ class ActivitySlotAssignmentService
                 );
                 $choicesIgnoredForField = $ignoreApplicationChoices && $this->canIgnoreApplicationChoicesForField($definition);
 
-                if (! $choicesIgnoredForField && ! $this->submittedHolsterPairKeys($applicationAnswer?->value)
-                    ->contains($this->bozjaHolsterPairService->pairKey($pair))) {
+                if (! $choicesIgnoredForField && ! BozjaHolsterPairService::isAnySelection($applicationAnswer?->value)
+                    && ! $this->submittedHolsterPairKeys($applicationAnswer?->value)
+                        ->contains($this->bozjaHolsterPairService->pairKey($pair))) {
                     throw ValidationException::withMessages([
                         "field_values.{$fieldValue->field_key}" => __('errors.selected_holster_pairs_must_come_from_the_application'),
                     ]);

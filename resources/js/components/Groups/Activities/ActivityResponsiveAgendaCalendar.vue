@@ -213,6 +213,10 @@ const goToManagement = (activity: ActivityIndexItem) => {
 	<section class="flex flex-col gap-4 xl:hidden">
 		<UCard class="overflow-hidden border border-white/10 bg-neutral-950/70" :ui="{ body: 'p-0' }">
 			<div class="px-4 pt-4 pb-2">
+				<div v-if="$slots['header-actions']" class="mb-4 flex items-center justify-between gap-3">
+					<h2 class="min-w-0 text-sm font-semibold text-white">{{ t('groups.activities.calendar.title') }}</h2>
+					<slot name="header-actions" />
+				</div>
 				<Transition name="calendar-range-header">
 					<div v-if="!isCollapsedToWeek" class="flex items-center justify-between gap-3">
 						<UButton

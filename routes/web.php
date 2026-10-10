@@ -76,6 +76,7 @@ use App\Http\Controllers\GroupRunListController;
 use App\Http\Controllers\GroupSettingsController;
 use App\Http\Controllers\GroupShortcutController;
 use App\Http\Controllers\GroupStatisticsController;
+use App\Http\Controllers\ImageTransformController;
 use App\Http\Controllers\IntegrationClientController;
 use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\MyRunsController;
@@ -116,6 +117,10 @@ use Inertia\Inertia;
 Route::pattern('locale', implode('|', ApplyLocale::SUPPORTED_LOCALES));
 
 $appHost = parse_url((string) config('app.url'), PHP_URL_HOST) ?: 'fullparty.test';
+
+// Extensionless URL: static-file Nginx locations must not intercept transformation requests.
+Route::domain($appHost)->get('/images/transform', ImageTransformController::class)
+    ->withoutMiddleware('web')->middleware('throttle:300,1')->name('images.transform');
 
 require __DIR__.'/resources.php';
 require __DIR__.'/api_docs.php';

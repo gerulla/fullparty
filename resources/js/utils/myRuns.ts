@@ -27,6 +27,7 @@ export const filterMyRuns = (
 
 	return activities.filter((activity) => {
 		if (!activity.group || !groupIds.has(activity.group.id)) return false;
+		if (filters.activityTypeId != null && activity.activity_type?.id !== filters.activityTypeId) return false;
 		if (filters.appliedOnly && !activity.has_existing_application) return false;
 		if (searchTerms.length > 0) {
 			const searchableText = normalizeSearch([

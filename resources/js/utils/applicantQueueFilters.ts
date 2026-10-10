@@ -22,13 +22,12 @@ export function matchesQueueRoleFilter(
 	});
 }
 
-export function matchesQueuePartyLeadFilter(
+export function matchesQueueBooleanFilters(
 	answers: QueueApplicationAnswer[],
-	questionKey: string | null,
-	partyLeadsOnly: boolean,
+	questionKeys: string[],
 ): boolean {
-	if (!partyLeadsOnly || !questionKey) return true;
-	const answer = answers.find((entry) => entry.question_key === questionKey);
-	const value = answer?.raw_value;
-	return value === true || value === 1 || value === '1' || value === 'true';
+	return questionKeys.every((questionKey) => {
+		const value = answers.find((entry) => entry.question_key === questionKey)?.raw_value;
+		return value === true || value === 1 || value === '1' || value === 'true';
+	});
 }

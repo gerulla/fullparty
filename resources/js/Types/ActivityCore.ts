@@ -88,6 +88,8 @@ export interface ActivityIndexItem {
 	updated_at: string | null
 }
 
+export type ActivityListType = ActivityIndexItem["activity_type"] & { id: number };
+
 export type ActivityTypeOption = {
 	id: number
 	slug: string

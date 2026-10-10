@@ -1,4 +1,8 @@
 {
+    "activity_type_filter": {
+        "label": "アクティビティの種類",
+        "all": "すべてのアクティビティ"
+    },
     "title": "ラン",
     "subtitle": "{group}の今後の予定と月間カレンダーをひと目で確認できます。",
     "header_badge": "今後 {count}件",
@@ -477,7 +481,6 @@
             "filters_with_count": "フィルター（{count}）",
             "filter_any": "任意一致",
             "role_filter": "ロール",
-            "party_leads_only": "PTリーダー希望",
             "filter_any_milestone": "任意のマイルストーン到達",
             "milestones_reached": "到達済みマイルストーン",
             "min_knowledge_level": "最低知識レベル",
@@ -485,6 +488,7 @@
             "minimum_value_placeholder": "最小値",
             "clear_filters": "フィルターをクリア",
             "pending": "保留中",
+            "application_number": "申請番号 {number}",
             "expand": "展開",
             "assign_to_roster": "ロスターに割り当て",
             "edit_slot_fields": "スロット項目を編集",

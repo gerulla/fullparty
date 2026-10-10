@@ -68,6 +68,41 @@ test('single selection replaces the previous pair and preserves the scalar paylo
     h.stop()
 })
 
+test('any is an exclusive draft choice that can be cancelled confirmed and replaced', () => {
+    const h = harness({ allowAny: true })
+    h.api.show(); h.api.toggleAny()
+    assert.equal(h.api.draftAny.value, true)
+    assert.deepEqual(h.api.validDraft.value, [])
+    assert.deepEqual(h.props.modelValue, [pair()])
+    h.api.open.value = false; h.api.show()
+    assert.equal(h.api.draftAny.value, false)
+    assert.deepEqual(h.api.validDraft.value, [pair()])
+    h.api.toggleAny(); h.api.confirm()
+    assert.deepEqual(h.props.modelValue, ['any'])
+    assert.equal(h.api.selectedAny.value, true)
+    h.api.show(); h.api.toggle(pair('1', '3')); h.api.confirm()
+    assert.deepEqual(h.props.modelValue, [pair('1', '3')])
+    h.api.show(); h.api.toggleAny(); h.api.confirm(); h.api.removeAny()
+    assert.deepEqual(h.props.modelValue, [])
+    h.stop()
+})
+
+test('any cannot bypass disabled controls or restricted roster selections', () => {
+    for (const overrides of [{}, { allowAny: true, multiple: false }, { allowAny: true, allowedPairs: [pair()] }, { allowAny: true, disabled: true }]) {
+        const h = harness(overrides)
+        h.api.show(); h.api.toggleAny()
+        assert.equal(h.api.draftAny.value, false)
+        assert.deepEqual(h.emitted, [])
+        h.stop()
+    }
+    const h = harness({ allowAny: true, modelValue: ['any'] })
+    h.api.show(); h.props.disabled = true; h.api.removeAny(); h.api.confirm()
+    assert.deepEqual(h.emitted, [])
+    h.props.disabled = false; h.props.allowAny = false; h.api.confirm()
+    assert.deepEqual(h.props.modelValue, [])
+    h.stop()
+})
+
 test('invalid pairs cannot be selected and changed permissions are rechecked at confirmation', () => {
     const h = harness(); h.api.show(); h.api.toggle(pair('1', '5'))
     assert.deepEqual(h.api.validDraft.value, [pair()])

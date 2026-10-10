@@ -1,4 +1,6 @@
 {
+    "any": "Any",
+    "any_description": "I can use any holster loadout. Moderators can choose one for me.",
     "prepop": "Pre-pop",
     "refill": "Refill",
     "capacity": "{used} / {max} capacity",

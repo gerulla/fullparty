@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\SocialAccount;
 use App\Models\User;
 use App\Services\AuditLogger;
+use App\Services\Auth\DiscordLoginWelcomeService;
 use App\Services\Auth\OAuthAccountLinkingPolicy;
 use App\Services\Auth\SocialLoginLinkService;
 use App\Services\Notifications\AccountCharacterNotificationService;
@@ -24,6 +25,7 @@ class DiscordAuthController extends Controller
         private readonly AccountCharacterNotificationService $accountCharacterNotificationService,
         private readonly OAuthAccountLinkingPolicy $accountLinkingPolicy,
         private readonly SocialLoginLinkService $loginLinkService,
+        private readonly DiscordLoginWelcomeService $loginWelcome,
     ) {}
 
     public function redirect()
@@ -86,8 +88,13 @@ class DiscordAuthController extends Controller
                 ],
             ]);
 
+            $wasAuthenticated = Auth::check();
             Auth::login($socialAccount->user);
             request()->session()->regenerate();
+
+            if (! $wasAuthenticated) {
+                $this->loginWelcome->recordFirstLogin($socialAccount->user, $providerUserId);
+            }
 
             $this->auditLogger->log(
                 action: 'user.logged_in',
@@ -186,6 +193,10 @@ class DiscordAuthController extends Controller
 
         Auth::login($user);
         request()->session()->regenerate();
+
+        if (! $linkingExistingSession) {
+            $this->loginWelcome->recordFirstLogin($user, $providerUserId);
+        }
 
         $this->auditLogger->log(
             action: 'user.logged_in',

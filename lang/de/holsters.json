@@ -1,4 +1,6 @@
 {
+    "any": "Beliebig",
+    "any_description": "Ich kann jede Holster-Zusammenstellung verwenden. Moderatoren können eine für mich auswählen.",
     "prepop": "Vorbereitung",
     "refill": "Nachfüllung",
     "capacity": "{used} / {max} Kapazität",

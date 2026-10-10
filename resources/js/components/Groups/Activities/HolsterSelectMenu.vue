@@ -7,11 +7,12 @@ import type { HolsterPlannerGroup } from '@/Types/HolsterPlanner'
 import { holsterPairKey } from '@/utils/holsterPlanner'
 import HolsterLoadoutPanel from '@/components/Shared/Holsters/HolsterLoadoutPanel.vue'
 
-const props = defineProps<{ open: boolean; groups: HolsterPlannerGroup[]; selected: HolsterPairValue[]; query: string; multiple?: boolean; disabled?: boolean }>()
+const props = defineProps<{ open: boolean; groups: HolsterPlannerGroup[]; selected: HolsterPairValue[]; query: string; multiple?: boolean; disabled?: boolean; allowAny?: boolean; anySelected?: boolean }>()
 const emit = defineEmits<{
     'update:open': [value: boolean]
     'update:query': [value: string]
     toggle: [pair: HolsterPairValue]
+    'toggle-any': []
     confirm: []
 }>()
 const { t } = useI18n()
@@ -36,6 +37,17 @@ function toggleCard(event: MouseEvent, selection: HolsterPairValue) {
     <UModal :open="open" :title="t('holsters.choose_pairs')" :description="t(multiple ? 'holsters.choose_multiple_hint' : 'holsters.choose_single_hint')" :ui="{ content: 'sm:max-w-4xl', body: 'flex min-h-0 flex-col overflow-hidden p-0 sm:p-0', footer: 'flex-wrap justify-between gap-3' }" @update:open="$emit('update:open', $event)">
         <template #body>
             <div class="shrink-0 border-b border-default p-4">
+                <USwitch
+                    v-if="allowAny"
+                    :id="`${selectorId}-any`"
+                    class="mb-4 w-full"
+                    :model-value="Boolean(anySelected)"
+                    :label="t('holsters.any')"
+                    :description="t('holsters.any_description')"
+                    :disabled="disabled"
+                    :ui="{ root: 'flex-row-reverse items-center justify-between', wrapper: 'ms-0 me-4 min-w-0 flex-1', container: 'shrink-0' }"
+                    @update:model-value="$emit('toggle-any')"
+                />
                 <UInput :id="`${selectorId}-search`" :model-value="query" icon="i-lucide-search" class="w-full" :placeholder="t('holsters.search')" :aria-label="t('holsters.search')" @update:model-value="$emit('update:query', String($event))" />
             </div>
             <div class="min-h-0 max-h-[60dvh] overflow-y-auto overscroll-contain p-4 sm:p-5">
@@ -79,7 +91,7 @@ function toggleCard(event: MouseEvent, selection: HolsterPairValue) {
             </div>
         </template>
         <template #footer>
-            <p class="text-sm text-muted" aria-live="polite">{{ t('holsters.selected_count', { count: selected.length }) }}</p>
+            <p class="text-sm text-muted" aria-live="polite">{{ anySelected ? t('holsters.any') : t('holsters.selected_count', { count: selected.length }) }}</p>
             <div class="flex gap-2">
                 <UButton color="neutral" variant="outline" :label="t('general.cancel')" @click="$emit('update:open', false)" />
                 <UButton icon="i-lucide-check" :label="t('holsters.use_selection')" :disabled="disabled" @click="$emit('confirm')" />

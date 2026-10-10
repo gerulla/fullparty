@@ -1,6 +1,7 @@
 <?php
 
 use App\Events\ActivityManagementUpdated;
+use App\Jobs\DispatchRosterPublishedAssignmentNotificationJob;
 use App\Models\Activity;
 use App\Models\ActivityApplication;
 use App\Models\ActivitySlot;
@@ -8,12 +9,21 @@ use App\Models\ActivitySlotAssignment;
 use App\Models\ActivityType;
 use App\Models\ActivityTypeVersion;
 use App\Models\Character;
+use App\Models\DiscordUserIntegration;
 use App\Models\Group;
+use App\Models\IntegrationClient;
+use App\Models\NotificationEvent;
 use App\Models\User;
+use App\Models\UserNotification;
 use App\Services\Groups\ActivitySlotKind;
 use App\Services\Groups\GroupCompletedParticipationService;
+use App\Services\Notifications\AssignmentNotificationService;
+use App\Services\Notifications\NotificationMessageRenderer;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Queue;
+use Tests\Support\OpenApiContract;
 
 uses(RefreshDatabase::class);
 
@@ -116,6 +126,115 @@ function createFillInGroupMemberCharacter(Group $group): array
 
     return compact('user', 'character');
 }
+
+it('includes the covered party in fill-in notifications and updates it without duplicate notifications', function (bool $manual, bool $publishLater) {
+    Queue::fake();
+    Event::fake([ActivityManagementUpdated::class]);
+    Http::preventStrayRequests();
+    Http::fake(['https://integration.fullparty.test/events' => Http::response(['ok' => true])]);
+    IntegrationClient::factory()->create();
+    extract(createFillInActivitySetup());
+    if (! $publishLater) {
+        $activity->update(['status' => Activity::STATUS_ASSIGNED]);
+    }
+    $fillInSlot = createFillInSlotThroughEndpoint($this, $owner, $group, $activity);
+    extract(createFillInGroupMemberCharacter($group));
+    $user->update(['assignment_notifications' => true, 'discord_notifications' => true]);
+    DiscordUserIntegration::create([
+        'user_id' => $user->id,
+        'discord_user_id' => '234567890123456789',
+        'user_app_installed_at' => now(),
+    ]);
+    $application = $manual ? null : ActivityApplication::factory()->create([
+        'activity_id' => $activity->id,
+        'user_id' => $user->id,
+        'selected_character_id' => $character->id,
+        'status' => ActivityApplication::STATUS_PENDING,
+    ]);
+    $assign = function (string $party) use ($owner, $group, $activity, $fillInSlot, $manual, $character, $application): void {
+        $this->actingAs($owner)->postJson(route('groups.dashboard.activities.slot-assignments.store', [
+            'group' => $group->slug, 'activity' => $activity->id, 'slot' => $fillInSlot->id,
+        ]), [
+            $manual ? 'character_id' : 'application_id' => $manual ? $character->id : $application->id,
+            'filled_group_key' => $party,
+            'field_values' => [],
+            'expected_slot_state_token' => activity_slot_state_token($fillInSlot->fresh()),
+        ])->assertOk();
+    };
+
+    $assign('party-b');
+    if ($publishLater) {
+        expect(NotificationEvent::query()->count())->toBe(0);
+        Http::assertNothingSent();
+        $this->actingAs($owner)->post(route('groups.dashboard.activities.publish-roster', [
+            'group' => $group->slug, 'activity' => $activity->id,
+        ]))->assertRedirect();
+        Queue::assertPushed(DispatchRosterPublishedAssignmentNotificationJob::class, 1);
+        $job = Queue::pushed(DispatchRosterPublishedAssignmentNotificationJob::class)->sole();
+        $job->handle(app(AssignmentNotificationService::class));
+    }
+
+    $firstEvent = NotificationEvent::query()->sole();
+    expect($firstEvent->type)->toBe($publishLater ? 'assignments.roster_published_assigned' : 'assignments.assigned')
+        ->and($firstEvent->message_params['slot'])->toBe('Fill in 1 (Party B)')
+        ->and($firstEvent->payload['slot_label'])->toBe('Fill in 1 (Party B)')
+        ->and($firstEvent->payload['roster'])->toMatchArray([
+            'is_fill_in' => true,
+            'group_key' => 'fill-ins',
+            'filled_group_key' => 'party-b',
+            'filled_group_label' => 'Party B',
+            'slot_label' => 'Fill in 1 (Party B)',
+        ]);
+    foreach (['en', 'de', 'fr', 'ja'] as $locale) {
+        expect(app(NotificationMessageRenderer::class)->render($firstEvent, $user, $locale)['body'])
+            ->toContain('Party B');
+    }
+
+    $assign('party-a');
+    $assign('party-a');
+    expect(NotificationEvent::query()->count())->toBe(2)
+        ->and(UserNotification::query()->where('user_id', $user->id)->count())->toBe(2)
+        ->and($fillInSlot->fresh()->filled_group_key)->toBe('party-a');
+    Http::assertSentCount(2);
+    $document = json_decode(file_get_contents(resource_path('openapi/fullparty.json')), true, flags: JSON_THROW_ON_ERROR);
+    foreach (Http::recorded() as $index => [$request]) {
+        $notification = $request->data()['data']['notification'];
+        $party = $index === 0 ? 'Party B' : 'Party A';
+        expect($notification['params']['slot'])->toBe('Fill in 1 ('.$party.')')
+            ->and($notification['payload']['roster']['filled_group_label'])->toBe($party);
+        OpenApiContract::assertMatches(json_decode($request->body()), $document['webhooks']['discord.notification.delivery']['post']['requestBody']['content']['application/json']['schema'], $document);
+    }
+})->with([false, true])->with([false, true]);
+
+it('does not save the covered party or send a notification when the assignment fails validation', function (bool $manual) {
+    Queue::fake();
+    Event::fake([ActivityManagementUpdated::class]);
+    Http::preventStrayRequests();
+    $schema = [['key' => 'role', 'label' => ['en' => 'Role'], 'type' => 'single_select', 'options' => []]];
+    extract(createFillInActivitySetup($schema));
+    $version->update(['application_schema' => $schema]);
+    $activity->update(['status' => Activity::STATUS_ASSIGNED]);
+    $fillInSlot = createFillInSlotThroughEndpoint($this, $owner, $group, $activity);
+    extract(createFillInGroupMemberCharacter($group));
+    $application = $manual ? null : ActivityApplication::factory()->create([
+        'activity_id' => $activity->id, 'user_id' => $user->id,
+        'selected_character_id' => $character->id, 'status' => ActivityApplication::STATUS_PENDING,
+    ]);
+
+    $this->actingAs($owner)->postJson(route('groups.dashboard.activities.slot-assignments.store', [
+        'group' => $group->slug, 'activity' => $activity->id, 'slot' => $fillInSlot->id,
+    ]), [
+        $manual ? 'character_id' : 'application_id' => $manual ? $character->id : $application->id,
+        'filled_group_key' => 'party-b',
+        'field_values' => [],
+        'expected_slot_state_token' => activity_slot_state_token($fillInSlot),
+    ])->assertUnprocessable()->assertJsonValidationErrors('field_values.role');
+
+    expect($fillInSlot->fresh()->filled_group_key)->toBeNull()
+        ->and($fillInSlot->fresh()->assigned_character_id)->toBeNull()
+        ->and(NotificationEvent::query()->count())->toBe(0);
+    Http::assertNothingSent();
+})->with([false, true]);
 
 it('creates fill-in slots without changing main roster capacity', function () {
     Event::fake([ActivityManagementUpdated::class]);

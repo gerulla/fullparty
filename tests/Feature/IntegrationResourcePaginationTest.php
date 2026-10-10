@@ -5,6 +5,7 @@ use App\Models\Group;
 use App\Models\GroupResource;
 use App\Models\IntegrationClient;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\Support\OpenApiContract;
 
 uses(RefreshDatabase::class);
 
@@ -64,6 +65,8 @@ it('paginates commands alphabetically using page numbers from the POST body', fu
             ->assertJsonMissingPath('data.0.embed');
         expect(array_column($response->json('data'), 'command_name'))->toBe($expected);
         expect($response->json('data.0.title'))->toBe('Guide: '.$expected[0]);
+        expect($response->json('data.0.embed_title'))->toBe('Guide: '.$expected[0])
+            ->and($response->json('data.0.resource_title'))->toBe('Parent resource: '.$expected[0]);
         $names = array_merge($names, array_column($response->json('data'), 'command_name'));
     }
     expect($names)->toBe(['alpha', 'bravo', 'charlie', 'delta', 'zebra']);
@@ -148,14 +151,19 @@ it('lists each embed title independently when multiple commands belong to one re
         $resource->commands()->create(['group_id' => $this->group->id, 'name' => $name, 'enabled' => true, 'embed' => ['title' => $title]]);
     }
     $expected = [
-        ['command_name' => 'drs-healer', 'title' => 'Healing plan'],
-        ['command_name' => 'drs-melee', 'title' => 'Melee loadout'],
-        ['command_name' => 'drs-tank', 'title' => 'Guide: drs-tank'],
+        ['command_name' => 'drs-healer', 'title' => 'Healing plan', 'embed_title' => 'Healing plan', 'resource_title' => 'Parent resource: drs-tank'],
+        ['command_name' => 'drs-melee', 'title' => 'Melee loadout', 'embed_title' => 'Melee loadout', 'resource_title' => 'Parent resource: drs-tank'],
+        ['command_name' => 'drs-tank', 'title' => 'Guide: drs-tank', 'embed_title' => 'Guide: drs-tank', 'resource_title' => 'Parent resource: drs-tank'],
     ];
-    $this->postJson($this->endpoint, $this->guildBody)->assertOk()->assertJsonPath('data', $expected);
-    $this->postJson(route('api.integrations.resource-commands.show', ['commandName' => 'DRS']), $this->guildBody)
+    $list = $this->postJson($this->endpoint, $this->guildBody)->assertOk()->assertJsonPath('data', $expected);
+    $search = $this->postJson(route('api.integrations.resource-commands.show', ['commandName' => 'DRS']), $this->guildBody)
         ->assertOk()->assertJsonPath('found', false)->assertJsonPath('data', $expected)->assertJsonPath('meta.total', 3)
-        ->assertJsonMissingPath('data.0.embed')->assertJsonMissingPath('data.0.resource_title');
+        ->assertJsonMissingPath('data.0.embed');
+
+    $document = json_decode(file_get_contents(resource_path('openapi/fullparty.json')), true, flags: JSON_THROW_ON_ERROR);
+    foreach (['/api/integrations/v1/bot/resources/list' => $list, '/api/integrations/v1/bot/resources/{commandName}' => $search] as $path => $response) {
+        OpenApiContract::assertMatches(json_decode($response->getContent()), $document['paths'][$path]['post']['responses']['200']['content']['application/json']['schema'], $document);
+    }
 });
 
 it('prefers a case-insensitive exact match over other search matches regardless of requested page', function () {
@@ -204,7 +212,9 @@ it('ignores disabled exact matches and preserves null titles in fallback results
     paginated_resource_command($this->group, 'drs')->commands()->update(['enabled' => false]);
     paginated_resource_command($this->group, 'drs-tank')->commands()->update(['embed' => ['description' => 'Untitled tank instructions']]);
     $this->postJson(route('api.integrations.resource-commands.show', ['commandName' => 'drs']), $this->guildBody)->assertOk()
-        ->assertJsonPath('found', false)->assertJsonPath('data', [['command_name' => 'drs-tank', 'title' => null]])
+        ->assertJsonPath('found', false)->assertJsonPath('data', [[
+            'command_name' => 'drs-tank', 'title' => null, 'embed_title' => null, 'resource_title' => 'Parent resource: drs-tank',
+        ]])
         ->assertJsonPath('meta.total', 1);
 });
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import axios from "axios";
 import { computed, ref } from "vue";
-import { router, usePage } from "@inertiajs/vue3";
+import { usePage } from "@inertiajs/vue3";
 import { route } from "ziggy-js";
 import { useI18n } from "vue-i18n";
 import { useToast } from "@nuxt/ui/composables";
@@ -212,18 +212,11 @@ const calendarUrl = computed(() => route("groups.activities.calendar", selfAssig
 const initialCharacterId = computed(() => props.selfAssignmentCharacters[0]?.id ?? null);
 const assignmentModeLabel = computed(() => t("groups.activities.create.summary.assignment_self_assign"));
 
-const goBack = () => {
-	router.get(route("groups.dashboard.activities.index", {
-		group: props.group.slug,
-	}));
-};
-
-const goToManagementPage = () => {
-	router.get(route("groups.dashboard.activities.show", {
-		group: props.group.slug,
-		activity: currentActivity.value.id,
-	}));
-};
+const runsUrl = computed(() => route("groups.dashboard.activities.index", { group: props.group.slug }, false));
+const managementUrl = computed(() => route("groups.dashboard.activities.show", {
+	group: props.group.slug,
+	activity: currentActivity.value.id,
+}, false));
 
 const firstValidationErrorMessage = (error: any): string | null => {
 	const errors = error?.response?.data?.errors;
@@ -361,7 +354,7 @@ const removeSelfFromSlot = async (slot: ActivitySlot) => {
 			icon="i-lucide-arrow-left"
 			variant="ghost"
 			color="neutral"
-			@click.stop="goBack"
+			:to="runsUrl"
 		/>
 
 		<UAlert
@@ -412,7 +405,7 @@ const removeSelfFromSlot = async (slot: ActivitySlot) => {
 					variant="outline"
 					icon="i-lucide-settings-2"
 					:label="t('groups.activities.overview.go_to_management')"
-					@click="goToManagementPage"
+					:to="managementUrl"
 				/>
 			</div>
 		</PageHeader>

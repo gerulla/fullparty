@@ -264,31 +264,9 @@ watch(historyPerPage, () => {
 	}
 });
 
-const editApplication = (application: AccountApplication) => {
-	if (!application.activity.id || !application.group.slug) {
-		return;
-	}
-
-	router.get(route("groups.activities.application", {
-		group: application.group.slug,
-		activity: application.activity.id,
-	}));
-};
-
 const canOpenOverview = (application: AccountApplication) => (
 	Boolean(application.activity.id && application.group.slug)
 );
-
-const openOverview = (application: AccountApplication) => {
-	if (!application.activity.id || !application.group.slug) {
-		return;
-	}
-
-	router.get(route("groups.activities.overview", {
-		group: application.group.slug,
-		activity: application.activity.id,
-	}));
-};
 
 const activityRouteParameters = (application: AccountApplication) => ({
 	group: application.group.slug,
@@ -296,9 +274,16 @@ const activityRouteParameters = (application: AccountApplication) => ({
 	secretKey: application.activity.secret_key || undefined,
 });
 
-const overviewUrl = (application: AccountApplication) => route(
+const overviewUrl = (application: AccountApplication, absolute = true) => route(
 	"groups.activities.overview",
 	activityRouteParameters(application),
+	absolute,
+);
+
+const editApplicationUrl = (application: AccountApplication) => route(
+	"groups.activities.application",
+	activityRouteParameters(application),
+	false,
 );
 
 const calendarUrl = (application: AccountApplication) => route(
@@ -442,21 +427,19 @@ const withdrawApplication = () => {
 								/>
 								<UButton
 									v-if="canOpenOverview(featuredApplication)"
-									type="button"
+									:to="overviewUrl(featuredApplication, false)"
 									color="primary"
 									variant="soft"
 									icon="i-lucide-arrow-up-right"
 									:label="t('applications.view_run')"
-									@click="openOverview(featuredApplication)"
 								/>
 								<UButton
-									v-if="featuredApplication.can_edit"
-									type="button"
+									v-if="featuredApplication.can_edit && canOpenOverview(featuredApplication)"
+									:to="editApplicationUrl(featuredApplication)"
 									color="neutral"
 									variant="outline"
 									icon="i-lucide-pencil-line"
 									:label="t('applications.edit')"
-									@click="editApplication(featuredApplication)"
 								/>
 								<UButton
 									v-if="featuredApplication.can_withdraw"
@@ -618,21 +601,19 @@ const withdrawApplication = () => {
 									/>
 									<UButton
 										v-if="canOpenOverview(application)"
-										type="button"
+										:to="overviewUrl(application, false)"
 										color="neutral"
 										variant="ghost"
 										icon="i-lucide-arrow-up-right"
 										:label="t('applications.view_run')"
-										@click="openOverview(application)"
 									/>
 									<UButton
-										v-if="application.can_edit"
-										type="button"
+										v-if="application.can_edit && canOpenOverview(application)"
+										:to="editApplicationUrl(application)"
 										color="neutral"
 										variant="outline"
 										icon="i-lucide-pencil-line"
 										:label="t('applications.edit')"
-										@click="editApplication(application)"
 									/>
 									<UButton
 										v-if="application.can_withdraw"
@@ -824,12 +805,11 @@ const withdrawApplication = () => {
 								</div>
 								<UButton
 									v-if="canOpenOverview(application)"
-									type="button"
+									:to="overviewUrl(application, false)"
 									color="neutral"
 									variant="ghost"
 									icon="i-lucide-arrow-up-right"
 									:label="t('applications.view_run')"
-									@click="openOverview(application)"
 								/>
 							</div>
 						</UCard>

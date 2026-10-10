@@ -34,6 +34,8 @@ class IntegrationClient extends Model
 
     public const EVENT_DISCORD_USER_APP_DISCONNECTED = 'discord.user_app.disconnected';
 
+    public const EVENT_USER_DISCORD_LOGIN = 'user.discord_login';
+
     public const EVENT_DISCORD_NOTIFICATION_DELIVERY = 'discord.notification.delivery';
 
     public const EVENT_DISCORD_ADMIN_REPORT = 'discord.admin.report';
@@ -49,6 +51,8 @@ class IntegrationClient extends Model
     public const EVENT_DISCORD_GUILD_RUN_COMPLETED = 'discord.guild.run_completed';
 
     public const EVENT_DISCORD_GUILD_RUN_CANCELLED = 'discord.guild.run_cancelled';
+
+    public const EVENT_DISCORD_GUILD_RUNS_CHANGED = 'discord.guild.runs_changed';
 
     public const EVENT_DISCORD_GUILD_SNAPSHOT_REQUESTED = 'discord.guild.snapshot_requested';
 

@@ -12,12 +12,17 @@ const question = {
     ],
 };
 const t = key => ({
+    'holsters.any': 'Any',
     'general.yes': 'Yes', 'general.no': 'No',
     'groups.activities.application.holsters.prepop': 'Pre-pop',
     'groups.activities.application.holsters.refill': 'Refill',
 })[key] ?? key;
 const optionLabel = (q, key) => q.options.find(option => option.key === key)?.label.en ?? key;
 const format = (value, type = question.type) => formatApplicationAnswerSummary({ ...question, type }, value, optionLabel, t);
+
+test('shows any holster in the application summary', () => {
+    assert.deepEqual(format(['any']), { value: 'Any', isLongText: false });
+});
 
 test('renders every holster pair by name on its own line with numeric or string IDs', () => {
     const pairs = [{ prepop_id: 1, refill_id: 2 }, { prepop_id: '3', refill_id: '4' }];

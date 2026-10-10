@@ -1,4 +1,8 @@
 {
+    "activity_type_filter": {
+        "label": "Type d’activité",
+        "all": "Tous les types d’activité"
+    },
     "title": "Runs",
     "subtitle": "Le planning à venir et le calendrier mensuel de {group} en un coup d'œil.",
     "header_badge": "{count} à venir",
@@ -477,7 +481,6 @@
             "filters_with_count": "Filtres ({count})",
             "filter_any": "N'importe quelle correspondance",
             "role_filter": "Rôle",
-            "party_leads_only": "Souhaite diriger le groupe",
             "filter_any_milestone": "N'importe quel jalon atteint",
             "milestones_reached": "Jalons atteints",
             "min_knowledge_level": "Niveau de connaissance minimum",
@@ -485,6 +488,7 @@
             "minimum_value_placeholder": "Valeur minimum",
             "clear_filters": "Effacer les filtres",
             "pending": "En attente",
+            "application_number": "Candidature n° {number}",
             "expand": "Développer",
             "assign_to_roster": "Assigner à la composition",
             "edit_slot_fields": "Modifier les champs d'emplacement",

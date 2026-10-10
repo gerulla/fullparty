@@ -9,6 +9,7 @@ use App\Models\Character;
 use App\Models\DiscordUserIntegration;
 use App\Models\Group;
 use App\Models\GroupMembership;
+use App\Models\IntegrationClient;
 use App\Models\NotificationDelivery;
 use App\Models\NotificationEvent;
 use App\Models\User;
@@ -17,9 +18,108 @@ use App\Services\Notifications\ApplicationNotificationService;
 use App\Support\Notifications\NotificationCategory;
 use App\Support\Notifications\NotificationChannel;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Queue;
+use Illuminate\Support\Facades\Storage;
+use Tests\Support\OpenApiContract;
 
 uses(RefreshDatabase::class);
+
+it('sends ready-to-use character, group and published activity banner images in application Discord payloads', function (string $method, string $status, string $type) {
+    Queue::fake();
+    Http::preventStrayRequests();
+    Http::fake(['https://bot.example.test/events' => Http::response([], 204)]);
+    $owner = User::factory()->create();
+    $group = Group::factory()->open()->create(['owner_id' => $owner->id, 'profile_picture_url' => Storage::disk('public')->url('groups/avatar.webp')]);
+    $activity = createApplicationNotificationActivity($owner, $group);
+    $activity->activityTypeVersion->update(['banner_image_url' => Storage::disk('public')->url('activity-types/published.webp')]);
+    $activity->activityType->update(['draft_banner_image_url' => Storage::disk('public')->url('activity-types/unpublished.webp')]);
+    $applicant = User::factory()->create(['application_notifications' => true, 'discord_notifications' => true, 'email_notifications' => false]);
+    $character = Character::factory()->create(['user_id' => $applicant->id, 'avatar_url' => 'https://img2.finalfantasyxiv.com/f/character-avatar.jpg']);
+    Character::factory()->primary()->create(['user_id' => $applicant->id, 'avatar_url' => 'https://img2.finalfantasyxiv.com/f/other-character.jpg']);
+    createApplicationDiscordIntegration($applicant, '234567890123456789', 'Example');
+    IntegrationClient::factory()->create(['outbound_events_url' => 'https://bot.example.test/events', 'allowed_events' => [IntegrationClient::EVENT_DISCORD_NOTIFICATION_DELIVERY]]);
+    $application = ActivityApplication::factory()->create(['activity_id' => $activity->id, 'user_id' => $applicant->id, 'selected_character_id' => $character->id, 'applicant_lodestone_id' => $character->lodestone_id, 'applicant_avatar_url' => 'https://img2.finalfantasyxiv.com/f/old-avatar.jpg', 'status' => $status, 'review_reason' => 'Roster is already full.']);
+
+    app(ApplicationNotificationService::class)->{$method}($application, $owner);
+
+    Http::assertSent(function ($request) use ($type, $activity, $group, $character, $applicant) {
+        $body = $request->data();
+        expect($body['event'])->toBe('discord.notification.delivery')
+            ->and($body['data']['notification']['type'])->toBe($type);
+        $payload = $body['data']['notification']['payload'];
+        expect($payload['character_image_url'])->toBe('https://img2.finalfantasyxiv.com/f/character-avatar.jpg');
+        expect($payload)->toMatchArray([
+            'run_title' => $activity->title,
+            'group_name' => $group->name,
+            'character_world' => $character->world,
+            'character_avatar_url' => $payload['character_image_url'],
+            'group_icon_url' => $payload['group_profile_image_url'],
+            'banner_image_url' => $payload['activity_banner_image_url'],
+            'applicant_name' => $applicant->name,
+            'applicant_profile_url' => null,
+        ]);
+        expect($payload['run_url'])->toContain('/groups/'.$group->slug.'/activities/'.$activity->id)
+            ->and($payload['application_url'])->toContain('/account/applications')
+            ->and($payload['starts_at'])->toBe($activity->starts_at->toIso8601String());
+        parse_str(parse_url($payload['group_profile_image_url'], PHP_URL_QUERY), $profile);
+        parse_str(parse_url($payload['activity_banner_image_url'], PHP_URL_QUERY), $banner);
+        expect($profile)->toMatchArray(['path' => 'groups/avatar.webp', 'width' => '256', 'height' => '256', 'fit' => 'contain'])
+            ->and($banner)->toMatchArray(['path' => 'activity-types/published.webp', 'width' => '1200', 'height' => '400', 'fit' => 'crop', 'position' => 'center', 'upscale' => '1']);
+        $document = json_decode(file_get_contents(resource_path('openapi/fullparty.json')), true, flags: JSON_THROW_ON_ERROR);
+        OpenApiContract::assertMatches(json_decode($request->body()), $document['webhooks']['discord.notification.delivery']['post']['requestBody']['content']['application/json']['schema'], $document);
+
+        return true;
+    });
+    Http::assertSentCount(1);
+})->with([
+    ['notifyDeclined', ActivityApplication::STATUS_DECLINED, 'applications.declined'],
+    ['notifySubmitted', ActivityApplication::STATUS_PENDING, 'applications.submitted'],
+    ['notifyCancelled', ActivityApplication::STATUS_CANCELLED, 'applications.cancelled'],
+]);
+
+it('keeps application notifications valid when images are missing or external', function () {
+    Queue::fake();
+    Http::preventStrayRequests();
+    $owner = User::factory()->create();
+    $group = Group::factory()->open()->create(['owner_id' => $owner->id, 'profile_picture_url' => null]);
+    $activity = createApplicationNotificationActivity($owner, $group);
+    $activity->activityTypeVersion->update(['banner_image_url' => 'https://external.example/banner.webp']);
+    $applicant = User::factory()->create(['application_notifications' => true, 'discord_notifications' => false, 'email_notifications' => false]);
+    $application = ActivityApplication::factory()->create(['activity_id' => $activity->id, 'user_id' => $applicant->id, 'status' => ActivityApplication::STATUS_DECLINED]);
+    app(ApplicationNotificationService::class)->notifyDeclined($application, $owner);
+    $event = NotificationEvent::query()->where('type', 'applications.declined')->sole();
+    expect($event->payload['group_profile_image_url'])->toBeNull()->and($event->payload['activity_banner_image_url'])->toBeNull();
+    Http::assertNothingSent();
+});
+
+it('falls back to the application character picture or null without fetching external images', function (?string $snapshot, bool $hasCharacter) {
+    Queue::fake();
+    Http::preventStrayRequests();
+    $owner = User::factory()->create();
+    $group = Group::factory()->open()->create(['owner_id' => $owner->id]);
+    $activity = createApplicationNotificationActivity($owner, $group);
+    $applicant = User::factory()->create(['application_notifications' => true, 'discord_notifications' => false, 'email_notifications' => false]);
+    $character = $hasCharacter ? Character::factory()->create(['user_id' => $applicant->id, 'avatar_url' => null]) : null;
+    $application = ActivityApplication::factory()->create([
+        'activity_id' => $activity->id, 'user_id' => $applicant->id,
+        'selected_character_id' => $character?->id, 'applicant_avatar_url' => $snapshot,
+        'status' => ActivityApplication::STATUS_DECLINED,
+    ]);
+    // The factory normally fills both character and snapshot; model a missing/deleted character explicitly.
+    $application->update(['selected_character_id' => $character?->id, 'applicant_avatar_url' => $snapshot]);
+    $application->refresh();
+
+    app(ApplicationNotificationService::class)->notifyDeclined($application, $owner);
+
+    expect(NotificationEvent::query()->where('type', 'applications.declined')->sole()->payload['character_image_url'])->toBe($snapshot);
+    Http::assertNothingSent();
+})->with([
+    ['https://img2.finalfantasyxiv.com/f/saved-avatar.jpg', true],
+    ['https://img2.finalfantasyxiv.com/f/saved-avatar.jpg', false],
+    [null, true],
+    [null, false],
+]);
 
 function createApplicationDiscordIntegration(User $user, string $discordUserId, string $username): DiscordUserIntegration
 {

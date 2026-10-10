@@ -9,7 +9,7 @@ import type { QueueApplication, QueueFilterField } from "@/Types/ActivityQueue";
 import type { ActivityFillInPartyOption, ActivitySlot } from "@/Types/ActivityRoster";
 import type { ActivitySlotFieldSelection, HolsterPairValue } from '@/Types/ActivityHolsters'
 import HolsterPairSelector from '@/components/Groups/Activities/HolsterPairSelector.vue'
-import { availableHolsterPairs, holsterPairKey, normalizeHolsterPairs } from '@/utils/holsterPlanner'
+import { availableHolsterPairs, holsterPairKey, isAnyHolsterSelection, normalizeHolsterPairs } from '@/utils/holsterPlanner'
 import { translateCharacterClassName, translatePhantomJobName, translateRaidPositionName } from "@/utils/characterJobTranslations";
 
 const props = defineProps<{
@@ -133,6 +133,7 @@ const compatibleHolsterPairs = (field: QueueFilterField): HolsterPairValue[] => 
 	}
 
 	const answer = props.application?.answers.find(entry => entry.question_key === field.application_key);
+	if (isAnyHolsterSelection(answer?.raw_value)) return allValidHolsterPairs(field);
 	const availableKeys = new Set(allValidHolsterPairs(field).map(holsterPairKey));
 	return normalizeHolsterPairs(answer?.raw_value, true).filter(pair => availableKeys.has(holsterPairKey(pair)));
 };

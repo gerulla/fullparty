@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { router, usePage } from "@inertiajs/vue3";
+import { usePage } from "@inertiajs/vue3";
 import { route } from "ziggy-js";
 import { useI18n } from "vue-i18n";
 import SeoHead from "@/components/Shared/SeoHead.vue";
@@ -179,26 +179,12 @@ const applicationRouteParameters = computed(() => ({
 const overviewUrl = computed(() => route("groups.activities.overview", applicationRouteParameters.value));
 const calendarUrl = computed(() => route("groups.activities.calendar", applicationRouteParameters.value));
 
-const goBack = () => {
-	router.get(route("groups.dashboard.activities.index", {
-		group: props.group.slug,
-	}));
-};
-
-const goToApplicationPage = () => {
-	if (!showApplicationButton.value) {
-		return;
-	}
-
-	router.get(route("groups.activities.application", applicationRouteParameters.value));
-};
-
-const goToManagementPage = () => {
-	router.get(route("groups.dashboard.activities.show", {
-		group: props.group.slug,
-		activity: props.activity.id,
-	}));
-};
+const runsUrl = computed(() => route("groups.dashboard.activities.index", { group: props.group.slug }, false));
+const applicationUrl = computed(() => route("groups.activities.application", applicationRouteParameters.value, false));
+const managementUrl = computed(() => route("groups.dashboard.activities.show", {
+	group: props.group.slug,
+	activity: props.activity.id,
+}, false));
 </script>
 
 <template>
@@ -216,7 +202,7 @@ const goToManagementPage = () => {
 			icon="i-lucide-arrow-left"
 			variant="ghost"
 			color="neutral"
-			@click.stop="goBack"
+			:to="runsUrl"
 		/>
 
 		<UAlert
@@ -274,7 +260,7 @@ const goToManagementPage = () => {
 					color="primary"
 					icon="i-lucide-file-pen-line"
 					:label="t('groups.activities.overview.open_application')"
-					@click="goToApplicationPage"
+					:to="applicationUrl"
 				/>
 				<UButton
 					v-if="permissions.can_manage"
@@ -282,7 +268,7 @@ const goToManagementPage = () => {
 					variant="outline"
 					icon="i-lucide-settings-2"
 					:label="t('groups.activities.overview.go_to_management')"
-					@click="goToManagementPage"
+					:to="managementUrl"
 				/>
 			</div>
 		</PageHeader>

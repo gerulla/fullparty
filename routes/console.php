@@ -11,7 +11,9 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote');
 
 Schedule::command('notifications:dispatch-run-reminders')->everyMinute()->withoutOverlapping();
+Schedule::command('discord:dispatch-pending-welcomes')->everyMinute()->withoutOverlapping();
 Schedule::command('resources:cleanup-images')->hourly()->withoutOverlapping();
+Schedule::command('images:prune-variants')->hourly()->withoutOverlapping();
 Schedule::job(new CheckIntegrationClientHealthJob)->everyFifteenMinutes()->withoutOverlapping();
 Schedule::command('fflogs:check-health')->everyFiveMinutes()->withoutOverlapping()->onOneServer()
     ->when(fn () => (bool) config('services.ff_logs.healthcheck_enabled'));

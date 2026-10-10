@@ -1,4 +1,6 @@
 {
+    "any": "Peu importe",
+    "any_description": "Je peux utiliser n’importe quel ensemble de holsters. Les modérateurs peuvent en choisir un pour moi.",
     "prepop": "Préparation",
     "refill": "Recharge",
     "capacity": "Capacité : {used} / {max}",

@@ -59,6 +59,13 @@ it('loads linked holsters through the normal manager and enforces inherited fiel
     $this->getJson($this->url)->assertOk()->assertJsonPath('data.tags', ['custom'])->assertJsonPath('data.commands.0.name', 'tank-guide');
     $command = app(ResourceCommandService::class)->find($this->group, 'tank-guide');
     expect(app(ResourceCommandService::class)->payload($command, 'guild')['embed']['author']['name'])->toBe('Original tank');
+    $this->holster->update(['name' => ['en' => 'Renamed tank']]);
+    $commands = app(ResourceCommandService::class);
+    foreach ([$commands->listing($this->group, 'guild'), $commands->lookup($this->group, 'tank', 'guild')] as $listing) {
+        expect($listing['data']->first())->toBe([
+            'command_name' => 'tank-guide', 'title' => 'Tank setup', 'embed_title' => 'Tank setup', 'resource_title' => 'Renamed tank',
+        ]);
+    }
     expect($this->resource->fresh()->activityTypes()->pluck('activity_types.id')->all())->toBe([$this->drs->id]);
     $this->assertDatabaseHas('audit_logs', ['action' => 'group.resources.save']);
 });

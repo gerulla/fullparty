@@ -5488,7 +5488,7 @@
           "Bot data"
         ],
         "summary": "List published Discord resource commands",
-        "description": "Required scope: `resources:read`. ",
+        "description": "Required scope: `resources:read`. Each list item includes command_name, embed_title and resource_title. The existing title field is an alias of embed_title. Untitled embeds have null embed_title and title values. Resource titles come from published content or the current inherited holster name.",
         "security": [
           {
             "IntegrationToken": []
@@ -5562,7 +5562,7 @@
           "Bot data"
         ],
         "summary": "Resolve a Discord resource command",
-        "description": "Required scope: `resources:read`. An exact match returns the embed, attachments and native Discord link-button rows. Otherwise returns paginated name matches with found=false.",
+        "description": "Required scope: `resources:read`. An exact match returns the embed, attachments and native Discord link-button rows. Otherwise returns paginated name matches with found=false; each item includes command_name, embed_title, resource_title and the existing title alias of embed_title.",
         "security": [
           {
             "IntegrationToken": []
@@ -9152,6 +9152,29 @@
                   "type": "string"
                 },
                 "title": {
+                  "description": "Compatibility alias of embed_title; null for an untitled embed.",
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "embed_title": {
+                  "description": "Title of this Discord embed, or null when no title was set.",
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "resource_title": {
+                  "description": "Published parent resource title, using the current inherited name for holster resources. Null only if the source title is unavailable.",
                   "anyOf": [
                     {
                       "type": "string"
@@ -9161,7 +9184,13 @@
                     }
                   ]
                 }
-              }
+              },
+              "required": [
+                "command_name",
+                "title",
+                "embed_title",
+                "resource_title"
+              ]
             }
           },
           "meta": {
@@ -9906,6 +9935,269 @@
     }
   },
   "webhooks": {
+    "user.discord_login": {
+      "post": {
+        "operationId": "webhook.user.discord_login",
+        "summary": "First Discord website login",
+        "tags": [
+          "Webhooks"
+        ],
+        "security": [],
+        "description": "Sent once per FullParty account after its first successful Discord website login, including registration and completed Discord account-linking sign-in. Existing Discord accounts at rollout are excluded. Other login providers and linking Discord from an already signed-in session do not trigger this event. Delivered to the configured signed POST /events endpoint under the Accounts capability. It does not require a prior Discord app installation. Verify the signature and deduplicate the envelope id: retries keep the same delivery ID. Use discord_app_install_url for the Install Discord app button; this durable authenticated website URL starts fresh session-bound OAuth when clicked. This event is an onboarding invitation, not proof of bot installation or authorization to act for the user.",
+        "parameters": [
+          {
+            "name": "X-FullParty-Event",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-FullParty-Delivery",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-FullParty-Timestamp",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-FullParty-Signature",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "sha256= followed by the HMAC-SHA256 hex digest of timestamp.rawBody."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "integration_client_id": {
+                    "type": "integer"
+                  },
+                  "id": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "event": {
+                    "type": "string",
+                    "const": "user.discord_login"
+                  },
+                  "occurred_at": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "data": {
+                    "type": "object",
+                    "required": [
+                      "user",
+                      "discord_user_id",
+                      "discord_user",
+                      "logged_in_at",
+                      "locale",
+                      "dashboard_url",
+                      "settings_url",
+                      "discord_app_install_url",
+                      "discord_app_installed"
+                    ],
+                    "properties": {
+                      "user": {
+                        "$ref": "#/components/schemas/UserSummary"
+                      },
+                      "discord_user_id": {
+                        "type": "string",
+                        "description": "Verified Discord OAuth user ID; send the welcome to this recipient."
+                      },
+                      "discord_user": {
+                        "$ref": "#/components/schemas/DiscordUser"
+                      },
+                      "logged_in_at": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "locale": {
+                        "type": "string",
+                        "enum": [
+                          "en",
+                          "de",
+                          "fr",
+                          "ja"
+                        ]
+                      },
+                      "dashboard_url": {
+                        "type": "string",
+                        "format": "uri"
+                      },
+                      "settings_url": {
+                        "type": "string",
+                        "format": "uri"
+                      },
+                      "discord_app_install_url": {
+                        "type": "string",
+                        "format": "uri",
+                        "description": "Install Discord app button destination. Requires website sign-in; generates fresh OAuth state."
+                      },
+                      "discord_app_installed": {
+                        "type": "boolean",
+                        "description": "Whether this Discord identity already has an active user app installation. Omit the install button when true."
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "integration_client_id",
+                  "id",
+                  "event",
+                  "occurred_at",
+                  "data"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Delivery accepted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ok": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "discord.guild.runs_changed": {
+      "post": {
+        "operationId": "webhook.discord.guild.runs_changed",
+        "summary": "Guild run list changed",
+        "tags": [
+          "Webhooks"
+        ],
+        "security": [],
+        "description": "Sent after saving a visible run creation, edit, publication, cancellation, completion, or deletion, including duplication into a visible status. Draft-only changes are excluded; members-only runs are included. Queued after the database transaction commits and delivered only while the group is still linked to the same Discord guild. This is a list-refresh signal: refetch the guild upcoming-runs endpoint rather than interpreting it as an individual run notification. Uses the existing signed POST /events delivery under the Runs capability. Verify the signature and deduplicate the envelope id, which remains stable across retries.",
+        "parameters": [
+          {
+            "name": "X-FullParty-Event",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-FullParty-Delivery",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-FullParty-Timestamp",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-FullParty-Signature",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "sha256= followed by the HMAC-SHA256 hex digest of timestamp.rawBody."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "integration_client_id": {
+                    "type": "integer"
+                  },
+                  "id": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "event": {
+                    "type": "string",
+                    "const": "discord.guild.runs_changed"
+                  },
+                  "occurred_at": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "data": {
+                    "type": "object",
+                    "required": [
+                      "discord_guild_id"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                      "discord_guild_id": {
+                        "type": "string",
+                        "pattern": "^\\d{1,32}$"
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "integration_client_id",
+                  "id",
+                  "event",
+                  "occurred_at",
+                  "data"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Delivery accepted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ok": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "discord.user_app.installed": {
       "post": {
         "operationId": "webhook.discord.user_app.installed",

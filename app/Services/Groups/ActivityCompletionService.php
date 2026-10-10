@@ -5,6 +5,7 @@ namespace App\Services\Groups;
 use App\Models\Activity;
 use App\Models\ActivityProgressMilestone;
 use App\Models\ActivityTypeVersion;
+use App\Services\Integrations\DiscordGuildRunsChangedService;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
@@ -14,6 +15,10 @@ class ActivityCompletionService
     public const ENTRY_MODE_MANUAL = 'manual';
 
     public const ENTRY_MODE_FFLOGS = 'fflogs';
+
+    public function __construct(
+        private readonly DiscordGuildRunsChangedService $discordRunsChanged,
+    ) {}
 
     /**
      * @param  array<string, mixed>  $payload
@@ -43,6 +48,8 @@ class ActivityCompletionService
                     'progress_recorded_by_user_id' => $recordedByUserId,
                     'progress_recorded_at' => now(),
                 ]);
+
+                $this->discordRunsChanged->notifyChanged($activity);
 
                 return [
                     'status' => [
@@ -127,6 +134,8 @@ class ActivityCompletionService
                 'progress_recorded_by_user_id' => $recordedByUserId,
                 'progress_recorded_at' => now(),
             ]);
+
+            $this->discordRunsChanged->notifyChanged($activity);
 
             return [
                 'status' => [

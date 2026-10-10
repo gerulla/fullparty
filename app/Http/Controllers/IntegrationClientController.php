@@ -55,6 +55,8 @@ class IntegrationClientController extends Controller
                     IntegrationClient::EVENT_DISCORD_GUILD_SETTINGS_UPDATED,
                     IntegrationClient::EVENT_DISCORD_GUILD_RUN_PARTICIPANT_SYNC,
                     IntegrationClient::EVENT_DISCORD_ADMIN_REPORT,
+                    IntegrationClient::EVENT_USER_DISCORD_LOGIN,
+                    IntegrationClient::EVENT_DISCORD_GUILD_RUNS_CHANGED,
                 ],
             ],
         ]);
@@ -179,6 +181,8 @@ class IntegrationClientController extends Controller
                 IntegrationClient::EVENT_DISCORD_GUILD_SETTINGS_UPDATED,
                 IntegrationClient::EVENT_DISCORD_GUILD_RUN_PARTICIPANT_SYNC,
                 IntegrationClient::EVENT_DISCORD_ADMIN_REPORT,
+                IntegrationClient::EVENT_USER_DISCORD_LOGIN,
+                IntegrationClient::EVENT_DISCORD_GUILD_RUNS_CHANGED,
             ])],
         ]);
     }

@@ -24,6 +24,12 @@ class ApplyLocale
             : null;
 
         $preferredLocale = $this->preferredLocale($request);
+
+        // Remember the first page's language, not the locale of a background request.
+        if ($preferredLocale === null && $routeLocale !== null && $request->isMethod('GET') && ! $request->expectsJson()) {
+            $preferredLocale = $routeLocale;
+        }
+
         $locale = $preferredLocale
             ?? $routeLocale
             ?? config('app.locale');
@@ -48,6 +54,8 @@ class ApplyLocale
                 ! $this->hasLocalizedRoutePrefix($request)
                 || ($preferredLocale !== null && $routeLocale !== $preferredLocale)
             )
+            // Rewriting a signed path invalidates both absolute and relative signatures.
+            && ! $request->hasValidSignature()
             && ! $request->hasValidSignature(false)
         ) {
             $routeName = $request->route()?->getName();
@@ -56,11 +64,7 @@ class ApplyLocale
                 $parameters = $request->route()->parameters();
                 $parameters['locale'] = $locale;
 
-                if ($request->query->count() > 0) {
-                    $parameters['_query'] = $request->query();
-                }
-
-                return redirect()->to(route($routeName, $parameters));
+                return redirect()->to(URL::query(route($routeName, $parameters), $request->query()));
             }
         }
 

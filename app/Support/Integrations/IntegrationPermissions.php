@@ -23,9 +23,9 @@ final class IntegrationPermissions
     public static function eventGroups(): array
     {
         return [
-            ['key' => 'accounts', 'permissions' => [Client::EVENT_DISCORD_USER_APP_INSTALLED, Client::EVENT_DISCORD_USER_APP_DISCONNECTED]],
+            ['key' => 'accounts', 'permissions' => [Client::EVENT_DISCORD_USER_APP_INSTALLED, Client::EVENT_DISCORD_USER_APP_DISCONNECTED, Client::EVENT_USER_DISCORD_LOGIN]],
             ['key' => 'notifications', 'permissions' => [Client::EVENT_DISCORD_NOTIFICATION_DELIVERY]],
-            ['key' => 'runs', 'permissions' => [Client::EVENT_DISCORD_GUILD_RUN_STARTING_SOON, Client::EVENT_DISCORD_GUILD_RUN_STARTING_NOW, Client::EVENT_DISCORD_GUILD_RUN_COMPLETED, Client::EVENT_DISCORD_GUILD_RUN_CANCELLED, Client::EVENT_DISCORD_GUILD_RUN_PARTICIPANT_SYNC]],
+            ['key' => 'runs', 'permissions' => [Client::EVENT_DISCORD_GUILD_RUN_STARTING_SOON, Client::EVENT_DISCORD_GUILD_RUN_STARTING_NOW, Client::EVENT_DISCORD_GUILD_RUN_COMPLETED, Client::EVENT_DISCORD_GUILD_RUN_CANCELLED, Client::EVENT_DISCORD_GUILD_RUN_PARTICIPANT_SYNC, Client::EVENT_DISCORD_GUILD_RUNS_CHANGED]],
             ['key' => 'guilds', 'permissions' => [Client::EVENT_DISCORD_GUILD_SNAPSHOT_REQUESTED, Client::EVENT_DISCORD_GUILD_MEMBERSHIP_SNAPSHOT_REQUESTED, Client::EVENT_DISCORD_GUILD_SETTINGS_UPDATED]],
             ['key' => 'admin_reports', 'permissions' => [Client::EVENT_DISCORD_ADMIN_REPORT]],
         ];

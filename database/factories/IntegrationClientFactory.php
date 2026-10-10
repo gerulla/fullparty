@@ -36,6 +36,7 @@ class IntegrationClientFactory extends Factory
             'allowed_events' => [
                 IntegrationClient::EVENT_DISCORD_USER_APP_INSTALLED,
                 IntegrationClient::EVENT_DISCORD_USER_APP_DISCONNECTED,
+                IntegrationClient::EVENT_USER_DISCORD_LOGIN,
                 IntegrationClient::EVENT_DISCORD_NOTIFICATION_DELIVERY,
                 IntegrationClient::EVENT_DISCORD_ADMIN_REPORT,
                 IntegrationClient::EVENT_DISCORD_GUILD_RUN_STARTING_SOON,
@@ -43,6 +44,7 @@ class IntegrationClientFactory extends Factory
                 IntegrationClient::EVENT_DISCORD_GUILD_RUN_PARTICIPANT_SYNC,
                 IntegrationClient::EVENT_DISCORD_GUILD_RUN_COMPLETED,
                 IntegrationClient::EVENT_DISCORD_GUILD_RUN_CANCELLED,
+                IntegrationClient::EVENT_DISCORD_GUILD_RUNS_CHANGED,
                 IntegrationClient::EVENT_DISCORD_GUILD_SNAPSHOT_REQUESTED,
                 IntegrationClient::EVENT_DISCORD_GUILD_MEMBERSHIP_SNAPSHOT_REQUESTED,
                 IntegrationClient::EVENT_DISCORD_GUILD_SETTINGS_UPDATED,

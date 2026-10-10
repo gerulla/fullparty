@@ -18,10 +18,10 @@ class IntegrationWebhookDispatcher
      * @param  array<string, mixed>  $data
      * @return array{attempted: int, sent: int, failed: int, deliveries: array<int, array<string, mixed>>}
      */
-    public function dispatchDiscordBotEvent(string $event, array $data, ?string $permissionEvent = null): array
+    public function dispatchDiscordBotEvent(string $event, array $data, ?string $permissionEvent = null, ?string $deliveryId = null): array
     {
         $deliveries = $this->discordBotClientsForEvent($permissionEvent ?? $event)
-            ->map(fn (IntegrationClient $client): array => $this->dispatch($client, $event, $data))
+            ->map(fn (IntegrationClient $client): array => $this->dispatch($client, $event, $data, deliveryId: $deliveryId))
             ->values()
             ->all();
 
@@ -68,9 +68,9 @@ class IntegrationWebhookDispatcher
      * @param  array<string, mixed>  $data
      * @return array<string, mixed>
      */
-    private function dispatch(IntegrationClient $client, string $event, array $data, bool $captureResponse = false): array
+    private function dispatch(IntegrationClient $client, string $event, array $data, bool $captureResponse = false, ?string $deliveryId = null): array
     {
-        $deliveryId = (string) Str::uuid();
+        $deliveryId ??= (string) Str::uuid();
         $timestamp = (string) now()->unix();
         $payload = [
             'integration_client_id' => $client->id,

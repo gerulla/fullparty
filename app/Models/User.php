@@ -37,7 +37,7 @@ use Laravel\Passport\HasApiTokens;
     'notification_preferences_reviewed_at',
     'account_completion_celebrated_at',
 ])]
-#[Hidden(['password', 'remember_token'])]
+#[Hidden(['password', 'remember_token', 'discord_login_welcome_recorded_at'])]
 class User extends Authenticatable implements MustVerifyEmail, OAuthenticatable
 {
     /** @use HasFactory<UserFactory> */
@@ -77,6 +77,7 @@ class User extends Authenticatable implements MustVerifyEmail, OAuthenticatable
             'discord_link_token_expires_at' => 'datetime',
             'notification_preferences_reviewed_at' => 'datetime',
             'account_completion_celebrated_at' => 'datetime',
+            'discord_login_welcome_recorded_at' => 'datetime',
         ];
     }
 

@@ -33,6 +33,7 @@ class RunNotificationService
         private readonly IntegrationWebhookDispatcher $webhookDispatcher,
         private readonly ActivityNotificationPayloadBuilder $payloadBuilder,
         private readonly PartyFinderNotificationPayloadBuilder $partyFinderPayloadBuilder,
+        private readonly RunReminderContactPayloadBuilder $reminderContacts,
     ) {}
 
     /**
@@ -232,7 +233,7 @@ class RunNotificationService
             ], $payload),
             topic: NotificationTopic::forType($type, NotificationCategory::RUNS_AND_REMINDERS),
             groupId: $activity->group?->id,
-        );
+        )->setRelation('subject', $activity);
     }
 
     /**
@@ -292,7 +293,10 @@ class RunNotificationService
         }
 
         $rosterParticipants = $this->placedRunParticipantEntries($activity)
-            ->map(fn (array $entry): array => $this->serializeDiscordGuildParticipant($entry, $group));
+            ->map(fn (array $entry): array => [
+                ...$this->serializeDiscordGuildParticipant($entry, $group),
+                ...$this->reminderContacts->forRecipient($activity, $entry['user']->id),
+            ]);
 
         $participants = $rosterParticipants
             ->filter(fn (array $participant): bool => filled($participant['discord_user_id'] ?? null))

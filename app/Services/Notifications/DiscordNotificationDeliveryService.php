@@ -2,6 +2,7 @@
 
 namespace App\Services\Notifications;
 
+use App\Models\Activity;
 use App\Models\IntegrationClient;
 use App\Models\NotificationDelivery;
 use App\Services\Integrations\IntegrationWebhookDispatcher;
@@ -12,6 +13,7 @@ class DiscordNotificationDeliveryService
     public function __construct(
         private readonly IntegrationWebhookDispatcher $webhookDispatcher,
         private readonly NotificationActionUrlService $notificationActionUrlService,
+        private readonly RunReminderContactPayloadBuilder $reminderContacts,
     ) {}
 
     public function send(NotificationDelivery $delivery): void
@@ -57,7 +59,7 @@ class DiscordNotificationDeliveryService
                     'category' => $delivery->notificationEvent->category,
                     'params' => $delivery->notificationEvent->message_params ?? [],
                     'action_url' => $this->notificationActionUrlService->forBrowserLocalePreference($delivery->notificationEvent->action_url),
-                    'payload' => $delivery->notificationEvent->payload,
+                    'payload' => $this->notificationPayload($delivery),
                 ],
             ],
         );
@@ -96,5 +98,19 @@ class DiscordNotificationDeliveryService
             'sent_at' => null,
             'response_payload' => $result,
         ]);
+    }
+
+    private function notificationPayload(NotificationDelivery $delivery): ?array
+    {
+        $event = $delivery->notificationEvent;
+        if (! in_array($event->type, ['runs.starting_soon', 'runs.starting_now'], true)) {
+            return $event->payload;
+        }
+
+        $activity = $event->subject;
+
+        return array_merge($event->payload ?? [], $activity instanceof Activity
+            ? $this->reminderContacts->forRecipient($activity, $delivery->user_id)
+            : ['party_leads' => [], 'run_host' => null]);
     }
 }

@@ -8976,6 +8976,24 @@
                 "type": "null"
               }
             ]
+          },
+          "party_leads": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RunReminderContact"
+            },
+            "description": "Starting reminders only: current main-roster occupants marked Raid Leader or Host in the recipient’s party. Host counts as a party lead here. Fill-ins use filled_group_key; bench and unassigned recipients have an empty array. Deduplicated by user (or character for guests)."
+          },
+          "run_host": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RunReminderContact"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Starting reminders only: the run organiser, regardless of their party or roster placement. Null if the organiser is missing. May also appear in party_leads."
           }
         }
       },
@@ -9855,6 +9873,51 @@
           "run_role_template_overrides"
         ],
         "additionalProperties": false
+      },
+      "RunReminderContact": {
+        "type": "object",
+        "description": "A party lead or run organiser to contact before a run. Discord IDs require an active, installed FullParty Discord connection; otherwise the ID is null and the in-game name remains available.",
+        "properties": {
+          "user_id": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "discord_user_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Discord snowflake as a string, or null when no active installed connection is available."
+          },
+          "character_id": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "character_name": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Assigned in-game character for party leads; configured organiser character for the run host, falling back to their primary character."
+          },
+          "character_world": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "user_id",
+          "discord_user_id",
+          "character_id",
+          "character_name",
+          "character_world"
+        ]
       }
     },
     "parameters": {
@@ -10433,7 +10496,7 @@
           "Webhooks"
         ],
         "security": [],
-        "description": "Sent to the integration's configured webhook URL. Validate the signature and deduplicate the delivery ID. Application notifications include nullable group_profile_image_url and activity_banner_image_url in data.notification.payload. These are ready-to-use FullParty image URLs: the group profile fits within 256x256; the activity banner uses the run's published activity-type version and is filled/cropped to 1200x400 (3:1), centered. Use them as the Discord embed thumbnail and image; the bot does not need to resize them. Application payloads also include character_image_url: the applied character's existing avatar URL, falling back to the application's saved avatar, or null. This character image is passed through directly and requires no bot-side processing.\n\n### Roster designations\nThe same webhook delivers assignments.designation_assigned and assignments.designation_removed in both data.type and data.notification.type, with category assignments. Read data.notification.payload.designation_key (host, raid_leader, duelist, trapper, or darter), designation_label (English display label), and designation_assigned (boolean). DRS supports duelist and trapper; BA supports trapper and darter; host and raid_leader are shared. There are no separate per-role webhook event names or additional integration capabilities.\n\nThe recipient is data.discord_user.id. data.notification.params contains activity, group, character, slot, slot_group, and designation; payload contains activity_id (the run ID), group_id, group_slug, character_id, character_name, slot_id, slot_key, slot_label, slot_group, and roster details. data.notification.action_url links to the run overview. Use the stable designation_key for logic and designation_label for display. Added and removed designations on published rosters trigger notifications; active designations selected before publication are delivered when the roster is published. Delivery respects the recipient's assignments.designations Discord preference and requires a linked Discord account and an enabled notification-delivery integration.\n\n### V2 presentation fields\nApplication, assignment, and run notifications include run_title, group_name, group_icon_url, banner_image_url, run_url, discord_url, and starts_at under data.notification.payload. The title follows the website display name, including custom run titles. Images reuse cached FullParty transformations (group icon within 256x256, published-version banner center-cropped to 1200x400); unavailable images are null. Existing activity_title, group_profile_image_url, activity_banner_image_url, and character_image_url fields remain compatible where previously present.\n\nApplication and assignment payloads also include character_world and character_avatar_url for the selected/assigned character, with saved application details as a fallback. Application payloads include application_url, applicant_name (the applicant, never the notification recipient), and applicant_profile_url. Applicant-facing links open account applications; host-facing links open run management. applicant_profile_url is currently null because user profiles have no standalone route, and applicant_name is null for guests. New buttons do not change destination authorization.\n\nRoster fields retain their existing structure; class and Phantom job images are available at roster.fields[].meta.icon_url as absolute HTTP(S) URLs when known. Phantom job icon_url values always use the transparent variant, including roster.selected_phantom_job.icon_url. transparent_icon_url is also absolute; if unavailable, no opaque fallback is supplied. Party Finder payloads additionally include datacenter and region for the listing world. party_finder.character_world is the home world of an unambiguous verified character owned by the publisher with the supplied name, or null when unknown/ambiguous; it is not assumed to equal the listing world.\n\nDelivery compatibility: applications.new_for_review remains an aggregated in-app notification and is not sent to Discord. The actual withdrawal notification types are applications.withdrawn_for_review (host) and applications.withdrawal_confirmed (applicant), not applications.withdrawn. Existing notification preferences and transport behavior are unchanged.\n\n### Fill-in assignments\nFill-ins use assignments.assigned when added to a published roster and assignments.roster_published_assigned at publication, for both applicants and manually assigned members. data.notification.params.slot, payload.slot_label, and payload.roster.slot_label include the covered party, for example Fill in 1 (Party B). payload.roster.is_fill_in is true, and filled_group_key / filled_group_label identify the covered party separately. roster.group_key / group_label still identify the Fill-ins section. Reassigning the covered party through the assignment editor sends an updated assignment notification; an identical re-save does not. Older fill-ins without a selected party retain their original slot label and have null covered-party values.",
+        "description": "Sent to the integration's configured webhook URL. Validate the signature and deduplicate the delivery ID. Application notifications include nullable group_profile_image_url and activity_banner_image_url in data.notification.payload. These are ready-to-use FullParty image URLs: the group profile fits within 256x256; the activity banner uses the run's published activity-type version and is filled/cropped to 1200x400 (3:1), centered. Use them as the Discord embed thumbnail and image; the bot does not need to resize them. Application payloads also include character_image_url: the applied character's existing avatar URL, falling back to the application's saved avatar, or null. This character image is passed through directly and requires no bot-side processing.\n\n### Roster designations\nThe same webhook delivers assignments.designation_assigned and assignments.designation_removed in both data.type and data.notification.type, with category assignments. Read data.notification.payload.designation_key (host, raid_leader, duelist, trapper, or darter), designation_label (English display label), and designation_assigned (boolean). DRS supports duelist and trapper; BA supports trapper and darter; host and raid_leader are shared. There are no separate per-role webhook event names or additional integration capabilities.\n\nThe recipient is data.discord_user.id. data.notification.params contains activity, group, character, slot, slot_group, and designation; payload contains activity_id (the run ID), group_id, group_slug, character_id, character_name, slot_id, slot_key, slot_label, slot_group, and roster details. data.notification.action_url links to the run overview. Use the stable designation_key for logic and designation_label for display. Added and removed designations on published rosters trigger notifications; active designations selected before publication are delivered when the roster is published. Delivery respects the recipient's assignments.designations Discord preference and requires a linked Discord account and an enabled notification-delivery integration.\n\n### V2 presentation fields\nApplication, assignment, and run notifications include run_title, group_name, group_icon_url, banner_image_url, run_url, discord_url, and starts_at under data.notification.payload. The title follows the website display name, including custom run titles. Images reuse cached FullParty transformations (group icon within 256x256, published-version banner center-cropped to 1200x400); unavailable images are null. Existing activity_title, group_profile_image_url, activity_banner_image_url, and character_image_url fields remain compatible where previously present.\n\nApplication and assignment payloads also include character_world and character_avatar_url for the selected/assigned character, with saved application details as a fallback. Application payloads include application_url, applicant_name (the applicant, never the notification recipient), and applicant_profile_url. Applicant-facing links open account applications; host-facing links open run management. applicant_profile_url is currently null because user profiles have no standalone route, and applicant_name is null for guests. New buttons do not change destination authorization.\n\nRoster fields retain their existing structure; class and Phantom job images are available at roster.fields[].meta.icon_url as absolute HTTP(S) URLs when known. Phantom job icon_url values always use the transparent variant, including roster.selected_phantom_job.icon_url. transparent_icon_url is also absolute; if unavailable, no opaque fallback is supplied. Party Finder payloads additionally include datacenter and region for the listing world. party_finder.character_world is the home world of an unambiguous verified character owned by the publisher with the supplied name, or null when unknown/ambiguous; it is not assumed to equal the listing world.\n\nDelivery compatibility: applications.new_for_review remains an aggregated in-app notification and is not sent to Discord. The actual withdrawal notification types are applications.withdrawn_for_review (host) and applications.withdrawal_confirmed (applicant), not applications.withdrawn. Existing notification preferences and transport behavior are unchanged.\n\n### Fill-in assignments\nFill-ins use assignments.assigned when added to a published roster and assignments.roster_published_assigned at publication, for both applicants and manually assigned members. data.notification.params.slot, payload.slot_label, and payload.roster.slot_label include the covered party, for example Fill in 1 (Party B). payload.roster.is_fill_in is true, and filled_group_key / filled_group_label identify the covered party separately. roster.group_key / group_label still identify the Fill-ins section. Reassigning the covered party through the assignment editor sends an updated assignment notification; an identical re-save does not. Older fill-ins without a selected party retain their original slot label and have null covered-party values.\n\n### Starting reminder contacts\nFor runs.starting_soon and runs.starting_now, data.notification.payload includes party_leads (array) and run_host (object or null), tailored to the recipient in data.discord_user.id. Each contact has user_id, discord_user_id, character_id, character_name and character_world. Both Raid Leader and Host roster designations count as party leads, but only within the recipient’s currently assigned party. Fill-ins use the party they cover; bench/unassigned recipients get no party leads. The run host is the run organiser, using the configured organiser character or their primary character as a fallback. Missing/uninstalled/revoked Discord connections produce null IDs, retaining names for in-game contact. The same person can be both a party lead and the run host, or the recipient; clients may deduplicate or omit self-mentions. Contacts are resolved at delivery time and are not added to unrelated notification types.",
         "parameters": [
           {
             "name": "X-FullParty-Event",
@@ -10781,6 +10844,24 @@
                                     "format": "date-time"
                                   }
                                 }
+                              },
+                              "party_leads": {
+                                "type": "array",
+                                "items": {
+                                  "$ref": "#/components/schemas/RunReminderContact"
+                                },
+                                "description": "Starting reminders only: current main-roster occupants marked Raid Leader or Host in the recipient’s party. Host counts as a party lead here. Fill-ins use filled_group_key; bench and unassigned recipients have an empty array. Deduplicated by user (or character for guests)."
+                              },
+                              "run_host": {
+                                "anyOf": [
+                                  {
+                                    "$ref": "#/components/schemas/RunReminderContact"
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ],
+                                "description": "Starting reminders only: the run organiser, regardless of their party or roster placement. Null if the organiser is missing. May also appear in party_leads."
                               }
                             }
                           }
@@ -10827,7 +10908,7 @@
           "Webhooks"
         ],
         "security": [],
-        "description": "Sent to the integration's configured webhook URL. Validate the signature and deduplicate the delivery ID.\n\nIncludes data.run_url: an absolute website run-overview URL for View Run buttons. The existing nested run.url remains available.",
+        "description": "Sent to the integration's configured webhook URL. Validate the signature and deduplicate the delivery ID.\n\nIncludes data.run_url: an absolute website run-overview URL for View Run buttons. The existing nested run.url remains available.\n\nFor both starting_soon and starting_now, each entry in data.participants and data.unlinked_participants also has party_leads and run_host. These have the same contact structure and recipient-specific rules as discord.notification.delivery: party leads are current Raid Leader/Host occupants of the participant’s party (covered party for fill-ins), and run_host is the run organiser. Bench/unassigned participants have an empty party_leads array. Contact Discord IDs are nullable; names remain available for in-game contact. The same person can appear as both a party lead and run host.",
         "parameters": [
           {
             "name": "X-FullParty-Event",

@@ -4,7 +4,7 @@ import { computed } from 'vue'
 import { localizedValue } from '@/utils/localizedValue'
 import type { FormAnswers, FormQuestion, FormAnswer } from '@/Types/Forms'
 
-const props = defineProps<{ questions: FormQuestion[]; modelValue: FormAnswers; disabled?: boolean; errors?: Record<string, string>; language?: string }>()
+const props = defineProps<{ questions: FormQuestion[]; modelValue: FormAnswers; disabled?: boolean; errors?: Record<string, string>; language?: string; startIndex?: number }>()
 const emit = defineEmits<{ 'update:modelValue': [value: FormAnswers] }>()
 const { t, locale } = useI18n()
 const displayLocale = computed(() => props.language ?? locale.value)
@@ -16,7 +16,7 @@ const errorFor = (id: string) => Object.entries(props.errors ?? {}).find(([key])
 <template>
     <div class="space-y-5">
         <section v-for="(question, index) in questions" :key="question.id" class="border border-default bg-default p-5">
-            <UFormField :label="`${index + 1}. ${localizedValue(question.label, displayLocale)}`" :description="localizedValue(question.description, displayLocale)" :required="question.required" :error="errorFor(question.id)">
+            <UFormField :label="`${(startIndex ?? 0) + index + 1}. ${localizedValue(question.label, displayLocale)}`" :description="localizedValue(question.description, displayLocale)" :required="question.required" :error="errorFor(question.id)">
                 <UInput v-if="question.type === 'short_text'" :model-value="modelValue[question.id] as string ?? ''" :disabled="disabled" :maxlength="500" class="w-full" @update:model-value="update(question.id, $event)" />
                 <UTextarea v-else-if="question.type === 'long_text'" :model-value="modelValue[question.id] as string ?? ''" :disabled="disabled" :rows="5" :maxlength="5000" class="w-full" @update:model-value="update(question.id, $event)" />
                 <URadioGroup v-else-if="question.type === 'single_choice'" :model-value="modelValue[question.id] as string" :items="options(question)" :disabled="disabled" @update:model-value="update(question.id, $event as string)" />

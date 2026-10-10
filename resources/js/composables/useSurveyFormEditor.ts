@@ -16,6 +16,14 @@ export function useSurveyFormEditor(props: { formRecord: SurveyFormRecord | null
     const actionErrors = ref<Record<string, string>>({})
     const initial = () => {
         const definition = JSON.parse(JSON.stringify(props.formRecord?.draft ?? props.emptyDefinition)) as FormDefinition
+        // PHP encodes empty locale maps as []; named properties on JS arrays are lost when saving.
+        definition.thank_you = { ...definition.thank_you }
+        definition.intro = { ...definition.intro }
+        if (!definition.pages?.length) {
+            const id = crypto.randomUUID()
+            definition.pages = [{ id, title: {}, description: {} }]
+            definition.questions = definition.questions.map(question => ({ ...question, page_id: id }))
+        }
         for (const key of ['en', 'de', 'fr', 'ja'] as const) definition.intro[key] ??= emptyRichTextDocument()
         return { slug: props.formRecord?.slug ?? '', revision: props.formRecord?.revision ?? 1, definition }
     }

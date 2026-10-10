@@ -197,6 +197,8 @@ class NotificationService
                 $delivery->save();
 
                 if ($delivery->status === NotificationDelivery::STATUS_PENDING) {
+                    $delivery->setRelation('notificationEvent', $event);
+                    $delivery->setRelation('user', $recipient);
                     $this->deliveryDispatcher->dispatch($delivery);
                 }
 

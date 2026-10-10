@@ -1020,6 +1020,14 @@ it('dispatches a guild discord run reminder event for linked group runs', functi
                         'datacenter' => 'Light',
                         'avatar_url' => null,
                     ],
+                    'party_leads' => [],
+                    'run_host' => [
+                        'user_id' => $activity->organized_by_user_id,
+                        'discord_user_id' => null,
+                        'character_id' => $activity->organizerCharacter->id,
+                        'character_name' => $activity->organizerCharacter->name,
+                        'character_world' => $activity->organizerCharacter->world,
+                    ],
                 ],
                 [
                     'user_id' => $secondUser->id,
@@ -1038,6 +1046,14 @@ it('dispatches a guild discord run reminder event for linked group runs', functi
                         'world' => 'Ragnarok',
                         'datacenter' => 'Chaos',
                         'avatar_url' => null,
+                    ],
+                    'party_leads' => [],
+                    'run_host' => [
+                        'user_id' => $activity->organized_by_user_id,
+                        'discord_user_id' => null,
+                        'character_id' => $activity->organizerCharacter->id,
+                        'character_name' => $activity->organizerCharacter->name,
+                        'character_world' => $activity->organizerCharacter->world,
                     ],
                 ],
             ])
@@ -1059,6 +1075,14 @@ it('dispatches a guild discord run reminder event for linked group runs', functi
                         'world' => 'Ragnarok',
                         'datacenter' => 'Chaos',
                         'avatar_url' => null,
+                    ],
+                    'party_leads' => [],
+                    'run_host' => [
+                        'user_id' => $activity->organized_by_user_id,
+                        'discord_user_id' => null,
+                        'character_id' => $activity->organizerCharacter->id,
+                        'character_name' => $activity->organizerCharacter->name,
+                        'character_world' => $activity->organizerCharacter->world,
                     ],
                 ],
             ])

@@ -1,17 +1,22 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
-import type { FormLocale, FormQuestion, FormQuestionType } from '@/Types/Forms'
+import { localizedValue } from '@/utils/localizedValue'
+import type { FormLocale, FormPage, FormQuestion, FormQuestionType } from '@/Types/Forms'
 
-const props = defineProps<{ modelValue: FormQuestion[]; language: FormLocale }>()
+const props = defineProps<{ modelValue: FormQuestion[]; language: FormLocale; pages: FormPage[]; pageId: string; startIndex: number; totalQuestions: number }>()
 const emit = defineEmits<{ 'update:modelValue': [value: FormQuestion[]] }>()
 const { t } = useI18n()
 const types: FormQuestionType[] = ['short_text', 'long_text', 'single_choice', 'multiple_choice', 'dropdown', 'rating', 'number', 'date']
 const choices = ['single_choice', 'multiple_choice', 'dropdown']
 const items = computed(() => types.map(value => ({ value, label: t(`forms.types.${value}`) })))
+const pageItems = computed(() => props.pages.map((page, index) => ({ value: page.id, label: `${index + 1}. ${localizedValue(page.title, props.language) || t('forms.page_number', { number: index + 1 })}` })))
 const option = () => ({ id: crypto.randomUUID(), label: { en: '' } })
 function update(index: number, patch: Partial<FormQuestion>) { emit('update:modelValue', props.modelValue.map((question, i) => i === index ? { ...question, ...patch } : question)) }
-function add() { emit('update:modelValue', [...props.modelValue, { id: crypto.randomUUID(), type: 'short_text', label: { en: '' }, description: {}, required: false, options: [] }]) }
+function add() {
+    if (props.totalQuestions >= 50) return
+    emit('update:modelValue', [...props.modelValue, { id: crypto.randomUUID(), type: 'short_text', label: { en: '' }, description: {}, required: false, options: [], page_id: props.pageId }])
+}
 function changeType(index: number, type: FormQuestionType) { update(index, { type, options: choices.includes(type) ? [option(), option()] : [], min: null, max: null }) }
 function move(index: number, direction: number) { const questions = [...props.modelValue]; const [question] = questions.splice(index, 1); questions.splice(index + direction, 0, question); emit('update:modelValue', questions) }
 </script>
@@ -20,7 +25,7 @@ function move(index: number, direction: number) { const questions = [...props.mo
     <div class="space-y-4">
         <section v-for="(question, index) in modelValue" :key="question.id" class="space-y-4 border border-default bg-default p-4">
             <div class="flex flex-wrap items-center justify-between gap-2">
-                <h3 class="font-semibold">{{ t('forms.question_number', { number: index + 1 }) }}</h3>
+                <h3 class="font-semibold">{{ t('forms.question_number', { number: startIndex + index + 1 }) }}</h3>
                 <div class="flex gap-1">
                     <UButton icon="i-lucide-arrow-up" color="neutral" variant="ghost" :aria-label="t('forms.move_up')" :disabled="index === 0" @click="move(index, -1)" />
                     <UButton icon="i-lucide-arrow-down" color="neutral" variant="ghost" :aria-label="t('forms.move_down')" :disabled="index === modelValue.length - 1" @click="move(index, 1)" />
@@ -43,9 +48,14 @@ function move(index: number, direction: number) { const questions = [...props.mo
                 <UFormField :label="t('forms.minimum')"><UInput :model-value="question.min ?? ''" type="number" step="any" class="w-full" @update:model-value="update(index, { min: $event === '' ? null : Number($event) })" /></UFormField>
                 <UFormField :label="t('forms.maximum')"><UInput :model-value="question.max ?? ''" type="number" step="any" class="w-full" @update:model-value="update(index, { max: $event === '' ? null : Number($event) })" /></UFormField>
             </div>
-            <USwitch :model-value="question.required" :label="t('forms.required')" @update:model-value="update(index, { required: $event })" />
+            <div class="flex flex-wrap items-end justify-between gap-4">
+                <USwitch :model-value="question.required" :label="t('forms.required')" @update:model-value="update(index, { required: $event })" />
+                <UFormField v-if="pages.length > 1" :label="t('forms.move_to_page')">
+                    <USelect :model-value="question.page_id ?? pageId" :items="pageItems" class="w-64 max-w-full" @update:model-value="update(index, { page_id: $event as string })" />
+                </UFormField>
+            </div>
         </section>
-        <UButton icon="i-lucide-plus" :label="t('forms.add_question')" :disabled="modelValue.length >= 50" @click="add" />
-        <span class="ml-3 text-sm text-muted">{{ modelValue.length }} / 50</span>
+        <UButton icon="i-lucide-plus" :label="t('forms.add_question')" :disabled="totalQuestions >= 50" @click="add" />
+        <span class="ml-3 text-sm text-muted">{{ t('forms.question_count', { count: totalQuestions, max: 50 }) }}</span>
     </div>
 </template>

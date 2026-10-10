@@ -5,8 +5,8 @@ import { useI18n } from 'vue-i18n'
 import PageHeader from '@/components/PageHeader.vue'
 import RichTextEditor from '@/components/Shared/RichText/RichTextEditor.vue'
 import RichTextReader from '@/components/Shared/RichText/RichTextReader.vue'
-import FormQuestionBuilder from '@/components/Forms/FormQuestionBuilder.vue'
-import FormQuestions from '@/components/Forms/FormQuestions.vue'
+import FormPageBuilder from '@/components/Forms/FormPageBuilder.vue'
+import FormPageQuestions from '@/components/Forms/FormPageQuestions.vue'
 import { useSurveyFormEditor } from '@/composables/useSurveyFormEditor'
 import { localizedValue } from '@/utils/localizedValue'
 import type { FormDefinition, SurveyFormRecord, FormLocale } from '@/Types/Forms'
@@ -26,7 +26,7 @@ const { form, language, preview, previewAnswers, busy, errors, save, transition 
         </div>
         <UAlert v-if="String(page.props.flash?.success ?? '').startsWith('survey_')" color="success" variant="soft" :title="t('forms.saved')" />
         <UAlert v-for="error in errors" :key="error" color="error" variant="soft" :title="error" />
-        <form class="space-y-5" @submit.prevent="save">
+        <form class="space-y-5" @submit.prevent="!preview && save()">
             <section class="space-y-4 border border-default p-4">
                 <div class="grid gap-4 md:grid-cols-2">
                     <UFormField :label="t('forms.slug')" :help="t(formRecord?.published_version_id ? 'forms.slug_locked_help' : 'forms.slug_help')" required><UInput v-model="form.slug" :disabled="Boolean(formRecord?.published_version_id)" class="w-full" :maxlength="80" /></UFormField>
@@ -46,17 +46,17 @@ const { form, language, preview, previewAnswers, busy, errors, save, transition 
                     <UFormField :label="t('forms.intro')"><RichTextEditor :key="language" v-model="form.definition.intro[language]!" :max-length="10000" class="min-h-48 border border-default" /></UFormField>
                     <UFormField :label="t('forms.thank_you_label')"><UTextarea v-model="form.definition.thank_you[language]" class="w-full" :maxlength="1000" :placeholder="t('forms.thank_you')" /></UFormField>
                 </section>
-                <FormQuestionBuilder v-model="form.definition.questions" :language="language" />
+                <FormPageBuilder v-model:questions="form.definition.questions" :pages="form.definition.pages!" :language="language" @update:pages="form.definition.pages = $event" />
             </template>
             <section v-else class="space-y-5">
                 <UAlert color="info" variant="soft" :title="t('forms.preview_notice')" />
                 <h2 class="text-2xl font-semibold">{{ localizedValue(form.definition.title, language) }}</h2>
                 <RichTextReader :document="form.definition.intro[language]!" />
-                <FormQuestions v-model="previewAnswers" :questions="form.definition.questions" :language="language" />
+                <FormPageQuestions v-model="previewAnswers" :definition="form.definition" :language="language" preview />
             </section>
             <p class="text-sm text-muted">{{ t('forms.publish_help') }}</p>
             <div class="flex flex-wrap justify-end gap-2">
-                <UButton type="submit" icon="i-lucide-save" :label="t('forms.save')" :loading="form.processing" :disabled="busy" />
+                <UButton type="button" icon="i-lucide-save" :label="t('forms.save')" :loading="form.processing" :disabled="busy" @click="save" />
                 <template v-if="formRecord">
                     <UButton v-if="!formRecord.is_published || formRecord.has_changes" color="success" :label="t('forms.actions.publish')" :disabled="form.isDirty || form.processing || busy" @click="transition('publish')" />
                     <UButton v-if="formRecord.is_published" color="warning" variant="outline" :label="t(formRecord.is_open ? 'forms.actions.close' : 'forms.actions.open')" :disabled="form.isDirty || form.processing || busy" @click="transition(formRecord.is_open ? 'close' : 'open')" />

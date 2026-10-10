@@ -71,6 +71,19 @@ it('protects every administration endpoint from ordinary users', function () {
     $this->getJson(route('admin.forms.response', [$form, $response]))->assertForbidden();
 });
 
+it('preserves localized completion messages when saving, reopening and publishing a form', function () {
+    $this->actingAs($this->admin)->post(route('admin.forms.store'), ['slug' => 'feedback', 'definition' => survey_definition()])->assertRedirect();
+    $form = SurveyForm::firstOrFail();
+    $messages = ['en' => 'Thanks for your feedback!', 'de' => 'Danke für dein Feedback!', 'fr' => 'Merci pour vos commentaires !', 'ja' => 'ご回答ありがとうございます！'];
+    $definition = [...$form->draft, 'thank_you' => $messages];
+    $this->put(route('admin.forms.update', $form), ['slug' => $form->slug, 'revision' => 1, 'definition' => $definition])->assertRedirect();
+    expect($form->fresh()->draft['thank_you'])->toBe($messages);
+    $this->get(route('admin.forms.edit', $form))->assertInertia(fn (Assert $page) => $page->where('formRecord.draft.thank_you', $messages));
+    $this->put(route('admin.forms.update', $form), ['slug' => $form->slug, 'revision' => 2, 'definition' => $form->fresh()->draft])->assertRedirect();
+    $this->post(route('admin.forms.transition', [$form, 'publish']), ['revision' => 3])->assertRedirect();
+    $this->get('/forms/feedback')->assertInertia(fn (Assert $page) => $page->where('form.definition.thank_you', $messages));
+});
+
 it('requires sign in and verified email for account forms and respects account bans', function () {
     $form = survey_publish($this->admin);
     $this->get('/forms/feedback')->assertOk()->assertInertia(fn (Assert $page) => $page->where('canSubmit', false));
@@ -252,4 +265,93 @@ it('does not expose public forms on the resources or API documentation hosts', f
     foreach ([config('group_resources.public_host'), config('integration_api.docs_host')] as $host) {
         $this->get('https://'.$host.'/forms/feedback')->assertNotFound();
     }
+});
+
+it('publishes localized survey pages and validates answers across every page', function () {
+    $pages = [
+        ['id' => (string) Str::uuid(), 'title' => ['en' => 'Using FullParty', 'de' => 'FullParty nutzen'], 'description' => ['en' => 'Tell us about your experience.']],
+        ['id' => (string) Str::uuid(), 'title' => ['en' => 'Future features', 'ja' => '今後の機能'], 'description' => []],
+    ];
+    $first = [...survey_question(), 'page_id' => $pages[0]['id'], 'label' => ['en' => 'Your experience']];
+    $second = [...survey_question('rating'), 'page_id' => $pages[1]['id'], 'label' => ['en' => 'Interest in badges']];
+    $this->actingAs($this->admin)->post(route('admin.forms.store'), [
+        'slug' => 'feedback', 'definition' => survey_definition(['pages' => $pages, 'questions' => [$second, $first]]),
+    ])->assertRedirect();
+    $form = SurveyForm::firstOrFail();
+    $this->post(route('admin.forms.transition', [$form, 'publish']), ['revision' => 1])->assertRedirect();
+    $form->refresh();
+    $this->get('/forms/feedback')->assertInertia(fn (Assert $page) => $page
+        ->where('form.definition.pages.0.title.de', 'FullParty nutzen')
+        ->where('form.definition.pages.1.title.ja', '今後の機能')
+        ->where('form.definition.questions.0.id', $first['id'])
+        ->where('form.definition.questions.1.id', $second['id']));
+    $payload = survey_submission($form, 'Easy to use');
+    $this->postJson('/forms/feedback', $payload)->assertUnprocessable()->assertJsonValidationErrors('answers.'.$second['id']);
+    $this->assertDatabaseCount('survey_responses', 0);
+    $payload['answers'][$second['id']] = 4;
+    $this->post('/forms/feedback', $payload)->assertRedirect();
+    expect(SurveyResponse::firstOrFail()->answers)->toBe($payload['answers']);
+    $this->get(route('admin.forms.responses', $form))->assertInertia(fn (Assert $page) => $page
+        ->where('summary.0.question.id', $first['id'])->where('summary.1.average', 4)->where('responses.total', 1));
+    $csv = $this->get(route('admin.forms.export', $form))->assertOk()->streamedContent();
+    expect($csv)->toContain('Your experience')->toContain('Interest in badges')->toContain('Easy to use');
+});
+
+it('keeps legacy answers and published versions intact when questions move between pages', function () {
+    $legacy = survey_definition(['questions' => [survey_question(), survey_question('number')]]);
+    unset($legacy['pages']);
+    $form = survey_publish($this->admin, $legacy);
+    $firstId = $legacy['questions'][0]['id'];
+    $secondId = $legacy['questions'][1]['id'];
+    $answers = [$firstId => 'Keep my answer', $secondId => 0];
+    $this->actingAs($this->admin)->post('/forms/feedback', [...survey_submission($form), 'answers' => $answers])->assertRedirect();
+    $version = $form->publishedVersion;
+    $definition = $form->draft;
+    $definition['pages'] = [
+        ['id' => (string) Str::uuid(), 'title' => [], 'description' => []],
+        ['id' => (string) Str::uuid(), 'title' => [], 'description' => []],
+    ];
+    $definition['questions'][0]['page_id'] = $definition['pages'][1]['id'];
+    $definition['questions'][1]['page_id'] = $definition['pages'][0]['id'];
+    $this->put(route('admin.forms.update', $form), ['slug' => $form->slug, 'revision' => 2, 'definition' => $definition])->assertRedirect();
+    $this->post(route('admin.forms.transition', [$form, 'publish']), ['revision' => 3])->assertRedirect();
+    $this->get('/forms/feedback')->assertInertia(fn (Assert $page) => $page
+        ->where('form.definition.questions.0.id', $secondId)
+        ->where('form.definition.questions.1.id', $firstId)
+        ->where('existing.answers.'.$firstId, 'Keep my answer')
+        ->where('existing.answers.'.$secondId, 0)
+        ->where('existing.version_changed', true));
+    expect($version->fresh()->definition['questions'])->toBe($legacy['questions']);
+    expect(SurveyResponse::firstOrFail()->answers)->toBe($answers);
+    $form->refresh();
+    $this->post('/forms/feedback', [...survey_submission($form, revision: 1), 'answers' => $answers])->assertRedirect();
+    expect(SurveyResponse::firstOrFail()->answers)->toBe($answers)->and(SurveyResponse::count())->toBe(1);
+});
+
+it('rejects orphaned questions and malformed page definitions', function () {
+    $page = ['id' => (string) Str::uuid(), 'title' => [], 'description' => []];
+    $question = [...survey_question(), 'page_id' => $page['id']];
+    $cases = [
+        [['pages' => [$page], 'questions' => [survey_question()]], 'definition.questions.0.page_id'],
+        [['pages' => [$page], 'questions' => [[...$question, 'page_id' => (string) Str::uuid()]]], 'definition.questions.0.page_id'],
+        [['pages' => [], 'questions' => [$question]], 'definition.questions.0.page_id'],
+        [['pages' => [$page, $page], 'questions' => [$question]], 'definition.pages.0.id'],
+        [['pages' => [[...$page, 'id' => 'not-a-uuid']]], 'definition.pages.0.id'],
+        [['pages' => [[...$page, 'title' => ['unsupported' => 'Title']]]], 'definition.pages.0.title'],
+        [['pages' => [[...$page, 'title' => ['en' => str_repeat('x', 161)]]]], 'definition.pages.0.title.en'],
+        [['pages' => [[...$page, 'description' => ['en' => str_repeat('x', 1001)]]]], 'definition.pages.0.description.en'],
+        [['pages' => array_fill(0, 21, $page)], 'definition.pages'],
+    ];
+    $this->actingAs($this->admin);
+    foreach ($cases as [$patch, $error]) {
+        $this->postJson(route('admin.forms.store'), ['slug' => 'feedback', 'definition' => survey_definition($patch)])
+            ->assertUnprocessable()->assertJsonValidationErrors($error);
+    }
+    $this->assertDatabaseCount('survey_forms', 0);
+});
+
+it('continues accepting definitions saved before pages existed', function () {
+    $definition = survey_definition();
+    unset($definition['pages']);
+    expect(app(FormDefinitionService::class)->validate($definition))->toBe($definition);
 });

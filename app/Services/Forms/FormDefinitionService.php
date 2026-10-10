@@ -17,13 +17,13 @@ class FormDefinitionService
 
     public function empty(): array
     {
-        return ['title' => ['en' => ''], 'intro' => ['en' => RichTextDocument::empty()], 'thank_you' => [], 'access' => 'account', 'response_policy' => 'single_editable', 'questions' => []];
+        return ['title' => ['en' => ''], 'intro' => ['en' => RichTextDocument::empty()], 'thank_you' => [], 'access' => 'account', 'response_policy' => 'single_editable', 'questions' => [], 'pages' => []];
     }
 
     public function validate(mixed $definition): array
     {
         $rules = [
-            'definition' => ['required', 'array:title,intro,thank_you,access,response_policy,questions'],
+            'definition' => ['required', 'array:title,intro,thank_you,access,response_policy,questions,pages'],
             'definition.access' => ['required', Rule::in(['account', 'anyone'])],
             'definition.response_policy' => ['required', Rule::in(['single_editable', 'single', 'multiple'])],
             'definition.title' => ['required', 'array:en,de,fr,ja'],
@@ -33,8 +33,16 @@ class FormDefinitionService
             'definition.intro.*' => ['array'],
             'definition.thank_you' => ['present', 'array:en,de,fr,ja'],
             'definition.thank_you.*' => ['nullable', 'string', 'max:1000'],
+            'definition.pages' => ['sometimes', 'array', 'list', 'max:20'],
+            'definition.pages.*' => ['array:id,title,description'],
+            'definition.pages.*.id' => ['required', 'uuid', 'distinct'],
+            'definition.pages.*.title' => ['present', 'array:en,de,fr,ja'],
+            'definition.pages.*.title.*' => ['nullable', 'string', 'max:160'],
+            'definition.pages.*.description' => ['present', 'array:en,de,fr,ja'],
+            'definition.pages.*.description.*' => ['nullable', 'string', 'max:1000'],
             'definition.questions' => ['required', 'array', 'list', 'min:1', 'max:50'],
-            'definition.questions.*' => ['array:id,type,label,description,required,options,min,max'],
+            'definition.questions.*' => ['array:id,type,label,description,required,options,min,max,page_id'],
+            'definition.questions.*.page_id' => ['nullable', 'uuid'],
             'definition.questions.*.id' => ['required', 'uuid', 'distinct'],
             'definition.questions.*.type' => ['required', Rule::in(self::TYPES)],
             'definition.questions.*.label' => ['required', 'array:en,de,fr,ja'],
@@ -53,6 +61,7 @@ class FormDefinitionService
             'definition.questions.*.options.*.label.*' => ['nullable', 'string', 'max:200'],
         ];
         $data = Validator::make(['definition' => $definition], $rules)->validate()['definition'];
+        $pageIds = array_column($data['pages'] ?? [], 'id');
         foreach ($data['intro'] as $locale => $body) {
             $data['intro'][$locale] = $this->documents->validate($body, 'definition.intro.'.$locale, 10000);
             if ($locale !== 'en' && trim($this->documents->text($body)) === '' && $this->documents->imageUrls($body) === []) {
@@ -65,6 +74,10 @@ class FormDefinitionService
             }
         }
         foreach ($data['questions'] as $i => &$question) {
+            $pageId = $question['page_id'] ?? null;
+            if (($pageIds !== [] && ! in_array($pageId, $pageIds, true)) || ($pageIds === [] && $pageId !== null)) {
+                throw ValidationException::withMessages(["definition.questions.$i.page_id" => __('forms.errors.page')]);
+            }
             if (in_array($question['type'], self::CHOICES, true) && count($question['options']) < 2) {
                 throw ValidationException::withMessages(["definition.questions.$i.options" => __('forms.errors.options')]);
             }
@@ -77,6 +90,12 @@ class FormDefinitionService
             $question['required'] = (bool) $question['required'];
         }
         unset($question);
+
+        if ($pageIds !== []) {
+            $data['questions'] = collect($pageIds)
+                ->flatMap(fn (string $pageId) => array_values(array_filter($data['questions'], fn (array $question): bool => $question['page_id'] === $pageId)))
+                ->all();
+        }
 
         return $data;
     }

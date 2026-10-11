@@ -82,6 +82,46 @@ it('compares completed onsite runs with FFLogs by encounter ID and counts each r
         ->assertJsonPath('milestones.2.onsite', null);
 });
 
+it('keeps separate boss totals across exploration reclassification and repeated encounter placeholders', function () {
+    [, , $activity, $application] = applicantRecordSetup();
+    $keys = ['first', 'second', 'third', 'last'];
+    $originalVersion = $activity->activityTypeVersion;
+    $originalVersion->update([
+        'fflogs_zone_id' => null,
+        'progress_schema' => ['milestones' => collect($keys)->map(fn ($key, $index) => [
+            'key' => $key, 'label' => ['en' => $key], 'order' => $index + 1,
+            'fflogs_matcher' => ['type' => 'encounter', 'encounter_id' => '999999'],
+        ])->all()],
+    ]);
+    $currentVersion = $originalVersion->replicate();
+    $currentVersion->version = 2;
+    $currentVersion->difficulty = 'exploration';
+    $currentVersion->save();
+    $activity->update(['activity_type_version_id' => $currentVersion->id]);
+    $activity->unsetRelation('activityTypeVersion');
+
+    foreach ([[1, 1, 0, 0], [1, 1, 1, 1], [1, 1, 1, 0], [1, 1, 1, 1]] as $index => $kills) {
+        $run = Activity::factory()->create([
+            'group_id' => $activity->group_id, 'activity_type_id' => $activity->activity_type_id,
+            'activity_type_version_id' => $index === 0 ? $originalVersion->id : $currentVersion->id,
+            'status' => Activity::STATUS_ASSIGNED, 'starts_at' => now()->subDays(30 - $index * 7),
+        ]);
+        $slot = $run->slots()->firstOrFail();
+        $slot->update(['assigned_character_id' => $application->selected_character_id]);
+        ActivitySlotAssignment::create([
+            'activity_id' => $run->id, 'group_id' => $run->group_id, 'activity_slot_id' => $slot->id,
+            'character_id' => $application->selected_character_id,
+            'attendance_status' => ActivitySlotAssignment::STATUS_CHECKED_IN, 'assigned_at' => $run->starts_at,
+        ]);
+        app(ActivityCompletionService::class)->complete($run, [
+            'milestones' => collect($keys)->mapWithKeys(fn ($key, $boss) => [$key => ['kills' => $kills[$boss]]])->all(),
+        ], $activity->group->owner_id);
+    }
+
+    $result = app(ApplicantRecordService::class)->forApplication($activity, $application);
+    expect(array_column(array_column($result['milestones'], 'onsite'), 'kills'))->toBe([4, 4, 3, 2]);
+});
+
 it('excludes nonparticipation and incomplete or unrelated runs', function (string $scenario) {
     [, , $activity, $application] = applicantRecordSetup();
     $run = applicantRecordedRun($activity, $application->selectedCharacter);

@@ -69,6 +69,22 @@ it('returns all four progression colors using completed runs across groups', fun
     expect(array_keys($response->json('characters.'.$characters[0]->id)))->toBe(['status', 'fflogs_unavailable']);
 });
 
+it('does not count a different boss kill as a clear when encounter identifiers are repeated', function () {
+    [, $activity, $characters] = allianceProgressSetup();
+    $schema = $activity->activityTypeVersion->progress_schema;
+    foreach ($schema['milestones'] as &$milestone) {
+        $milestone['fflogs_matcher']['encounter_id'] = '999999';
+    }
+    unset($milestone);
+    $activity->activityTypeVersion->update(['progress_schema' => $schema]);
+    allianceRecordedRun($activity, $characters[0], ['first' => ['kills' => 1]]);
+    allianceRecordedRun($activity, $characters[1], ['second' => ['kills' => 1], 'last' => ['best_progress_percent' => 75]]);
+
+    $records = app(AllianceProgressService::class)->forCharacters($activity, $characters);
+    expect($records[$characters[0]->id]['status'])->toBe('below_target')
+        ->and($records[$characters[1]->id]['status'])->toBe('at_target');
+});
+
 it('uses whichever source is furthest and does not mistake final boss progress for a clear', function () {
     [, $activity, $characters, $fetcher] = allianceProgressSetup();
     allianceRecordedRun($activity, $characters[0], ['second' => ['best_progress_percent' => 80]]);

@@ -5,6 +5,7 @@ namespace App\Services\Groups;
 use App\Models\Activity;
 use App\Models\ActivitySlot;
 use App\Models\ActivitySlotAssignment;
+use App\Models\ActivityType;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 
@@ -20,7 +21,13 @@ class CharacterActivityHistoryService
         return Activity::query()
             ->where('activity_type_id', $activity->activity_type_id)
             ->where('status', Activity::STATUS_COMPLETE)
-            ->whereHas('activityTypeVersion', fn (Builder $query) => $query->where('difficulty', $activity->activityTypeVersion?->difficulty))
+            ->whereHas('activityTypeVersion', function (Builder $query) use ($activity) {
+                $difficulty = $activity->activityTypeVersion?->difficulty;
+                // Exploration is a content category; reclassifying the same activity must retain its history.
+                if ($difficulty !== ActivityType::DIFFICULTY_EXPLORATION) {
+                    $query->whereIn('difficulty', [$difficulty, ActivityType::DIFFICULTY_EXPLORATION]);
+                }
+            })
             ->where(function (Builder $query) use ($characterId, $eligibleSlot) {
                 $query->whereHas('slots', function (Builder $query) use ($characterId, $eligibleSlot) {
                     $eligibleSlot($query);
@@ -38,18 +45,35 @@ class CharacterActivityHistoryService
             ->get(['id', 'activity_type_version_id', 'furthest_progress_key']);
     }
 
-    public function sameMilestone(array $current, array $historical): bool
+    public function sameMilestone(array $current, array $historical, Collection $currentDefinitions, Collection $historicalDefinitions): bool
     {
+        $sameKey = filled($current['key'] ?? null) && ($current['key'] ?? null) === ($historical['key'] ?? null);
         $currentId = (int) data_get($current, 'fflogs_matcher.encounter_id', 0);
         $historicalId = (int) data_get($historical, 'fflogs_matcher.encounter_id', 0);
         if ($currentId > 0 && $historicalId > 0) {
-            $type = data_get($current, 'fflogs_matcher.type', 'encounter');
+            if (! $this->sameEncounterMatcher($current, $historical)) {
+                return false;
+            }
 
-            return $currentId === $historicalId
-                && $type === data_get($historical, 'fflogs_matcher.type', 'encounter')
-                && ($type !== 'phase' || data_get($current, 'fflogs_matcher.phase_id') === data_get($historical, 'fflogs_matcher.phase_id'));
+            // Renamed keys may follow an encounter only when its mapping identifies one milestone in each version.
+            // Reused IDs (including placeholders) must not merge separate bosses' recorded results.
+            return $sameKey || (
+                $currentDefinitions->filter(fn (array $candidate) => $this->sameEncounterMatcher($current, $candidate))->count() === 1
+                && $historicalDefinitions->filter(fn (array $candidate) => $this->sameEncounterMatcher($historical, $candidate))->count() === 1
+            );
         }
 
-        return ($current['key'] ?? null) === ($historical['key'] ?? null);
+        return $sameKey;
+    }
+
+    private function sameEncounterMatcher(array $first, array $second): bool
+    {
+        $encounterId = (int) data_get($first, 'fflogs_matcher.encounter_id', 0);
+        $type = data_get($first, 'fflogs_matcher.type', 'encounter');
+
+        return $encounterId > 0
+            && $encounterId === (int) data_get($second, 'fflogs_matcher.encounter_id', 0)
+            && $type === data_get($second, 'fflogs_matcher.type', 'encounter')
+            && ($type !== 'phase' || data_get($first, 'fflogs_matcher.phase_id') === data_get($second, 'fflogs_matcher.phase_id'));
     }
 }

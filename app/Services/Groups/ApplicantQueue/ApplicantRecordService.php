@@ -25,7 +25,7 @@ class ApplicantRecordService
         [$fflogsStatus, $encounters] = $this->fflogsProgress($activity, $application);
         $usedEncounters = [];
 
-        $rows = $definitions->map(function (array $definition) use ($history, $characterId, $encounters, $fflogsStatus, &$usedEncounters) {
+        $rows = $definitions->map(function (array $definition) use ($definitions, $history, $characterId, $encounters, $fflogsStatus, &$usedEncounters) {
             $encounterId = (int) data_get($definition, 'fflogs_matcher.encounter_id', 0);
             $isEncounter = data_get($definition, 'fflogs_matcher.type', 'encounter') === 'encounter';
             $fflogs = null;
@@ -42,6 +42,8 @@ class ApplicantRecordService
                 $matches = $run->progressMilestones->filter(fn ($milestone) => $this->history->sameMilestone(
                     $definition,
                     $historicalDefinitions->get($milestone->milestone_key, ['key' => $milestone->milestone_key]),
+                    $definitions,
+                    $historicalDefinitions,
                 ));
                 // One run can contain multiple schema entries for the same encounter.
                 $kills += (int) ($matches->max('kills') ?? 0);

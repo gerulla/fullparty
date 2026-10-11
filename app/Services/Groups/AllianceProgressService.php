@@ -41,6 +41,7 @@ class AllianceProgressService
             foreach ($definitions as $key => $definition) {
                 $matches = $run->progressMilestones->filter(fn ($milestone) => $this->history->sameMilestone(
                     $definition, $historicalDefinitions->get($milestone->milestone_key, ['key' => $milestone->milestone_key]),
+                    $definitions, $historicalDefinitions,
                 ));
                 if ($matches->contains(fn ($milestone) => $milestone->kills > 0)) {
                     $killed[$key] = true;
@@ -55,7 +56,7 @@ class AllianceProgressService
             if ($furthestKey && $points->contains($furthestKey)) {
                 $currentDefinition = $definitions->get($furthestKey);
                 $oldDefinition = $historicalDefinitions->get($furthestKey);
-                if (! $currentDefinition || ! $oldDefinition || $this->history->sameMilestone($currentDefinition, $oldDefinition)) {
+                if (! $currentDefinition || ! $oldDefinition || $this->history->sameMilestone($currentDefinition, $oldDefinition, $definitions, $historicalDefinitions)) {
                     $reached[$furthestKey] = true;
                 }
             }

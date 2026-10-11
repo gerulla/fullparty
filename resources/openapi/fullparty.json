@@ -8662,6 +8662,7 @@
           },
           "host": {
             "type": "object",
+            "description": "Run host. avatar_url uses the host's primary character portrait, falling back to their account profile picture when no primary portrait is stored, or null when neither is available. Image URLs are read from stored data without fetching external images. character describes the character selected for this run, which may differ from the primary character.",
             "properties": {
               "user_id": {
                 "anyOf": [

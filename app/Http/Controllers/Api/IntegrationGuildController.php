@@ -110,6 +110,7 @@ class IntegrationGuildController extends Controller
                 'activityTypeVersion:id,name,small_image_url,banner_image_url,difficulty,prog_points',
                 'organizer:id,name,avatar_url',
                 'organizer.discordUserIntegration:id,user_id,discord_user_id,user_app_installed_at',
+                'organizer.primaryCharacter:id,user_id,avatar_url',
                 'organizerCharacter:id,name,world,datacenter,avatar_url',
             ])
             ->withCount([
@@ -161,6 +162,7 @@ class IntegrationGuildController extends Controller
             'activityTypeVersion:id,name,small_image_url,banner_image_url,difficulty,prog_points',
             'organizer:id,name,avatar_url',
             'organizer.discordUserIntegration:id,user_id,discord_user_id,user_app_installed_at',
+            'organizer.primaryCharacter:id,user_id,avatar_url',
             'organizerCharacter:id,name,world,datacenter,avatar_url',
             'slots.assignedCharacter.user.discordUserIntegration',
             'slots.assignedCharacter.user.primaryCharacter',
@@ -286,6 +288,7 @@ class IntegrationGuildController extends Controller
             'group',
             'activityTypeVersion',
             'organizer.discordUserIntegration',
+            'organizer.primaryCharacter:id,user_id,avatar_url',
             'organizerCharacter',
         ]);
         $counts = $this->serializeRunCounts($activity);
@@ -349,7 +352,7 @@ class IntegrationGuildController extends Controller
         return [
             'user_id' => $activity->organizer?->id,
             'name' => $activity->organizer?->name,
-            'avatar_url' => $activity->organizer?->avatar_url,
+            'avatar_url' => $activity->organizer?->primaryCharacter?->avatar_url ?: ($activity->organizer?->avatar_url ?: null),
             'discord_user_id' => $this->activeDiscordUserId($activity->organizer),
             'character' => $activity->organizerCharacter ? [
                 'id' => $activity->organizerCharacter->id,

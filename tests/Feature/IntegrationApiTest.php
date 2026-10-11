@@ -14,6 +14,7 @@ use App\Models\IntegrationClient;
 use App\Models\User;
 use App\Models\UserOnboardingState;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Http;
 
 uses(RefreshDatabase::class);
 
@@ -447,7 +448,7 @@ it('returns discoverable upcoming runs for a linked discord guild', function () 
         ->assertJsonPath('data.1.target_prog_point.order', 3)
         ->assertJsonPath('data.1.host.user_id', $host->id)
         ->assertJsonPath('data.1.host.name', 'Host Person')
-        ->assertJsonPath('data.1.host.avatar_url', 'https://example.com/host-avatar.png')
+        ->assertJsonPath('data.1.host.avatar_url', 'https://example.com/host-character.png')
         ->assertJsonPath('data.1.host.discord_user_id', '800000000000000001')
         ->assertJsonPath('data.1.host.character.name', 'Host Character')
         ->assertJsonPath('data.1.host.character.avatar_url', 'https://example.com/host-character.png')
@@ -463,6 +464,56 @@ it('returns discoverable upcoming runs for a linked discord guild', function () 
         ->assertJsonPath('meta.discord_guild_id', '133700000000000001')
         ->assertJsonPath('meta.group.slug', 'guildgrp');
 });
+
+it('prefers the primary character portrait for guild run hosts and falls back to the account picture', function (bool $hasPrimary, ?string $primaryAvatar, ?string $accountAvatar, ?string $expectedAvatar) {
+    Http::preventStrayRequests();
+    $token = IntegrationClient::makePlainApiToken();
+    IntegrationClient::factory()->withApiToken($token)->create([
+        'scopes' => [IntegrationClient::SCOPE_RUNS_READ],
+    ]);
+    $host = User::factory()->create(['avatar_url' => $accountAvatar]);
+    $runCharacter = Character::factory()->create([
+        'user_id' => $host->id,
+        'avatar_url' => 'https://example.com/run-character.png',
+    ]);
+    if ($hasPrimary) {
+        Character::factory()->primary()->create([
+            'user_id' => $host->id,
+            'avatar_url' => $primaryAvatar,
+        ]);
+    }
+    $group = Group::factory()->create(['owner_id' => $host->id]);
+    $guildId = '133700000000000005';
+    DiscordGuildIntegration::create([
+        'group_id' => $group->id,
+        'discord_guild_id' => $guildId,
+        'guild_installed_at' => now(),
+    ]);
+    $activity = Activity::factory()->create([
+        'group_id' => $group->id,
+        'organized_by_user_id' => $host->id,
+        'organized_by_character_id' => $runCharacter->id,
+        'status' => Activity::STATUS_SCHEDULED,
+        'starts_at' => now()->addDay(),
+    ]);
+    $headers = ['Authorization' => 'Bearer '.$token];
+
+    $this->getJson(route('api.integrations.discord-guilds.upcoming-runs.index', $guildId), $headers)
+        ->assertOk()
+        ->assertJsonPath('data.0.host.avatar_url', $expectedAvatar)
+        ->assertJsonPath('data.0.host.character.id', $runCharacter->id)
+        ->assertJsonPath('data.0.organizer.avatar_url', $accountAvatar);
+    $this->getJson(route('api.integrations.discord-guilds.runs.role-assignment', [$guildId, $activity]), $headers)
+        ->assertOk()
+        ->assertJsonPath('data.run.host.avatar_url', $expectedAvatar);
+    Http::assertNothingSent();
+})->with([
+    'primary portrait takes priority' => [true, 'https://example.com/primary.png', 'https://example.com/account.png', 'https://example.com/primary.png'],
+    'no primary character' => [false, null, 'https://example.com/account.png', 'https://example.com/account.png'],
+    'primary portrait missing' => [true, null, 'https://example.com/account.png', 'https://example.com/account.png'],
+    'primary portrait empty' => [true, '', 'https://example.com/account.png', 'https://example.com/account.png'],
+    'neither image available' => [true, null, null, null],
+]);
 
 it('returns role assignment participants with discord ids and an unlinked count for a guild run', function () {
     $token = IntegrationClient::makePlainApiToken();

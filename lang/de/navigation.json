@@ -50,6 +50,17 @@
         }
     },
     "topbar": {
+        "appearance": {
+            "preview": "Darstellungsvorschau",
+            "mode": "Modus",
+            "theme": "Design",
+            "light_label": "Hell",
+            "dark_label": "Dunkel",
+            "base": "Basis",
+            "medas": "Medas",
+            "light": "Zum hellen Modus wechseln",
+            "dark": "Zum dunklen Modus wechseln"
+        },
         "search": "Suche",
         "search_bar": "Suche Runs, Gruppen oder Aktivitäten...",
         "time_display": {
@@ -61,7 +72,8 @@
         },
         "global_search": {
             "sections": {
-                "runs": "Runs",
+                "runs": "Bevorstehende Runs",
+                "past_runs": "Vergangene Runs",
                 "groups": "Gruppen",
                 "activities": "Aktivitäten"
             },
@@ -75,6 +87,9 @@
         "menu": {
             "profile": "Profil",
             "settings": "Einstellungen",
+            "my_characters": "Meine Charaktere",
+            "my_groups": "Meine Gruppen",
+            "my_requests": "Meine Anfragen",
             "logout": "Abmelden"
         }
     },

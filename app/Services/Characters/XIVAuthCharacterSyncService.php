@@ -152,7 +152,9 @@ final class XIVAuthCharacterSyncService
             ]);
 
             $character->user_id = $user->id;
-            $character->verified_at ??= Carbon::now();
+            $verifiedAt = Carbon::now();
+            $character->verified_at ??= $verifiedAt;
+            $character->claimed_at ??= $verifiedAt;
             $character->token = null;
             $character->expires_at = null;
 

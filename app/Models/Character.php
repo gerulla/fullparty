@@ -29,6 +29,7 @@ class Character extends Model
         'token',
         'expires_at',
         'verified_at',
+        'claimed_at',
         'lodestone_refreshed_at',
         'add_method',
     ];
@@ -41,6 +42,7 @@ class Character extends Model
     protected $casts = [
         'expires_at' => 'datetime',
         'verified_at' => 'datetime',
+        'claimed_at' => 'datetime',
         'lodestone_refreshed_at' => 'datetime',
     ];
 
@@ -122,6 +124,11 @@ class Character extends Model
     public function isVerified(): bool
     {
         return ! is_null($this->verified_at);
+    }
+
+    public function isClaimed(): bool
+    {
+        return $this->claimed_at !== null;
     }
 
     /**

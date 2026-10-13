@@ -1,5 +1,85 @@
 {
     "title": "Start",
+    "preview": {
+        "title": "Vorschau-Steuerung für die Entwicklung",
+        "refresh": "Inertia-Aktualisierung",
+        "refresh_help": "Startseitendaten neu laden und Ladeplatzhalter anzeigen, ohne die Browserseite neu zu laden.",
+        "empty": "Leeres Konto simulieren",
+        "restore": "Kontodaten wieder anzeigen",
+        "empty_help": "Ein leeres Konto anzeigen, ohne Änderungen zu speichern. Anmeldung und empfohlene Runs bleiben unverändert."
+    },
+    "empty_states": {
+        "find_runs": "Runs finden",
+        "explore_groups": "Gruppen entdecken",
+        "upcoming": {
+            "title": "Du hast noch nichts vor"
+        },
+        "history": {
+            "title": "Hier beginnen deine Abenteuer",
+            "description": "Deine vergangenen Runs erscheinen hier. Finde einen Run und leg los."
+        },
+        "groups": {
+            "title": "Suchst du Gleichgesinnte?",
+            "description": "Finde eine Gruppe für die Inhalte, die du gerne spielst."
+        },
+        "group_runs": {
+            "title": "In deinen Gruppen ist es gerade ruhig",
+            "description": "Für die nächsten 7 Tage ist nichts geplant. Entdecke in der Zwischenzeit andere Runs."
+        }
+    },
+    "character_selector": {
+        "loading": "Deine Charaktere werden geladen…",
+        "change": "Charakter wechseln. Ausgewählt: {name}",
+        "select": "{name} auswählen"
+    },
+    "runs_tabs": {
+        "upcoming": "Bevorstehend",
+        "history": "Verlauf"
+    },
+    "recommended_runs": {
+        "title": "Runs, die dir gefallen könnten",
+        "loading": "Empfohlene Runs werden geladen…",
+        "empty": "Zurzeit gibt es keine bevorstehenden öffentlichen Runs zu empfehlen.",
+        "hosted_by": "Veranstaltet von {name}",
+        "applicants": "{count} Anmeldungen | {count} Anmeldung | {count} Anmeldungen"
+    },
+    "from_your_groups": {
+        "title": "Aus deinen Gruppen",
+        "period": "Nächste 7 Tage",
+        "loading": "Runs deiner Gruppen werden geladen…",
+        "empty": "In deinen Gruppen sind für die nächsten 7 Tage keine Runs geplant."
+    },
+    "group_panel": {
+        "view_all": "Alle anzeigen",
+        "loading": "Gruppen werden geladen…",
+        "activity": "Aktualisiert {time}",
+        "no_activity": "Keine kürzlichen Aktivitäten",
+        "open_homepage": "{name} in einem neuen Tab öffnen",
+        "open_runs": "Runs von {name} ansehen",
+        "open_settings": "Einstellungen von {name} öffnen"
+    },
+    "character_applications": {
+        "view_all": "Alle anzeigen",
+        "loading": "Runs werden geladen…",
+        "empty_upcoming": "Keine bevorstehenden Runs für diesen Charakter.",
+        "empty_history": "Keine vergangenen Runs für diesen Charakter.",
+        "host": "Veranstalter: {name}",
+        "starts": "Beginn: {time}",
+        "now": "jetzt",
+        "statuses": {
+            "approved": "Angenommen",
+            "pending": "Ausstehend",
+            "on_bench": "Auf der Ersatzbank",
+            "declined": "Abgelehnt",
+            "withdrawn": "Zurückgezogen",
+            "cancelled": "Abgesagt",
+            "assigned": "Zugewiesen",
+            "checked_in": "Anwesend",
+            "late": "Verspätet",
+            "missing": "Abwesend",
+            "filled_in": "Eingesprungen"
+        }
+    },
     "welcome": "Willkommen zurück, {name}",
     "welcome_subtitle": "Schön, dich wiederzusehen.",
     "onboarding": {

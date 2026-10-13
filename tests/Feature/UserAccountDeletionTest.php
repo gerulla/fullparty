@@ -64,6 +64,7 @@ it('anonymizes the account while preserving history-bearing records', function (
     $character = Character::factory()->primary()->create([
         'user_id' => $user->id,
         'name' => 'History Character',
+        'claimed_at' => now(),
     ]);
 
     $application = ActivityApplication::factory()->create([
@@ -92,6 +93,7 @@ it('anonymizes the account while preserving history-bearing records', function (
     expect($character->user_id)->toBeNull()
         ->and($character->is_primary)->toBeFalsy()
         ->and($character->verified_at)->toBeNull()
+        ->and($character->claimed_at)->toBeNull()
         ->and($character->token)->toBeNull()
         ->and($character->expires_at)->toBeNull()
         ->and($application->user_id)->toBe($user->id)

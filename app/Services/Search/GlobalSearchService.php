@@ -7,6 +7,7 @@ use App\Models\ActivityType;
 use App\Models\Group;
 use App\Models\GroupMembership;
 use App\Models\User;
+use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 
@@ -16,11 +17,14 @@ final class GlobalSearchService
 
     private const CANDIDATE_LIMIT = 30;
 
+    private const PAST_RUN_BUFFER_DAYS = 7;
+
     private const SUPPORTED_LOCALES = ['en', 'de', 'fr', 'ja'];
 
     /**
      * @return array{
      *     runs: array<int, array<string, mixed>>,
+     *     past_runs: array<int, array<string, mixed>>,
      *     groups: array<int, array<string, mixed>>,
      *     activities: array<int, array<string, mixed>>
      * }
@@ -32,13 +36,17 @@ final class GlobalSearchService
         if (mb_strlen($query) < 2) {
             return [
                 'runs' => [],
+                'past_runs' => [],
                 'groups' => [],
                 'activities' => [],
             ];
         }
 
+        $now = CarbonImmutable::now();
+
         return [
-            'runs' => $this->searchRuns($user, $query),
+            'runs' => $this->searchRuns($user, $query, $now),
+            'past_runs' => $this->searchRuns($user, $query, $now, past: true),
             'groups' => $this->searchGroups($user, $query),
             'activities' => $this->searchActivityTypes($query),
         ];
@@ -47,7 +55,7 @@ final class GlobalSearchService
     /**
      * @return array<int, array<string, mixed>>
      */
-    private function searchRuns(User $user, string $query): array
+    private function searchRuns(User $user, string $query, CarbonImmutable $now, bool $past = false): array
     {
         $like = '%'.mb_strtolower($query).'%';
 
@@ -85,9 +93,14 @@ final class GlobalSearchService
                     ->where('is_visible', true)
                     ->orWhereHas('memberships', fn (Builder $membershipQuery) => $membershipQuery->where('user_id', $user->id));
             })
-            ->orderByRaw('CASE WHEN starts_at >= ? THEN 0 ELSE 1 END', [now()])
-            ->orderBy('starts_at')
+            ->when($past,
+                fn (Builder $queryBuilder) => $queryBuilder
+                    ->where('starts_at', '>=', $now->subDays(self::PAST_RUN_BUFFER_DAYS))
+                    ->where('starts_at', '<', $now),
+                fn (Builder $queryBuilder) => $queryBuilder->where('starts_at', '>=', $now))
+            ->orderBy('starts_at', $past ? 'desc' : 'asc')
             ->orderBy('title')
+            ->orderBy('id')
             ->limit(self::CANDIDATE_LIMIT)
             ->get()
             ->filter(fn (Activity $activity): bool => $this->canUserAccessRunResult($activity, $user))

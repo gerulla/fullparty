@@ -7,8 +7,14 @@ use App\Models\Group;
 use App\Models\GroupMembership;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Http;
 
 uses(RefreshDatabase::class);
+
+beforeEach(function () {
+    Http::preventStrayRequests();
+    $this->travelTo(now()->startOfSecond());
+});
 
 it('returns sectioned global search results with the correct destination urls', function () {
     $viewer = User::factory()->create();
@@ -166,6 +172,101 @@ it('returns members-only runs from visible groups without leaking hidden groups'
         ->assertJsonPath('runs.0.title', 'Private Match Run')
         ->assertJsonCount(1, 'groups')
         ->assertJsonPath('groups.0.title', 'Visible Match Group');
+});
+
+it('separates upcoming runs from the previous week for both title and tag matches', function (bool $byTag) {
+    $viewer = User::factory()->create();
+    $activityType = createGlobalSearchActivityType();
+    $activityType->tags()->attach(ActivityTag::query()->create(['name' => 'WindowTag']));
+    $group = Group::factory()->create();
+    $factory = Activity::factory()->state([
+        'group_id' => $group->id,
+        'activity_type_id' => $activityType->id,
+        'activity_type_version_id' => $activityType->current_published_version_id,
+        'status' => Activity::STATUS_SCHEDULED,
+        'title' => 'Timeline Run',
+    ]);
+    $later = $factory->create(['starts_at' => now()->addMonth()]);
+    $tomorrow = $factory->create(['starts_at' => now()->addDay()]);
+    $starting = $factory->create(['starts_at' => now()]);
+    $justPast = $factory->create(['starts_at' => now()->subSecond()]);
+    $boundary = $factory->create(['starts_at' => now()->subDays(7), 'status' => Activity::STATUS_COMPLETE]);
+    $factory->create(['starts_at' => now()->subDays(7)->subSecond()]);
+    $factory->create(['starts_at' => now()->subMonth()]);
+    $factory->create(['starts_at' => null]);
+
+    $response = $this->actingAs($viewer)
+        ->getJson(route('dashboard.search', ['query' => $byTag ? 'WindowTag' : 'Timeline']))
+        ->assertOk()
+        ->assertJsonCount(3, 'runs')
+        ->assertJsonCount(2, 'past_runs');
+
+    expect(array_column($response->json('runs'), 'id'))->toBe([$starting->id, $tomorrow->id, $later->id])
+        ->and(array_column($response->json('past_runs'), 'id'))->toBe([$justPast->id, $boundary->id])
+        ->and($response->json('past_runs.0.type'))->toBe('run')
+        ->and($response->json('past_runs.0.meta'))->toBe($justPast->starts_at->toIso8601String())
+        ->and($response->json('past_runs.0.url'))->toContain("/groups/{$group->slug}/activities/{$justPast->id}");
+})->with(['title' => false, 'activity tag' => true]);
+
+it('keeps independent result limits so past runs do not displace upcoming runs', function () {
+    $viewer = User::factory()->create();
+    $activityType = createGlobalSearchActivityType();
+    $group = Group::factory()->create();
+    $factory = Activity::factory()->state([
+        'group_id' => $group->id,
+        'activity_type_id' => $activityType->id,
+        'activity_type_version_id' => $activityType->current_published_version_id,
+        'status' => Activity::STATUS_SCHEDULED,
+        'title' => 'Limits Run',
+    ]);
+    $upcoming = [];
+    $past = [];
+    foreach (range(1, 7) as $hours) {
+        $upcoming[] = $factory->create(['starts_at' => now()->addHours($hours)])->id;
+        $past[] = $factory->create(['starts_at' => now()->subHours($hours)])->id;
+    }
+
+    $response = $this->actingAs($viewer)
+        ->getJson(route('dashboard.search', ['query' => 'Limits']))
+        ->assertOk()
+        ->assertJsonCount(6, 'runs')
+        ->assertJsonCount(6, 'past_runs');
+
+    expect(array_column($response->json('runs'), 'id'))->toBe(array_slice($upcoming, 0, 6))
+        ->and(array_column($response->json('past_runs'), 'id'))->toBe(array_slice($past, 0, 6));
+});
+
+it('preserves hidden-group draft and ban permissions in both run sections', function (bool $past) {
+    $viewer = User::factory()->create();
+    $activityType = createGlobalSearchActivityType();
+    $factory = Activity::factory()->state([
+        'activity_type_id' => $activityType->id,
+        'activity_type_version_id' => $activityType->current_published_version_id,
+        'status' => Activity::STATUS_SCHEDULED,
+        'title' => 'Access Run',
+        'starts_at' => $past ? now()->subDay() : now()->addDay(),
+    ]);
+    $memberGroup = Group::factory()->hidden()->withMember($viewer)->create();
+    $allowed = $factory->create(['group_id' => $memberGroup->id, 'is_public' => false]);
+    $factory->create(['group_id' => Group::factory()->hidden()->create()->id]);
+    $factory->create(['group_id' => Group::factory()->create()->id, 'status' => Activity::STATUS_DRAFT]);
+    $bannedGroup = Group::factory()->withMember($viewer)->create();
+    $bannedGroup->bans()->create(['user_id' => $viewer->id, 'banned_by_user_id' => $bannedGroup->owner_id]);
+    $factory->create(['group_id' => $bannedGroup->id]);
+
+    $this->actingAs($viewer)
+        ->getJson(route('dashboard.search', ['query' => 'Access']))
+        ->assertOk()
+        ->assertJsonCount(1, $past ? 'past_runs' : 'runs')
+        ->assertJsonPath(($past ? 'past_runs' : 'runs').'.0.id', $allowed->id)
+        ->assertJsonCount(0, $past ? 'runs' : 'past_runs');
+})->with(['upcoming' => false, 'past' => true]);
+
+it('returns every section empty for a query shorter than two characters', function () {
+    $this->actingAs(User::factory()->create())
+        ->getJson(route('dashboard.search', ['query' => 'x']))
+        ->assertOk()
+        ->assertExactJson(['runs' => [], 'past_runs' => [], 'groups' => [], 'activities' => []]);
 });
 
 function createGlobalSearchActivityType(array $attributes = []): ActivityType

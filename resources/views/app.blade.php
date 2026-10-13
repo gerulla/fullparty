@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}" class="dark">
+<html lang="{{ app()->getLocale() }}" class="dark" data-ui-theme="{{ str_starts_with($page['component'] ?? '', 'V2/') ? 'medas' : 'classic' }}">
     <head>
         @php
             $serverMeta = $serverMeta ?? app(\App\Support\Seo\ServerMeta::class)->defaults();
@@ -21,7 +21,20 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="fullparty-authenticated" content="{{ auth()->check() ? '1' : '0' }}">
-        <meta name="color-scheme" content="dark">
+        <meta name="color-scheme" content="dark light">
+        <script>
+            // Apply the saved mode before styles load; dark is the first-visit default.
+            (() => {
+                let appearance = 'dark';
+                try {
+                    if (localStorage.getItem('fullparty-appearance') === 'light') appearance = 'light';
+                } catch {}
+                const root = document.documentElement;
+                root.classList.toggle('dark', appearance === 'dark');
+                root.classList.toggle('light', appearance === 'light');
+                root.style.colorScheme = appearance;
+            })();
+        </script>
         @if($manageResourceHead)<title inertia="">@else<title>@endif{{ $fullTitle }}</title>
         @if (filled($description))
             <meta name="description" content="{{ $description }}"@if($manageResourceHead) inertia="description"@endif>
@@ -46,7 +59,7 @@
         @inertiaHead
         @routes
     </head>
-    <body class="dark bg-neutral-950 text-neutral-50">
+    <body class="bg-default text-default">
         <div class="isolate">
             @inertia
         </div>

@@ -198,6 +198,7 @@ class UserAccountDeletionService
                 'user_id' => null,
                 'is_primary' => false,
                 'verified_at' => null,
+                'claimed_at' => null,
                 'token' => null,
                 'expires_at' => null,
             ]);

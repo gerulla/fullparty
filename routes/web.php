@@ -95,6 +95,7 @@ use App\Http\Controllers\SocialAccountLinkController;
 use App\Http\Controllers\SystemNotificationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserOnboardingController;
+use App\Http\Controllers\V2HomeController;
 use App\Http\Controllers\XIVAuthController;
 use App\Http\Controllers\XivPluginDeviceAuthorizationController;
 use App\Http\Controllers\XivPluginDeviceController;
@@ -447,6 +448,8 @@ Route::prefix('{locale?}')
             */
 
             Route::get('/home', [DashboardController::class, 'show'])->name('dashboard');
+
+            Route::get('/v2/home', V2HomeController::class)->name('ui-v2.home');
             Route::put('/home/profile', [DashboardProfileCustomizationController::class, 'update'])->name('dashboard.profile.update');
             Route::patch('/onboarding', [UserOnboardingController::class, 'update'])->name('onboarding.update');
             Route::post('/onboarding/complete', [UserOnboardingController::class, 'complete'])->name('onboarding.complete');

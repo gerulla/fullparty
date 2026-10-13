@@ -1,5 +1,85 @@
 {
   "title": "Home",
+  "preview": {
+    "title": "Development preview controls",
+    "refresh": "Inertia refresh",
+    "refresh_help": "Reload homepage data and replay skeletons without reloading the browser page.",
+    "empty": "Simulate empty account",
+    "restore": "Restore account data",
+    "empty_help": "Preview an empty account without saving changes. Your login and recommended runs stay unchanged."
+  },
+  "empty_states": {
+    "find_runs": "Find runs",
+    "explore_groups": "Explore groups",
+    "upcoming": {
+      "title": "Looks like you're free"
+    },
+    "history": {
+      "title": "Your adventures start here",
+      "description": "Your past runs will appear here. Find a run to get started."
+    },
+    "groups": {
+      "title": "Looking for your people?",
+      "description": "Join a group that plays the content you love."
+    },
+    "group_runs": {
+      "title": "Your groups are quiet for now",
+      "description": "Nothing scheduled in the next 7 days. Explore other runs while you wait."
+    }
+  },
+  "character_selector": {
+    "loading": "Loading your characters…",
+    "change": "Change character. Selected: {name}",
+    "select": "Select {name}"
+  },
+  "runs_tabs": {
+    "upcoming": "Upcoming",
+    "history": "History"
+  },
+  "recommended_runs": {
+    "title": "Runs You May Like",
+    "loading": "Loading recommended runs…",
+    "empty": "No upcoming public runs to recommend right now.",
+    "hosted_by": "Hosted by {name}",
+    "applicants": "{count} Applicants | {count} Applicant | {count} Applicants"
+  },
+  "from_your_groups": {
+    "title": "From Your Groups",
+    "period": "Next 7 days",
+    "loading": "Loading your groups' runs…",
+    "empty": "Your groups have no runs scheduled in the next 7 days."
+  },
+  "group_panel": {
+    "view_all": "View All",
+    "loading": "Loading groups…",
+    "activity": "Updated {time}",
+    "no_activity": "No recent activity",
+    "open_homepage": "Open {name} in a new tab",
+    "open_runs": "View {name}'s runs",
+    "open_settings": "Open {name}'s settings"
+  },
+  "character_applications": {
+    "view_all": "View All",
+    "loading": "Loading runs…",
+    "empty_upcoming": "No upcoming runs for this character.",
+    "empty_history": "No past runs for this character.",
+    "host": "Host: {name}",
+    "starts": "Starts {time}",
+    "now": "now",
+    "statuses": {
+      "approved": "Approved",
+      "pending": "Pending",
+      "on_bench": "On bench",
+      "declined": "Declined",
+      "withdrawn": "Withdrawn",
+      "cancelled": "Cancelled",
+      "assigned": "Assigned",
+      "checked_in": "Checked in",
+      "late": "Late",
+      "missing": "Missing",
+      "filled_in": "Filled in"
+    }
+  },
   "welcome": "Welcome back, {name}",
   "welcome_subtitle": "Good to see you again.",
   "onboarding": {

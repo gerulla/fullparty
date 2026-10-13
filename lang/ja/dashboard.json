@@ -1,5 +1,85 @@
 {
     "title": "ホーム",
+    "preview": {
+        "title": "開発用プレビュー操作",
+        "refresh": "Inertiaで再読み込み",
+        "refresh_help": "ブラウザーのページ全体を再読み込みせずにホームのデータを更新し、スケルトン表示を確認します。",
+        "empty": "空のアカウントを表示",
+        "restore": "実際のアカウントデータに戻す",
+        "empty_help": "変更を保存せず、データのないアカウントをプレビューします。ログイン状態とおすすめの募集は変わりません。"
+    },
+    "empty_states": {
+        "find_runs": "募集を探す",
+        "explore_groups": "グループを探す",
+        "upcoming": {
+            "title": "次の予定はまだありません"
+        },
+        "history": {
+            "title": "冒険はここから",
+            "description": "過去の参加予定がここに表示されます。まずは募集を探してみましょう。"
+        },
+        "groups": {
+            "title": "一緒に遊ぶ仲間を探していますか？",
+            "description": "好きなコンテンツを楽しめるグループに参加しましょう。"
+        },
+        "group_runs": {
+            "title": "グループはひと休み中",
+            "description": "今後7日間の開催予定はありません。それまで、ほかの募集を探してみましょう。"
+        }
+    },
+    "character_selector": {
+        "loading": "キャラクターを読み込み中…",
+        "change": "キャラクターを変更。選択中：{name}",
+        "select": "{name}を選択"
+    },
+    "runs_tabs": {
+        "upcoming": "今後の予定",
+        "history": "履歴"
+    },
+    "recommended_runs": {
+        "title": "おすすめの募集",
+        "loading": "おすすめの募集を読み込み中…",
+        "empty": "現在、おすすめできる開催予定の公開募集はありません。",
+        "hosted_by": "主催：{name}",
+        "applicants": "応募者 {count}人"
+    },
+    "from_your_groups": {
+        "title": "参加中のグループの開催予定",
+        "period": "今後7日間",
+        "loading": "参加中のグループの開催予定を読み込み中…",
+        "empty": "参加中のグループには、今後7日間の開催予定がありません。"
+    },
+    "group_panel": {
+        "view_all": "すべて表示",
+        "loading": "グループを読み込み中…",
+        "activity": "更新：{time}",
+        "no_activity": "最近の活動はありません",
+        "open_homepage": "{name}を新しいタブで開く",
+        "open_runs": "{name}の開催予定を見る",
+        "open_settings": "{name}の設定を開く"
+    },
+    "character_applications": {
+        "view_all": "すべて表示",
+        "loading": "開催予定を読み込み中…",
+        "empty_upcoming": "このキャラクターの今後の開催予定はありません。",
+        "empty_history": "このキャラクターの過去の開催履歴はありません。",
+        "host": "主催：{name}",
+        "starts": "開始：{time}",
+        "now": "まもなく",
+        "statuses": {
+            "approved": "承認済み",
+            "pending": "承認待ち",
+            "on_bench": "補欠",
+            "declined": "不承認",
+            "withdrawn": "辞退済み",
+            "cancelled": "中止",
+            "assigned": "配置済み",
+            "checked_in": "出席",
+            "late": "遅刻",
+            "missing": "欠席",
+            "filled_in": "代役参加"
+        }
+    },
     "welcome": "おかえりなさい、{name}",
     "welcome_subtitle": "また会えてうれしいです。",
     "onboarding": {

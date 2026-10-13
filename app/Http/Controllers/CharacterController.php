@@ -413,6 +413,7 @@ class CharacterController extends Controller
 
             $character->user_id = $user->id;
             $character->verified_at = Carbon::now();
+            $character->claimed_at ??= $character->verified_at;
             $character->token = null;
             $character->expires_at = null;
             $character->is_primary = $isPrimary;
@@ -773,6 +774,7 @@ class CharacterController extends Controller
             $character->update([
                 'user_id' => null,
                 'verified_at' => null,
+                'claimed_at' => null,
                 'token' => $this->generateVerificationToken(),
                 'expires_at' => Carbon::now()->addDay(),
                 'is_primary' => false,

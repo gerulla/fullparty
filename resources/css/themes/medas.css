@@ -1,0 +1,99 @@
+/*
+ * Medas / V2 palette. Edit colours here; shared components use the same tokens.
+ * The neutral and brand scales also power classes such as bg-neutral-900.
+ * All colour values use OKLCH: lightness (0-1), chroma, hue (degrees).
+ * Neutral tones use a subtle Zinc-like cool tint; the brand palette is independent.
+ * Keep light/dark surface tokens separate from the underlying colour scales.
+ */
+@layer theme {
+    html[data-ui-theme="medas"] {
+        --color-neutral-50: oklch(0.985104 0 0);
+        --color-neutral-100: oklch(0.970151 0.001 286.375);
+        --color-neutral-200: oklch(0.921906 0.004 286.32);
+        --color-neutral-300: oklch(0.869944 0.006 286.286);
+        --color-neutral-400: oklch(0.715474 0.015 286.067);
+        --color-neutral-500: oklch(0.555527 0.016 285.938);
+        --color-neutral-600: oklch(0.438605 0.017 285.786);
+        --color-neutral-700: oklch(0.371495 0.013 285.805);
+        --color-neutral-800: oklch(0.268618 0.006 286.033);
+        --color-neutral-900: oklch(0.204627 0.006 285.885);
+        --color-neutral-950: oklch(0.144788 0.005 285.823);
+
+        --color-brand-50: oklch(0.97057 0.013002 310.53);
+        --color-brand-100: oklch(0.936451 0.029107 310.149);
+        --color-brand-200: oklch(0.866632 0.059254 309.804);
+        --color-brand-300: oklch(0.76917 0.105202 310.45);
+        --color-brand-400: oklch(0.660994 0.150655 308.696);
+        --color-brand-500: oklch(0.54671 0.191445 304.739);
+        --color-brand-600: oklch(0.448131 0.213535 298.909); /* Bright accent */
+        --color-brand-700: oklch(0.423963 0.124218 305.772); /* Identity */
+        --color-brand-800: oklch(0.347058 0.109402 307.253);
+        --color-brand-900: oklch(0.27777 0.103833 308.817);
+        --color-brand-950: oklch(0.214903 0.098257 309.985); /* Dark accent */
+    }
+
+    html[data-ui-theme="medas"].light {
+        --ui-primary: var(--color-brand-700);
+        --ui-text-dimmed: var(--color-neutral-500);
+        --ui-text-muted: var(--color-neutral-600);
+        --ui-text-toned: var(--color-neutral-700);
+        --ui-text: var(--color-neutral-800);
+        --ui-text-highlighted: var(--color-neutral-950);
+        --ui-text-inverted: oklch(1 0 0);
+        /* Semantic surfaces follow the editable elevation palette below. */
+        --ui-bg: var(--ui-bg-elevation-1);
+        --ui-bg-muted: var(--ui-bg-elevation-3);
+        --ui-bg-elevated: var(--ui-bg-elevation-5);
+        --ui-bg-accented: var(--ui-bg-elevation-9);
+        --ui-bg-inverted: oklch(0.182204 0.005625 285.862);
+        --ui-border: var(--ui-bg-elevation-9);
+        --ui-border-muted: var(--ui-bg-elevation-7);
+        --ui-border-elevated: var(--ui-bg-elevation-10);
+        --ui-border-accented: var(--color-neutral-600);
+        --ui-border-inverted: var(--ui-bg-inverted);
+
+        /* Elevation backgrounds: edit each level directly. */
+        --ui-bg-elevation-1: oklch(0.985104 0 0);
+        --ui-bg-elevation-2: oklch(0.950794 0.002204 286.353);
+        --ui-bg-elevation-3: oklch(0.916483 0.004209 286.316);
+        --ui-bg-elevation-4: oklch(0.882173 0.005529 286.294);
+        --ui-bg-elevation-5: oklch(0.847862 0.007287 286.255);
+        --ui-bg-elevation-6: oklch(0.813552 0.009286 286.206);
+        --ui-bg-elevation-7: oklch(0.779241 0.011285 286.157);
+        --ui-bg-elevation-8: oklch(0.744931 0.013284 286.109);
+        --ui-bg-elevation-9: oklch(0.71062 0.01503 286.063);
+        --ui-bg-elevation-10: oklch(0.67631 0.015245 286.035);
+    }
+
+    html[data-ui-theme="medas"].dark {
+        --ui-primary: var(--color-brand-700);
+        --ui-text-dimmed: var(--color-neutral-500);
+        --ui-text-muted: var(--color-neutral-400);
+        --ui-text-toned: var(--color-neutral-300);
+        --ui-text: oklch(0.946105 0.002495 286.348);
+        --ui-text-highlighted: var(--color-neutral-50);
+        --ui-text-inverted: var(--color-neutral-950);
+        --ui-bg: var(--ui-bg-elevation-1);
+        --ui-bg-muted: var(--ui-bg-elevation-3);
+        --ui-bg-elevated: var(--ui-bg-elevation-5);
+        --ui-bg-accented: var(--ui-bg-elevation-9);
+        --ui-bg-inverted: oklch(0.985104 0 0);
+        --ui-border: var(--ui-bg-elevation-10);
+        --ui-border-muted: var(--ui-bg-elevation-7);
+        --ui-border-elevated: var(--color-neutral-700);
+        --ui-border-accented: var(--color-neutral-600);
+        --ui-border-inverted: var(--ui-bg-inverted);
+
+        /* Elevation backgrounds: edit each level directly. */
+        --ui-bg-elevation-1: oklch(0.182204 0.005625 285.862);
+        --ui-bg-elevation-2: oklch(0.19856 0.005899 285.879);
+        --ui-bg-elevation-3: oklch(0.214916 0.006 285.909);
+        --ui-bg-elevation-4: oklch(0.231272 0.006 285.947);
+        --ui-bg-elevation-5: oklch(0.247628 0.006 285.984);
+        --ui-bg-elevation-6: oklch(0.263984 0.006 286.022);
+        --ui-bg-elevation-7: oklch(0.28034 0.006798 286.007);
+        --ui-bg-elevation-8: oklch(0.296695 0.00791 285.971);
+        --ui-bg-elevation-9: oklch(0.313051 0.009023 285.935);
+        --ui-bg-elevation-10: oklch(0.329407 0.010136 285.898);
+    }
+}

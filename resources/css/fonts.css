@@ -1,0 +1,21 @@
+/*! Sansation by Bernd Montag, SIL Open Font License 1.1: /licenses/sansation.txt */
+@import "@fontsource/sansation/300.css";
+@import "@fontsource/sansation/300-italic.css";
+@import "@fontsource/sansation/400.css";
+@import "@fontsource/sansation/400-italic.css";
+@import "@fontsource/sansation/700.css";
+@import "@fontsource/sansation/700-italic.css";
+
+/*! Roboto by The Roboto Project Authors, SIL Open Font License 1.1: /licenses/roboto.txt */
+@import "@fontsource-variable/roboto/wght.css";
+@import "@fontsource-variable/roboto/wght-italic.css";
+
+/*! Inter by The Inter Project Authors, SIL Open Font License 1.1: /licenses/inter.txt */
+@import "@fontsource-variable/inter/wght.css";
+@import "@fontsource-variable/inter/wght-italic.css";
+
+@theme {
+    --font-sansation: "Sansation", "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    --font-roboto: "Roboto Variable", "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    --font-inter: "Inter Variable", "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+}

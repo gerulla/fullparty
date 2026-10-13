@@ -64,6 +64,7 @@ const features = {
 }
 
 const standalone = {
+    'V2/Home': ['auth', 'characters', 'dashboard', 'groups/activities', 'groups/dashboard', 'navigation', 'notifications', 'settings'],
     'Forms/Show': ['forms'],
     'auth/Banned': [],
     'Resources/Show': ['groups/resources'],

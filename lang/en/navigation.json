@@ -50,6 +50,17 @@
     }
   },
   "topbar": {
+    "appearance": {
+      "preview": "Appearance preview",
+      "mode": "Mode",
+      "theme": "Theme",
+      "light_label": "Light",
+      "dark_label": "Dark",
+      "base": "Base",
+      "medas": "Medas",
+      "light": "Switch to light mode",
+      "dark": "Switch to dark mode"
+    },
     "search": "Search",
     "search_bar": "Search runs, groups, or activities...",
     "time_display": {
@@ -61,7 +72,8 @@
     },
     "global_search": {
       "sections": {
-        "runs": "Runs",
+        "runs": "Upcoming Runs",
+        "past_runs": "Past Runs",
         "groups": "Groups",
         "activities": "Activities"
       },
@@ -75,6 +87,9 @@
     "menu": {
       "profile": "Profile",
       "settings": "Settings",
+      "my_characters": "My Characters",
+      "my_groups": "My Groups",
+      "my_requests": "My Requests",
       "logout": "Logout"
     }
   },

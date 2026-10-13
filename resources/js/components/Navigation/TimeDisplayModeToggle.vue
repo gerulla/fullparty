@@ -73,7 +73,7 @@ async function updateMode(mode: TimeDisplayMode) {
 <template>
 	<UTooltip :text="activeLabel">
 		<div
-			class="inline-grid h-8 grid-cols-2 overflow-hidden border border-default bg-muted/30 text-xs font-semibold shadow-sm"
+			class="inline-grid h-8 grid-cols-2 overflow-hidden border-default bg-default text-xs font-semibold"
 			:aria-label="t('navigation.topbar.time_display.label')"
 			role="group"
 		>
@@ -83,7 +83,7 @@ async function updateMode(mode: TimeDisplayMode) {
 				type="button"
 				class="flex min-w-8 items-center justify-center px-2 transition-colors disabled:cursor-wait disabled:opacity-70"
 				:class="timeDisplayMode === option.value
-					? 'bg-primary text-inverted'
+					? 'bg-primary text-white'
 					: 'text-muted hover:bg-muted hover:text-toned'"
 				:aria-label="t(option.titleKey)"
 				:aria-pressed="timeDisplayMode === option.value"

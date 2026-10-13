@@ -1,0 +1,46 @@
+/*
+ * Background elevation: bg-elevation-1 through bg-elevation-10.
+ * Edit each colour directly. Higher levels are darker in light mode and lighter in dark mode.
+ * These are Base colours; Medas overrides are in medas.css.
+ */
+@layer theme {
+    :root,
+    .light {
+        --ui-bg-elevation-1: oklch(0.989689 0.004082 301.419);
+        --ui-bg-elevation-2: oklch(0.954869 0.004764 302.472);
+        --ui-bg-elevation-3: oklch(0.92005 0.005445 303.525);
+        --ui-bg-elevation-4: oklch(0.88523 0.006126 304.578);
+        --ui-bg-elevation-5: oklch(0.85041 0.006807 305.631);
+        --ui-bg-elevation-6: oklch(0.81559 0.007488 306.684);
+        --ui-bg-elevation-7: oklch(0.78077 0.008169 307.737);
+        --ui-bg-elevation-8: oklch(0.74595 0.008851 308.79);
+        --ui-bg-elevation-9: oklch(0.71113 0.009532 309.843);
+        --ui-bg-elevation-10: oklch(0.67631 0.010213 310.896);
+    }
+
+    .dark {
+        --ui-bg-elevation-1: oklch(0.183564 0.011085 311.911);
+        --ui-bg-elevation-2: oklch(0.199893 0.010863 311.911);
+        --ui-bg-elevation-3: oklch(0.216222 0.010642 311.911);
+        --ui-bg-elevation-4: oklch(0.23255 0.01042 311.911);
+        --ui-bg-elevation-5: oklch(0.248879 0.010198 311.911);
+        --ui-bg-elevation-6: oklch(0.265208 0.009977 311.911);
+        --ui-bg-elevation-7: oklch(0.281536 0.009755 311.911);
+        --ui-bg-elevation-8: oklch(0.297865 0.009533 311.911);
+        --ui-bg-elevation-9: oklch(0.314194 0.009311 311.911);
+        --ui-bg-elevation-10: oklch(0.330523 0.00909 311.911);
+    }
+}
+
+@theme inline {
+    --color-elevation-1: var(--ui-bg-elevation-1);
+    --color-elevation-2: var(--ui-bg-elevation-2);
+    --color-elevation-3: var(--ui-bg-elevation-3);
+    --color-elevation-4: var(--ui-bg-elevation-4);
+    --color-elevation-5: var(--ui-bg-elevation-5);
+    --color-elevation-6: var(--ui-bg-elevation-6);
+    --color-elevation-7: var(--ui-bg-elevation-7);
+    --color-elevation-8: var(--ui-bg-elevation-8);
+    --color-elevation-9: var(--ui-bg-elevation-9);
+    --color-elevation-10: var(--ui-bg-elevation-10);
+}

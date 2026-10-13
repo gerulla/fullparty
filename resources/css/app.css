@@ -18,6 +18,9 @@
 @import 'tailwindcss';
 @import "@nuxt/ui";
 @import "tw-animate-css";
+@import "./fonts.css";
+@import "./themes/medas.css";
+@import "./themes/elevation.css";
 
 /*---break---*/
 
@@ -38,6 +41,14 @@
     --font-mono: "IBM Plex Mono", ui-monospace, monospace;
     --breakpoint-3xl: 120rem;
     --breakpoint-4xl: 160rem;
+}
+
+@theme inline {
+    --color-gold: var(--color-amber-300);
+    --border-color-elevated: var(--ui-border-elevated);
+    --ring-color-elevated: var(--ui-border-elevated);
+    --ring-offset-color-elevated: var(--ui-border-elevated);
+    --divide-color-elevated: var(--ui-border-elevated);
 }
 
 @theme static {
@@ -76,15 +87,17 @@
         --ui-text: var(--color-neutral-800);
         --ui-text-highlighted: var(--color-neutral-950);
         --ui-text-inverted: #ffffff;
-        --ui-bg: #fcfbfe;
-        --ui-bg-muted: var(--color-neutral-100);
-        --ui-bg-elevated: #f4f0f9;
-        --ui-bg-accented: var(--color-neutral-200);
-        --ui-bg-inverted: var(--color-neutral-950);
-        --ui-border: #e4deec;
-        --ui-border-muted: #d8d1e3;
-        --ui-border-accented: var(--color-neutral-300);
-        --ui-border-inverted: var(--color-neutral-950);
+        /* Semantic surfaces follow the editable elevation palette. */
+        --ui-bg: var(--ui-bg-elevation-1);
+        --ui-bg-muted: var(--ui-bg-elevation-3);
+        --ui-bg-elevated: var(--ui-bg-elevation-5);
+        --ui-bg-accented: var(--ui-bg-elevation-9);
+        --ui-bg-inverted: oklch(0.183564 0.011085 311.911);
+        --ui-border: var(--ui-bg-elevation-9);
+        --ui-border-muted: var(--ui-bg-elevation-7);
+        --ui-border-elevated: var(--ui-bg-elevation-10);
+        --ui-border-accented: var(--color-neutral-600);
+        --ui-border-inverted: var(--ui-bg-inverted);
     }
 
     .dark {
@@ -94,15 +107,16 @@
         --ui-text: #ece6f4;
         --ui-text-highlighted: var(--color-neutral-50);
         --ui-text-inverted: var(--color-neutral-950);
-        --ui-bg: #141116;
-        --ui-bg-muted: #201c24;
-        --ui-bg-elevated: #29242d;
-        --ui-bg-accented: #38323e;
-        --ui-bg-inverted: #ffffff;
-        --ui-border: #312b37;
-        --ui-border-muted: #433b49;
-        --ui-border-accented: #5a5163;
-        --ui-border-inverted: #ffffff;
+        --ui-bg: var(--ui-bg-elevation-1);
+        --ui-bg-muted: var(--ui-bg-elevation-3);
+        --ui-bg-elevated: var(--ui-bg-elevation-5);
+        --ui-bg-accented: var(--ui-bg-elevation-9);
+        --ui-bg-inverted: oklch(0.989689 0.004082 301.419);
+        --ui-border: var(--ui-bg-elevation-10);
+        --ui-border-muted: var(--ui-bg-elevation-7);
+        --ui-border-elevated: var(--color-neutral-700);
+        --ui-border-accented: var(--color-neutral-600);
+        --ui-border-inverted: var(--ui-bg-inverted);
     }
 
     .planner-theme {

@@ -1,5 +1,85 @@
 {
     "title": "Accueil",
+    "preview": {
+        "title": "Commandes d'aperçu pour le développement",
+        "refresh": "Actualiser via Inertia",
+        "refresh_help": "Recharger les données de l'accueil et afficher les squelettes sans recharger la page du navigateur.",
+        "empty": "Simuler un compte vide",
+        "restore": "Rétablir les données du compte",
+        "empty_help": "Afficher un compte vide sans enregistrer de modifications. La connexion et les runs recommandés restent inchangés."
+    },
+    "empty_states": {
+        "find_runs": "Trouver des sorties",
+        "explore_groups": "Explorer les groupes",
+        "upcoming": {
+            "title": "Votre agenda est libre"
+        },
+        "history": {
+            "title": "Vos aventures commencent ici",
+            "description": "Vos sorties passées apparaîtront ici. Trouvez une sortie pour commencer."
+        },
+        "groups": {
+            "title": "À la recherche de compagnons de jeu ?",
+            "description": "Rejoignez un groupe qui partage vos envies de jeu."
+        },
+        "group_runs": {
+            "title": "Vos groupes sont calmes pour le moment",
+            "description": "Rien de prévu dans les 7 prochains jours. Découvrez d'autres sorties en attendant."
+        }
+    },
+    "character_selector": {
+        "loading": "Chargement de vos personnages…",
+        "change": "Changer de personnage. Sélection actuelle : {name}",
+        "select": "Sélectionner {name}"
+    },
+    "runs_tabs": {
+        "upcoming": "À venir",
+        "history": "Historique"
+    },
+    "recommended_runs": {
+        "title": "Des runs qui pourraient vous plaire",
+        "loading": "Chargement des runs recommandés…",
+        "empty": "Aucun run public à venir à recommander pour le moment.",
+        "hosted_by": "Organisé par {name}",
+        "applicants": "{count} candidatures | {count} candidature | {count} candidatures"
+    },
+    "from_your_groups": {
+        "title": "Dans vos groupes",
+        "period": "Les 7 prochains jours",
+        "loading": "Chargement des sorties de vos groupes…",
+        "empty": "Vos groupes n'ont aucune sortie prévue dans les 7 prochains jours."
+    },
+    "group_panel": {
+        "view_all": "Tout voir",
+        "loading": "Chargement des groupes…",
+        "activity": "Mise à jour : {time}",
+        "no_activity": "Aucune activité récente",
+        "open_homepage": "Ouvrir {name} dans un nouvel onglet",
+        "open_runs": "Voir les sorties de {name}",
+        "open_settings": "Ouvrir les paramètres de {name}"
+    },
+    "character_applications": {
+        "view_all": "Tout voir",
+        "loading": "Chargement des sorties…",
+        "empty_upcoming": "Aucune sortie à venir pour ce personnage.",
+        "empty_history": "Aucune sortie passée pour ce personnage.",
+        "host": "Organisation : {name}",
+        "starts": "Début : {time}",
+        "now": "maintenant",
+        "statuses": {
+            "approved": "Acceptée",
+            "pending": "En attente",
+            "on_bench": "En réserve",
+            "declined": "Refusée",
+            "withdrawn": "Retirée",
+            "cancelled": "Annulée",
+            "assigned": "Assigné",
+            "checked_in": "Présent",
+            "late": "En retard",
+            "missing": "Absent",
+            "filled_in": "Remplaçant"
+        }
+    },
     "welcome": "Bon retour, {name}",
     "welcome_subtitle": "Content de vous revoir.",
     "onboarding": {

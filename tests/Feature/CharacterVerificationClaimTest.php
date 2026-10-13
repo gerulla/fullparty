@@ -207,6 +207,7 @@ it('claims matching guest applications and auto-refreshes on xivauth import', fu
 
     expect($character->user_id)->toBe($user->id)
         ->and($character->verified_at)->not->toBeNull()
+        ->and($character->claimed_at)->not->toBeNull()
         ->and($character->name)->toBe('Claimed Applicant')
         ->and($character->world)->toBe('Lich')
         ->and($character->avatar_url)->toBe('https://example.com/new-avatar.png')
@@ -325,6 +326,7 @@ it('claims matching guest applications and auto-refreshes on manual verification
 
     expect($character->user_id)->toBe($user->id)
         ->and($character->verified_at)->not->toBeNull()
+        ->and($character->claimed_at)->not->toBeNull()
         ->and($character->token)->toBeNull()
         ->and($character->name)->toBe('Verified Applicant')
         ->and($character->world)->toBe('Lich')

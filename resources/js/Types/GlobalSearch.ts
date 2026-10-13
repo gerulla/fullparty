@@ -13,6 +13,7 @@ export type GlobalSearchResult = {
 
 export type GlobalSearchResponse = {
 	runs: GlobalSearchResult[]
+	past_runs: GlobalSearchResult[]
 	groups: GlobalSearchResult[]
 	activities: GlobalSearchResult[]
 }

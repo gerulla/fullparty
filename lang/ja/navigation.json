@@ -50,6 +50,17 @@
         }
     },
     "topbar": {
+        "appearance": {
+            "preview": "表示のプレビュー",
+            "mode": "モード",
+            "theme": "テーマ",
+            "light_label": "ライト",
+            "dark_label": "ダーク",
+            "base": "基本",
+            "medas": "Medas",
+            "light": "ライトモードに切り替え",
+            "dark": "ダークモードに切り替え"
+        },
         "search": "検索",
         "search_bar": "ラン、グループ、アクティビティを検索...",
         "time_display": {
@@ -61,7 +72,8 @@
         },
         "global_search": {
             "sections": {
-                "runs": "ラン",
+                "runs": "今後のラン",
+                "past_runs": "過去のラン",
                 "groups": "グループ",
                 "activities": "アクティビティ"
             },
@@ -75,6 +87,9 @@
         "menu": {
             "profile": "プロフィール",
             "settings": "設定",
+            "my_characters": "マイキャラクター",
+            "my_groups": "マイグループ",
+            "my_requests": "自分のリクエスト",
             "logout": "ログアウト"
         }
     },

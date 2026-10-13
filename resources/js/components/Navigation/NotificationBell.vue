@@ -140,14 +140,15 @@ onBeforeUnmount(() => {
 	<UPopover
 		v-if="user"
 		arrow
-		:content="{ side: 'bottom', align: 'end', collisionPadding: 8 }"
+		:content="{ side: 'bottom', align: 'middle', collisionPadding: 8 }"
+		:ui="{ content: 'bg-elevation-1 ring-default', arrow: 'fill-elevation-1 stroke-default' }"
 	>
 		<template #default="{ open }">
 			<UButton
 				color="neutral"
 				variant="ghost"
-				:class="{ 'bg-gray-100 dark:bg-neutral-900 rounded-lg': open }"
-				class="relative"
+				:class="{ 'bg-elevation-1 rounded-md ': open }"
+				class="relative rounded-md"
 				icon="i-lucide-bell"
 				@click="handleBellClick"
 			>
@@ -162,26 +163,11 @@ onBeforeUnmount(() => {
 		</template>
 
 		<template #content>
-			<div class="w-[calc(100vw-1rem)] max-w-md sm:w-96 bg-linear-to-b from-neutral-900 to-brand-800">
-				<div class="flex items-center justify-between px-4 py-3 bg-neutral-950/50 border-b  border-neutral-800">
-					<h3 class="text-sm font-semibold  text-brand-100">
-						{{ t('notifications.ui.title') }}
-					</h3>
-					<UButton
-						v-if="unreadCount > 0"
-						size="xs"
-						color="neutral"
-						variant="ghost"
-						@click="markAllAsRead"
-					>
-						{{ t('notifications.ui.mark_all_as_read') }}
-					</UButton>
-				</div>
-
-				<div class="max-h-96 overflow-y-auto bg-neutral-950/80">
+			<div class="w-96 max-w-md sm:w-96 rounded-md text-default">
+				<div class="max-h-96 overflow-y-auto rounded-t-md">
 					<div
 						v-if="latestNotifications.length === 0"
-						class="px-4 py-8 text-center text-sm text-gray-500 dark:text-gray-400"
+						class="px-4 py-8 text-center text-sm text-muted"
 					>
 						{{ t('notifications.ui.empty') }}
 					</div>
@@ -190,12 +176,14 @@ onBeforeUnmount(() => {
 						v-for="notification in latestNotifications"
 						:key="notification.id"
 						:href="notification.open_url"
-						class="block px-4 py-3 hover:bg-neutral-600/50 transition-colors border-b border-neutral-700 last:border-b-0"
-						:class="{ ' border-l-4 border-l-white/75 bg-brand-950/50 hover:bg-brand-950': notification.is_unread }"
+						class="block px-4 py-3 transition-colors border-b border-muted last:border-b-0"
+						:class="notification.is_unread
+                            ? 'border-l-4 border-l-primary bg-elevation-2 dark:bg-elevation-3 hover:bg-elevation-4 focus-visible:bg-elevation-7'
+                            : 'bg-elevation-1 hover:bg-elevation-3 focus-visible:bg-elevation-5'"
 					>
 						<div class="flex gap-3">
 							<div class="flex-shrink-0 mt-0.5">
-								<div class="h-8 w-8 rounded-full bg-neutral-800 flex items-center justify-center">
+								<div class="h-8 w-8 rounded-full bg-elevation-3 dark:bg-elevation-7 flex items-center justify-center">
 									<UIcon
 										:name="resolveNotificationMeta(notification).icon"
 										:class="[resolveNotificationMeta(notification).iconColor, 'h-4 w-4']"
@@ -205,7 +193,7 @@ onBeforeUnmount(() => {
 
 							<div class="flex-1 min-w-0">
 								<div class="flex items-start justify-between gap-2">
-									<p class="text-sm font-medium text-gray-900 dark:text-white">
+									<p class="text-sm font-medium text-highlighted">
 										{{ resolveNotificationTitle(notification, t) }}
 									</p>
 									<UBadge
@@ -221,12 +209,12 @@ onBeforeUnmount(() => {
 
 								<p
 									v-if="resolveNotificationDescription(notification, t)"
-									class="mt-1 text-sm text-gray-600 dark:text-gray-400 line-clamp-2"
+									class="mt-1 text-sm text-default dark:text-muted line-clamp-2"
 								>
 									{{ resolveNotificationDescription(notification, t) }}
 								</p>
 
-								<p class="mt-1 text-xs text-gray-500 dark:text-gray-500">
+								<p class="mt-1 text-xs text-default dark:text-muted">
 									{{ formatNotificationTime(notification.created_at, locale, t) }}
 								</p>
 							</div>
@@ -234,19 +222,26 @@ onBeforeUnmount(() => {
 					</Link>
 				</div>
 
-				<div class="px-4 py-1.5 border-t border-gray-200 dark:border-neutral-700 bg-neutral-950/80">
+				<div class="px-4 py-1.5 rounded-b-md border-t border-default dark:bg-elevation-2 flex items-center justify-between">
 					<Link
 						:href="route('account.notifications.index')"
-						class="text-sm font-medium text-brand hover:text-brand-600 dark:text-brand-400 dark:hover:text-brand-300 transition-colors"
+						class="text-sm font-medium text-brand hover:text-highlighted hover:underline focus-visible:underline transition-colors"
 					>
 						{{ t('notifications.ui.view_all') }}
 					</Link>
+					<UButton
+						size="xs"
+						color="neutral"
+						variant="ghost"
+						class="hover:bg-elevation-2"
+						@click="markAllAsRead"
+					>
+						{{ t('notifications.ui.mark_all_as_read') }}
+					</UButton>
+
+					<!--					v-if="unreadCount > 0"-->
 				</div>
 			</div>
 		</template>
 	</UPopover>
 </template>
-
-<style scoped>
-
-</style>

@@ -50,6 +50,17 @@
         }
     },
     "topbar": {
+        "appearance": {
+            "preview": "Aperçu de l’apparence",
+            "mode": "Mode",
+            "theme": "Thème",
+            "light_label": "Clair",
+            "dark_label": "Sombre",
+            "base": "Base",
+            "medas": "Medas",
+            "light": "Passer au mode clair",
+            "dark": "Passer au mode sombre"
+        },
         "search": "Rechercher",
         "search_bar": "Rechercher des runs, groupes ou activités...",
         "time_display": {
@@ -61,7 +72,8 @@
         },
         "global_search": {
             "sections": {
-                "runs": "Runs",
+                "runs": "Sorties à venir",
+                "past_runs": "Sorties passées",
                 "groups": "Groupes",
                 "activities": "Activités"
             },
@@ -75,6 +87,9 @@
         "menu": {
             "profile": "Profil",
             "settings": "Paramètres",
+            "my_characters": "Mes personnages",
+            "my_groups": "Mes groupes",
+            "my_requests": "Mes demandes",
             "logout": "Se déconnecter"
         }
     },

@@ -300,6 +300,7 @@ it('unclaims a character and promotes another one to primary without deleting th
         'is_primary' => true,
         'verified_at' => now(),
         'name' => 'Old Primary',
+        'claimed_at' => now(),
     ]);
 
     $secondCharacter = Character::factory()->create([
@@ -316,6 +317,7 @@ it('unclaims a character and promotes another one to primary without deleting th
     expect(Character::query()->whereKey($firstCharacter->id)->exists())->toBeTrue()
         ->and($firstCharacter->fresh()->user_id)->toBeNull()
         ->and($firstCharacter->fresh()->verified_at)->toBeNull()
+        ->and($firstCharacter->fresh()->claimed_at)->toBeNull()
         ->and($firstCharacter->fresh()->token)->not->toBeNull()
         ->and((bool) $firstCharacter->fresh()->is_primary)->toBeFalse()
         ->and((bool) $secondCharacter->fresh()->is_primary)->toBeTrue();

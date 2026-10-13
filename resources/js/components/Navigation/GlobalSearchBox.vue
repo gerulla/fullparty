@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { GlobalSearchResponse, GlobalSearchResult } from "@/Types/GlobalSearch";
 import axios from "axios";
-import { computed, onBeforeUnmount, ref, watch } from "vue";
-import { router } from "@inertiajs/vue3";
+import { computed, onBeforeUnmount, ref, useId, watch } from "vue";
+import { Link } from "@inertiajs/vue3";
 import { route } from "ziggy-js";
 import { useI18n } from "vue-i18n";
 import { createDateTimeFormatter } from "@/utils/dateTimeFormat";
@@ -11,9 +11,11 @@ import { useTimeDisplayMode } from "@/composables/useTimeDisplayMode";
 const props = withDefaults(defineProps<{
 	autofocus?: boolean
 	dropdownMode?: "floating" | "static"
+    align?: "start" | "center"
 }>(), {
 	autofocus: false,
 	dropdownMode: "floating",
+    align: "start",
 });
 
 const emit = defineEmits<{
@@ -22,9 +24,11 @@ const emit = defineEmits<{
 
 const { t, locale } = useI18n({ useScope: "global" });
 const { withDisplayTimeZone } = useTimeDisplayMode();
+const resultsId = useId();
 
 const emptyResults = (): GlobalSearchResponse => ({
 	runs: [],
+	past_runs: [],
 	groups: [],
 	activities: [],
 });
@@ -41,6 +45,7 @@ const trimmedQuery = computed(() => query.value.trim());
 const canSearch = computed(() => trimmedQuery.value.length >= 2);
 const hasAnyResults = computed(() => (
 	results.value.runs.length > 0
+	|| results.value.past_runs.length > 0
 	|| results.value.groups.length > 0
 	|| results.value.activities.length > 0
 ));
@@ -51,6 +56,12 @@ const resultSections = computed(() => [
 		title: t("navigation.topbar.global_search.sections.runs"),
 		icon: "i-lucide-calendar-days",
 		results: results.value.runs,
+	},
+	{
+		key: "past_runs",
+		title: t("navigation.topbar.global_search.sections.past_runs"),
+		icon: "i-lucide-history",
+		results: results.value.past_runs,
 	},
 	{
 		key: "groups",
@@ -76,7 +87,8 @@ const isSurfaceVisible = computed(() => {
 
 const surfaceClasses = computed(() => props.dropdownMode === "static"
 	? "mt-4 w-full"
-	: "absolute left-0 top-full z-50 mt-2 w-[min(44rem,calc(100vw-2rem))]");
+	: ["absolute top-full z-50 mt-2 w-[min(44rem,calc(100vw-2rem))]",
+        props.align === "center" ? "left-1/2 -translate-x-1/2" : "left-0"]);
 
 const clearSearchTimeout = () => {
 	if (searchTimeout !== null) {
@@ -171,12 +183,12 @@ const formattedMeta = (result: GlobalSearchResult): string | null => {
 	})).format(date);
 };
 
-const selectResult = (result: GlobalSearchResult) => {
+const selectResult = (event: MouseEvent) => {
+    if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
 	query.value = "";
 	results.value = emptyResults();
 	isFocused.value = false;
 	emit("selected");
-	router.get(result.url);
 };
 
 watch(query, () => {
@@ -192,6 +204,7 @@ onBeforeUnmount(() => {
 <template>
 	<div
 		class="relative"
+        role="search"
 		@focusin="openSurface"
 		@focusout="scheduleCloseSurface"
 	>
@@ -199,21 +212,26 @@ onBeforeUnmount(() => {
 			v-model="query"
 			:autofocus="autofocus"
 			:placeholder="t('navigation.topbar.search_bar')"
-			:ui="{ base: 'rounded-none placeholder:text-neutral-500' }"
+            :aria-label="t('navigation.topbar.search_bar')"
+            :aria-expanded="isSurfaceVisible"
+            :aria-controls="resultsId"
+            :loading="isLoading"
+            :ui="{ base: 'rounded-md bg-elevation-2 text-default ring-0 placeholder:text-muted hover:bg-elevation-3 focus-visible:ring-2 focus-visible:ring-brand dark:bg-elevation-3 dark:hover:bg-elevation-5', leadingIcon: 'text-muted' }"
 			leading-icon="i-lucide-search"
-			size="xl"
+			size="lg"
 			class="w-full"
 			@keydown.esc="isFocused = false"
 		/>
 
 		<div
 			v-if="isSurfaceVisible"
+            :id="resultsId"
 			:class="surfaceClasses"
 		>
-			<div class="max-h-[min(34rem,calc(100dvh-8rem))] overflow-y-auto border border-white/10 bg-neutral-950/96 p-3 shadow-[0_24px_64px_rgba(0,0,0,0.48)] backdrop-blur-xl">
+			<div class="max-h-[min(34rem,calc(100dvh-10rem))] overflow-y-auto rounded-md border border-default bg-elevation-1 p-3 shadow-xl dark:bg-elevation-3">
 				<div
 					v-if="!canSearch"
-					class="px-3 py-6 text-center text-sm text-white/55"
+					class="px-3 py-6 text-center text-sm text-muted"
 				>
 					{{ t("navigation.topbar.global_search.min_chars") }}
 				</div>
@@ -225,13 +243,14 @@ onBeforeUnmount(() => {
 					<USkeleton
 						v-for="index in 5"
 						:key="index"
-						class="h-14 rounded-none bg-white/8"
+						class="h-14 rounded-md bg-elevation-2 dark:bg-elevation-5"
 					/>
 				</div>
 
 				<div
 					v-else-if="!hasAnyResults"
-					class="px-3 py-6 text-center text-sm text-white/55"
+					class="px-3 py-6 text-center text-sm text-muted"
+                    role="status"
 				>
 					{{ t("navigation.topbar.global_search.empty") }}
 				</div>
@@ -246,21 +265,20 @@ onBeforeUnmount(() => {
 						v-show="section.results.length > 0"
 						class="space-y-2"
 					>
-						<div class="flex items-center gap-2 px-2 text-xs font-semibold uppercase tracking-[0.16em] text-white/42">
+						<div class="flex items-center gap-2 px-2 text-xs font-semibold uppercase tracking-[0.16em] text-muted">
 							<UIcon :name="section.icon" class="size-3.5" />
 							<span>{{ section.title }}</span>
 						</div>
 
 						<div class="space-y-1">
-							<button
+							<Link
 								v-for="result in section.results"
 								:key="`${result.type}-${result.id}`"
-								type="button"
-								class="flex w-full items-center gap-3 border border-transparent px-2 py-2.5 text-left transition-colors hover:border-brand-400/35 hover:bg-brand-400/10"
-								@mousedown.prevent
-								@click="selectResult(result)"
+                                :href="result.url"
+								class="flex w-full items-center gap-3 rounded-md px-2 py-2.5 text-left transition-colors hover:bg-elevation-2 focus-visible:bg-elevation-2 focus-visible:outline-2 focus-visible:outline-brand dark:hover:bg-elevation-5 dark:focus-visible:bg-elevation-5"
+								@click="selectResult"
 							>
-								<span class="flex size-11 shrink-0 items-center justify-center overflow-hidden border border-white/10 bg-white/5">
+								<span class="flex size-11 shrink-0 items-center justify-center overflow-hidden rounded-md bg-elevation-2 dark:bg-elevation-5">
 									<img
 										v-if="result.image_url"
 										:src="result.image_url"
@@ -270,17 +288,17 @@ onBeforeUnmount(() => {
 									<UIcon
 										v-else
 										:name="result.icon"
-										class="size-5 text-brand-300"
+										class="size-5 text-brand"
 									/>
 								</span>
 
 								<span class="min-w-0 flex-1 space-y-1">
-									<span class="block truncate text-sm font-semibold text-white">
+									<span class="block truncate text-sm font-semibold text-default">
 										{{ result.title }}
 									</span>
 									<span
 										v-if="result.subtitle"
-										class="block truncate text-xs text-white/58"
+										class="block truncate text-xs text-muted"
 									>
 										{{ result.subtitle }}
 									</span>
@@ -288,13 +306,13 @@ onBeforeUnmount(() => {
 
 								<span
 									v-if="formattedMeta(result)"
-									class="hidden shrink-0 border border-white/10 bg-white/5 px-2 py-1 text-xs text-white/54 sm:inline-flex"
+									class="hidden shrink-0 rounded-md bg-elevation-2 px-2 py-1 text-xs text-muted sm:inline-flex dark:bg-elevation-5"
 								>
 									{{ formattedMeta(result) }}
 								</span>
 
-								<UIcon name="i-lucide-arrow-up-right" class="size-4 shrink-0 text-white/36" />
-							</button>
+								<UIcon name="i-lucide-arrow-up-right" class="size-4 shrink-0 text-muted" />
+							</Link>
 						</div>
 					</section>
 				</div>

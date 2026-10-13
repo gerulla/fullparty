@@ -256,6 +256,7 @@ it('syncs shared xivauth characters during the callback flow', function () {
     expect($characters)->toHaveCount(2)
         ->and($characters->pluck('lodestone_id')->all())->toBe(['12345678', '47431834'])
         ->and($characters->every(fn (Character $character) => $character->isVerified()))->toBeTrue()
+        ->and($characters->every(fn (Character $character) => $character->isClaimed()))->toBeTrue()
         ->and($characters->every(fn (Character $character) => $character->add_method === 'xivauth'))->toBeTrue()
         ->and($characters->where('is_primary', true))->toHaveCount(1);
 });

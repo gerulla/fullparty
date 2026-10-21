@@ -1,25 +1,12 @@
 <script setup lang="ts">
 import type { TimeDisplayMode } from "@/composables/useTimeDisplayMode";
-import axios from "axios";
-import { computed, ref } from "vue";
-import { usePage } from "@inertiajs/vue3";
-import { route } from "ziggy-js";
+import { computed } from "vue";
 import { useI18n } from "vue-i18n";
-import { useTimeDisplayMode } from "@/composables/useTimeDisplayMode";
-
-type SharedTimeDisplayPageProps = {
-	auth?: {
-		user?: {
-			time_display_mode?: TimeDisplayMode | null
-		} | null
-	}
-};
+import { useTimeDisplayPreference } from '@/composables/useTimeDisplayPreference';
 
 const { t } = useI18n();
-const toast = useToast();
-const page = usePage<SharedTimeDisplayPageProps>();
-const { timeDisplayMode, setTimeDisplayMode } = useTimeDisplayMode();
-const isSaving = ref(false);
+defineProps<{ compact?: boolean }>();
+const { timeDisplayMode, isSaving, updateMode } = useTimeDisplayPreference();
 
 const options: Array<{ label: string, value: TimeDisplayMode, titleKey: string }> = [
 	{ label: "LT", value: "local", titleKey: "navigation.topbar.time_display.local" },
@@ -31,48 +18,20 @@ const activeLabel = computed(() => (
 		? t("navigation.topbar.time_display.server")
 		: t("navigation.topbar.time_display.local")
 ));
+const nextMode = computed<TimeDisplayMode>(() => timeDisplayMode.value === 'server' ? 'local' : 'server');
+const switchLabel = computed(() => t(`navigation.topbar.time_display.switch_${nextMode.value}`));
 
-function syncSharedUserMode(mode: TimeDisplayMode) {
-	if (page.props.auth?.user) {
-		page.props.auth.user.time_display_mode = mode;
-	}
-}
-
-async function updateMode(mode: TimeDisplayMode) {
-	if (mode === timeDisplayMode.value || isSaving.value) {
-		return;
-	}
-
-	const previousMode = timeDisplayMode.value;
-	setTimeDisplayMode(mode);
-	syncSharedUserMode(mode);
-	isSaving.value = true;
-
-	try {
-		const response = await axios.patch<{ time_display_mode: TimeDisplayMode }>(
-			route("settings.time-display"),
-			{ time_display_mode: mode },
-		);
-		const savedMode = response.data.time_display_mode;
-		setTimeDisplayMode(savedMode);
-		syncSharedUserMode(savedMode);
-	} catch {
-		setTimeDisplayMode(previousMode);
-		syncSharedUserMode(previousMode);
-		toast.add({
-			color: "error",
-			title: t("navigation.topbar.time_display.error_title"),
-			description: t("navigation.topbar.time_display.error_description"),
-		});
-	} finally {
-		isSaving.value = false;
-	}
-}
 </script>
 
 <template>
-	<UTooltip :text="activeLabel">
+	<UTooltip :text="compact ? switchLabel : activeLabel">
+        <UButton v-if="compact" type="button" color="neutral" variant="ghost"
+            class="min-w-9 justify-center rounded-md font-semibold hover:bg-elevated"
+            :disabled="isSaving" :aria-label="switchLabel" :aria-busy="isSaving" @click="updateMode(nextMode)">
+            {{ timeDisplayMode === 'server' ? 'ST' : 'LT' }}
+        </UButton>
 		<div
+            v-else
 			class="inline-grid h-8 grid-cols-2 overflow-hidden border-default bg-default text-xs font-semibold"
 			:aria-label="t('navigation.topbar.time_display.label')"
 			role="group"

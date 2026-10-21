@@ -3,16 +3,15 @@ import { Link } from '@inertiajs/vue3'
 import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useAppearance } from '@/composables/useAppearance'
-import { useTimeDisplayMode } from '@/composables/useTimeDisplayMode'
 import { getActivityStatusMeta } from '@/utils/activityStatusMeta'
-import { createDateTimeFormatter } from '@/utils/dateTimeFormat'
 import { localizedValue } from '@/utils/localizedValue'
 import type { V2HomeRunCard } from '../../Types/V2Home'
+import { useDateTimeFormat } from '@/composables/useDateTimeFormat'
 
 const props = defineProps<{ run: V2HomeRunCard }>()
 const { t, locale } = useI18n()
 const { isDark } = useAppearance()
-const { withDisplayTimeZone, displayTimeZoneLabel } = useTimeDisplayMode()
+const { formatDateTime, displayTimeZoneLabel } = useDateTimeFormat()
 const badgeVariant = computed(() => isDark.value ? 'outline' : 'solid')
 const status = computed(() => getActivityStatusMeta(props.run.status))
 const activityName = computed(() => localizedValue(props.run.activity_type.name, locale.value)
@@ -21,9 +20,9 @@ const title = computed(() => props.run.title || activityName.value)
 const imageUrl = computed(() => props.run.activity_type.banner_image_url || props.run.activity_type.small_image_url)
 const imageFailed = ref(false)
 watch(imageUrl, () => { imageFailed.value = false })
-const startsAtLabel = computed(() => createDateTimeFormatter(locale.value, withDisplayTimeZone({
+const startsAtLabel = computed(() => formatDateTime(new Date(props.run.starts_at), {
     dateStyle: 'full', timeStyle: 'short',
-})).format(new Date(props.run.starts_at)))
+}))
 const applicantAvatars = computed(() => props.run.applicant_avatars.slice(0, 3))
 </script>
 

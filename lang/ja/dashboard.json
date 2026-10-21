@@ -28,6 +28,9 @@
         }
     },
     "character_selector": {
+        "add_your_character": "キャラクターを追加",
+        "options": "キャラクターの設定。選択中：{name}",
+        "primary_character": "メインキャラクター",
         "loading": "キャラクターを読み込み中…",
         "change": "キャラクターを変更。選択中：{name}",
         "select": "{name}を選択"

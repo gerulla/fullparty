@@ -5,13 +5,12 @@ import { computed, onBeforeUnmount, ref, useId, watch } from "vue";
 import { Link } from "@inertiajs/vue3";
 import { route } from "ziggy-js";
 import { useI18n } from "vue-i18n";
-import { createDateTimeFormatter } from "@/utils/dateTimeFormat";
-import { useTimeDisplayMode } from "@/composables/useTimeDisplayMode";
+import { useDateTimeFormat } from "@/composables/useDateTimeFormat";
 
 const props = withDefaults(defineProps<{
 	autofocus?: boolean
 	dropdownMode?: "floating" | "static"
-    align?: "start" | "center"
+    align?: "start" | "center" | "end"
 }>(), {
 	autofocus: false,
 	dropdownMode: "floating",
@@ -22,8 +21,8 @@ const emit = defineEmits<{
 	selected: []
 }>();
 
-const { t, locale } = useI18n({ useScope: "global" });
-const { withDisplayTimeZone } = useTimeDisplayMode();
+const { t } = useI18n({ useScope: "global" });
+const { formatDateTime } = useDateTimeFormat();
 const resultsId = useId();
 
 const emptyResults = (): GlobalSearchResponse => ({
@@ -88,7 +87,7 @@ const isSurfaceVisible = computed(() => {
 const surfaceClasses = computed(() => props.dropdownMode === "static"
 	? "mt-4 w-full"
 	: ["absolute top-full z-50 mt-2 w-[min(44rem,calc(100vw-2rem))]",
-        props.align === "center" ? "left-1/2 -translate-x-1/2" : "left-0"]);
+        props.align === "center" ? "left-1/2 -translate-x-1/2" : props.align === "end" ? "right-0" : "left-0"]);
 
 const clearSearchTimeout = () => {
 	if (searchTimeout !== null) {
@@ -175,12 +174,12 @@ const formattedMeta = (result: GlobalSearchResult): string | null => {
 		return null;
 	}
 
-	return createDateTimeFormatter(locale.value, withDisplayTimeZone({
+	return formatDateTime(date, {
 		day: "numeric",
 		month: "short",
 		hour: "numeric",
 		minute: "2-digit",
-	})).format(date);
+	});
 };
 
 const selectResult = (event: MouseEvent) => {

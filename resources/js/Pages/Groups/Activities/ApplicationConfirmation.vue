@@ -10,10 +10,12 @@ import AddToCalendarMenu from "@/components/Groups/Activities/AddToCalendarMenu.
 import { localizedValue } from "@/utils/localizedValue";
 import { formatApplicationAnswerSummary } from "@/utils/applicationAnswerSummary";
 import { getActivityStatusMeta } from "@/utils/activityStatusMeta";
-import { createDateTimeFormatter } from "@/utils/dateTimeFormat";
 import { formatRelativeTime } from "@/utils/formatRelativeTime";
 import { useMinuteTicker } from "@/composables/useMinuteTicker";
 import { translateCharacterClassName, translatePhantomJobName, translateRaidPositionName } from "@/utils/characterJobTranslations";
+import { useDateTimeFormat } from "@/composables/useDateTimeFormat";
+
+const { formatDateTime } = useDateTimeFormat();
 
 const props = defineProps<{
 	group: {
@@ -102,11 +104,11 @@ const dateLabel = computed(() => {
 		return t("groups.activities.cards.no_time");
 	}
 
-	return createDateTimeFormatter(locale.value, {
+	return formatDateTime(new Date(props.activity.starts_at), {
 		year: "numeric",
 		month: "2-digit",
 		day: "2-digit",
-	}).format(new Date(props.activity.starts_at));
+	});
 });
 
 const startsAtLabel = computed(() => {
@@ -114,12 +116,11 @@ const startsAtLabel = computed(() => {
 		return t("groups.activities.cards.no_time");
 	}
 
-	return createDateTimeFormatter(locale.value, {
+	return formatDateTime(new Date(props.activity.starts_at), {
 		hour: "2-digit",
 		minute: "2-digit",
-		timeZone: "UTC",
 		timeZoneName: "short",
-	}).format(new Date(props.activity.starts_at));
+	});
 });
 
 const timeDurationLabel = computed(() => {
@@ -162,13 +163,13 @@ const submittedAtLabel = computed(() => {
 		return null;
 	}
 
-	return createDateTimeFormatter(locale.value, {
+	return formatDateTime(new Date(props.application.submitted_at), {
 		year: "numeric",
 		month: "2-digit",
 		day: "2-digit",
 		hour: "2-digit",
 		minute: "2-digit",
-	}).format(new Date(props.application.submitted_at));
+	});
 });
 
 const applicationStatusMeta = computed(() => {

@@ -1,4 +1,18 @@
 {
+  "account_flags": {
+    "preview": "Preview account flags",
+    "end_preview": "Show real account flags",
+    "preview_info": "Preview: Information",
+    "preview_warning": "Preview: Warning",
+    "preview_error": "Preview: Error",
+    "preview_description": "This is a display preview, not an actual account issue. View Issue opens My Characters.",
+    "title": "Needs your attention",
+    "view_issue": "View Issue",
+    "summary": "Unresolved issues: {count}. Highest severity: {severity}.",
+    "severity": { "info": "Information", "warning": "Warning", "error": "Error" },
+    "transfer_title": "Finish your character transfer",
+    "transfer_description": "Choose whether to keep or discard {character}’s previous run history and upcoming runs. This reminder stays until you save your choices."
+  },
   "recommended": "Recommended",
   "primary": "Primary",
   "verify_now": "Verify Now",

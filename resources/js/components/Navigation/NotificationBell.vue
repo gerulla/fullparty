@@ -24,6 +24,7 @@ declare global {
 }
 
 const page = usePage()
+defineProps<{ touchTarget?: boolean }>()
 const { t, locale } = useI18n()
 
 const user = computed(() => page.props.auth?.user ?? null)
@@ -147,9 +148,10 @@ onBeforeUnmount(() => {
 			<UButton
 				color="neutral"
 				variant="ghost"
-				:class="{ 'bg-elevation-1 rounded-md ': open }"
+				:class="{ 'bg-elevation-1 rounded-md': open, 'size-11 justify-center': touchTarget }"
 				class="relative rounded-md"
 				icon="i-lucide-bell"
+                :aria-label="t('navigation.sidebar.notifications')"
 				@click="handleBellClick"
 			>
 				<UChip
@@ -163,7 +165,7 @@ onBeforeUnmount(() => {
 		</template>
 
 		<template #content>
-			<div class="w-96 max-w-md sm:w-96 rounded-md text-default">
+			<div class="w-96 max-w-[calc(100vw-1rem)] rounded-md text-default">
 				<div class="max-h-96 overflow-y-auto rounded-t-md">
 					<div
 						v-if="latestNotifications.length === 0"

@@ -28,6 +28,9 @@
         }
     },
     "character_selector": {
+        "add_your_character": "Ajoutez votre personnage",
+        "options": "Options du personnage. Sélection actuelle : {name}",
+        "primary_character": "Personnage principal",
         "loading": "Chargement de vos personnages…",
         "change": "Changer de personnage. Sélection actuelle : {name}",
         "select": "Sélectionner {name}"

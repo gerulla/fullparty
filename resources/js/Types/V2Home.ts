@@ -1,17 +1,8 @@
 import type { ActivityStatus } from './ActivityCore'
 import type { LocalizedText } from './Common'
+import type { CharacterIdentity } from './Characters'
 
-export type V2HomeCharacter = {
-    id: number
-    name: string
-    world: string | null
-    datacenter: string | null
-    lodestone_id: string
-    avatar_url: string | null
-    is_primary: boolean
-    verified_at: string | null
-    claimed_at: string | null
-}
+export type V2HomeCharacter = CharacterIdentity
 
 export type V2HomeUser = {
     id: number
@@ -97,7 +88,8 @@ export type V2HomeApplication = {
         avatar_url: string | null
     }
     run: V2HomeRun
-    href: string
+    href: string | null
+    can_view_run?: boolean
 }
 
 // Deferred props are absent until their individual Inertia requests finish.

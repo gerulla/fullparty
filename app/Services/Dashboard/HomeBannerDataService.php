@@ -9,12 +9,15 @@ use App\Models\Character;
 use App\Models\CharacterClass;
 use App\Models\PhantomJob;
 use App\Models\User;
+use App\Services\Characters\CharacterTransferHistory;
 use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
 use Illuminate\Support\Collection;
 
 final class HomeBannerDataService
 {
+    public function __construct(private readonly CharacterTransferHistory $transferHistory) {}
+
     /**
      * @return array<string, mixed>
      */
@@ -232,6 +235,8 @@ final class HomeBannerDataService
             ])
             ->whereIn('activity_slot_assignments.character_id', $characterIds)
             ->where('activities.status', Activity::STATUS_COMPLETE)
+            ->tap(fn ($query) => $this->transferHistory
+                ->excludeUnaccepted($query, 'activity_slot_assignments.character_id', 'activity_slot_assignments.activity_id'))
             ->whereIn('activity_slot_assignments.attendance_status', [
                 ActivitySlotAssignment::STATUS_ASSIGNED,
                 ActivitySlotAssignment::STATUS_CHECKED_IN,

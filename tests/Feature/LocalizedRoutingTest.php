@@ -27,7 +27,7 @@ it('renders the localized login route with the requested locale when no preferen
             ->component('auth/Login')
             ->where('locale.current', 'de')
         )
-        ->assertSee('<html lang="de" class="dark">', false);
+        ->assertSee('<html lang="de"', false);
 });
 
 it('remembers the first localized page in the session and a persistent cookie', function (string $locale) {
@@ -46,9 +46,11 @@ it('remembers the first localized page in the session and a persistent cookie', 
 })->with(['en', 'de', 'fr', 'ja']);
 
 it('remembers the locale on the first authenticated home visit', function () {
-    $this->actingAs(User::factory()->create())
+    $user = User::factory()->create();
+    $this->actingAs($user)
         ->get('/en/home')
         ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page->component('V2/Home'))
         ->assertSessionHas('locale', 'en')
         ->assertCookie('locale', 'en');
 

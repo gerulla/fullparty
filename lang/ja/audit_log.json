@@ -1,605 +1,613 @@
 {
+  "group": {
+    "title": "監査ログ",
+    "subtitle": "このグループのモデレーションおよび管理アクションを確認します。"
+  },
+  "admin": {
+    "title": "管理者監査ログ",
+    "subtitle": "グループ、アカウント、システムイベント全体の監査活動を確認します。",
+    "access": "管理者権限"
+  },
+  "defaults": {
+    "system": "システム",
+    "no_metadata": "このイベントには追加のメタデータが記録されていません。",
+    "empty": "空",
+    "true": "真",
+    "false": "偽"
+  },
+  "filters": {
+    "title": "フィルター",
+    "search_placeholder": "タイトル、説明、ユーザー、アクションを検索",
+    "any_action": "すべてのアクション",
+    "any_severity": "すべての重大度",
+    "any_user": "すべてのユーザー",
+    "any_group": "すべてのグループ",
+    "any_activity": "すべての開催回",
+    "activity_label": "開催回で絞り込み",
+    "search_activity": "開催回を検索...",
+    "unnamed_activity": "開催回 #{id}",
+    "action": {
+      "label": "アクションで絞り込み"
+    },
+    "severity": {
+      "label": "重大度で絞り込み"
+    },
+    "user": {
+      "label": "ユーザーで絞り込み"
+    },
     "group": {
-        "title": "監査ログ",
-        "subtitle": "このグループのモデレーションおよび管理アクションを確認します。"
+      "label": "グループで絞り込み"
+    },
+    "before_date": {
+      "label": "この日付以前",
+      "placeholder": "この日またはそれ以前の記録を表示..."
+    },
+    "after_date": {
+      "label": "この日付以後",
+      "placeholder": "この日またはそれ以後の記録を表示..."
+    }
+  },
+  "severities": {
+    "info": "情報",
+    "moderation_change": "モデレーション変更",
+    "severe_change": "重大変更",
+    "critical": "致命的"
+  },
+  "scopes": {
+    "group": "グループ",
+    "user": "ユーザー",
+    "character": "キャラクター",
+    "admin": "管理",
+    "system": "システム",
+    "unknown": "不明"
+  },
+  "list": {
+    "empty": "現在のフィルターに一致する監査ログはありません。",
+    "loading_more": "さらに読み込む",
+    "loading": "監査ログを読み込み中...",
+    "load_error": "監査ログを読み込めませんでした。",
+    "retry": "再試行",
+    "recorded_event": "記録された監査イベント",
+    "details": "詳細",
+    "changes": "変更",
+    "show_changes": "表示",
+    "hide_changes": "非表示",
+    "old_value": "変更前",
+    "new_value": "変更後"
+  },
+  "activity": {
+    "user": {
+      "registered": "がアカウントを登録しました。",
+      "logged_in": "がログインしました。",
+      "password_reset": "がパスワードをリセットしました。",
+      "account": {
+        "deleted": "がアカウントを削除しました。"
+      },
+      "social_account": {
+        "linked": "がソーシャルアカウントを連携しました。",
+        "unlinked": "がソーシャルアカウントの連携を解除しました。"
+      },
+      "discord_app": {
+        "user_installed": "がDiscordアプリをインストールしました。",
+        "disconnected": "がDiscordアプリの連携を解除しました。",
+        "guild_installed": "がDiscordアプリをサーバーにインストールしました。"
+      },
+      "settings": {
+        "username_updated": "がユーザー名設定を更新しました。",
+        "password_updated": "がパスワード設定を更新しました。",
+        "notifications_updated": "が通知設定を更新しました。",
+        "profile_picture_updated": "がアカウントのプロフィール画像設定を更新しました。",
+        "privacy_updated": "がプライバシー設定を更新しました。"
+      }
     },
     "admin": {
-        "title": "管理者監査ログ",
-        "subtitle": "グループ、アカウント、システムイベント全体の監査活動を確認します。",
-        "access": "管理者権限"
+      "field_definition": {
+        "created": "がフィールド定義を作成しました。",
+        "updated": "がフィールド定義を更新しました。",
+        "deleted": "がフィールド定義を削除しました。",
+        "reordered": "がフィールド定義の順序を変更しました。"
+      },
+      "character_class": {
+        "created": "がキャラクタークラスを作成しました。",
+        "updated": "がキャラクタークラスを更新しました。",
+        "deleted": "がキャラクタークラスを削除しました。"
+      },
+      "phantom_job": {
+        "created": "がファントムジョブを作成しました。",
+        "updated": "がファントムジョブを更新しました。",
+        "deleted": "がファントムジョブを削除しました。"
+      },
+      "raid_position": {
+        "created": "がレイドポジションを作成しました。",
+        "updated": "がレイドポジションを更新しました。",
+        "deleted": "がレイドポジションを削除しました。"
+      },
+      "bozja_item": {
+        "created": "がボズヤ項目を作成しました。",
+        "updated": "がボズヤ項目を更新しました。",
+        "deleted": "がボズヤ項目を削除しました。"
+      },
+      "activity_type": {
+        "created": "がアクティビティタイプを作成しました。",
+        "cloned": "がアクティビティタイプを複製しました。",
+        "updated": "がアクティビティタイプを更新しました。",
+        "published": "がアクティビティタイプを公開しました。",
+        "archived": "がアクティビティタイプをアーカイブしました。"
+      },
+      "system_notification": {
+        "maintenance_sent": "必須のメンテナンス通知を送信しました。",
+        "announcement_sent": "更新のお知らせを送信しました。"
+      },
+      "system_banner": {
+        "updated": "サイト全体のシステムバナーを更新しました。",
+        "cleared": "サイト全体のシステムバナーを解除しました。"
+      },
+      "quota_override": {
+        "created": "アカウント上限の例外を作成しました。",
+        "updated": "アカウント上限の例外を更新しました。",
+        "deleted": "アカウント上限の例外を削除しました。"
+      },
+      "integration_client": {
+        "created": "連携クライアントを作成しました。",
+        "updated": "連携クライアントとその権限を変更しました。",
+        "api_token_rotated": "連携APIトークンを更新しました。",
+        "webhook_secret_rotated": "連携Webhookのシークレットを更新しました。"
+      },
+      "form": {
+        "created": "フォームを作成しました",
+        "updated": "フォームの下書きを更新しました",
+        "publish": "フォームを公開しました",
+        "unpublish": "フォームの公開を取り消しました",
+        "close": "フォームの回答受付を終了しました",
+        "open": "フォームの回答受付を再開しました"
+      },
+      "changelog": {
+        "created": "更新履歴の下書きを作成",
+        "updated": "更新履歴を編集",
+        "published": "更新履歴を公開",
+        "unpublished": "更新履歴の公開を取り消し"
+      }
     },
-    "defaults": {
-        "system": "システム",
-        "no_metadata": "このイベントには追加のメタデータが記録されていません。",
-        "empty": "空",
-        "true": "真",
-        "false": "偽"
+    "character": {
+      "verified": "がキャラクターを確認しました。",
+      "refresh_requested": "がキャラクター更新を要求しました。",
+      "made_primary": "がキャラクターをメインに設定しました。",
+      "removed": "がアカウントからキャラクターを削除しました。",
+      "transferred": "がキャラクターを別のアカウントへ移行しました。"
     },
-    "filters": {
-        "title": "フィルター",
-        "search_placeholder": "タイトル、説明、ユーザー、アクションを検索",
-        "any_action": "すべてのアクション",
-        "any_severity": "すべての重大度",
-        "any_user": "すべてのユーザー",
-        "any_group": "すべてのグループ",
-        "any_activity": "すべての開催回",
-        "activity_label": "開催回で絞り込み",
-        "search_activity": "開催回を検索...",
-        "unnamed_activity": "開催回 #{id}",
-        "action": {
-            "label": "アクションで絞り込み"
+    "group": {
+      "resources": {
+        "created": "リソースを作成しました。",
+        "save": "リソースの下書きを保存しました。",
+        "submit": "リソースの変更を提出しました。",
+        "publish": "リソースを公開しました。",
+        "discard": "リソースの変更を破棄しました。",
+        "restore": "リソースの履歴を復元しました。",
+        "archive": "リソースをアーカイブしました。",
+        "unpublish": "リソースを非公開にしました。",
+        "organize": "リソースを移動または並べ替えました。",
+        "pin": "リソースをピン留めしました。",
+        "unpin": "リソースのピン留めを解除しました。",
+        "settings_updated": "リソースライブラリの設定を更新しました。",
+        "all_deleted": "グループのすべてのリソースを削除しました。",
+        "deleted": "リソースを削除しました。",
+        "collection_saved": "リソースコレクションを保存しました。",
+        "collection_deleted": "リソースコレクションを削除しました。",
+        "image_uploaded": "リソースの画像をアップロードしました。",
+        "image_updated": "リソース画像の詳細を更新しました。",
+        "image_deleted": "リソース画像を削除しました。"
+      },
+      "created": "がグループを作成しました。",
+      "updated": "がグループ設定を更新しました。",
+      "deleted": "がグループを削除しました。",
+      "followed": "がグループをフォローしました。",
+      "unfollowed": "がグループのフォローを解除しました。",
+      "discord_guild": {
+        "unlinked": "がグループの Discord サーバー連携を解除しました。",
+        "force_unlinked": "がグループの Discord サーバー連携を強制解除しました。"
+      },
+      "notifications": {
+        "enabled": "がグループ通知を有効にしました。",
+        "muted": "がグループ通知をミュートしました。"
+      },
+      "membership_application": {
+        "submitted": "リクエストを送信しました。",
+        "updated": "リクエストを更新しました。",
+        "approved": "リクエストを承認しました。",
+        "declined": "リクエストを却下しました。",
+        "form_updated": "リクエストフォームを更新しました。"
+      },
+      "activity": {
+        "created": "がアクティビティを作成しました。",
+        "updated": "がアクティビティを更新しました。",
+        "deleted": "がアクティビティを削除しました。",
+        "application": {
+          "submitted": "がアクティビティ応募を送信しました。",
+          "updated": "がアクティビティ応募を更新しました。",
+          "declined": "がアクティビティ応募を却下しました。",
+          "cancelled": "がラン中止によりアクティビティ応募を終了しました。",
+          "withdrawn": "がアクティビティ応募を取り下げました。"
         },
-        "severity": {
-            "label": "重大度で絞り込み"
+        "roster": {
+          "discord_participant_synced": "開催回の参加者をDiscordと同期しました",
+          "assigned": "がロスター枠を割り当てました。",
+          "updated": "がロスター割り当てを更新しました。",
+          "reassigned": "がロスター枠を再割り当てしました。",
+          "replaced": "がロスター割り当てを置き換えました。",
+          "swapped": "がロスター内で人員を移動しました。",
+          "returned_to_queue": "がロスター枠をキューへ戻しました。",
+          "manual_removed": "が手動割り当てされたキャラクターをロスター枠から外しました。",
+          "host_marked": "ロスター枠をホストとしてマークしました。",
+          "host_cleared": "ロスター枠のホスト指定を解除しました。",
+          "raid_leader_marked": "ロスター枠をレイドリーダーとしてマークしました。",
+          "raid_leader_cleared": "ロスター枠のレイドリーダー指定を解除しました。",
+          "duelist_marked": "メンバーをデュエリストに指定しました。",
+          "duelist_cleared": "デュエリストの指定を解除しました。",
+          "trapper_marked": "メンバーをトラッパーに指定しました。",
+          "trapper_cleared": "トラッパーの指定を解除しました。",
+          "darter_marked": "メンバーをダーターに指定しました。",
+          "darter_cleared": "ダーターの指定を解除しました。"
         },
-        "user": {
-            "label": "ユーザーで絞り込み"
-        },
-        "group": {
-            "label": "グループで絞り込み"
-        },
-        "before_date": {
-            "label": "この日付以前",
-            "placeholder": "この日またはそれ以前の記録を表示..."
-        },
-        "after_date": {
-            "label": "この日付以後",
-            "placeholder": "この日またはそれ以後の記録を表示..."
+        "attendance": {
+          "checked_in": "がロスター枠をチェックインしました。",
+          "marked_late": "がロスター枠を遅刻扱いにしました。",
+          "check_in_reverted": "がロスターチェックインを取り消しました。",
+          "group_checked_in": "がパーティーまたはグループ全体をチェックインしました。",
+          "marked_missing": "がロスター枠を欠席扱いにしました。",
+          "missing_reverted": "が欠席扱いを取り消しました。"
         }
-    },
-    "severities": {
-        "info": "情報",
-        "moderation_change": "モデレーション変更",
-        "severe_change": "重大変更",
-        "critical": "致命的"
-    },
-    "scopes": {
-        "group": "グループ",
-        "user": "ユーザー",
-        "character": "キャラクター",
-        "admin": "管理",
-        "system": "システム",
-        "unknown": "不明"
-    },
-    "list": {
-        "empty": "現在のフィルターに一致する監査ログはありません。",
-        "loading_more": "さらに読み込む",
-        "loading": "監査ログを読み込み中...",
-        "load_error": "監査ログを読み込めませんでした。",
-        "retry": "再試行",
-        "recorded_event": "記録された監査イベント",
-        "details": "詳細",
-        "changes": "変更",
-        "show_changes": "表示",
-        "hide_changes": "非表示",
-        "old_value": "変更前",
-        "new_value": "変更後"
-    },
-    "activity": {
-        "user": {
-            "registered": "がアカウントを登録しました。",
-            "logged_in": "がログインしました。",
-            "password_reset": "がパスワードをリセットしました。",
-            "account": {
-                "deleted": "がアカウントを削除しました。"
-            },
-            "social_account": {
-                "linked": "がソーシャルアカウントを連携しました。",
-                "unlinked": "がソーシャルアカウントの連携を解除しました。"
-            },
-            "discord_app": {
-                "user_installed": "がDiscordアプリをインストールしました。",
-                "disconnected": "がDiscordアプリの連携を解除しました。",
-                "guild_installed": "がDiscordアプリをサーバーにインストールしました。"
-            },
-            "settings": {
-                "username_updated": "がユーザー名設定を更新しました。",
-                "password_updated": "がパスワード設定を更新しました。",
-                "notifications_updated": "が通知設定を更新しました。",
-                "profile_picture_updated": "がアカウントのプロフィール画像設定を更新しました。",
-                "privacy_updated": "がプライバシー設定を更新しました。"
-            }
+      },
+      "invite": {
+        "created": "が招待リンクを作成しました。",
+        "revoked": "が招待リンクを無効化しました。"
+      },
+      "member": {
+        "joined": "がグループに参加しました。",
+        "joined_via_invite": "が招待経由でグループに参加しました。",
+        "left": "がグループを退出しました。",
+        "promoted": "がメンバーの役職を昇格しました。",
+        "demoted": "がメンバーの役職を降格しました。",
+        "note": {
+          "created": "がメンバーメモを追加しました。",
+          "updated": "がメンバーメモを更新しました。",
+          "deleted": "がメンバーメモを削除しました。",
+          "addendum": {
+            "created": "がメモの補足を追加しました。",
+            "updated": "がメモの補足を更新しました。",
+            "deleted": "がメモの補足を削除しました。"
+          }
         },
-        "admin": {
-            "field_definition": {
-                "created": "がフィールド定義を作成しました。",
-                "updated": "がフィールド定義を更新しました。",
-                "deleted": "がフィールド定義を削除しました。",
-                "reordered": "がフィールド定義の順序を変更しました。"
-            },
-            "character_class": {
-                "created": "がキャラクタークラスを作成しました。",
-                "updated": "がキャラクタークラスを更新しました。",
-                "deleted": "がキャラクタークラスを削除しました。"
-            },
-            "phantom_job": {
-                "created": "がファントムジョブを作成しました。",
-                "updated": "がファントムジョブを更新しました。",
-                "deleted": "がファントムジョブを削除しました。"
-            },
-            "raid_position": {
-                "created": "がレイドポジションを作成しました。",
-                "updated": "がレイドポジションを更新しました。",
-                "deleted": "がレイドポジションを削除しました。"
-            },
-            "bozja_item": {
-                "created": "がボズヤ項目を作成しました。",
-                "updated": "がボズヤ項目を更新しました。",
-                "deleted": "がボズヤ項目を削除しました。"
-            },
-            "activity_type": {
-                "created": "がアクティビティタイプを作成しました。",
-                "cloned": "がアクティビティタイプを複製しました。",
-                "updated": "がアクティビティタイプを更新しました。",
-                "published": "がアクティビティタイプを公開しました。",
-                "archived": "がアクティビティタイプをアーカイブしました。"
-            },
-            "system_notification": {
-                "maintenance_sent": "必須のメンテナンス通知を送信しました。",
-                "announcement_sent": "更新のお知らせを送信しました。"
-            },
-            "system_banner": {
-                "updated": "サイト全体のシステムバナーを更新しました。",
-                "cleared": "サイト全体のシステムバナーを解除しました。"
-            },
-            "quota_override": {
-                "created": "アカウント上限の例外を作成しました。",
-                "updated": "アカウント上限の例外を更新しました。",
-                "deleted": "アカウント上限の例外を削除しました。"
-            },
-            "integration_client": {
-                "created": "連携クライアントを作成しました。",
-                "updated": "連携クライアントとその権限を変更しました。",
-                "api_token_rotated": "連携APIトークンを更新しました。",
-                "webhook_secret_rotated": "連携Webhookのシークレットを更新しました。"
-            },
-            "form": {
-                "created": "フォームを作成しました",
-                "updated": "フォームの下書きを更新しました",
-                "publish": "フォームを公開しました",
-                "unpublish": "フォームの公開を取り消しました",
-                "close": "フォームの回答受付を終了しました",
-                "open": "フォームの回答受付を再開しました"
-            },
-            "changelog": {
-                "created": "更新履歴の下書きを作成",
-                "updated": "更新履歴を編集",
-                "published": "更新履歴を公開",
-                "unpublished": "更新履歴の公開を取り消し"
-            }
-        },
-        "character": {
-            "verified": "がキャラクターを確認しました。",
-            "refresh_requested": "がキャラクター更新を要求しました。",
-            "made_primary": "がキャラクターをメインに設定しました。",
-            "removed": "がアカウントからキャラクターを削除しました。"
-        },
-        "group": {
-            "resources": {
-                "created": "リソースを作成しました。",
-                "save": "リソースの下書きを保存しました。",
-                "submit": "リソースの変更を提出しました。",
-                "publish": "リソースを公開しました。",
-                "discard": "リソースの変更を破棄しました。",
-                "restore": "リソースの履歴を復元しました。",
-                "archive": "リソースをアーカイブしました。",
-                "unpublish": "リソースを非公開にしました。",
-                "organize": "リソースを移動または並べ替えました。",
-                "pin": "リソースをピン留めしました。",
-                "unpin": "リソースのピン留めを解除しました。",
-                "settings_updated": "リソースライブラリの設定を更新しました。",
-                "all_deleted": "グループのすべてのリソースを削除しました。",
-                "deleted": "リソースを削除しました。",
-                "collection_saved": "リソースコレクションを保存しました。",
-                "collection_deleted": "リソースコレクションを削除しました。",
-                "image_uploaded": "リソースの画像をアップロードしました。",
-                "image_updated": "リソース画像の詳細を更新しました。",
-                "image_deleted": "リソース画像を削除しました。"
-            },
-            "created": "がグループを作成しました。",
-            "updated": "がグループ設定を更新しました。",
-            "deleted": "がグループを削除しました。",
-            "followed": "がグループをフォローしました。",
-            "unfollowed": "がグループのフォローを解除しました。",
-            "discord_guild": {
-                "unlinked": "がグループの Discord サーバー連携を解除しました。",
-                "force_unlinked": "がグループの Discord サーバー連携を強制解除しました。"
-            },
-            "notifications": {
-                "enabled": "がグループ通知を有効にしました。",
-                "muted": "がグループ通知をミュートしました。"
-            },
-            "membership_application": {
-                "submitted": "リクエストを送信しました。",
-                "updated": "リクエストを更新しました。",
-                "approved": "リクエストを承認しました。",
-                "declined": "リクエストを却下しました。",
-                "form_updated": "リクエストフォームを更新しました。"
-            },
-            "activity": {
-                "created": "がアクティビティを作成しました。",
-                "updated": "がアクティビティを更新しました。",
-                "deleted": "がアクティビティを削除しました。",
-                "application": {
-                    "submitted": "がアクティビティ応募を送信しました。",
-                    "updated": "がアクティビティ応募を更新しました。",
-                    "declined": "がアクティビティ応募を却下しました。",
-                    "cancelled": "がラン中止によりアクティビティ応募を終了しました。",
-                    "withdrawn": "がアクティビティ応募を取り下げました。"
-                },
-                "roster": {
-                    "discord_participant_synced": "開催回の参加者をDiscordと同期しました",
-                    "assigned": "がロスター枠を割り当てました。",
-                    "updated": "がロスター割り当てを更新しました。",
-                    "reassigned": "がロスター枠を再割り当てしました。",
-                    "replaced": "がロスター割り当てを置き換えました。",
-                    "swapped": "がロスター内で人員を移動しました。",
-                    "returned_to_queue": "がロスター枠をキューへ戻しました。",
-                    "manual_removed": "が手動割り当てされたキャラクターをロスター枠から外しました。",
-                    "host_marked": "ロスター枠をホストとしてマークしました。",
-                    "host_cleared": "ロスター枠のホスト指定を解除しました。",
-                    "raid_leader_marked": "ロスター枠をレイドリーダーとしてマークしました。",
-                    "raid_leader_cleared": "ロスター枠のレイドリーダー指定を解除しました。",
-                    "duelist_marked": "メンバーをデュエリストに指定しました。",
-                    "duelist_cleared": "デュエリストの指定を解除しました。",
-                    "trapper_marked": "メンバーをトラッパーに指定しました。",
-                    "trapper_cleared": "トラッパーの指定を解除しました。",
-                    "darter_marked": "メンバーをダーターに指定しました。",
-                    "darter_cleared": "ダーターの指定を解除しました。"
-                },
-                "attendance": {
-                    "checked_in": "がロスター枠をチェックインしました。",
-                    "marked_late": "がロスター枠を遅刻扱いにしました。",
-                    "check_in_reverted": "がロスターチェックインを取り消しました。",
-                    "group_checked_in": "がパーティーまたはグループ全体をチェックインしました。",
-                    "marked_missing": "がロスター枠を欠席扱いにしました。",
-                    "missing_reverted": "が欠席扱いを取り消しました。"
-                }
-            },
-            "invite": {
-                "created": "が招待リンクを作成しました。",
-                "revoked": "が招待リンクを無効化しました。"
-            },
-            "member": {
-                "joined": "がグループに参加しました。",
-                "joined_via_invite": "が招待経由でグループに参加しました。",
-                "left": "がグループを退出しました。",
-                "promoted": "がメンバーの役職を昇格しました。",
-                "demoted": "がメンバーの役職を降格しました。",
-                "note": {
-                    "created": "がメンバーメモを追加しました。",
-                    "updated": "がメンバーメモを更新しました。",
-                    "deleted": "がメンバーメモを削除しました。",
-                    "addendum": {
-                        "created": "がメモの補足を追加しました。",
-                        "updated": "がメモの補足を更新しました。",
-                        "deleted": "がメモの補足を削除しました。"
-                    }
-                },
-                "removed": "がメンバーをグループから削除しました。",
-                "banned": "がメンバーをグループから参加禁止にしました。",
-                "unbanned": "がメンバーの参加禁止を解除しました。"
-            },
-            "ownership": {
-                "transferred": "がグループの所有権を移譲しました。"
-            }
-        }
-    },
-    "activity_targeted": {
-        "group": {
-            "member": {
-                "promoted": "が昇格しました",
-                "demoted": "が降格しました",
-                "removed": "を削除しました",
-                "banned": "を参加禁止にしました",
-                "unbanned": "の参加禁止を解除しました",
-                "joined_via_invite": "が招待を承認しました:"
-            }
-        }
-    },
-    "activity_named": {
-        "admin": {
-            "activity_type": {
-                "created": "作成しました",
-                "cloned": "複製しました",
-                "updated": "更新しました",
-                "published": "公開しました",
-                "archived": "アーカイブしました"
-            }
-        }
-    },
-    "fields": {
-        "name": "名前",
-        "description": "説明",
-        "profile_picture_url": "プロフィール画像",
-        "discord_invite_url": "Discord招待",
-        "title": "タイトル",
-        "datacenter": "データセンター",
-        "is_public": "公開",
-        "is_visible": "表示",
-        "status": "ステータス",
-        "role": "ロール",
-        "note_severity": "メモの重要度",
-        "note_excerpt": "メモ抜粋",
-        "note_body": "メモ本文",
-        "addendum_excerpt": "補足抜粋",
-        "is_shared_with_groups": "他グループと共有",
-        "membership_status": "メンバーシップ状態",
-        "ban_reason": "参加禁止理由",
-        "owner_user_id": "オーナー",
-        "previous_role": "以前のロール",
-        "invite_id": "招待ID",
-        "invite_token": "招待トークン",
-        "max_uses": "最大使用回数",
-        "expires_at": "有効期限",
-        "uses": "使用回数",
-        "slug": "スラッグ",
-        "activity_title": "アクティビティ",
-        "activity_type_slug": "アクティビティ種別",
-        "slot_label": "枠",
-        "group_label": "グループ",
-        "source_slot_label": "移動元枠",
-        "source_group_label": "移動元グループ",
-        "source_character_name": "移動元キャラクター",
-        "target_slot_label": "移動先枠",
-        "target_group_label": "移動先グループ",
-        "target_character_name": "移動先キャラクター",
-        "character_name": "キャラクター",
-        "selected_character_name": "選択キャラクター",
-        "displaced_character_name": "押し出されたキャラクター",
-        "application_status": "応募ステータス",
-        "review_reason": "審査メモ",
-        "starts_at": "開始日時",
-        "duration_hours": "時間数",
-        "needs_application": "応募必須",
-        "allow_guest_applications": "ゲスト応募を許可",
-        "target_prog_point_key": "目標攻略ポイント",
-        "organized_by_user_id": "主催者",
-        "organized_by_character_id": "主催キャラクター",
-        "checked_in_at": "チェックイン日時",
-        "checked_in_count": "チェックイン数",
-        "marked_missing_at": "欠席記録日時",
-        "restored_destination": "復元先",
-        "is_bench": "ベンチ枠",
-        "field_assignment_updated": "枠設定更新",
-        "designation": "指定",
-        "moved_to_slot_label": "移動先スロット",
-        "moved_to_group_label": "移動先グループ",
-        "email": "メールアドレス",
-        "provider": "プロバイダー",
-        "provider_user_id": "プロバイダーユーザーID",
-        "membership_application_id": "リクエスト",
-        "applicant_user_id": "申請者",
-        "applicant_name": "応募者名",
-        "field_count": "項目数",
-        "previous_field_count": "以前の項目数",
-        "login_method": "ログイン方法",
-        "registration_method": "登録方法",
-        "remember": "ログイン状態を保持",
-        "linked_while_authenticated": "認証中に連携",
-        "lodestone_id": "Lodestone ID",
-        "verification_method": "確認方法",
-        "is_primary": "メインキャラクター",
-        "changed_fields": "変更された項目",
-        "headline": "見出し",
-        "scheduled_for": "予定日時",
-        "notification_event_id": "通知イベント",
-        "action_label": "アクションラベル",
-        "action_url": "アクションURL",
-        "scopes": "API権限",
-        "allowed_events": "許可されたイベント",
-        "outbound_events_url": "Webhookエンドポイント",
-        "healthcheck_url": "ヘルスチェックのエンドポイント",
-        "integration_client_id": "連携クライアントID",
-        "integration_client_name": "連携クライアント",
-        "permissions": "権限",
-        "type": "種類",
-        "version_from": "前回のバージョン",
-        "version_to": "対象の最終バージョン"
-    },
-    "events": {
-        "user": {
-            "registered": "ユーザー登録",
-            "logged_in": "ユーザーログイン",
-            "password_reset": "パスワードをリセット",
-            "account": {
-                "deleted": "ユーザーアカウント削除"
-            },
-            "social_account": {
-                "linked": "ソーシャルアカウント連携",
-                "unlinked": "ソーシャルアカウント連携解除"
-            },
-            "discord_app": {
-                "user_installed": "Discordアプリをインストール",
-                "disconnected": "Discordアプリの連携解除",
-                "guild_installed": "Discordアプリをサーバーにインストール"
-            },
-            "settings": {
-                "username_updated": "ユーザー名を更新",
-                "password_updated": "パスワードを更新",
-                "notifications_updated": "通知設定を更新",
-                "profile_picture_updated": "プロフィール画像を更新",
-                "privacy_updated": "プライバシー設定を更新"
-            }
-        },
-        "admin": {
-            "field_definition": {
-                "created": "フィールド定義を作成",
-                "updated": "フィールド定義を更新",
-                "deleted": "フィールド定義を削除",
-                "reordered": "フィールド定義の順序を変更"
-            },
-            "character_class": {
-                "created": "キャラクタークラスを作成",
-                "updated": "キャラクタークラスを更新",
-                "deleted": "キャラクタークラスを削除"
-            },
-            "phantom_job": {
-                "created": "ファントムジョブを作成",
-                "updated": "ファントムジョブを更新",
-                "deleted": "ファントムジョブを削除"
-            },
-            "raid_position": {
-                "created": "レイドポジションを作成",
-                "updated": "レイドポジションを更新",
-                "deleted": "レイドポジションを削除"
-            },
-            "bozja_item": {
-                "created": "ボズヤ項目を作成",
-                "updated": "ボズヤ項目を更新",
-                "deleted": "ボズヤ項目を削除"
-            },
-            "activity_type": {
-                "created": "アクティビティタイプを作成",
-                "cloned": "アクティビティタイプを複製",
-                "updated": "アクティビティタイプを更新",
-                "published": "アクティビティタイプを公開",
-                "archived": "アクティビティタイプをアーカイブ"
-            },
-            "system_notification": {
-                "maintenance_sent": "メンテナンス通知を送信",
-                "announcement_sent": "更新通知を送信"
-            },
-            "system_banner": {
-                "updated": "システムバナーを更新",
-                "cleared": "システムバナーを解除"
-            },
-            "quota_override": {
-                "created": "アカウント上限の例外を作成",
-                "updated": "アカウント上限の例外を更新",
-                "deleted": "アカウント上限の例外を削除"
-            },
-            "integration_client": {
-                "created": "連携クライアントの作成",
-                "updated": "連携クライアントの更新",
-                "api_token_rotated": "連携APIトークンの更新",
-                "webhook_secret_rotated": "連携Webhookシークレットの更新"
-            },
-            "form": {
-                "created": "フォームを作成しました",
-                "updated": "フォームの下書きを更新しました",
-                "publish": "フォームを公開しました",
-                "unpublish": "フォームの公開を取り消しました",
-                "close": "フォームの回答受付を終了しました",
-                "open": "フォームの回答受付を再開しました"
-            },
-            "changelog": {
-                "created": "更新履歴の下書きを作成",
-                "updated": "更新履歴を編集",
-                "published": "更新履歴を公開",
-                "unpublished": "更新履歴の公開を取り消し"
-            }
-        },
-        "character": {
-            "verified": "キャラクター確認",
-            "refresh_requested": "キャラクター更新を要求",
-            "made_primary": "キャラクターをメインに設定"
-        },
-        "group": {
-            "resources": {
-                "created": "リソースを作成しました。",
-                "save": "リソースの下書きを保存しました。",
-                "submit": "リソースの変更を提出しました。",
-                "publish": "リソースを公開しました。",
-                "discard": "リソースの変更を破棄しました。",
-                "restore": "リソースの履歴を復元しました。",
-                "archive": "リソースをアーカイブしました。",
-                "unpublish": "リソースを非公開にしました。",
-                "organize": "リソースを移動または並べ替えました。",
-                "pin": "リソースをピン留めしました。",
-                "unpin": "リソースのピン留めを解除しました。",
-                "settings_updated": "リソースライブラリの設定を更新しました。",
-                "all_deleted": "グループのすべてのリソースを削除しました。",
-                "deleted": "リソースを削除しました。",
-                "collection_saved": "リソースコレクションを保存しました。",
-                "collection_deleted": "リソースコレクションを削除しました。",
-                "image_uploaded": "リソースの画像をアップロードしました。",
-                "image_updated": "リソース画像の詳細を更新しました。",
-                "image_deleted": "リソース画像を削除しました。"
-            },
-            "created": "グループ作成",
-            "updated": "グループ設定を更新",
-            "deleted": "グループ削除",
-            "followed": "グループをフォロー",
-            "unfollowed": "グループのフォローを解除",
-            "notifications": {
-                "enabled": "グループ通知を有効化",
-                "muted": "グループ通知をミュート"
-            },
-            "membership_application": {
-                "submitted": "リクエスト送信",
-                "updated": "リクエスト更新",
-                "approved": "リクエスト承認",
-                "declined": "リクエスト却下",
-                "form_updated": "リクエストフォーム更新"
-            },
-            "activity": {
-                "created": "アクティビティ作成",
-                "updated": "アクティビティ更新",
-                "deleted": "アクティビティ削除",
-                "application": {
-                    "submitted": "アクティビティ応募送信",
-                    "updated": "アクティビティ応募更新",
-                    "declined": "アクティビティ応募却下",
-                    "cancelled": "ラン中止によるアクティビティ応募終了",
-                    "withdrawn": "アクティビティ応募取り下げ"
-                },
-                "roster": {
-                    "discord_participant_synced": "開催回の参加者をDiscordと同期しました",
-                    "assigned": "ロスター枠割り当て",
-                    "updated": "ロスター割り当て更新",
-                    "reassigned": "ロスター枠再割り当て",
-                    "replaced": "ロスター割り当て置換",
-                    "swapped": "ロスター位置移動",
-                    "returned_to_queue": "ロスター枠をキューへ戻す",
-                    "manual_removed": "手動のロスター割り当てを解除",
-                    "host_marked": "ロスター枠をホストに指定しました",
-                    "host_cleared": "ロスターのホスト指定を解除しました",
-                    "raid_leader_marked": "ロスター枠をレイドリーダーに指定しました",
-                    "raid_leader_cleared": "ロスターのレイドリーダー指定を解除しました",
-                    "duelist_marked": "デュエリストを指定",
-                    "duelist_cleared": "デュエリストの指定を解除",
-                    "trapper_marked": "トラッパーを指定",
-                    "trapper_cleared": "トラッパーの指定を解除",
-                    "darter_marked": "ダーターを指定",
-                    "darter_cleared": "ダーターの指定を解除"
-                },
-                "attendance": {
-                    "checked_in": "ロスター枠チェックイン",
-                    "marked_late": "ロスター枠を遅刻扱い",
-                    "check_in_reverted": "ロスターチェックイン取り消し",
-                    "group_checked_in": "ロスターグループチェックイン",
-                    "marked_missing": "ロスター枠を欠席扱い",
-                    "missing_reverted": "欠席扱いを取り消し"
-                }
-            },
-            "invite": {
-                "created": "招待リンクを作成",
-                "revoked": "招待リンクを無効化"
-            },
-            "member": {
-                "joined": "メンバーがグループに参加",
-                "joined_via_invite": "メンバーが招待経由で参加",
-                "left": "メンバーがグループを退出",
-                "promoted": "メンバーの役職を昇格",
-                "demoted": "メンバーの役職を降格",
-                "note": {
-                    "created": "メンバーメモを作成",
-                    "updated": "メンバーメモを更新",
-                    "deleted": "メンバーメモを削除",
-                    "addendum": {
-                        "created": "メモ補足を追加",
-                        "updated": "メモ補足を更新",
-                        "deleted": "メモ補足を削除"
-                    }
-                },
-                "removed": "メンバーをグループから削除",
-                "banned": "メンバーをグループから参加禁止",
-                "unbanned": "メンバーの参加禁止を解除"
-            },
-            "ownership": {
-                "transferred": "グループ所有権を移譲"
-            }
-        }
+        "removed": "がメンバーをグループから削除しました。",
+        "banned": "がメンバーをグループから参加禁止にしました。",
+        "unbanned": "がメンバーの参加禁止を解除しました。"
+      },
+      "ownership": {
+        "transferred": "がグループの所有権を移譲しました。"
+      }
     }
+  },
+  "activity_targeted": {
+    "group": {
+      "member": {
+        "promoted": "が昇格しました",
+        "demoted": "が降格しました",
+        "removed": "を削除しました",
+        "banned": "を参加禁止にしました",
+        "unbanned": "の参加禁止を解除しました",
+        "joined_via_invite": "が招待を承認しました:"
+      }
+    }
+  },
+  "activity_named": {
+    "admin": {
+      "activity_type": {
+        "created": "作成しました",
+        "cloned": "複製しました",
+        "updated": "更新しました",
+        "published": "公開しました",
+        "archived": "アーカイブしました"
+      }
+    }
+  },
+  "fields": {
+    "name": "名前",
+    "description": "説明",
+    "profile_picture_url": "プロフィール画像",
+    "discord_invite_url": "Discord招待",
+    "title": "タイトル",
+    "datacenter": "データセンター",
+    "is_public": "公開",
+    "is_visible": "表示",
+    "status": "ステータス",
+    "role": "ロール",
+    "note_severity": "メモの重要度",
+    "note_excerpt": "メモ抜粋",
+    "note_body": "メモ本文",
+    "addendum_excerpt": "補足抜粋",
+    "is_shared_with_groups": "他グループと共有",
+    "membership_status": "メンバーシップ状態",
+    "ban_reason": "参加禁止理由",
+    "owner_user_id": "オーナー",
+    "previous_role": "以前のロール",
+    "invite_id": "招待ID",
+    "invite_token": "招待トークン",
+    "max_uses": "最大使用回数",
+    "expires_at": "有効期限",
+    "uses": "使用回数",
+    "slug": "スラッグ",
+    "activity_title": "アクティビティ",
+    "activity_type_slug": "アクティビティ種別",
+    "slot_label": "枠",
+    "group_label": "グループ",
+    "source_slot_label": "移動元枠",
+    "source_group_label": "移動元グループ",
+    "source_character_name": "移動元キャラクター",
+    "target_slot_label": "移動先枠",
+    "target_group_label": "移動先グループ",
+    "target_character_name": "移動先キャラクター",
+    "character_name": "キャラクター",
+    "selected_character_name": "選択キャラクター",
+    "displaced_character_name": "押し出されたキャラクター",
+    "application_status": "応募ステータス",
+    "review_reason": "審査メモ",
+    "starts_at": "開始日時",
+    "duration_hours": "時間数",
+    "needs_application": "応募必須",
+    "allow_guest_applications": "ゲスト応募を許可",
+    "target_prog_point_key": "目標攻略ポイント",
+    "organized_by_user_id": "主催者",
+    "organized_by_character_id": "主催キャラクター",
+    "checked_in_at": "チェックイン日時",
+    "checked_in_count": "チェックイン数",
+    "marked_missing_at": "欠席記録日時",
+    "restored_destination": "復元先",
+    "is_bench": "ベンチ枠",
+    "field_assignment_updated": "枠設定更新",
+    "designation": "指定",
+    "moved_to_slot_label": "移動先スロット",
+    "moved_to_group_label": "移動先グループ",
+    "email": "メールアドレス",
+    "provider": "プロバイダー",
+    "provider_user_id": "プロバイダーユーザーID",
+    "membership_application_id": "リクエスト",
+    "applicant_user_id": "申請者",
+    "applicant_name": "応募者名",
+    "field_count": "項目数",
+    "previous_field_count": "以前の項目数",
+    "login_method": "ログイン方法",
+    "registration_method": "登録方法",
+    "remember": "ログイン状態を保持",
+    "linked_while_authenticated": "認証中に連携",
+    "lodestone_id": "Lodestone ID",
+    "verification_method": "確認方法",
+    "is_primary": "メインキャラクター",
+    "changed_fields": "変更された項目",
+    "headline": "見出し",
+    "scheduled_for": "予定日時",
+    "notification_event_id": "通知イベント",
+    "action_label": "アクションラベル",
+    "action_url": "アクションURL",
+    "scopes": "API権限",
+    "allowed_events": "許可されたイベント",
+    "outbound_events_url": "Webhookエンドポイント",
+    "healthcheck_url": "ヘルスチェックのエンドポイント",
+    "integration_client_id": "連携クライアントID",
+    "integration_client_name": "連携クライアント",
+    "permissions": "権限",
+    "type": "種類",
+    "version_from": "前回のバージョン",
+    "version_to": "対象の最終バージョン",
+    "from_user_id": "移行元アカウントID",
+    "from_user_name": "移行元アカウント名",
+    "to_user_id": "移行先アカウントID",
+    "to_user_name": "移行先アカウント名",
+    "previous_status": "移行前の認証状態"
+  },
+  "events": {
+    "user": {
+      "registered": "ユーザー登録",
+      "logged_in": "ユーザーログイン",
+      "password_reset": "パスワードをリセット",
+      "account": {
+        "deleted": "ユーザーアカウント削除"
+      },
+      "social_account": {
+        "linked": "ソーシャルアカウント連携",
+        "unlinked": "ソーシャルアカウント連携解除"
+      },
+      "discord_app": {
+        "user_installed": "Discordアプリをインストール",
+        "disconnected": "Discordアプリの連携解除",
+        "guild_installed": "Discordアプリをサーバーにインストール"
+      },
+      "settings": {
+        "username_updated": "ユーザー名を更新",
+        "password_updated": "パスワードを更新",
+        "notifications_updated": "通知設定を更新",
+        "profile_picture_updated": "プロフィール画像を更新",
+        "privacy_updated": "プライバシー設定を更新"
+      }
+    },
+    "admin": {
+      "field_definition": {
+        "created": "フィールド定義を作成",
+        "updated": "フィールド定義を更新",
+        "deleted": "フィールド定義を削除",
+        "reordered": "フィールド定義の順序を変更"
+      },
+      "character_class": {
+        "created": "キャラクタークラスを作成",
+        "updated": "キャラクタークラスを更新",
+        "deleted": "キャラクタークラスを削除"
+      },
+      "phantom_job": {
+        "created": "ファントムジョブを作成",
+        "updated": "ファントムジョブを更新",
+        "deleted": "ファントムジョブを削除"
+      },
+      "raid_position": {
+        "created": "レイドポジションを作成",
+        "updated": "レイドポジションを更新",
+        "deleted": "レイドポジションを削除"
+      },
+      "bozja_item": {
+        "created": "ボズヤ項目を作成",
+        "updated": "ボズヤ項目を更新",
+        "deleted": "ボズヤ項目を削除"
+      },
+      "activity_type": {
+        "created": "アクティビティタイプを作成",
+        "cloned": "アクティビティタイプを複製",
+        "updated": "アクティビティタイプを更新",
+        "published": "アクティビティタイプを公開",
+        "archived": "アクティビティタイプをアーカイブ"
+      },
+      "system_notification": {
+        "maintenance_sent": "メンテナンス通知を送信",
+        "announcement_sent": "更新通知を送信"
+      },
+      "system_banner": {
+        "updated": "システムバナーを更新",
+        "cleared": "システムバナーを解除"
+      },
+      "quota_override": {
+        "created": "アカウント上限の例外を作成",
+        "updated": "アカウント上限の例外を更新",
+        "deleted": "アカウント上限の例外を削除"
+      },
+      "integration_client": {
+        "created": "連携クライアントの作成",
+        "updated": "連携クライアントの更新",
+        "api_token_rotated": "連携APIトークンの更新",
+        "webhook_secret_rotated": "連携Webhookシークレットの更新"
+      },
+      "form": {
+        "created": "フォームを作成しました",
+        "updated": "フォームの下書きを更新しました",
+        "publish": "フォームを公開しました",
+        "unpublish": "フォームの公開を取り消しました",
+        "close": "フォームの回答受付を終了しました",
+        "open": "フォームの回答受付を再開しました"
+      },
+      "changelog": {
+        "created": "更新履歴の下書きを作成",
+        "updated": "更新履歴を編集",
+        "published": "更新履歴を公開",
+        "unpublished": "更新履歴の公開を取り消し"
+      }
+    },
+    "character": {
+      "verified": "キャラクター確認",
+      "refresh_requested": "キャラクター更新を要求",
+      "made_primary": "キャラクターをメインに設定",
+      "added": "アカウントにキャラクターを追加しました。",
+      "transferred": "キャラクターのアカウント間移行"
+    },
+    "group": {
+      "resources": {
+        "created": "リソースを作成しました。",
+        "save": "リソースの下書きを保存しました。",
+        "submit": "リソースの変更を提出しました。",
+        "publish": "リソースを公開しました。",
+        "discard": "リソースの変更を破棄しました。",
+        "restore": "リソースの履歴を復元しました。",
+        "archive": "リソースをアーカイブしました。",
+        "unpublish": "リソースを非公開にしました。",
+        "organize": "リソースを移動または並べ替えました。",
+        "pin": "リソースをピン留めしました。",
+        "unpin": "リソースのピン留めを解除しました。",
+        "settings_updated": "リソースライブラリの設定を更新しました。",
+        "all_deleted": "グループのすべてのリソースを削除しました。",
+        "deleted": "リソースを削除しました。",
+        "collection_saved": "リソースコレクションを保存しました。",
+        "collection_deleted": "リソースコレクションを削除しました。",
+        "image_uploaded": "リソースの画像をアップロードしました。",
+        "image_updated": "リソース画像の詳細を更新しました。",
+        "image_deleted": "リソース画像を削除しました。"
+      },
+      "created": "グループ作成",
+      "updated": "グループ設定を更新",
+      "deleted": "グループ削除",
+      "followed": "グループをフォロー",
+      "unfollowed": "グループのフォローを解除",
+      "notifications": {
+        "enabled": "グループ通知を有効化",
+        "muted": "グループ通知をミュート"
+      },
+      "membership_application": {
+        "submitted": "リクエスト送信",
+        "updated": "リクエスト更新",
+        "approved": "リクエスト承認",
+        "declined": "リクエスト却下",
+        "form_updated": "リクエストフォーム更新"
+      },
+      "activity": {
+        "created": "アクティビティ作成",
+        "updated": "アクティビティ更新",
+        "deleted": "アクティビティ削除",
+        "application": {
+          "submitted": "アクティビティ応募送信",
+          "updated": "アクティビティ応募更新",
+          "declined": "アクティビティ応募却下",
+          "cancelled": "ラン中止によるアクティビティ応募終了",
+          "withdrawn": "アクティビティ応募取り下げ"
+        },
+        "roster": {
+          "discord_participant_synced": "開催回の参加者をDiscordと同期しました",
+          "assigned": "ロスター枠割り当て",
+          "updated": "ロスター割り当て更新",
+          "reassigned": "ロスター枠再割り当て",
+          "replaced": "ロスター割り当て置換",
+          "swapped": "ロスター位置移動",
+          "returned_to_queue": "ロスター枠をキューへ戻す",
+          "manual_removed": "手動のロスター割り当てを解除",
+          "host_marked": "ロスター枠をホストに指定しました",
+          "host_cleared": "ロスターのホスト指定を解除しました",
+          "raid_leader_marked": "ロスター枠をレイドリーダーに指定しました",
+          "raid_leader_cleared": "ロスターのレイドリーダー指定を解除しました",
+          "duelist_marked": "デュエリストを指定",
+          "duelist_cleared": "デュエリストの指定を解除",
+          "trapper_marked": "トラッパーを指定",
+          "trapper_cleared": "トラッパーの指定を解除",
+          "darter_marked": "ダーターを指定",
+          "darter_cleared": "ダーターの指定を解除"
+        },
+        "attendance": {
+          "checked_in": "ロスター枠チェックイン",
+          "marked_late": "ロスター枠を遅刻扱い",
+          "check_in_reverted": "ロスターチェックイン取り消し",
+          "group_checked_in": "ロスターグループチェックイン",
+          "marked_missing": "ロスター枠を欠席扱い",
+          "missing_reverted": "欠席扱いを取り消し"
+        }
+      },
+      "invite": {
+        "created": "招待リンクを作成",
+        "revoked": "招待リンクを無効化"
+      },
+      "member": {
+        "joined": "メンバーがグループに参加",
+        "joined_via_invite": "メンバーが招待経由で参加",
+        "left": "メンバーがグループを退出",
+        "promoted": "メンバーの役職を昇格",
+        "demoted": "メンバーの役職を降格",
+        "note": {
+          "created": "メンバーメモを作成",
+          "updated": "メンバーメモを更新",
+          "deleted": "メンバーメモを削除",
+          "addendum": {
+            "created": "メモ補足を追加",
+            "updated": "メモ補足を更新",
+            "deleted": "メモ補足を削除"
+          }
+        },
+        "removed": "メンバーをグループから削除",
+        "banned": "メンバーをグループから参加禁止",
+        "unbanned": "メンバーの参加禁止を解除"
+      },
+      "ownership": {
+        "transferred": "グループ所有権を移譲"
+      }
+    }
+  }
 }

@@ -1,4 +1,18 @@
 {
+  "account_flags": {
+    "preview": "Kontohinweise testen",
+    "end_preview": "Echte Kontohinweise anzeigen",
+    "preview_info": "Vorschau: Information",
+    "preview_warning": "Vorschau: Warnung",
+    "preview_error": "Vorschau: Fehler",
+    "preview_description": "Dies ist eine Vorschau und kein echtes Kontoproblem. „Ansehen“ öffnet Meine Charaktere.",
+    "title": "Deine Aufmerksamkeit ist gefragt",
+    "view_issue": "Ansehen",
+    "summary": "{count} offene Anliegen. Höchste Dringlichkeit: {severity}.",
+    "severity": { "info": "Information", "warning": "Warnung", "error": "Fehler" },
+    "transfer_title": "Schließe deine Charakterübertragung ab",
+    "transfer_description": "Wähle, ob du den bisherigen Verlauf und die bevorstehenden Läufe von {character} behalten oder verwerfen möchtest. Diese Erinnerung bleibt, bis du deine Auswahl speicherst."
+  },
     "recommended": "Empfohlen",
     "primary": "Primär",
     "verify_now": "Jetzt verifizieren",

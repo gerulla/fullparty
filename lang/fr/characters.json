@@ -1,241 +1,566 @@
 {
-    "title": "Mes personnages",
-    "subtitle": "Gérez vos personnages FFXIV et leur statut de vérification.",
-    "none_found": "Aucun personnage trouvé.",
-    "add": {
-        "title": "Ajouter un personnage",
-        "subtitle": "Choisissez comment vous souhaitez vérifier que ce personnage vous appartient",
-        "add_button": "Ajouter un personnage",
-        "options": {
-            "xivauth": {
-                "title": "Importer depuis XIVAuth",
-                "subtitle": "Importez automatiquement vos personnages vérifiés depuis XIVAuth. Votre compte XIVAuth doit être lié."
-            },
-            "manual": {
-                "title": "Vérifier manuellement",
-                "subtitle": "Ajoutez un personnage via Lodestone. Cela nécessite de placer un code de vérification sur votre profil de personnage."
-            }
-        }
+  "detail": {
+    "tabs": {
+      "jobs": "Jobs et préférences",
+      "occult": "Île de Lunule",
+      "progression": "Progression"
     },
-    "manual": {
-        "progress": "Étape {current} sur {total}",
-        "steps": [
-            "Infos du personnage",
-            "Code de vérification",
-            "Vérification...",
-            "Terminé"
-        ],
-        "step1": {
-            "title": "Vérification manuelle",
-            "subtitle": "Entrez l'URL de votre profil Lodestone ou l'ID du personnage",
-            "input": {
-                "label": "URL du profil Lodestone ou ID du personnage",
-                "placeholder": "https://na.finalfantasyxiv.com/lodestone/character/123456789",
-                "hint": "Vous pouvez coller l'URL complète de Lodestone ou simplement l'ID numérique du personnage"
-            },
-            "help_line": "{label} Allez sur {lodestone}, recherchez votre personnage et copiez l'URL depuis sa page de profil.",
-            "where_to_find": "Où le trouver :",
-            "lodestone": "FFXIV Lodestone"
-        },
-        "step2": {
-            "title": "Vérifier la propriété du personnage",
-            "subtitle": "Ajoutez le code de vérification à votre profil Lodestone",
-            "code_label": "Votre code de vérification",
-            "instructions_label": "Instructions :",
-            "instructions": [
-                "1.Copiez le code de vérification ci-dessus",
-                "2.Ouvrez votre {profile}",
-                "3.Modifiez votre profil et collez le code n'importe où dans le texte de votre profil",
-                "4.Enregistrez les modifications de votre profil",
-                "5.Cliquez sur \"Vérifier maintenant\" ci-dessous"
-            ],
-            "profile": "Profil Lodestone",
-            "toast_success": {
-                "title": "Code copié",
-                "description": "Le code de vérification a été copié dans votre presse-papiers."
-            },
-            "toast_error": {
-                "title": "Échec de la copie",
-                "description": "Impossible de copier le code de vérification."
-            },
-            "toast_taken": {
-                "title": "Personnage déjà enregistré",
-                "description": "Ce personnage est déjà enregistré. Si ce personnage vous appartient et que vous ne l'avez pas enregistré, veuillez contacter le support."
-            }
-        },
-        "step3": {
-            "title": "Vérification de votre profil",
-            "subtitle": "Veuillez patienter pendant que nous vérifions votre profil Lodestone..."
-        },
-        "success": {
-            "title": "Personnage vérifié !",
-            "subtitle": "Votre personnage a été vérifié avec succès et ajouté à votre compte.",
-            "button": "Retour à Mes personnages"
-        },
-        "fail": {
-            "title": "Échec de la vérification",
-            "subtitle": "Nous n'avons pas trouvé le code de vérification sur votre profil Lodestone.",
-            "common_label": "Problèmes fréquents :",
-            "common_issues": [
-                "Le code de vérification n'a pas été ajouté à votre profil",
-                "Les modifications du profil ne sont pas encore visibles (réessayez dans quelques minutes)",
-                "Le code a été modifié ou comporte des espaces supplémentaires"
-            ],
-            "button": "Recommencer"
-        },
-        "errors": {
-            "invalid_token": "Le code de vérification ne correspond pas. Veuillez réessayer.",
-            "invalid_lodestone_id": "ID Lodestone invalide. Veuillez entrer un ID de personnage ou une URL Lodestone valide.",
-            "character_not_found": "Personnage introuvable. Vérifiez l'ID et réessayez.",
-            "lodestone_error": "Impossible de récupérer les informations du personnage. Veuillez réessayer plus tard.",
-            "parse_error": "Impossible d'analyser les informations du personnage. Veuillez réessayer plus tard."
-        }
-    },
-    "xivauth": {
-        "progress": "Étape {current} sur {total}",
-        "steps": [
-            "Récupération des personnages...",
-            "Sélectionner un personnage à importer",
-            "Importation du personnage...",
-            "Terminé"
-        ],
-        "step1": {
-            "title": "Récupération des personnages",
-            "subtitle": "Chargement de vos personnages vérifiés depuis XIVAuth. Cela peut prendre quelques minutes."
-        },
-        "step2": {
-            "title": "Sélectionner un personnage à importer",
-            "subtitle": "Choisissez le personnage que vous souhaitez importer depuis XIVAuth."
-        },
-        "step3": {
-            "title": "Importation du personnage",
-            "subtitle": "Importation de votre personnage depuis XIVAuth. Cela peut prendre quelques minutes."
-        },
-        "success": {
-            "title": "Personnage importé !",
-            "subtitle": "Votre personnage a été importé avec succès depuis XIVAuth.",
-            "button": "Retour à Mes personnages"
-        },
-        "errors": {
-            "xivauth_not_linked": "Il semble que vous n'ayez pas encore lié votre compte XIVAuth. Veuillez le lier pour importer vos personnages.",
-            "xivauth_token_invalid": "Nous n'avons pas pu vous autoriser avec XIVAuth. Veuillez réessayer ou contacter le support.",
-            "xivauth_character_already_claimed": "Ce personnage est déjà enregistré. S'il s'agit de votre personnage, veuillez contacter le support."
-        },
-        "sync": {
-            "conflict_title": "Certains personnages n'ont pas été importés",
-            "conflict_description_one": "{characters} est déjà enregistré. S'il s'agit de votre personnage, veuillez contacter le support.",
-            "conflict_description_many": "{characters} sont déjà enregistrés. S'il s'agit de vos personnages, veuillez contacter le support."
-        }
-    },
-    "added_manually": "Ajouté manuellement",
-    "from_xivauth": "Depuis XIVAuth",
-    "toasts": {
-        "title": "Succès !",
-        "character_refreshed": "Les données du personnage ont été actualisées avec succès",
-        "character_primary": "Le personnage principal a été mis à jour avec succès",
-        "character_unclaimed": "Le personnage a été dissocié avec succès"
-    },
-    "jobs": {
-        "classes": {
-            "brd": "Barde",
-            "drg": "Chevalier dragon",
-            "mnk": "Moine",
-            "pld": "Paladin",
-            "war": "Guerrier",
-            "blm": "Mage noir",
-            "whm": "Mage blanc",
-            "sch": "Érudit",
-            "smn": "Invocateur",
-            "nin": "Ninja",
-            "ast": "Astromancien",
-            "drk": "Chevalier noir",
-            "mch": "Machiniste",
-            "rdm": "Mage rouge",
-            "sam": "Samouraï",
-            "blu": "Mage bleu",
-            "gnb": "Pistosabreur",
-            "dnc": "Danseur",
-            "rpr": "Faucheur",
-            "sge": "Sage",
-            "vpr": "Vipère",
-            "pct": "Pictomancien"
-        },
-        "phantom": {
-            "knight": "Chevalier fantôme",
-            "monk": "Moine fantôme",
-            "thief": "Voleur fantôme",
-            "samurai": "Samouraï fantôme",
-            "berserker": "Berserker fantôme",
-            "ranger": "Rôdeur fantôme",
-            "mystic_knight": "Chevalier mage fantôme",
-            "time_mage": "Chronomancien fantôme",
-            "chemist": "Alchimiste fantôme",
-            "geomancer": "Géomancien fantôme",
-            "bard": "Barde fantôme",
-            "dancer": "Danseur fantôme",
-            "oracle": "Devin fantôme",
-            "cannoneer": "Artilleur fantôme",
-            "gladiator": "Gladiateur fantôme",
-            "freelancer": "Freelancer fantôme",
-            "ninja": "Ninja fantôme",
-            "white_mage": "Mage blanc fantôme",
-            "black_mage": "Mage noir fantôme",
-            "dragoon": "Chevalier dragon fantôme",
-            "summoner": "Invocateur fantôme",
-            "blue_mage": "Mage bleu fantôme",
-            "red_mage": "Mage rouge fantôme",
-            "necromancer": "Nécromancien fantôme"
-        },
-        "raid_positions": {
-            "mt": "Tank principal",
-            "ot": "Off-tank",
-            "h1": "Soigneur 1",
-            "h2": "Soigneur 2",
-            "m1": "DPS 1 / Mêlée 1",
-            "m2": "DPS 2 / Mêlée 2",
-            "r1": "DPS 3 / Distance physique",
-            "r2": "DPS 4 / Distance magique"
-        }
-    },
-    "card": {
-        "view_lodestone_profile": "Voir le profil Lodestone",
-        "refresh_character": "Actualiser le personnage",
-        "make_primary": "Définir comme principal",
-        "unclaim_character": "Dissocier le personnage",
-        "unclaim_title": "Dissocier le personnage",
-        "unclaim_description": "Cela retire le personnage de votre compte. Vous pourrez le revendiquer à nouveau plus tard si nécessaire.",
-        "unclaim_confirm": "Dissocier le personnage",
-        "unclaim_cancel": "Conserver le personnage",
-        "preferred": "Préféré",
-        "maxed": "Max",
-        "knowledge_level": "Niveau de connaissance",
-        "level": "Niveau {level}",
-        "phantom_level": "Niveau {current} / {max}",
-        "sections": {
-            "classes": "Classes",
-            "occult": "Occulte",
-            "forked_tower_blood": "La Tour fourchue de la Force",
-            "forked_tower_magic": "Tour fourchue de la Magie (extrême)"
-        },
-        "forked_tower": {
-            "clear_count": "Nombre de victoires",
-            "clears": "{count} victoires",
-            "clears_at_least": "{count}+ victoires",
-            "kills": "Éliminations",
-            "kills_at_least": "Au moins {count}",
-            "verified_with_fflogs": "Vérifié avec FFLogs",
-            "verified_with_lodestone": "Vérifié avec Lodestone",
-            "bosses": {
-                "demon_tablet": "Muraille démonique",
-                "dead_stars": "Trio de la Fosse",
-                "marble_dragon": "Dragon marmoréen",
-                "magitaur": "Magitaure",
-                "two_headed_aevis": "Eibis bicéphale",
-                "sword_dancer": "Danseur aux épées",
-                "necrophobia": "Nécrophobie",
-                "index": "Index",
-                "tba": "À venir"
-            }
-        }
+    "your_jobs": "Vos jobs",
+    "preferences_help": "Touchez un cœur pour choisir les jobs que vous aimez jouer.",
+    "phantom_jobs": "Jobs fantômes",
+    "favourite": "Marquer {name} comme préféré",
+    "unfavourite": "Retirer {name} des jobs préférés",
+    "refresh": "Actualiser",
+    "remove": "Retirer le personnage",
+    "action_failed": "Cette modification n’a pas pu être enregistrée. Veuillez réessayer.",
+    "progress_help": "Votre progression enregistrée dans les tours. Actualisez votre personnage pour rechercher de nouvelles données.",
+    "ownership": {
+      "unverified": {
+        "title": "Personnage lié à votre compte",
+        "description": "La propriété n’est pas encore vérifiée. Un autre compte ne peut récupérer ce personnage qu’en prouvant qu’il lui appartient."
+      },
+      "verified": {
+        "title": "Vérifié par la participation",
+        "description": "Lié à votre compte. Une revendication prouvée via Lodestone ou XIVAuth peut prendre le dessus."
+      },
+      "claimed": {
+        "title": "Propriété sécurisée",
+        "description": "Revendiqué via Lodestone ou XIVAuth. Tout transfert nécessite une récupération examinée par les administrateurs."
+      }
     }
+  },
+  "overview": {
+    "subtitle": "Choisissez vos jobs et préparez vos personnages pour votre prochaine sortie.",
+    "cleared": "Terminé",
+    "bosses_defeated": "{count}/{total} vaincus",
+    "preferred_jobs": "Jobs préférés",
+    "no_preferred_jobs": "Choisissez vos favoris dans « Gérer le personnage ».",
+    "manage": "Gérer le personnage",
+    "manage_named": "Gérer {name}",
+    "all_characters": "Tous les personnages",
+    "ownership_confirmed": "Propriété confirmée",
+    "claim": "Revendiquer le personnage",
+    "claim_pending": "Cette fonctionnalité sera bientôt disponible",
+    "verification_title": "Non vérifié, vérifié ou revendiqué ?",
+    "verification_description": "Découvrez comment votre personnage est lié à votre compte et protégé.",
+    "verification_button": "Comprendre la vérification",
+    "empty_title": "Vos personnages ont leur place ici",
+    "empty_description": "Ajoutez votre personnage FFXIV pour préparer votre prochaine sortie."
+  },
+  "verification_guide": {
+    "help_button": "Comment vérifier ?",
+    "title": "Vérification des personnages",
+    "description": "Un personnage ne peut être lié qu'à un seul compte FullParty à la fois. Voici les trois statuts possibles.",
+    "states": {
+      "unverified": {
+        "title": "Non vérifié",
+        "summary": "Lié exclusivement à votre compte",
+        "description": "Vous avez ajouté ce personnage depuis la recherche, mais sa propriété n'a pas encore été vérifiée. Il reste lié à votre compte, sauf si un autre compte réussit à le revendiquer via le Lodestone ou XIVAuth. L'ajouter simplement sur un autre compte ne permet pas de vous le prendre."
+      },
+      "verified": {
+        "title": "Vérifié",
+        "summary": "Propriété confirmée par la participation",
+        "description": "Participer à trois sorties terminées qui remplissent les conditions confirme que ce personnage est le vôtre. Il reste lié exclusivement à votre compte. Un autre compte ne peut le récupérer qu'en réussissant la procédure de revendication via le Lodestone ou XIVAuth, qui constitue une preuve plus forte."
+      },
+      "claimed": {
+        "title": "Revendiqué",
+        "summary": "Propriété protégée par une revendication",
+        "description": "Vous avez confirmé la propriété via le Lodestone ou XIVAuth. « Revendiqué » est le statut le plus élevé : un autre compte ne peut pas récupérer automatiquement le personnage, même avec une nouvelle preuve. Tout transfert nécessite une procédure de récupération examinée par les administrateurs."
+      }
+    },
+    "qualifying": {
+      "title": "Quelles sorties comptent ?",
+      "attendance": "Vous devez avoir réellement participé à une sortie terminée. Être accepté, en réserve ou marqué absent ne suffit pas. Une arrivée tardive peut compter si vous avez participé.",
+      "independent": "Les sorties que vous organisez, celles de vos propres groupes et les présences que vous confirmez vous-même ne comptent pas. La personne qui confirme votre présence doit avoir un personnage revendiqué et un compte créé depuis au moins 30 jours.",
+      "timing": "Une seule sortie compte par période de 24 heures, avec au moins sept jours entre votre première et votre troisième participation admissible.",
+      "same_group": "Les trois sorties peuvent avoir lieu avec le même groupe ou la même personne organisatrice. Chaque sortie compte une fois, pour le personnage avec lequel vous avez participé sur ce compte."
+    },
+    "claim": {
+      "title": "Comment revendiquer votre personnage",
+      "button": "Revendiquer",
+      "open_characters": "Ouvrez la page {page}.",
+      "choose_claim": "Trouvez votre personnage et cliquez sur {claim}.",
+      "follow_instructions": "Suivez les instructions de vérification de propriété pour terminer la revendication.",
+      "direct": "Vous pouvez revendiquer votre personnage immédiatement. Il n'est pas nécessaire d'obtenir le statut « Vérifié » ni de terminer trois sorties au préalable."
+    }
+  },
+  "title": "Mes personnages",
+  "subtitle": "Gérez vos personnages FFXIV et leur statut de vérification.",
+  "none_found": "Aucun personnage trouvé.",
+  "add": {
+    "title": "Ajouter un personnage",
+    "subtitle": "Choisissez comment vous souhaitez vérifier que ce personnage vous appartient",
+    "add_button": "Ajouter un personnage",
+    "options": {
+      "xivauth": {
+        "title": "Importer depuis XIVAuth",
+        "subtitle": "Importez automatiquement vos personnages vérifiés depuis XIVAuth. Votre compte XIVAuth doit être lié."
+      },
+      "manual": {
+        "title": "Vérifier manuellement",
+        "subtitle": "Ajoutez un personnage via Lodestone. Cela nécessite de placer un code de vérification sur votre profil de personnage."
+      }
+    }
+  },
+  "manual": {
+    "progress": "Étape {current} sur {total}",
+    "steps": [
+      "Infos du personnage",
+      "Code de vérification",
+      "Vérification...",
+      "Terminé"
+    ],
+    "step1": {
+      "title": "Vérification manuelle",
+      "subtitle": "Entrez l'URL de votre profil Lodestone ou l'ID du personnage",
+      "input": {
+        "label": "URL du profil Lodestone ou ID du personnage",
+        "placeholder": "https://na.finalfantasyxiv.com/lodestone/character/123456789",
+        "hint": "Vous pouvez coller l'URL complète de Lodestone ou simplement l'ID numérique du personnage"
+      },
+      "help_line": "{label} Allez sur {lodestone}, recherchez votre personnage et copiez l'URL depuis sa page de profil.",
+      "where_to_find": "Où le trouver :",
+      "lodestone": "FFXIV Lodestone"
+    },
+    "step2": {
+      "title": "Vérifier la propriété du personnage",
+      "subtitle": "Ajoutez le code de vérification à votre profil Lodestone",
+      "code_label": "Votre code de vérification",
+      "instructions_label": "Instructions :",
+      "instructions": [
+        "1.Copiez le code de vérification ci-dessus",
+        "2.Ouvrez votre {profile}",
+        "3.Modifiez votre profil et collez le code n'importe où dans le texte de votre profil",
+        "4.Enregistrez les modifications de votre profil",
+        "5.Cliquez sur \"Vérifier maintenant\" ci-dessous"
+      ],
+      "profile": "Profil Lodestone",
+      "toast_success": {
+        "title": "Code copié",
+        "description": "Le code de vérification a été copié dans votre presse-papiers."
+      },
+      "toast_error": {
+        "title": "Échec de la copie",
+        "description": "Impossible de copier le code de vérification."
+      },
+      "toast_taken": {
+        "title": "Personnage déjà enregistré",
+        "description": "Ce personnage est déjà enregistré. Si ce personnage vous appartient et que vous ne l'avez pas enregistré, veuillez contacter le support."
+      }
+    },
+    "step3": {
+      "title": "Vérification de votre profil",
+      "subtitle": "Veuillez patienter pendant que nous vérifions votre profil Lodestone..."
+    },
+    "success": {
+      "title": "Personnage vérifié !",
+      "subtitle": "Votre personnage a été vérifié avec succès et ajouté à votre compte.",
+      "button": "Retour à Mes personnages"
+    },
+    "fail": {
+      "title": "Échec de la vérification",
+      "subtitle": "Nous n'avons pas trouvé le code de vérification sur votre profil Lodestone.",
+      "common_label": "Problèmes fréquents :",
+      "common_issues": [
+        "Le code de vérification n'a pas été ajouté à votre profil",
+        "Les modifications du profil ne sont pas encore visibles (réessayez dans quelques minutes)",
+        "Le code a été modifié ou comporte des espaces supplémentaires"
+      ],
+      "button": "Recommencer"
+    },
+    "errors": {
+      "invalid_token": "Le code de vérification ne correspond pas. Veuillez réessayer.",
+      "invalid_lodestone_id": "ID Lodestone invalide. Veuillez entrer un ID de personnage ou une URL Lodestone valide.",
+      "character_not_found": "Personnage introuvable. Vérifiez l'ID et réessayez.",
+      "lodestone_error": "Impossible de récupérer les informations du personnage. Veuillez réessayer plus tard.",
+      "parse_error": "Impossible d'analyser les informations du personnage. Veuillez réessayer plus tard."
+    }
+  },
+  "xivauth": {
+    "progress": "Étape {current} sur {total}",
+    "steps": [
+      "Récupération des personnages...",
+      "Sélectionner un personnage à importer",
+      "Importation du personnage...",
+      "Terminé"
+    ],
+    "step1": {
+      "title": "Récupération des personnages",
+      "subtitle": "Chargement de vos personnages vérifiés depuis XIVAuth. Cela peut prendre quelques minutes."
+    },
+    "step2": {
+      "title": "Sélectionner un personnage à importer",
+      "subtitle": "Choisissez le personnage que vous souhaitez importer depuis XIVAuth."
+    },
+    "step3": {
+      "title": "Importation du personnage",
+      "subtitle": "Importation de votre personnage depuis XIVAuth. Cela peut prendre quelques minutes."
+    },
+    "success": {
+      "title": "Personnage importé !",
+      "subtitle": "Votre personnage a été importé avec succès depuis XIVAuth.",
+      "button": "Retour à Mes personnages"
+    },
+    "errors": {
+      "xivauth_not_linked": "Il semble que vous n'ayez pas encore lié votre compte XIVAuth. Veuillez le lier pour importer vos personnages.",
+      "xivauth_token_invalid": "Nous n'avons pas pu vous autoriser avec XIVAuth. Veuillez réessayer ou contacter le support.",
+      "xivauth_character_already_claimed": "Ce personnage est déjà enregistré. S'il s'agit de votre personnage, veuillez contacter le support."
+    },
+    "sync": {
+      "conflict_title": "Certains personnages n'ont pas été importés",
+      "conflict_description_one": "{characters} est déjà enregistré. S'il s'agit de votre personnage, veuillez contacter le support.",
+      "conflict_description_many": "{characters} sont déjà enregistrés. S'il s'agit de vos personnages, veuillez contacter le support."
+    }
+  },
+  "added_manually": "Ajouté manuellement",
+  "from_xivauth": "Depuis XIVAuth",
+  "toasts": {
+    "title": "Succès !",
+    "character_refreshed": "Les données du personnage ont été actualisées avec succès",
+    "character_primary": "Le personnage principal a été mis à jour avec succès",
+    "character_unclaimed": "Le personnage a été dissocié avec succès"
+  },
+  "jobs": {
+    "classes": {
+      "brd": "Barde",
+      "drg": "Chevalier dragon",
+      "mnk": "Moine",
+      "pld": "Paladin",
+      "war": "Guerrier",
+      "blm": "Mage noir",
+      "whm": "Mage blanc",
+      "sch": "Érudit",
+      "smn": "Invocateur",
+      "nin": "Ninja",
+      "ast": "Astromancien",
+      "drk": "Chevalier noir",
+      "mch": "Machiniste",
+      "rdm": "Mage rouge",
+      "sam": "Samouraï",
+      "blu": "Mage bleu",
+      "gnb": "Pistosabreur",
+      "dnc": "Danseur",
+      "rpr": "Faucheur",
+      "sge": "Sage",
+      "vpr": "Vipère",
+      "pct": "Pictomancien"
+    },
+    "phantom": {
+      "knight": "Chevalier fantôme",
+      "monk": "Moine fantôme",
+      "thief": "Voleur fantôme",
+      "samurai": "Samouraï fantôme",
+      "berserker": "Berserker fantôme",
+      "ranger": "Rôdeur fantôme",
+      "mystic_knight": "Chevalier mage fantôme",
+      "time_mage": "Chronomancien fantôme",
+      "chemist": "Alchimiste fantôme",
+      "geomancer": "Géomancien fantôme",
+      "bard": "Barde fantôme",
+      "dancer": "Danseur fantôme",
+      "oracle": "Devin fantôme",
+      "cannoneer": "Artilleur fantôme",
+      "gladiator": "Gladiateur fantôme",
+      "freelancer": "Freelancer fantôme",
+      "ninja": "Ninja fantôme",
+      "white_mage": "Mage blanc fantôme",
+      "black_mage": "Mage noir fantôme",
+      "dragoon": "Chevalier dragon fantôme",
+      "summoner": "Invocateur fantôme",
+      "blue_mage": "Mage bleu fantôme",
+      "red_mage": "Mage rouge fantôme",
+      "necromancer": "Nécromancien fantôme"
+    },
+    "raid_positions": {
+      "mt": "Tank principal",
+      "ot": "Off-tank",
+      "h1": "Soigneur 1",
+      "h2": "Soigneur 2",
+      "m1": "DPS 1 / Mêlée 1",
+      "m2": "DPS 2 / Mêlée 2",
+      "r1": "DPS 3 / Distance physique",
+      "r2": "DPS 4 / Distance magique"
+    }
+  },
+  "card": {
+    "view_lodestone_profile": "Voir le profil Lodestone",
+    "refresh_character": "Actualiser le personnage",
+    "make_primary": "Définir comme principal",
+    "unclaim_character": "Dissocier le personnage",
+    "unclaim_title": "Dissocier le personnage",
+    "unclaim_description": "Cela retire le personnage de votre compte. Vous pourrez le revendiquer à nouveau plus tard si nécessaire.",
+    "unclaim_confirm": "Dissocier le personnage",
+    "unclaim_cancel": "Conserver le personnage",
+    "preferred": "Préféré",
+    "maxed": "Max",
+    "knowledge_level": "Niveau de connaissance",
+    "level": "Niveau {level}",
+    "phantom_level": "Niveau {current} / {max}",
+    "sections": {
+      "classes": "Classes",
+      "occult": "Occulte",
+      "forked_tower_blood": "La Tour fourchue de la Force",
+      "forked_tower_magic": "Tour fourchue de la Magie (extrême)"
+    },
+    "forked_tower": {
+      "clear_count": "Nombre de victoires",
+      "clears": "{count} victoires",
+      "clears_at_least": "{count}+ victoires",
+      "kills": "Éliminations",
+      "kills_at_least": "Au moins {count}",
+      "verified_with_fflogs": "Vérifié avec FFLogs",
+      "verified_with_lodestone": "Vérifié avec Lodestone",
+      "bosses": {
+        "demon_tablet": "Muraille démonique",
+        "dead_stars": "Trio de la Fosse",
+        "marble_dragon": "Dragon marmoréen",
+        "magitaur": "Magitaure",
+        "two_headed_aevis": "Eibis bicéphale",
+        "sword_dancer": "Danseur aux épées",
+        "necrophobia": "Nécrophobie",
+        "index": "Index",
+        "tba": "À venir"
+      }
+    }
+  },
+  "onboarding": {
+    "preview": {
+      "help": "Prévisualisez le parcours avec Nyssa Nightclaw. Les imports sont simulés ; aucune donnée n’est enregistrée.",
+      "active": "Aperçu de développement · Nyssa Nightclaw · Aucune donnée enregistrée",
+      "method": "Méthode d’import",
+      "screen": "Écran à prévisualiser",
+      "choose": "Choisir un écran",
+      "exit": "Quitter l’aperçu / réinitialiser",
+      "screens": {
+        "method": "Choisir la méthode d’import",
+        "list_loading": "Chargement des personnages",
+        "list": "Liste des personnages",
+        "selected": "Personnage sélectionné",
+        "confirm": "Confirmer le personnage Lodestone",
+        "loading": "Import du personnage (3 s par étape)",
+        "complete": "Personnage ajouté",
+        "partial": "Ajouté — progression partielle",
+        "refresh_failed": "Ajouté — actualisation échouée",
+        "empty": "Aucun personnage trouvé",
+        "error": "Échec de la requête",
+        "reconnect": "Reconnexion XIVAuth nécessaire",
+        "transferred": "Transféré vers votre compte",
+        "transfer": "Terminer le transfert du personnage"
+      }
+    },
+    "subtitle": "Ajoutez votre personnage à FullParty. Choisissez comment procéder.",
+    "recommended": "Recommandé",
+    "methods": {
+      "xivauth": {
+        "title": "Importer depuis XIVAuth",
+        "description": "Nous recommandons XIVAuth pour commencer rapidement. Connectez votre compte et choisissez un personnage vérifié à importer.",
+        "benefits": {
+          "no_manual_verification": "Aucune vérification manuelle sur Lodestone",
+          "automatic_claim": "Revendication automatique du personnage"
+        }
+      },
+      "lodestone": {
+        "title": "Rechercher sur Lodestone",
+        "description": "Trouvez votre personnage sur Lodestone par nom et Monde. Vous pourrez ensuite le vérifier en participant ou en revendiquer la propriété.",
+        "benefits": {
+          "unverified": "Commence avec le statut « Non vérifié »",
+          "all_worlds": "Recherche sur tous les centres de données et Mondes"
+        }
+      }
+    },
+    "connect": "Connecter XIVAuth",
+    "continue": "Continuer",
+    "reconnect": "Reconnecter XIVAuth",
+    "select_xivauth": "Vos personnages XIVAuth",
+    "select_xivauth_help": "Choisissez le personnage à ajouter à FullParty.",
+    "select_lodestone": "Trouvez votre personnage",
+    "select_lodestone_help": "Recherchez par nom. Sélectionnez un monde d’origine pour affiner les résultats.",
+    "change_method": "Changer de méthode",
+    "character_name": "Nom du personnage",
+    "name_placeholder": "ex. Giki Chomusuke",
+    "world": "Monde d’origine",
+    "all_worlds": "Tous les mondes",
+    "search": "Rechercher",
+    "finding": "Recherche des personnages…",
+    "refine": "Les 20 premiers résultats sont affichés. Choisissez un monde ou précisez le nom.",
+    "empty_xivauth": "Aucun personnage vérifié trouvé",
+    "empty_xivauth_help": "Vérifiez un personnage sur XIVAuth, puis rechargez cette liste. Vous pouvez aussi rechercher sur Lodestone.",
+    "empty_lodestone": "Aucun personnage trouvé",
+    "empty_lodestone_help": "Vérifiez l’orthographe et le monde d’origine, puis réessayez.",
+    "reload": "Recharger les personnages",
+    "confirm_title": "Est-ce votre personnage ?",
+    "confirm_xivauth": "Ce personnage sera ajouté et automatiquement revendiqué grâce à votre vérification XIVAuth.",
+    "confirm_lodestone": "Ce personnage sera lié à votre compte sans être vérifié. La recherche ne constitue pas une revendication.",
+    "choose_another": "En choisir un autre",
+    "confirm_button": "Ajouter ce personnage",
+    "progress": {
+      "profile": {
+        "title": "Préparation de votre personnage",
+        "subtitle": "Nous confirmons vos informations et chargeons votre profil Lodestone."
+      },
+      "classes": {
+        "title": "Chargement des classes",
+        "subtitle": "Nous récupérons les niveaux de vos jobs de combat, classes d’artisanat et de récolte sur le Lodestone."
+      },
+      "phantom_jobs": {
+        "title": "Chargement des jobs fantômes",
+        "subtitle": "Nous récupérons les niveaux de vos jobs fantômes et votre progression sur l’île de Lunule."
+      },
+      "achievements": {
+        "title": "Vérification des hauts faits",
+        "subtitle": "Nous recherchons les hauts faits Lodestone confirmant vos victoires dans la Tour fourchue."
+      },
+      "fflogs": {
+        "title": "Vérification des données FF Logs",
+        "subtitle": "Nous consultons la progression disponible dans les journaux de combat pour Forked Tower: Blood et Magic."
+      },
+      "saving": {
+        "title": "Finalisation",
+        "subtitle": "Nous enregistrons les données actualisées de votre personnage dans FullParty."
+      }
+    },
+    "loading_wait": "Cela peut prendre un moment. Gardez cette page ouverte.",
+    "complete_title": "Personnage ajouté",
+    "complete_claimed": "Votre personnage a été ajouté avec le statut Revendiqué. Sa propriété est confirmée et il est lié à votre compte.",
+    "complete_verified": "Votre personnage a été ajouté avec le statut Vérifié par participation et il est lié à votre compte.",
+    "complete_unverified": "Votre personnage a été ajouté à votre compte avec le statut Non vérifié.",
+    "next_steps": {
+      "title": "Et maintenant ?",
+      "description": "Trouvez un groupe, découvrez les prochains runs ou personnalisez votre profil.",
+      "groups": "Trouver des groupes",
+      "runs": "Découvrir les runs",
+      "profile": "Personnaliser le profil"
+    },
+    "verification_next_title": "Choisissez comment vérifier votre personnage",
+    "refresh_failed": "Votre personnage a été ajouté, mais ses données n’ont pas pu être entièrement chargées. Réessayez ou actualisez-les plus tard depuis Mes personnages.",
+    "refresh_partial": "Vos données Lodestone sont enregistrées, mais certaines données FF Logs sont temporairement indisponibles. Réessayez ou actualisez-les plus tard.",
+    "retry": "Réessayer le chargement",
+    "participation_title": "Vérifier par participation",
+    "participation_help": "Comment ça marche ?",
+    "participation_description": "Participez à 3 sorties terminées admissibles auprès de groupes indépendants pour obtenir le statut Vérifié. Une revendication prouvée via Lodestone ou XIVAuth peut toujours remplacer ce lien.",
+    "claim_title": "Revendiquer votre personnage",
+    "claim_description": "Ajoutez un code de vérification à votre profil Lodestone, puis faites-le vérifier ici pour revendiquer votre personnage.",
+    "claim_now": "Revendiquer maintenant",
+    "my_characters": "Aller à Mes personnages",
+    "errors": {
+      "generic": "Une erreur est survenue. Veuillez réessayer.",
+      "busy": "Ce personnage est en cours de traitement. Patientez un instant et réessayez.",
+      "session": "Votre session a expiré. Actualisez la page et reconnectez-vous.",
+      "rate_limit": "Trop de requêtes. Veuillez patienter une minute.",
+      "character_taken": "Ce personnage est déjà lié à un autre compte et ne peut pas être ajouté ici. Une revendication vérifiée ou une récupération examinée par un administrateur est nécessaire.",
+      "lodestone_unavailable": "Impossible de charger les données de ce personnage depuis Lodestone. Réessayez dans un moment.",
+      "xivauth_reconnect": "Votre connexion XIVAuth doit être renouvelée. Reconnectez votre compte.",
+      "xivauth_unavailable": "XIVAuth est temporairement indisponible. Veuillez réessayer.",
+      "xivauth_character_unavailable": "Ce personnage n’est plus disponible comme personnage vérifié sur votre compte XIVAuth. Rechargez la liste.",
+      "xivauth_cancelled": "La connexion à XIVAuth n’a pas été terminée. Réessayez ou recherchez sur Lodestone.",
+      "xivauth_link_conflict": "Ce compte XIVAuth n’a pas pu être lié. Il appartient peut-être déjà à un autre compte FullParty."
+    }
+  },
+  "claim_flow": {
+    "title": "Revendiquer votre personnage",
+    "subtitle": "Confirmez que ce personnage vous appartient en ajoutant un court code à son profil Lodestone.",
+    "copy_title": "Copiez votre code de vérification",
+    "copy": "Copier le code",
+    "copied": "Copié",
+    "preparing": "Préparation de votre code",
+    "get_code": "Obtenir un code de vérification",
+    "expires": "Valide jusqu’au {date}.",
+    "copy_error": "La copie a échoué. Sélectionnez le code ci-dessus et copiez-le manuellement.",
+    "profile_title": "Ajoutez-le à votre profil Lodestone",
+    "profile_description": "Connectez-vous au Lodestone avec ce personnage. Modifiez le texte de son profil, collez le code sur une ligne séparée, puis enregistrez les modifications. Conservez le texte existant.",
+    "open_profile": "Ouvrir le profil Lodestone",
+    "check_title": "Revenez revendiquer votre personnage",
+    "check_description": "Une fois vos modifications enregistrées, nous chercherons votre code sur le profil public.",
+    "verify": "Vérifier et revendiquer",
+    "help": "Le code est introuvable ? Vérifiez que vous avez modifié le bon personnage et enregistré son profil. Les changements du Lodestone peuvent prendre quelques minutes. Laissez le code en place et réessayez.",
+    "checking_title": "Vérification de votre profil Lodestone",
+    "checking_description": "Nous cherchons votre code dans la dernière version de votre profil. Cela peut prendre un moment.",
+    "success_title": "Personnage revendiqué",
+    "success_description": "La propriété est confirmée. Votre personnage est désormais revendiqué : un autre compte ne peut pas le revendiquer sans examen par l’équipe.",
+    "remove_code": "Vous pouvez maintenant retirer le code FullParty de votre profil Lodestone. Votre revendication restera active.",
+    "preview": {
+      "help": "Prévisualisez les écrans de revendication de Nyssa. La revendication est simulée : aucun code n'est copié et aucune revendication n'est effectuée. Le bouton d'aide Discord ouvre le véritable serveur d'assistance. Les écrans de conflit sont des maquettes.",
+      "active": "Aperçu de développement · Nyssa Nightclaw · Aucune donnée de personnage modifiée",
+      "exit": "Quitter l'aperçu / restaurer le parcours réel",
+      "screens": {
+        "preparing": "Préparation du code de vérification",
+        "no_code": "Aucun code de vérification",
+        "instructions": "Instructions · Personnage non vérifié",
+        "instructions_verified": "Instructions · Personnage vérifié",
+        "copied": "Code copié",
+        "copy_error": "Presse-papiers indisponible",
+        "checking": "Vérification du profil Lodestone",
+        "complete": "Revendication réussie",
+        "code_not_found": "Code introuvable sur le profil",
+        "expired_code": "Code de vérification expiré",
+        "code_changed": "Code de vérification modifié",
+        "lodestone_unavailable": "Lodestone indisponible",
+        "rate_limit": "Trop de vérifications",
+        "session": "Session expirée",
+        "unavailable": "Personnage devenu indisponible",
+        "generic": "Erreur inattendue",
+        "linked_unverified": "Autre compte · Personnage non vérifié",
+        "linked_verified": "Autre compte · Personnage vérifié",
+        "claimed_elsewhere": "Autre compte · Personnage revendiqué",
+        "ownership_changed": "Le compte lié à ce personnage a changé pendant la revendication. Générez un nouveau code et réessayez.",
+        "transfer": "Terminer le transfert du personnage"
+      }
+    },
+    "errors": {
+      "code_not_found": "Le code exact est introuvable sur le profil de ce personnage. Enregistrez vos modifications sur le Lodestone, patientez quelques minutes, puis réessayez.",
+      "expired_code": "Ce code a expiré. Obtenez-en un nouveau et remplacez l’ancien sur votre profil Lodestone.",
+      "code_changed": "Votre code de vérification a changé. Récupérez le code actuel et mettez votre profil Lodestone à jour avant de réessayer.",
+      "lodestone_unavailable": "Le Lodestone est inaccessible pour le moment. Votre personnage est inchangé ; veuillez réessayer plus tard.",
+      "rate_limit": "Trop de vérifications. Patientez une minute avant de réessayer.",
+      "session": "Votre session a expiré. Rechargez la page et reconnectez-vous si nécessaire.",
+      "unavailable": "Ce personnage ne peut plus être revendiqué depuis ce compte. Retournez à Mes personnages.",
+      "generic": "La vérification n’a pas pu aboutir. Veuillez réessayer.",
+      "ownership_changed": "Le compte lié à ce personnage a changé pendant la revendication. Générez un nouveau code et réessayez."
+    },
+    "conflicts": {
+      "linked_elsewhere": {
+        "title": "Ce personnage est lié à un autre compte",
+        "description": "Pour transférer ce personnage sur votre compte, confirmez qu'il vous appartient avec un code sur son profil Lodestone. Le lien actuel reste en place jusqu'à la vérification de votre revendication."
+      },
+      "claimed_elsewhere": {
+        "title": "Ce personnage est déjà revendiqué",
+        "description": "Un autre compte en a confirmé la propriété. S'il s'agit de votre personnage, rejoignez le Discord FullParty et demandez de l'aide à l'équipe. La revendication existante reste en place jusqu'à la résolution du conflit par l'équipe."
+      }
+    },
+    "conflict_subtitle": "Consultez la prochaine étape concernant la propriété de ce personnage.",
+    "claim_with_code": "Continuer avec la vérification Lodestone",
+    "support_discord": "Obtenir de l'aide sur Discord",
+    "transfer_title": "Revendiquez ce personnage pour l’ajouter",
+    "transfer_unverified": "Ce personnage est lié à un autre compte avec le statut Non vérifié. Effectuez la vérification par code Lodestone ci-dessous pour le transférer vers votre compte avec le statut Revendiqué. Il reste lié à l’autre compte en attendant.",
+    "transfer_verified": "Ce personnage est lié à un autre compte avec le statut Vérifié par participation. Effectuez la vérification par code Lodestone ci-dessous pour le transférer vers votre compte avec le statut Revendiqué. Il reste lié à l’autre compte en attendant."
+  },
+  "transfer": {
+    "title": "Personnage transféré vers ton compte",
+    "description": "Ce personnage était lié à un autre compte et a maintenant été transféré vers le tien. Pour toute question, contacte-nous sur Discord.",
+    "history": "Historique",
+    "upcoming": "Runs à venir",
+    "history_help": "Conserve les participations et candidatures passées, ou repars avec un historique vide sur ton compte.",
+    "upcoming_help": "Conserve les inscriptions et places attribuées à venir, ou retire-les pour libérer les places pour d’autres joueurs.",
+    "view_runs": "Voir les runs ({count})",
+    "view_more": "En savoir plus",
+    "no_date": "Date non définie",
+    "empty": "Aucun run dans cette section.",
+    "keep_history": "Conserver l’historique",
+    "discard_history": "Ignorer l’historique",
+    "keep_upcoming": "Conserver les runs à venir",
+    "discard_upcoming": "Abandonner les runs à venir",
+    "finish": "Confirmer les choix et continuer",
+    "privacy": "Les réponses privées, notes et messages restent sur le compte d’origine. Les données FF Logs restent liées au personnage. Ignorer l’historique ne supprime pas les données des runs d’origine.",
+    "audit_completed": "Choix des runs du transfert de personnage enregistrés.",
+    "errors": {
+      "generic": "Impossible d’enregistrer tes choix. Réessaie.",
+      "duplicate": "Tu as déjà une inscription ou un autre personnage attribué à l’un de ces runs. Résous ce conflit ou abandonne les runs à venir hérités.",
+      "ineligible": "Tu ne peux pas actuellement participer à l’un de ces groupes ou runs. Contacte le groupe ou abandonne les runs à venir hérités.",
+      "already_completed": "Ces choix ont déjà été enregistrés. Recharge la page pour continuer."
+    },
+    "automatic_title": "Propriété confirmée via XIVAuth",
+    "automatic_description": "Ce personnage était lié à un autre compte sans avoir été entièrement revendiqué. Ton lien XIVAuth vérifié a fourni une preuve de propriété plus solide : nous avons donc transféré le personnage sur ton compte.",
+    "completion_title": "Terminer le transfert du personnage",
+    "completion_description": "Ton personnage est maintenant lié à ton compte. Choisis les participations passées et les engagements à venir que tu souhaites conserver."
+  }
 }

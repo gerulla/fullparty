@@ -28,7 +28,7 @@ const items = computed<DropdownMenuItem[][]>(() => [
 			label: t('navigation.topbar.menu.profile'),
 			icon: 'i-lucide-user',
 			onSelect(){
-				router.get(route('dashboard'));
+				if (user.value) router.get(route('profile.show', { user: user.value.id }));
 			}
 		},
 		{

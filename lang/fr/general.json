@@ -1,4 +1,18 @@
 {
+  "account_flags": {
+    "preview": "Prévisualiser les alertes du compte",
+    "end_preview": "Afficher les vraies alertes",
+    "preview_info": "Aperçu : Information",
+    "preview_warning": "Aperçu : Avertissement",
+    "preview_error": "Aperçu : Erreur",
+    "preview_description": "Ceci est un aperçu visuel, pas un vrai problème de compte. Le bouton ouvre Mes personnages.",
+    "title": "Ton attention est requise",
+    "view_issue": "Voir le problème",
+    "summary": "{count} problèmes non résolus. Gravité maximale : {severity}.",
+    "severity": { "info": "Information", "warning": "Avertissement", "error": "Erreur" },
+    "transfer_title": "Termine le transfert de ton personnage",
+    "transfer_description": "Choisis de conserver ou d’abandonner l’historique et les runs à venir de {character}. Ce rappel reste affiché jusqu’à l’enregistrement de tes choix."
+  },
     "recommended": "Recommandé",
     "primary": "Principal",
     "verify_now": "Vérifier maintenant",

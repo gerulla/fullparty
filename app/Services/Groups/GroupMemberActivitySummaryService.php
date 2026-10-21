@@ -10,10 +10,13 @@ use App\Models\CharacterClass;
 use App\Models\Group;
 use App\Models\PhantomJob;
 use App\Models\User;
+use App\Services\Characters\CharacterTransferHistory;
 use Illuminate\Support\Collection;
 
 final class GroupMemberActivitySummaryService
 {
+    public function __construct(private readonly CharacterTransferHistory $transferHistory) {}
+
     /**
      * @return array{last_group_run: array<string, mixed>|null, last_run: array<string, mixed>|null, recent_runs: array<int, array<string, mixed>>}
      */
@@ -90,6 +93,8 @@ final class GroupMemberActivitySummaryService
                 'slot.fieldValues',
             ])
             ->whereIn('activity_slot_assignments.character_id', $characterIds)
+            ->tap(fn ($query) => $this->transferHistory
+                ->excludeUnaccepted($query, 'activity_slot_assignments.character_id', 'activity_slot_assignments.activity_id'))
             ->whereIn('activity_slot_assignments.attendance_status', [
                 ActivitySlotAssignment::STATUS_ASSIGNED,
                 ActivitySlotAssignment::STATUS_CHECKED_IN,
@@ -141,6 +146,8 @@ final class GroupMemberActivitySummaryService
                 'fieldValues',
             ])
             ->whereIn('activity_slots.assigned_character_id', $characterIds)
+            ->tap(fn ($query) => $this->transferHistory
+                ->excludeUnaccepted($query, 'activity_slots.assigned_character_id', 'activity_slots.activity_id'))
             ->where('activity_slots.group_key', '!=', ActivitySlotBench::GROUP_KEY)
             ->where(function ($query) {
                 $query

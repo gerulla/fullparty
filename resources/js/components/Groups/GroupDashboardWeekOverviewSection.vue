@@ -6,8 +6,8 @@ import { useI18n } from "vue-i18n";
 import { localizedValue } from "@/utils/localizedValue";
 import { getActivityStatusBorderClass } from "@/utils/activityStatusMeta";
 import { createDateTimeFormatter } from "@/utils/dateTimeFormat";
-import { useTimeDisplayMode } from "@/composables/useTimeDisplayMode";
 import { toDisplayDateKey } from "@/utils/activityCalendar";
+import { useDateTimeFormat } from "@/composables/useDateTimeFormat";
 
 const props = defineProps<{
 	activities: GroupDashboardActivity[]
@@ -19,7 +19,7 @@ const { t, locale } = useI18n();
 const page = usePage();
 const fallbackLocale = computed(() => String(page.props.locale?.fallback ?? "en"));
 const scrollContainer = ref<HTMLElement | null>(null);
-const { displayTimeZone, withDisplayTimeZone } = useTimeDisplayMode();
+const { formatDateTime, displayTimeZone } = useDateTimeFormat();
 
 const parseDateKey = (value: string) => {
 	const [year, month, day] = value.split("-").map((segment) => Number.parseInt(segment, 10));
@@ -117,10 +117,10 @@ const activityStartsAtLabel = (activity: GroupDashboardActivity) => {
 		return t("groups.activities.cards.no_time");
 	}
 
-	return createDateTimeFormatter(locale.value, withDisplayTimeZone({
+	return formatDateTime(new Date(activity.starts_at), {
 		hour: "2-digit",
 		minute: "2-digit",
-	})).format(new Date(activity.starts_at));
+	});
 };
 
 const scrollByDirection = (direction: "left" | "right") => {

@@ -22,7 +22,7 @@ beforeEach(function () {
 it('defers the home datasets independently and returns empty lists after loading', function () {
     $user = User::factory()->create();
 
-    $response = $this->actingAs($user)->get(route('ui-v2.home', ['locale' => 'en']));
+    $response = $this->actingAs($user)->get(route('dashboard', ['locale' => 'en']));
 
     $response->assertOk()->assertInertia(fn (Assert $page) => $page
         ->component('V2/Home')
@@ -56,7 +56,7 @@ it('returns only the current users characters including those awaiting verificat
     $unverified = Character::factory()->unverified()->create(['user_id' => $user->id, 'name' => 'Another Character']);
     Character::factory()->create();
 
-    $this->actingAs($user)->get(route('ui-v2.home'))
+    $this->actingAs($user)->get(route('dashboard'))
         ->assertInertia(fn (Assert $page) => $page
             ->loadDeferredProps('v2-user', fn (Assert $page) => $page
                 ->where('user.id', $user->id)
@@ -108,7 +108,7 @@ it('returns only the current users applications for upcoming runs ordered by sta
     ActivityApplication::factory()->create(['activity_id' => $later->activity_id]);
     ActivityApplication::factory()->guest()->create(['activity_id' => $later->activity_id]);
 
-    $this->actingAs($user)->get(route('ui-v2.home', ['locale' => 'en']))
+    $this->actingAs($user)->get(route('dashboard', ['locale' => 'en']))
         ->assertInertia(fn (Assert $page) => $page
             ->loadDeferredProps('v2-applications', fn (Assert $page) => $page
                 ->has('applications', 2)
@@ -145,7 +145,7 @@ it('returns distinct priority memberships and includes owners without a membersh
     $banned->bans()->create(['user_id' => $user->id, 'banned_by_user_id' => $banned->owner_id]);
     $expected = collect($expected)->reject(fn ($rank) => $rank === 'member')->take(3)->all();
 
-    $this->actingAs($user)->get(route('ui-v2.home'))
+    $this->actingAs($user)->get(route('dashboard'))
         ->assertInertia(fn (Assert $page) => $page
             ->loadDeferredProps('v2-groups', fn (Assert $page) => $page
                 ->has('groups', 3)
@@ -189,7 +189,7 @@ it('only recommends future public runs in visible groups where the user is not b
         $run($attributes);
     }
 
-    $this->actingAs($user)->get(route('ui-v2.home'))
+    $this->actingAs($user)->get(route('dashboard'))
         ->assertInertia(fn (Assert $page) => $page
             ->loadDeferredProps('v2-recommended-runs', fn (Assert $page) => $page
                 ->has('recommendedRuns', 3)
@@ -210,7 +210,7 @@ it('limits the random recommendations to ten unique eligible runs', function () 
         'is_public' => true,
     ])->pluck('id');
 
-    $this->actingAs($user)->get(route('ui-v2.home'))
+    $this->actingAs($user)->get(route('dashboard'))
         ->assertInertia(fn (Assert $page) => $page
             ->loadDeferredProps('v2-recommended-runs', fn (Assert $page) => $page
                 ->has('recommendedRuns', 10)

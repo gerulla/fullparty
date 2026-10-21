@@ -14,6 +14,7 @@ use App\Services\FFLogs\ForkedTowerMagicProgressFetcher;
 use App\Services\Lodestone\ForkedTowerBloodAchievementProgressFetcher;
 use App\Services\Lodestone\ForkedTowerMagicAchievementProgressFetcher;
 use App\Services\Lodestone\LodestoneScraper;
+use App\Support\Characters\CharacterRefreshStage;
 use Carbon\CarbonInterface;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -35,9 +36,17 @@ class CharacterProfileRefreshService
      * @throws LodestoneFetchException
      * @throws LodestoneParseException
      */
-    public function refresh(Character $character, bool $ignoreCache = true): array
+    public function refresh(Character $character, bool $ignoreCache = true, ?\Closure $onProgress = null): array
     {
-        $data = $this->scraper->scrape($character->lodestone_id, ignoreCache: $ignoreCache);
+        $onProgress?->__invoke(CharacterRefreshStage::Profile, 10);
+        $data = $onProgress
+            ? $this->scraper->scrape($character->lodestone_id, ignoreCache: $ignoreCache,
+                onStage: fn (CharacterRefreshStage $stage) => $onProgress($stage, match ($stage) {
+                    CharacterRefreshStage::Classes => 25,
+                    CharacterRefreshStage::PhantomJobs => 45,
+                    default => 10,
+                }))
+            : $this->scraper->scrape($character->lodestone_id, ignoreCache: $ignoreCache);
         $refreshedAt = now();
         $character->forceFill([
             'name' => $data->name,
@@ -47,11 +56,21 @@ class CharacterProfileRefreshService
             'lodestone_refreshed_at' => $refreshedAt,
         ]);
 
-        $forkedTowerBloodProgressResult = $this->fetchForkedTowerBloodProgress($character, $ignoreCache);
+        // Group work by source so the import screen never returns to an earlier stage.
+        $forkedTowerBloodProgressResult = $this->fetchForkedTowerBloodFFLogsProgress($character, $ignoreCache, $onProgress);
+        $forkedTowerMagicProgressResult = $this->fetchForkedTowerMagicFFLogsProgress($character, $ignoreCache, $onProgress);
+        $forkedTowerBloodProgressResult = $this->withAchievementFallback(
+            $forkedTowerBloodProgressResult,
+            fn () => $this->fetchForkedTowerBloodAchievementProgress($character, $ignoreCache, $onProgress),
+        );
+        $forkedTowerMagicProgressResult = $this->withAchievementFallback(
+            $forkedTowerMagicProgressResult,
+            fn () => $this->fetchForkedTowerMagicAchievementProgress($character, $ignoreCache, $onProgress),
+        );
         $forkedTowerBloodProgress = $forkedTowerBloodProgressResult['progress'];
-        $forkedTowerMagicProgressResult = $this->fetchForkedTowerMagicProgress($character, $ignoreCache);
         $forkedTowerMagicProgress = $forkedTowerMagicProgressResult['progress'];
 
+        $onProgress?->__invoke(CharacterRefreshStage::Saving, 95);
         DB::transaction(function () use ($character, $data, $forkedTowerBloodProgress, $forkedTowerMagicProgress, $refreshedAt): void {
             $character->update([
                 'name' => $data->name,
@@ -109,29 +128,14 @@ class CharacterProfileRefreshService
     /**
      * @return array{progress: array<string, mixed>, error: array<string, mixed>|null}
      */
-    private function fetchForkedTowerBloodProgress(Character $character, bool $ignoreCache): array
+    private function fetchForkedTowerBloodFFLogsProgress(Character $character, bool $ignoreCache, ?\Closure $onProgress = null): array
     {
+        $onProgress?->__invoke(CharacterRefreshStage::FFLogs, 60);
         try {
             $progress = $this->withForkedTowerDataSource(
                 $this->forkedTowerBloodProgressFetcher->fetchForCharacter($character, ignoreCache: $ignoreCache),
                 OccultProgress::DATA_SOURCE_FFLOGS,
             );
-
-            if ($this->hasForkedTowerProgress($progress)) {
-                return [
-                    'progress' => $progress,
-                    'error' => null,
-                ];
-            }
-
-            $lodestoneAchievementProgress = $this->fetchForkedTowerBloodAchievementProgress($character, $ignoreCache);
-
-            if ($this->hasForkedTowerProgress($lodestoneAchievementProgress)) {
-                return [
-                    'progress' => $lodestoneAchievementProgress,
-                    'error' => null,
-                ];
-            }
 
             return [
                 'progress' => $progress,
@@ -156,15 +160,6 @@ class CharacterProfileRefreshService
                 'zone_id' => config('services.ff_logs.forked_tower_blood_zone_id'),
             ];
 
-            $lodestoneAchievementProgress = $this->fetchForkedTowerBloodAchievementProgress($character, $ignoreCache);
-
-            if ($this->hasForkedTowerProgress($lodestoneAchievementProgress)) {
-                return [
-                    'progress' => $lodestoneAchievementProgress,
-                    'error' => $fflogsError,
-                ];
-            }
-
             return [
                 'progress' => $this->emptyForkedTowerBloodProgress(),
                 'error' => $fflogsError,
@@ -175,8 +170,9 @@ class CharacterProfileRefreshService
     /**
      * @return array<string, mixed>
      */
-    private function fetchForkedTowerBloodAchievementProgress(Character $character, bool $ignoreCache): array
+    private function fetchForkedTowerBloodAchievementProgress(Character $character, bool $ignoreCache, ?\Closure $onProgress = null): array
     {
+        $onProgress?->__invoke(CharacterRefreshStage::Achievements, 80);
         try {
             return $this->forkedTowerBloodAchievementProgressFetcher->fetchForCharacter(
                 $character,
@@ -199,8 +195,9 @@ class CharacterProfileRefreshService
     /**
      * @return array{progress: array<string, mixed>|null, error: array<string, mixed>|null}
      */
-    private function fetchForkedTowerMagicProgress(Character $character, bool $ignoreCache): array
+    private function fetchForkedTowerMagicFFLogsProgress(Character $character, bool $ignoreCache, ?\Closure $onProgress = null): array
     {
+        $onProgress?->__invoke(CharacterRefreshStage::FFLogs, 70);
         try {
             $progress = $this->withForkedTowerDataSource(
                 $this->forkedTowerMagicProgressFetcher->fetchForCharacter(
@@ -209,22 +206,6 @@ class CharacterProfileRefreshService
                 ),
                 OccultProgress::DATA_SOURCE_FFLOGS,
             );
-
-            if ($this->hasForkedTowerProgress($progress)) {
-                return [
-                    'progress' => $progress,
-                    'error' => null,
-                ];
-            }
-
-            $lodestoneAchievementProgress = $this->fetchForkedTowerMagicAchievementProgress($character, $ignoreCache);
-
-            if ($this->hasForkedTowerProgress($lodestoneAchievementProgress)) {
-                return [
-                    'progress' => $lodestoneAchievementProgress,
-                    'error' => null,
-                ];
-            }
 
             return [
                 'progress' => $progress,
@@ -250,15 +231,6 @@ class CharacterProfileRefreshService
                 'zone_id' => config('services.ff_logs.forked_tower_magic_zone_id'),
             ];
 
-            $lodestoneAchievementProgress = $this->fetchForkedTowerMagicAchievementProgress($character, $ignoreCache);
-
-            if ($this->hasForkedTowerProgress($lodestoneAchievementProgress)) {
-                return [
-                    'progress' => $lodestoneAchievementProgress,
-                    'error' => $fflogsError,
-                ];
-            }
-
             return [
                 'progress' => null,
                 'error' => $fflogsError,
@@ -269,8 +241,9 @@ class CharacterProfileRefreshService
     /**
      * @return array<string, mixed>
      */
-    private function fetchForkedTowerMagicAchievementProgress(Character $character, bool $ignoreCache): array
+    private function fetchForkedTowerMagicAchievementProgress(Character $character, bool $ignoreCache, ?\Closure $onProgress = null): array
     {
+        $onProgress?->__invoke(CharacterRefreshStage::Achievements, 88);
         try {
             return $this->forkedTowerMagicAchievementProgressFetcher->fetchForCharacter(
                 $character,
@@ -288,6 +261,26 @@ class CharacterProfileRefreshService
                 OccultProgress::DATA_SOURCE_LODESTONE_ACHIEVEMENT,
             );
         }
+    }
+
+    /**
+     * @param  array{progress: array<string, mixed>|null, error: array<string, mixed>|null}  $result
+     * @param  \Closure(): array<string, mixed>  $fetchAchievements
+     * @return array{progress: array<string, mixed>|null, error: array<string, mixed>|null}
+     */
+    private function withAchievementFallback(array $result, \Closure $fetchAchievements): array
+    {
+        if ($this->hasForkedTowerProgress($result['progress'] ?? [])) {
+            return $result;
+        }
+
+        $achievementProgress = $fetchAchievements();
+
+        if ($this->hasForkedTowerProgress($achievementProgress)) {
+            $result['progress'] = $achievementProgress;
+        }
+
+        return $result;
     }
 
     /**

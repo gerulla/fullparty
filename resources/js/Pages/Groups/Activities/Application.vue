@@ -10,9 +10,11 @@ import { localizedValue } from "@/utils/localizedValue";
 import { getActivityStatusMeta } from "@/utils/activityStatusMeta";
 import { canAcceptActivityApplications } from "@/utils/activityLifecycle";
 import ActivityApplicationForm from "@/components/Groups/Activities/ActivityApplicationForm.vue";
-import { createDateTimeFormatter } from "@/utils/dateTimeFormat";
 import { formatRelativeTime } from "@/utils/formatRelativeTime";
 import { useMinuteTicker } from "@/composables/useMinuteTicker";
+import { useDateTimeFormat } from "@/composables/useDateTimeFormat";
+
+const { formatDateTime } = useDateTimeFormat();
 
 const props = defineProps<{
 	group: {
@@ -135,11 +137,11 @@ const dateLabel = computed(() => {
 		return t('groups.activities.cards.no_time');
 	}
 
-	return createDateTimeFormatter(locale.value, {
+	return formatDateTime(new Date(props.activity.starts_at), {
 		year: 'numeric',
 		month: '2-digit',
 		day: '2-digit',
-	}).format(new Date(props.activity.starts_at));
+	});
 });
 
 const startsAtLabel = computed(() => {
@@ -147,12 +149,11 @@ const startsAtLabel = computed(() => {
 		return t('groups.activities.cards.no_time');
 	}
 
-	return createDateTimeFormatter(locale.value, {
+	return formatDateTime(new Date(props.activity.starts_at), {
 		hour: '2-digit',
 		minute: '2-digit',
-		timeZone: 'UTC',
 		timeZoneName: 'short',
-	}).format(new Date(props.activity.starts_at));
+	});
 });
 
 const timeDurationLabel = computed(() => {

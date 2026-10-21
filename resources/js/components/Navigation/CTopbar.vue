@@ -22,7 +22,7 @@ defineProps({
 </script>
 
 <template>
-	<UDashboardNavbar>
+	<UDashboardNavbar data-account-flags-header :title="page.component === 'Profile/Show' ? t('navigation.topbar.menu.profile') : undefined">
 		<template #leading>
 			<UDashboardSidebarCollapse />
 			<div class="min-w-0">

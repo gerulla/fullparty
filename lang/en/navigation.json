@@ -61,12 +61,15 @@
       "light": "Switch to light mode",
       "dark": "Switch to dark mode"
     },
+    "language": "Language",
     "search": "Search",
     "search_bar": "Search runs, groups, or activities...",
     "time_display": {
       "label": "Time display",
       "local": "Local Time",
       "server": "Server Time",
+      "switch_local": "Switch to Local Time (LT)",
+      "switch_server": "Switch to Server Time (ST)",
       "error_title": "Time setting not saved",
       "error_description": "Try switching the time display again."
     },
@@ -85,6 +88,7 @@
       "show": "Show"
     },
     "menu": {
+      "label": "Account menu",
       "profile": "Profile",
       "settings": "Settings",
       "my_characters": "My Characters",
@@ -94,10 +98,19 @@
     }
   },
   "footer": {
+    "explore": "Explore",
+    "community": "Community",
+    "legal": "Legal",
+    "api_documentation": "API Documentation",
+    "cookie_policy": "Cookie Policy",
+    "version": "Version {version}",
+    "game_assets": "FINAL FANTASY XIV game assets © SQUARE ENIX.",
+    "independence": "FullParty is an independent community project, not affiliated with or endorsed by Square Enix.",
+    "fflogs_credit": "Additional progression data provided by {provider}.",
     "cookies": "Cookies",
     "privacy": "Privacy Policy",
     "github": "GitHub",
     "discord": "Discord",
-    "copyright": "Copyright {year} FullParty"
+    "copyright": "© {year} FullParty"
   }
 }

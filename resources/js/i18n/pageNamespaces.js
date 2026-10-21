@@ -27,7 +27,7 @@ const features = {
     'Dashboard/Account/MyApplications': ['calendar', 'groups/activities', 'party_finder'],
     'Dashboard/Account/MyCharacters': [],
     'Dashboard/Account/Notifications': [],
-    'Dashboard/Dashboard': ['groups/activities'],
+    'Profile/Show': ['groups/activities'],
     'Dashboard/Groups/Activities/Create': ['groups/activities'],
     'Dashboard/Groups/Activities/Edit': ['groups/activities'],
     'Dashboard/Groups/Activities/Index': ['calendar', 'groups/activities', 'groups/shortcuts', 'runs'],
@@ -64,7 +64,9 @@ const features = {
 }
 
 const standalone = {
-    'V2/Home': ['auth', 'characters', 'dashboard', 'groups/activities', 'groups/dashboard', 'navigation', 'notifications', 'settings'],
+    'V2/Characters/Claim': ['auth', 'characters', 'changelog', 'dashboard', 'groups/activities', 'groups/dashboard', 'navigation', 'notifications', 'settings'],
+    'V2/Characters/Create': ['auth', 'characters', 'changelog', 'dashboard', 'groups/activities', 'groups/dashboard', 'navigation', 'notifications', 'settings'],
+    'V2/Home': ['auth', 'characters', 'changelog', 'dashboard', 'groups/activities', 'groups/dashboard', 'navigation', 'notifications', 'settings'],
     'Forms/Show': ['forms'],
     'auth/Banned': [],
     'Resources/Show': ['groups/resources'],
@@ -72,14 +74,14 @@ const standalone = {
     'Legal/CookiesPolicy': ['legal'],
     'Legal/PrivacyPolicy': ['legal'],
     'Groups/Invite': ['groups/index', 'groups/invite'],
-    'auth/ForgotPassword': ['auth'],
-    'auth/LinkSocial': ['auth'],
-    'auth/Login': ['auth'],
-    'auth/Register': ['auth'],
-    'auth/ResetPassword': ['auth'],
-    'auth/VerifyEmail': ['auth'],
-    'auth/XivPlugin/Authorize': ['xivplugin'],
-    'auth/XivPlugin/DeviceCode': ['xivplugin'],
+    'auth/ForgotPassword': ['auth', 'xivplugin', 'navigation'],
+    'auth/LinkSocial': ['auth', 'xivplugin', 'navigation'],
+    'auth/Login': ['auth', 'xivplugin', 'navigation'],
+    'auth/Register': ['auth', 'xivplugin', 'navigation'],
+    'auth/ResetPassword': ['auth', 'xivplugin', 'navigation'],
+    'auth/VerifyEmail': ['auth', 'xivplugin', 'navigation'],
+    'auth/XivPlugin/Authorize': ['auth', 'xivplugin', 'navigation'],
+    'auth/XivPlugin/DeviceCode': ['auth', 'xivplugin', 'navigation'],
 }
 
 export function pageNamespaces(name, application = 'main') {

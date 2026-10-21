@@ -36,12 +36,14 @@ defineExpose({
 		:description="t('characters.add.subtitle')"
 		:ui="{ content: 'rounded-sm', header: 'border-0'}"
 	>
-		<UButton
-			:label="t('characters.add.add_button')"
-			color="neutral"
-			class="w-full cursor-pointer rounded-none"
-			icon="i-lucide-plus"
-		/>
+		<slot>
+			<UButton
+				:label="t('characters.add.add_button')"
+				color="neutral"
+				class="w-full cursor-pointer rounded-none"
+				icon="i-lucide-plus"
+			/>
+		</slot>
 
 		<template #body>
 			<div class="w-full h-full flex items-stretch gap-2" :class="xivauth_connected ? 'flex-col' : 'flex-col-reverse'">

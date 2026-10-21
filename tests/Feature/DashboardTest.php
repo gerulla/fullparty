@@ -204,12 +204,12 @@ it('renders the home banner eagerly and loads home activity data as deferred pro
 
     $this->actingAs($user);
 
-    $response = $this->get(route('dashboard'));
+    $response = $this->get(route('profile.show', ['user' => $user->id]));
 
     $response
         ->assertOk()
         ->assertInertia(fn (Assert $page) => $page
-            ->component('Dashboard/Dashboard')
+            ->component('Profile/Show')
             ->where('profile.name', 'Dashboard User')
             ->where('profile.primary_character.name', 'Meteor Survivor')
             ->where('profile.home_profile.description', 'The stars guide the party.')
@@ -330,10 +330,10 @@ it('shows the next run blob for a manual roster assignment', function () {
 
     $this->actingAs($user);
 
-    $this->get(route('dashboard'))
+    $this->get(route('profile.show', ['user' => $user->id]))
         ->assertOk()
         ->assertInertia(fn (Assert $page) => $page
-            ->component('Dashboard/Dashboard')
+            ->component('Profile/Show')
             ->missing('homeBannerDetails')
             ->missing('homeActivityOverview')
             ->loadDeferredProps('home-banner-details', fn (Assert $page) => $page
@@ -384,10 +384,10 @@ it('shows recent notifications in the home activity overview', function () {
 
     $this->actingAs($user);
 
-    $this->get(route('dashboard'))
+    $this->get(route('profile.show', ['user' => $user->id]))
         ->assertOk()
         ->assertInertia(fn (Assert $page) => $page
-            ->component('Dashboard/Dashboard')
+            ->component('Profile/Show')
             ->missing('homeActivityOverview')
             ->loadDeferredProps('home-activity-overview', fn (Assert $page) => $page
                 ->has('homeActivityOverview.notifications', 2)
@@ -456,10 +456,10 @@ it('does not use future run timestamps for recent group history', function () {
 
     $this->actingAs($user);
 
-    $this->get(route('dashboard'))
+    $this->get(route('profile.show', ['user' => $user->id]))
         ->assertOk()
         ->assertInertia(fn (Assert $page) => $page
-            ->component('Dashboard/Dashboard')
+            ->component('Profile/Show')
             ->missing('homeActivityOverview')
             ->loadDeferredProps('home-activity-overview', fn (Assert $page) => $page
                 ->has('homeActivityOverview.groups', 1)
@@ -565,10 +565,10 @@ it('shows recent groups only when the user participated in their history', funct
 
     $this->actingAs($user);
 
-    $this->get(route('dashboard'))
+    $this->get(route('profile.show', ['user' => $user->id]))
         ->assertOk()
         ->assertInertia(fn (Assert $page) => $page
-            ->component('Dashboard/Dashboard')
+            ->component('Profile/Show')
             ->missing('homeActivityOverview')
             ->loadDeferredProps('home-activity-overview', fn (Assert $page) => $page
                 ->has('homeActivityOverview.groups', 1)
@@ -669,10 +669,10 @@ it('shows the last run recap for a completed manual roster assignment', function
 
     $this->actingAs($user);
 
-    $this->get(route('dashboard'))
+    $this->get(route('profile.show', ['user' => $user->id]))
         ->assertOk()
         ->assertInertia(fn (Assert $page) => $page
-            ->component('Dashboard/Dashboard')
+            ->component('Profile/Show')
             ->missing('homeBannerDetails')
             ->loadDeferredProps('home-banner-details', fn (Assert $page) => $page
                 ->where('homeBannerDetails.last_run.activity_title', 'Chaotic Climb')
@@ -700,7 +700,7 @@ it('updates home profile customization', function () {
 
     $this->actingAs($user);
 
-    $response = $this->post(route('dashboard.profile.update'), [
+    $response = $this->post(route('profile.update', ['user' => $user->id]), [
         '_method' => 'put',
         'display_character_class_id' => $displayClass->id,
         'description' => 'Ready when the queue pops.',
@@ -742,7 +742,7 @@ it('resets home profile background image', function () {
 
     $this->actingAs($user);
 
-    $response = $this->post(route('dashboard.profile.update'), [
+    $response = $this->post(route('profile.update', ['user' => $user->id]), [
         '_method' => 'put',
         'description' => 'Keep this bio.',
         'reset_background_image' => '1',
@@ -768,7 +768,7 @@ it('deletes the old home profile background image when replacing it', function (
 
     $this->actingAs($user);
 
-    $response = $this->post(route('dashboard.profile.update'), [
+    $response = $this->post(route('profile.update', ['user' => $user->id]), [
         '_method' => 'put',
         'description' => 'Keep this bio.',
         'background_image' => UploadedFile::fake()->image('replacement.jpg', 1200, 500),
@@ -789,7 +789,7 @@ it('rejects home profile biography longer than 255 characters', function () {
 
     $this->actingAs($user);
 
-    $response = $this->post(route('dashboard.profile.update'), [
+    $response = $this->post(route('profile.update', ['user' => $user->id]), [
         '_method' => 'put',
         'description' => str_repeat('a', 256),
     ]);
@@ -816,10 +816,10 @@ it('does not expose a home banner display job without a primary character', func
 
     $this->actingAs($user);
 
-    $this->get(route('dashboard'))
+    $this->get(route('profile.show', ['user' => $user->id]))
         ->assertOk()
         ->assertInertia(fn (Assert $page) => $page
-            ->component('Dashboard/Dashboard')
+            ->component('Profile/Show')
             ->where('homeBanner.character.id', null)
             ->where('homeBanner.character.name', 'No Character User')
             ->where('homeBanner.character.world', null)
@@ -874,10 +874,10 @@ it('counts discord account setup only after the discord app is installed', funct
     ]);
 
     $this->actingAs($user)
-        ->get(route('dashboard'))
+        ->get(route('profile.show', ['user' => $user->id]))
         ->assertOk()
         ->assertInertia(fn (Assert $page) => $page
-            ->component('Dashboard/Dashboard')
+            ->component('Profile/Show')
             ->loadDeferredProps('home-account-completion', fn (Assert $page) => $page
                 ->where('homeAccountCompletion.completed_count', 5)
                 ->where('homeAccountCompletion.total_count', 6)
@@ -910,10 +910,10 @@ it('marks account completion celebration only once when all steps are complete',
 
     $this->actingAs($user);
 
-    $this->get(route('dashboard'))
+    $this->get(route('profile.show', ['user' => $user->id]))
         ->assertOk()
         ->assertInertia(fn (Assert $page) => $page
-            ->component('Dashboard/Dashboard')
+            ->component('Profile/Show')
             ->missing('homeAccountCompletion')
             ->loadDeferredProps('home-account-completion', fn (Assert $page) => $page
                 ->where('homeAccountCompletion.percent', 100)
@@ -925,10 +925,10 @@ it('marks account completion celebration only once when all steps are complete',
 
     expect($user->fresh()->account_completion_celebrated_at)->not->toBeNull();
 
-    $this->get(route('dashboard'))
+    $this->get(route('profile.show', ['user' => $user->id]))
         ->assertOk()
         ->assertInertia(fn (Assert $page) => $page
-            ->component('Dashboard/Dashboard')
+            ->component('Profile/Show')
             ->loadDeferredProps('home-account-completion', fn (Assert $page) => $page
                 ->where('homeAccountCompletion.percent', 100)
                 ->where('homeAccountCompletion.should_celebrate_completion', false)

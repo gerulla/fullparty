@@ -8,8 +8,8 @@ import ActivityHostGroupBadge from "@/components/Groups/Activities/ActivityHostG
 import { localizedValue } from "@/utils/localizedValue";
 import type { ActivityIndexItem } from "@/Types/ActivityCore";
 import { getActivityStatusMeta } from "@/utils/activityStatusMeta";
-import { createDateTimeFormatter, createRelativeTimeFormatter } from "@/utils/dateTimeFormat";
-import { useTimeDisplayMode } from "@/composables/useTimeDisplayMode";
+import { createRelativeTimeFormatter } from "@/utils/dateTimeFormat";
+import { useDateTimeFormat } from "@/composables/useDateTimeFormat";
 
 const props = defineProps<{
 	groupSlug?: string
@@ -21,7 +21,7 @@ const props = defineProps<{
 const { t, locale } = useI18n();
 const page = usePage();
 const fallbackLocale = computed(() => String(page.props.locale?.fallback ?? 'en'));
-const { withDisplayTimeZone } = useTimeDisplayMode();
+const { formatDateTime } = useDateTimeFormat();
 
 const activityDate = computed(() => props.activity.starts_at ? new Date(props.activity.starts_at) : null);
 
@@ -49,9 +49,9 @@ const dateParts = computed(() => {
 	}
 
 	return {
-		weekday: createDateTimeFormatter(locale.value, withDisplayTimeZone({ weekday: 'short' })).format(activityDate.value),
-		day: createDateTimeFormatter(locale.value, withDisplayTimeZone({ day: 'numeric' })).format(activityDate.value),
-		month: createDateTimeFormatter(locale.value, withDisplayTimeZone({ month: 'short' })).format(activityDate.value),
+		weekday: formatDateTime(activityDate.value, { weekday: 'short' }),
+		day: formatDateTime(activityDate.value, { day: 'numeric' }),
+		month: formatDateTime(activityDate.value, { month: 'short' }),
 	};
 });
 
@@ -60,13 +60,13 @@ const startsAtLabel = computed(() => {
 		return t('groups.activities.cards.no_time');
 	}
 
-	return createDateTimeFormatter(locale.value, withDisplayTimeZone({
+	return formatDateTime(activityDate.value, {
 		weekday: 'long',
 		day: 'numeric',
 		month: 'long',
 		hour: '2-digit',
 		minute: '2-digit',
-	})).format(activityDate.value);
+	});
 });
 
 const relativeLabel = computed(() => {

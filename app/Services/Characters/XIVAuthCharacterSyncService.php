@@ -3,7 +3,6 @@
 namespace App\Services\Characters;
 
 use App\DTOs\QuotaCheck;
-use App\Models\ActivityApplication;
 use App\Models\Character;
 use App\Models\User;
 use App\Services\AuditLogger;
@@ -25,6 +24,8 @@ final class XIVAuthCharacterSyncService
         private readonly AccountCharacterNotificationService $accountCharacterNotificationService,
         private readonly TextInputSanitizer $textInputSanitizer,
         private readonly QuotaService $quotaService,
+        private readonly CharacterApplicationClaimService $applicationClaims,
+        private readonly CharacterOwnershipTransferService $transfers,
     ) {}
 
     /**
@@ -70,7 +71,7 @@ final class XIVAuthCharacterSyncService
     /**
      * @param  array<string, mixed>  $payload
      */
-    public function importOne(User $user, array $payload, bool $refreshAfterSync = true): XIVAuthCharacterSyncResult
+    public function importOne(User $user, array $payload, bool $refreshAfterSync = true, bool $transferUnclaimed = false): XIVAuthCharacterSyncResult
     {
         $normalized = $this->normalizeCharacterPayload($payload);
 
@@ -83,6 +84,7 @@ final class XIVAuthCharacterSyncService
             payload: $normalized,
             refreshAfterSync: $refreshAfterSync,
             notifyExistingVerified: true,
+            transferUnclaimed: $transferUnclaimed,
         );
 
         return new XIVAuthCharacterSyncResult(
@@ -90,6 +92,7 @@ final class XIVAuthCharacterSyncService
             conflicts: $result['conflict'] !== null ? [$result['conflict']] : [],
             createdCount: $result['created'] ? 1 : 0,
             updatedCount: $result['updated'] ? 1 : 0,
+            transferred: $result['transferred'] ?? false,
         );
     }
 
@@ -102,8 +105,9 @@ final class XIVAuthCharacterSyncService
         array $payload,
         bool $refreshAfterSync,
         bool $notifyExistingVerified,
+        bool $transferUnclaimed = false,
     ): array {
-        $operation = function () use ($user, $payload): array {
+        $operation = function () use ($user, $payload, $transferUnclaimed): array {
             $character = Character::query()
                 ->where('lodestone_id', $payload['lodestone_id'])
                 ->lockForUpdate()
@@ -114,6 +118,15 @@ final class XIVAuthCharacterSyncService
                 && $character->user_id !== null
                 && (int) $character->user_id !== (int) $user->id
             ) {
+                if ($transferUnclaimed && ! $character->isClaimed()) {
+                    $character->fill(collect($payload)->only(['name', 'world', 'datacenter', 'avatar_url'])->all());
+                    $character = $this->transfers->transfer($character, $user, 'xivauth');
+
+                    return [
+                        'character' => $character, 'conflict' => null, 'created' => false,
+                        'updated' => true, 'should_announce' => true, 'transferred' => true,
+                    ];
+                }
                 Log::warning('XIVAuth character sync skipped because the character is already claimed.', [
                     'user_id' => $user->id,
                     'existing_user_id' => $character->user_id,
@@ -173,7 +186,7 @@ final class XIVAuthCharacterSyncService
 
             $character->save();
 
-            $this->claimCharacterApplications($character, $user);
+            $this->applicationClaims->claim($character, $user);
 
             return [
                 'character' => $character->fresh(),
@@ -184,17 +197,16 @@ final class XIVAuthCharacterSyncService
             ];
         };
 
-        $existingCharacter = Character::query()
-            ->where('lodestone_id', $payload['lodestone_id'])
-            ->first();
-        $needsCapacity = ! $existingCharacter instanceof Character
-            || $existingCharacter->user_id === null;
+        $sync = DB::transaction(fn () => $this->quotaService->runIf(
+            [new QuotaCheck(QuotaKey::CHARACTERS_TOTAL, $user)],
+            function () use ($payload, $user, $transferUnclaimed): bool {
+                $existing = Character::where('lodestone_id', $payload['lodestone_id'])->lockForUpdate()->first();
 
-        $sync = $needsCapacity
-            ? $this->quotaService->run([
-                new QuotaCheck(QuotaKey::CHARACTERS_TOTAL, $user),
-            ], $operation)
-            : DB::transaction($operation);
+                return ! $existing || $existing->user_id === null
+                    || ($transferUnclaimed && ! $existing->isClaimed() && (int) $existing->user_id !== (int) $user->id);
+            },
+            $operation,
+        ), 3);
 
         $character = $sync['character'];
 
@@ -236,46 +248,8 @@ final class XIVAuthCharacterSyncService
             'conflict' => null,
             'created' => $sync['created'],
             'updated' => $sync['updated'],
+            'transferred' => $sync['transferred'] ?? false,
         ];
-    }
-
-    private function claimCharacterApplications(Character $character, User $user): void
-    {
-        $applications = ActivityApplication::query()
-            ->whereNull('user_id')
-            ->where('applicant_lodestone_id', $character->lodestone_id)
-            ->lockForUpdate()
-            ->get();
-
-        if ($applications->isEmpty()) {
-            return;
-        }
-
-        $conflictingActivityIds = ActivityApplication::query()
-            ->where('user_id', $user->id)
-            ->whereIn('activity_id', $applications->pluck('activity_id'))
-            ->pluck('activity_id')
-            ->all();
-
-        foreach ($applications as $application) {
-            if (in_array($application->activity_id, $conflictingActivityIds, true)) {
-                Log::warning('Skipping guest application claim because the user already has an application for the activity.', [
-                    'application_id' => $application->id,
-                    'activity_id' => $application->activity_id,
-                    'user_id' => $user->id,
-                    'character_id' => $character->id,
-                    'lodestone_id' => $character->lodestone_id,
-                ]);
-
-                continue;
-            }
-
-            $application->update([
-                'user_id' => $user->id,
-                'selected_character_id' => $character->id,
-                'guest_access_token' => null,
-            ]);
-        }
     }
 
     private function refreshVerifiedCharacterOnce(Character $character): void

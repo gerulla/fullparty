@@ -33,3 +33,18 @@ it('shows the cookies policy page publicly', function () {
             ->component('Legal/CookiesPolicy')
         );
 });
+
+it('describes the deployed session cookie settings in the cookies policy', function (bool $expiresOnClose) {
+    config()->set('session.cookie', 'custom-session-name');
+    config()->set('session.lifetime', 90);
+    config()->set('session.expire_on_close', $expiresOnClose);
+
+    $this->get(route('legal.cookies'))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->component('Legal/CookiesPolicy')
+            ->where('cookie_settings.session_name', 'custom-session-name')
+            ->where('cookie_settings.session_minutes', 90)
+            ->where('cookie_settings.session_expires_on_close', $expiresOnClose)
+        );
+})->with([true, false]);

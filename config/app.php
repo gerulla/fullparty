@@ -54,6 +54,9 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
+    // Used only by the separate local LAN preview process, never by production.
+    'lan_preview' => (bool) env('FULLPARTY_LAN_PREVIEW', false),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone

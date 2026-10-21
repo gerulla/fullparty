@@ -1,4 +1,89 @@
 {
+  "detail": {
+    "tabs": {
+      "jobs": "Jobs & preferences",
+      "occult": "Occult Crescent",
+      "progression": "Progression"
+    },
+    "your_jobs": "Your jobs",
+    "preferences_help": "Tap a heart to choose the jobs you like playing.",
+    "phantom_jobs": "Phantom jobs",
+    "favourite": "Mark {name} as preferred",
+    "unfavourite": "Remove {name} from preferred jobs",
+    "refresh": "Refresh",
+    "remove": "Remove character",
+    "action_failed": "We couldn’t save this change. Please try again.",
+    "progress_help": "Your saved tower progress. Refresh your character to check for updates.",
+    "ownership": {
+      "unverified": {
+        "title": "Character linked to your account",
+        "description": "Ownership is not yet verified. Another account can take over only through a verified claim."
+      },
+      "verified": {
+        "title": "Verified through participation",
+        "description": "Tied to your account. A proven Lodestone or XIVAuth claim can override this."
+      },
+      "claimed": {
+        "title": "Ownership secured",
+        "description": "Claimed through Lodestone or XIVAuth. Any transfer requires admin-reviewed recovery."
+      }
+    }
+  },
+  "overview": {
+    "subtitle": "Choose your jobs. Keep your characters ready for your next run.",
+    "cleared": "Cleared",
+    "bosses_defeated": "{count}/{total} Defeated",
+    "preferred_jobs": "Preferred jobs",
+    "no_preferred_jobs": "Choose your favourites in Manage character.",
+    "manage": "Manage character",
+    "manage_named": "Manage {name}",
+    "all_characters": "All characters",
+    "ownership_confirmed": "Ownership confirmed",
+    "claim": "Claim character",
+    "claim_pending": "Claim flow coming soon",
+    "verification_title": "Unverified, verified or claimed?",
+    "verification_description": "Understand how your character is linked and protected.",
+    "verification_button": "How verification works",
+    "empty_title": "Your characters belong here",
+    "empty_description": "Add your FFXIV character to get ready for your next run."
+  },
+  "verification_guide": {
+    "help_button": "How to verify?",
+    "title": "Character verification",
+    "description": "A character can be linked to only one FullParty account at a time. Here's how the three states work.",
+    "states": {
+      "unverified": {
+        "title": "Unverified",
+        "summary": "Linked exclusively to your account",
+        "description": "You've added this character from search, but ownership has not yet been verified. It stays linked to your account unless another account completes a Lodestone or XIVAuth claim. Simply adding it elsewhere cannot take it from you."
+      },
+      "verified": {
+        "title": "Verified",
+        "summary": "Ownership confirmed through participation",
+        "description": "Attending three qualifying completed runs confirms this character as yours. It stays linked exclusively to your account. Another account can only take it over by completing the stronger Lodestone or XIVAuth claim process."
+      },
+      "claimed": {
+        "title": "Claimed",
+        "summary": "Ownership secured through a claim",
+        "description": "You've confirmed ownership through Lodestone or XIVAuth. Claimed is the strongest status: another account cannot take the character automatically, even with new proof. Any transfer requires admin-reviewed recovery."
+      }
+    },
+    "qualifying": {
+      "title": "Which runs count?",
+      "attendance": "You must actually attend a completed run. Being accepted, on standby, or marked missing does not count. Arriving late can count if you took part.",
+      "independent": "Runs you host, groups you own, and attendance you confirm yourself do not count. Attendance must be confirmed by someone with a Claimed character and an account at least 30 days old.",
+      "timing": "At most one run counts per 24 hours, with at least seven days between your first and third qualifying attendance.",
+      "same_group": "You can attend all three runs with the same group or host. Each run counts once, for the character you attended with on this account."
+    },
+    "claim": {
+      "title": "How to claim your character",
+      "button": "Claim",
+      "open_characters": "Open the {page} page.",
+      "choose_claim": "Find your character and click {claim}.",
+      "follow_instructions": "Follow the ownership verification instructions to complete your claim.",
+      "direct": "You can claim your character straight away. You don't need to earn Verified or complete three runs first."
+    }
+  },
   "title": "My Characters",
   "subtitle": "Manage your FFXIV characters and verification status.",
   "none_found": "No characters found.",
@@ -237,5 +322,245 @@
         "tba": "TBA"
       }
     }
+  },
+  "onboarding": {
+    "preview": {
+      "help": "Preview the flow with Nyssa Nightclaw. Import actions are simulated; no data is saved.",
+      "active": "Development preview · Nyssa Nightclaw · No data is saved",
+      "method": "Import method",
+      "screen": "Preview screen",
+      "choose": "Choose a screen",
+      "exit": "Exit preview / reset flow",
+      "screens": {
+        "method": "Choose import method",
+        "list_loading": "Loading character list",
+        "list": "Character list",
+        "selected": "Character selected",
+        "confirm": "Confirm Lodestone character",
+        "loading": "Importing character data (3s per stage)",
+        "complete": "Character added",
+        "partial": "Added — partial progress data",
+        "refresh_failed": "Added — data refresh failed",
+        "empty": "No characters found",
+        "error": "Request failed",
+        "reconnect": "XIVAuth reconnection required",
+        "transferred": "Transferred to your account",
+        "transfer": "Complete character transfer"
+      }
+    },
+    "subtitle": "Bring your character into FullParty. Choose how you want to add them.",
+    "recommended": "Recommended",
+    "methods": {
+      "xivauth": {
+        "title": "Import from XIVAuth",
+        "description": "XIVAuth is our recommended way to get started quickly. Connect your account and choose a verified character to import.",
+        "benefits": {
+          "no_manual_verification": "No manual Lodestone verification required",
+          "automatic_claim": "Automatic ownership claiming"
+        }
+      },
+      "lodestone": {
+        "title": "Search Lodestone",
+        "description": "Search the Lodestone by name and world to add your character. You can verify through participation or claim ownership later.",
+        "benefits": {
+          "unverified": "Starts with Unverified status",
+          "all_worlds": "Search all data centers & worlds"
+        }
+      }
+    },
+    "connect": "Connect XIVAuth",
+    "continue": "Continue",
+    "reconnect": "Reconnect XIVAuth",
+    "select_xivauth": "Your XIVAuth characters",
+    "select_xivauth_help": "Choose the character you want to bring to FullParty.",
+    "select_lodestone": "Find your character",
+    "select_lodestone_help": "Search by name. Choose a home world to narrow down the results.",
+    "change_method": "Change method",
+    "character_name": "Character name",
+    "name_placeholder": "e.g. Giki Chomusuke",
+    "world": "Home world",
+    "all_worlds": "All worlds",
+    "search": "Search",
+    "finding": "Finding characters…",
+    "refine": "Showing the first 20 matches. Add a home world or use a more specific name.",
+    "empty_xivauth": "No verified characters found",
+    "empty_xivauth_help": "Verify a character on XIVAuth, then reload this list. You can also choose Search Lodestone instead.",
+    "empty_lodestone": "No characters found",
+    "empty_lodestone_help": "Check the spelling and home world, then try again.",
+    "reload": "Reload characters",
+    "confirm_title": "Is this your character?",
+    "confirm_xivauth": "This character will be added and automatically claimed using your XIVAuth verification.",
+    "confirm_lodestone": "This character will be linked to your account as unverified. Searching does not claim them.",
+    "choose_another": "Choose another",
+    "confirm_button": "Add this character",
+    "progress": {
+      "profile": {
+        "title": "Getting your character ready",
+        "subtitle": "Confirming your character details and loading your Lodestone profile."
+      },
+      "classes": {
+        "title": "Loading class data",
+        "subtitle": "Reading your combat jobs, crafting classes, and gathering levels from Lodestone."
+      },
+      "phantom_jobs": {
+        "title": "Loading Phantom jobs",
+        "subtitle": "Reading your Phantom job levels and Occult Crescent progress."
+      },
+      "achievements": {
+        "title": "Checking achievements",
+        "subtitle": "Looking for Lodestone achievements that confirm your Forked Tower clears."
+      },
+      "fflogs": {
+        "title": "Checking FF Logs data",
+        "subtitle": "Checking available combat-log progress for Forked Tower: Blood and Magic."
+      },
+      "saving": {
+        "title": "Finishing up",
+        "subtitle": "Saving your updated character data to FullParty."
+      }
+    },
+    "loading_wait": "This can take a little while. Please keep this page open.",
+    "complete_title": "Character added",
+    "complete_claimed": "Your character has been added as Claimed. Ownership is confirmed and they're linked to your account.",
+    "complete_verified": "Your character has been added as Verified through participation and is linked to your account.",
+    "complete_unverified": "Your character has been added to your account as Unverified.",
+    "next_steps": {
+      "title": "What’s next?",
+      "description": "Find a group, explore upcoming runs, or make your profile your own.",
+      "groups": "Find groups",
+      "runs": "Explore runs",
+      "profile": "Customize profile"
+    },
+    "verification_next_title": "Choose how to verify your character",
+    "refresh_failed": "Your character was added, but we couldn’t finish loading their data. Retry now or use Refresh from My Characters later.",
+    "refresh_partial": "Your Lodestone data is saved, but some FF Logs progress is temporarily unavailable. You can retry or refresh later.",
+    "retry": "Retry loading data",
+    "participation_title": "Verify through participation",
+    "participation_help": "How does this work?",
+    "participation_description": "Participate in 3 qualifying completed runs with independent groups to reach Verified status. A proven Lodestone or XIVAuth claim can still override this link.",
+    "claim_title": "Claim your character",
+    "claim_description": "Add a verification code to your Lodestone profile, then check it here to claim ownership.",
+    "claim_now": "Claim character now",
+    "my_characters": "Go to My Characters",
+    "errors": {
+      "generic": "Something went wrong. Please try again.",
+      "busy": "This character is being processed. Wait a moment, then try again.",
+      "session": "Your session has expired. Refresh this page and sign in again.",
+      "rate_limit": "Too many requests. Please wait a minute before trying again.",
+      "character_taken": "This character is already linked to another account. They cannot be added through this flow. A verified claim or admin-reviewed recovery is required.",
+      "lodestone_unavailable": "Lodestone couldn’t return this character’s data. Please try again shortly.",
+      "xivauth_reconnect": "Your XIVAuth connection needs to be renewed. Reconnect to continue.",
+      "xivauth_unavailable": "XIVAuth is temporarily unavailable. Please try again.",
+      "xivauth_character_unavailable": "This character is no longer available as a verified character on your XIVAuth account. Reload the list and try again.",
+      "xivauth_cancelled": "XIVAuth linking wasn’t completed. You can try again or search Lodestone.",
+      "xivauth_link_conflict": "This XIVAuth account could not be linked. It may already belong to another FullParty account."
+    }
+  },
+  "claim_flow": {
+    "title": "Claim your character",
+    "subtitle": "Confirm ownership by adding a short code to your Lodestone character profile.",
+    "copy_title": "Copy your verification code",
+    "copy": "Copy code",
+    "copied": "Copied",
+    "preparing": "Preparing your code",
+    "get_code": "Get a verification code",
+    "expires": "Valid until {date}.",
+    "copy_error": "Copy failed. Select the code above and copy it manually.",
+    "profile_title": "Add it to your Lodestone profile",
+    "profile_description": "Sign in to the Lodestone with this character. Edit the character profile text, paste the code on its own line, then save your changes. Keep your existing profile text.",
+    "open_profile": "Open Lodestone profile",
+    "check_title": "Come back and claim your character",
+    "check_description": "Once your changes are saved, we will check the public profile for your code.",
+    "verify": "Check code & claim",
+    "help": "Cannot find the code? Check that you edited the right character and saved your profile. Lodestone changes can take a few minutes to appear; keep the code in place and try again.",
+    "checking_title": "Checking your Lodestone profile",
+    "checking_description": "We are looking for your code on the latest version of your profile. This can take a moment.",
+    "success_title": "Character claimed",
+    "success_description": "Ownership is confirmed. Your character is now Claimed and protected from claims by other accounts without staff review.",
+    "remove_code": "You can now remove the FullParty verification code from your Lodestone profile. Your claim will stay active.",
+    "preview": {
+      "help": "Preview Nyssa's claim screens. Claim actions are simulated; no code is copied or claim is made. The Discord help button opens the real support server. Conflict screens are UI drafts.",
+      "active": "Development preview · Nyssa Nightclaw · No character data is changed",
+      "exit": "Exit preview / restore live flow",
+      "screens": {
+        "preparing": "Preparing the verification code",
+        "no_code": "No verification code yet",
+        "instructions": "Instructions · Unverified character",
+        "instructions_verified": "Instructions · Verified character",
+        "copied": "Code copied",
+        "copy_error": "Clipboard unavailable",
+        "checking": "Checking the Lodestone profile",
+        "complete": "Claim successful",
+        "code_not_found": "Code not found on profile",
+        "expired_code": "Verification code expired",
+        "code_changed": "Verification code changed",
+        "lodestone_unavailable": "Lodestone unavailable",
+        "rate_limit": "Too many checks",
+        "session": "Session expired",
+        "unavailable": "Character no longer available",
+        "generic": "Unexpected error",
+        "linked_unverified": "Other account · Unverified character",
+        "linked_verified": "Other account · Verified character",
+        "claimed_elsewhere": "Other account · Claimed character",
+        "ownership_changed": "The account linked to this character changed while you were claiming it. Generate a new code and try again.",
+        "transfer": "Complete character transfer"
+      }
+    },
+    "errors": {
+      "code_not_found": "We could not find the exact code on this character’s profile. Save your changes on the Lodestone, wait a few minutes, then try again.",
+      "expired_code": "This code has expired. Get a new code and replace the old one on your Lodestone profile.",
+      "code_changed": "Your verification code has changed. Get the current code and update your Lodestone profile before trying again.",
+      "lodestone_unavailable": "We could not read the Lodestone right now. Your character is unchanged; please try again later.",
+      "rate_limit": "Too many checks. Please wait a minute before trying again.",
+      "session": "Your session has expired. Reload this page and sign in again if needed.",
+      "unavailable": "This character is no longer available to claim from this account. Return to My Characters.",
+      "generic": "We could not complete the check. Please try again.",
+      "ownership_changed": "The account linked to this character changed while you were claiming it. Generate a new code and try again."
+    },
+    "conflicts": {
+      "linked_elsewhere": {
+        "title": "This character is linked to another account",
+        "description": "To move this character to your account, confirm ownership with a code on their Lodestone profile. The current link stays in place until your claim is verified."
+      },
+      "claimed_elsewhere": {
+        "title": "This character is already claimed",
+        "description": "Another account has confirmed ownership. If this is your character, join the FullParty Discord and ask the team for help. The existing claim stays in place until the team resolves the conflict."
+      }
+    },
+    "conflict_subtitle": "Review the next step for this character's ownership.",
+    "claim_with_code": "Continue with Lodestone verification",
+    "support_discord": "Get help on Discord",
+    "transfer_title": "Claim this character to add it",
+    "transfer_unverified": "This character is linked to another account as Unverified. Complete the Lodestone code check below to transfer it to your account as Claimed. Until then, it stays on the other account.",
+    "transfer_verified": "This character is linked to another account as Verified through participation. Complete the Lodestone code check below to transfer it to your account as Claimed. Until then, it stays on the other account."
+  },
+  "transfer": {
+    "title": "Character transferred to your account",
+    "description": "This character was previously linked to another account and has now been transferred to yours. If you have any questions, contact us on Discord.",
+    "history": "History",
+    "upcoming": "Upcoming runs",
+    "history_help": "Keep past run participation and application history, or start with a clean history on your account.",
+    "upcoming_help": "Keep upcoming sign-ups and assigned places, or withdraw them and free those places for other players.",
+    "view_runs": "View runs ({count})",
+    "view_more": "View more",
+    "no_date": "Date not set",
+    "empty": "There are no runs in this section.",
+    "keep_history": "Keep history",
+    "discard_history": "Discard history",
+    "keep_upcoming": "Keep upcoming runs",
+    "discard_upcoming": "Discard upcoming runs",
+    "finish": "Confirm choices and continue",
+    "privacy": "Private answers, notes and messages stay with the original account. FF Logs data stays with the character. Discarding history does not erase the original run records.",
+    "audit_completed": "Character transfer run choices saved.",
+    "errors": {
+      "generic": "Your choices could not be saved. Please try again.",
+      "duplicate": "You already have a sign-up or another character assigned to one of these runs. Resolve that conflict before keeping upcoming runs, or discard the inherited upcoming runs.",
+      "ineligible": "You cannot currently participate in one of these groups or runs. Contact the group before keeping upcoming runs, or discard the inherited upcoming runs.",
+      "already_completed": "These choices have already been saved. Reload the page to continue."
+    },
+    "automatic_title": "Ownership confirmed through XIVAuth",
+    "automatic_description": "We found this character linked to another account without a full ownership claim. Your verified XIVAuth link provided stronger proof of ownership, so we’ve transferred the character to your account.",
+    "completion_title": "Complete character transfer",
+    "completion_description": "Your character is now linked to your account. Choose which previous run records and upcoming commitments you want to keep."
   }
 }

@@ -5,7 +5,7 @@
     "intro": [
       "Cette politique de confidentialité s’applique uniquement au site ou service FullParty sur lequel elle est publiée. Si vous utilisez une copie auto-hébergée ou dérivée de FullParty, son exploitant doit remplacer ou adapter cette politique afin qu’elle décrive fidèlement ses propres pratiques en matière de données.",
       "{operator_sentence}",
-      "FullParty est une plateforme de gestion des groupes, candidatures, effectifs, personnages, notifications et activités associées pour les communautés de jeux en ligne."
+      "FullParty aide les communautés FFXIV à gérer les personnages, groupes, candidatures, sorties, effectifs, ressources et retours. Cette politique couvre également le bot Discord officiel de FullParty, le plugin FFXIV et les API FullParty qu’ils utilisent. Les services indépendants, notamment Discord et Square Enix, disposent de leurs propres politiques de confidentialité."
     ],
     "sections": [
       {
@@ -18,89 +18,124 @@
       {
         "title": "Les informations que nous recueillons",
         "bullets": [
-          "Les informations du compte, telles que votre adresse e-mail, nom d’utilisateur, empreinte du mot de passe si vous en définissez un, avatar et préférences du compte.",
-          "Les informations de connexion sociale et de comptes que vous choisissez de lier, telles que les identifiants de compte, noms d’affichage, avatars et adresses e-mail transmis par le fournisseur.",
-          "Les informations des personnages, telles que les identifiants Lodestone ou liés au jeu, personnages revendiqués, choix du personnage principal, classes, jobs et données de profil importées ou actualisées à votre demande.",
-          "Les informations des groupes et activités, telles que les adhésions, rôles de modération, candidatures, affectations, confirmations de présence, notes, bannissements et entrées du journal d’audit.",
-          "Les données de notification et de communication, telles que vos préférences de notification, l’état de la boîte de réception, les enregistrements de livraison et l’état de lecture des annonces système.",
-          "Les informations techniques et de sécurité, telles que l’adresse IP, l’agent utilisateur du navigateur ou de l’appareil, les sessions, les métadonnées des requêtes et les journaux de sécurité ou de prévention des abus."
+          "Informations du compte : adresse e-mail, nom d’utilisateur, empreinte du mot de passe si vous en définissez un, avatar et préférences ; identifiants des comptes de connexion liés et données de profil transmises par des fournisseurs tels que Google, Discord et XIVAuth.",
+          "Informations des personnages et de progression : nom, monde, centre de données, identifiants Lodestone, portraits, jobs, liens avec les comptes, état de vérification et données de rencontres ou de jalons obtenues auprès du Lodestone, de XIVAuth ou de FF Logs.",
+          "Informations communautaires : adhésions, candidatures et réponses, affectations, présence, notes de groupe, ressources, images téléversées, signalements, éléments de preuve conservés, décisions de modération et journaux d’audit.",
+          "Retours : réponses aux questionnaires et leurs révisions, associées à votre compte si vous êtes connecté ou à un identifiant de navigateur pour les invités. Une réponse d’invité n’est pas nécessairement anonyme, notamment si son contenu vous identifie.",
+          "Informations de communication et d’intégration : préférences de notification, contenu des messages, état de livraison et de lecture, liens avec les utilisateurs et serveurs Discord, autorisations du plugin, jetons d’accès et traces des actions d’intégration prises en charge.",
+          "Informations techniques et de prévention des abus : adresses IP, informations du navigateur et de l’appareil, sessions, métadonnées des requêtes et journaux de sécurité. Les signalements de ressources effectués par des invités utilisent un identifiant pseudonyme dérivé de l’adresse IP ou du réseau pour limiter les envois répétés ; cela ne garantit pas l’anonymat."
         ]
       },
       {
-        "title": "La provenance des informations personnelles",
+        "title": "La provenance des informations",
         "bullets": [
-          "Directement auprès de vous lorsque vous créez un compte, modifiez votre profil, liez des comptes, envoyez des candidatures, rejoignez des groupes ou utilisez FullParty d’une autre manière.",
-          "Auprès des fournisseurs d’authentification sociale lorsque vous vous connectez ou liez un compte via des services comme Google, Discord ou XIVAuth.",
-          "Auprès des fournisseurs de journaux de raid ou de données de personnages lorsque vous demandez à FullParty d’importer ou d’actualiser des informations, notamment FF Logs ou des sources liées au Lodestone.",
-          "Auprès d’autres utilisateurs lorsqu’ils gèrent des groupes, effectifs, notes de modération, invitations ou autres fonctionnalités partagées concernant votre compte ou vos personnages."
+          "Vous, lorsque vous utilisez le site, le bot officiel ou le plugin, envoyez une candidature, répondez à un questionnaire, signalez du contenu ou nous contactez.",
+          "Les fournisseurs de connexion et de liaison de comptes que vous choisissez d’utiliser.",
+          "Le Lodestone, XIVAuth et FF Logs lors de l’ajout ou de la vérification de personnages, de l’actualisation de la progression ou de l’utilisation des fonctions correspondantes de candidature et de sortie. Ces consultations peuvent être déclenchées par un modérateur examinant une candidature ou par la gestion des sorties, et pas uniquement par le titulaire du compte du personnage.",
+          "Les autres utilisateurs et les modérateurs autorisés qui gèrent les groupes, candidatures, présences, effectifs, notes et signalements concernant votre compte ou votre personnage."
         ]
       },
       {
-        "title": "Pourquoi nous utilisons vos informations",
+        "title": "Nos finalités et bases légales",
         "bullets": [
-          "Pour créer et gérer votre compte et vous permettre de vous connecter en toute sécurité.",
-          "Pour fournir les fonctionnalités principales, comme les groupes, candidatures, effectifs, notifications et la gestion des personnages.",
-          "Pour assurer les fonctions de modération, de sécurité, de prévention des abus et de journalisation d’audit.",
-          "Pour envoyer des e-mails et autres communications liés au service, notamment des avis opérationnels ou de sécurité importants.",
-          "Pour résoudre les problèmes, sécuriser, maintenir et améliorer FullParty.",
-          "Pour respecter les obligations légales applicables."
-        ]
-      },
-      {
-        "title": "Nos bases légales",
-        "paragraphs": [
-          "Nous traitons généralement vos informations personnelles parce que cela est nécessaire pour fournir le service que vous nous demandez, notamment l’accès au compte, la participation aux groupes, les candidatures, les effectifs et les notifications.",
-          "Nous traitons également des informations dans notre intérêt légitime à exploiter, sécuriser, modérer et améliorer FullParty, à condition que vos droits et libertés ne prévalent pas sur ces intérêts.",
-          "Lorsque nous nous fondons sur votre consentement, par exemple pour certaines communications facultatives ou liaisons de comptes que vous activez, vous pouvez le retirer à tout moment."
-        ]
-      },
-      {
-        "title": "Avec qui nous partageons les informations",
-        "paragraphs": [
-          "Nous partageons les informations personnelles uniquement lorsque cela est nécessaire pour exploiter FullParty de manière légale et efficace."
+          "Fonctions demandées : accès au compte, gestion des personnages, candidatures, groupes, sorties, effectifs et notifications associées. Lorsque le traitement est nécessaire à l’exécution de notre accord de service avec vous, nous nous fondons sur l’article 6, paragraphe 1, point b du RGPD.",
+          "Fonctionnement et sécurité : protéger les comptes, prévenir les spams, examiner les signalements, modérer les groupes, conserver un historique traçable, diagnostiquer les erreurs et améliorer l’ergonomie, notamment grâce aux retours volontaires. Nous nous fondons sur nos intérêts légitimes à fournir un service communautaire fiable et sûr, sous réserve de vos intérêts et droits (article 6, paragraphe 1, point f du RGPD).",
+          "Obligations légales : répondre aux exigences légales contraignantes lorsqu’elles s’appliquent (article 6, paragraphe 1, point c du RGPD).",
+          "Consentement : lorsqu’un usage particulier exige votre consentement, celui-ci doit être demandé séparément et peut être retiré. Choisir une connexion facultative ou recevoir une notification de service ne signifie pas, à lui seul, que tout traitement associé repose sur le consentement."
         ],
+        "paragraphs": [
+          "Les informations nécessaires à une fonction sont demandées dans le cadre de celle-ci. Sans les données pertinentes du compte, du personnage ou de la candidature, nous pouvons être dans l’impossibilité de la fournir. Les renseignements de profil facultatifs et les retours volontaires ne sont pas nécessaires aux autres fonctions.",
+          "Nous ne vendons pas de données personnelles et n’utilisons pas d’outils publicitaires ou d’analyse des visiteurs sur le site. Des journaux de sécurité, traces de livraison et données de progression existent néanmoins pour les finalités décrites ici."
+        ]
+      },
+      {
+        "title": "Qui peut voir vos informations",
         "bullets": [
-          "Les fournisseurs d’hébergement, d’infrastructure et de stockage.",
-          "Les fournisseurs d’envoi d’e-mails et de services de communication associés.",
-          "Les fournisseurs d’authentification sociale que vous choisissez d’utiliser.",
-          "Les fournisseurs de données de personnages, d’identité ou de journaux de raid que vous demandez à FullParty de consulter ou d’importer.",
-          "Les conseillers professionnels, forces de l’ordre, autorités de contrôle ou autres parties lorsque la divulgation est obligatoire ou raisonnablement nécessaire pour protéger des droits, la sécurité ou le service."
+          "Les propriétaires de groupes et modérateurs autorisés peuvent accéder aux informations nécessaires à la gestion de leur groupe et de leurs sorties, notamment les candidatures, personnages sélectionnés, données de progression, présences et notes de modération.",
+          "Les autres participants, membres des groupes ou visiteurs publics peuvent voir les informations accessibles selon les réglages de visibilité du profil, du groupe, de la ressource ou de l’effectif concerné. Le nom d’un personnage ou son emplacement dans un effectif peut être visible même si d’autres données du compte sont privées.",
+          "Les administrateurs du site autorisés peuvent consulter les réponses aux questionnaires, signalements et preuves conservées, assurer l’assistance et la modération, et examiner les problèmes de fonctionnement.",
+          "Le bot Discord officiel reçoit les données nécessaires aux fonctions activées, telles que les identifiants Discord, noms et images des personnages, calendriers, affectations et contenus des notifications. Les informations publiées sur un serveur sont visibles par les personnes ayant accès au canal concerné ; les alertes aux administrateurs peuvent inclure les références de signalements et des diagnostics pertinents.",
+          "Le plugin FFXIV autorisé reçoit les données de compte, de personnage, de groupe, de sortie et d’effectif permises par ses droits d’accès et peut transmettre les actions prises en charge. L’accès aux API reste soumis à l’authentification, aux périmètres d’autorisation et aux permissions de l’utilisateur concerné.",
+          "Un destinataire peut conserver un message ou une copie hors de FullParty. La suppression d’un compte ne rappelle pas automatiquement les messages déjà livrés par e-mail ou Discord."
         ]
       },
       {
-        "title": "Transferts internationaux",
-        "paragraphs": [
-          "Certains fournisseurs peuvent traiter des informations personnelles hors de votre pays, y compris hors du Royaume-Uni ou de l’EEE. Dans ce cas, nous cherchons à utiliser des fournisseurs et des dispositifs offrant un niveau de protection approprié au regard du droit applicable en matière de protection des données."
-        ]
-      },
-      {
-        "title": "Durée de conservation des informations",
+        "title": "Prestataires et contenus externes",
         "bullets": [
-          "Nous conservons les informations du compte et du profil tant que votre compte est actif, puis pendant une durée raisonnable si nécessaire pour la sécurité, le traitement des litiges, le respect de la loi ou l’intégrité des enregistrements.",
-          "Nous conservons les données des groupes, candidatures, effectifs, audits et modération aussi longtemps que nécessaire pour préserver l’historique opérationnel, la responsabilité et l’intégrité du service.",
-          "Nous conservons les notifications et enregistrements de livraison aussi longtemps que raisonnablement nécessaire pour assurer les communications, résoudre les problèmes et permettre leur audit.",
-          "Nous pouvons supprimer ou anonymiser plus tôt les informations devenues inutiles, et les conserver plus longtemps si la loi l’exige ou si cela est nécessaire pour établir, exercer ou défendre des droits en justice."
+          "Hetzner héberge le site officiel, la base de données, les fichiers stockés, le bot Discord et les services associés.",
+          "Postmark assure l’envoi des e-mails de service et traite les adresses des destinataires, le contenu des messages et les informations de livraison.",
+          "Cloudflare fournit des services de diffusion réseau et de sécurité et peut traiter les informations de connexion et de requête.",
+          "Google, Discord et XIVAuth gèrent les connexions ou liaisons de comptes que vous choisissez. Discord traite également les interactions du bot et les messages sur sa plateforme.",
+          "Le Lodestone de Square Enix, XIVAuth et FF Logs fournissent les informations de personnage, de vérification ou de progression. Les identifiants de personnage pertinents leur sont transmis lors des requêtes.",
+          "YouTube et Twitch fournissent les vidéos intégrées. Les miniatures YouTube peuvent être demandées avant que vous lanciez la lecture ; le lecteur est chargé lorsque vous démarrez la vidéo. Ces requêtes communiquent au fournisseur des informations de connexion telles que votre adresse IP.",
+          "Des conseillers professionnels, autorités de contrôle ou services chargés de l’application de la loi peuvent recevoir des informations lorsqu’une raison licite et nécessaire le justifie."
+        ],
+        "paragraphs": [
+          "Les fournisseurs externes traitent également des informations selon leurs propres conditions et politiques de confidentialité. L’hébergement de FullParty chez Hetzner ne signifie pas que les données envoyées aux services d’e-mail, d’authentification, de vidéo ou à Discord restent chez Hetzner."
         ]
       },
       {
-        "title": "Vos droits",
+        "title": "Traitements internationaux",
         "paragraphs": [
-          "Selon votre lieu de résidence et le droit applicable, vous pouvez disposer de droits d’accès, de rectification, de suppression, de limitation, d’opposition ou de portabilité concernant certaines de vos informations personnelles.",
-          "Vous pouvez également avoir le droit de retirer votre consentement lorsque celui-ci constitue la base du traitement.",
-          "Pour adresser une demande, contactez {contact}. Nous pourrons devoir vérifier votre identité avant d’y donner suite."
+          "Les fournisseurs externes peuvent traiter des informations hors de l’Espace économique européen, notamment aux États-Unis. Le lieu et les protections dépendent du fournisseur et du service concernés.",
+          "Postmark et Cloudflare publient des conditions de traitement des données décrivant leurs dispositifs de transfert international, notamment le cadre de protection des données UE–États-Unis lorsqu’il s’applique et les clauses contractuelles types de la Commission européenne. Leurs conditions actuelles sont accessibles ci-dessous. Vous pouvez contacter {contact} pour connaître les dispositions applicables à vos données et les garanties disponibles."
+        ],
+        "links": [
+          {
+            "label": "Conditions de traitement des données de Postmark",
+            "href": "https://postmarkapp.com/dpa"
+          },
+          {
+            "label": "Conditions de traitement des données de Cloudflare",
+            "href": "https://www.cloudflare.com/cloudflare-customer-dpa/"
+          }
         ]
       },
       {
-        "title": "Comment déposer une réclamation",
+        "title": "Conservation et suppression du compte",
         "paragraphs": [
-          "Si notre utilisation de vos informations personnelles vous préoccupe, veuillez d’abord nous contacter à l’adresse {contact}.",
-          "Si vous êtes au Royaume-Uni, vous pouvez également déposer une réclamation auprès de l’Information Commissioner’s Office (ICO) : https://ico.org.uk/make-a-complaint/."
+          "Les informations du compte sont conservées pendant son utilisation. Les historiques de candidatures, sorties, présences, audits, modération et retours ne font actuellement pas l’objet d’une expiration automatique générale du seul fait qu’une sortie se termine ou qu’un compte devient inactif. Ils servent à conserver l’historique des participations, assurer la modération, résoudre les litiges et rendre les activités du service traçables.",
+          "La fonction de suppression du compte retire ou remplace les données de profil et de connexion, met fin à l’accès au compte, supprime certains liens et notifications et libère les personnages liés. Elle n’efface pas tous les historiques, contenus téléversés ou messages déjà livrés ailleurs.",
+          "Vous pouvez demander un effacement plus étendu à {contact}. Nous examinons les données concernées, leur nécessité actuelle et les éventuelles exceptions légales, notamment pour protéger les droits d’autrui ou traiter des actions en justice. L’absence de demande d’effacement ne suffit pas à justifier une conservation.",
+          "Les journaux serveur, données des prestataires de livraison et sauvegardes suivent les modalités de conservation opérationnelles ou propres aux prestataires. La suppression des données du compte actif ne retire pas nécessairement immédiatement chaque copie de sauvegarde. Contactez-nous pour connaître les modalités pertinentes pour votre demande. Les durées du stockage dans le navigateur sont décrites dans la Politique relative aux cookies."
+        ]
+      },
+      {
+        "title": "Vos droits et vos choix",
+        "paragraphs": [
+          "Sous réserve des conditions applicables, vous pouvez demander l’accès, la rectification, l’effacement, la limitation du traitement ou une copie portable de vos données personnelles, et vous opposer aux traitements fondés sur l’intérêt légitime. Vous pouvez retirer votre consentement lorsqu’il constitue la base du traitement, sans remettre en cause les traitements déjà effectués licitement.",
+          "Vous pouvez gérer dans FullParty les réglages disponibles de visibilité du profil, de notifications et de liaisons de comptes. Déconnecter une intégration ou modifier une préférence ne supprime pas automatiquement les historiques ou messages détenus par des tiers.",
+          "Contactez {contact} pour exercer vos droits. Nous pouvons demander des informations proportionnées pour vérifier votre identité et retrouver les données. Nous répondons normalement dans un délai d’un mois ; si une prolongation légale est nécessaire, nous vous l’expliquons dans ce délai."
+        ]
+      },
+      {
+        "title": "Jeunes joueurs",
+        "paragraphs": [
+          "Les conditions d’âge de FFXIV, Discord et des autres services externes s’appliquent à ces services. Jouer à FFXIV ne constitue pas, à lui seul, un consentement au traitement de données personnelles par FullParty.",
+          "Les jeunes utilisateurs ainsi que leurs parents ou représentants légaux peuvent contacter {contact} pour toute question ou préoccupation concernant les informations personnelles détenues par FullParty."
+        ]
+      },
+      {
+        "title": "Réclamations",
+        "paragraphs": [
+          "Vous pouvez nous faire part de vos préoccupations à {contact}, mais nous contacter n’est pas une condition préalable à l’exercice de votre droit de déposer une réclamation auprès d’une autorité de contrôle.",
+          "Vous pouvez saisir la Data Protection Commission irlandaise ou une autre autorité compétente, notamment celle de votre résidence habituelle ou de votre lieu de travail dans l’UE/EEE. Les utilisateurs au Royaume-Uni peuvent également contacter l’Information Commissioner’s Office."
+        ],
+        "links": [
+          {
+            "label": "Data Protection Commission irlandaise",
+            "href": "https://www.dataprotection.ie/en/contact/how-contact-us"
+          },
+          {
+            "label": "Information Commissioner’s Office britannique",
+            "href": "https://ico.org.uk/make-a-complaint/"
+          }
         ]
       },
       {
         "title": "Modifications de cette politique",
         "paragraphs": [
-          "Nous pouvons mettre à jour cette politique de confidentialité de temps à autre. Nous modifierons alors la date de « Dernière mise à jour » sur cette page."
+          "Nous actualisons la date de cette page lorsque la politique change. Lorsque cela est requis, nous vous informons également des changements importants concernant l’utilisation de vos données personnelles."
         ]
       }
     ],
@@ -112,53 +147,77 @@
   },
   "cookies": {
     "intro": [
-      "Cette politique relative aux cookies s’applique uniquement au site ou service FullParty sur lequel elle est publiée. Les copies auto-hébergées ou dérivées de FullParty doivent remplacer ou adapter cette page afin de décrire fidèlement leur propre utilisation des cookies et du stockage.",
-      "Cette politique explique comment ce service FullParty utilise les cookies et technologies similaires sur le site.",
-      "Actuellement, FullParty utilise principalement les cookies et le stockage associé pour la sécurité essentielle, la connexion, la gestion des sessions et les préférences choisies par l’utilisateur."
+      "Cette politique relative aux cookies s’applique uniquement au site ou service FullParty sur lequel elle est publiée. Les copies auto-hébergées ou dérivées doivent adapter cette page à leur utilisation réelle des cookies et du stockage.",
+      "Cette politique décrit le stockage du navigateur utilisé par le site FullParty, y compris les pages de connexion et d’autorisation ouvertes depuis le bot Discord officiel ou le plugin FFXIV. Elle ne décrit pas le stockage utilisé indépendamment par l’application Discord, FFXIV ou les sites externes.",
+      "FullParty n’utilise pas d’outils publicitaires ou d’analyse des visiteurs sur le site. Le stockage ci-dessous permet la connexion, la sécurité, les préférences, la participation aux questionnaires et la récupération des contenus de l’éditeur."
     ],
     "sections": [
       {
-        "title": "Ce que sont les cookies",
+        "title": "Cookies et stockage du navigateur",
         "paragraphs": [
-          "Les cookies sont de petits fichiers texte déposés sur votre appareil lorsque vous consultez un site web. Ils aident le site à mémoriser des informations sur votre visite, par exemple votre connexion ou les préférences que vous avez choisies."
+          "Les cookies sont de petites valeurs enregistrées dans votre navigateur et transmises avec les requêtes web concernées. Le stockage local (Local Storage) conserve des données sur votre appareil entre les visites ; le stockage de session (Session Storage) dure normalement pendant la session de l’onglet. Les paramètres du navigateur, la navigation privée et la restauration des sessions peuvent modifier ces durées.",
+          "Les mécanismes de stockage internes ci-dessous sont gérés par FullParty. L’expiration est calculée à partir de la création ou du renouvellement d’un cookie ; une utilisation continue peut donc la repousser. L’effacement des données du navigateur peut le supprimer plus tôt."
         ]
       },
       {
-        "title": "Cookies et technologies similaires que nous utilisons",
+        "title": "Cookies internes",
         "bullets": [
-          "Les cookies de session et d’authentification, qui maintiennent votre connexion, assurent la sécurité des sessions et protègent l’accès au compte.",
-          "Les cookies de sécurité et de validation des requêtes, notamment ceux utilisés pour la protection CSRF et l’envoi sécurisé des formulaires.",
-          "Les cookies de préférence, par exemple celui qui mémorise la langue d’interface choisie."
+          "{session_cookie} : maintient votre session, votre connexion et l’état temporaire des opérations. Durée du cookie : {session_duration}. La limite d’inactivité côté serveur est de {session_minutes} minutes.",
+          "XSRF-TOKEN : protège les envois de formulaires contre la falsification de requêtes intersites. Durée : {session_minutes} minutes, renouvelée pendant l’utilisation.",
+          "remember_web_* : vous garde connecté si vous choisissez l’option correspondante. Durée : jusqu’à 400 jours ; la déconnexion invalide la connexion mémorisée concernée.",
+          "locale : mémorise la langue de la première page localisée ouverte ou votre sélection ultérieure. Durée : jusqu’à 400 jours, renouvelée lorsque la préférence est mémorisée.",
+          "fullparty_overview_plain_dps, fullparty_overview_numbered_parties et fullparty_overview_alliance_progress : enregistrent vos changements d’affichage des effectifs. Durée : 365 jours.",
+          "fullparty_forms : identifie un navigateur invité pour les limites de réponses aux questionnaires et, lorsque disponible, l’accès à sa réponse. Durée : 365 jours. Il s’agit d’un identifiant aléatoire de navigateur, pas d’une preuve d’identité."
         ]
       },
       {
-        "title": "Pourquoi nous les utilisons",
-        "bullets": [
-          "Pour vous permettre de vous connecter et de rester connecté pendant l’utilisation de FullParty.",
-          "Pour sécuriser les requêtes et réduire les abus ou les utilisations détournées du service.",
-          "Pour mémoriser les réglages que vous choisissez explicitement, comme vos préférences régionales ou linguistiques.",
-          "Pour maintenir la stabilité et l’utilisabilité du service pendant son fonctionnement normal."
-        ]
-      },
-      {
-        "title": "Cookies actuellement nécessaires",
-        "bullets": [
-          "Un cookie de session utilisé par l’application Laravel pour maintenir votre session.",
-          "Un cookie lié à la protection CSRF pour aider à valider les requêtes.",
-          "Un cookie de langue qui mémorise la langue choisie."
-        ]
-      },
-      {
-        "title": "Consentement",
+        "title": "Stockage local",
         "paragraphs": [
-          "Dans la configuration actuelle de FullParty, ces cookies servent aux fonctionnalités essentielles du service et aux préférences demandées par l’utilisateur, plutôt qu’à la publicité ou au suivi comportemental facultatif.",
-          "Si FullParty ajoute ultérieurement des technologies non essentielles d’analyse, de marketing ou de suivi similaire nécessitant un consentement, nous mettrons à jour cette politique et instaurerons une procédure de consentement appropriée."
+          "Ces entrées n’ont pas d’expiration automatique dans l’application. Elles restent présentes jusqu’à leur suppression par vous, votre navigateur ou l’application."
+        ],
+        "bullets": [
+          "fullparty-appearance et resource-reader-appearance : mémorisent les préférences d’affichage clair ou sombre.",
+          "fullparty-changelog-read : mémorise le dernier journal des modifications lu par un invité.",
+          "fullparty.system_banner.collapsed.* et fullparty.development_notice.dismissed : mémorisent les annonces repliées ou fermées. Le suffixe distingue une version particulière de la bannière."
         ]
       },
       {
-        "title": "Gestion des cookies",
+        "title": "Stockage de session",
+        "bullets": [
+          "resource-draft:* : conserve le contenu de ressource non enregistré et les informations de récupération dans l’onglet de l’éditeur. Il est supprimé lorsque l’application efface le brouillon concerné ou que la session de l’onglet se termine, sous réserve de la restauration des sessions par le navigateur.",
+          "resource-edit:* : conserve les jetons d’édition des ressources servant à coordonner la session actuelle. Ils sont effacés lorsque l’éditeur les libère ou que la session de l’onglet se termine, sous réserve de la restauration des sessions par le navigateur."
+        ],
         "paragraphs": [
-          "Vous pouvez contrôler ou supprimer les cookies dans les paramètres de votre navigateur. Toutefois, si vous bloquez les cookies essentiels, certaines parties de FullParty peuvent ne plus fonctionner correctement, notamment la connexion, les fonctions de sécurité et les préférences enregistrées."
+          "Effacer ce stockage peut faire perdre des modifications non enregistrées. Effacer uniquement les cookies ne supprime pas nécessairement le stockage local ou de session."
+        ]
+      },
+      {
+        "title": "Cloudflare et services tiers",
+        "paragraphs": [
+          "Les protections Cloudflare peuvent déposer des cookies lorsqu’elles sont actives, par exemple __cf_bm contre les bots (30 minutes d’inactivité) et cf_clearance pour les résultats des contrôles de sécurité (durée selon la configuration). Cloudflare décrit ces cookies et leurs finalités dans le lien ci-dessous.",
+          "Les miniatures YouTube peuvent contacter les serveurs de Google avant la lecture. Lire une vidéo YouTube ou Twitch intégrée charge le lecteur du fournisseur, qui peut utiliser son propre stockage et traiter des informations de connexion ou de visionnage. Une connexion via un fournisseur externe ou l’ouverture d’un lien externe relève également de ses pratiques de stockage."
+        ],
+        "links": [
+          {
+            "label": "Informations sur les cookies de Cloudflare",
+            "href": "https://developers.cloudflare.com/fundamentals/reference/policies-compliances/cloudflare-cookies/"
+          }
+        ]
+      },
+      {
+        "title": "Préférences et consentement",
+        "paragraphs": [
+          "Le stockage d’authentification et de sécurité des requêtes permet le service demandé. D’autres entrées mémorisent vos choix de fonctions ou préservent le travail en cours. Enregistrer une préférence n’autorise pas une publicité ou un suivi sans rapport.",
+          "L’absence d’outils d’analyse ne dispense pas automatiquement tout usage du stockage du navigateur de consentement. Les exigences dépendent de la finalité et du droit applicable, y compris pour les services tiers intégrés.",
+          "Si nous ajoutons des outils facultatifs d’analyse, de publicité ou d’autres suivis nécessitant un consentement, nous les expliquerons et recueillerons ce consentement avant leur utilisation, avec un moyen de le retirer."
+        ]
+      },
+      {
+        "title": "Gérer le stockage du navigateur",
+        "paragraphs": [
+          "Vous pouvez modifier les préférences disponibles dans FullParty et consulter ou supprimer les cookies et stockages local et de session dans les paramètres de données des sites de votre navigateur. Bloquer le stockage essentiel peut empêcher la connexion ou les envois sécurisés ; effacer les préférences peut réinitialiser l’affichage ou faire réapparaître des annonces.",
+          "La suppression du cookie des questionnaires invités peut empêcher le navigateur de reconnaître sa réponse précédente. Effacer les données du site ne supprime pas les comptes, candidatures ou réponses aux questionnaires conservés sur le serveur ; contactez-nous pour demander leur effacement.",
+          "Les fournisseurs externes gèrent le stockage sur leurs propres domaines. Utilisez leurs commandes et les paramètres de votre navigateur pour ces services."
         ]
       },
       {
@@ -170,6 +229,8 @@
     ],
     "title": "Politique relative aux cookies",
     "contact_line": "Pour toute question sur l’utilisation des cookies ou technologies similaires par ce service FullParty, contactez {controller} à l’adresse {contact}.",
-    "contact_line_fallback": "Pour toute question sur l’utilisation des cookies ou technologies similaires par ce service FullParty, contactez l’exploitant de cette instance à l’adresse {contact}."
+    "contact_line_fallback": "Pour toute question sur l’utilisation des cookies ou technologies similaires par ce service FullParty, contactez l’exploitant de cette instance à l’adresse {contact}.",
+    "session_until_close": "jusqu’à la fin de la session du navigateur",
+    "session_minutes": "{minutes} minutes"
   }
 }

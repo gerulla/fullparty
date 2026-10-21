@@ -102,7 +102,7 @@ it('loads past runs lazily using the start time boundary even if completion has 
     ($this->application)(['starts_at' => null]);
     ($this->application)(['starts_at' => now()->subDays(2), 'status' => Activity::STATUS_DRAFT]);
 
-    $this->actingAs($this->user)->get(route('ui-v2.home', ['locale' => 'en']))
+    $this->actingAs($this->user)->get(route('dashboard', ['locale' => 'en']))
         ->assertInertia(fn (Assert $page) => $page
             ->missing('applicationHistory')
             ->loadDeferredProps('v2-application-history', fn (Assert $page) => $page

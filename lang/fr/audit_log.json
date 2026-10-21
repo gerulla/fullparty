@@ -1,605 +1,613 @@
 {
+  "group": {
+    "title": "Journal d'audit",
+    "subtitle": "Consultez les activités de modération et de gestion de ce groupe."
+  },
+  "admin": {
+    "title": "Journal d'audit administrateur",
+    "subtitle": "Consultez l'activité d'audit à l'échelle du site pour les groupes, comptes et événements système.",
+    "access": "Accès administrateur"
+  },
+  "defaults": {
+    "system": "Système",
+    "no_metadata": "Aucune métadonnée supplémentaire n'a été enregistrée pour cet événement.",
+    "empty": "Vide",
+    "true": "Vrai",
+    "false": "Faux"
+  },
+  "filters": {
+    "title": "Filtres",
+    "search_placeholder": "Rechercher des titres, descriptions, utilisateurs ou actions",
+    "any_action": "Toute action",
+    "any_severity": "Toute gravité",
+    "any_user": "Tout utilisateur",
+    "any_group": "Tout groupe",
+    "any_activity": "Toutes les sorties",
+    "activity_label": "Par sortie",
+    "search_activity": "Rechercher des sorties...",
+    "unnamed_activity": "Sortie n° {id}",
+    "action": {
+      "label": "Par action"
+    },
+    "severity": {
+      "label": "Par gravité"
+    },
+    "user": {
+      "label": "Par utilisateur"
+    },
     "group": {
-        "title": "Journal d'audit",
-        "subtitle": "Consultez les activités de modération et de gestion de ce groupe."
+      "label": "Par groupe"
+    },
+    "before_date": {
+      "label": "Avant la date",
+      "placeholder": "Afficher les entrées à cette date ou avant..."
+    },
+    "after_date": {
+      "label": "Après la date",
+      "placeholder": "Afficher les entrées à cette date ou après..."
+    }
+  },
+  "severities": {
+    "info": "Infos",
+    "moderation_change": "Changement de modération",
+    "severe_change": "Changement majeur",
+    "critical": "Critique"
+  },
+  "scopes": {
+    "group": "Groupe",
+    "user": "Utilisateur",
+    "character": "Personnage",
+    "admin": "Admin",
+    "system": "Système",
+    "unknown": "Inconnu"
+  },
+  "list": {
+    "empty": "Aucune entrée du journal d'audit ne correspond aux filtres actuels.",
+    "loading_more": "Charger plus",
+    "loading": "Chargement du journal d'audit...",
+    "load_error": "Impossible de charger le journal d'audit.",
+    "retry": "Réessayer",
+    "recorded_event": "Événement d'audit enregistré",
+    "details": "Détails",
+    "changes": "Modifications",
+    "show_changes": "Afficher",
+    "hide_changes": "Masquer",
+    "old_value": "Précédent",
+    "new_value": "Nouveau"
+  },
+  "activity": {
+    "user": {
+      "registered": "a enregistré un compte.",
+      "logged_in": "s'est connecté.",
+      "password_reset": "a réinitialisé son mot de passe.",
+      "account": {
+        "deleted": "a supprimé son compte."
+      },
+      "social_account": {
+        "linked": "a lié un compte social.",
+        "unlinked": "a dissocié un compte social."
+      },
+      "discord_app": {
+        "user_installed": "a installé l'application Discord.",
+        "disconnected": "a déconnecté l'application Discord.",
+        "guild_installed": "a installé l'application Discord sur un serveur."
+      },
+      "settings": {
+        "username_updated": "a mis à jour les paramètres du nom d'utilisateur.",
+        "password_updated": "a mis à jour les paramètres du mot de passe.",
+        "notifications_updated": "a mis à jour les paramètres de notification.",
+        "profile_picture_updated": "a mis à jour la photo de profil du compte.",
+        "privacy_updated": "a mis à jour les paramètres de confidentialité."
+      }
     },
     "admin": {
-        "title": "Journal d'audit administrateur",
-        "subtitle": "Consultez l'activité d'audit à l'échelle du site pour les groupes, comptes et événements système.",
-        "access": "Accès administrateur"
+      "field_definition": {
+        "created": "a créé une définition de champ.",
+        "updated": "a mis à jour une définition de champ.",
+        "deleted": "a supprimé une définition de champ.",
+        "reordered": "a réorganisé les définitions de champs."
+      },
+      "character_class": {
+        "created": "a créé une classe de personnage.",
+        "updated": "a mis à jour une classe de personnage.",
+        "deleted": "a supprimé une classe de personnage."
+      },
+      "phantom_job": {
+        "created": "a créé un job fantôme.",
+        "updated": "a mis à jour un job fantôme.",
+        "deleted": "a supprimé un job fantôme."
+      },
+      "raid_position": {
+        "created": "a créé une position de raid.",
+        "updated": "a mis à jour une position de raid.",
+        "deleted": "a supprimé une position de raid."
+      },
+      "bozja_item": {
+        "created": "a créé un élément de Bozja.",
+        "updated": "a mis à jour un élément de Bozja.",
+        "deleted": "a supprimé un élément de Bozja."
+      },
+      "activity_type": {
+        "created": "a créé un Activity Type.",
+        "cloned": "a cloné un Activity Type.",
+        "updated": "a mis à jour un Activity Type.",
+        "published": "a publié un Activity Type.",
+        "archived": "a archivé un Activity Type."
+      },
+      "system_notification": {
+        "maintenance_sent": "a envoyé une notification de maintenance obligatoire.",
+        "announcement_sent": "a envoyé une annonce de mise à jour."
+      },
+      "system_banner": {
+        "updated": "a mis à jour la bannière système du site.",
+        "cleared": "a supprimé la bannière système du site."
+      },
+      "quota_override": {
+        "created": "a créé une exception de limite de compte.",
+        "updated": "a modifié une exception de limite de compte.",
+        "deleted": "a supprimé une exception de limite de compte."
+      },
+      "integration_client": {
+        "created": "a créé un client d’intégration.",
+        "updated": "a modifié un client d’intégration et ses autorisations.",
+        "api_token_rotated": "a renouvelé un jeton API d’intégration.",
+        "webhook_secret_rotated": "a renouvelé le secret de webhook d’une intégration."
+      },
+      "form": {
+        "created": "Formulaire créé",
+        "updated": "Brouillon du formulaire modifié",
+        "publish": "Formulaire publié",
+        "unpublish": "Formulaire dépublié",
+        "close": "Réponses au formulaire fermées",
+        "open": "Réponses au formulaire rouvertes"
+      },
+      "changelog": {
+        "created": "Brouillon de note de mise à jour créé",
+        "updated": "Note de mise à jour modifiée",
+        "published": "Note de mise à jour publiée",
+        "unpublished": "Publication d’une note de mise à jour retirée"
+      }
     },
-    "defaults": {
-        "system": "Système",
-        "no_metadata": "Aucune métadonnée supplémentaire n'a été enregistrée pour cet événement.",
-        "empty": "Vide",
-        "true": "Vrai",
-        "false": "Faux"
+    "character": {
+      "verified": "a vérifié un personnage.",
+      "refresh_requested": "a demandé une actualisation du personnage.",
+      "made_primary": "a défini un personnage comme principal.",
+      "removed": "a retiré un personnage du compte.",
+      "transferred": "a transféré un personnage entre deux comptes."
     },
-    "filters": {
-        "title": "Filtres",
-        "search_placeholder": "Rechercher des titres, descriptions, utilisateurs ou actions",
-        "any_action": "Toute action",
-        "any_severity": "Toute gravité",
-        "any_user": "Tout utilisateur",
-        "any_group": "Tout groupe",
-        "any_activity": "Toutes les sorties",
-        "activity_label": "Par sortie",
-        "search_activity": "Rechercher des sorties...",
-        "unnamed_activity": "Sortie n° {id}",
-        "action": {
-            "label": "Par action"
+    "group": {
+      "resources": {
+        "created": "a créé une ressource.",
+        "save": "a enregistré un brouillon de ressource.",
+        "submit": "a soumis des modifications de ressource.",
+        "publish": "a publié une ressource.",
+        "discard": "a abandonné des modifications de ressource.",
+        "restore": "a restauré une version de ressource.",
+        "archive": "a archivé une ressource.",
+        "unpublish": "a retiré une ressource de la publication.",
+        "organize": "a déplacé ou réordonné une ressource.",
+        "pin": "a épinglé une ressource.",
+        "unpin": "a désépinglé une ressource.",
+        "settings_updated": "a modifié les paramètres de la bibliothèque.",
+        "all_deleted": "a supprimé toutes les ressources du groupe.",
+        "deleted": "a supprimé une ressource.",
+        "collection_saved": "a enregistré une collection de ressources.",
+        "collection_deleted": "a supprimé une collection de ressources.",
+        "image_uploaded": "a importé une image de ressource.",
+        "image_updated": "a modifié les détails d’une image de ressource.",
+        "image_deleted": "a supprimé une image de ressource."
+      },
+      "created": "a créé le groupe.",
+      "updated": "a mis à jour les paramètres du groupe.",
+      "deleted": "a supprimé le groupe.",
+      "followed": "a suivi le groupe.",
+      "unfollowed": "a cessé de suivre le groupe.",
+      "discord_guild": {
+        "unlinked": "a dissocié le serveur Discord du groupe.",
+        "force_unlinked": "a forcé la dissociation du serveur Discord du groupe."
+      },
+      "notifications": {
+        "enabled": "a activé les notifications du groupe.",
+        "muted": "a coupé les notifications du groupe."
+      },
+      "membership_application": {
+        "submitted": "a envoyé une demande.",
+        "updated": "a modifié une demande.",
+        "approved": "a accepté une demande.",
+        "declined": "a refusé une demande.",
+        "form_updated": "a modifié le formulaire de demande."
+      },
+      "activity": {
+        "created": "a créé une activité.",
+        "updated": "a mis à jour une activité.",
+        "deleted": "a supprimé une activité.",
+        "application": {
+          "submitted": "a envoyé une candidature d'activité.",
+          "updated": "a mis à jour une candidature d'activité.",
+          "declined": "a refusé une candidature d'activité.",
+          "cancelled": "a clôturé une candidature d'activité après l'annulation du run.",
+          "withdrawn": "a retiré une candidature d'activité."
         },
-        "severity": {
-            "label": "Par gravité"
+        "roster": {
+          "discord_participant_synced": "Participant à la sortie synchronisé avec Discord",
+          "assigned": "a attribué un emplacement de roster.",
+          "updated": "a mis à jour une attribution de roster.",
+          "reassigned": "a réattribué un emplacement de roster.",
+          "replaced": "a remplacé une attribution de roster.",
+          "swapped": "a déplacé des personnes dans le roster.",
+          "returned_to_queue": "a renvoyé un emplacement de roster dans la file.",
+          "manual_removed": "a retiré d'un emplacement un personnage assigné manuellement.",
+          "host_marked": "a marqué un emplacement du roster comme hôte.",
+          "host_cleared": "a retiré la désignation d’hôte d’un emplacement du roster.",
+          "raid_leader_marked": "a marqué un emplacement du roster comme raid leader.",
+          "raid_leader_cleared": "a retiré la désignation de raid leader d’un emplacement du roster.",
+          "duelist_marked": "a désigné un duelliste dans le groupe.",
+          "duelist_cleared": "a retiré la désignation de duelliste.",
+          "trapper_marked": "a désigné un trappeur dans le groupe.",
+          "trapper_cleared": "a retiré la désignation de trappeur.",
+          "darter_marked": "a désigné un Darter dans le groupe.",
+          "darter_cleared": "a retiré la désignation de Darter."
         },
-        "user": {
-            "label": "Par utilisateur"
-        },
-        "group": {
-            "label": "Par groupe"
-        },
-        "before_date": {
-            "label": "Avant la date",
-            "placeholder": "Afficher les entrées à cette date ou avant..."
-        },
-        "after_date": {
-            "label": "Après la date",
-            "placeholder": "Afficher les entrées à cette date ou après..."
+        "attendance": {
+          "checked_in": "a validé la présence sur un emplacement de roster.",
+          "marked_late": "a marqué un emplacement de roster comme en retard.",
+          "check_in_reverted": "a annulé une validation de présence du roster.",
+          "group_checked_in": "a validé la présence d'un groupe ou d'une équipe entière.",
+          "marked_missing": "a marqué un emplacement de roster comme absent.",
+          "missing_reverted": "a annulé l'absence d'un emplacement de roster."
         }
-    },
-    "severities": {
-        "info": "Infos",
-        "moderation_change": "Changement de modération",
-        "severe_change": "Changement majeur",
-        "critical": "Critique"
-    },
-    "scopes": {
-        "group": "Groupe",
-        "user": "Utilisateur",
-        "character": "Personnage",
-        "admin": "Admin",
-        "system": "Système",
-        "unknown": "Inconnu"
-    },
-    "list": {
-        "empty": "Aucune entrée du journal d'audit ne correspond aux filtres actuels.",
-        "loading_more": "Charger plus",
-        "loading": "Chargement du journal d'audit...",
-        "load_error": "Impossible de charger le journal d'audit.",
-        "retry": "Réessayer",
-        "recorded_event": "Événement d'audit enregistré",
-        "details": "Détails",
-        "changes": "Modifications",
-        "show_changes": "Afficher",
-        "hide_changes": "Masquer",
-        "old_value": "Précédent",
-        "new_value": "Nouveau"
-    },
-    "activity": {
-        "user": {
-            "registered": "a enregistré un compte.",
-            "logged_in": "s'est connecté.",
-            "password_reset": "a réinitialisé son mot de passe.",
-            "account": {
-                "deleted": "a supprimé son compte."
-            },
-            "social_account": {
-                "linked": "a lié un compte social.",
-                "unlinked": "a dissocié un compte social."
-            },
-            "discord_app": {
-                "user_installed": "a installé l'application Discord.",
-                "disconnected": "a déconnecté l'application Discord.",
-                "guild_installed": "a installé l'application Discord sur un serveur."
-            },
-            "settings": {
-                "username_updated": "a mis à jour les paramètres du nom d'utilisateur.",
-                "password_updated": "a mis à jour les paramètres du mot de passe.",
-                "notifications_updated": "a mis à jour les paramètres de notification.",
-                "profile_picture_updated": "a mis à jour la photo de profil du compte.",
-                "privacy_updated": "a mis à jour les paramètres de confidentialité."
-            }
+      },
+      "invite": {
+        "created": "a créé un lien d'invitation.",
+        "revoked": "a révoqué un lien d'invitation."
+      },
+      "member": {
+        "joined": "a rejoint le groupe.",
+        "joined_via_invite": "a rejoint le groupe via une invitation.",
+        "left": "a quitté le groupe.",
+        "promoted": "a promu le rôle d'un membre.",
+        "demoted": "a rétrogradé le rôle d'un membre.",
+        "note": {
+          "created": "a ajouté une note de membre.",
+          "updated": "a mis à jour une note de membre.",
+          "deleted": "a supprimé une note de membre.",
+          "addendum": {
+            "created": "a ajouté du contexte à une note.",
+            "updated": "a mis à jour le contexte d'une note.",
+            "deleted": "a supprimé le contexte d'une note."
+          }
         },
-        "admin": {
-            "field_definition": {
-                "created": "a créé une définition de champ.",
-                "updated": "a mis à jour une définition de champ.",
-                "deleted": "a supprimé une définition de champ.",
-                "reordered": "a réorganisé les définitions de champs."
-            },
-            "character_class": {
-                "created": "a créé une classe de personnage.",
-                "updated": "a mis à jour une classe de personnage.",
-                "deleted": "a supprimé une classe de personnage."
-            },
-            "phantom_job": {
-                "created": "a créé un job fantôme.",
-                "updated": "a mis à jour un job fantôme.",
-                "deleted": "a supprimé un job fantôme."
-            },
-            "raid_position": {
-                "created": "a créé une position de raid.",
-                "updated": "a mis à jour une position de raid.",
-                "deleted": "a supprimé une position de raid."
-            },
-            "bozja_item": {
-                "created": "a créé un élément de Bozja.",
-                "updated": "a mis à jour un élément de Bozja.",
-                "deleted": "a supprimé un élément de Bozja."
-            },
-            "activity_type": {
-                "created": "a créé un Activity Type.",
-                "cloned": "a cloné un Activity Type.",
-                "updated": "a mis à jour un Activity Type.",
-                "published": "a publié un Activity Type.",
-                "archived": "a archivé un Activity Type."
-            },
-            "system_notification": {
-                "maintenance_sent": "a envoyé une notification de maintenance obligatoire.",
-                "announcement_sent": "a envoyé une annonce de mise à jour."
-            },
-            "system_banner": {
-                "updated": "a mis à jour la bannière système du site.",
-                "cleared": "a supprimé la bannière système du site."
-            },
-            "quota_override": {
-                "created": "a créé une exception de limite de compte.",
-                "updated": "a modifié une exception de limite de compte.",
-                "deleted": "a supprimé une exception de limite de compte."
-            },
-            "integration_client": {
-                "created": "a créé un client d’intégration.",
-                "updated": "a modifié un client d’intégration et ses autorisations.",
-                "api_token_rotated": "a renouvelé un jeton API d’intégration.",
-                "webhook_secret_rotated": "a renouvelé le secret de webhook d’une intégration."
-            },
-            "form": {
-                "created": "Formulaire créé",
-                "updated": "Brouillon du formulaire modifié",
-                "publish": "Formulaire publié",
-                "unpublish": "Formulaire dépublié",
-                "close": "Réponses au formulaire fermées",
-                "open": "Réponses au formulaire rouvertes"
-            },
-            "changelog": {
-                "created": "Brouillon de note de mise à jour créé",
-                "updated": "Note de mise à jour modifiée",
-                "published": "Note de mise à jour publiée",
-                "unpublished": "Publication d’une note de mise à jour retirée"
-            }
-        },
-        "character": {
-            "verified": "a vérifié un personnage.",
-            "refresh_requested": "a demandé une actualisation du personnage.",
-            "made_primary": "a défini un personnage comme principal.",
-            "removed": "a retiré un personnage du compte."
-        },
-        "group": {
-            "resources": {
-                "created": "a créé une ressource.",
-                "save": "a enregistré un brouillon de ressource.",
-                "submit": "a soumis des modifications de ressource.",
-                "publish": "a publié une ressource.",
-                "discard": "a abandonné des modifications de ressource.",
-                "restore": "a restauré une version de ressource.",
-                "archive": "a archivé une ressource.",
-                "unpublish": "a retiré une ressource de la publication.",
-                "organize": "a déplacé ou réordonné une ressource.",
-                "pin": "a épinglé une ressource.",
-                "unpin": "a désépinglé une ressource.",
-                "settings_updated": "a modifié les paramètres de la bibliothèque.",
-                "all_deleted": "a supprimé toutes les ressources du groupe.",
-                "deleted": "a supprimé une ressource.",
-                "collection_saved": "a enregistré une collection de ressources.",
-                "collection_deleted": "a supprimé une collection de ressources.",
-                "image_uploaded": "a importé une image de ressource.",
-                "image_updated": "a modifié les détails d’une image de ressource.",
-                "image_deleted": "a supprimé une image de ressource."
-            },
-            "created": "a créé le groupe.",
-            "updated": "a mis à jour les paramètres du groupe.",
-            "deleted": "a supprimé le groupe.",
-            "followed": "a suivi le groupe.",
-            "unfollowed": "a cessé de suivre le groupe.",
-            "discord_guild": {
-                "unlinked": "a dissocié le serveur Discord du groupe.",
-                "force_unlinked": "a forcé la dissociation du serveur Discord du groupe."
-            },
-            "notifications": {
-                "enabled": "a activé les notifications du groupe.",
-                "muted": "a coupé les notifications du groupe."
-            },
-            "membership_application": {
-                "submitted": "a envoyé une demande.",
-                "updated": "a modifié une demande.",
-                "approved": "a accepté une demande.",
-                "declined": "a refusé une demande.",
-                "form_updated": "a modifié le formulaire de demande."
-            },
-            "activity": {
-                "created": "a créé une activité.",
-                "updated": "a mis à jour une activité.",
-                "deleted": "a supprimé une activité.",
-                "application": {
-                    "submitted": "a envoyé une candidature d'activité.",
-                    "updated": "a mis à jour une candidature d'activité.",
-                    "declined": "a refusé une candidature d'activité.",
-                    "cancelled": "a clôturé une candidature d'activité après l'annulation du run.",
-                    "withdrawn": "a retiré une candidature d'activité."
-                },
-                "roster": {
-                    "discord_participant_synced": "Participant à la sortie synchronisé avec Discord",
-                    "assigned": "a attribué un emplacement de roster.",
-                    "updated": "a mis à jour une attribution de roster.",
-                    "reassigned": "a réattribué un emplacement de roster.",
-                    "replaced": "a remplacé une attribution de roster.",
-                    "swapped": "a déplacé des personnes dans le roster.",
-                    "returned_to_queue": "a renvoyé un emplacement de roster dans la file.",
-                    "manual_removed": "a retiré d'un emplacement un personnage assigné manuellement.",
-                    "host_marked": "a marqué un emplacement du roster comme hôte.",
-                    "host_cleared": "a retiré la désignation d’hôte d’un emplacement du roster.",
-                    "raid_leader_marked": "a marqué un emplacement du roster comme raid leader.",
-                    "raid_leader_cleared": "a retiré la désignation de raid leader d’un emplacement du roster.",
-                    "duelist_marked": "a désigné un duelliste dans le groupe.",
-                    "duelist_cleared": "a retiré la désignation de duelliste.",
-                    "trapper_marked": "a désigné un trappeur dans le groupe.",
-                    "trapper_cleared": "a retiré la désignation de trappeur.",
-                    "darter_marked": "a désigné un Darter dans le groupe.",
-                    "darter_cleared": "a retiré la désignation de Darter."
-                },
-                "attendance": {
-                    "checked_in": "a validé la présence sur un emplacement de roster.",
-                    "marked_late": "a marqué un emplacement de roster comme en retard.",
-                    "check_in_reverted": "a annulé une validation de présence du roster.",
-                    "group_checked_in": "a validé la présence d'un groupe ou d'une équipe entière.",
-                    "marked_missing": "a marqué un emplacement de roster comme absent.",
-                    "missing_reverted": "a annulé l'absence d'un emplacement de roster."
-                }
-            },
-            "invite": {
-                "created": "a créé un lien d'invitation.",
-                "revoked": "a révoqué un lien d'invitation."
-            },
-            "member": {
-                "joined": "a rejoint le groupe.",
-                "joined_via_invite": "a rejoint le groupe via une invitation.",
-                "left": "a quitté le groupe.",
-                "promoted": "a promu le rôle d'un membre.",
-                "demoted": "a rétrogradé le rôle d'un membre.",
-                "note": {
-                    "created": "a ajouté une note de membre.",
-                    "updated": "a mis à jour une note de membre.",
-                    "deleted": "a supprimé une note de membre.",
-                    "addendum": {
-                        "created": "a ajouté du contexte à une note.",
-                        "updated": "a mis à jour le contexte d'une note.",
-                        "deleted": "a supprimé le contexte d'une note."
-                    }
-                },
-                "removed": "a retiré un membre du groupe.",
-                "banned": "a banni un membre du groupe.",
-                "unbanned": "a débanni un membre."
-            },
-            "ownership": {
-                "transferred": "a transféré la propriété du groupe."
-            }
-        }
-    },
-    "activity_targeted": {
-        "group": {
-            "member": {
-                "promoted": "a promu",
-                "demoted": "a rétrogradé",
-                "removed": "a retiré",
-                "banned": "a banni",
-                "unbanned": "a débanni",
-                "joined_via_invite": "a accepté une invitation pour"
-            }
-        }
-    },
-    "activity_named": {
-        "admin": {
-            "activity_type": {
-                "created": "créé",
-                "cloned": "cloné",
-                "updated": "mis à jour",
-                "published": "publié",
-                "archived": "archivé"
-            }
-        }
-    },
-    "fields": {
-        "name": "Nom",
-        "description": "Description",
-        "profile_picture_url": "Image de profil",
-        "discord_invite_url": "Invitation Discord",
-        "title": "Titre",
-        "datacenter": "Centre de données",
-        "is_public": "Public",
-        "is_visible": "Visible",
-        "status": "Statut",
-        "role": "Rôle",
-        "note_severity": "Gravité de la note",
-        "note_excerpt": "Extrait de la note",
-        "note_body": "Texte de la note",
-        "addendum_excerpt": "Extrait du contexte",
-        "is_shared_with_groups": "Partagée avec d'autres groupes",
-        "membership_status": "Statut d'adhésion",
-        "ban_reason": "Raison du bannissement",
-        "owner_user_id": "Propriétaire",
-        "previous_role": "Rôle précédent",
-        "invite_id": "ID de l'invitation",
-        "invite_token": "Jeton d'invitation",
-        "max_uses": "Utilisations max",
-        "expires_at": "Expire le",
-        "uses": "Utilisations",
-        "slug": "Slug",
-        "activity_title": "Activité",
-        "activity_type_slug": "Type d'activité",
-        "slot_label": "Emplacement",
-        "group_label": "Groupe",
-        "source_slot_label": "Emplacement source",
-        "source_group_label": "Groupe source",
-        "source_character_name": "Personnage source",
-        "target_slot_label": "Emplacement cible",
-        "target_group_label": "Groupe cible",
-        "target_character_name": "Personnage cible",
-        "character_name": "Personnage",
-        "selected_character_name": "Personnage sélectionné",
-        "displaced_character_name": "Personnage remplacé",
-        "application_status": "Statut de candidature",
-        "review_reason": "Note de revue",
-        "starts_at": "Commence le",
-        "duration_hours": "Durée (heures)",
-        "needs_application": "Candidature requise",
-        "allow_guest_applications": "Autoriser les candidatures invitées",
-        "target_prog_point_key": "Point de progression cible",
-        "organized_by_user_id": "Organisateur",
-        "organized_by_character_id": "Personnage organisateur",
-        "checked_in_at": "Validé le",
-        "checked_in_count": "Nombre de validations",
-        "marked_missing_at": "Marqué absent le",
-        "restored_destination": "Destination restaurée",
-        "is_bench": "Emplacement de banc",
-        "field_assignment_updated": "Attribution de champ mise à jour",
-        "designation": "Désignation",
-        "moved_to_slot_label": "Déplacé vers l’emplacement",
-        "moved_to_group_label": "Déplacé vers le groupe",
-        "email": "E-mail",
-        "provider": "Fournisseur",
-        "provider_user_id": "ID utilisateur du fournisseur",
-        "membership_application_id": "Demande",
-        "applicant_user_id": "Candidat",
-        "applicant_name": "Nom du candidat",
-        "field_count": "Nombre de champs",
-        "previous_field_count": "Nombre de champs précédent",
-        "login_method": "Méthode de connexion",
-        "registration_method": "Méthode d'inscription",
-        "remember": "Se souvenir de moi",
-        "linked_while_authenticated": "Lié pendant l'authentification",
-        "lodestone_id": "ID Lodestone",
-        "verification_method": "Méthode de vérification",
-        "is_primary": "Personnage principal",
-        "changed_fields": "Champs modifiés",
-        "headline": "Titre",
-        "scheduled_for": "Prévu pour",
-        "notification_event_id": "Événement de notification",
-        "action_label": "Libellé d'action",
-        "action_url": "URL d'action",
-        "scopes": "Autorisations API",
-        "allowed_events": "Événements autorisés",
-        "outbound_events_url": "Adresse du webhook",
-        "healthcheck_url": "Adresse de vérification de disponibilité",
-        "integration_client_id": "Identifiant du client d’intégration",
-        "integration_client_name": "Client d’intégration",
-        "permissions": "Autorisations",
-        "type": "Type",
-        "version_from": "Version précédente",
-        "version_to": "Jusqu’à la version"
-    },
-    "events": {
-        "user": {
-            "registered": "Utilisateur inscrit",
-            "logged_in": "Utilisateur connecté",
-            "password_reset": "Mot de passe réinitialisé",
-            "account": {
-                "deleted": "Compte utilisateur supprimé"
-            },
-            "social_account": {
-                "linked": "Compte social lié",
-                "unlinked": "Compte social dissocié"
-            },
-            "discord_app": {
-                "user_installed": "Application Discord installée",
-                "disconnected": "Application Discord déconnectée",
-                "guild_installed": "Application Discord installée sur un serveur"
-            },
-            "settings": {
-                "username_updated": "Nom d'utilisateur mis à jour",
-                "password_updated": "Mot de passe mis à jour",
-                "notifications_updated": "Paramètres de notification mis à jour",
-                "profile_picture_updated": "Photo de profil mise à jour",
-                "privacy_updated": "Paramètres de confidentialité mis à jour"
-            }
-        },
-        "admin": {
-            "field_definition": {
-                "created": "Définition de champ créée",
-                "updated": "Définition de champ mise à jour",
-                "deleted": "Définition de champ supprimée",
-                "reordered": "Définitions de champs réorganisées"
-            },
-            "character_class": {
-                "created": "Classe de personnage créée",
-                "updated": "Classe de personnage mise à jour",
-                "deleted": "Classe de personnage supprimée"
-            },
-            "phantom_job": {
-                "created": "Job fantôme créé",
-                "updated": "Job fantôme mis à jour",
-                "deleted": "Job fantôme supprimé"
-            },
-            "raid_position": {
-                "created": "Position de raid créée",
-                "updated": "Position de raid mise à jour",
-                "deleted": "Position de raid supprimée"
-            },
-            "bozja_item": {
-                "created": "Élément de Bozja créé",
-                "updated": "Élément de Bozja mis à jour",
-                "deleted": "Élément de Bozja supprimé"
-            },
-            "activity_type": {
-                "created": "Activity Type créé",
-                "cloned": "Activity Type cloné",
-                "updated": "Activity Type mis à jour",
-                "published": "Activity Type publié",
-                "archived": "Activity Type archivé"
-            },
-            "system_notification": {
-                "maintenance_sent": "Notification de maintenance envoyée",
-                "announcement_sent": "Annonce de mise à jour envoyée"
-            },
-            "system_banner": {
-                "updated": "Bannière système mise à jour",
-                "cleared": "Bannière système supprimée"
-            },
-            "quota_override": {
-                "created": "Exception de limite de compte créée",
-                "updated": "Exception de limite de compte modifiée",
-                "deleted": "Exception de limite de compte supprimée"
-            },
-            "integration_client": {
-                "created": "Client d’intégration créé",
-                "updated": "Client d’intégration modifié",
-                "api_token_rotated": "Jeton API d’intégration renouvelé",
-                "webhook_secret_rotated": "Secret de webhook d’intégration renouvelé"
-            },
-            "form": {
-                "created": "Formulaire créé",
-                "updated": "Brouillon du formulaire modifié",
-                "publish": "Formulaire publié",
-                "unpublish": "Formulaire dépublié",
-                "close": "Réponses au formulaire fermées",
-                "open": "Réponses au formulaire rouvertes"
-            },
-            "changelog": {
-                "created": "Brouillon de note de mise à jour créé",
-                "updated": "Note de mise à jour modifiée",
-                "published": "Note de mise à jour publiée",
-                "unpublished": "Publication d’une note de mise à jour retirée"
-            }
-        },
-        "character": {
-            "verified": "Personnage vérifié",
-            "refresh_requested": "Actualisation du personnage demandée",
-            "made_primary": "Personnage défini comme principal"
-        },
-        "group": {
-            "resources": {
-                "created": "a créé une ressource.",
-                "save": "a enregistré un brouillon de ressource.",
-                "submit": "a soumis des modifications de ressource.",
-                "publish": "a publié une ressource.",
-                "discard": "a abandonné des modifications de ressource.",
-                "restore": "a restauré une version de ressource.",
-                "archive": "a archivé une ressource.",
-                "unpublish": "a retiré une ressource de la publication.",
-                "organize": "a déplacé ou réordonné une ressource.",
-                "pin": "a épinglé une ressource.",
-                "unpin": "a désépinglé une ressource.",
-                "settings_updated": "a modifié les paramètres de la bibliothèque.",
-                "all_deleted": "a supprimé toutes les ressources du groupe.",
-                "deleted": "a supprimé une ressource.",
-                "collection_saved": "a enregistré une collection de ressources.",
-                "collection_deleted": "a supprimé une collection de ressources.",
-                "image_uploaded": "a importé une image de ressource.",
-                "image_updated": "a modifié les détails d’une image de ressource.",
-                "image_deleted": "a supprimé une image de ressource."
-            },
-            "created": "Groupe créé",
-            "updated": "Paramètres du groupe mis à jour",
-            "deleted": "Groupe supprimé",
-            "followed": "Groupe suivi",
-            "unfollowed": "Groupe non suivi",
-            "notifications": {
-                "enabled": "Notifications du groupe activées",
-                "muted": "Notifications du groupe coupées"
-            },
-            "membership_application": {
-                "submitted": "Demande envoyée",
-                "updated": "Demande modifiée",
-                "approved": "Demande acceptée",
-                "declined": "Demande refusée",
-                "form_updated": "Formulaire de demande modifié"
-            },
-            "activity": {
-                "created": "Activité créée",
-                "updated": "Activité mise à jour",
-                "deleted": "Activité supprimée",
-                "application": {
-                    "submitted": "Candidature d'activité envoyée",
-                    "updated": "Candidature d'activité mise à jour",
-                    "declined": "Candidature d'activité refusée",
-                    "cancelled": "Candidature d'activité clôturée après annulation du run",
-                    "withdrawn": "Candidature d'activité retirée"
-                },
-                "roster": {
-                    "discord_participant_synced": "Participant à la sortie synchronisé avec Discord",
-                    "assigned": "Emplacement de roster attribué",
-                    "updated": "Attribution de roster mise à jour",
-                    "reassigned": "Emplacement de roster réattribué",
-                    "replaced": "Attribution de roster remplacée",
-                    "swapped": "Positions du roster déplacées",
-                    "returned_to_queue": "Emplacement de roster renvoyé à la file",
-                    "manual_removed": "Assignation manuelle retirée du roster",
-                    "host_marked": "Emplacement du roster marqué comme hôte",
-                    "host_cleared": "Désignation d’hôte du roster retirée",
-                    "raid_leader_marked": "Emplacement du roster marqué comme raid leader",
-                    "raid_leader_cleared": "Désignation de raid leader du roster retirée",
-                    "duelist_marked": "Duelliste désigné",
-                    "duelist_cleared": "Désignation de duelliste retirée",
-                    "trapper_marked": "Trappeur désigné",
-                    "trapper_cleared": "Désignation de trappeur retirée",
-                    "darter_marked": "Darter désigné",
-                    "darter_cleared": "Désignation de Darter retirée"
-                },
-                "attendance": {
-                    "checked_in": "Emplacement de roster validé",
-                    "marked_late": "Emplacement de roster marqué en retard",
-                    "check_in_reverted": "Validation du roster annulée",
-                    "group_checked_in": "Groupe du roster validé",
-                    "marked_missing": "Emplacement de roster marqué absent",
-                    "missing_reverted": "Absence du emplacement de roster annulée"
-                }
-            },
-            "invite": {
-                "created": "Lien d'invitation créé",
-                "revoked": "Lien d'invitation révoqué"
-            },
-            "member": {
-                "joined": "Membre ayant rejoint le groupe",
-                "joined_via_invite": "Membre ayant rejoint via une invitation",
-                "left": "Membre ayant quitté le groupe",
-                "promoted": "Rôle de membre promu",
-                "demoted": "Rôle de membre rétrogradé",
-                "note": {
-                    "created": "Note de membre créée",
-                    "updated": "Note de membre mise à jour",
-                    "deleted": "Note de membre supprimée",
-                    "addendum": {
-                        "created": "Contexte de note ajouté",
-                        "updated": "Contexte de note mis à jour",
-                        "deleted": "Contexte de note supprimé"
-                    }
-                },
-                "removed": "Membre retiré du groupe",
-                "banned": "Membre banni du groupe",
-                "unbanned": "Membre débanni"
-            },
-            "ownership": {
-                "transferred": "Propriété du groupe transférée"
-            }
-        }
+        "removed": "a retiré un membre du groupe.",
+        "banned": "a banni un membre du groupe.",
+        "unbanned": "a débanni un membre."
+      },
+      "ownership": {
+        "transferred": "a transféré la propriété du groupe."
+      }
     }
+  },
+  "activity_targeted": {
+    "group": {
+      "member": {
+        "promoted": "a promu",
+        "demoted": "a rétrogradé",
+        "removed": "a retiré",
+        "banned": "a banni",
+        "unbanned": "a débanni",
+        "joined_via_invite": "a accepté une invitation pour"
+      }
+    }
+  },
+  "activity_named": {
+    "admin": {
+      "activity_type": {
+        "created": "créé",
+        "cloned": "cloné",
+        "updated": "mis à jour",
+        "published": "publié",
+        "archived": "archivé"
+      }
+    }
+  },
+  "fields": {
+    "name": "Nom",
+    "description": "Description",
+    "profile_picture_url": "Image de profil",
+    "discord_invite_url": "Invitation Discord",
+    "title": "Titre",
+    "datacenter": "Centre de données",
+    "is_public": "Public",
+    "is_visible": "Visible",
+    "status": "Statut",
+    "role": "Rôle",
+    "note_severity": "Gravité de la note",
+    "note_excerpt": "Extrait de la note",
+    "note_body": "Texte de la note",
+    "addendum_excerpt": "Extrait du contexte",
+    "is_shared_with_groups": "Partagée avec d'autres groupes",
+    "membership_status": "Statut d'adhésion",
+    "ban_reason": "Raison du bannissement",
+    "owner_user_id": "Propriétaire",
+    "previous_role": "Rôle précédent",
+    "invite_id": "ID de l'invitation",
+    "invite_token": "Jeton d'invitation",
+    "max_uses": "Utilisations max",
+    "expires_at": "Expire le",
+    "uses": "Utilisations",
+    "slug": "Slug",
+    "activity_title": "Activité",
+    "activity_type_slug": "Type d'activité",
+    "slot_label": "Emplacement",
+    "group_label": "Groupe",
+    "source_slot_label": "Emplacement source",
+    "source_group_label": "Groupe source",
+    "source_character_name": "Personnage source",
+    "target_slot_label": "Emplacement cible",
+    "target_group_label": "Groupe cible",
+    "target_character_name": "Personnage cible",
+    "character_name": "Personnage",
+    "selected_character_name": "Personnage sélectionné",
+    "displaced_character_name": "Personnage remplacé",
+    "application_status": "Statut de candidature",
+    "review_reason": "Note de revue",
+    "starts_at": "Commence le",
+    "duration_hours": "Durée (heures)",
+    "needs_application": "Candidature requise",
+    "allow_guest_applications": "Autoriser les candidatures invitées",
+    "target_prog_point_key": "Point de progression cible",
+    "organized_by_user_id": "Organisateur",
+    "organized_by_character_id": "Personnage organisateur",
+    "checked_in_at": "Validé le",
+    "checked_in_count": "Nombre de validations",
+    "marked_missing_at": "Marqué absent le",
+    "restored_destination": "Destination restaurée",
+    "is_bench": "Emplacement de banc",
+    "field_assignment_updated": "Attribution de champ mise à jour",
+    "designation": "Désignation",
+    "moved_to_slot_label": "Déplacé vers l’emplacement",
+    "moved_to_group_label": "Déplacé vers le groupe",
+    "email": "E-mail",
+    "provider": "Fournisseur",
+    "provider_user_id": "ID utilisateur du fournisseur",
+    "membership_application_id": "Demande",
+    "applicant_user_id": "Candidat",
+    "applicant_name": "Nom du candidat",
+    "field_count": "Nombre de champs",
+    "previous_field_count": "Nombre de champs précédent",
+    "login_method": "Méthode de connexion",
+    "registration_method": "Méthode d'inscription",
+    "remember": "Se souvenir de moi",
+    "linked_while_authenticated": "Lié pendant l'authentification",
+    "lodestone_id": "ID Lodestone",
+    "verification_method": "Méthode de vérification",
+    "is_primary": "Personnage principal",
+    "changed_fields": "Champs modifiés",
+    "headline": "Titre",
+    "scheduled_for": "Prévu pour",
+    "notification_event_id": "Événement de notification",
+    "action_label": "Libellé d'action",
+    "action_url": "URL d'action",
+    "scopes": "Autorisations API",
+    "allowed_events": "Événements autorisés",
+    "outbound_events_url": "Adresse du webhook",
+    "healthcheck_url": "Adresse de vérification de disponibilité",
+    "integration_client_id": "Identifiant du client d’intégration",
+    "integration_client_name": "Client d’intégration",
+    "permissions": "Autorisations",
+    "type": "Type",
+    "version_from": "Version précédente",
+    "version_to": "Jusqu’à la version",
+    "from_user_id": "ID du compte précédent",
+    "from_user_name": "Nom du compte précédent",
+    "to_user_id": "ID du nouveau compte",
+    "to_user_name": "Nom du nouveau compte",
+    "previous_status": "Statut de vérification précédent"
+  },
+  "events": {
+    "user": {
+      "registered": "Utilisateur inscrit",
+      "logged_in": "Utilisateur connecté",
+      "password_reset": "Mot de passe réinitialisé",
+      "account": {
+        "deleted": "Compte utilisateur supprimé"
+      },
+      "social_account": {
+        "linked": "Compte social lié",
+        "unlinked": "Compte social dissocié"
+      },
+      "discord_app": {
+        "user_installed": "Application Discord installée",
+        "disconnected": "Application Discord déconnectée",
+        "guild_installed": "Application Discord installée sur un serveur"
+      },
+      "settings": {
+        "username_updated": "Nom d'utilisateur mis à jour",
+        "password_updated": "Mot de passe mis à jour",
+        "notifications_updated": "Paramètres de notification mis à jour",
+        "profile_picture_updated": "Photo de profil mise à jour",
+        "privacy_updated": "Paramètres de confidentialité mis à jour"
+      }
+    },
+    "admin": {
+      "field_definition": {
+        "created": "Définition de champ créée",
+        "updated": "Définition de champ mise à jour",
+        "deleted": "Définition de champ supprimée",
+        "reordered": "Définitions de champs réorganisées"
+      },
+      "character_class": {
+        "created": "Classe de personnage créée",
+        "updated": "Classe de personnage mise à jour",
+        "deleted": "Classe de personnage supprimée"
+      },
+      "phantom_job": {
+        "created": "Job fantôme créé",
+        "updated": "Job fantôme mis à jour",
+        "deleted": "Job fantôme supprimé"
+      },
+      "raid_position": {
+        "created": "Position de raid créée",
+        "updated": "Position de raid mise à jour",
+        "deleted": "Position de raid supprimée"
+      },
+      "bozja_item": {
+        "created": "Élément de Bozja créé",
+        "updated": "Élément de Bozja mis à jour",
+        "deleted": "Élément de Bozja supprimé"
+      },
+      "activity_type": {
+        "created": "Activity Type créé",
+        "cloned": "Activity Type cloné",
+        "updated": "Activity Type mis à jour",
+        "published": "Activity Type publié",
+        "archived": "Activity Type archivé"
+      },
+      "system_notification": {
+        "maintenance_sent": "Notification de maintenance envoyée",
+        "announcement_sent": "Annonce de mise à jour envoyée"
+      },
+      "system_banner": {
+        "updated": "Bannière système mise à jour",
+        "cleared": "Bannière système supprimée"
+      },
+      "quota_override": {
+        "created": "Exception de limite de compte créée",
+        "updated": "Exception de limite de compte modifiée",
+        "deleted": "Exception de limite de compte supprimée"
+      },
+      "integration_client": {
+        "created": "Client d’intégration créé",
+        "updated": "Client d’intégration modifié",
+        "api_token_rotated": "Jeton API d’intégration renouvelé",
+        "webhook_secret_rotated": "Secret de webhook d’intégration renouvelé"
+      },
+      "form": {
+        "created": "Formulaire créé",
+        "updated": "Brouillon du formulaire modifié",
+        "publish": "Formulaire publié",
+        "unpublish": "Formulaire dépublié",
+        "close": "Réponses au formulaire fermées",
+        "open": "Réponses au formulaire rouvertes"
+      },
+      "changelog": {
+        "created": "Brouillon de note de mise à jour créé",
+        "updated": "Note de mise à jour modifiée",
+        "published": "Note de mise à jour publiée",
+        "unpublished": "Publication d’une note de mise à jour retirée"
+      }
+    },
+    "character": {
+      "verified": "Personnage vérifié",
+      "refresh_requested": "Actualisation du personnage demandée",
+      "made_primary": "Personnage défini comme principal",
+      "added": "a ajouté un personnage à son compte.",
+      "transferred": "Personnage transféré entre deux comptes"
+    },
+    "group": {
+      "resources": {
+        "created": "a créé une ressource.",
+        "save": "a enregistré un brouillon de ressource.",
+        "submit": "a soumis des modifications de ressource.",
+        "publish": "a publié une ressource.",
+        "discard": "a abandonné des modifications de ressource.",
+        "restore": "a restauré une version de ressource.",
+        "archive": "a archivé une ressource.",
+        "unpublish": "a retiré une ressource de la publication.",
+        "organize": "a déplacé ou réordonné une ressource.",
+        "pin": "a épinglé une ressource.",
+        "unpin": "a désépinglé une ressource.",
+        "settings_updated": "a modifié les paramètres de la bibliothèque.",
+        "all_deleted": "a supprimé toutes les ressources du groupe.",
+        "deleted": "a supprimé une ressource.",
+        "collection_saved": "a enregistré une collection de ressources.",
+        "collection_deleted": "a supprimé une collection de ressources.",
+        "image_uploaded": "a importé une image de ressource.",
+        "image_updated": "a modifié les détails d’une image de ressource.",
+        "image_deleted": "a supprimé une image de ressource."
+      },
+      "created": "Groupe créé",
+      "updated": "Paramètres du groupe mis à jour",
+      "deleted": "Groupe supprimé",
+      "followed": "Groupe suivi",
+      "unfollowed": "Groupe non suivi",
+      "notifications": {
+        "enabled": "Notifications du groupe activées",
+        "muted": "Notifications du groupe coupées"
+      },
+      "membership_application": {
+        "submitted": "Demande envoyée",
+        "updated": "Demande modifiée",
+        "approved": "Demande acceptée",
+        "declined": "Demande refusée",
+        "form_updated": "Formulaire de demande modifié"
+      },
+      "activity": {
+        "created": "Activité créée",
+        "updated": "Activité mise à jour",
+        "deleted": "Activité supprimée",
+        "application": {
+          "submitted": "Candidature d'activité envoyée",
+          "updated": "Candidature d'activité mise à jour",
+          "declined": "Candidature d'activité refusée",
+          "cancelled": "Candidature d'activité clôturée après annulation du run",
+          "withdrawn": "Candidature d'activité retirée"
+        },
+        "roster": {
+          "discord_participant_synced": "Participant à la sortie synchronisé avec Discord",
+          "assigned": "Emplacement de roster attribué",
+          "updated": "Attribution de roster mise à jour",
+          "reassigned": "Emplacement de roster réattribué",
+          "replaced": "Attribution de roster remplacée",
+          "swapped": "Positions du roster déplacées",
+          "returned_to_queue": "Emplacement de roster renvoyé à la file",
+          "manual_removed": "Assignation manuelle retirée du roster",
+          "host_marked": "Emplacement du roster marqué comme hôte",
+          "host_cleared": "Désignation d’hôte du roster retirée",
+          "raid_leader_marked": "Emplacement du roster marqué comme raid leader",
+          "raid_leader_cleared": "Désignation de raid leader du roster retirée",
+          "duelist_marked": "Duelliste désigné",
+          "duelist_cleared": "Désignation de duelliste retirée",
+          "trapper_marked": "Trappeur désigné",
+          "trapper_cleared": "Désignation de trappeur retirée",
+          "darter_marked": "Darter désigné",
+          "darter_cleared": "Désignation de Darter retirée"
+        },
+        "attendance": {
+          "checked_in": "Emplacement de roster validé",
+          "marked_late": "Emplacement de roster marqué en retard",
+          "check_in_reverted": "Validation du roster annulée",
+          "group_checked_in": "Groupe du roster validé",
+          "marked_missing": "Emplacement de roster marqué absent",
+          "missing_reverted": "Absence du emplacement de roster annulée"
+        }
+      },
+      "invite": {
+        "created": "Lien d'invitation créé",
+        "revoked": "Lien d'invitation révoqué"
+      },
+      "member": {
+        "joined": "Membre ayant rejoint le groupe",
+        "joined_via_invite": "Membre ayant rejoint via une invitation",
+        "left": "Membre ayant quitté le groupe",
+        "promoted": "Rôle de membre promu",
+        "demoted": "Rôle de membre rétrogradé",
+        "note": {
+          "created": "Note de membre créée",
+          "updated": "Note de membre mise à jour",
+          "deleted": "Note de membre supprimée",
+          "addendum": {
+            "created": "Contexte de note ajouté",
+            "updated": "Contexte de note mis à jour",
+            "deleted": "Contexte de note supprimé"
+          }
+        },
+        "removed": "Membre retiré du groupe",
+        "banned": "Membre banni du groupe",
+        "unbanned": "Membre débanni"
+      },
+      "ownership": {
+        "transferred": "Propriété du groupe transférée"
+      }
+    }
+  }
 }

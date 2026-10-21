@@ -7,13 +7,15 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path'
 
 const scalarLicense = readFileSync(new URL('./public/licenses/scalar.txt', import.meta.url), 'utf8').trim();
+const lanHost = process.env.FULLPARTY_LAN_PREVIEW === 'true' ? process.env.FULLPARTY_LAN_HOST : undefined;
 
 export default defineConfig({
     plugins: [
         laravel({
             input: ['resources/css/app.css', 'resources/js/app.js', 'resources/planner/app.js', 'resources/calculator/app.js', 'resources/api-docs/app.js'],
             refresh: true,
-            detectTls: 'fullparty.test',
+            detectTls: lanHost ? false : 'fullparty.test',
+            ...(lanHost ? { hotFile: 'storage/framework/vite-lan.hot' } : {}),
         }),
         tailwindcss(),
         vue(),
@@ -30,12 +32,12 @@ export default defineConfig({
                 },
                 card: {
                     slots: {
-                        root: 'rounded-none bg-elevated'
+                        root: 'bg-elevated'
                     }
                 },
                 input: {
                     slots: {
-                        base: 'rounded-none bg-neutral-950 placeholder:text-neutral-600 ring-neutral-800',
+                        base: ' bg-neutral-950 placeholder:text-neutral-600 ring-neutral-800',
                         leadingIcon: 'text-neutral-600'
                     },
                     // variants: {
@@ -55,19 +57,19 @@ export default defineConfig({
                 textarea: {
                     slots: {
                         base: [
-                            'rounded-none'
+                            ''
                         ]
                     }
                 },
                 selectMenu: {
                     slots: {
-                        base: 'rounded-none bg-neutral-950 placeholder:text-neutral-600 border-neutral-800',
+                        base: ' bg-neutral-950 placeholder:text-neutral-600 border-neutral-800',
                         leadingIcon: 'text-neutral-600',
                     }
                 },
                 select: {
                     slots: {
-                        base: 'rounded-none bg-neutral-950 placeholder:text-neutral-600 ring-neutral-800',
+                        base: ' bg-neutral-950 placeholder:text-neutral-600 ring-neutral-800',
                         leadingIcon: 'text-neutral-600'
                     }
                 },
@@ -93,14 +95,30 @@ export default defineConfig({
             },
         },
     },
+    ...(lanHost ? { cacheDir: 'node_modules/.vite-lan' } : {}),
     server: {
+        ...(lanHost ? {
+            host: lanHost,
+            port: 5174,
+            strictPort: true,
+            https: false,
+            origin: `http://${lanHost}:5174`,
+            hmr: { host: lanHost, protocol: 'ws', clientPort: 5174 },
+            proxy: {
+                '/app/': {
+                    target: process.env.FULLPARTY_LAN_REVERB_TARGET,
+                    ws: true,
+                    headers: { Origin: process.env.FULLPARTY_LAN_ORIGINAL_ORIGIN },
+                },
+            },
+        } : {}),
         allowedHosts: [
             'fullparty.test',
             'plan.fullparty.test',
             'math.fullparty.test',
             'api.fullparty.test',
         ],
-        cors: true,
+        cors: lanHost ? { origin: `http://${lanHost}:8000` } : true,
         watch: {
             ignored: [
                 '**/storage/framework/views/**',

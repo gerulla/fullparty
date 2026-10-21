@@ -18,6 +18,7 @@ export type DashboardHomeProfile = {
 }
 
 export type DashboardProfile = {
+	id: number
 	name: string
 	email: string
 	avatar_url: string | null

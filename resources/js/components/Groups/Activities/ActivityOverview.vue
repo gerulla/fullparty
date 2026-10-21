@@ -6,10 +6,9 @@ import { useI18n } from "vue-i18n";
 import { getActivityStatusMeta } from "@/utils/activityStatusMeta";
 import type { ActivitySlot } from "@/Types/ActivityRoster";
 import type { ActivityCompletionSummary } from "@/Types/ActivityProgression";
-import { createDateTimeFormatter } from "@/utils/dateTimeFormat";
 import { formatRelativeTime } from "@/utils/formatRelativeTime";
 import { useMinuteTicker } from "@/composables/useMinuteTicker";
-import { useTimeDisplayMode } from "@/composables/useTimeDisplayMode";
+import { useDateTimeFormat } from "@/composables/useDateTimeFormat";
 
 const props = defineProps<{
 	title: string
@@ -95,18 +94,18 @@ const emit = defineEmits<{
 const { t, locale } = useI18n();
 const statusMeta = computed(() => getActivityStatusMeta(props.status));
 const relativeTimeTick = useMinuteTicker();
-const { withDisplayTimeZone } = useTimeDisplayMode();
+const { formatDateTime } = useDateTimeFormat();
 
 const dateLabel = computed(() => {
 	if (!props.startsAt) {
 		return t('groups.activities.cards.no_time');
 	}
 
-	return createDateTimeFormatter(locale.value, withDisplayTimeZone({
+	return formatDateTime(new Date(props.startsAt), {
 		year: 'numeric',
 		month: '2-digit',
 		day: '2-digit',
-	})).format(new Date(props.startsAt));
+	});
 });
 
 const timeLabel = computed(() => {
@@ -114,11 +113,11 @@ const timeLabel = computed(() => {
 		return t('groups.activities.cards.no_time');
 	}
 
-	return createDateTimeFormatter(locale.value, withDisplayTimeZone({
+	return formatDateTime(new Date(props.startsAt), {
 		hour: '2-digit',
 		minute: '2-digit',
 		timeZoneName: 'short',
-	})).format(new Date(props.startsAt));
+	});
 });
 
 const durationLabel = computed(() => {

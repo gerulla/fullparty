@@ -86,15 +86,17 @@ const items = [
     <HomePreviewControls v-if="canPreview" :refreshing="refreshing" :empty-account="emptyAccount"
         @refresh="refreshHomepage" @toggle-empty="simulateEmptyAccount = !simulateEmptyAccount" />
 
-    <div class="w-full flex flex-row ">
-		<div class="w-[30%] self-start pr-8 flex flex-col items-stretch gap-6 xl:sticky xl:top-[calc(var(--ui-header-height)+2rem)]">
+    <div class="flex w-full flex-col gap-8 xl:flex-row xl:gap-0">
+		<div class="flex w-full min-w-0 flex-col items-stretch gap-6 self-start xl:sticky xl:top-[calc(var(--ui-header-height)+2rem)] xl:w-[30%] xl:pr-8">
 			<CharacterSelector v-model="selected_character" :user="user" :loading="loading.user" />
 			<CharacterApplicationsBox :applications="applications" :history="applicationHistory" :loading="loading.user || loading.applications" :history-loading="loading.user || loading.applicationHistory" :character="selected_character" />
-			<UserGroupsBox :groups="groups" :loading="loading.groups" />
+			<div class="hidden xl:block">
+				<UserGroupsBox :groups="groups" :loading="loading.groups" />
+			</div>
 		</div>
-		<div class="w-[70%] min-w-0 flex flex-col items-stretch justify-stretch gap-8">
-			<RecommendedRuns :runs="recommendedRuns" :loading="loading.recommendedRuns" />
-			<FromYourGroups :groups="groupRuns" :loading="loading.groupRuns" />
+		<div class="flex w-full min-w-0 flex-col items-stretch gap-8 xl:w-[70%]">
+			<FromYourGroups :groups="groupRuns" :loading="loading.groupRuns" class="xl:order-2" />
+			<RecommendedRuns :runs="recommendedRuns" :loading="loading.recommendedRuns" class="xl:order-1" />
 		</div>
 	</div>
 </template>

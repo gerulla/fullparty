@@ -2,9 +2,8 @@
 import type { GroupMemberActivitySummary, GroupMemberActivitySummaryRun } from "@/Types/Groups";
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
-import { useTimeDisplayMode } from "@/composables/useTimeDisplayMode";
 import { translateCharacterClassName, translatePhantomJobName } from "@/utils/characterJobTranslations";
-import { createDateTimeFormatter } from "@/utils/dateTimeFormat";
+import { useDateTimeFormat } from "@/composables/useDateTimeFormat";
 
 const millisecondsPerDay = 24 * 60 * 60 * 1000;
 
@@ -18,8 +17,8 @@ const emit = defineEmits<{
 	retry: []
 }>();
 
-const { locale, t } = useI18n();
-const { withDisplayTimeZone } = useTimeDisplayMode();
+const { t } = useI18n();
+const { formatDateTime } = useDateTimeFormat();
 
 const recentRuns = computed(() => props.summary?.recent_runs ?? []);
 const recentRunCountLabel = computed(() => t("groups.members.activity_summary.recent_runs_count", {
@@ -43,11 +42,11 @@ const formatDate = (value: string | null) => {
 		return t("groups.members.roster.not_available");
 	}
 
-	return createDateTimeFormatter(locale.value, withDisplayTimeZone({
+	return formatDateTime(date, {
 		day: "2-digit",
 		month: "short",
 		year: "numeric",
-	})).format(date);
+	});
 };
 
 const formatTime = (value: string | null) => {
@@ -61,10 +60,10 @@ const formatTime = (value: string | null) => {
 		return t("groups.members.roster.not_available");
 	}
 
-	return createDateTimeFormatter(locale.value, withDisplayTimeZone({
+	return formatDateTime(date, {
 		hour: "2-digit",
 		minute: "2-digit",
-	})).format(date);
+	});
 };
 
 const daysAgo = (value: string | null) => {

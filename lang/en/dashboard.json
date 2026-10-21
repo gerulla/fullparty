@@ -28,6 +28,9 @@
     }
   },
   "character_selector": {
+    "add_your_character": "Add Your Character",
+    "options": "Character options. Selected: {name}",
+    "primary_character": "Primary character",
     "loading": "Loading your characters…",
     "change": "Change character. Selected: {name}",
     "select": "Select {name}"

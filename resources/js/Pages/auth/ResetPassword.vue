@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Link, useForm } from "@inertiajs/vue3";
-import AuthLayout from "@/Layouts/AuthLayout.vue";
+import AuthLayoutV2 from "@/Layouts/AuthLayoutV2.vue";
 import SeoHead from "@/components/Shared/SeoHead.vue";
 import { route } from "ziggy-js";
 import { useI18n } from "vue-i18n";
@@ -26,7 +26,7 @@ const submit = () => {
 };
 
 defineOptions({
-	layout: AuthLayout,
+	layout: AuthLayoutV2,
 });
 </script>
 
@@ -112,7 +112,7 @@ defineOptions({
 			</UButton>
 		</form>
 
-		<div class="mt-6 flex items-center justify-center">
+		<div class="flex items-center justify-center pt-8 text-center text-sm">
 			<Link :href="route('login')" class="text-brand">{{ t('auth.back_to_login') }}</Link>
 		</div>
 	</div>

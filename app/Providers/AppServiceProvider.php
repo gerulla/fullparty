@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
@@ -83,6 +84,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        if ($this->app->environment('local') && config('app.lan_preview')) {
+            Vite::useHotFile(storage_path('framework/vite-lan.hot'));
+        }
+
         Auth::viaRequest('integration-member', fn (Request $request) => $request->attributes->get('integration_member'));
         URL::defaults(['locale' => app()->getLocale()]);
 

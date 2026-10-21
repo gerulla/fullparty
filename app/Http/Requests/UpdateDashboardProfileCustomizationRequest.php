@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\User;
 use App\Rules\SafeImageDimensions;
 use App\Support\Input\RequestTextInputSanitizer;
 use Illuminate\Contracts\Validation\ValidationRule;
@@ -13,7 +14,13 @@ class UpdateDashboardProfileCustomizationRequest extends FormRequest
 
     public function authorize(): bool
     {
-        return true;
+        $profileUser = $this->route('user');
+        if ($profileUser !== null) {
+            $profileUserId = $profileUser instanceof User ? $profileUser->getKey() : $profileUser;
+            abort_unless((string) $this->user()?->getKey() === (string) $profileUserId, 404);
+        }
+
+        return $this->user() !== null;
     }
 
     /**

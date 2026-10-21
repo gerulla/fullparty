@@ -9,6 +9,7 @@ use App\Models\ActivitySlotAssignment;
 use App\Models\Group;
 use App\Models\GroupMembership;
 use App\Models\User;
+use App\Services\Characters\CharacterTransferHistory;
 use App\Services\Notifications\NotificationInboxService;
 use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
@@ -18,6 +19,7 @@ final class HomeActivityOverviewDataService
 {
     public function __construct(
         private readonly NotificationInboxService $notificationInboxService,
+        private readonly CharacterTransferHistory $transferHistory,
     ) {}
 
     /**
@@ -108,6 +110,8 @@ final class HomeActivityOverviewDataService
                 'activity.activityTypeVersion',
             ])
             ->whereIn('activity_slot_assignments.character_id', $characterIds)
+            ->tap(fn ($query) => $this->transferHistory
+                ->excludeUnaccepted($query, 'activity_slot_assignments.character_id', 'activity_slot_assignments.activity_id'))
             ->whereNull('activity_slot_assignments.ended_at')
             ->whereIn('activity_slot_assignments.attendance_status', [
                 ActivitySlotAssignment::STATUS_ASSIGNED,
@@ -139,7 +143,9 @@ final class HomeActivityOverviewDataService
 
         return Activity::query()
             ->with(['group', 'activityTypeVersion'])
-            ->whereHas('slots', fn ($query) => $query->whereIn('assigned_character_id', $characterIds))
+            ->whereHas('slots', fn ($query) => $query->whereIn('assigned_character_id', $characterIds)
+                ->tap(fn ($slots) => $this->transferHistory
+                    ->excludeUnaccepted($slots, 'activity_slots.assigned_character_id', 'activity_slots.activity_id')))
             ->whereNotNull('starts_at')
             ->orderByDesc('starts_at')
             ->limit(40)

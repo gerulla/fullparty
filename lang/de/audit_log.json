@@ -1,605 +1,613 @@
 {
+  "group": {
+    "title": "Audit-Log",
+    "subtitle": "Überprüfe Moderations- und Verwaltungsaktivitäten für diese Gruppe."
+  },
+  "admin": {
+    "title": "Admin-Audit-Log",
+    "subtitle": "Überprüfe systemweite Audit-Aktivitäten über Gruppen, Konten und Systemereignisse hinweg.",
+    "access": "Admin-Zugriff"
+  },
+  "defaults": {
+    "system": "System",
+    "no_metadata": "Für dieses Ereignis wurden keine zusätzlichen Metadaten erfasst.",
+    "empty": "Leer",
+    "true": "Wahr",
+    "false": "Falsch"
+  },
+  "filters": {
+    "title": "Filter",
+    "search_placeholder": "Titel, Beschreibungen, Benutzer oder Aktionen durchsuchen",
+    "any_action": "Beliebige Aktion",
+    "any_severity": "Beliebige Schwere",
+    "any_user": "Beliebiger Benutzer",
+    "any_group": "Beliebige Gruppe",
+    "any_activity": "Beliebiger Run",
+    "activity_label": "Nach Run",
+    "search_activity": "Runs durchsuchen...",
+    "unnamed_activity": "Run #{id}",
+    "action": {
+      "label": "Nach Aktion"
+    },
+    "severity": {
+      "label": "Nach Schwere"
+    },
+    "user": {
+      "label": "Nach Benutzer"
+    },
     "group": {
-        "title": "Audit-Log",
-        "subtitle": "Überprüfe Moderations- und Verwaltungsaktivitäten für diese Gruppe."
+      "label": "Nach Gruppe"
+    },
+    "before_date": {
+      "label": "Vor Datum",
+      "placeholder": "Einträge an oder vor ..."
+    },
+    "after_date": {
+      "label": "Nach Datum",
+      "placeholder": "Einträge an oder nach ..."
+    }
+  },
+  "severities": {
+    "info": "Info",
+    "moderation_change": "Moderationsänderung",
+    "severe_change": "Schwerwiegende Änderung",
+    "critical": "Kritisch"
+  },
+  "scopes": {
+    "group": "Gruppe",
+    "user": "Benutzer",
+    "character": "Charakter",
+    "admin": "Admin",
+    "system": "System",
+    "unknown": "Unbekannt"
+  },
+  "list": {
+    "empty": "Keine Audit-Log-Einträge entsprechen den aktuellen Filtern.",
+    "loading_more": "Mehr laden",
+    "loading": "Audit-Logs werden geladen...",
+    "load_error": "Audit-Logs konnten nicht geladen werden.",
+    "retry": "Erneut versuchen",
+    "recorded_event": "Erfasstes Audit-Ereignis",
+    "details": "Details",
+    "changes": "Änderungen",
+    "show_changes": "Anzeigen",
+    "hide_changes": "Ausblenden",
+    "old_value": "Vorher",
+    "new_value": "Neu"
+  },
+  "activity": {
+    "user": {
+      "registered": "hat ein Konto registriert.",
+      "logged_in": "hat sich angemeldet.",
+      "password_reset": "hat das Passwort zurückgesetzt.",
+      "account": {
+        "deleted": "hat das Konto gelöscht."
+      },
+      "social_account": {
+        "linked": "hat ein Social-Konto verknüpft.",
+        "unlinked": "hat ein Social-Konto getrennt."
+      },
+      "discord_app": {
+        "user_installed": "hat die Discord-App installiert.",
+        "disconnected": "hat die Discord-App getrennt.",
+        "guild_installed": "hat die Discord-App auf einem Server installiert."
+      },
+      "settings": {
+        "username_updated": "hat die Benutzernamenseinstellungen aktualisiert.",
+        "password_updated": "hat die Passworteinstellungen aktualisiert.",
+        "notifications_updated": "hat die Benachrichtigungseinstellungen aktualisiert.",
+        "profile_picture_updated": "hat das Profilbild des Kontos aktualisiert.",
+        "privacy_updated": "hat die Datenschutzeinstellungen aktualisiert."
+      }
     },
     "admin": {
-        "title": "Admin-Audit-Log",
-        "subtitle": "Überprüfe systemweite Audit-Aktivitäten über Gruppen, Konten und Systemereignisse hinweg.",
-        "access": "Admin-Zugriff"
+      "field_definition": {
+        "created": "hat eine Felddefinition erstellt.",
+        "updated": "hat eine Felddefinition aktualisiert.",
+        "deleted": "hat eine Felddefinition gelöscht.",
+        "reordered": "hat Felddefinitionen neu angeordnet."
+      },
+      "character_class": {
+        "created": "hat eine Charakterklasse erstellt.",
+        "updated": "hat eine Charakterklasse aktualisiert.",
+        "deleted": "hat eine Charakterklasse gelöscht."
+      },
+      "phantom_job": {
+        "created": "hat einen Phantom-Job erstellt.",
+        "updated": "hat einen Phantom-Job aktualisiert.",
+        "deleted": "hat einen Phantom-Job gelöscht."
+      },
+      "raid_position": {
+        "created": "hat eine Raid-Position erstellt.",
+        "updated": "hat eine Raid-Position aktualisiert.",
+        "deleted": "hat eine Raid-Position gelöscht."
+      },
+      "bozja_item": {
+        "created": "hat einen Bozja-Eintrag erstellt.",
+        "updated": "hat einen Bozja-Eintrag aktualisiert.",
+        "deleted": "hat einen Bozja-Eintrag gelöscht."
+      },
+      "activity_type": {
+        "created": "hat einen Activity Type erstellt.",
+        "cloned": "hat einen Activity Type geklont.",
+        "updated": "hat einen Activity Type aktualisiert.",
+        "published": "hat einen Activity Type veröffentlicht.",
+        "archived": "hat einen Activity Type archiviert."
+      },
+      "system_notification": {
+        "maintenance_sent": "hat eine verpflichtende Wartungsbenachrichtigung gesendet.",
+        "announcement_sent": "hat eine Update-Benachrichtigung gesendet."
+      },
+      "system_banner": {
+        "updated": "hat das systemweite Banner aktualisiert.",
+        "cleared": "hat das systemweite Banner entfernt."
+      },
+      "quota_override": {
+        "created": "hat eine Kontolimit-Ausnahme erstellt.",
+        "updated": "hat eine Kontolimit-Ausnahme aktualisiert.",
+        "deleted": "hat eine Kontolimit-Ausnahme entfernt."
+      },
+      "integration_client": {
+        "created": "hat einen Integrationsclient erstellt.",
+        "updated": "hat einen Integrationsclient und dessen Berechtigungen geändert.",
+        "api_token_rotated": "hat ein API-Token für eine Integration erneuert.",
+        "webhook_secret_rotated": "hat den Webhook-Schlüssel einer Integration erneuert."
+      },
+      "form": {
+        "created": "Formular erstellt",
+        "updated": "Formularentwurf aktualisiert",
+        "publish": "Formular veröffentlicht",
+        "unpublish": "Formularveröffentlichung aufgehoben",
+        "close": "Formularantworten geschlossen",
+        "open": "Formularantworten wieder geöffnet"
+      },
+      "changelog": {
+        "created": "Entwurf für das Änderungsprotokoll erstellt",
+        "updated": "Änderungsprotokoll aktualisiert",
+        "published": "Änderungsprotokoll veröffentlicht",
+        "unpublished": "Veröffentlichung des Änderungsprotokolls zurückgezogen"
+      }
     },
-    "defaults": {
-        "system": "System",
-        "no_metadata": "Für dieses Ereignis wurden keine zusätzlichen Metadaten erfasst.",
-        "empty": "Leer",
-        "true": "Wahr",
-        "false": "Falsch"
+    "character": {
+      "verified": "hat einen Charakter verifiziert.",
+      "refresh_requested": "hat eine Charakteraktualisierung angefordert.",
+      "made_primary": "hat einen Charakter als primär festgelegt.",
+      "removed": "hat einen Charakter aus dem Konto entfernt.",
+      "transferred": "hat einen Charakter zwischen Konten übertragen."
     },
-    "filters": {
-        "title": "Filter",
-        "search_placeholder": "Titel, Beschreibungen, Benutzer oder Aktionen durchsuchen",
-        "any_action": "Beliebige Aktion",
-        "any_severity": "Beliebige Schwere",
-        "any_user": "Beliebiger Benutzer",
-        "any_group": "Beliebige Gruppe",
-        "any_activity": "Beliebiger Run",
-        "activity_label": "Nach Run",
-        "search_activity": "Runs durchsuchen...",
-        "unnamed_activity": "Run #{id}",
-        "action": {
-            "label": "Nach Aktion"
+    "group": {
+      "resources": {
+        "created": "hat eine Ressource erstellt.",
+        "save": "hat einen Ressourcenentwurf gespeichert.",
+        "submit": "hat Ressourcenänderungen eingereicht.",
+        "publish": "hat eine Ressource veröffentlicht.",
+        "discard": "hat Ressourcenänderungen verworfen.",
+        "restore": "hat eine Ressourcenversion wiederhergestellt.",
+        "archive": "hat eine Ressource archiviert.",
+        "unpublish": "hat eine Ressource zurückgezogen.",
+        "organize": "hat eine Ressource verschoben oder neu geordnet.",
+        "pin": "hat eine Ressource angeheftet.",
+        "unpin": "hat eine Ressource gelöst.",
+        "settings_updated": "hat die Ressourcenbibliothek aktualisiert.",
+        "all_deleted": "hat alle Ressourcen der Gruppe gelöscht.",
+        "deleted": "hat eine Ressource gelöscht.",
+        "collection_saved": "hat eine Ressourcensammlung gespeichert.",
+        "collection_deleted": "hat eine Ressourcensammlung gelöscht.",
+        "image_uploaded": "hat ein Ressourcenbild hochgeladen.",
+        "image_updated": "hat die Details eines Ressourcenbildes aktualisiert.",
+        "image_deleted": "hat ein Ressourcenbild gelöscht."
+      },
+      "created": "hat die Gruppe erstellt.",
+      "updated": "hat die Gruppeneinstellungen aktualisiert.",
+      "deleted": "hat die Gruppe gelöscht.",
+      "followed": "hat der Gruppe gefolgt.",
+      "unfollowed": "hat der Gruppe nicht mehr gefolgt.",
+      "discord_guild": {
+        "unlinked": "hat den Discord-Server der Gruppe getrennt.",
+        "force_unlinked": "hat den Discord-Server der Gruppe zwangsweise getrennt."
+      },
+      "notifications": {
+        "enabled": "hat Gruppenbenachrichtigungen aktiviert.",
+        "muted": "hat Gruppenbenachrichtigungen stummgeschaltet."
+      },
+      "membership_application": {
+        "submitted": "hat eine Anfrage gesendet.",
+        "updated": "hat eine Anfrage aktualisiert.",
+        "approved": "hat eine Anfrage angenommen.",
+        "declined": "hat eine Anfrage abgelehnt.",
+        "form_updated": "hat das Anfrageformular aktualisiert."
+      },
+      "activity": {
+        "created": "hat eine Aktivität erstellt.",
+        "updated": "hat eine Aktivität aktualisiert.",
+        "deleted": "hat eine Aktivität gelöscht.",
+        "application": {
+          "submitted": "hat eine Aktivitätsbewerbung eingereicht.",
+          "updated": "hat eine Aktivitätsbewerbung aktualisiert.",
+          "declined": "hat eine Aktivitätsbewerbung abgelehnt.",
+          "cancelled": "hat eine Aktivitätsbewerbung wegen einer Run-Absage geschlossen.",
+          "withdrawn": "hat eine Aktivitätsbewerbung zurückgezogen."
         },
-        "severity": {
-            "label": "Nach Schwere"
+        "roster": {
+          "discord_participant_synced": "Run-Teilnehmer mit Discord synchronisiert",
+          "assigned": "hat einen Roster-Slot zugewiesen.",
+          "updated": "hat eine Roster-Zuweisung aktualisiert.",
+          "reassigned": "hat einen Roster-Slot neu zugewiesen.",
+          "replaced": "hat eine Roster-Zuweisung ersetzt.",
+          "swapped": "hat Personen im Roster verschoben.",
+          "returned_to_queue": "hat einen Roster-Slot zurück in die Warteschlange gesetzt.",
+          "manual_removed": "hat eine manuelle Roster-Zuweisung aus einem Slot entfernt.",
+          "host_marked": "hat einen Roster-Slot als Host markiert.",
+          "host_cleared": "hat die Host-Markierung eines Roster-Slots entfernt.",
+          "raid_leader_marked": "hat einen Roster-Slot als Raid-Leitung markiert.",
+          "raid_leader_cleared": "hat die Raid-Leitungs-Markierung eines Roster-Slots entfernt.",
+          "duelist_marked": "markierte einen Kaderplatz als Duellant.",
+          "duelist_cleared": "entfernte die Duellant-Markierung von einem Kaderplatz.",
+          "trapper_marked": "markierte einen Kaderplatz als Fallensteller.",
+          "trapper_cleared": "entfernte die Fallensteller-Markierung von einem Kaderplatz.",
+          "darter_marked": "markierte einen Kaderplatz als Darter.",
+          "darter_cleared": "entfernte die Darter-Markierung von einem Kaderplatz."
         },
-        "user": {
-            "label": "Nach Benutzer"
-        },
-        "group": {
-            "label": "Nach Gruppe"
-        },
-        "before_date": {
-            "label": "Vor Datum",
-            "placeholder": "Einträge an oder vor ..."
-        },
-        "after_date": {
-            "label": "Nach Datum",
-            "placeholder": "Einträge an oder nach ..."
+        "attendance": {
+          "checked_in": "hat einen Roster-Slot eingecheckt.",
+          "marked_late": "hat einen Roster-Slot als verspätet markiert.",
+          "check_in_reverted": "hat einen Roster-Check-in rückgängig gemacht.",
+          "group_checked_in": "hat eine gesamte Partei oder Gruppe eingecheckt.",
+          "marked_missing": "hat einen Roster-Slot als fehlend markiert.",
+          "missing_reverted": "hat einen fehlenden Roster-Slot wiederhergestellt."
         }
-    },
-    "severities": {
-        "info": "Info",
-        "moderation_change": "Moderationsänderung",
-        "severe_change": "Schwerwiegende Änderung",
-        "critical": "Kritisch"
-    },
-    "scopes": {
-        "group": "Gruppe",
-        "user": "Benutzer",
-        "character": "Charakter",
-        "admin": "Admin",
-        "system": "System",
-        "unknown": "Unbekannt"
-    },
-    "list": {
-        "empty": "Keine Audit-Log-Einträge entsprechen den aktuellen Filtern.",
-        "loading_more": "Mehr laden",
-        "loading": "Audit-Logs werden geladen...",
-        "load_error": "Audit-Logs konnten nicht geladen werden.",
-        "retry": "Erneut versuchen",
-        "recorded_event": "Erfasstes Audit-Ereignis",
-        "details": "Details",
-        "changes": "Änderungen",
-        "show_changes": "Anzeigen",
-        "hide_changes": "Ausblenden",
-        "old_value": "Vorher",
-        "new_value": "Neu"
-    },
-    "activity": {
-        "user": {
-            "registered": "hat ein Konto registriert.",
-            "logged_in": "hat sich angemeldet.",
-            "password_reset": "hat das Passwort zurückgesetzt.",
-            "account": {
-                "deleted": "hat das Konto gelöscht."
-            },
-            "social_account": {
-                "linked": "hat ein Social-Konto verknüpft.",
-                "unlinked": "hat ein Social-Konto getrennt."
-            },
-            "discord_app": {
-                "user_installed": "hat die Discord-App installiert.",
-                "disconnected": "hat die Discord-App getrennt.",
-                "guild_installed": "hat die Discord-App auf einem Server installiert."
-            },
-            "settings": {
-                "username_updated": "hat die Benutzernamenseinstellungen aktualisiert.",
-                "password_updated": "hat die Passworteinstellungen aktualisiert.",
-                "notifications_updated": "hat die Benachrichtigungseinstellungen aktualisiert.",
-                "profile_picture_updated": "hat das Profilbild des Kontos aktualisiert.",
-                "privacy_updated": "hat die Datenschutzeinstellungen aktualisiert."
-            }
+      },
+      "invite": {
+        "created": "hat einen Einladungslink erstellt.",
+        "revoked": "hat einen Einladungslink widerrufen."
+      },
+      "member": {
+        "joined": "ist der Gruppe beigetreten.",
+        "joined_via_invite": "ist der Gruppe per Einladung beigetreten.",
+        "left": "hat die Gruppe verlassen.",
+        "promoted": "hat eine Mitgliedsrolle befördert.",
+        "demoted": "hat eine Mitgliedsrolle zurückgestuft.",
+        "note": {
+          "created": "hat eine Mitgliedsnotiz hinzugefügt.",
+          "updated": "hat eine Mitgliedsnotiz aktualisiert.",
+          "deleted": "hat eine Mitgliedsnotiz gelöscht.",
+          "addendum": {
+            "created": "hat Notizkontext hinzugefügt.",
+            "updated": "hat Notizkontext aktualisiert.",
+            "deleted": "hat Notizkontext gelöscht."
+          }
         },
-        "admin": {
-            "field_definition": {
-                "created": "hat eine Felddefinition erstellt.",
-                "updated": "hat eine Felddefinition aktualisiert.",
-                "deleted": "hat eine Felddefinition gelöscht.",
-                "reordered": "hat Felddefinitionen neu angeordnet."
-            },
-            "character_class": {
-                "created": "hat eine Charakterklasse erstellt.",
-                "updated": "hat eine Charakterklasse aktualisiert.",
-                "deleted": "hat eine Charakterklasse gelöscht."
-            },
-            "phantom_job": {
-                "created": "hat einen Phantom-Job erstellt.",
-                "updated": "hat einen Phantom-Job aktualisiert.",
-                "deleted": "hat einen Phantom-Job gelöscht."
-            },
-            "raid_position": {
-                "created": "hat eine Raid-Position erstellt.",
-                "updated": "hat eine Raid-Position aktualisiert.",
-                "deleted": "hat eine Raid-Position gelöscht."
-            },
-            "bozja_item": {
-                "created": "hat einen Bozja-Eintrag erstellt.",
-                "updated": "hat einen Bozja-Eintrag aktualisiert.",
-                "deleted": "hat einen Bozja-Eintrag gelöscht."
-            },
-            "activity_type": {
-                "created": "hat einen Activity Type erstellt.",
-                "cloned": "hat einen Activity Type geklont.",
-                "updated": "hat einen Activity Type aktualisiert.",
-                "published": "hat einen Activity Type veröffentlicht.",
-                "archived": "hat einen Activity Type archiviert."
-            },
-            "system_notification": {
-                "maintenance_sent": "hat eine verpflichtende Wartungsbenachrichtigung gesendet.",
-                "announcement_sent": "hat eine Update-Benachrichtigung gesendet."
-            },
-            "system_banner": {
-                "updated": "hat das systemweite Banner aktualisiert.",
-                "cleared": "hat das systemweite Banner entfernt."
-            },
-            "quota_override": {
-                "created": "hat eine Kontolimit-Ausnahme erstellt.",
-                "updated": "hat eine Kontolimit-Ausnahme aktualisiert.",
-                "deleted": "hat eine Kontolimit-Ausnahme entfernt."
-            },
-            "integration_client": {
-                "created": "hat einen Integrationsclient erstellt.",
-                "updated": "hat einen Integrationsclient und dessen Berechtigungen geändert.",
-                "api_token_rotated": "hat ein API-Token für eine Integration erneuert.",
-                "webhook_secret_rotated": "hat den Webhook-Schlüssel einer Integration erneuert."
-            },
-            "form": {
-                "created": "Formular erstellt",
-                "updated": "Formularentwurf aktualisiert",
-                "publish": "Formular veröffentlicht",
-                "unpublish": "Formularveröffentlichung aufgehoben",
-                "close": "Formularantworten geschlossen",
-                "open": "Formularantworten wieder geöffnet"
-            },
-            "changelog": {
-                "created": "Entwurf für das Änderungsprotokoll erstellt",
-                "updated": "Änderungsprotokoll aktualisiert",
-                "published": "Änderungsprotokoll veröffentlicht",
-                "unpublished": "Veröffentlichung des Änderungsprotokolls zurückgezogen"
-            }
-        },
-        "character": {
-            "verified": "hat einen Charakter verifiziert.",
-            "refresh_requested": "hat eine Charakteraktualisierung angefordert.",
-            "made_primary": "hat einen Charakter als primär festgelegt.",
-            "removed": "hat einen Charakter aus dem Konto entfernt."
-        },
-        "group": {
-            "resources": {
-                "created": "hat eine Ressource erstellt.",
-                "save": "hat einen Ressourcenentwurf gespeichert.",
-                "submit": "hat Ressourcenänderungen eingereicht.",
-                "publish": "hat eine Ressource veröffentlicht.",
-                "discard": "hat Ressourcenänderungen verworfen.",
-                "restore": "hat eine Ressourcenversion wiederhergestellt.",
-                "archive": "hat eine Ressource archiviert.",
-                "unpublish": "hat eine Ressource zurückgezogen.",
-                "organize": "hat eine Ressource verschoben oder neu geordnet.",
-                "pin": "hat eine Ressource angeheftet.",
-                "unpin": "hat eine Ressource gelöst.",
-                "settings_updated": "hat die Ressourcenbibliothek aktualisiert.",
-                "all_deleted": "hat alle Ressourcen der Gruppe gelöscht.",
-                "deleted": "hat eine Ressource gelöscht.",
-                "collection_saved": "hat eine Ressourcensammlung gespeichert.",
-                "collection_deleted": "hat eine Ressourcensammlung gelöscht.",
-                "image_uploaded": "hat ein Ressourcenbild hochgeladen.",
-                "image_updated": "hat die Details eines Ressourcenbildes aktualisiert.",
-                "image_deleted": "hat ein Ressourcenbild gelöscht."
-            },
-            "created": "hat die Gruppe erstellt.",
-            "updated": "hat die Gruppeneinstellungen aktualisiert.",
-            "deleted": "hat die Gruppe gelöscht.",
-            "followed": "hat der Gruppe gefolgt.",
-            "unfollowed": "hat der Gruppe nicht mehr gefolgt.",
-            "discord_guild": {
-                "unlinked": "hat den Discord-Server der Gruppe getrennt.",
-                "force_unlinked": "hat den Discord-Server der Gruppe zwangsweise getrennt."
-            },
-            "notifications": {
-                "enabled": "hat Gruppenbenachrichtigungen aktiviert.",
-                "muted": "hat Gruppenbenachrichtigungen stummgeschaltet."
-            },
-            "membership_application": {
-                "submitted": "hat eine Anfrage gesendet.",
-                "updated": "hat eine Anfrage aktualisiert.",
-                "approved": "hat eine Anfrage angenommen.",
-                "declined": "hat eine Anfrage abgelehnt.",
-                "form_updated": "hat das Anfrageformular aktualisiert."
-            },
-            "activity": {
-                "created": "hat eine Aktivität erstellt.",
-                "updated": "hat eine Aktivität aktualisiert.",
-                "deleted": "hat eine Aktivität gelöscht.",
-                "application": {
-                    "submitted": "hat eine Aktivitätsbewerbung eingereicht.",
-                    "updated": "hat eine Aktivitätsbewerbung aktualisiert.",
-                    "declined": "hat eine Aktivitätsbewerbung abgelehnt.",
-                    "cancelled": "hat eine Aktivitätsbewerbung wegen einer Run-Absage geschlossen.",
-                    "withdrawn": "hat eine Aktivitätsbewerbung zurückgezogen."
-                },
-                "roster": {
-                    "discord_participant_synced": "Run-Teilnehmer mit Discord synchronisiert",
-                    "assigned": "hat einen Roster-Slot zugewiesen.",
-                    "updated": "hat eine Roster-Zuweisung aktualisiert.",
-                    "reassigned": "hat einen Roster-Slot neu zugewiesen.",
-                    "replaced": "hat eine Roster-Zuweisung ersetzt.",
-                    "swapped": "hat Personen im Roster verschoben.",
-                    "returned_to_queue": "hat einen Roster-Slot zurück in die Warteschlange gesetzt.",
-                    "manual_removed": "hat eine manuelle Roster-Zuweisung aus einem Slot entfernt.",
-                    "host_marked": "hat einen Roster-Slot als Host markiert.",
-                    "host_cleared": "hat die Host-Markierung eines Roster-Slots entfernt.",
-                    "raid_leader_marked": "hat einen Roster-Slot als Raid-Leitung markiert.",
-                    "raid_leader_cleared": "hat die Raid-Leitungs-Markierung eines Roster-Slots entfernt.",
-                    "duelist_marked": "markierte einen Kaderplatz als Duellant.",
-                    "duelist_cleared": "entfernte die Duellant-Markierung von einem Kaderplatz.",
-                    "trapper_marked": "markierte einen Kaderplatz als Fallensteller.",
-                    "trapper_cleared": "entfernte die Fallensteller-Markierung von einem Kaderplatz.",
-                    "darter_marked": "markierte einen Kaderplatz als Darter.",
-                    "darter_cleared": "entfernte die Darter-Markierung von einem Kaderplatz."
-                },
-                "attendance": {
-                    "checked_in": "hat einen Roster-Slot eingecheckt.",
-                    "marked_late": "hat einen Roster-Slot als verspätet markiert.",
-                    "check_in_reverted": "hat einen Roster-Check-in rückgängig gemacht.",
-                    "group_checked_in": "hat eine gesamte Partei oder Gruppe eingecheckt.",
-                    "marked_missing": "hat einen Roster-Slot als fehlend markiert.",
-                    "missing_reverted": "hat einen fehlenden Roster-Slot wiederhergestellt."
-                }
-            },
-            "invite": {
-                "created": "hat einen Einladungslink erstellt.",
-                "revoked": "hat einen Einladungslink widerrufen."
-            },
-            "member": {
-                "joined": "ist der Gruppe beigetreten.",
-                "joined_via_invite": "ist der Gruppe per Einladung beigetreten.",
-                "left": "hat die Gruppe verlassen.",
-                "promoted": "hat eine Mitgliedsrolle befördert.",
-                "demoted": "hat eine Mitgliedsrolle zurückgestuft.",
-                "note": {
-                    "created": "hat eine Mitgliedsnotiz hinzugefügt.",
-                    "updated": "hat eine Mitgliedsnotiz aktualisiert.",
-                    "deleted": "hat eine Mitgliedsnotiz gelöscht.",
-                    "addendum": {
-                        "created": "hat Notizkontext hinzugefügt.",
-                        "updated": "hat Notizkontext aktualisiert.",
-                        "deleted": "hat Notizkontext gelöscht."
-                    }
-                },
-                "removed": "hat ein Mitglied aus der Gruppe entfernt.",
-                "banned": "hat ein Mitglied aus der Gruppe gebannt.",
-                "unbanned": "hat die Sperre eines Mitglieds aufgehoben."
-            },
-            "ownership": {
-                "transferred": "hat den Gruppenbesitz übertragen."
-            }
-        }
-    },
-    "activity_targeted": {
-        "group": {
-            "member": {
-                "promoted": "hat befördert",
-                "demoted": "hat zurückgestuft",
-                "removed": "hat entfernt",
-                "banned": "hat gebannt",
-                "unbanned": "hat entbannt",
-                "joined_via_invite": "hat eine Einladung angenommen für"
-            }
-        }
-    },
-    "activity_named": {
-        "admin": {
-            "activity_type": {
-                "created": "erstellt",
-                "cloned": "geklont",
-                "updated": "aktualisiert",
-                "published": "veröffentlicht",
-                "archived": "archiviert"
-            }
-        }
-    },
-    "fields": {
-        "name": "Name",
-        "description": "Beschreibung",
-        "profile_picture_url": "Profilbild",
-        "discord_invite_url": "Discord-Einladung",
-        "title": "Titel",
-        "datacenter": "Datenzentrum",
-        "is_public": "Öffentlich",
-        "is_visible": "Sichtbar",
-        "status": "Status",
-        "role": "Rolle",
-        "note_severity": "Notizschwere",
-        "note_excerpt": "Notizauszug",
-        "note_body": "Notiztext",
-        "addendum_excerpt": "Kontextauszug",
-        "is_shared_with_groups": "Mit anderen Gruppen geteilt",
-        "membership_status": "Mitgliedschaftsstatus",
-        "ban_reason": "Banngrund",
-        "owner_user_id": "Besitzer",
-        "previous_role": "Vorherige Rolle",
-        "invite_id": "Einladungs-ID",
-        "invite_token": "Einladungstoken",
-        "max_uses": "Max. Nutzungen",
-        "expires_at": "Läuft ab am",
-        "uses": "Nutzungen",
-        "slug": "Slug",
-        "activity_title": "Aktivität",
-        "activity_type_slug": "Aktivitätstyp",
-        "slot_label": "Platz",
-        "group_label": "Gruppe",
-        "source_slot_label": "Quell-Slot",
-        "source_group_label": "Quellgruppe",
-        "source_character_name": "Quellcharakter",
-        "target_slot_label": "Ziel-Slot",
-        "target_group_label": "Zielgruppe",
-        "target_character_name": "Zielcharakter",
-        "character_name": "Charakter",
-        "selected_character_name": "Ausgewählter Charakter",
-        "displaced_character_name": "Verdrängter Charakter",
-        "application_status": "Bewerbungsstatus",
-        "review_reason": "Prüfungsnotiz",
-        "starts_at": "Beginnt am",
-        "duration_hours": "Dauer (Stunden)",
-        "needs_application": "Benötigt Bewerbung",
-        "allow_guest_applications": "Gastbewerbungen erlauben",
-        "target_prog_point_key": "Ziel-Prog-Punkt",
-        "organized_by_user_id": "Organisator",
-        "organized_by_character_id": "Organisator-Charakter",
-        "checked_in_at": "Eingecheckt am",
-        "checked_in_count": "Anzahl Check-ins",
-        "marked_missing_at": "Als fehlend markiert am",
-        "restored_destination": "Wiederhergestellt nach",
-        "is_bench": "Bench-Slot",
-        "field_assignment_updated": "Feldzuweisung aktualisiert",
-        "designation": "Kennzeichnung",
-        "moved_to_slot_label": "Verschoben zu Slot",
-        "moved_to_group_label": "Verschoben zu Gruppe",
-        "email": "E-Mail",
-        "provider": "Anbieter",
-        "provider_user_id": "Anbieter-Benutzer-ID",
-        "membership_application_id": "Anfrage",
-        "applicant_user_id": "Bewerber",
-        "applicant_name": "Name des Bewerbers",
-        "field_count": "Feldanzahl",
-        "previous_field_count": "Vorherige Feldanzahl",
-        "login_method": "Anmeldemethode",
-        "registration_method": "Registrierungsmethode",
-        "remember": "Angemeldet bleiben",
-        "linked_while_authenticated": "Während Authentifizierung verknüpft",
-        "lodestone_id": "Lodestone-ID",
-        "verification_method": "Verifizierungsmethode",
-        "is_primary": "Primärcharakter",
-        "changed_fields": "Geänderte Felder",
-        "headline": "Überschrift",
-        "scheduled_for": "Geplant für",
-        "notification_event_id": "Benachrichtigungsereignis",
-        "action_label": "Aktionsbeschriftung",
-        "action_url": "Aktions-URL",
-        "scopes": "API-Berechtigungen",
-        "allowed_events": "Erlaubte Ereignisse",
-        "outbound_events_url": "Webhook-Endpunkt",
-        "healthcheck_url": "Endpunkt der Zustandsprüfung",
-        "integration_client_id": "Integrationsclient-ID",
-        "integration_client_name": "Integrationsclient",
-        "permissions": "Berechtigungen",
-        "type": "Typ",
-        "version_from": "Vorherige Version",
-        "version_to": "Bis Version"
-    },
-    "events": {
-        "user": {
-            "registered": "Benutzer registriert",
-            "logged_in": "Benutzer angemeldet",
-            "password_reset": "Passwort zurückgesetzt",
-            "account": {
-                "deleted": "Benutzerkonto gelöscht"
-            },
-            "social_account": {
-                "linked": "Social-Konto verknüpft",
-                "unlinked": "Social-Konto getrennt"
-            },
-            "discord_app": {
-                "user_installed": "Discord-App installiert",
-                "disconnected": "Discord-App getrennt",
-                "guild_installed": "Discord-App auf Server installiert"
-            },
-            "settings": {
-                "username_updated": "Benutzername aktualisiert",
-                "password_updated": "Passwort aktualisiert",
-                "notifications_updated": "Benachrichtigungseinstellungen aktualisiert",
-                "profile_picture_updated": "Profilbild aktualisiert",
-                "privacy_updated": "Datenschutzeinstellungen aktualisiert"
-            }
-        },
-        "admin": {
-            "field_definition": {
-                "created": "Felddefinition erstellt",
-                "updated": "Felddefinition aktualisiert",
-                "deleted": "Felddefinition gelöscht",
-                "reordered": "Felddefinitionen neu angeordnet"
-            },
-            "character_class": {
-                "created": "Charakterklasse erstellt",
-                "updated": "Charakterklasse aktualisiert",
-                "deleted": "Charakterklasse gelöscht"
-            },
-            "phantom_job": {
-                "created": "Phantom-Job erstellt",
-                "updated": "Phantom-Job aktualisiert",
-                "deleted": "Phantom-Job gelöscht"
-            },
-            "raid_position": {
-                "created": "Raid-Position erstellt",
-                "updated": "Raid-Position aktualisiert",
-                "deleted": "Raid-Position gelöscht"
-            },
-            "bozja_item": {
-                "created": "Bozja-Eintrag erstellt",
-                "updated": "Bozja-Eintrag aktualisiert",
-                "deleted": "Bozja-Eintrag gelöscht"
-            },
-            "activity_type": {
-                "created": "Activity Type erstellt",
-                "cloned": "Activity Type geklont",
-                "updated": "Activity Type aktualisiert",
-                "published": "Activity Type veröffentlicht",
-                "archived": "Activity Type archiviert"
-            },
-            "system_notification": {
-                "maintenance_sent": "Wartungsbenachrichtigung gesendet",
-                "announcement_sent": "Update-Benachrichtigung gesendet"
-            },
-            "system_banner": {
-                "updated": "Systemweites Banner aktualisiert",
-                "cleared": "Systemweites Banner entfernt"
-            },
-            "quota_override": {
-                "created": "Kontolimit-Ausnahme erstellt",
-                "updated": "Kontolimit-Ausnahme aktualisiert",
-                "deleted": "Kontolimit-Ausnahme entfernt"
-            },
-            "integration_client": {
-                "created": "Integrationsclient erstellt",
-                "updated": "Integrationsclient aktualisiert",
-                "api_token_rotated": "Integrations-API-Token erneuert",
-                "webhook_secret_rotated": "Webhook-Schlüssel der Integration erneuert"
-            },
-            "form": {
-                "created": "Formular erstellt",
-                "updated": "Formularentwurf aktualisiert",
-                "publish": "Formular veröffentlicht",
-                "unpublish": "Formularveröffentlichung aufgehoben",
-                "close": "Formularantworten geschlossen",
-                "open": "Formularantworten wieder geöffnet"
-            },
-            "changelog": {
-                "created": "Entwurf für das Änderungsprotokoll erstellt",
-                "updated": "Änderungsprotokoll aktualisiert",
-                "published": "Änderungsprotokoll veröffentlicht",
-                "unpublished": "Veröffentlichung des Änderungsprotokolls zurückgezogen"
-            }
-        },
-        "character": {
-            "verified": "Charakter verifiziert",
-            "refresh_requested": "Charakteraktualisierung angefordert",
-            "made_primary": "Charakter als primär festgelegt"
-        },
-        "group": {
-            "resources": {
-                "created": "hat eine Ressource erstellt.",
-                "save": "hat einen Ressourcenentwurf gespeichert.",
-                "submit": "hat Ressourcenänderungen eingereicht.",
-                "publish": "hat eine Ressource veröffentlicht.",
-                "discard": "hat Ressourcenänderungen verworfen.",
-                "restore": "hat eine Ressourcenversion wiederhergestellt.",
-                "archive": "hat eine Ressource archiviert.",
-                "unpublish": "hat eine Ressource zurückgezogen.",
-                "organize": "hat eine Ressource verschoben oder neu geordnet.",
-                "pin": "hat eine Ressource angeheftet.",
-                "unpin": "hat eine Ressource gelöst.",
-                "settings_updated": "hat die Ressourcenbibliothek aktualisiert.",
-                "all_deleted": "hat alle Ressourcen der Gruppe gelöscht.",
-                "deleted": "hat eine Ressource gelöscht.",
-                "collection_saved": "hat eine Ressourcensammlung gespeichert.",
-                "collection_deleted": "hat eine Ressourcensammlung gelöscht.",
-                "image_uploaded": "hat ein Ressourcenbild hochgeladen.",
-                "image_updated": "hat die Details eines Ressourcenbildes aktualisiert.",
-                "image_deleted": "hat ein Ressourcenbild gelöscht."
-            },
-            "created": "Gruppe erstellt",
-            "updated": "Gruppeneinstellungen aktualisiert",
-            "deleted": "Gruppe gelöscht",
-            "followed": "Gruppe gefolgt",
-            "unfollowed": "Gruppe entfolgt",
-            "notifications": {
-                "enabled": "Gruppenbenachrichtigungen aktiviert",
-                "muted": "Gruppenbenachrichtigungen stummgeschaltet"
-            },
-            "membership_application": {
-                "submitted": "Anfrage gesendet",
-                "updated": "Anfrage aktualisiert",
-                "approved": "Anfrage angenommen",
-                "declined": "Anfrage abgelehnt",
-                "form_updated": "Anfrageformular aktualisiert"
-            },
-            "activity": {
-                "created": "Aktivität erstellt",
-                "updated": "Aktivität aktualisiert",
-                "deleted": "Aktivität gelöscht",
-                "application": {
-                    "submitted": "Aktivitätsbewerbung eingereicht",
-                    "updated": "Aktivitätsbewerbung aktualisiert",
-                    "declined": "Aktivitätsbewerbung abgelehnt",
-                    "cancelled": "Aktivitätsbewerbung wegen Run-Absage geschlossen",
-                    "withdrawn": "Aktivitätsbewerbung zurückgezogen"
-                },
-                "roster": {
-                    "discord_participant_synced": "Run-Teilnehmer mit Discord synchronisiert",
-                    "assigned": "Roster-Slot zugewiesen",
-                    "updated": "Roster-Zuweisung aktualisiert",
-                    "reassigned": "Roster-Slot neu zugewiesen",
-                    "replaced": "Roster-Zuweisung ersetzt",
-                    "swapped": "Roster-Positionen verschoben",
-                    "returned_to_queue": "Roster-Slot in Warteschlange zurückgesetzt",
-                    "manual_removed": "Manuelle Roster-Zuweisung entfernt",
-                    "host_marked": "Roster-Slot als Host markiert",
-                    "host_cleared": "Host-Markierung im Roster entfernt",
-                    "raid_leader_marked": "Roster-Slot als Raid-Leitung markiert",
-                    "raid_leader_cleared": "Raid-Leitungs-Markierung im Roster entfernt",
-                    "duelist_marked": "Kaderplatz als Duellant markiert",
-                    "duelist_cleared": "Duellant-Markierung entfernt",
-                    "trapper_marked": "Kaderplatz als Fallensteller markiert",
-                    "trapper_cleared": "Fallensteller-Markierung entfernt",
-                    "darter_marked": "Kaderplatz als Darter markiert",
-                    "darter_cleared": "Darter-Markierung entfernt"
-                },
-                "attendance": {
-                    "checked_in": "Roster-Slot eingecheckt",
-                    "marked_late": "Roster-Slot als verspätet markiert",
-                    "check_in_reverted": "Roster-Check-in rückgängig gemacht",
-                    "group_checked_in": "Roster-Gruppe eingecheckt",
-                    "marked_missing": "Roster-Slot als fehlend markiert",
-                    "missing_reverted": "Fehlenden Roster-Slot wiederhergestellt"
-                }
-            },
-            "invite": {
-                "created": "Einladungslink erstellt",
-                "revoked": "Einladungslink widerrufen"
-            },
-            "member": {
-                "joined": "Mitglied ist Gruppe beigetreten",
-                "joined_via_invite": "Mitglied ist per Einladung beigetreten",
-                "left": "Mitglied hat Gruppe verlassen",
-                "promoted": "Mitgliedsrolle befördert",
-                "demoted": "Mitgliedsrolle zurückgestuft",
-                "note": {
-                    "created": "Mitgliedsnotiz erstellt",
-                    "updated": "Mitgliedsnotiz aktualisiert",
-                    "deleted": "Mitgliedsnotiz gelöscht",
-                    "addendum": {
-                        "created": "Notizkontext hinzugefügt",
-                        "updated": "Notizkontext aktualisiert",
-                        "deleted": "Notizkontext gelöscht"
-                    }
-                },
-                "removed": "Mitglied aus Gruppe entfernt",
-                "banned": "Mitglied aus Gruppe gebannt",
-                "unbanned": "Mitglied entsperrt"
-            },
-            "ownership": {
-                "transferred": "Gruppenbesitz übertragen"
-            }
-        }
+        "removed": "hat ein Mitglied aus der Gruppe entfernt.",
+        "banned": "hat ein Mitglied aus der Gruppe gebannt.",
+        "unbanned": "hat die Sperre eines Mitglieds aufgehoben."
+      },
+      "ownership": {
+        "transferred": "hat den Gruppenbesitz übertragen."
+      }
     }
+  },
+  "activity_targeted": {
+    "group": {
+      "member": {
+        "promoted": "hat befördert",
+        "demoted": "hat zurückgestuft",
+        "removed": "hat entfernt",
+        "banned": "hat gebannt",
+        "unbanned": "hat entbannt",
+        "joined_via_invite": "hat eine Einladung angenommen für"
+      }
+    }
+  },
+  "activity_named": {
+    "admin": {
+      "activity_type": {
+        "created": "erstellt",
+        "cloned": "geklont",
+        "updated": "aktualisiert",
+        "published": "veröffentlicht",
+        "archived": "archiviert"
+      }
+    }
+  },
+  "fields": {
+    "name": "Name",
+    "description": "Beschreibung",
+    "profile_picture_url": "Profilbild",
+    "discord_invite_url": "Discord-Einladung",
+    "title": "Titel",
+    "datacenter": "Datenzentrum",
+    "is_public": "Öffentlich",
+    "is_visible": "Sichtbar",
+    "status": "Status",
+    "role": "Rolle",
+    "note_severity": "Notizschwere",
+    "note_excerpt": "Notizauszug",
+    "note_body": "Notiztext",
+    "addendum_excerpt": "Kontextauszug",
+    "is_shared_with_groups": "Mit anderen Gruppen geteilt",
+    "membership_status": "Mitgliedschaftsstatus",
+    "ban_reason": "Banngrund",
+    "owner_user_id": "Besitzer",
+    "previous_role": "Vorherige Rolle",
+    "invite_id": "Einladungs-ID",
+    "invite_token": "Einladungstoken",
+    "max_uses": "Max. Nutzungen",
+    "expires_at": "Läuft ab am",
+    "uses": "Nutzungen",
+    "slug": "Slug",
+    "activity_title": "Aktivität",
+    "activity_type_slug": "Aktivitätstyp",
+    "slot_label": "Platz",
+    "group_label": "Gruppe",
+    "source_slot_label": "Quell-Slot",
+    "source_group_label": "Quellgruppe",
+    "source_character_name": "Quellcharakter",
+    "target_slot_label": "Ziel-Slot",
+    "target_group_label": "Zielgruppe",
+    "target_character_name": "Zielcharakter",
+    "character_name": "Charakter",
+    "selected_character_name": "Ausgewählter Charakter",
+    "displaced_character_name": "Verdrängter Charakter",
+    "application_status": "Bewerbungsstatus",
+    "review_reason": "Prüfungsnotiz",
+    "starts_at": "Beginnt am",
+    "duration_hours": "Dauer (Stunden)",
+    "needs_application": "Benötigt Bewerbung",
+    "allow_guest_applications": "Gastbewerbungen erlauben",
+    "target_prog_point_key": "Ziel-Prog-Punkt",
+    "organized_by_user_id": "Organisator",
+    "organized_by_character_id": "Organisator-Charakter",
+    "checked_in_at": "Eingecheckt am",
+    "checked_in_count": "Anzahl Check-ins",
+    "marked_missing_at": "Als fehlend markiert am",
+    "restored_destination": "Wiederhergestellt nach",
+    "is_bench": "Bench-Slot",
+    "field_assignment_updated": "Feldzuweisung aktualisiert",
+    "designation": "Kennzeichnung",
+    "moved_to_slot_label": "Verschoben zu Slot",
+    "moved_to_group_label": "Verschoben zu Gruppe",
+    "email": "E-Mail",
+    "provider": "Anbieter",
+    "provider_user_id": "Anbieter-Benutzer-ID",
+    "membership_application_id": "Anfrage",
+    "applicant_user_id": "Bewerber",
+    "applicant_name": "Name des Bewerbers",
+    "field_count": "Feldanzahl",
+    "previous_field_count": "Vorherige Feldanzahl",
+    "login_method": "Anmeldemethode",
+    "registration_method": "Registrierungsmethode",
+    "remember": "Angemeldet bleiben",
+    "linked_while_authenticated": "Während Authentifizierung verknüpft",
+    "lodestone_id": "Lodestone-ID",
+    "verification_method": "Verifizierungsmethode",
+    "is_primary": "Primärcharakter",
+    "changed_fields": "Geänderte Felder",
+    "headline": "Überschrift",
+    "scheduled_for": "Geplant für",
+    "notification_event_id": "Benachrichtigungsereignis",
+    "action_label": "Aktionsbeschriftung",
+    "action_url": "Aktions-URL",
+    "scopes": "API-Berechtigungen",
+    "allowed_events": "Erlaubte Ereignisse",
+    "outbound_events_url": "Webhook-Endpunkt",
+    "healthcheck_url": "Endpunkt der Zustandsprüfung",
+    "integration_client_id": "Integrationsclient-ID",
+    "integration_client_name": "Integrationsclient",
+    "permissions": "Berechtigungen",
+    "type": "Typ",
+    "version_from": "Vorherige Version",
+    "version_to": "Bis Version",
+    "from_user_id": "ID des bisherigen Kontos",
+    "from_user_name": "Name des bisherigen Kontos",
+    "to_user_id": "ID des neuen Kontos",
+    "to_user_name": "Name des neuen Kontos",
+    "previous_status": "Bisheriger Verifizierungsstatus"
+  },
+  "events": {
+    "user": {
+      "registered": "Benutzer registriert",
+      "logged_in": "Benutzer angemeldet",
+      "password_reset": "Passwort zurückgesetzt",
+      "account": {
+        "deleted": "Benutzerkonto gelöscht"
+      },
+      "social_account": {
+        "linked": "Social-Konto verknüpft",
+        "unlinked": "Social-Konto getrennt"
+      },
+      "discord_app": {
+        "user_installed": "Discord-App installiert",
+        "disconnected": "Discord-App getrennt",
+        "guild_installed": "Discord-App auf Server installiert"
+      },
+      "settings": {
+        "username_updated": "Benutzername aktualisiert",
+        "password_updated": "Passwort aktualisiert",
+        "notifications_updated": "Benachrichtigungseinstellungen aktualisiert",
+        "profile_picture_updated": "Profilbild aktualisiert",
+        "privacy_updated": "Datenschutzeinstellungen aktualisiert"
+      }
+    },
+    "admin": {
+      "field_definition": {
+        "created": "Felddefinition erstellt",
+        "updated": "Felddefinition aktualisiert",
+        "deleted": "Felddefinition gelöscht",
+        "reordered": "Felddefinitionen neu angeordnet"
+      },
+      "character_class": {
+        "created": "Charakterklasse erstellt",
+        "updated": "Charakterklasse aktualisiert",
+        "deleted": "Charakterklasse gelöscht"
+      },
+      "phantom_job": {
+        "created": "Phantom-Job erstellt",
+        "updated": "Phantom-Job aktualisiert",
+        "deleted": "Phantom-Job gelöscht"
+      },
+      "raid_position": {
+        "created": "Raid-Position erstellt",
+        "updated": "Raid-Position aktualisiert",
+        "deleted": "Raid-Position gelöscht"
+      },
+      "bozja_item": {
+        "created": "Bozja-Eintrag erstellt",
+        "updated": "Bozja-Eintrag aktualisiert",
+        "deleted": "Bozja-Eintrag gelöscht"
+      },
+      "activity_type": {
+        "created": "Activity Type erstellt",
+        "cloned": "Activity Type geklont",
+        "updated": "Activity Type aktualisiert",
+        "published": "Activity Type veröffentlicht",
+        "archived": "Activity Type archiviert"
+      },
+      "system_notification": {
+        "maintenance_sent": "Wartungsbenachrichtigung gesendet",
+        "announcement_sent": "Update-Benachrichtigung gesendet"
+      },
+      "system_banner": {
+        "updated": "Systemweites Banner aktualisiert",
+        "cleared": "Systemweites Banner entfernt"
+      },
+      "quota_override": {
+        "created": "Kontolimit-Ausnahme erstellt",
+        "updated": "Kontolimit-Ausnahme aktualisiert",
+        "deleted": "Kontolimit-Ausnahme entfernt"
+      },
+      "integration_client": {
+        "created": "Integrationsclient erstellt",
+        "updated": "Integrationsclient aktualisiert",
+        "api_token_rotated": "Integrations-API-Token erneuert",
+        "webhook_secret_rotated": "Webhook-Schlüssel der Integration erneuert"
+      },
+      "form": {
+        "created": "Formular erstellt",
+        "updated": "Formularentwurf aktualisiert",
+        "publish": "Formular veröffentlicht",
+        "unpublish": "Formularveröffentlichung aufgehoben",
+        "close": "Formularantworten geschlossen",
+        "open": "Formularantworten wieder geöffnet"
+      },
+      "changelog": {
+        "created": "Entwurf für das Änderungsprotokoll erstellt",
+        "updated": "Änderungsprotokoll aktualisiert",
+        "published": "Änderungsprotokoll veröffentlicht",
+        "unpublished": "Veröffentlichung des Änderungsprotokolls zurückgezogen"
+      }
+    },
+    "character": {
+      "verified": "Charakter verifiziert",
+      "refresh_requested": "Charakteraktualisierung angefordert",
+      "made_primary": "Charakter als primär festgelegt",
+      "added": "hat einen Charakter zum Konto hinzugefügt.",
+      "transferred": "Charakter zwischen Konten übertragen"
+    },
+    "group": {
+      "resources": {
+        "created": "hat eine Ressource erstellt.",
+        "save": "hat einen Ressourcenentwurf gespeichert.",
+        "submit": "hat Ressourcenänderungen eingereicht.",
+        "publish": "hat eine Ressource veröffentlicht.",
+        "discard": "hat Ressourcenänderungen verworfen.",
+        "restore": "hat eine Ressourcenversion wiederhergestellt.",
+        "archive": "hat eine Ressource archiviert.",
+        "unpublish": "hat eine Ressource zurückgezogen.",
+        "organize": "hat eine Ressource verschoben oder neu geordnet.",
+        "pin": "hat eine Ressource angeheftet.",
+        "unpin": "hat eine Ressource gelöst.",
+        "settings_updated": "hat die Ressourcenbibliothek aktualisiert.",
+        "all_deleted": "hat alle Ressourcen der Gruppe gelöscht.",
+        "deleted": "hat eine Ressource gelöscht.",
+        "collection_saved": "hat eine Ressourcensammlung gespeichert.",
+        "collection_deleted": "hat eine Ressourcensammlung gelöscht.",
+        "image_uploaded": "hat ein Ressourcenbild hochgeladen.",
+        "image_updated": "hat die Details eines Ressourcenbildes aktualisiert.",
+        "image_deleted": "hat ein Ressourcenbild gelöscht."
+      },
+      "created": "Gruppe erstellt",
+      "updated": "Gruppeneinstellungen aktualisiert",
+      "deleted": "Gruppe gelöscht",
+      "followed": "Gruppe gefolgt",
+      "unfollowed": "Gruppe entfolgt",
+      "notifications": {
+        "enabled": "Gruppenbenachrichtigungen aktiviert",
+        "muted": "Gruppenbenachrichtigungen stummgeschaltet"
+      },
+      "membership_application": {
+        "submitted": "Anfrage gesendet",
+        "updated": "Anfrage aktualisiert",
+        "approved": "Anfrage angenommen",
+        "declined": "Anfrage abgelehnt",
+        "form_updated": "Anfrageformular aktualisiert"
+      },
+      "activity": {
+        "created": "Aktivität erstellt",
+        "updated": "Aktivität aktualisiert",
+        "deleted": "Aktivität gelöscht",
+        "application": {
+          "submitted": "Aktivitätsbewerbung eingereicht",
+          "updated": "Aktivitätsbewerbung aktualisiert",
+          "declined": "Aktivitätsbewerbung abgelehnt",
+          "cancelled": "Aktivitätsbewerbung wegen Run-Absage geschlossen",
+          "withdrawn": "Aktivitätsbewerbung zurückgezogen"
+        },
+        "roster": {
+          "discord_participant_synced": "Run-Teilnehmer mit Discord synchronisiert",
+          "assigned": "Roster-Slot zugewiesen",
+          "updated": "Roster-Zuweisung aktualisiert",
+          "reassigned": "Roster-Slot neu zugewiesen",
+          "replaced": "Roster-Zuweisung ersetzt",
+          "swapped": "Roster-Positionen verschoben",
+          "returned_to_queue": "Roster-Slot in Warteschlange zurückgesetzt",
+          "manual_removed": "Manuelle Roster-Zuweisung entfernt",
+          "host_marked": "Roster-Slot als Host markiert",
+          "host_cleared": "Host-Markierung im Roster entfernt",
+          "raid_leader_marked": "Roster-Slot als Raid-Leitung markiert",
+          "raid_leader_cleared": "Raid-Leitungs-Markierung im Roster entfernt",
+          "duelist_marked": "Kaderplatz als Duellant markiert",
+          "duelist_cleared": "Duellant-Markierung entfernt",
+          "trapper_marked": "Kaderplatz als Fallensteller markiert",
+          "trapper_cleared": "Fallensteller-Markierung entfernt",
+          "darter_marked": "Kaderplatz als Darter markiert",
+          "darter_cleared": "Darter-Markierung entfernt"
+        },
+        "attendance": {
+          "checked_in": "Roster-Slot eingecheckt",
+          "marked_late": "Roster-Slot als verspätet markiert",
+          "check_in_reverted": "Roster-Check-in rückgängig gemacht",
+          "group_checked_in": "Roster-Gruppe eingecheckt",
+          "marked_missing": "Roster-Slot als fehlend markiert",
+          "missing_reverted": "Fehlenden Roster-Slot wiederhergestellt"
+        }
+      },
+      "invite": {
+        "created": "Einladungslink erstellt",
+        "revoked": "Einladungslink widerrufen"
+      },
+      "member": {
+        "joined": "Mitglied ist Gruppe beigetreten",
+        "joined_via_invite": "Mitglied ist per Einladung beigetreten",
+        "left": "Mitglied hat Gruppe verlassen",
+        "promoted": "Mitgliedsrolle befördert",
+        "demoted": "Mitgliedsrolle zurückgestuft",
+        "note": {
+          "created": "Mitgliedsnotiz erstellt",
+          "updated": "Mitgliedsnotiz aktualisiert",
+          "deleted": "Mitgliedsnotiz gelöscht",
+          "addendum": {
+            "created": "Notizkontext hinzugefügt",
+            "updated": "Notizkontext aktualisiert",
+            "deleted": "Notizkontext gelöscht"
+          }
+        },
+        "removed": "Mitglied aus Gruppe entfernt",
+        "banned": "Mitglied aus Gruppe gebannt",
+        "unbanned": "Mitglied entsperrt"
+      },
+      "ownership": {
+        "transferred": "Gruppenbesitz übertragen"
+      }
+    }
+  }
 }

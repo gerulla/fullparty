@@ -10,13 +10,16 @@ import { router, usePage } from "@inertiajs/vue3"
 import { computed } from "vue"
 import { useI18n } from "vue-i18n"
 import { route } from "ziggy-js"
-import { createDateTimeFormatter, createRelativeTimeFormatter } from "@/utils/dateTimeFormat"
+import { createRelativeTimeFormatter } from "@/utils/dateTimeFormat"
 import { localizedValue } from "@/utils/localizedValue"
 import {
 	formatNotificationTime,
 	resolveNotificationMeta,
 	resolveNotificationTitle,
 } from "@/utils/notificationPresentation"
+import { useDateTimeFormat } from '@/composables/useDateTimeFormat'
+
+const { formatDateTime } = useDateTimeFormat()
 
 const props = defineProps<{
 	overview?: DashboardActivityOverview
@@ -108,13 +111,13 @@ const formatStartsAt = (value: string | null) => {
 		return t("groups.activities.cards.no_time")
 	}
 
-	return createDateTimeFormatter(locale.value, {
+	return formatDateTime(new Date(value), {
 		weekday: "short",
 		day: "numeric",
 		month: "short",
 		hour: "2-digit",
 		minute: "2-digit",
-	}).format(new Date(value))
+	})
 }
 
 const formatRelativeTime = (value: string | null) => {

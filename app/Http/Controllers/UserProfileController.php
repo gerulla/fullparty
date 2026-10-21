@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
 
-class DashboardController extends Controller
+class UserProfileController extends Controller
 {
     public function __construct(
         private readonly HomeBannerDataService $homeBannerDataService,
@@ -20,11 +20,11 @@ class DashboardController extends Controller
         private readonly HomeAccountCompletionDataService $homeAccountCompletionDataService,
     ) {}
 
-    public function show(Request $request): Response
+    public function show(Request $request, User $user): Response
     {
-        $user = $request->user();
+        abort_unless($request->user()->is($user), 404);
 
-        return Inertia::render('Dashboard/Dashboard', [
+        return Inertia::render('Profile/Show', [
             'profile' => fn () => $this->serializeProfile($user),
             'homeProfileOptions' => fn () => [
                 'character_classes' => $this->serializeCharacterClassOptions(),
@@ -56,6 +56,7 @@ class DashboardController extends Controller
         ]);
 
         return [
+            'id' => $user->id,
             'name' => $user->name,
             'email' => $user->email,
             'avatar_url' => $user->avatar_url,

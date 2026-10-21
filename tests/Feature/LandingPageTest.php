@@ -175,40 +175,8 @@ it('shows discoverable this week runs with assigned member stack data', function
     }
 });
 
-it('links non guest-friendly landing runs to their overview for logged in users', function () {
-    CarbonImmutable::setTestNow(CarbonImmutable::parse('2026-05-21 12:00:00'));
-
-    try {
-        $user = User::factory()->create();
-        $group = Group::factory()->open()->create();
-        $type = ActivityType::factory()->create();
-        $version = ActivityTypeVersion::factory()->create([
-            'activity_type_id' => $type->id,
-        ]);
-        $type->update([
-            'current_published_version_id' => $version->id,
-        ]);
-        $activity = Activity::factory()->create([
-            'group_id' => $group->id,
-            'activity_type_id' => $type->id,
-            'activity_type_version_id' => $version->id,
-            'status' => Activity::STATUS_SCHEDULED,
-            'starts_at' => CarbonImmutable::parse('2026-05-21 20:00:00'),
-            'is_public' => true,
-            'allow_guest_applications' => false,
-        ]);
-
-        $this->actingAs($user)
-            ->get(route('home'))
-            ->assertOk()
-            ->assertInertia(fn (Assert $page) => $page
-                ->where('landing.this_week.days.3.runs.0.href', route('groups.activities.overview', [
-                    'locale' => app()->getLocale(),
-                    'group' => $group->slug,
-                    'activity' => $activity->id,
-                ]))
-            );
-    } finally {
-        CarbonImmutable::setTestNow();
-    }
+it('redirects signed-in users from the landing page to their homepage', function () {
+    $this->actingAs(User::factory()->create())
+        ->get(route('home'))
+        ->assertRedirect(route('dashboard'));
 });

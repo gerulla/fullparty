@@ -59,6 +59,14 @@ const updatedDate = computed(() => new Intl.DateTimeFormat(locale.value, {
 							{{ bullet }}
 						</li>
 					</ul>
+
+                    <ul v-if="section.links?.length" class="flex flex-wrap gap-x-6 gap-y-2 text-sm sm:text-base">
+                        <li v-for="link in section.links" :key="link.href">
+                            <a :href="link.href" target="_blank" rel="noopener noreferrer" class="text-primary underline underline-offset-4 hover:text-highlighted">
+                                {{ link.label }}
+                            </a>
+                        </li>
+                    </ul>
 				</section>
 			</div>
 		</div>

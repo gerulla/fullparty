@@ -1,241 +1,566 @@
 {
-    "title": "マイキャラクター",
-    "subtitle": "FFXIV キャラクターとその確認状態を管理します。",
-    "none_found": "キャラクターが見つかりません。",
-    "add": {
-        "title": "キャラクターを追加",
-        "subtitle": "キャラクターの所有確認方法を選択してください",
-        "add_button": "キャラクターを追加",
-        "options": {
-            "xivauth": {
-                "title": "XIVAuth からインポート",
-                "subtitle": "XIVAuth から確認済みキャラクターを自動で取り込みます。XIVAuth アカウントの連携が必要です。"
-            },
-            "manual": {
-                "title": "手動で確認",
-                "subtitle": "Lodestone を使ってキャラクターを追加します。キャラクタープロフィールに確認コードを記載する必要があります。"
-            }
-        }
+  "detail": {
+    "tabs": {
+      "jobs": "ジョブとお気に入り",
+      "occult": "クレセントアイル",
+      "progression": "攻略状況"
     },
-    "manual": {
-        "progress": "ステップ {current} / {total}",
-        "steps": [
-            "キャラクター情報",
-            "確認コード",
-            "確認中...",
-            "完了"
-        ],
-        "step1": {
-            "title": "手動確認",
-            "subtitle": "Lodestone プロフィールURLまたはキャラクターIDを入力してください",
-            "input": {
-                "label": "Lodestone プロフィールURLまたはキャラクターID",
-                "placeholder": "https://na.finalfantasyxiv.com/lodestone/character/123456789",
-                "hint": "Lodestone の完全なURL、または数字のキャラクターIDのみを入力できます"
-            },
-            "help_line": "{label} {lodestone} でキャラクターを検索し、プロフィールページのURLをコピーしてください。",
-            "where_to_find": "確認方法:",
-            "lodestone": "FFXIV Lodestone"
-        },
-        "step2": {
-            "title": "キャラクター所有確認",
-            "subtitle": "Lodestone プロフィールに確認コードを追加してください",
-            "code_label": "確認コード",
-            "instructions_label": "手順:",
-            "instructions": [
-                "1.上の確認コードをコピーします",
-                "2.{profile} を開きます",
-                "3.プロフィールを編集し、プロフィール文のどこかにコードを貼り付けます",
-                "4.プロフィール変更を保存します",
-                "5.下の「今すぐ確認」を押します"
-            ],
-            "profile": "Lodestone プロフィール",
-            "toast_success": {
-                "title": "コードをコピーしました",
-                "description": "確認コードをクリップボードにコピーしました。"
-            },
-            "toast_error": {
-                "title": "コピーに失敗しました",
-                "description": "確認コードをコピーできませんでした。"
-            },
-            "toast_taken": {
-                "title": "キャラクターはすでに登録済みです",
-                "description": "このキャラクターはすでに登録されています。あなたのキャラクターなのに登録した覚えがない場合はサポートへ連絡してください。"
-            }
-        },
-        "step3": {
-            "title": "プロフィールを確認中",
-            "subtitle": "Lodestone プロフィールを確認しています。しばらくお待ちください..."
-        },
-        "success": {
-            "title": "キャラクターを確認しました！",
-            "subtitle": "キャラクターの確認が完了し、アカウントに追加されました。",
-            "button": "マイキャラクターに戻る"
-        },
-        "fail": {
-            "title": "確認に失敗しました",
-            "subtitle": "Lodestone プロフィール上で確認コードが見つかりませんでした。",
-            "common_label": "よくある原因:",
-            "common_issues": [
-                "確認コードがプロフィールに追加されていない",
-                "プロフィール変更がまだ反映されていない（数分待って再試行してください）",
-                "コードが変更されている、または余分な空白が入っている"
-            ],
-            "button": "最初からやり直す"
-        },
-        "errors": {
-            "invalid_token": "確認コードが一致しません。もう一度お試しください。",
-            "invalid_lodestone_id": "Lodestone ID が無効です。有効なキャラクターIDまたは Lodestone URL を入力してください。",
-            "character_not_found": "キャラクターが見つかりません。ID を確認して再試行してください。",
-            "lodestone_error": "キャラクター情報を取得できませんでした。後でもう一度お試しください。",
-            "parse_error": "キャラクター情報を解析できませんでした。後でもう一度お試しください。"
-        }
-    },
-    "xivauth": {
-        "progress": "ステップ {current} / {total}",
-        "steps": [
-            "キャラクター取得中...",
-            "インポートするキャラクターを選択",
-            "キャラクターをインポート中...",
-            "完了"
-        ],
-        "step1": {
-            "title": "キャラクター取得中",
-            "subtitle": "XIVAuth から確認済みキャラクターを読み込んでいます。数分かかる場合があります。"
-        },
-        "step2": {
-            "title": "インポートするキャラクターを選択",
-            "subtitle": "XIVAuth からインポートしたいキャラクターを選んでください。"
-        },
-        "step3": {
-            "title": "キャラクターをインポート中",
-            "subtitle": "XIVAuth からキャラクターをインポートしています。数分かかる場合があります。"
-        },
-        "success": {
-            "title": "キャラクターをインポートしました！",
-            "subtitle": "XIVAuth からキャラクターを正常にインポートしました。",
-            "button": "マイキャラクターに戻る"
-        },
-        "errors": {
-            "xivauth_not_linked": "XIVAuth アカウントがまだ連携されていないようです。キャラクターをインポートするにはアカウントを連携してください。",
-            "xivauth_token_invalid": "XIVAuth で認証できませんでした。再試行するかサポートに連絡してください。",
-            "xivauth_character_already_claimed": "このキャラクターはすでに登録されています。自分のキャラクターの場合はサポートに連絡してください。"
-        },
-        "sync": {
-            "conflict_title": "一部のキャラクターをインポートできませんでした",
-            "conflict_description_one": "{characters} はすでに登録されています。自分のキャラクターの場合はサポートに連絡してください。",
-            "conflict_description_many": "{characters} はすでに登録されています。自分のキャラクターの場合はサポートに連絡してください。"
-        }
-    },
-    "added_manually": "手動で追加",
-    "from_xivauth": "XIVAuth から",
-    "toasts": {
-        "title": "成功しました",
-        "character_refreshed": "キャラクターデータを更新しました",
-        "character_primary": "メインキャラクターを更新しました",
-        "character_unclaimed": "キャラクターの紐付けを解除しました"
-    },
-    "jobs": {
-        "classes": {
-            "brd": "吟遊詩人",
-            "drg": "竜騎士",
-            "mnk": "モンク",
-            "pld": "ナイト",
-            "war": "戦士",
-            "blm": "黒魔道士",
-            "whm": "白魔道士",
-            "sch": "学者",
-            "smn": "召喚士",
-            "nin": "忍者",
-            "ast": "占星術師",
-            "drk": "暗黒騎士",
-            "mch": "機工士",
-            "rdm": "赤魔道士",
-            "sam": "侍",
-            "blu": "青魔道士",
-            "gnb": "ガンブレイカー",
-            "dnc": "踊り子",
-            "rpr": "リーパー",
-            "sge": "賢者",
-            "vpr": "ヴァイパー",
-            "pct": "ピクトマンサー"
-        },
-        "phantom": {
-            "knight": "ファントムナイト",
-            "monk": "ファントムモンク",
-            "thief": "ファントムシーフ",
-            "samurai": "ファントムサムライ",
-            "berserker": "ファントムバーサーカー",
-            "ranger": "ファントムレンジャー",
-            "mystic_knight": "ファントム魔法剣士",
-            "time_mage": "ファントム時魔道士",
-            "chemist": "ファントム薬師",
-            "geomancer": "ファントム風水士",
-            "bard": "ファントム吟遊詩人",
-            "dancer": "ファントム踊り子",
-            "oracle": "ファントム予言士",
-            "cannoneer": "ファントム砲撃士",
-            "gladiator": "ファントム剣術士",
-            "freelancer": "ファントムすっぴん",
-            "ninja": "ファントム忍者",
-            "white_mage": "ファントム白魔道士",
-            "black_mage": "ファントム黒魔道士",
-            "dragoon": "ファントム竜騎士",
-            "summoner": "ファントム召喚士",
-            "blue_mage": "ファントム青魔道士",
-            "red_mage": "ファントム赤魔道士",
-            "necromancer": "ファントムネクロマンサー"
-        },
-        "raid_positions": {
-            "mt": "MT（メインタンク）",
-            "ot": "ST（サブタンク）",
-            "h1": "H1（ヒーラー1）",
-            "h2": "H2（ヒーラー2）",
-            "m1": "D1（近接1）",
-            "m2": "D2（近接2）",
-            "r1": "D3（物理遠隔）",
-            "r2": "D4（魔法遠隔）"
-        }
-    },
-    "card": {
-        "view_lodestone_profile": "Lodestone プロフィールを見る",
-        "refresh_character": "キャラクターを更新",
-        "make_primary": "メインに設定",
-        "unclaim_character": "キャラクターの紐付けを解除",
-        "unclaim_title": "キャラクターの紐付けを解除",
-        "unclaim_description": "この操作でキャラクターはアカウントから外れます。必要であれば後で再び紐付けできます。",
-        "unclaim_confirm": "紐付けを解除",
-        "unclaim_cancel": "戻る",
-        "preferred": "優先",
-        "maxed": "最大",
-        "knowledge_level": "知識レベル",
-        "level": "レベル {level}",
-        "phantom_level": "レベル {current} / {max}",
-        "sections": {
-            "classes": "クラス",
-            "occult": "オカルト",
-            "forked_tower_blood": "フォークタワー：力の塔",
-            "forked_tower_magic": "極フォークタワー：魔の塔"
-        },
-        "forked_tower": {
-            "clear_count": "クリア回数",
-            "clears": "{count} クリア",
-            "clears_at_least": "{count}+ クリア",
-            "kills": "討伐数",
-            "kills_at_least": "最低 {count}",
-            "verified_with_fflogs": "FFLogsで確認済み",
-            "verified_with_lodestone": "Lodestoneで確認済み",
-            "bosses": {
-                "demon_tablet": "デモンズ・タブレット",
-                "dead_stars": "星頭の三人組",
-                "marble_dragon": "マーブルドラゴン",
-                "magitaur": "マギタウロス",
-                "two_headed_aevis": "ツーヘッド・エイビス",
-                "sword_dancer": "ソードダンサー",
-                "necrophobia": "ネクロフォビア",
-                "index": "インデックス",
-                "tba": "未定"
-            }
-        }
+    "your_jobs": "あなたのジョブ",
+    "preferences_help": "ハートを押して、プレイしたいジョブを選びましょう。",
+    "phantom_jobs": "サポートジョブ",
+    "favourite": "{name}をお気に入りに追加",
+    "unfavourite": "{name}をお気に入りから削除",
+    "refresh": "更新",
+    "remove": "キャラクターの連携を解除",
+    "action_failed": "変更を保存できませんでした。もう一度お試しください。",
+    "progress_help": "保存済みの塔の攻略状況です。最新データを取得するには、キャラクターを更新してください。",
+    "ownership": {
+      "unverified": {
+        "title": "アカウントに連携済み",
+        "description": "所有権はまだ確認されていません。別のアカウントに移すには、正式な所有権の証明が必要です。"
+      },
+      "verified": {
+        "title": "参加実績で認証済み",
+        "description": "あなたのアカウントに連携されています。LodestoneまたはXIVAuthによる正式な所有権の証明が優先されます。"
+      },
+      "claimed": {
+        "title": "所有権を確保済み",
+        "description": "LodestoneまたはXIVAuthで所有権を証明済みです。移管には、管理者によるアカウント復旧の審査が必要です。"
+      }
     }
+  },
+  "overview": {
+    "subtitle": "ジョブを選び、次の活動に向けてキャラクターを準備しましょう。",
+    "cleared": "クリア済み",
+    "bosses_defeated": "{count}/{total}撃破",
+    "preferred_jobs": "希望ジョブ",
+    "no_preferred_jobs": "「キャラクター管理」で希望ジョブを選択できます。",
+    "manage": "キャラクター管理",
+    "manage_named": "{name}を管理",
+    "all_characters": "キャラクター一覧",
+    "ownership_confirmed": "所有権確認済み",
+    "claim": "キャラクターの所有権を確認",
+    "claim_pending": "所有権の確認機能は近日公開予定です",
+    "verification_title": "未認証・認証済み・所有権確認済みの違いは？",
+    "verification_description": "キャラクターとアカウントの紐付け・保護について説明します。",
+    "verification_button": "認証の仕組みを見る",
+    "empty_title": "キャラクターを追加しましょう",
+    "empty_description": "FFXIVのキャラクターを追加して、次の活動に備えましょう。"
+  },
+  "verification_guide": {
+    "help_button": "確認方法について",
+    "title": "キャラクターの確認について",
+    "description": "1人のキャラクターを同時に複数のFullPartyアカウントに紐づけることはできません。3つの状態についてご案内します。",
+    "states": {
+      "unverified": {
+        "title": "未確認",
+        "summary": "あなたのアカウントだけに紐づけ済み",
+        "description": "検索から追加したキャラクターで、所有者はまだ確認されていません。別のアカウントがLodestoneまたはXIVAuthで所有確認を完了しない限り、あなたのアカウントに紐づいたままです。ほかのアカウントで単に追加するだけでは移せません。"
+      },
+      "verified": {
+        "title": "確認済み",
+        "summary": "参加を通じて所有者を確認",
+        "description": "条件を満たす開催回に3回参加し、それぞれが終了すると、このキャラクターがあなたのものであると確認されます。あなたのアカウントだけに紐づけられ、別のアカウントへ移すには、より強い証明となるLodestoneまたはXIVAuthでの所有確認が必要です。"
+      },
+      "claimed": {
+        "title": "所有確認済み",
+        "summary": "所有証明で紐づけを保護",
+        "description": "LodestoneまたはXIVAuthで所有者を確認した、最も確実な状態です。別のアカウントが新たに証明しても、自動では移せません。移管には管理者が審査する復旧手続きが必要です。"
+      }
+    },
+    "qualifying": {
+      "title": "どの参加が対象になりますか？",
+      "attendance": "終了した開催回に実際に参加している必要があります。承認や補欠登録のみの場合、または欠席の場合は対象外です。遅刻しても実際に参加していれば対象になります。",
+      "independent": "自分が主催した回、自分が所有するグループの回、自分で出席を確認した回は対象外です。出席を確認する人には、所有確認済みのキャラクターと、作成から30日以上経過したアカウントが必要です。",
+      "timing": "24時間につき1回まで対象となり、対象となる1回目と3回目の参加の間には、少なくとも7日間が必要です。",
+      "same_group": "3回とも同じグループや主催者の開催で構いません。各開催回は、このアカウントで実際に参加したキャラクターに対して1回だけ数えられます。"
+    },
+    "claim": {
+      "title": "キャラクターの所有を確認するには",
+      "button": "所有確認",
+      "open_characters": "{page}ページを開きます。",
+      "choose_claim": "対象のキャラクターを見つけて、{claim}をクリックします。",
+      "follow_instructions": "画面の案内に沿って所有確認の手続きを完了します。",
+      "direct": "所有確認はすぐに行えます。先に参加による確認を受ける必要や、3回参加する必要はありません。"
+    }
+  },
+  "title": "マイキャラクター",
+  "subtitle": "FFXIV キャラクターとその確認状態を管理します。",
+  "none_found": "キャラクターが見つかりません。",
+  "add": {
+    "title": "キャラクターを追加",
+    "subtitle": "キャラクターの所有確認方法を選択してください",
+    "add_button": "キャラクターを追加",
+    "options": {
+      "xivauth": {
+        "title": "XIVAuth からインポート",
+        "subtitle": "XIVAuth から確認済みキャラクターを自動で取り込みます。XIVAuth アカウントの連携が必要です。"
+      },
+      "manual": {
+        "title": "手動で確認",
+        "subtitle": "Lodestone を使ってキャラクターを追加します。キャラクタープロフィールに確認コードを記載する必要があります。"
+      }
+    }
+  },
+  "manual": {
+    "progress": "ステップ {current} / {total}",
+    "steps": [
+      "キャラクター情報",
+      "確認コード",
+      "確認中...",
+      "完了"
+    ],
+    "step1": {
+      "title": "手動確認",
+      "subtitle": "Lodestone プロフィールURLまたはキャラクターIDを入力してください",
+      "input": {
+        "label": "Lodestone プロフィールURLまたはキャラクターID",
+        "placeholder": "https://na.finalfantasyxiv.com/lodestone/character/123456789",
+        "hint": "Lodestone の完全なURL、または数字のキャラクターIDのみを入力できます"
+      },
+      "help_line": "{label} {lodestone} でキャラクターを検索し、プロフィールページのURLをコピーしてください。",
+      "where_to_find": "確認方法:",
+      "lodestone": "FFXIV Lodestone"
+    },
+    "step2": {
+      "title": "キャラクター所有確認",
+      "subtitle": "Lodestone プロフィールに確認コードを追加してください",
+      "code_label": "確認コード",
+      "instructions_label": "手順:",
+      "instructions": [
+        "1.上の確認コードをコピーします",
+        "2.{profile} を開きます",
+        "3.プロフィールを編集し、プロフィール文のどこかにコードを貼り付けます",
+        "4.プロフィール変更を保存します",
+        "5.下の「今すぐ確認」を押します"
+      ],
+      "profile": "Lodestone プロフィール",
+      "toast_success": {
+        "title": "コードをコピーしました",
+        "description": "確認コードをクリップボードにコピーしました。"
+      },
+      "toast_error": {
+        "title": "コピーに失敗しました",
+        "description": "確認コードをコピーできませんでした。"
+      },
+      "toast_taken": {
+        "title": "キャラクターはすでに登録済みです",
+        "description": "このキャラクターはすでに登録されています。あなたのキャラクターなのに登録した覚えがない場合はサポートへ連絡してください。"
+      }
+    },
+    "step3": {
+      "title": "プロフィールを確認中",
+      "subtitle": "Lodestone プロフィールを確認しています。しばらくお待ちください..."
+    },
+    "success": {
+      "title": "キャラクターを確認しました！",
+      "subtitle": "キャラクターの確認が完了し、アカウントに追加されました。",
+      "button": "マイキャラクターに戻る"
+    },
+    "fail": {
+      "title": "確認に失敗しました",
+      "subtitle": "Lodestone プロフィール上で確認コードが見つかりませんでした。",
+      "common_label": "よくある原因:",
+      "common_issues": [
+        "確認コードがプロフィールに追加されていない",
+        "プロフィール変更がまだ反映されていない（数分待って再試行してください）",
+        "コードが変更されている、または余分な空白が入っている"
+      ],
+      "button": "最初からやり直す"
+    },
+    "errors": {
+      "invalid_token": "確認コードが一致しません。もう一度お試しください。",
+      "invalid_lodestone_id": "Lodestone ID が無効です。有効なキャラクターIDまたは Lodestone URL を入力してください。",
+      "character_not_found": "キャラクターが見つかりません。ID を確認して再試行してください。",
+      "lodestone_error": "キャラクター情報を取得できませんでした。後でもう一度お試しください。",
+      "parse_error": "キャラクター情報を解析できませんでした。後でもう一度お試しください。"
+    }
+  },
+  "xivauth": {
+    "progress": "ステップ {current} / {total}",
+    "steps": [
+      "キャラクター取得中...",
+      "インポートするキャラクターを選択",
+      "キャラクターをインポート中...",
+      "完了"
+    ],
+    "step1": {
+      "title": "キャラクター取得中",
+      "subtitle": "XIVAuth から確認済みキャラクターを読み込んでいます。数分かかる場合があります。"
+    },
+    "step2": {
+      "title": "インポートするキャラクターを選択",
+      "subtitle": "XIVAuth からインポートしたいキャラクターを選んでください。"
+    },
+    "step3": {
+      "title": "キャラクターをインポート中",
+      "subtitle": "XIVAuth からキャラクターをインポートしています。数分かかる場合があります。"
+    },
+    "success": {
+      "title": "キャラクターをインポートしました！",
+      "subtitle": "XIVAuth からキャラクターを正常にインポートしました。",
+      "button": "マイキャラクターに戻る"
+    },
+    "errors": {
+      "xivauth_not_linked": "XIVAuth アカウントがまだ連携されていないようです。キャラクターをインポートするにはアカウントを連携してください。",
+      "xivauth_token_invalid": "XIVAuth で認証できませんでした。再試行するかサポートに連絡してください。",
+      "xivauth_character_already_claimed": "このキャラクターはすでに登録されています。自分のキャラクターの場合はサポートに連絡してください。"
+    },
+    "sync": {
+      "conflict_title": "一部のキャラクターをインポートできませんでした",
+      "conflict_description_one": "{characters} はすでに登録されています。自分のキャラクターの場合はサポートに連絡してください。",
+      "conflict_description_many": "{characters} はすでに登録されています。自分のキャラクターの場合はサポートに連絡してください。"
+    }
+  },
+  "added_manually": "手動で追加",
+  "from_xivauth": "XIVAuth から",
+  "toasts": {
+    "title": "成功しました",
+    "character_refreshed": "キャラクターデータを更新しました",
+    "character_primary": "メインキャラクターを更新しました",
+    "character_unclaimed": "キャラクターの紐付けを解除しました"
+  },
+  "jobs": {
+    "classes": {
+      "brd": "吟遊詩人",
+      "drg": "竜騎士",
+      "mnk": "モンク",
+      "pld": "ナイト",
+      "war": "戦士",
+      "blm": "黒魔道士",
+      "whm": "白魔道士",
+      "sch": "学者",
+      "smn": "召喚士",
+      "nin": "忍者",
+      "ast": "占星術師",
+      "drk": "暗黒騎士",
+      "mch": "機工士",
+      "rdm": "赤魔道士",
+      "sam": "侍",
+      "blu": "青魔道士",
+      "gnb": "ガンブレイカー",
+      "dnc": "踊り子",
+      "rpr": "リーパー",
+      "sge": "賢者",
+      "vpr": "ヴァイパー",
+      "pct": "ピクトマンサー"
+    },
+    "phantom": {
+      "knight": "ファントムナイト",
+      "monk": "ファントムモンク",
+      "thief": "ファントムシーフ",
+      "samurai": "ファントムサムライ",
+      "berserker": "ファントムバーサーカー",
+      "ranger": "ファントムレンジャー",
+      "mystic_knight": "ファントム魔法剣士",
+      "time_mage": "ファントム時魔道士",
+      "chemist": "ファントム薬師",
+      "geomancer": "ファントム風水士",
+      "bard": "ファントム吟遊詩人",
+      "dancer": "ファントム踊り子",
+      "oracle": "ファントム予言士",
+      "cannoneer": "ファントム砲撃士",
+      "gladiator": "ファントム剣術士",
+      "freelancer": "ファントムすっぴん",
+      "ninja": "ファントム忍者",
+      "white_mage": "ファントム白魔道士",
+      "black_mage": "ファントム黒魔道士",
+      "dragoon": "ファントム竜騎士",
+      "summoner": "ファントム召喚士",
+      "blue_mage": "ファントム青魔道士",
+      "red_mage": "ファントム赤魔道士",
+      "necromancer": "ファントムネクロマンサー"
+    },
+    "raid_positions": {
+      "mt": "MT（メインタンク）",
+      "ot": "ST（サブタンク）",
+      "h1": "H1（ヒーラー1）",
+      "h2": "H2（ヒーラー2）",
+      "m1": "D1（近接1）",
+      "m2": "D2（近接2）",
+      "r1": "D3（物理遠隔）",
+      "r2": "D4（魔法遠隔）"
+    }
+  },
+  "card": {
+    "view_lodestone_profile": "Lodestone プロフィールを見る",
+    "refresh_character": "キャラクターを更新",
+    "make_primary": "メインに設定",
+    "unclaim_character": "キャラクターの紐付けを解除",
+    "unclaim_title": "キャラクターの紐付けを解除",
+    "unclaim_description": "この操作でキャラクターはアカウントから外れます。必要であれば後で再び紐付けできます。",
+    "unclaim_confirm": "紐付けを解除",
+    "unclaim_cancel": "戻る",
+    "preferred": "優先",
+    "maxed": "最大",
+    "knowledge_level": "知識レベル",
+    "level": "レベル {level}",
+    "phantom_level": "レベル {current} / {max}",
+    "sections": {
+      "classes": "クラス",
+      "occult": "オカルト",
+      "forked_tower_blood": "フォークタワー：力の塔",
+      "forked_tower_magic": "極フォークタワー：魔の塔"
+    },
+    "forked_tower": {
+      "clear_count": "クリア回数",
+      "clears": "{count} クリア",
+      "clears_at_least": "{count}+ クリア",
+      "kills": "討伐数",
+      "kills_at_least": "最低 {count}",
+      "verified_with_fflogs": "FFLogsで確認済み",
+      "verified_with_lodestone": "Lodestoneで確認済み",
+      "bosses": {
+        "demon_tablet": "デモンズ・タブレット",
+        "dead_stars": "星頭の三人組",
+        "marble_dragon": "マーブルドラゴン",
+        "magitaur": "マギタウロス",
+        "two_headed_aevis": "ツーヘッド・エイビス",
+        "sword_dancer": "ソードダンサー",
+        "necrophobia": "ネクロフォビア",
+        "index": "インデックス",
+        "tba": "未定"
+      }
+    }
+  },
+  "onboarding": {
+    "preview": {
+      "help": "Nyssa Nightclawで手順をプレビューします。インポートはシミュレーションで、データは保存されません。",
+      "active": "開発用プレビュー · Nyssa Nightclaw · データは保存されません",
+      "method": "インポート方法",
+      "screen": "プレビュー画面",
+      "choose": "画面を選択",
+      "exit": "プレビューを終了 / 最初に戻る",
+      "screens": {
+        "method": "インポート方法の選択",
+        "list_loading": "キャラクター一覧を読込中",
+        "list": "キャラクター一覧",
+        "selected": "キャラクター選択済み",
+        "confirm": "Lodestoneキャラクターの確認",
+        "loading": "キャラクターのインポート（各段階3秒）",
+        "complete": "キャラクター追加完了",
+        "partial": "追加完了 — 一部の進行データが未取得",
+        "refresh_failed": "追加完了 — データ更新失敗",
+        "empty": "キャラクターが見つからない",
+        "error": "リクエスト失敗",
+        "reconnect": "XIVAuthへの再接続が必要",
+        "transferred": "アカウントへの移行完了",
+        "transfer": "キャラクター移行の完了"
+      }
+    },
+    "subtitle": "FullPartyにキャラクターを追加します。追加方法を選んでください。",
+    "recommended": "おすすめ",
+    "methods": {
+      "xivauth": {
+        "title": "XIVAuthからインポート",
+        "description": "すばやく始めたい方にはXIVAuthがおすすめです。アカウントを連携し、認証済みのキャラクターを選んでインポートできます。",
+        "benefits": {
+          "no_manual_verification": "Lodestoneでの手動認証は不要",
+          "automatic_claim": "所有権を自動認証"
+        }
+      },
+      "lodestone": {
+        "title": "Lodestoneで検索",
+        "description": "Lodestoneで名前とワールドからキャラクターを探して追加します。参加実績による認証や所有権の認証は、後から行えます。",
+        "benefits": {
+          "unverified": "「未認証」の状態で開始",
+          "all_worlds": "全データセンター・ワールドを検索"
+        }
+      }
+    },
+    "connect": "XIVAuthを連携",
+    "continue": "次へ",
+    "reconnect": "XIVAuthを再連携",
+    "select_xivauth": "XIVAuthのキャラクター",
+    "select_xivauth_help": "FullPartyに追加するキャラクターを選んでください。",
+    "select_lodestone": "キャラクターを検索",
+    "select_lodestone_help": "名前で検索します。ホームワールドを選ぶと結果を絞り込めます。",
+    "change_method": "方法を変更",
+    "character_name": "キャラクター名",
+    "name_placeholder": "例：Giki Chomusuke",
+    "world": "ホームワールド",
+    "all_worlds": "すべてのワールド",
+    "search": "検索",
+    "finding": "キャラクターを検索中…",
+    "refine": "最初の20件を表示しています。ワールドを指定するか、名前を詳しく入力してください。",
+    "empty_xivauth": "認証済みキャラクターが見つかりません",
+    "empty_xivauth_help": "XIVAuthでキャラクターを認証してから、この一覧を再読込してください。Lodestone検索も利用できます。",
+    "empty_lodestone": "キャラクターが見つかりません",
+    "empty_lodestone_help": "名前の綴りとホームワールドを確認して、再検索してください。",
+    "reload": "キャラクターを再読込",
+    "confirm_title": "あなたのキャラクターですか？",
+    "confirm_xivauth": "このキャラクターを追加し、XIVAuthの認証に基づいて所有権を自動認証します。",
+    "confirm_lodestone": "このキャラクターを未認証としてアカウントに紐づけます。検索だけでは所有権は認証されません。",
+    "choose_another": "別のキャラクターを選ぶ",
+    "confirm_button": "このキャラクターを追加",
+    "progress": {
+      "profile": {
+        "title": "キャラクターを準備中",
+        "subtitle": "キャラクター情報を確認し、Lodestoneプロフィールを読み込んでいます。"
+      },
+      "classes": {
+        "title": "クラスデータを読込中",
+        "subtitle": "Lodestoneから戦闘ジョブ、クラフター、ギャザラーのレベルを取得しています。"
+      },
+      "phantom_jobs": {
+        "title": "サポートジョブを読込中",
+        "subtitle": "サポートジョブのレベルとクレセントアイルの進行状況を取得しています。"
+      },
+      "achievements": {
+        "title": "アチーブメントを確認中",
+        "subtitle": "フォークタワーのクリア状況を示すLodestoneアチーブメントを確認しています。"
+      },
+      "fflogs": {
+        "title": "FF Logsデータを確認中",
+        "subtitle": "Forked Tower: BloodとMagicの戦闘ログに記録された進行状況を確認しています。"
+      },
+      "saving": {
+        "title": "仕上げ中",
+        "subtitle": "更新されたキャラクターデータをFullPartyに保存しています。"
+      }
+    },
+    "loading_wait": "少し時間がかかる場合があります。このページを開いたままお待ちください。",
+    "complete_title": "キャラクターを追加しました",
+    "complete_claimed": "キャラクターを所有権認証済みとして追加しました。所有権が確認され、アカウントに紐づいています。",
+    "complete_verified": "キャラクターを参加実績による認証済みとして追加し、アカウントに紐づけました。",
+    "complete_unverified": "キャラクターを未認証としてアカウントに追加しました。",
+    "next_steps": {
+      "title": "次は何をしますか？",
+      "description": "グループを探したり、今後のランを確認したり、プロフィールをカスタマイズしたりできます。",
+      "groups": "グループを探す",
+      "runs": "ランを探す",
+      "profile": "プロフィールをカスタマイズ"
+    },
+    "verification_next_title": "キャラクターの認証方法を選ぶ",
+    "refresh_failed": "キャラクターは追加されましたが、データの読込が完了しませんでした。再試行するか、後で「マイキャラクター」から更新してください。",
+    "refresh_partial": "Lodestoneデータは保存されましたが、一部のFF Logs進行状況を取得できませんでした。再試行するか、後で更新できます。",
+    "retry": "データ読込を再試行",
+    "participation_title": "参加実績で認証",
+    "participation_help": "仕組みについて",
+    "participation_description": "独立したグループで条件を満たす完了済みのランに3回参加すると「認証済み」になります。LodestoneまたはXIVAuthで所有権が証明された場合、この紐づけが変更されることがあります。",
+    "claim_title": "所有権を認証",
+    "claim_description": "Lodestoneのプロフィールに認証コードを追加し、このサイトで確認して所有権を認証します。",
+    "claim_now": "今すぐ所有権を認証",
+    "my_characters": "マイキャラクターへ",
+    "errors": {
+      "generic": "エラーが発生しました。もう一度お試しください。",
+      "busy": "このキャラクターは処理中です。少し待ってから再試行してください。",
+      "session": "セッションが切れました。ページを更新して再ログインしてください。",
+      "rate_limit": "リクエストが多すぎます。1分ほどお待ちください。",
+      "character_taken": "このキャラクターは別のアカウントに紐づいているため、ここから追加できません。所有権の証明または管理者による復旧審査が必要です。",
+      "lodestone_unavailable": "Lodestoneからキャラクターデータを取得できませんでした。少し待ってから再試行してください。",
+      "xivauth_reconnect": "XIVAuthの接続を更新する必要があります。再連携してください。",
+      "xivauth_unavailable": "XIVAuthを一時的に利用できません。再試行してください。",
+      "xivauth_character_unavailable": "このキャラクターはXIVAuthアカウントの認証済みキャラクターとして取得できなくなりました。一覧を再読込してください。",
+      "xivauth_cancelled": "XIVAuth連携が完了しませんでした。再試行するか、Lodestoneで検索してください。",
+      "xivauth_link_conflict": "このXIVAuthアカウントを連携できませんでした。別のFullPartyアカウントに連携済みの可能性があります。"
+    }
+  },
+  "claim_flow": {
+    "title": "キャラクターの所有権を認証",
+    "subtitle": "Lodestoneのキャラクタープロフィールに短いコードを追加して、所有権を確認します。",
+    "copy_title": "認証コードをコピー",
+    "copy": "コードをコピー",
+    "copied": "コピーしました",
+    "preparing": "コードを準備中",
+    "get_code": "認証コードを取得",
+    "expires": "有効期限：{date}",
+    "copy_error": "コピーできませんでした。上のコードを選択して手動でコピーしてください。",
+    "profile_title": "Lodestoneのプロフィールに追加",
+    "profile_description": "このキャラクターでLodestoneにログインしてください。自己紹介文を編集し、コードを独立した行に貼り付けて保存します。既存の自己紹介文は残してください。",
+    "open_profile": "Lodestoneプロフィールを開く",
+    "check_title": "戻って所有権を認証",
+    "check_description": "変更を保存したら、公開プロフィールにコードがあるか確認します。",
+    "verify": "コードを確認して認証",
+    "help": "コードが見つからない場合は、正しいキャラクターを編集し、プロフィールを保存したか確認してください。Lodestoneへの反映には数分かかる場合があります。コードを残したまま再度お試しください。",
+    "checking_title": "Lodestoneプロフィールを確認中",
+    "checking_description": "最新のプロフィールからコードを探しています。しばらくお待ちください。",
+    "success_title": "所有権を認証しました",
+    "success_description": "所有権が確認されました。このキャラクターは所有権認証済みとなり、スタッフの確認なしに別のアカウントが取得することはできません。",
+    "remove_code": "LodestoneプロフィールからFullPartyの認証コードを削除してもかまいません。所有権の認証は維持されます。",
+    "preview": {
+      "help": "Nyssaの所有権認証画面をプレビューします。認証操作はシミュレーションで、コードのコピーや所有権の変更は行いません。Discordのヘルプボタンは実際のサポートサーバーを開きます。所有権の競合画面はUIの試作です。",
+      "active": "開発用プレビュー · Nyssa Nightclaw · キャラクターデータは変更されません",
+      "exit": "プレビューを終了して実際の画面に戻る",
+      "screens": {
+        "preparing": "認証コードを準備中",
+        "no_code": "認証コード未取得",
+        "instructions": "手順 · 未認証のキャラクター",
+        "instructions_verified": "手順 · 認証済みのキャラクター",
+        "copied": "コードをコピー済み",
+        "copy_error": "クリップボードを利用できない",
+        "checking": "Lodestoneプロフィールを確認中",
+        "complete": "所有権認証の完了",
+        "code_not_found": "プロフィールにコードが見つからない",
+        "expired_code": "認証コードの期限切れ",
+        "code_changed": "認証コードが変更された",
+        "lodestone_unavailable": "Lodestoneを利用できない",
+        "rate_limit": "確認回数の上限",
+        "session": "セッションの期限切れ",
+        "unavailable": "キャラクターが利用不可になった",
+        "generic": "予期しないエラー",
+        "linked_unverified": "別のアカウント · 未認証",
+        "linked_verified": "別のアカウント · 認証済み",
+        "claimed_elsewhere": "別のアカウント · 所有権認証済み",
+        "ownership_changed": "手続き中に、このキャラクターに紐づくアカウントが変更されました。新しいコードを発行して、もう一度お試しください。",
+        "transfer": "キャラクター移行の完了"
+      }
+    },
+    "errors": {
+      "code_not_found": "このキャラクターのプロフィールに一致するコードが見つかりませんでした。Lodestoneで変更を保存し、数分待ってから再度お試しください。",
+      "expired_code": "コードの有効期限が切れています。新しいコードを取得し、Lodestoneプロフィールの古いコードを置き換えてください。",
+      "code_changed": "認証コードが変更されています。現在のコードを取得し、Lodestoneプロフィールを更新してから再度お試しください。",
+      "lodestone_unavailable": "現在Lodestoneを読み取れません。キャラクターの状態は変更されていません。後でもう一度お試しください。",
+      "rate_limit": "確認回数が多すぎます。1分待ってから再度お試しください。",
+      "session": "セッションの有効期限が切れました。ページを再読み込みし、必要に応じて再度ログインしてください。",
+      "unavailable": "このアカウントではこのキャラクターを認証できなくなりました。「マイキャラクター」に戻ってください。",
+      "generic": "確認を完了できませんでした。再度お試しください。",
+      "ownership_changed": "手続き中に、このキャラクターに紐づくアカウントが変更されました。新しいコードを発行して、もう一度お試しください。"
+    },
+    "conflicts": {
+      "linked_elsewhere": {
+        "title": "このキャラクターは別のアカウントに紐づいています",
+        "description": "自分のアカウントに移すには、Lodestoneプロフィールにコードを追加して所有権を確認してください。認証が完了するまでは、現在の紐づけが維持されます。"
+      },
+      "claimed_elsewhere": {
+        "title": "このキャラクターの所有権は認証済みです",
+        "description": "別のアカウントが所有権を認証しています。自分のキャラクターである場合は、FullPartyのDiscordに参加してスタッフに相談してください。スタッフが問題を解決するまでは、既存の所有権が維持されます。"
+      }
+    },
+    "conflict_subtitle": "このキャラクターの所有権について、次の手順を確認してください。",
+    "claim_with_code": "Lodestone認証に進む",
+    "support_discord": "Discordで相談する",
+    "transfer_title": "所有権を確認してキャラクターを追加",
+    "transfer_unverified": "このキャラクターは未認証の状態で別のアカウントに登録されています。以下のLodestoneコード認証を完了すると、所有権確認済みとしてあなたのアカウントへ移行します。完了するまでは元のアカウントに登録されたままです。",
+    "transfer_verified": "このキャラクターは参加実績による認証済みの状態で別のアカウントに登録されています。以下のLodestoneコード認証を完了すると、所有権確認済みとしてあなたのアカウントへ移行します。完了するまでは元のアカウントに登録されたままです。"
+  },
+  "transfer": {
+    "title": "キャラクターをあなたのアカウントに移行しました",
+    "description": "このキャラクターは別のアカウントに紐付けられていましたが、あなたのアカウントに移行されました。ご質問がある場合はDiscordでお問い合わせください。",
+    "history": "履歴",
+    "upcoming": "今後のラン",
+    "history_help": "過去の参加履歴や応募履歴を引き継ぐか、履歴を引き継がずに開始します。",
+    "upcoming_help": "今後の応募や割り当て済みの枠を引き継ぐか、辞退して他のプレイヤーに枠を空けます。",
+    "view_runs": "ランを表示（{count}件）",
+    "view_more": "詳細を見る",
+    "no_date": "日時未定",
+    "empty": "この項目に該当するランはありません。",
+    "keep_history": "履歴を引き継ぐ",
+    "discard_history": "履歴を引き継がない",
+    "keep_upcoming": "今後のランを引き継ぐ",
+    "discard_upcoming": "今後のランを辞退する",
+    "finish": "選択を確定して続行",
+    "privacy": "非公開の回答、メモ、メッセージは元のアカウントに残ります。FF Logsのデータはキャラクターに紐付いたままです。履歴を引き継がなくても、元のランの記録は削除されません。",
+    "audit_completed": "キャラクター移行に伴うランの選択が保存されました。",
+    "errors": {
+      "generic": "選択を保存できませんでした。もう一度お試しください。",
+      "duplicate": "いずれかのランに既に応募済み、または別のキャラクターが割り当て済みです。重複を解消するか、引き継ぐ今後のランを辞退してください。",
+      "ineligible": "現在、いずれかのグループまたはランに参加できません。グループに連絡するか、引き継ぐ今後のランを辞退してください。",
+      "already_completed": "この選択は既に保存されています。ページを再読み込みしてください。"
+    },
+    "automatic_title": "XIVAuthで所有権を確認しました",
+    "automatic_description": "このキャラクターは別のアカウントに紐付けられていましたが、正式な所有権の確認は完了していませんでした。認証済みのXIVAuth連携により、より強い所有権の証明が得られたため、あなたのアカウントに移行しました。",
+    "completion_title": "キャラクター移行の完了",
+    "completion_description": "キャラクターがあなたのアカウントに紐付けられました。引き継ぐ過去の履歴と今後の参加予定を選択してください。"
+  }
 }

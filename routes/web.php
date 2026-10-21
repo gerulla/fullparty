@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccountApplicationController;
+use App\Http\Controllers\AccountFlagController;
 use App\Http\Controllers\AccountNotificationController;
 use App\Http\Controllers\ActivityTypeController;
 use App\Http\Controllers\AdminCharacterController;
@@ -15,7 +16,6 @@ use App\Http\Controllers\Calculator\CalculatorCatalogController;
 use App\Http\Controllers\Calculator\CalculatorController;
 use App\Http\Controllers\CharacterClassController;
 use App\Http\Controllers\CharacterController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardProfileCustomizationController;
 use App\Http\Controllers\DiscordAppInstallController;
 use App\Http\Controllers\DiscordAuthController;
@@ -95,6 +95,9 @@ use App\Http\Controllers\SocialAccountLinkController;
 use App\Http\Controllers\SystemNotificationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserOnboardingController;
+use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\V2CharacterClaimController;
+use App\Http\Controllers\V2CharacterCreateController;
 use App\Http\Controllers\V2HomeController;
 use App\Http\Controllers\XIVAuthController;
 use App\Http\Controllers\XivPluginDeviceAuthorizationController;
@@ -216,7 +219,7 @@ Route::middleware(['auth', 'verified'])->prefix('auth/discord-app')->group(funct
 Route::get('/forms/{surveyForm:slug}', [\App\Http\Controllers\SurveyFormController::class, 'show'])->middleware('cache.headers:private;no_store')->where('surveyForm', '[a-z0-9]+(?:-[a-z0-9]+)*')->name('forms.show');
 Route::post('/forms/{surveyForm:slug}', [\App\Http\Controllers\SurveyFormController::class, 'store'])->middleware('throttle:forms.submit')->where('surveyForm', '[a-z0-9]+(?:-[a-z0-9]+)*')->name('forms.submit');
 
-foreach (['auth', 'dashboard', 'groups', 'invite', 'settings', 'account', 'characters', 'admin'] as $prefix) {
+foreach (['auth', 'dashboard', 'groups', 'invite', 'settings', 'account', 'characters', 'profile', 'admin'] as $prefix) {
     Route::get("/{$prefix}/{path?}", fn (Request $request, ?string $path = null) => $redirectToLocalizedPath($request, trim($prefix.'/'.($path ?? ''), '/')))
         ->where('path', '.*');
 }
@@ -225,6 +228,10 @@ Route::prefix('{locale?}')
     ->where(['locale' => implode('|', ApplyLocale::SUPPORTED_LOCALES)])
     ->group(function () {
         Route::get('/', function (Request $request, LandingPageDataService $landingPageDataService, ServerMeta $serverMeta) {
+            if ($request->user()) {
+                return redirect()->route('dashboard');
+            }
+
             return Inertia::render('Home', [
                 'landing' => $landingPageDataService->forHome($request->user()),
             ])->withViewData('serverMeta', $serverMeta->home());
@@ -240,7 +247,13 @@ Route::prefix('{locale?}')
         })->name('legal.privacy');
 
         Route::get('/cookies', function () {
-            return Inertia::render('Legal/CookiesPolicy');
+            return Inertia::render('Legal/CookiesPolicy', [
+                'cookie_settings' => [
+                    'session_name' => config('session.cookie'),
+                    'session_minutes' => (int) config('session.lifetime'),
+                    'session_expires_on_close' => (bool) config('session.expire_on_close'),
+                ],
+            ]);
         })->name('legal.cookies');
 
         /*
@@ -447,10 +460,9 @@ Route::prefix('{locale?}')
             |--------------------------------------------------------------------------
             */
 
-            Route::get('/home', [DashboardController::class, 'show'])->name('dashboard');
-
-            Route::get('/v2/home', V2HomeController::class)->name('ui-v2.home');
-            Route::put('/home/profile', [DashboardProfileCustomizationController::class, 'update'])->name('dashboard.profile.update');
+            Route::get('/home', V2HomeController::class)->name('dashboard');
+            Route::get('/profile/{user}', [UserProfileController::class, 'show'])->whereNumber('user')->name('profile.show');
+            Route::put('/profile/{user}', [DashboardProfileCustomizationController::class, 'update'])->whereNumber('user')->name('profile.update');
             Route::patch('/onboarding', [UserOnboardingController::class, 'update'])->name('onboarding.update');
             Route::post('/onboarding/complete', [UserOnboardingController::class, 'complete'])->name('onboarding.complete');
             Route::get('/dashboard', fn () => redirect()->route('dashboard'));
@@ -738,6 +750,7 @@ Route::prefix('{locale?}')
             */
 
             Route::get('/account/characters', [CharacterController::class, 'list'])->name('account.characters');
+            Route::get('/account/flags', AccountFlagController::class)->middleware('throttle:60,1')->name('account.flags.index');
             Route::get('/account/runs', MyRunsController::class)->name('account.runs.index');
             Route::get('/account/applications', [AccountApplicationController::class, 'index'])->name('account.applications');
             Route::get('/account/applications/history', [AccountApplicationController::class, 'history'])->name('account.applications.history');
@@ -764,6 +777,20 @@ Route::prefix('{locale?}')
             |--------------------------------------------------------------------------
             */
 
+            Route::get('/characters/add', V2CharacterCreateController::class)->name('characters.create');
+            Route::post('/characters/transfers/{transfer}/complete', [\App\Http\Controllers\CharacterTransferCompletionController::class, 'store'])
+                ->whereNumber('transfer')->middleware('throttle:external.lookup')->name('characters.transfer.complete');
+            Route::prefix('characters/add')->middleware('throttle:external.lookup')->name('characters.onboarding.')->group(function () {
+                Route::get('/search', [V2CharacterCreateController::class, 'search'])->name('search');
+                Route::get('/xivauth', [V2CharacterCreateController::class, 'xivAuthCharacters'])->name('xivauth');
+                Route::post('/', [V2CharacterCreateController::class, 'store'])->name('store');
+                Route::post('/{character}/refresh', [V2CharacterCreateController::class, 'refresh'])->whereNumber('character')->name('refresh');
+            });
+            Route::get('/characters/claim/{character}', [V2CharacterClaimController::class, 'show'])->whereNumber('character')->name('characters.claim');
+            Route::prefix('characters/claim/{character}')->whereNumber('character')->middleware('throttle:external.lookup')->name('characters.claim.')->group(function () {
+                Route::post('/code', [V2CharacterClaimController::class, 'code'])->name('code');
+                Route::post('/verify', [V2CharacterClaimController::class, 'verify'])->name('verify');
+            });
             Route::post('/characters/exists', [CharacterController::class, 'exists'])
                 ->middleware('throttle:external.lookup')
                 ->name('characters.exists');

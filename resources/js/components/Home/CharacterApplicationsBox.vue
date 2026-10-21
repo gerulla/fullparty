@@ -1,22 +1,25 @@
 <script setup lang="ts">
 import { Link } from '@inertiajs/vue3'
-import { useNow } from '@vueuse/core'
+import { breakpointsTailwind, useBreakpoints, useNow } from '@vueuse/core'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { route } from 'ziggy-js'
 import HomeEmptyState from '@/components/Home/HomeEmptyState.vue'
 import { useAppearance } from '@/composables/useAppearance'
-import { useTimeDisplayMode } from '@/composables/useTimeDisplayMode'
-import { createDateTimeFormatter } from '@/utils/dateTimeFormat'
 import { formatRelativeTime } from '@/utils/formatRelativeTime'
 import { localizedValue } from '@/utils/localizedValue'
 import type { V2HomeApplication, V2HomeCharacter, V2HomeParticipationStatus } from '../../Types/V2Home'
+import { useDateTimeFormat } from '@/composables/useDateTimeFormat'
 
 const { t, locale } = useI18n()
 const { isDark } = useAppearance()
-const { withDisplayTimeZone } = useTimeDisplayMode()
+const { formatDateTime } = useDateTimeFormat()
 const now = useNow({ interval: 30_000 })
 const badgeVariant = computed(() => isDark.value ? 'outline' : 'solid')
+const breakpoints = useBreakpoints(breakpointsTailwind)
+const isMobile = breakpoints.smaller('md')
+const isMobileOrTablet = breakpoints.smaller('xl')
+const applicationLimit = computed(() => isMobile.value ? 2 : isMobileOrTablet.value ? 3 : 4)
 
 const props = defineProps<{
 	applications?: V2HomeApplication[]
@@ -27,7 +30,7 @@ const props = defineProps<{
 }>()
 
 const forCharacter = (applications: V2HomeApplication[] | undefined) => (
-	applications?.filter(application => application.selected_character_id === props.character?.id).slice(0, 4) ?? []
+	applications?.filter(application => application.selected_character_id === props.character?.id).slice(0, applicationLimit.value) ?? []
 )
 const tabs = computed(() => [
 	{ label: t('dashboard.runs_tabs.upcoming'), value: 'upcoming', slot: 'upcoming', applications: forCharacter(props.applications), loading: props.loading ?? props.applications === undefined },
@@ -55,9 +58,9 @@ const relativeStart = (application: V2HomeApplication) => formatRelativeTime(
 	application.run.starts_at, locale.value, t('dashboard.character_applications.now'),
 	t('dashboard.labels.not_available'), now.value.getTime(),
 )
-const fullStart = (application: V2HomeApplication) => createDateTimeFormatter(locale.value, withDisplayTimeZone({
+const fullStart = (application: V2HomeApplication) => formatDateTime(new Date(application.run.starts_at), {
 	dateStyle: 'full', timeStyle: 'short',
-})).format(new Date(application.run.starts_at))
+})
 </script>
 
 <template>
@@ -84,8 +87,8 @@ const fullStart = (application: V2HomeApplication) => createDateTimeFormatter(lo
 			<div class="run-box" :class="tab.value === 'upcoming' ? 'upcoming-runs' : 'run-history'" :aria-busy="tab.loading">
 				<template v-if="tab.loading">
 					<p class="sr-only" role="status">{{ t('dashboard.character_applications.loading') }}</p>
-					<div v-for="index in 4" :key="index" aria-hidden="true" class="flex w-full min-w-0 items-center gap-2 p-2">
-						<USkeleton class="size-16 shrink-0 rounded-lg bg-elevation-3 dark:bg-elevation-5 motion-reduce:animate-none" />
+					<div v-for="index in applicationLimit" :key="index" aria-hidden="true" class="flex w-full min-w-0 items-center gap-2 p-2">
+						<USkeleton class="hidden size-16 shrink-0 rounded-lg bg-elevation-3 dark:bg-elevation-5 motion-reduce:animate-none md:block xl:hidden 2xl:block" />
 						<div class="flex min-w-0 flex-1 flex-col gap-2">
 							<div class="flex items-start justify-between gap-4">
 								<div class="flex min-w-0 flex-1 flex-col gap-1.5 py-0.5">
@@ -106,14 +109,15 @@ const fullStart = (application: V2HomeApplication) => createDateTimeFormatter(lo
 					:description="tab.value === 'history' ? t('dashboard.empty_states.history.description') : undefined"
 					:action-label="t('dashboard.empty_states.find_runs')"
 					:action-to="route('dashboard.runs.index')" />
-				<Link
+				<component
 					v-for="application in tab.loading ? [] : tab.applications"
 					:key="application.id"
-					:href="application.run.href"
+					:is="application.can_view_run === false ? 'div' : Link"
+					:href="application.can_view_run === false ? undefined : application.run.href"
 					class="run">
 					<div class="flex w-full min-w-0 flex-row items-center gap-2 p-2">
-						<img v-if="application.run.activity_type.small_image_url" :src="application.run.activity_type.small_image_url" alt="" class="rounded-lg w-16 h-16 shrink-0 object-fill">
-						<div v-else class="rounded-lg w-16 h-16 shrink-0 bg-muted flex items-center justify-center" aria-hidden="true"><UIcon name="i-lucide-calendar-days" class="size-6 text-muted" /></div>
+						<img v-if="application.run.activity_type.small_image_url" :src="application.run.activity_type.small_image_url" alt="" class="hidden rounded-lg w-16 h-16 shrink-0 object-fill md:block xl:hidden 2xl:block">
+						<div v-else class="hidden rounded-lg w-16 h-16 shrink-0 bg-muted items-center justify-center md:flex xl:hidden 2xl:flex" aria-hidden="true"><UIcon name="i-lucide-calendar-days" class="size-6 text-muted" /></div>
 						<div class="flex min-w-0 flex-1 flex-col items-center justify-stretch gap-2">
 							<div class="w-full flex flex-row items-start justify-between gap-4">
 								<p class="text-sm min-w-0 break-words">{{ runTitle(application) }}</p>
@@ -125,7 +129,7 @@ const fullStart = (application: V2HomeApplication) => createDateTimeFormatter(lo
 							</div>
 						</div>
 					</div>
-				</Link>
+				</component>
 			</div>
 		</template>
 	</UTabs>

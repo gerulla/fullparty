@@ -3,12 +3,12 @@
 namespace App\Services\Lodestone;
 
 use App\DTOs\LodestoneCharacterData;
-use App\DTOs\LodestoneUrls;
 use App\Exceptions\LodestoneFetchException;
 use App\Exceptions\LodestoneInvalidInputException;
 use App\Exceptions\LodestoneParseException;
 use App\Services\Lodestone\Parsers\LodestoneClassJobParser;
 use App\Services\Lodestone\Parsers\LodestoneProfileParser;
+use App\Support\Characters\CharacterRefreshStage;
 use Illuminate\Support\Facades\Cache;
 
 /**
@@ -46,15 +46,15 @@ class LodestoneScraper
     /**
      * Scrape character data from Lodestone.
      *
-     * @param string $lodestoneIdOrUrl Lodestone ID or full URL
-     * @param bool $includeClassJobs Whether to scrape class/job data (can be disabled for faster scraping)
+     * @param  string  $lodestoneIdOrUrl  Lodestone ID or full URL
+     * @param  bool  $includeClassJobs  Whether to scrape class/job data (can be disabled for faster scraping)
      * @return LodestoneCharacterData Immutable DTO with scraped data
      *
      * @throws LodestoneInvalidInputException
      * @throws LodestoneFetchException
      * @throws LodestoneParseException
      */
-    public function scrape(string $lodestoneIdOrUrl, bool $includeClassJobs = true, bool $ignoreCache = false): LodestoneCharacterData
+    public function scrape(string $lodestoneIdOrUrl, bool $includeClassJobs = true, bool $ignoreCache = false, ?\Closure $onStage = null): LodestoneCharacterData
     {
         // 1. Normalize input to extract Lodestone ID and build URLs
         $urls = $this->normalizer->normalize($lodestoneIdOrUrl);
@@ -73,9 +73,10 @@ class LodestoneScraper
         // 5. Optionally fetch and parse class/job page
         $classJobData = [];
         if ($includeClassJobs && config('lodestone.parse_class_jobs', true)) {
+            $onStage?->__invoke(CharacterRefreshStage::Classes);
             try {
                 $classJobHtml = $this->httpClient->fetch($urls->classJobUrl);
-                $classJobData = $this->classJobParser->parse($classJobHtml);
+                $classJobData = $this->classJobParser->parse($classJobHtml, $onStage);
 
                 // Optional: Rate limiting delay
                 $this->applyRateLimit();
@@ -114,7 +115,7 @@ class LodestoneScraper
     {
         $cacheTtl = config('lodestone.cache_ttl');
 
-        if (!$cacheTtl) {
+        if (! $cacheTtl) {
             return null;
         }
 
@@ -122,7 +123,7 @@ class LodestoneScraper
 
         $cached = Cache::get($cacheKey);
 
-        if (!$cached) {
+        if (! $cached) {
             return null;
         }
 
@@ -137,7 +138,7 @@ class LodestoneScraper
     {
         $cacheTtl = config('lodestone.cache_ttl');
 
-        if (!$cacheTtl) {
+        if (! $cacheTtl) {
             return;
         }
 
@@ -181,6 +182,7 @@ class LodestoneScraper
         try {
             $urls = $this->normalizer->normalize($lodestoneIdOrUrl);
             $this->httpClient->fetch($urls->profileUrl);
+
             return true;
         } catch (LodestoneFetchException $e) {
             if ($e->getCode() === 404) {

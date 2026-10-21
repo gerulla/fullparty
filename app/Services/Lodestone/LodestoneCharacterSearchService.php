@@ -22,7 +22,7 @@ class LodestoneCharacterSearchService
         $name = trim($characterName);
         $world = trim($worldName);
 
-        if ($name === '' || $world === '' || $limit < 1) {
+        if ($name === '' || $limit < 1) {
             return [];
         }
 
@@ -67,6 +67,25 @@ class LodestoneCharacterSearchService
             ->all();
     }
 
+    /**
+     * @return array<int, array{datacenter: string|null, worlds: array<int, array{label: string, value: string}>}>
+     */
+    public function worldOptionsByDatacenter(): array
+    {
+        $datacenters = collect(config('datacenters.worlds', []))
+            ->flatMap(fn (array $worlds, string $datacenter) => array_fill_keys($worlds, $datacenter));
+
+        return collect($this->worldOptions())
+            ->groupBy(fn (array $world) => $datacenters->get($world['value'], ''))
+            ->sortKeys()
+            ->map(fn ($worlds, string $datacenter) => [
+                'datacenter' => $datacenter !== '' ? $datacenter : null,
+                'worlds' => $worlds->values()->all(),
+            ])
+            ->values()
+            ->all();
+    }
+
     private function searchUrl(string $characterName, string $worldName): string
     {
         return sprintf(
@@ -100,7 +119,7 @@ class LodestoneCharacterSearchService
             throw LodestoneParseException::emptyResponse('character search');
         }
 
-        $document = new DOMDocument();
+        $document = new DOMDocument;
 
         libxml_use_internal_errors(true);
         $loaded = $document->loadHTML($html);
@@ -122,7 +141,7 @@ class LodestoneCharacterSearchService
         foreach ($resultNodes as $resultNode) {
             $result = $this->parseResultNode($xpath, $resultNode);
 
-            if (!$result instanceof LodestoneCharacterSearchResult) {
+            if (! $result instanceof LodestoneCharacterSearchResult) {
                 continue;
             }
 
@@ -140,7 +159,7 @@ class LodestoneCharacterSearchService
     {
         $href = $resultNode->attributes?->getNamedItem('href')?->nodeValue ?? '';
 
-        if (!preg_match('#/lodestone/character/(\d+)/#', $href, $matches)) {
+        if (! preg_match('#/lodestone/character/(\d+)/#', $href, $matches)) {
             return null;
         }
 
@@ -152,7 +171,7 @@ class LodestoneCharacterSearchService
             trim((string) $xpath->evaluate("string(.//p[contains(concat(' ', normalize-space(@class), ' '), ' entry__world ')])", $resultNode))
         );
 
-        if ($name === '' || !is_string($worldLine) || $worldLine === '') {
+        if ($name === '' || ! is_string($worldLine) || $worldLine === '') {
             return null;
         }
 

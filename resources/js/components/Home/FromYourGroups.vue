@@ -20,15 +20,15 @@ const quietGroupsIllustration = '/images/empty-states/groups-quiet.png'
 <template>
     <div class="w-full min-w-0 flex flex-col gap-4" :aria-busy="loading">
         <div class="flex items-center justify-between gap-4">
-            <h2 class="min-w-0 text-3xl font-bold">{{ t('dashboard.from_your_groups.title') }}</h2>
-            <p class="shrink-0 text-right text-sm text-muted">{{ t('dashboard.from_your_groups.period') }}</p>
+            <h2 class="min-w-0 text-2xl font-bold xl:text-3xl">{{ t('dashboard.from_your_groups.title') }}</h2>
+            <p class="shrink-0 text-right text-xs text-muted xl:text-sm">{{ t('dashboard.from_your_groups.period') }}</p>
         </div>
         <div v-if="loading" class="flex min-w-0 flex-col gap-8">
             <p role="status" class="sr-only">{{ t('dashboard.from_your_groups.loading') }}</p>
             <div v-for="group in 2" :key="group" class="flex min-w-0 flex-col gap-4">
-                <div aria-hidden="true" class="flex h-7 items-center gap-2 pr-24">
+                <div aria-hidden="true" class="flex h-6 items-center gap-2 pr-24 xl:h-7">
                     <USkeleton class="size-6 shrink-0 rounded-full bg-elevation-3 dark:bg-elevation-5 motion-reduce:animate-none" />
-                    <USkeleton class="h-4 max-w-full rounded bg-elevation-3 dark:bg-elevation-5 motion-reduce:animate-none" :class="group === 1 ? 'w-44' : 'w-36'" />
+                    <USkeleton class="h-3.5 max-w-full rounded bg-elevation-3 dark:bg-elevation-5 motion-reduce:animate-none xl:h-4" :class="group === 1 ? 'w-44' : 'w-36'" />
                 </div>
                 <RunCarouselSkeleton />
             </div>
@@ -46,7 +46,7 @@ const quietGroupsIllustration = '/images/empty-states/groups-quiet.png'
         <div v-else class="flex min-w-0 flex-col gap-8">
             <section v-for="row in groups" :key="row.group.id" class="flex min-w-0 flex-col gap-4"
                 :aria-labelledby="`group-runs-${row.group.id}`">
-                <h3 :id="`group-runs-${row.group.id}`" class="pr-24 text-lg font-semibold">
+                <h3 :id="`group-runs-${row.group.id}`" class="pr-24 text-base font-semibold xl:text-lg">
                     <Link :href="row.runs_href" :aria-label="t('dashboard.group_panel.open_runs', { name: row.group.name })"
                         class="inline-flex max-w-full items-center gap-2 rounded-md text-default hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand">
                         <UAvatar :src="row.group.profile_picture_url ?? undefined" alt="" icon="i-lucide-users" size="xs"

@@ -3,6 +3,7 @@
 namespace App\Services\Lodestone\Parsers;
 
 use App\Exceptions\LodestoneParseException;
+use App\Support\Characters\CharacterRefreshStage;
 
 /**
  * Orchestrating parser for the Lodestone class/job page.
@@ -39,9 +40,10 @@ class LodestoneClassJobParser
      * Parse class/job HTML into normalized key-value data.
      *
      * @return array<string, mixed>
+     *
      * @throws LodestoneParseException
      */
-    public function parse(string $html): array
+    public function parse(string $html, ?\Closure $onStage = null): array
     {
         if (empty($html)) {
             throw LodestoneParseException::emptyResponse('class/job page');
@@ -66,6 +68,7 @@ class LodestoneClassJobParser
         }
 
         // Parse Occult Crescent + Phantom Jobs
+        $onStage?->__invoke(CharacterRefreshStage::PhantomJobs);
         $occultData = $this->occultParser->parse($html);
         $allData = array_merge($allData, $occultData->toNormalized());
 

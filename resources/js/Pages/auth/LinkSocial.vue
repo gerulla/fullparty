@@ -3,7 +3,7 @@ import { computed } from 'vue'
 import { Link, useForm, usePage } from '@inertiajs/vue3'
 import { useI18n } from 'vue-i18n'
 import { route } from 'ziggy-js'
-import AuthLayout from '@/Layouts/AuthLayout.vue'
+import AuthLayoutV2 from '@/Layouts/AuthLayoutV2.vue'
 import SeoHead from '@/components/Shared/SeoHead.vue'
 import LoginWithGoogle from '@/components/LoginWithGoogle.vue'
 import LoginWithDiscord from '@/components/LoginWithDiscord.vue'
@@ -19,7 +19,7 @@ const props = defineProps<{
     canComplete: boolean
 }>()
 
-defineOptions({ layout: AuthLayout })
+defineOptions({ layout: AuthLayoutV2 })
 
 const { t } = useI18n()
 const passwordVisibility = usePasswordVisibility(['password'] as const)
@@ -78,8 +78,7 @@ const cancel = () => action.delete(route('social-link.cancel', props.token))
                         </UInput>
                     </UFormField>
                     <div class="flex flex-wrap items-center justify-between gap-3 text-sm">
-                        <UCheckbox v-model="form.remember" :label="t('auth.remember_me')" />
-                        <Link :href="route('password.request')" class="text-brand">{{ t('auth.forgot_password') }}</Link>
+                        <UCheckbox v-model="form.remember" color="brand" :label="t('auth.remember_me')" />
                     </div>
                     <UButton type="submit" color="brand" size="xl" icon="i-lucide-link" class="w-full justify-center"
                         :loading="form.processing" :ui="{ label: 'whitespace-normal text-center' }">
@@ -87,8 +86,12 @@ const cancel = () => action.delete(route('social-link.cancel', props.token))
                     </UButton>
                 </form>
 
-                <USeparator :label="t('auth.link_social.other_method')"
-                    :ui="{ container: 'max-w-[80%] shrink-0', label: 'whitespace-normal text-center' }" />
+                <div class="pt-3 text-center text-sm">
+                    <Link :href="route('password.request')" class="text-brand">{{ t('auth.forgot_password') }}</Link>
+                </div>
+
+                <USeparator color="brand" :label="t('auth.link_social.other_method')" class="py-4"
+                    :ui="{ border: 'border-brand/50', container: 'max-w-[80%] shrink-0', label: 'whitespace-normal text-center text-brand' }" />
                 <div class="space-y-2">
                     <LoginWithGoogle :href="route('google.redirect', { link: token })" />
                     <LoginWithDiscord :href="route('discord.redirect', { link: token })" />

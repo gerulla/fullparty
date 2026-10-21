@@ -82,7 +82,7 @@ test('page resolution imports only the destination and waits for translations', 
     let layoutLoads = 0;
     const resolve = createPageResolver({
         application: 'main', composer: {}, getLocale: () => 'ja',
-        translations: { load: async (_, locale, namespaces) => { assert.equal(locale, 'ja'); assert.deepEqual(namespaces, ['general', 'meta', 'reports', 'auth']); await ready; } },
+        translations: { load: async (_, locale, namespaces) => { assert.equal(locale, 'ja'); assert.deepEqual(namespaces, ['general', 'meta', 'reports', 'auth', 'xivplugin', 'navigation']); await ready; } },
         pages: {
             './Pages/auth/Login.vue': async () => { requested.push('login'); return login; },
             './Pages/Admin/Quotas.vue': async () => { requested.push('admin'); return {}; },
@@ -107,12 +107,12 @@ test('default layouts are loaded lazily and failed page imports remain retryable
     const layout = {};
     const resolve = createPageResolver({
         application: 'main', composer: {}, getLocale: () => 'en', translations: { load: async () => {} },
-        pages: { './Pages/Dashboard/Dashboard.vue': async () => { if (++attempts === 1) throw Error('offline'); return { default: component }; } },
+        pages: { './Pages/Profile/Show.vue': async () => { if (++attempts === 1) throw Error('offline'); return { default: component }; } },
         loadDefaultLayout: async () => { layoutLoads++; return { default: layout }; },
     });
-    await assert.rejects(resolve('Dashboard/Dashboard'), /offline/);
-    await resolve('Dashboard/Dashboard');
-    await resolve('Dashboard/Dashboard');
+    await assert.rejects(resolve('Profile/Show'), /offline/);
+    await resolve('Profile/Show');
+    await resolve('Profile/Show');
     assert.equal(component.layout, layout);
     assert.equal(layoutLoads, 1);
 });

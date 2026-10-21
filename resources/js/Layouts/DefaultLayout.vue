@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import CSidebar from "@/components/Navigation/CSidebar.vue";
 import CTopbar from "@/components/Navigation/CTopbar.vue";
+import AccountFlags from "@/components/Navigation/AccountFlags.vue";
 import ViewportBreakpointIndicator from "@/components/Navigation/ViewportBreakpointIndicator.vue";
 import DashboardFooter from "@/components/DashboardFooter.vue";
 import GroupNavigation from "@/components/Groups/GroupNavigation.vue";
@@ -112,6 +113,7 @@ defineProps({
 				</UDashboardPanel>
 			</UDashboardGroup>
 			<WelcomeOnboardingModal />
+			<AccountFlags v-if="page.props.auth?.user" />
 			<ViewportBreakpointIndicator v-if="showBreakpointIndicator" />
 		</div>
 	</UApp>

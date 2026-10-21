@@ -61,12 +61,15 @@
             "light": "ライトモードに切り替え",
             "dark": "ダークモードに切り替え"
         },
+        "language": "言語",
         "search": "検索",
         "search_bar": "ラン、グループ、アクティビティを検索...",
         "time_display": {
             "label": "時刻表示",
             "local": "ローカル時間",
             "server": "サーバー時間",
+            "switch_local": "ローカル時間（LT）に切り替える",
+            "switch_server": "サーバー時間（ST）に切り替える",
             "error_title": "時刻設定を保存できませんでした",
             "error_description": "もう一度、時刻表示を切り替えてください。"
         },
@@ -85,6 +88,7 @@
             "show": "表示"
         },
         "menu": {
+            "label": "アカウントメニュー",
             "profile": "プロフィール",
             "settings": "設定",
             "my_characters": "マイキャラクター",
@@ -94,6 +98,15 @@
         }
     },
     "footer": {
+        "explore": "探す",
+        "community": "コミュニティ",
+        "legal": "法的情報",
+        "api_documentation": "APIドキュメント",
+        "cookie_policy": "Cookieポリシー",
+        "version": "バージョン {version}",
+        "game_assets": "FINAL FANTASY XIVのゲーム素材 © SQUARE ENIX.",
+        "independence": "FullPartyは独立したコミュニティプロジェクトであり、スクウェア・エニックスとの提携関係はなく、同社の公認を受けたものではありません。",
+        "fflogs_credit": "追加の進行状況データは{provider}より提供されています。",
         "cookies": "Cookie",
         "privacy": "プライバシーポリシー",
         "github": "GitHub",

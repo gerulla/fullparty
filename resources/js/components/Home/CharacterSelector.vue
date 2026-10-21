@@ -1,7 +1,9 @@
 <script lang="ts" setup>
 import { computed, ref, useTemplateRef } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { route } from 'ziggy-js'
 import { CollapsibleContent, CollapsibleRoot, CollapsibleTrigger } from 'reka-ui'
+import { useCharacterVerificationGuide } from '@/composables/useCharacterVerificationGuide'
 import { useAppearance } from '@/composables/useAppearance'
 import type { V2HomeCharacter, V2HomeUser } from '../../Types/V2Home'
 
@@ -14,6 +16,7 @@ const { t } = useI18n()
 const { isDark } = useAppearance()
 const badgeVariant = computed(() => isDark.value ? 'outline' : 'solid')
 const open = ref(false)
+const { showVerificationGuide } = useCharacterVerificationGuide()
 const trigger = useTemplateRef<{ $el: HTMLButtonElement }>('trigger')
 const otherCharacters = computed(() => user?.characters.filter(
 	character => character.id !== selectedCharacter.value?.id,
@@ -24,6 +27,7 @@ function selectCharacter(character: V2HomeCharacter) {
 	open.value = false
 	trigger.value?.$el.focus()
 }
+
 </script>
 
 <template>
@@ -49,7 +53,6 @@ function selectCharacter(character: V2HomeCharacter) {
 	<CollapsibleRoot
 		v-else-if="selectedCharacter"
 		v-model:open="open"
-		:disabled="otherCharacters.length === 0"
 		class="user-panel-style"
 	>
 		<CollapsibleTrigger as-child>
@@ -59,7 +62,7 @@ function selectCharacter(character: V2HomeCharacter) {
 				color="neutral"
 				variant="ghost"
 				class="user-panel-shape w-full text-left text-default disabled:cursor-default disabled:opacity-100"
-				:aria-label="t('dashboard.character_selector.change', { name: selectedCharacter.name })"
+				:aria-label="t('dashboard.character_selector.options', { name: selectedCharacter.name })"
 			>
 				<div class="flex flex-row items-center gap-2">
 					<UUser
@@ -84,11 +87,10 @@ function selectCharacter(character: V2HomeCharacter) {
 					</UUser>
 				</div>
 				<div class="flex flex-row items-center gap-2">
-					<UBadge v-if="selectedCharacter.claimed_at != null" :variant="badgeVariant" size="sm" color="brand" leadingIcon="i-lucide-star">Claimed</UBadge>
-					<UBadge v-else-if="selectedCharacter.verified_at != null" :variant="badgeVariant" size="sm" color="success" leadingIcon="i-lucide-check">Verified</UBadge>
-					<UBadge v-else :variant="badgeVariant" size="sm" color="error" leadingIcon="i-lucide-x">Unverified</UBadge>
+					<UBadge v-if="selectedCharacter.claimed_at != null" :variant="badgeVariant" size="sm" color="brand" leadingIcon="i-lucide-star">{{ t('characters.verification_guide.states.claimed.title') }}</UBadge>
+					<UBadge v-else-if="selectedCharacter.verified_at != null" :variant="badgeVariant" size="sm" color="success" leadingIcon="i-lucide-check">{{ t('characters.verification_guide.states.verified.title') }}</UBadge>
+					<UBadge v-else :variant="badgeVariant" size="sm" color="error" leadingIcon="i-lucide-x">{{ t('characters.verification_guide.states.unverified.title') }}</UBadge>
 					<UIcon
-						v-if="otherCharacters.length"
 						size="20"
 						name="i-lucide-chevron-right"
 						class="shrink-0 transition-transform duration-200 motion-reduce:transition-none"
@@ -104,7 +106,7 @@ function selectCharacter(character: V2HomeCharacter) {
 			:inert="open ? undefined : ''"
 			class="max-h-80 overflow-y-auto bg-elevation-1 dark:bg-elevation-3"
 		>
-			<div class="character-reveal character-list-reveal">
+			<div v-if="otherCharacters.length" class="character-reveal character-list-reveal">
 				<div class="relative z-10 min-h-0 overflow-hidden rounded-b-lg bg-elevation-2 dark:bg-elevation-5">
 					<UButton
 						v-for="character in otherCharacters"
@@ -135,9 +137,9 @@ function selectCharacter(character: V2HomeCharacter) {
 							</UUser>
 						</div>
 						<div class="flex flex-row items-center gap-2">
-							<UBadge v-if="character.claimed_at != null" :variant="badgeVariant" size="sm" color="brand" leadingIcon="i-lucide-star">Claimed</UBadge>
-							<UBadge v-else-if="character.verified_at != null" :variant="badgeVariant" size="sm" color="success" leadingIcon="i-lucide-check">Verified</UBadge>
-							<UBadge v-else :variant="badgeVariant" size="sm" color="error" leadingIcon="i-lucide-x">Unverified</UBadge>
+							<UBadge v-if="character.claimed_at != null" :variant="badgeVariant" size="sm" color="brand" leadingIcon="i-lucide-star">{{ t('characters.verification_guide.states.claimed.title') }}</UBadge>
+							<UBadge v-else-if="character.verified_at != null" :variant="badgeVariant" size="sm" color="success" leadingIcon="i-lucide-check">{{ t('characters.verification_guide.states.verified.title') }}</UBadge>
+							<UBadge v-else :variant="badgeVariant" size="sm" color="error" leadingIcon="i-lucide-x">{{ t('characters.verification_guide.states.unverified.title') }}</UBadge>
 						</div>
 					</UButton>
 				</div>
@@ -145,13 +147,25 @@ function selectCharacter(character: V2HomeCharacter) {
 			<div class="character-reveal character-actions-reveal">
 				<div class="min-h-0 overflow-hidden">
 					<div class="w-full flex flex-row items-center justify-between p-2 bg-elevation-1 dark:bg-elevation-3">
-						<UButton color="neutral" variant="ghost" size="xs" leadingIcon="i-lucide-plus" class="hover:text-muted active:text-zinc-700" >Add Character</UButton>
-						<UButton color="neutral" variant="ghost" size="xs" class="text-muted hover:text-default active:text-zinc-700">How to Verify?</UButton>
+						<UButton :to="route('characters.create')" color="neutral" variant="ghost" size="xs" leadingIcon="i-lucide-plus" class="hover:text-muted active:text-zinc-700">{{ t('characters.add.add_button') }}</UButton>
+						<UButton color="neutral" variant="ghost" size="xs" class="text-muted hover:text-default active:text-zinc-700" aria-haspopup="dialog"
+							@click="showVerificationGuide">{{ t('characters.verification_guide.help_button') }}</UButton>
 					</div>
 				</div>
 			</div>
 		</CollapsibleContent>
 	</CollapsibleRoot>
+	<div v-else class="user-panel-style character-add-panel">
+		<UButton
+			:to="route('characters.create')"
+			color="neutral"
+			variant="ghost"
+			class="user-panel-shape w-full text-left text-default"
+		>
+			<span class="flex min-h-10 items-center text-sm font-medium">{{ t('dashboard.character_selector.add_your_character') }}</span>
+			<UIcon name="i-lucide-plus" size="20" class="shrink-0" aria-hidden="true" />
+		</UButton>
+	</div>
 </template>
 
 <style scoped>
@@ -172,7 +186,8 @@ function selectCharacter(character: V2HomeCharacter) {
 	@apply dark:bg-elevation-5 dark:border-y dark:border-t-elevation-7 dark:border-b-elevation-2;
 }
 
-.user-panel-style[data-state='closed']:not([data-disabled]):hover {
+.user-panel-style[data-state='closed']:not([data-disabled]):hover,
+.character-add-panel:hover {
 	@apply scale-105;
 }
 

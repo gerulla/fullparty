@@ -172,7 +172,8 @@
       "verified": "verified a character.",
       "refresh_requested": "requested a character refresh.",
       "made_primary": "made a character primary.",
-      "removed": "removed a character from the account."
+      "removed": "removed a character from the account.",
+      "transferred": "transferred a character between accounts."
     },
     "group": {
       "resources": {
@@ -395,7 +396,12 @@
     "permissions": "Permissions",
     "type": "Type",
     "version_from": "Previous version",
-    "version_to": "Through version"
+    "version_to": "Through version",
+    "from_user_id": "Previous account ID",
+    "from_user_name": "Previous account name",
+    "to_user_id": "New account ID",
+    "to_user_name": "New account name",
+    "previous_status": "Previous verification status"
   },
   "events": {
     "user": {
@@ -493,7 +499,9 @@
     "character": {
       "verified": "Character verified",
       "refresh_requested": "Character refresh requested",
-      "made_primary": "Character made primary"
+      "made_primary": "Character made primary",
+      "added": "added a character to their account.",
+      "transferred": "Character transferred between accounts"
     },
     "group": {
       "resources": {

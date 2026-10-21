@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useForm } from "@inertiajs/vue3";
-import AuthLayout from "@/Layouts/AuthLayout.vue";
+import AuthLayoutV2 from "@/Layouts/AuthLayoutV2.vue";
 import SeoHead from "@/components/Shared/SeoHead.vue";
 import { route } from "ziggy-js";
 import { useI18n } from "vue-i18n";
@@ -51,7 +51,7 @@ const scopeDescription = (scope: { id: string; description: string }) => {
 };
 
 defineOptions({
-	layout: AuthLayout,
+	layout: AuthLayoutV2,
 });
 </script>
 

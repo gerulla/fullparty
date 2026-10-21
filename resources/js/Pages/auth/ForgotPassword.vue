@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { Link, useForm, usePage } from "@inertiajs/vue3";
-import AuthLayout from "@/Layouts/AuthLayout.vue";
+import AuthLayoutV2 from "@/Layouts/AuthLayoutV2.vue";
 import SeoHead from "@/components/Shared/SeoHead.vue";
 import { route } from "ziggy-js";
 import { useI18n } from "vue-i18n";
@@ -21,7 +21,7 @@ const submit = () => {
 const wasResetLinkSent = computed(() => successFlags.value.includes('password_reset_link_sent'));
 
 defineOptions({
-	layout: AuthLayout,
+	layout: AuthLayoutV2,
 });
 </script>
 
@@ -45,7 +45,7 @@ defineOptions({
 			icon="i-lucide-mail-check"
 			:title="t('auth.forgot_password_page.success_title')"
 			:description="t('auth.forgot_password_page.success_description')"
-			class="mb-4"
+			class="mb-4 bg-success-50 text-success-800 ring-success-200 dark:bg-success/10 dark:text-success dark:ring-success/25"
 		/>
 
 		<form class="space-y-4" @submit.prevent="submit">
@@ -70,7 +70,7 @@ defineOptions({
 			</UButton>
 		</form>
 
-		<div class="mt-6 flex items-center justify-center">
+		<div class="flex items-center justify-center pt-8 text-center text-sm">
 			<Link :href="route('login')" class="text-brand">{{ t('auth.back_to_login') }}</Link>
 		</div>
 	</div>

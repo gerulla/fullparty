@@ -2,26 +2,27 @@
 import { computed } from "vue"
 import { useI18n } from "vue-i18n"
 import type { ActivityCompletionSummary } from "@/Types/ActivityProgression"
-import { createDateTimeFormatter } from "@/utils/dateTimeFormat";
+import { useDateTimeFormat } from "@/composables/useDateTimeFormat"
 
 const props = defineProps<{
 	completedProgression: ActivityCompletionSummary
 }>()
 
-const { t, locale } = useI18n()
+const { t } = useI18n()
+const { formatDateTime } = useDateTimeFormat()
 
 const completedAtLabel = computed(() => {
 	if (!props.completedProgression.completedAt) {
 		return t("groups.activities.management.overview.progression.not_recorded")
 	}
 
-	return createDateTimeFormatter(locale.value, {
+	return formatDateTime(props.completedProgression.completedAt, {
 		year: "numeric",
 		month: "2-digit",
 		day: "2-digit",
 		hour: "2-digit",
 		minute: "2-digit",
-	}).format(new Date(props.completedProgression.completedAt))
+	})
 })
 
 const milestoneProgressWidth = (progress: number | null) => {

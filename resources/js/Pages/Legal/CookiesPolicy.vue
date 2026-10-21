@@ -17,7 +17,7 @@ const { intro, sections } = useLegalDocument('cookies');
 
 	<LegalDocument
 		:title="t('legal.cookies.title')"
-		last-updated="2026-05-07"
+		last-updated="2026-10-20"
 		:intro="intro"
 		:sections="sections"
 	/>

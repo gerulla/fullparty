@@ -9,14 +9,13 @@ use App\Exceptions\LodestoneParseException;
 use App\Http\Requests\StoreCharacterRequest;
 use App\Http\Requests\StoreXIVAuthCharacterRequest;
 use App\Http\Requests\UpdateCharacterRequest;
-use App\Models\ActivityApplication;
 use App\Models\Character;
 use App\Models\CharacterClass;
 use App\Models\OccultProgress;
 use App\Models\PhantomJob;
-use App\Models\User;
 use App\Services\AuditLogger;
 use App\Services\Characters\CharacterProfileRefreshService;
+use App\Services\Characters\LodestoneCharacterClaimService;
 use App\Services\Characters\XIVAuthCharacterSyncService;
 use App\Services\Lodestone\LodestoneInputNormalizer;
 use App\Services\Lodestone\LodestoneScraper;
@@ -33,7 +32,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
@@ -192,63 +190,34 @@ class CharacterController extends Controller
         }
     }
 
-    public function verify(Request $request): RedirectResponse|JsonResponse
+    public function verify(Request $request, LodestoneCharacterClaimService $claims): RedirectResponse|JsonResponse
     {
         $validated = $request->validate([
-            'token' => ['required', 'string'],
+            'token' => ['required', 'string', 'max:100'],
             'character_id' => ['required', 'exists:characters,id'],
         ]);
         $character = Character::find($validated['character_id']);
 
         abort_unless($character->user_id === auth()->id(), 403);
 
-        if ($character->isVerified()) {
+        if ($character->isClaimed()) {
             return MemberApi::flashData([
                 'character_verification' => [
                     'taken' => true,
                 ],
             ]);
         }
-        if (blank($character->token) || $character->isTokenExpired()) {
-            return MemberApi::errors([
-                'error' => 'expired_token',
-            ]);
-        }
-
-        $scraper = app(LodestoneScraper::class);
-        // If the character does not exist, scrape it and create it
         try {
-            $data = $scraper->scrapeProfile($character->lodestone_id, ignoreCache: true);
-            if (! $data->bio || ! str_contains($data->bio, $character->token)) {
-                return MemberApi::errors([
-                    'error' => 'invalid_token',
-                ]);
-            }
-            $this->finalizeCharacterVerification($character, auth()->user(), 'lodestone_token');
-
-            $this->auditLogger->log(
-                action: 'character.verified',
-                severity: AuditSeverity::INFO,
-                scopeType: AuditScope::CHARACTER,
-                scopeId: $character->id,
-                message: 'audit_log.events.character.verified',
-                actor: auth()->user(),
-                subject: $character,
-                metadata: [
-                    'verification_method' => 'lodestone_token',
-                    'lodestone_id' => $character->lodestone_id,
-                    'is_primary' => $character->is_primary,
-                ],
-            );
-
-            $this->refreshVerifiedCharacterOnce($character);
-
-            $this->accountCharacterNotificationService->notifyCharacterAdded($character->fresh(), 'lodestone_token', auth()->user());
+            $claims->verify($request->user(), $character, $validated['token'], refreshAfterClaim: true);
 
             return MemberApi::flashData([
                 'character_verification' => [
                     'success' => true,
                 ],
+            ]);
+        } catch (ValidationException $e) {
+            return MemberApi::errors([
+                'error' => ($e->errors()['claim'][0] ?? null) === 'expired_code' ? 'expired_token' : 'invalid_token',
             ]);
         } catch (LodestoneInvalidInputException $e) {
             return MemberApi::errors([
@@ -402,80 +371,6 @@ class CharacterController extends Controller
         ]);
     }
 
-    private function finalizeCharacterVerification(
-        Character $character,
-        User $user,
-        string $verificationMethod,
-        ?bool $isPrimaryOverride = null,
-    ): void {
-        DB::transaction(function () use ($character, $user, $verificationMethod, $isPrimaryOverride): void {
-            $isPrimary = $isPrimaryOverride ?? $user->characters()->count() === 0;
-
-            $character->user_id = $user->id;
-            $character->verified_at = Carbon::now();
-            $character->claimed_at ??= $character->verified_at;
-            $character->token = null;
-            $character->expires_at = null;
-            $character->is_primary = $isPrimary;
-            $character->add_method = $verificationMethod === 'xivauth' ? 'xivauth' : 'manual';
-            $character->save();
-
-            $this->claimCharacterApplications($character, $user);
-        });
-    }
-
-    private function claimCharacterApplications(Character $character, User $user): void
-    {
-        $applications = ActivityApplication::query()
-            ->whereNull('user_id')
-            ->where('applicant_lodestone_id', $character->lodestone_id)
-            ->lockForUpdate()
-            ->get();
-
-        if ($applications->isEmpty()) {
-            return;
-        }
-
-        $conflictingActivityIds = ActivityApplication::query()
-            ->where('user_id', $user->id)
-            ->whereIn('activity_id', $applications->pluck('activity_id'))
-            ->pluck('activity_id')
-            ->all();
-
-        foreach ($applications as $application) {
-            if (in_array($application->activity_id, $conflictingActivityIds, true)) {
-                Log::warning('Skipping guest application claim because the user already has an application for the activity.', [
-                    'application_id' => $application->id,
-                    'activity_id' => $application->activity_id,
-                    'user_id' => $user->id,
-                    'character_id' => $character->id,
-                    'lodestone_id' => $character->lodestone_id,
-                ]);
-
-                continue;
-            }
-
-            $application->update([
-                'user_id' => $user->id,
-                'selected_character_id' => $character->id,
-                'guest_access_token' => null,
-            ]);
-        }
-    }
-
-    private function refreshVerifiedCharacterOnce(Character $character): void
-    {
-        try {
-            $this->characterProfileRefreshService->refresh($character, ignoreCache: true);
-        } catch (\Throwable $exception) {
-            Log::warning('Unable to auto-refresh character data after verification.', [
-                'character_id' => $character->id,
-                'lodestone_id' => $character->lodestone_id,
-                'exception' => $exception->getMessage(),
-            ]);
-        }
-    }
-
     public function markPreferredClass(Request $request, Character $character): RedirectResponse|JsonResponse
     {
         if ($character->user_id !== auth()->id()) {
@@ -585,7 +480,8 @@ class CharacterController extends Controller
             ->orderBy('name')
             ->get();
 
-        $characters = auth()->user()->characters()
+        $characters = Character::query()
+            ->where('user_id', auth()->id())
             ->with([
                 'fieldValues.fieldDefinition',
                 'classes',
@@ -614,6 +510,7 @@ class CharacterController extends Controller
             'lodestone_id' => $character->lodestone_id,
             'avatar_url' => $character->avatar_url,
             'verified_at' => $character->verified_at,
+            'claimed_at' => $character->claimed_at,
             'add_method' => $character->add_method,
             'classes' => $characterClasses->map(function (CharacterClass $characterClass) use ($character, $classProgress) {
                 $progress = $classProgress->get($characterClass->id);

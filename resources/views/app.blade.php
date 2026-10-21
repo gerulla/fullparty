@@ -1,5 +1,10 @@
+@php
+    $pageComponent = $page['component'] ?? '';
+    $usesMedasTheme = str_starts_with($pageComponent, 'V2/')
+        || (str_starts_with($pageComponent, 'auth/') && $pageComponent !== 'auth/Banned');
+@endphp
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}" class="dark" data-ui-theme="{{ str_starts_with($page['component'] ?? '', 'V2/') ? 'medas' : 'classic' }}">
+<html lang="{{ app()->getLocale() }}" class="dark" data-ui-theme="{{ $usesMedasTheme ? 'medas' : 'classic' }}">
     <head>
         @php
             $serverMeta = $serverMeta ?? app(\App\Support\Seo\ServerMeta::class)->defaults();
@@ -33,6 +38,42 @@
                 root.classList.toggle('dark', appearance === 'dark');
                 root.classList.toggle('light', appearance === 'light');
                 root.style.colorScheme = appearance;
+            })();
+        </script>
+        <style>
+            html.page-ripple-arriving::after {
+                content: '';
+                position: fixed;
+                inset: 0;
+                z-index: 9998;
+                pointer-events: none;
+                background: var(--page-ripple-arrival-color);
+            }
+            @media (prefers-reduced-motion: reduce) {
+                html.page-ripple-arriving::after { display: none; }
+            }
+        </style>
+        <script>
+            // Carry the curtain across same-site links that intentionally reload the document.
+            (() => {
+                try {
+                    const saved = sessionStorage.getItem('fullparty-page-ripple');
+                    sessionStorage.removeItem('fullparty-page-ripple');
+                    if (!saved || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+                    const ripple = JSON.parse(saved);
+                    if (ripple.href !== location.href || !Number.isFinite(ripple.at) || Date.now() - ripple.at > 10000
+                        || Date.now() < ripple.at || ![ripple.x, ripple.y, ripple.seed].every(Number.isFinite)
+                        || ripple.x < 0 || ripple.x > 1 || ripple.y < 0 || ripple.y > 1
+                        || typeof ripple.color !== 'string' || !CSS.supports('color', ripple.color)) return;
+                    const root = document.documentElement;
+                    root.style.setProperty('--page-ripple-arrival-color', ripple.color);
+                    root.dataset.pageRipple = saved;
+                    root.classList.add('page-ripple-arriving');
+                    setTimeout(() => {
+                        root.classList.remove('page-ripple-arriving');
+                        delete root.dataset.pageRipple;
+                    }, 8000);
+                } catch {}
             })();
         </script>
         @if($manageResourceHead)<title inertia="">@else<title>@endif{{ $fullTitle }}</title>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useForm } from "@inertiajs/vue3";
-import AuthLayout from "@/Layouts/AuthLayout.vue";
+import AuthLayoutV2 from "@/Layouts/AuthLayoutV2.vue";
 import SeoHead from "@/components/Shared/SeoHead.vue";
 import { route } from "ziggy-js";
 import { useI18n } from "vue-i18n";
@@ -8,6 +8,7 @@ import { useI18n } from "vue-i18n";
 const props = defineProps<{
 	prefilledUserCode?: string
 	status?: string | null
+	codeError?: string | null
 }>();
 
 const { t } = useI18n({ useScope: "global" });
@@ -23,7 +24,7 @@ const submit = () => {
 };
 
 defineOptions({
-	layout: AuthLayout,
+	layout: AuthLayoutV2,
 });
 </script>
 
@@ -42,7 +43,7 @@ defineOptions({
 			icon="i-lucide-circle-check"
 			:title="t('xivplugin.device.approved_title')"
 			:description="t('xivplugin.device.approved_description')"
-			class="mb-4"
+			class="mb-4 bg-success-50 text-success-800 ring-success-200 dark:bg-success/10 dark:text-success dark:ring-success/25"
 		/>
 
 		<UAlert
@@ -52,7 +53,7 @@ defineOptions({
 			icon="i-lucide-circle-alert"
 			:title="t('xivplugin.device.denied_title')"
 			:description="t('xivplugin.device.denied_description')"
-			class="mb-4"
+			class="mb-4 bg-warning-50 text-warning-800 ring-warning-200 dark:bg-warning/10 dark:text-warning dark:ring-warning/25"
 		/>
 
 		<div class="mb-6 text-center">
@@ -64,7 +65,7 @@ defineOptions({
 		</div>
 
 		<form class="space-y-4" @submit.prevent="submit">
-			<UFormField name="user_code" :label="t('xivplugin.device.code_label')" :error="form.errors.user_code">
+			<UFormField name="user_code" :label="t('xivplugin.device.code_label')" :error="form.errors.user_code || codeError">
 				<UInput
 					v-model="form.user_code"
 					size="xl"

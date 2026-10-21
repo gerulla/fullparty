@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import {useForm, Link, usePage} from '@inertiajs/vue3'
-import AuthLayout from '@/Layouts/AuthLayout.vue'
+import AuthLayoutV2 from '@/Layouts/AuthLayoutV2.vue'
 import SeoHead from "@/components/Shared/SeoHead.vue";
 import LoginWithXIVAuth from "@/components/LoginWithXIVAuth.vue";
 import LoginWithGoogle from "@/components/LoginWithGoogle.vue";
@@ -26,7 +26,7 @@ const submit = () => {
 	form.post(route('login.store'))
 }
 defineOptions({
-	layout: AuthLayout
+	layout: AuthLayoutV2
 })
 
 </script>
@@ -45,23 +45,17 @@ defineOptions({
 			icon="i-lucide-badge-check"
 			:title="t('auth.reset_password_page.complete_title')"
 			:description="t('auth.reset_password_page.complete_description')"
-			class="mb-4"
+			class="mb-4 bg-success-50 text-success-800 ring-success-200 dark:bg-success/10 dark:text-success dark:ring-success/25"
 		/>
 
-		<div class="mb-1 mx-auto">
-			<p class="italic text-center text-gray-600 dark:text-gray-300">{{ t('auth.express_options') }}</p>
-		</div>
 		<div class="space-y-2 mb-4">
 			<LoginWithXIVAuth />
 			<LoginWithGoogle />
 			<LoginWithDiscord />
 		</div>
 
-		<div class="flex items-center gap-4 mb-4">
-			<div class="h-px flex-1 bg-slate-300 dark:bg-slate-600"></div>
-			<span class="text-xs font-semibold uppercase tracking-wide text-slate-400 dark:text-slate-500">Or</span>
-			<div class="h-px flex-1 bg-slate-300 dark:bg-slate-600"></div>
-		</div>
+		<USeparator color="brand" :label="t('general.or')" class="mb-4 py-4"
+			:ui="{ border: 'border-brand/50', label: 'text-xs font-semibold uppercase tracking-wide text-brand' }" />
 
 		<div class="flex items-center w-full mb-4">
 			<form class="space-y-4 w-full" @submit.prevent="submit">
@@ -91,14 +85,14 @@ defineOptions({
 						</template>
 					</UInput>
 				</UFormField>
-				<UCheckbox :label="t('auth.remember_me')" name="remember" v-model="form.remember"/>
+				<UCheckbox color="brand" :label="t('auth.remember_me')" name="remember" v-model="form.remember"/>
 				<UButton type="submit" color="brand" size="xl" class="w-full justify-center" :disabled="form.processing">
 					{{ t('auth.login') }}
 				</UButton>
 			</form>
 		</div>
 
-		<div class="flex items-center justify-center flex-col space-y-2 w-full">
+		<div class="flex w-full flex-col items-center justify-center gap-2 pt-4 text-center text-sm">
 			<Link :href="route('password.request')" class="text-brand">{{ t('auth.forgot_password') }}</Link>
 			<p>{{ t('auth.no_account') }} <Link :href="route('register')" class="text-brand">{{ t('auth.sign_up_now') }}</Link></p>
 		</div>

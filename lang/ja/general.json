@@ -1,4 +1,18 @@
 {
+  "account_flags": {
+    "preview": "アカウント通知をプレビュー",
+    "end_preview": "実際の通知を表示",
+    "preview_info": "プレビュー：情報",
+    "preview_warning": "プレビュー：警告",
+    "preview_error": "プレビュー：エラー",
+    "preview_description": "これは表示のプレビューであり、実際のアカウントの問題ではありません。「内容を確認」でマイキャラクターを開きます。",
+    "title": "対応が必要です",
+    "view_issue": "内容を確認",
+    "summary": "未解決の項目が{count}件あります。最も高い重要度：{severity}。",
+    "severity": { "info": "情報", "warning": "警告", "error": "エラー" },
+    "transfer_title": "キャラクターの移行を完了してください",
+    "transfer_description": "{character}の過去の参加履歴と今後のランを引き継ぐか破棄するか選択してください。選択を保存するまで、このお知らせは表示され続けます。"
+  },
     "recommended": "おすすめ",
     "primary": "メイン",
     "verify_now": "今すぐ確認",

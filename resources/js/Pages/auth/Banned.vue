@@ -15,12 +15,12 @@ const logout = useForm({})
 </script>
 
 <template>
-    <UApp :locale="currentUiLocale">
+    <UApp :locale="currentUiLocale" :portal="false">
         <SeoHead :title="t('reports.banned_page.title')" :description="t('reports.banned_page.description')" noindex />
-        <div class="relative flex min-h-dvh flex-col overflow-hidden bg-neutral-950 text-neutral-50">
+        <div class="dark scheme-dark relative flex min-h-dvh flex-col overflow-hidden bg-neutral-950 text-neutral-50">
             <div aria-hidden="true" class="pointer-events-none absolute inset-0 bg-radial-[at_50%_30%] from-brand-900/25 via-neutral-950 to-neutral-950" />
             <header class="relative flex items-center justify-between gap-4 border-b border-white/10 px-6 py-5 sm:px-10">
-                <span class="text-2xl font-bold italic tracking-tight">FullParty</span>
+                <img :src="'/logos/full.png'" :alt="t('meta.title')" class="h-8 w-auto max-w-[60vw] object-contain" />
                 <AppLocaleSelect compact />
             </header>
 
@@ -38,7 +38,7 @@ const logout = useForm({})
 
                     <div class="mt-8 border border-white/10 bg-white/3 p-6">
                         <p class="text-sm leading-6 text-neutral-300">{{ t('reports.banned_page.help') }}</p>
-                        <UButton v-if="discordUrl" :href="discordUrl" target="_blank" rel="noopener noreferrer" icon="i-simple-icons-discord"
+                        <UButton v-if="discordUrl" :href="discordUrl" target="_blank" rel="noopener noreferrer" icon="ic:baseline-discord"
                             size="lg" class="mt-5" :label="t('reports.banned_page.discord')" />
                     </div>
 

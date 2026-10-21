@@ -6,8 +6,7 @@ import { useI18n } from "vue-i18n";
 import { localizedValue } from "@/utils/localizedValue";
 import { formatRelativeTime } from "@/utils/formatRelativeTime";
 import { getActivityStatusMeta } from "@/utils/activityStatusMeta";
-import { createDateTimeFormatter } from "@/utils/dateTimeFormat";
-import { useTimeDisplayMode } from "@/composables/useTimeDisplayMode";
+import { useDateTimeFormat } from "@/composables/useDateTimeFormat";
 
 const props = defineProps<{
 	activity: GroupDashboardActivity
@@ -16,7 +15,7 @@ const props = defineProps<{
 const page = usePage();
 const { t, locale } = useI18n();
 const fallbackLocale = computed(() => String(page.props.locale?.fallback ?? "en"));
-const { withDisplayTimeZone } = useTimeDisplayMode();
+const { formatDateTime } = useDateTimeFormat();
 
 const activityTypeName = computed(() => localizedValue(
 	props.activity.activity_type?.draft_name,
@@ -40,13 +39,13 @@ const startsAtLabel = computed(() => {
 		return t("groups.activities.cards.no_time");
 	}
 
-	return createDateTimeFormatter(locale.value, withDisplayTimeZone({
+	return formatDateTime(startsAtDate.value, {
 		weekday: "short",
 		day: "numeric",
 		month: "short",
 		hour: "2-digit",
 		minute: "2-digit",
-	})).format(startsAtDate.value);
+	});
 });
 
 const relativeStartsAtLabel = computed(() => formatRelativeTime(

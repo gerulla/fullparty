@@ -137,8 +137,8 @@ const providerDisplayName = computed(() => {
 			</div>
 
 			<div class="social-block">
-				<div class="social-icon bg-blue-500/10">
-					<UIcon name="i-lucide-globe" size="28" class="text-blue-500" />
+				<div class="social-icon bg-[#00A8E8]/10">
+					<img :src="'/logos/providers/xivauth-key-45.svg'" class="size-8" alt="" width="32" height="32" />
 				</div>
 				<div class="social-info">
 					<p class="font-semibold">XIVAuth</p>

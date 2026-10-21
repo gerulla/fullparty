@@ -125,7 +125,7 @@ it('defers group runs with localized links and protects private applicant previe
     }
     $parameters = ['locale' => 'de', 'group' => $this->group->slug, 'activity' => $run->id];
 
-    $this->actingAs($this->user)->get(route('ui-v2.home', ['locale' => 'de']))
+    $this->actingAs($this->user)->get(route('dashboard', ['locale' => 'de']))
         ->assertOk()->assertInertia(fn (Assert $page) => $page
         ->missing('groupRuns')
         ->loadDeferredProps('v2-group-runs', fn (Assert $page) => $page

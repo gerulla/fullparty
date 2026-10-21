@@ -14,10 +14,12 @@ import VueApexCharts from "vue3-apexcharts"
 import { useI18n } from "vue-i18n"
 import { useToast } from "@nuxt/ui/composables"
 import { route } from "ziggy-js"
-import { createDateTimeFormatter } from "@/utils/dateTimeFormat"
 import { groupProfilePictureAccept, validateGroupProfilePictureFile } from "@/utils/groupProfilePictureValidation"
 import { localizedValue } from "@/utils/localizedValue"
 import { sanitizeMultilineText, sanitizeMultilineTextForInput } from "@/utils/textInputSanitizer"
+import { useDateTimeFormat } from "@/composables/useDateTimeFormat"
+
+const { formatDateTime } = useDateTimeFormat()
 
 const { t, locale } = useI18n()
 const toast = useToast()
@@ -187,7 +189,7 @@ const submitHomeProfile = () => {
 			reset_background_image: data.reset_background_image ? "1" : "0",
 			_method: "put",
 		}))
-		.post(route("dashboard.profile.update"), {
+		.post(route("profile.update", { user: props.profile.id }), {
 			forceFormData: true,
 			onSuccess: () => {
 				isHomeProfileModalOpen.value = false
@@ -225,11 +227,11 @@ const lastRunCompletedAt = computed(() => {
 		return t("dashboard.character_panel.last_run.not_recorded")
 	}
 
-	return createDateTimeFormatter(locale.value, {
+	return formatDateTime(new Date(lastRunRecap.value.completed_at), {
 		month: "short",
 		day: "numeric",
 		year: "numeric",
-	}).format(new Date(lastRunRecap.value.completed_at))
+	})
 })
 const weekRangeFormatter = computed(() => new Intl.DateTimeFormat(locale.value, {
 	month: "short",
@@ -503,12 +505,12 @@ const nextRunDateTime = computed(() => {
 		return ""
 	}
 
-	return createDateTimeFormatter(locale.value, {
+	return formatDateTime(new Date(nextRun.starts_at), {
 		month: "short",
 		day: "numeric",
 		hour: "2-digit",
 		minute: "2-digit",
-	}).format(new Date(nextRun.starts_at))
+	})
 })
 
 const openNextRun = () => {

@@ -15,6 +15,7 @@ final readonly class XIVAuthCharacterSyncResult
         public array $conflicts = [],
         public int $createdCount = 0,
         public int $updatedCount = 0,
+        public bool $transferred = false,
     ) {}
 
     public function hasConflicts(): bool

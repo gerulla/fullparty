@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {useForm, Link} from '@inertiajs/vue3'
-import AuthLayout from '@/Layouts/AuthLayout.vue'
+import AuthLayoutV2 from '@/Layouts/AuthLayoutV2.vue'
 import SeoHead from "@/components/Shared/SeoHead.vue";
 import LoginWithXIVAuth from "@/components/LoginWithXIVAuth.vue";
 import LoginWithGoogle from "@/components/LoginWithGoogle.vue";
@@ -22,7 +22,7 @@ const submit = () => {
 	form.post(route('register.store'))
 }
 defineOptions({
-	layout: AuthLayout
+	layout: AuthLayoutV2
 })
 </script>
 
@@ -33,20 +33,14 @@ defineOptions({
 		noindex
 	/>
 	<div>
-		<div class="mb-1 mx-auto">
-			<p class="italic text-center text-gray-600 dark:text-gray-300">{{ t('auth.express_options') }}</p>
-		</div>
 		<div class="space-y-2 mb-4">
 			<LoginWithXIVAuth />
 			<LoginWithGoogle />
 			<LoginWithDiscord />
 		</div>
 
-		<div class="flex items-center gap-4 mb-4">
-			<div class="h-px flex-1 bg-slate-300 dark:bg-slate-600"></div>
-			<span class="text-xs font-semibold uppercase tracking-wide text-slate-400 dark:text-slate-500">Or</span>
-			<div class="h-px flex-1 bg-slate-300 dark:bg-slate-600"></div>
-		</div>
+		<USeparator color="brand" :label="t('general.or')" class="mb-4 py-4"
+			:ui="{ border: 'border-brand/50', label: 'text-xs font-semibold uppercase tracking-wide text-brand' }" />
 
 		<div class="flex items-center w-full mb-4">
 			<form class="space-y-4 w-full" @submit.prevent="submit">
@@ -109,7 +103,7 @@ defineOptions({
 			</form>
 		</div>
 
-		<div class="flex items-center justify-center flex-col space-y-2 w-full">
+		<div class="flex w-full flex-col items-center justify-center gap-2 pt-4 text-center text-sm">
 			<p>{{ t('auth.existing_account') }} <Link :href="route('login')" class="text-brand">{{ t('auth.log_in_now') }}</Link></p>
 		</div>
 	</div>

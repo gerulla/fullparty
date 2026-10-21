@@ -3,8 +3,7 @@ import type { RunDiscoveryResultItemData } from "../../Types/RunDiscovery";
 import { computed } from "vue";
 import { router } from "@inertiajs/vue3";
 import { useI18n } from "vue-i18n";
-import { createDateTimeFormatter } from "@/utils/dateTimeFormat";
-import { useTimeDisplayMode } from "@/composables/useTimeDisplayMode";
+import { useDateTimeFormat } from "@/composables/useDateTimeFormat";
 
 const props = withDefaults(defineProps<{
 	item: RunDiscoveryResultItemData
@@ -22,7 +21,7 @@ const emit = defineEmits<{
 }>();
 
 const { t, locale } = useI18n();
-const { withDisplayTimeZone } = useTimeDisplayMode();
+const { formatDateTimeParts, formatDateTime } = useDateTimeFormat();
 
 const contentName = computed(() => props.item.activity_type_name);
 const showContentName = computed(() => contentName.value !== "");
@@ -77,11 +76,11 @@ const startsAtDate = computed(() => props.item.starts_at ? new Date(props.item.s
 const nowDate = computed(() => new Date());
 
 const calendarDateInDisplayZone = (date: Date): Date => {
-	const parts = createDateTimeFormatter(locale.value, withDisplayTimeZone({
+	const parts = formatDateTimeParts(date, {
 		year: "numeric",
 		month: "numeric",
 		day: "numeric",
-	})).formatToParts(date);
+	});
 
 	const year = Number(parts.find((part) => part.type === "year")?.value ?? date.getFullYear());
 	const month = Number(parts.find((part) => part.type === "month")?.value ?? (date.getMonth() + 1));
@@ -109,11 +108,11 @@ const scheduleLabel = computed(() => {
 		return t("runs.discovery.results.placeholder_item.schedule.tomorrow");
 	}
 
-	return createDateTimeFormatter(locale.value, withDisplayTimeZone({
+	return formatDateTime(start, {
 		weekday: "short",
 		day: "numeric",
 		month: "short",
-	})).format(start);
+	});
 });
 
 const timeLabel = computed(() => {
@@ -121,10 +120,10 @@ const timeLabel = computed(() => {
 		return "—";
 	}
 
-	return createDateTimeFormatter(locale.value, withDisplayTimeZone({
+	return formatDateTime(startsAtDate.value, {
 		hour: "numeric",
 		minute: "2-digit",
-	})).format(startsAtDate.value);
+	});
 });
 
 const timezoneLabel = computed(() => {
@@ -132,9 +131,9 @@ const timezoneLabel = computed(() => {
 		return Intl.DateTimeFormat().resolvedOptions().timeZone;
 	}
 
-	const parts = createDateTimeFormatter(locale.value, withDisplayTimeZone({
+	const parts = formatDateTimeParts(startsAtDate.value, {
 		timeZoneName: "short",
-	})).formatToParts(startsAtDate.value);
+	});
 
 	return parts.find((part) => part.type === "timeZoneName")?.value
 		|| Intl.DateTimeFormat().resolvedOptions().timeZone;

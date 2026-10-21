@@ -9,9 +9,8 @@ import ActivityContextMenu from "@/components/Groups/Activities/ActivityContextM
 import ActivityHostGroupBadge from "@/components/Groups/Activities/ActivityHostGroupBadge.vue";
 import { localizedValue } from "@/utils/localizedValue";
 import { getActivityStatusBorderClass } from "@/utils/activityStatusMeta";
-import { createDateTimeFormatter } from "@/utils/dateTimeFormat";
-import { useTimeDisplayMode } from "@/composables/useTimeDisplayMode";
 import { quickCreateTimeModeLabel, resolveQuickCreateStartsAt } from "@/utils/groupQuickCreateShortcuts";
+import { useDateTimeFormat } from "@/composables/useDateTimeFormat";
 
 const props = defineProps<{
 	groupSlug?: string
@@ -31,7 +30,7 @@ const emit = defineEmits<{
 const { t, locale } = useI18n();
 const page = usePage();
 const fallbackLocale = computed(() => String(page.props.locale?.fallback ?? 'en'));
-const { withDisplayTimeZone } = useTimeDisplayMode();
+const { formatDateTime } = useDateTimeFormat();
 
 const visibleActivities = computed(() => props.day.activities.slice(0, 3));
 const hiddenCount = computed(() => Math.max(0, props.day.activities.length - visibleActivities.value.length));
@@ -60,10 +59,10 @@ const activityTime = (activity: ActivityIndexItem) => {
 		return '';
 	}
 
-	return createDateTimeFormatter(locale.value, withDisplayTimeZone({
+	return formatDateTime(new Date(activity.starts_at), {
 		hour: '2-digit',
 		minute: '2-digit',
-	})).format(new Date(activity.starts_at));
+	});
 };
 
 const activityStatusBorderClass = (activity: ActivityIndexItem) => getActivityStatusBorderClass(activity.status);

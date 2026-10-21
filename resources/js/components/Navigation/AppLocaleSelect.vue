@@ -2,11 +2,13 @@
 import type { DropdownMenuItem } from "@nuxt/ui";
 import { computed } from "vue";
 import { usePersistentLocale } from "@/composables/usePersistentLocale";
+import { flagByLocaleCode } from '@/utils/localeFlags';
 
 const props = withDefaults(defineProps<{
 	variant?: string
 	size?: string
 	compact?: boolean
+    flagOnly?: boolean
 }>(), {
 	variant: "ghost",
 	size: "md",
@@ -14,13 +16,6 @@ const props = withDefaults(defineProps<{
 });
 
 const { currentLocale, localeOptions, updateLocale } = usePersistentLocale();
-
-const flagByLocaleCode: Record<string, string> = {
-	en: "/flags/us.svg",
-	de: "/flags/de.svg",
-	fr: "/flags/fr.svg",
-	ja: "/flags/jp.svg",
-};
 
 const items = computed(() => localeOptions.value.map((locale) => ({
 	...locale,
@@ -60,7 +55,7 @@ const dropdownItems = computed<DropdownMenuItem[][]>(() => [
 <template>
 	<div class="inline-flex">
 		<UDropdownMenu
-			v-if="compact"
+			v-if="compact || flagOnly"
 			:items="dropdownItems"
 			arrow
             :content="{ side: 'bottom', align: 'center', collisionPadding: 8 }"
@@ -71,11 +66,14 @@ const dropdownItems = computed<DropdownMenuItem[][]>(() => [
                     color="neutral"
                     :variant="variant"
                     :size="size"
-                    icon="i-lucide-languages"
+                    :icon="flagOnly ? undefined : 'i-lucide-languages'"
                     :aria-label="selectedLocale?.name"
 					class="hover:bg-elevated rounded-md"
                     :class="{ 'bg-elevation-1 rounded-md': open }"
-                />
+                >
+                    <img v-if="flagOnly && selectedLocale?.flagSrc" :src="selectedLocale.flagSrc" alt=""
+                        class="h-4 w-5 rounded-[2px] border border-default object-cover" />
+                </UButton>
             </template>
 
             <template #item-leading="{ item }">

@@ -38,7 +38,7 @@ const activityLabel = (group: V2HomeGroup) => group.last_activity_at
 			<template v-if="loading">
 				<p class="sr-only" role="status">{{ t('dashboard.group_panel.loading') }}</p>
 				<div v-for="index in 3" :key="index" aria-hidden="true" class="group">
-					<USkeleton class="size-12 shrink-0 rounded-lg bg-elevation-3 dark:bg-elevation-5 motion-reduce:animate-none" />
+					<USkeleton class="size-12 shrink-0 rounded-lg bg-elevation-3 dark:bg-elevation-5 motion-reduce:animate-none xl:max-2xl:size-10" />
 					<div class="flex min-w-0 flex-1 items-center justify-between gap-2">
 						<div class="flex min-w-0 flex-1 flex-col gap-2">
 							<USkeleton class="h-4 rounded bg-elevation-3 dark:bg-elevation-5 motion-reduce:animate-none" :class="index === 2 ? 'w-3/4' : 'w-5/6'" />
@@ -56,8 +56,8 @@ const activityLabel = (group: V2HomeGroup) => group.last_activity_at
 				:action-label="t('dashboard.empty_states.explore_groups')"
 				:action-to="route('groups.index')" />
 			<div v-for="g in loading ? [] : groups" :key="g.id" class="group">
-				<img v-if="g.profile_picture_url" :src="g.profile_picture_url" alt="" class="rounded-lg w-12 h-12 shrink-0 object-fill">
-				<div v-else class="rounded-lg w-12 h-12 shrink-0 bg-muted flex items-center justify-center" aria-hidden="true"><UIcon name="i-lucide-users" class="size-6 text-muted" /></div>
+				<img v-if="g.profile_picture_url" :src="g.profile_picture_url" alt="" class="rounded-lg size-12 shrink-0 object-fill xl:max-2xl:size-10">
+				<div v-else class="rounded-lg size-12 shrink-0 bg-muted flex items-center justify-center xl:max-2xl:size-10" aria-hidden="true"><UIcon name="i-lucide-users" class="size-6 text-muted" /></div>
 				<div class="w-full min-w-0 flex flex-row items-center justify-between gap-2">
 					<div class="w-full min-w-0 flex flex-col items-start justify-center">
 						<p class="text-md min-w-0 break-words">{{ g.name }}</p>

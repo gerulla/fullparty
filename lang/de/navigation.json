@@ -61,12 +61,15 @@
             "light": "Zum hellen Modus wechseln",
             "dark": "Zum dunklen Modus wechseln"
         },
+        "language": "Sprache",
         "search": "Suche",
         "search_bar": "Suche Runs, Gruppen oder Aktivitäten...",
         "time_display": {
             "label": "Zeitanzeige",
             "local": "Lokale Zeit",
             "server": "Serverzeit",
+            "switch_local": "Zur lokalen Zeit (LT) wechseln",
+            "switch_server": "Zur Serverzeit (ST) wechseln",
             "error_title": "Zeiteinstellung nicht gespeichert",
             "error_description": "Versuche erneut, die Zeitanzeige umzuschalten."
         },
@@ -85,6 +88,7 @@
             "show": "Anzeigen"
         },
         "menu": {
+            "label": "Kontomenü",
             "profile": "Profil",
             "settings": "Einstellungen",
             "my_characters": "Meine Charaktere",
@@ -94,6 +98,15 @@
         }
     },
     "footer": {
+        "explore": "Entdecken",
+        "community": "Community",
+        "legal": "Rechtliches",
+        "api_documentation": "API-Dokumentation",
+        "cookie_policy": "Cookie-Richtlinie",
+        "version": "Version {version}",
+        "game_assets": "Spielinhalte aus FINAL FANTASY XIV © SQUARE ENIX.",
+        "independence": "FullParty ist ein unabhängiges Community-Projekt und ist weder mit Square Enix verbunden noch von Square Enix offiziell unterstützt.",
+        "fflogs_credit": "Zusätzliche Fortschrittsdaten werden von {provider} bereitgestellt.",
         "cookies": "Cookies",
         "privacy": "Datenschutz",
         "github": "GitHub",

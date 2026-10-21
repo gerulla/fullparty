@@ -20,7 +20,7 @@ import {
 import { createDateTimeFormatter } from "@/utils/dateTimeFormat";
 import { getActivityStatusMeta } from "@/utils/activityStatusMeta";
 import { localizedValue } from "@/utils/localizedValue";
-import { useTimeDisplayMode } from "@/composables/useTimeDisplayMode";
+import { useDateTimeFormat } from "@/composables/useDateTimeFormat";
 
 const props = defineProps<{
 	groupSlug?: string
@@ -34,7 +34,7 @@ const props = defineProps<{
 const { t, locale } = useI18n();
 const page = usePage();
 const fallbackLocale = computed(() => String(page.props.locale?.fallback ?? 'en'));
-const { displayTimeZone, withDisplayTimeZone } = useTimeDisplayMode();
+const { formatDateTime, displayTimeZone } = useDateTimeFormat();
 const todayKey = computed(() => toDisplayDateKey(new Date(), displayTimeZone.value));
 const selectedDateKey = ref(todayKey.value);
 const monthCursor = ref(createMonthStart(new Date()));
@@ -121,10 +121,10 @@ const activityTime = (activity: ActivityIndexItem) => {
 		return t('groups.activities.cards.no_time');
 	}
 
-	return createDateTimeFormatter(locale.value, withDisplayTimeZone({
+	return formatDateTime(new Date(activity.starts_at), {
 		hour: '2-digit',
 		minute: '2-digit',
-	})).format(new Date(activity.starts_at));
+	});
 };
 
 const activityMemberCount = (activity: ActivityIndexItem) => t("groups.activities.calendar.member_count", {

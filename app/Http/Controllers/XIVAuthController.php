@@ -7,16 +7,16 @@ use App\Models\User;
 use App\Services\AuditLogger;
 use App\Services\Auth\OAuthAccountLinkingPolicy;
 use App\Services\Auth\SocialLoginLinkService;
+use App\Services\Characters\XIVAuthAccessTokenService;
 use App\Services\Characters\XIVAuthCharacterSyncResult;
 use App\Services\Characters\XIVAuthCharacterSyncService;
 use App\Services\Notifications\AccountCharacterNotificationService;
 use App\Support\Audit\AuditScope;
 use App\Support\Audit\AuditSeverity;
 use App\Support\Auth\OAuthEmailVerification;
-use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Laravel\Socialite\Socialite;
@@ -34,23 +34,52 @@ class XIVAuthController extends Controller
 
     public function redirect()
     {
-        return $this->loginLinkService->rememberOAuthRedirect(request(), 'xivauth', Socialite::driver('xivauth')
+        request()->session()->forget('character_onboarding.oauth');
+        $response = $this->loginLinkService->rememberOAuthRedirect(request(), 'xivauth', Socialite::driver('xivauth')
             ->enablePKCE()
             ->withEmailScope()
             ->withCharactersScope()
             ->redirect());
+        if (request()->boolean('onboarding') && auth()->check() && app()->environment('local')) {
+            request()->session()->put('character_onboarding.oauth', [
+                'user_id' => auth()->id(), 'state' => request()->session()->get('state'),
+                'locale' => app()->getLocale(),
+            ]);
+        }
+
+        return $response;
     }
 
     public function callback()
     {
+        $onboarding = request()->session()->pull('character_onboarding.oauth');
+        if ($onboarding !== null && (! is_array($onboarding)
+            || ! auth()->check() || (int) ($onboarding['user_id'] ?? 0) !== (int) auth()->id()
+            || ! is_string(request()->query('state')) || ! is_string($onboarding['state'] ?? null)
+            || ! hash_equals($onboarding['state'], request()->query('state')))) {
+            return redirect()->route('settings')->withErrors(['error' => 'social_oauth_invalid_state']);
+        }
+        $resumeUrl = is_array($onboarding) && app()->environment('local')
+            ? route('characters.create', ['locale' => $onboarding['locale'], 'import' => 'xivauth']) : null;
+        if ($resumeUrl && request()->has('error')) {
+            return redirect($resumeUrl)->withErrors(['onboarding' => 'xivauth_cancelled']);
+        }
         try {
             $xivauthUser = Socialite::driver('xivauth')
                 ->enablePKCE()
                 ->user();
         } catch (InvalidStateException) {
-            return redirect()
-                ->route('settings')
+            return redirect($resumeUrl ?? route('settings'))
                 ->withErrors(['error' => 'social_oauth_invalid_state']);
+        } catch (\Throwable $exception) {
+            if (! $resumeUrl) {
+                throw $exception;
+            }
+            Log::warning('XIVAuth character onboarding authorization failed.', [
+                'user_id' => auth()->id(), 'exception_type' => $exception::class,
+            ]);
+
+            return redirect($resumeUrl)->withErrors(['onboarding' => 'xivauth_unavailable']);
         }
 
         $provider = 'xivauth';
@@ -79,6 +108,10 @@ class XIVAuthController extends Controller
         try {
             $this->accountLinkingPolicy->authorize(auth()->user(), $socialAccount, $providerEmail);
         } catch (ValidationException $exception) {
+            if ($resumeUrl) {
+                return redirect($resumeUrl)->withErrors(['onboarding' => 'xivauth_link_conflict']);
+            }
+
             return redirect()->route(auth()->check() ? 'settings' : 'login')->withErrors($exception->errors());
         }
 
@@ -111,6 +144,10 @@ class XIVAuthController extends Controller
                     'provider' => $provider,
                 ],
             );
+
+            if ($resumeUrl) {
+                return redirect($resumeUrl);
+            }
 
             $syncResult = $this->xivAuthCharacterSyncService->syncMany(
                 $socialAccount->user,
@@ -201,6 +238,10 @@ class XIVAuthController extends Controller
             ],
         );
 
+        if ($resumeUrl) {
+            return redirect($resumeUrl);
+        }
+
         $syncResult = $this->xivAuthCharacterSyncService->syncMany(
             $user,
             $this->charactersFromProviderUser($xivauthUser),
@@ -240,32 +281,6 @@ class XIVAuthController extends Controller
 
     public static function getValidXivAuthAccessToken(SocialAccount $account): string
     {
-        if ($account->expires_at && $account->expires_at->isFuture() && $account->access_token) {
-            return $account->access_token;
-        }
-
-        $response = Http::asForm()->post('https://xivauth.net/oauth/token', [
-            'grant_type' => 'refresh_token',
-            'client_id' => config('services.xivauth.client_id'),
-            'client_secret' => config('services.xivauth.client_secret'),
-            'scope' => 'user character:all refresh user:email',
-            'refresh_token' => $account->refresh_token,
-        ]);
-
-        if (! $response->successful()) {
-            throw new \RuntimeException($response->body());
-        }
-
-        $data = $response->json();
-
-        $account->update([
-            'access_token' => $data['access_token'],
-            'refresh_token' => $data['refresh_token'] ?? $account->refresh_token,
-            'expires_at' => isset($data['expires_in'])
-                ? Carbon::now()->addSeconds((int) $data['expires_in'])
-                : null,
-        ]);
-
-        return $account->access_token;
+        return app(XIVAuthAccessTokenService::class)->forAccount($account);
     }
 }

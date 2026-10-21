@@ -7,6 +7,7 @@ use App\Models\GroupMembership;
 use App\Models\SocialAccount;
 use App\Models\User;
 use App\Models\UserOnboardingState;
+use App\Services\AccountFlagService;
 use App\Services\Changelog\ChangelogReader;
 use App\Services\DeploymentVersion;
 use App\Services\Notifications\NotificationInboxService;
@@ -27,6 +28,7 @@ class HandleInertiaRequests extends Middleware
         private readonly GroupDiscoveryBadgePalette $groupDiscoveryBadgePalette,
         private readonly DeploymentVersion $deploymentVersion,
         private readonly ChangelogReader $changelogReader,
+        private readonly AccountFlagService $accountFlagService,
     ) {}
 
     /**
@@ -143,6 +145,9 @@ class HandleInertiaRequests extends Middleware
 
         return array_merge(parent::share($request), [
             'theme_preview_enabled' => app()->environment(['local', 'development']),
+            'account_flags' => Inertia::always(fn () => $request->user()
+                ? $this->accountFlagService->forUser($request->user())
+                : []),
             'flash' => [
                 'success' => fn () => $request->session()->get('success'),
                 'error' => fn () => $request->session()->get('error'),

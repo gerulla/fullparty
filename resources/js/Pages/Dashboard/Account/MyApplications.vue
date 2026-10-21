@@ -11,8 +11,7 @@ import AddToCalendarMenu from "@/components/Groups/Activities/AddToCalendarMenu.
 import PartyFinderInfoPanel from "@/components/Groups/Activities/PartyFinderInfoPanel.vue";
 import { localizedValue } from "@/utils/localizedValue";
 import { getActivityStatusMeta } from "@/utils/activityStatusMeta";
-import { createDateTimeFormatter } from "@/utils/dateTimeFormat";
-import { useTimeDisplayMode } from "@/composables/useTimeDisplayMode";
+import { useDateTimeFormat } from "@/composables/useDateTimeFormat";
 
 type HistoryMeta = {
 	current_page: number
@@ -50,7 +49,7 @@ const historyMeta = ref<HistoryMeta>({
 	from: null,
 	to: null,
 });
-const { withDisplayTimeZone } = useTimeDisplayMode();
+const { formatDateTime } = useDateTimeFormat();
 
 const historyPerPageItems = computed(() => props.historyPerPageOptions.map((value) => ({
 	label: String(value),
@@ -79,34 +78,19 @@ const historyRangeLabel = computed(() => {
 	});
 });
 
-const formatDateTime = (value: string | null, options?: Intl.DateTimeFormatOptions) => {
-	if (!value) {
-		return t("applications.not_available");
-	}
-
-	return createDateTimeFormatter(locale.value, {
-		year: "numeric",
-		month: "2-digit",
-		day: "2-digit",
-		hour: "2-digit",
-		minute: "2-digit",
-		...options,
-	}).format(new Date(value));
-};
-
 const formatRunTime = (value: string | null) => {
 	if (!value) {
 		return t("groups.activities.cards.no_time");
 	}
 
-	return createDateTimeFormatter(locale.value, withDisplayTimeZone({
+	return formatDateTime(new Date(value), {
 		year: "numeric",
 		month: "2-digit",
 		day: "2-digit",
 		hour: "2-digit",
 		minute: "2-digit",
 		timeZoneName: "short",
-	})).format(new Date(value));
+	});
 };
 
 const formatDuration = (hours: number | null) => {

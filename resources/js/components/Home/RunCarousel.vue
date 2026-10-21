@@ -1,15 +1,22 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import RunCard from '@/components/Home/RunCard.vue'
 import type { V2HomeRunCard } from '../../Types/V2Home'
 
-defineProps<{
+const props = withDefaults(defineProps<{
     runs: V2HomeRunCard[]
     label: string
-}>()
+    rows?: 1 | 2
+}>(), { rows: 1 })
+
+const columns = computed(() => Array.from(
+    { length: Math.ceil(props.runs.length / props.rows) },
+    (_, index) => props.runs.slice(index * props.rows, (index + 1) * props.rows),
+))
 </script>
 
 <template>
-    <UCarousel v-slot="{ item }" :items="runs" align="start" arrows drag-free
+    <UCarousel :key="rows" v-slot="{ item }" :items="columns" align="start" arrows drag-free
         :watch-drag="true" :aria-label="label"
         :prev="{ color: 'neutral', variant: 'soft' }" :next="{ color: 'neutral', variant: 'soft' }"
         :ui="{
@@ -20,6 +27,9 @@ defineProps<{
             prev: 'static translate-y-0 rounded-md bg-elevation-1 hover:bg-elevation-2 dark:bg-elevation-3 dark:hover:bg-elevation-5',
             next: 'static translate-y-0 rounded-md bg-elevation-1 hover:bg-elevation-2 dark:bg-elevation-3 dark:hover:bg-elevation-5',
         }">
-        <RunCard :key="item.id" :run="item" />
+        <div v-if="rows === 2" class="grid h-full grid-rows-2 gap-6">
+            <RunCard v-for="run in item" :key="run.id" :run="run" />
+        </div>
+        <RunCard v-else :key="item[0].id" :run="item[0]" />
     </UCarousel>
 </template>

@@ -6,6 +6,7 @@ use App\Models\Activity;
 use App\Models\ActivitySlot;
 use App\Models\ActivitySlotAssignment;
 use App\Models\ActivityType;
+use App\Models\CharacterTransferRun;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 
@@ -19,6 +20,9 @@ class CharacterActivityHistoryService
             ->where(fn (Builder $query) => $query->where('slot_kind', '!=', ActivitySlot::SLOT_KIND_FILL_IN)->orWhereNotNull('filled_group_key'));
 
         return Activity::query()
+            ->whereNotIn('id', CharacterTransferRun::query()->select('activity_id')
+                ->where('character_id', $characterId)->where('category', 'history')
+                ->where(fn ($query) => $query->whereNull('choice')->orWhere('choice', 'discard')))
             ->where('activity_type_id', $activity->activity_type_id)
             ->where('status', Activity::STATUS_COMPLETE)
             ->whereHas('activityTypeVersion', function (Builder $query) use ($activity) {

@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import RunCardSkeleton from '@/components/Home/RunCardSkeleton.vue'
+
+withDefaults(defineProps<{ rows?: 1 | 2 }>(), { rows: 1 })
 </script>
 
 <template>
@@ -9,8 +11,10 @@ import RunCardSkeleton from '@/components/Home/RunCardSkeleton.vue'
         </div>
         <div class="-m-1 overflow-hidden p-1">
             <div class="-ms-4 flex">
-                <div v-for="card in 10" :key="card" class="min-w-0 max-w-full shrink-0 basis-[19rem] ps-4">
-                    <RunCardSkeleton />
+                <div v-for="column in Math.ceil(10 / rows)" :key="column" class="min-w-0 max-w-full shrink-0 basis-[19rem] ps-4">
+                    <div class="grid gap-6" :class="{ 'grid-rows-2': rows === 2 }">
+                        <RunCardSkeleton v-for="row in rows" :key="row" />
+                    </div>
                 </div>
             </div>
         </div>

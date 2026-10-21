@@ -13,8 +13,6 @@ class V2HomeController extends Controller
 
     public function __invoke(Request $request): Response
     {
-        abort_unless(app()->environment('local'), 404);
-
         return Inertia::render('V2/Home', [
             'user' => Inertia::defer(fn () => $this->data->user($request->user()), 'v2-user'),
             'applications' => Inertia::defer(fn () => $this->data->applications($request->user()), 'v2-applications'),

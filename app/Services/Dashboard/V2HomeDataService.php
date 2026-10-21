@@ -7,15 +7,19 @@ use App\Models\ActivityApplication;
 use App\Models\ActivitySlot;
 use App\Models\ActivitySlotAssignment;
 use App\Models\Character;
+use App\Models\CharacterTransferRun;
 use App\Models\Group;
 use App\Models\GroupMembership;
 use App\Models\User;
+use App\Services\Groups\ActivityOverviewAccessService;
 use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
 
 final class V2HomeDataService
 {
+    public function __construct(private readonly ActivityOverviewAccessService $overviewAccess) {}
+
     private const UPCOMING_STATUSES = [
         Activity::STATUS_SCHEDULED,
         Activity::STATUS_ASSIGNED,
@@ -68,7 +72,14 @@ final class V2HomeDataService
         $characterIds = Character::where('user_id', $user->id)->pluck('id');
         $query = ActivityApplication::query()
             ->join('activities', 'activities.id', '=', 'activity_applications.activity_id')
-            ->where('activity_applications.user_id', $user->id)
+            ->where(function ($query) use ($user, $history) {
+                $query->where('activity_applications.user_id', $user->id);
+                if ($history) {
+                    $query->orWhereIn('activity_applications.id', CharacterTransferRun::query()->select('application_id')
+                        ->where('category', 'history')->where('choice', 'keep')
+                        ->whereHas('transfer', fn ($transfer) => $transfer->where('to_user_id', $user->id)));
+                }
+            })
             ->whereIn('activity_applications.selected_character_id', $characterIds)
             ->where('activities.starts_at', $history ? '<' : '>=', now())
             ->when($history,
@@ -111,11 +122,16 @@ final class V2HomeDataService
                     'avatar_url' => $application->applicant_avatar_url,
                 ],
                 'run' => $this->serializeRun($application->activity),
-                'href' => route('groups.activities.application', [
-                    'locale' => app()->getLocale(),
-                    'group' => $application->activity->group->slug,
-                    'activity' => $application->activity_id,
-                ], false),
+                'can_view_run' => $this->overviewAccess
+                    ->allows($application->activity->group, $application->activity, $user->id),
+                'href' => (int) $application->user_id !== (int) $user->id
+                    ? ($this->overviewAccess->allows($application->activity->group, $application->activity, $user->id)
+                        ? route('groups.activities.overview', ['group' => $application->activity->group->slug, 'activity' => $application->activity_id], false) : null)
+                    : route('groups.activities.application', [
+                        'locale' => app()->getLocale(),
+                        'group' => $application->activity->group->slug,
+                        'activity' => $application->activity_id,
+                    ], false),
             ])->all();
     }
 

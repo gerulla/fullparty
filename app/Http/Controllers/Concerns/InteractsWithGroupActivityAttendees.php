@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Concerns;
 
 use App\Models\Activity;
 use App\Models\Group;
+use App\Services\Groups\ActivityOverviewAccessService;
 use App\Services\Groups\ActivitySlotSerializer;
 use Illuminate\Http\Request;
 
@@ -18,24 +19,8 @@ trait InteractsWithGroupActivityAttendees
 
     private function canAccessOverview(Request $request, Group $group, Activity $activity, ?string $secretKey): bool
     {
-        $userId = $request->user()?->id;
-
-        if ($group->isBanned($userId)) {
-            return false;
-        }
-
-        if (Activity::isModeratorOnlyStatus($activity->status)) {
-            return $group->hasModeratorAccess($userId)
-                || $this->isActivityOrganizer($activity, $userId);
-        }
-
-        if ($group->is_visible) {
-            return true;
-        }
-
-        return $group->hasMember($userId)
-            || $group->hasModeratorAccess($userId)
-            || $this->isActivityOrganizer($activity, $userId);
+        return app(ActivityOverviewAccessService::class)
+            ->allows($group, $activity, $request->user()?->id);
     }
 
     private function canUseActivityParticipationFlow(Group $group, Activity $activity, ?int $userId): bool

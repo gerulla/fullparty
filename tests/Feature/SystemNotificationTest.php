@@ -238,7 +238,7 @@ it('allows admins to save and clear the active system banner', function () {
         ->and($banner->action_label)->toBe('View status');
 
     $this->actingAs($user)
-        ->get(route('dashboard'))
+        ->get(route('profile.show', ['user' => $user->id]))
         ->assertOk()
         ->assertInertia(fn (Assert $page) => $page
             ->where('system_banner.title', 'Service degradation')
@@ -253,7 +253,7 @@ it('allows admins to save and clear the active system banner', function () {
     expect(SystemBanner::query()->count())->toBe(0);
 
     $this->actingAs($user)
-        ->get(route('dashboard'))
+        ->get(route('profile.show', ['user' => $user->id]))
         ->assertOk()
         ->assertInertia(fn (Assert $page) => $page
             ->where('system_banner', null)

@@ -50,7 +50,7 @@ export function useTimeDisplayMode() {
 
 	const withDisplayTimeZone = (options: Intl.DateTimeFormatOptions = {}): Intl.DateTimeFormatOptions => ({
 		...options,
-		...(displayTimeZone.value ? { timeZone: displayTimeZone.value } : {}),
+		timeZone: displayTimeZone.value,
 	});
 
 	return {

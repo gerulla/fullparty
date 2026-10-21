@@ -5,14 +5,17 @@ namespace App\Services\Groups;
 use App\Models\Activity;
 use App\Models\ActivityApplication;
 use App\Models\User;
+use App\Services\Runs\RunAccessService;
 use Illuminate\Database\Eloquent\Builder;
 
 final class MyRunsCommitmentService
 {
+    public function __construct(private readonly RunAccessService $access) {}
+
     /** @return array<int, array{id: int, starts_at: string, duration_hours: float|null}> */
     public function forUser(User $user): array
     {
-        return Activity::query()
+        return $this->access->scopeVisibleTo(Activity::query(), $user->id)
             ->whereNotNull('starts_at')
             ->whereNotIn('status', [Activity::STATUS_COMPLETE, Activity::STATUS_CANCELLED])
             ->where(function (Builder $query) use ($user): void {

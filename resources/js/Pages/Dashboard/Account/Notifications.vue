@@ -6,6 +6,7 @@ import { Link, router } from '@inertiajs/vue3'
 import { route } from 'ziggy-js'
 import { useI18n } from 'vue-i18n'
 import { useToast } from '@nuxt/ui/composables'
+import V2Layout from '@/Layouts/V2Layout.vue'
 import PageHeader from '@/components/PageHeader.vue'
 import { createDateTimeFormatter } from "@/utils/dateTimeFormat";
 import {
@@ -14,6 +15,8 @@ import {
 	resolveNotificationMeta,
 	resolveNotificationTitle,
 } from '@/utils/notificationPresentation'
+
+defineOptions({ layout: V2Layout })
 
 const props = defineProps<{
 	notificationsPage: NotificationPageData
@@ -105,7 +108,7 @@ const markAllAsRead = () => {
 </script>
 
 <template>
-	<div class="w-full">
+	<div class="mx-auto w-full xl:max-w-5xl">
 		<PageHeader
 			:title="t('notifications.page.title')"
 			:subtitle="t('notifications.page.subtitle')"
@@ -158,13 +161,10 @@ const markAllAsRead = () => {
 				<UCard
 					v-for="notification in notifications"
 					:key="notification.id"
-					class="dark:bg-elevated/25"
+					class="relative border border-default ring-0 transition-[scale,border-color] duration-150 xl:hover:border-brand xl:motion-safe:hover:scale-101 motion-reduce:transition-none dark:bg-elevated/25"
 				>
-					<Link
-						:href="notification.open_url"
-						class="block"
-					>
-						<div class="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+					<div>
+						<div class="flex flex-col gap-4 xl:flex-row xl:items-start xl:justify-between">
 							<div class="flex min-w-0 gap-4">
 								<div class="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-sm border border-default bg-default">
 									<UIcon
@@ -191,7 +191,12 @@ const markAllAsRead = () => {
 
 									<div class="space-y-1">
 										<h2 class="text-lg font-semibold text-toned">
-											{{ resolveNotificationTitle(notification, t) }}
+											<Link
+												:href="notification.open_url"
+												class="after:absolute after:inset-0 focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:-outline-offset-2 focus-visible:after:outline-brand"
+											>
+												{{ resolveNotificationTitle(notification, t) }}
+											</Link>
 										</h2>
 										<p
 											v-if="resolveNotificationDescription(notification, t)"
@@ -203,16 +208,25 @@ const markAllAsRead = () => {
 								</div>
 							</div>
 
-							<div class="shrink-0 space-y-1 text-left md:text-right">
-								<p class="text-sm font-medium text-toned">
-									{{ formatNotificationTime(notification.created_at, locale, t) }}
-								</p>
-								<p class="text-xs text-muted">
-									{{ formatExactDateTime(notification.created_at) }}
-								</p>
+							<div class="flex shrink-0 items-center justify-between gap-4 xl:flex-col xl:items-end xl:gap-2">
+								<div class="space-y-1 text-left xl:text-right">
+									<p class="text-sm font-medium text-toned">
+										{{ formatNotificationTime(notification.created_at, locale, t) }}
+									</p>
+									<p class="text-xs text-muted">
+										{{ formatExactDateTime(notification.created_at) }}
+									</p>
+								</div>
+								<UButton
+									:to="notification.open_url"
+									color="brand"
+									variant="ghost"
+									:label="t('general.view')"
+									class="relative z-10 shrink-0"
+								/>
 							</div>
 						</div>
-					</Link>
+					</div>
 				</UCard>
 			</div>
 

@@ -1,0 +1,22 @@
+{
+    "notification_title": "Einladung zu {group}",
+    "notification_body": "Du wurdest eingeladen, {group} beizutreten. Diese persönliche Einladung läuft nach 72 Stunden ab.",
+    "notification_after_run": "Danke für deine Teilnahme an {activity}! Du wurdest eingeladen, {group} beizutreten. Diese persönliche Einladung läuft nach 72 Stunden ab.",
+    "ineligible": "Dieses Konto kann derzeit nicht eingeladen werden.",
+    "declined": "Dieses Konto hat die Einladung aus diesem Run bereits abgelehnt.",
+    "resend_expired_only": "Nur eine abgelaufene persönliche Einladung kann erneut gesendet werden.",
+    "banned": "Du kannst dieser Gruppe nicht beitreten.",
+    "unavailable": "Diese Einladung ist nicht mehr verfügbar.",
+    "audit_sent": "Persönliche Gruppeneinladung gesendet.",
+    "audit_accepted": "Persönliche Gruppeneinladung angenommen.",
+    "audit_declined": "Persönliche Gruppeneinladung abgelehnt.",
+    "audit_revoked": "Persönliche Gruppeneinladung widerrufen.",
+    "personal_notice": "Diese Einladung gilt nur für dein Konto. Andere Personen können sie nicht verwenden.",
+    "expires": "Läuft am {date} ab",
+    "states": {
+        "accepted": "Diese Einladung wurde bereits verwendet.",
+        "declined": "Du hast diese Einladung abgelehnt.",
+        "revoked": "Die Gruppe hat diese Einladung zurückgezogen.",
+        "expired": "Diese Einladung ist abgelaufen. Bitte die Gruppe um eine neue."
+    }
+}

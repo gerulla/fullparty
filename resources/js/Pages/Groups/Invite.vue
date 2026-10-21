@@ -1,39 +1,14 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import SeoHead from "@/components/Shared/SeoHead.vue";
 import { Link, router, usePage } from "@inertiajs/vue3";
 import AuthLayout from "@/Layouts/AuthLayout.vue";
 import { route } from "ziggy-js";
 import { useI18n } from "vue-i18n";
-import type { GroupType } from "@/Types/Groups";
+import type { GroupInvitePageProps } from "../../Types/GroupInvitations";
+import { useDateTimeFormat } from "@/composables/useDateTimeFormat";
 
-const props = defineProps<{
-	invite: {
-		token: string
-		is_system: boolean
-		uses: number
-		max_uses: number | null
-		expires_at: string | null
-		can_accept: boolean
-	}
-	group: {
-		id: number
-		name: string
-		description: string | null
-		profile_picture_url: string | null
-		datacenter: string
-		is_visible: boolean
-		group_type: GroupType
-		slug: string
-		member_count: number
-		owner: {
-			id: number | null
-			name: string | null
-			avatar_url: string | null
-		}
-		current_user_is_member: boolean
-	}
-}>();
+const props = defineProps<GroupInvitePageProps>();
 
 defineOptions({
 	layout: AuthLayout,
@@ -43,16 +18,34 @@ const { t } = useI18n();
 const page = usePage();
 
 const isAuthenticated = computed(() => Boolean(page.props.auth?.user));
-const isAccepting = computed(() => router.processing);
+const isAccepting = ref(false);
+const isDeclining = ref(false);
+const { formatDateTime } = useDateTimeFormat();
+const unavailableMessage = computed(() => {
+    if (props.group.current_user_is_banned) return t('group_invitations.banned');
+    if (props.invite.is_personal && props.invite.status !== 'pending') {
+        return t(`group_invitations.states.${props.invite.status}`);
+    }
+    return t('groups.invite.states.expired');
+});
 const declineHref = computed(() => isAuthenticated.value ? route('groups.index') : '/');
 
 const acceptInvite = () => {
-	if (!isAuthenticated.value || !props.invite.can_accept || props.group.current_user_is_member) {
+	if (!isAuthenticated.value || !props.invite.can_accept || props.group.current_user_is_member || isAccepting.value || isDeclining.value) {
 		return;
 	}
 
+	isAccepting.value = true;
 	router.post(route('groups.invites.accept', props.invite.token), {}, {
+        onFinish: () => { isAccepting.value = false; },
 	});
+};
+const declineInvite = () => {
+    if (!props.invite.is_personal || !props.invite.can_accept || isDeclining.value || isAccepting.value) return;
+    isDeclining.value = true;
+    router.post(route('groups.invites.decline', props.invite.token), {}, {
+        onFinish: () => { isDeclining.value = false; },
+    });
 };
 </script>
 
@@ -101,8 +94,18 @@ const acceptInvite = () => {
 					color="error"
 					variant="subtle"
 					icon="i-lucide-octagon-x"
-					:title="t('groups.invite.states.expired')"
+					:title="unavailableMessage"
 				/>
+
+                <div v-if="invite.is_personal" class="space-y-2 text-center text-sm text-muted">
+                    <p>{{ t('group_invitations.personal_notice') }}</p>
+                    <p v-if="invite.expires_at && invite.status === 'pending'">
+                        {{ t('group_invitations.expires', { date: formatDateTime(invite.expires_at) }) }}
+                    </p>
+                </div>
+
+                <UAlert v-if="page.props.errors?.invite || page.props.errors?.quota" color="error" variant="subtle"
+                    :description="String(page.props.errors.invite || page.props.errors.quota)" />
 
 				<div class="grid gap-3 sm:grid-cols-2">
 					<div class="invite-info-block">
@@ -129,6 +132,7 @@ const acceptInvite = () => {
 						icon="i-lucide-check"
 						:label="isAccepting ? t('groups.invite.messages.accepting') : t('groups.invite.actions.accept')"
 						:loading="isAccepting"
+                        :disabled="isDeclining"
 						@click="acceptInvite"
 					/>
 
@@ -160,8 +164,14 @@ const acceptInvite = () => {
 						disabled
 					/>
 
-					<Link
-						v-if="!group.current_user_is_member"
+                    <UButton
+                        v-if="invite.is_personal && invite.can_accept && !group.current_user_is_member"
+                        color="neutral" variant="outline" size="xl" class="justify-center"
+                        icon="i-lucide-x" :label="t('groups.invite.actions.decline')"
+                        :loading="isDeclining" :disabled="isAccepting" @click="declineInvite"
+                    />
+                    <Link
+                        v-else-if="!invite.is_personal && !group.current_user_is_member"
 						:href="declineHref"
 						class="invite-action-link invite-action-link-secondary"
 					>

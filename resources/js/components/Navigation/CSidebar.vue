@@ -55,7 +55,6 @@ const account = computed(() => [
 
 const groups = computed(() => [
 	{ label: t('navigation.sidebar.groups'), href: localizedRoute('groups.index'), icon: 'i-lucide-shield', activePatterns: ['groups.index'] },
-	{ label: t('navigation.sidebar.my_requests'), href: localizedRoute('groups.requests.index'), icon: 'i-lucide-inbox', activePatterns: ['groups.requests.*'] },
 ])
 
 const tools = computed(() => [

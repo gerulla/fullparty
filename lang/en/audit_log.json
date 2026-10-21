@@ -176,6 +176,12 @@
       "transferred": "transferred a character between accounts."
     },
     "group": {
+      "personal_invite": {
+        "sent": "sent a personal group invitation.",
+        "accepted": "accepted a personal group invitation.",
+        "declined": "declined a personal group invitation.",
+        "revoked": "revoked a personal group invitation."
+      },
       "resources": {
         "created": "created a resource.",
         "save": "saved a resource draft.",
@@ -504,6 +510,13 @@
       "transferred": "Character transferred between accounts"
     },
     "group": {
+      "personal_invite": {
+        "sent": "Personal group invitation sent",
+        "accepted": "Personal group invitation accepted",
+        "declined": "Personal group invitation declined",
+        "revoked": "Personal group invitation revoked"
+      },
+      "membership_requests_retired": "retired membership requests, cancelled pending requests, and migrated approval-based membership to invite-only.",
       "resources": {
         "created": "created a resource.",
         "save": "saved a resource draft.",

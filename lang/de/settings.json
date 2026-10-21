@@ -1,6 +1,24 @@
 {
     "title": "Einstellungen",
     "subtitle": "Verwalte deine Kontoeinstellungen und Benachrichtigungen.",
+    "navigation": {
+        "back": "Alle Einstellungen",
+        "groups": {
+            "account": "Konto",
+            "preferences": "Präferenzen",
+            "external": "Externe Dienste",
+            "danger": "Gefahrenbereich"
+        },
+        "sections": {
+            "general": { "title": "Allgemein", "description": "Dein Bild, Benutzername und deine Startseite." },
+            "socials": { "title": "Verknüpfte Konten", "description": "Verwalte die Konten, mit denen du dich anmeldest." },
+            "notifications": { "title": "Benachrichtigungen", "description": "Wähle, worüber und wo du informiert wirst." },
+            "privacy": { "title": "Datenschutz & Sicherheit", "description": "Passe die Sichtbarkeit an und ändere dein Passwort." },
+            "discord": { "title": "Discord-Integration", "description": "Verbinde FullParty mit deinem Discord-Konto." },
+            "plugin": { "title": "FFXIV-Plugin", "description": "Verwalte den Zugriff verknüpfter Apps und Plugins." },
+            "delete": { "title": "Konto löschen", "description": "Lösche dein FullParty-Konto dauerhaft." }
+        }
+    },
     "account": {
         "title": "Kontoeinstellungen",
         "save": "Änderungen speichern",
@@ -37,6 +55,32 @@
     "unlink_social_account_warning": "Du kannst es später bei Bedarf erneut verknüpfen.",
     "unlink_social_account_confirm": "Konto trennen",
     "unlink_social_account_cancel": "Verbunden lassen",
+    "ffxiv_plugin": {
+        "title": "FullParty in FFXIV",
+        "description": "Sieh dir deine FullParty-Aufstellung an und checke Gruppenmitglieder direkt im Spiel ein.",
+        "audience_title": "Vor allem für Hosts und Gruppenleiter",
+        "audience_description": "Das Plugin unterstützt derzeit hauptsächlich Organisatoren dabei, Runs zu verwalten und ihre Gruppe zu koordinieren.",
+        "install_title": "Mit Dalamud installieren",
+        "requirement": "Du benötigst XIVLauncher mit aktiviertem Dalamud.",
+        "copy_repository": "URL kopieren",
+        "copied": "Kopiert",
+        "copy_failed": "Repository-URL konnte nicht kopiert werden",
+        "copy_manually": "Markiere die URL und kopiere sie stattdessen manuell.",
+        "steps": {
+            "repository": {
+                "title": "Repository hinzufügen",
+                "description": "Öffne die Dalamud-Einstellungen (/xlsettings) und gehe zu Experimental → Custom Plugin Repositories. Füge diese URL ein, klicke auf + und speichere."
+            },
+            "install": {
+                "title": "FullParty installieren",
+                "description": "Öffne den Plugin-Installer (/xlplugins), suche nach FullParty und wähle Installieren."
+            },
+            "connect": {
+                "title": "Dein Konto verbinden",
+                "description": "Öffne das Plugin und folge den Anmeldeanweisungen, um dein FullParty-Konto im Browser zu verbinden. Unten kannst du diese Verbindung verwalten oder widerrufen."
+            }
+        }
+    },
     "active_sessions": {
         "title": "Verknüpfte App-Sitzungen",
         "subtitle": "Apps und Plugins, die mit deinem Konto verbunden sind.",
@@ -71,7 +115,7 @@
         "discord_app_connected_title": "Discord-App verbunden",
         "discord_app_connected_description": "FullParty kann unterstützte Discord-Benachrichtigungen an dieses Konto senden.",
         "discord_app_not_connected_title": "Discord-App nicht verbunden",
-        "discord_app_not_connected_description": "Verbinde die Discord-App, um Discord-Zustellung und botgestützte Gruppenfunktionen zu aktivieren.",
+        "discord_app_not_connected_description": "Verbinde die FullParty-App, um unterstützte Discord-Benachrichtigungen für dein Konto zu aktivieren.",
         "channels": {
             "inApp": "Vor Ort",
             "email": "E-Mail",
@@ -174,7 +218,7 @@
                 "description": "Optionale Produktupdates, Funktionsneuigkeiten und Projektmeldungen."
             }
         },
-        "install_discord_app": "Discord-App installieren",
+        "connect_discord_app": "Discord-App verbinden",
         "generate_discord_link_token": "Link-Token erstellen",
         "discord_link_token_title": "Discord-Link-Token",
         "discord_link_token_expires": "Gib diesen Token an den FullParty-Discord-Bot weiter. Er läuft am {date} ab.",
@@ -190,7 +234,70 @@
             "confirm": "Discord trennen"
         }
     },
+    "discord_integration": {
+        "title": "Bleib in Discord über deine Runs informiert",
+        "description": "Verbinde die FullParty-App und erhalte hilfreiche Updates dort, wo du bereits mit deiner Gruppe chattest.",
+        "benefits": {
+            "reminders": {
+                "title": "Run-Erinnerungen",
+                "description": "Erhalte eine Nachricht, wenn ein Run bald oder gerade beginnt, mit einem Link zum Run."
+            },
+            "applications": {
+                "title": "Bewerbungs- und Aufstellungsupdates",
+                "description": "Verfolge Entscheidungen zu Bewerbungen sowie veröffentlichte Änderungen an Aufstellung oder Ersatzbank."
+            },
+            "identity": {
+                "title": "Der Bot erkennt dich",
+                "description": "Verknüpfe deine FullParty-Identität und deinen Hauptcharakter, damit der Bot dich deinem Konto zuordnen kann."
+            }
+        },
+        "difference_title": "Was ist der Unterschied zur Discord-Anmeldung?",
+        "login_title": "Mit Discord anmelden",
+        "login_description": "Damit meldest du dich auf der FullParty-Website an. Die FullParty-App wird dadurch nicht verbunden und Discord-Benachrichtigungen werden nicht aktiviert.",
+        "manage_login": "Anmeldekonten verwalten",
+        "app_title": "Discord-App verbinden",
+        "app_description": "Damit verknüpfst du dein Konto für unterstützte Benachrichtigungen und Bot-Funktionen mit dem FullParty-Bot. Das funktioniert auch, wenn du dich mit E-Mail, Google oder XIVAuth anmeldest.",
+        "personal_connection": "Dies ist deine persönliche Verbindung. Discord-Server von Gruppen werden separat von den Gruppenorganisatoren verknüpft.",
+        "how_title": "So stellst du die Verbindung her",
+        "steps": {
+            "connect": "Wähle „Discord-App verbinden“, um die Autorisierungsseite von Discord zu öffnen.",
+            "authorize": "Prüfe, ob du das richtige Discord-Konto verwendest, kontrolliere die Berechtigungen und autorisiere FullParty.",
+            "preferences": "Öffne Benachrichtigungen und wähle, welche unterstützten Updates du über Discord erhalten möchtest."
+        },
+        "manage_notifications": "Benachrichtigungen verwalten",
+        "token_title": "Verbindung über den Bot herstellen?",
+        "token_description": "Wenn der FullParty-Bot einen Verknüpfungstoken anfordert, kannst du ihn hier erstellen. Teile ihn nur mit dem FullParty-Bot. Er läuft ab und kann nur einmal verwendet werden.",
+        "disconnect_description": "Das Trennen hier beendet die App-Verbindung und Discord-Benachrichtigungen. Deine Anmeldemethoden bleiben unverändert. Um die App auch aus Discord zu entfernen, entferne FullParty unter „Autorisierte Apps“ in den Discord-Einstellungen."
+    },
     "privacy": {
+        "deletion_details": {
+            "warning_title": "Das Löschen deines Kontos ist endgültig",
+            "warning_description": "Dein FullParty-Konto wird geschlossen und du wirst sofort abgemeldet. Du kannst dich danach nicht mehr bei diesem Konto anmelden.",
+            "effects_title": "Was mit deinem Konto passiert",
+            "effects": {
+                "account": {
+                    "title": "Kontodaten und Zugriff",
+                    "description": "Dein Kontoname und deine E-Mail-Adresse werden durch Angaben für ein gelöschtes Konto ersetzt und dein Profilbild wird entfernt. Website-Sitzungen sowie der Zugriff verknüpfter Apps und Plugins werden widerrufen."
+                },
+                "connections": {
+                    "title": "Mitgliedschaften und Verbindungen",
+                    "description": "Deine Gruppenmitgliedschaften, verknüpften Anmeldekonten, Discord-App-Verbindung und Benachrichtigungen werden entfernt."
+                },
+                "characters": {
+                    "title": "Charaktere werden freigegeben",
+                    "description": "Deine Charaktere werden von deinem Konto getrennt. Ihr Status als Hauptcharakter sowie ihre Verifizierung und ihr Eigentumsnachweis werden zurückgesetzt."
+                },
+                "runs": {
+                    "title": "Aktive Run-Zusagen",
+                    "description": "Aktive Bewerbungen werden zurückgezogen und deine Charaktere aus bevorstehenden Aufstellungen entfernt. Betroffene Gruppenorganisatoren werden über entfernte Zuweisungen informiert."
+                }
+            },
+            "history_title": "Der gemeinsame Verlauf bleibt erhalten",
+            "history_description": "Frühere Bewerbungen, Run- und Anwesenheitsverläufe, Charakterdatensätze und Audit-Protokolle bleiben als gemeinsame Gruppenaufzeichnungen erhalten. Die Kontolöschung entfernt nicht jeden Verweis auf deine frühere Teilnahme.",
+            "external_accounts": "Nur dein FullParty-Konto wird geschlossen. Deine FFXIV-Charaktere im Spiel und deine Konten bei Discord, Google oder XIVAuth werden nicht gelöscht.",
+            "groups_title": "Gehört dir eine Gruppe?",
+            "confirmation_hint": "Bevor etwas gelöscht wird, musst du den Vorgang bestätigen."
+        },
         "title": "Datenschutz & Sicherheit",
         "profile_visibility": "Profilsichtbarkeit",
         "profile_visibility_description": "Mache dein Profil für andere Benutzer sichtbar",

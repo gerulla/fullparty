@@ -73,7 +73,7 @@ const completedProgression = computed(() => buildActivityCompletionSummary({
 }));
 const showApplicationButton = computed(() => (
 	props.activity.needs_application
-	&& (props.permissions.can_apply || props.permissions.can_apply_as_guest)
+	&& (props.permissions.can_apply || props.permissions.can_apply_as_guest || props.permissions.requires_login)
 	&& !isArchivedActivityStatus(props.activity.status)
 ));
 const mainSlots = computed(() => props.activity.slots.filter((slot) => !slot.is_bench && !slot.is_fill_in));
@@ -258,9 +258,9 @@ const managementUrl = computed(() => route("groups.dashboard.activities.show", {
 				<UButton
 					v-if="showApplicationButton"
 					color="primary"
-					icon="i-lucide-file-pen-line"
-					:label="t('groups.activities.overview.open_application')"
-					:to="applicationUrl"
+					:icon="permissions.requires_login ? 'i-lucide-log-in' : 'i-lucide-file-pen-line'"
+					:label="permissions.requires_login ? t('auth.login') : t('groups.activities.overview.open_application')"
+					:to="permissions.requires_login ? route('login') : applicationUrl"
 				/>
 				<UButton
 					v-if="permissions.can_manage"

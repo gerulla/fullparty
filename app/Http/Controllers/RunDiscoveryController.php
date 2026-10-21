@@ -53,7 +53,9 @@ class RunDiscoveryController extends Controller
     {
         $user = request()->user();
 
-        if (! $this->runDiscoveryService->canUserInteractWithDiscoveryActivity($activity, $user)) {
+        // Removing an owned bookmark must still work after access or availability changes.
+        if (! $user->savedActivities()->whereKey($activity->id)->exists()
+            && ! $this->runDiscoveryService->canUserInteractWithDiscoveryActivity($activity, $user)) {
             abort(404);
         }
 

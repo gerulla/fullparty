@@ -127,7 +127,7 @@ it('matches runs and activity types by activity tags', function () {
         ->assertJsonPath('activities.0.title', 'AAC Light-heavyweight M4 (Savage)');
 });
 
-it('returns members-only runs from visible groups without leaking hidden groups', function () {
+it('uses run audience independently of legacy group visibility', function () {
     $viewer = User::factory()->create();
     $activityType = createGlobalSearchActivityType([
         'slug' => 'hidden-match',
@@ -169,7 +169,7 @@ it('returns members-only runs from visible groups without leaking hidden groups'
     $response
         ->assertOk()
         ->assertJsonCount(1, 'runs')
-        ->assertJsonPath('runs.0.title', 'Private Match Run')
+        ->assertJsonPath('runs.0.title', 'Hidden Match Run')
         ->assertJsonCount(1, 'groups')
         ->assertJsonPath('groups.0.title', 'Visible Match Group');
 });
@@ -236,7 +236,7 @@ it('keeps independent result limits so past runs do not displace upcoming runs',
         ->and(array_column($response->json('past_runs'), 'id'))->toBe(array_slice($past, 0, 6));
 });
 
-it('preserves hidden-group draft and ban permissions in both run sections', function (bool $past) {
+it('preserves members-only draft and ban permissions in both run sections', function (bool $past) {
     $viewer = User::factory()->create();
     $activityType = createGlobalSearchActivityType();
     $factory = Activity::factory()->state([
@@ -248,7 +248,7 @@ it('preserves hidden-group draft and ban permissions in both run sections', func
     ]);
     $memberGroup = Group::factory()->hidden()->withMember($viewer)->create();
     $allowed = $factory->create(['group_id' => $memberGroup->id, 'is_public' => false]);
-    $factory->create(['group_id' => Group::factory()->hidden()->create()->id]);
+    $factory->create(['group_id' => Group::factory()->hidden()->create()->id, 'is_public' => false]);
     $factory->create(['group_id' => Group::factory()->create()->id, 'status' => Activity::STATUS_DRAFT]);
     $bannedGroup = Group::factory()->withMember($viewer)->create();
     $bannedGroup->bans()->create(['user_id' => $viewer->id, 'banned_by_user_id' => $bannedGroup->owner_id]);
@@ -261,6 +261,26 @@ it('preserves hidden-group draft and ban permissions in both run sections', func
         ->assertJsonPath(($past ? 'past_runs' : 'runs').'.0.id', $allowed->id)
         ->assertJsonCount(0, $past ? 'runs' : 'past_runs');
 })->with(['upcoming' => false, 'past' => true]);
+
+it('filters inaccessible runs before the search candidate limit', function () {
+    $viewer = User::factory()->create();
+    $group = Group::factory()->create();
+    $type = createGlobalSearchActivityType();
+    $factory = Activity::factory()->state([
+        'group_id' => $group->id,
+        'activity_type_id' => $type->id,
+        'activity_type_version_id' => $type->current_published_version_id,
+        'status' => Activity::STATUS_SCHEDULED,
+        'title' => 'Capacity Match',
+        'starts_at' => now()->addDay(),
+        'is_public' => false,
+    ]);
+    $factory->count(31)->create();
+    $public = $factory->create(['starts_at' => now()->addDays(2), 'is_public' => true]);
+
+    $this->actingAs($viewer)->getJson(route('dashboard.search', ['query' => 'Capacity']))
+        ->assertOk()->assertJsonCount(1, 'runs')->assertJsonPath('runs.0.id', $public->id);
+});
 
 it('returns every section empty for a query shorter than two characters', function () {
     $this->actingAs(User::factory()->create())

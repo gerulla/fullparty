@@ -3,6 +3,7 @@
 use App\Http\Controllers\AccountApplicationController;
 use App\Http\Controllers\AccountFlagController;
 use App\Http\Controllers\AccountNotificationController;
+use App\Http\Controllers\ActivityGroupFollowUpController;
 use App\Http\Controllers\ActivityTypeController;
 use App\Http\Controllers\AdminCharacterController;
 use App\Http\Controllers\AdminController;
@@ -70,6 +71,7 @@ use App\Http\Controllers\GroupMembershipApplicationFormController;
 use App\Http\Controllers\GroupMembershipApplicationReviewController;
 use App\Http\Controllers\GroupMembershipController;
 use App\Http\Controllers\GroupMembershipRequestController;
+use App\Http\Controllers\GroupPersonalInvitationController;
 use App\Http\Controllers\GroupPhantomCompositionController;
 use App\Http\Controllers\GroupResourceController;
 use App\Http\Controllers\GroupRunListController;
@@ -540,6 +542,24 @@ Route::prefix('{locale?}')
             Route::delete('/groups/{group:slug}/member-note-addenda/{addendum}', [GroupMemberNoteController::class, 'destroyAddendum'])->name('groups.members.notes.addenda.destroy');
 
             // Invite management and acceptance.
+            Route::post('/groups/{group:slug}/personal-invites', [GroupPersonalInvitationController::class, 'store'])
+                ->middleware('throttle:group.content.write')->name('groups.personal-invites.store');
+            Route::post('/groups/{group:slug}/invites/{invite}/resend', [GroupPersonalInvitationController::class, 'resend'])
+                ->whereNumber('invite')->middleware('throttle:group.content.write')->name('groups.invites.resend');
+            Route::post('/invite/{token}/decline', [GroupPersonalInvitationController::class, 'decline'])
+                ->where('token', '[a-z0-9]{10}')->middleware('throttle:invite')->name('groups.invites.decline');
+
+            // Backend-only post-run prompts; UI integration belongs to the run/application redesign.
+            Route::get('/account/run-follow-ups', [ActivityGroupFollowUpController::class, 'index'])->name('account.run-follow-ups.index');
+            Route::post('/account/run-follow-ups/{followUp}/presented', [ActivityGroupFollowUpController::class, 'presented'])
+                ->whereNumber('followUp')->middleware('throttle:membership.write')->name('account.run-follow-ups.presented');
+            Route::post('/account/run-follow-ups/{followUp}/dismiss', [ActivityGroupFollowUpController::class, 'dismiss'])
+                ->whereNumber('followUp')->middleware('throttle:membership.write')->name('account.run-follow-ups.dismiss');
+            Route::get('/groups/{group:slug}/activities/{activity}/group-follow-up', [ActivityGroupFollowUpController::class, 'show'])
+                ->whereNumber('activity')->name('groups.activities.follow-up.show');
+            Route::post('/groups/{group:slug}/activities/{activity}/group-follow-up/invites', [ActivityGroupFollowUpController::class, 'store'])
+                ->whereNumber('activity')->middleware('throttle:group.content.write')->name('groups.activities.follow-up.invites.store');
+
             Route::post('/groups/{group:slug}/invites', [GroupInviteController::class, 'store'])
                 ->middleware('throttle:group.content.write')
                 ->name('groups.invites.store');

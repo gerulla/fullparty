@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ActivityApplicationCharacterOption, RememberedApplicationDefaults } from "@/Types/ActivityApplications";
+import type { ActivityApplicationCharacterOption, ActivityApplicationPermissions, RememberedApplicationDefaults } from "@/Types/ActivityApplications";
 import { computed, ref } from "vue";
 import { router, usePage } from "@inertiajs/vue3";
 import { route } from "ziggy-js";
@@ -98,17 +98,7 @@ const props = defineProps<{
 		}>
 	}
 	characters: ActivityApplicationCharacterOption[]
-	permissions: {
-		can_apply: boolean
-		can_apply_as_guest: boolean
-		can_edit_application: boolean
-		can_withdraw_application: boolean
-		can_manage: boolean
-		has_existing_application: boolean
-		requires_group_membership: boolean
-		can_join_group: boolean
-		can_request_group_membership: boolean
-	}
+	permissions: ActivityApplicationPermissions
 }>();
 
 const { t, locale } = useI18n();
@@ -377,9 +367,7 @@ const withdrawApplication = () => {
 				:can-apply-as-guest="permissions.can_apply_as_guest"
 				:can-edit-application="permissions.can_edit_application"
 				:can-withdraw-application="permissions.can_withdraw_application"
-				:requires-group-membership="permissions.requires_group_membership"
-				:can-join-group="permissions.can_join_group"
-				:can-request-group-membership="permissions.can_request_group_membership"
+				:requires-login="permissions.requires_login"
 				:guest-worlds="guestCharacterSearch.worlds"
 				@cancel="goBack"
 				@withdraw="openWithdrawalModal"

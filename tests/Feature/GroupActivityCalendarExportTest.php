@@ -67,6 +67,8 @@ it('does not export inaccessible or archived runs', function () {
         'status' => Activity::STATUS_UPCOMING,
         'starts_at' => now()->addDay(),
     ]);
+    $activity->update(['is_public' => false]);
+
     $route = route('groups.activities.calendar', [
         'group' => $group,
         'activity' => $activity,

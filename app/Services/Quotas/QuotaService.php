@@ -319,6 +319,7 @@ final class QuotaService
     {
         return GroupInvite::query()
             ->where('group_id', $group->id)
+            ->where('status', GroupInvite::STATUS_PENDING)
             ->where('is_system', false)
             ->where(fn ($query) => $query
                 ->whereNull('expires_at')

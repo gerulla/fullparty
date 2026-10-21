@@ -5,7 +5,6 @@ namespace Database\Factories;
 use App\Models\Group;
 use App\Models\GroupMembership;
 use App\Models\User;
-use App\Services\Groups\MembershipApplicationFormSchemaService;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -65,7 +64,6 @@ class GroupFactory extends Factory
                 $group->ensureSystemInvite();
             }
 
-            app(MembershipApplicationFormSchemaService::class)->ensureDefaultForm($group);
         });
     }
 
@@ -84,11 +82,12 @@ class GroupFactory extends Factory
         ]);
     }
 
+    /** Create a legacy record only for migration and retired-route coverage. */
     public function applicationBased(): static
     {
-        return $this->state(fn (array $attributes) => [
-            'join_mode' => Group::JOIN_MODE_APPLICATION,
-        ]);
+        return $this->inviteOnly()->afterCreating(function (Group $group): void {
+            $group->update(['join_mode' => Group::JOIN_MODE_APPLICATION]);
+        });
     }
 
     public function hidden(): static

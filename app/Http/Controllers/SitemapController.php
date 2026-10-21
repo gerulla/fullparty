@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Middleware\ApplyLocale;
 use App\Models\Activity;
+use App\Services\Runs\RunAccessService;
 use Illuminate\Http\Response;
 
 class SitemapController extends Controller
 {
+    public function __construct(private readonly RunAccessService $access) {}
+
     public function __invoke(): Response
     {
         $entries = [
@@ -39,11 +42,7 @@ class SitemapController extends Controller
      */
     private function activityEntries(): array
     {
-        return Activity::query()
-            ->where('is_public', true)
-            ->where('status', '!=', Activity::STATUS_DRAFT)
-            ->whereHas('group', fn ($query) => $query
-                ->where('is_visible', true))
+        return $this->access->scopeVisibleTo(Activity::query(), null)
             ->with('group:id,slug')
             ->orderBy('updated_at', 'desc')
             ->get(['id', 'group_id', 'updated_at'])

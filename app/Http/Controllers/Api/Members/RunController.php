@@ -45,7 +45,6 @@ final class RunController extends Controller
     public function group(Request $request, Group $group): JsonResponse
     {
         abort_if($group->isBanned($request->user()->id), 404);
-        abort_unless($group->is_visible || $group->hasMember($request->user()->id), 404);
         $query = $this->reader->query($request->user())->where('group_id', $group->id)->whereNotIn('status', Activity::ARCHIVED_STATUSES);
 
         return response()->json(MemberPagination::payload($query->orderBy('starts_at')->orderBy('id')->paginate(MemberPagination::size($request)), $this->reader->present(...)));

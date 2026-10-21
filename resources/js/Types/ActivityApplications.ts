@@ -1,4 +1,12 @@
 import type { LocalizedText } from "@/Types/Common"
+import type { RunParticipationPermissions } from "@/Types/RunAccess"
+
+export type ActivityApplicationPermissions = RunParticipationPermissions & {
+    can_edit_application: boolean
+    can_withdraw_application: boolean
+    can_manage: boolean
+    has_existing_application: boolean
+}
 
 export type ApplicationQuestionOption = {
 	key: string

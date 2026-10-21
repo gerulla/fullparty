@@ -26,6 +26,7 @@ use App\Services\Integrations\DiscordGuildRunsChangedService;
 use App\Services\Notifications\AssignmentNotificationService;
 use App\Services\Notifications\GroupUpdateNotificationService;
 use App\Services\Quotas\QuotaService;
+use App\Services\Runs\RunAccessService;
 use App\Support\ActivityCompositionPresets;
 use App\Support\Input\RequestTextInputSanitizer;
 use App\Support\Quotas\QuotaKey;
@@ -52,6 +53,7 @@ class GroupActivityController extends Controller
         private readonly ServerMeta $serverMeta,
         private readonly QuotaService $quotaService,
         private readonly DiscordGuildRunsChangedService $discordRunsChanged,
+        private readonly RunAccessService $runAccess,
     ) {}
 
     public function overview(
@@ -84,20 +86,18 @@ class GroupActivityController extends Controller
             'applications as pending_application_count' => fn ($query) => $query->where('status', ActivityApplication::STATUS_PENDING),
         ]);
 
-        $canUseParticipationFlow = $this->canUseActivityParticipationFlow($group, $activity, $request->user()?->id);
-
+        $userId = $request->user()?->id;
         $permissions = [
-            'can_apply' => $request->user() !== null && $canUseParticipationFlow,
-            'can_apply_as_guest' => $request->user() === null
-                && $activity->is_public
-                && $activity->allow_guest_applications
-                && $canUseParticipationFlow,
-            'can_manage' => $group->hasModeratorAccess($request->user()?->id),
-            'can_self_assign' => ! $activity->needs_application
-                && $request->user() !== null
-                && $canUseParticipationFlow
-                && ! $activity->isArchived(),
+            ...$this->runAccess->participationPermissions($group, $activity, $userId),
+            'can_manage' => $group->hasModeratorAccess($userId),
         ];
+
+        if ($permissions['requires_login']) {
+            $request->session()->put('url.intended', route(
+                $activity->needs_application ? 'groups.activities.application' : 'groups.activities.overview',
+                [$group, $activity],
+            ));
+        }
 
         $props = [
             'group' => $group->hasMember($request->user()?->id)
@@ -185,9 +185,13 @@ class GroupActivityController extends Controller
 
     public function index(Group $group, ActivityIndexItemSerializer $serializer): Response
     {
+        $currentUserId = auth()->id();
         $group->load([
             'memberships',
-            'activities.group',
+            'bans',
+            'activities' => fn ($query) => $query->tap(fn ($query) => $this->runAccess->scopeVisibleTo($query, $currentUserId)),
+            'activities.group.memberships',
+            'activities.group.bans',
             'activities.organizer',
             'activities.organizerCharacter',
             'activities.activityType',
@@ -198,7 +202,6 @@ class GroupActivityController extends Controller
             'quickCreateShortcuts',
         ]);
 
-        $currentUserId = auth()->id();
         $isMember = $group->hasMember($currentUserId);
 
         if (! $isMember && ! $group->allowsPublicDashboardAccess()) {
@@ -206,10 +209,6 @@ class GroupActivityController extends Controller
         }
 
         $canManageActivities = $isMember && $group->hasModeratorAccess($currentUserId);
-        $visibleActivities = $canManageActivities
-            ? $group->activities
-            : $group->activities
-                ->reject(fn (Activity $activity) => Activity::isModeratorOnlyStatus($activity->status));
 
         return Inertia::render('Dashboard/Groups/Activities/Index', [
             'group' => $this->buildDashboardGroupPayload($group, $canManageActivities),
@@ -217,7 +216,7 @@ class GroupActivityController extends Controller
             'quickCreateShortcuts' => GroupQuickCreateShortcutResource::collection(
                 $group->resolvedQuickCreateShortcuts(),
             )->resolve(),
-            'activities' => $visibleActivities
+            'activities' => $group->activities
                 ->sortByDesc('updated_at')
                 ->values()
                 ->map(fn (Activity $activity): array => $serializer->serialize(

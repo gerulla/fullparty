@@ -153,7 +153,7 @@ it('returns distinct priority memberships and includes owners without a membersh
                 ->missing('groups.0.discord_link_token_hash')));
 });
 
-it('only recommends future public runs in visible groups where the user is not banned', function () {
+it('recommends future public runs regardless of legacy group visibility and excludes banned groups', function () {
     $user = User::factory()->create();
     $publicGroup = Group::factory()->create();
     $hiddenGroup = Group::factory()->hidden()->create();
@@ -172,6 +172,7 @@ it('only recommends future public runs in visible groups where the user is not b
         $run(),
         $run(['status' => Activity::STATUS_ASSIGNED]),
         $run(['status' => Activity::STATUS_UPCOMING]),
+        $run(['group_id' => $hiddenGroup->id]),
     ])->pluck('id')->sort()->values()->all();
 
     foreach ([
@@ -183,7 +184,6 @@ it('only recommends future public runs in visible groups where the user is not b
         ['status' => Activity::STATUS_COMPLETE],
         ['is_completed' => true],
         ['is_public' => false],
-        ['group_id' => $hiddenGroup->id],
         ['group_id' => $bannedGroup->id],
     ] as $attributes) {
         $run($attributes);
@@ -192,7 +192,7 @@ it('only recommends future public runs in visible groups where the user is not b
     $this->actingAs($user)->get(route('dashboard'))
         ->assertInertia(fn (Assert $page) => $page
             ->loadDeferredProps('v2-recommended-runs', fn (Assert $page) => $page
-                ->has('recommendedRuns', 3)
+                ->has('recommendedRuns', 4)
                 ->where('recommendedRuns', fn ($runs) => $runs->pluck('id')->sort()->values()->all() === $eligible)
                 ->where('recommendedRuns.0.activity_type.name', $version->name)
                 ->missing('recommendedRuns.0.secret_key')));

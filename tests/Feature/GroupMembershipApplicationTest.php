@@ -1,10 +1,13 @@
 <?php
 
+use App\Models\AuditLog;
 use App\Models\Group;
 use App\Models\GroupMembership;
 use App\Models\GroupMembershipApplication;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Queue;
 use Inertia\Testing\AssertableInertia as Assert;
 
 uses(RefreshDatabase::class);
@@ -48,456 +51,144 @@ function membershipApplicationSettingsPayload(Group $group, string $joinMode): a
     ];
 }
 
-function membershipApplicationSchemaPayload(): array
-{
-    return [[
-        'id' => 'intro',
-        'type' => 'small_text',
-        'name' => [
-            'en' => 'Tell us about yourself',
-            'de' => '',
-            'fr' => '',
-            'ja' => '',
-        ],
-        'description' => [
-            'en' => 'A short intro is enough.',
-            'de' => '',
-            'fr' => '',
-            'ja' => '',
-        ],
-        'required' => true,
-        'options' => [],
-    ], [
-        'id' => 'favorite_role',
-        'type' => 'select',
-        'name' => [
-            'en' => 'Favorite role',
-            'de' => '',
-            'fr' => '',
-            'ja' => '',
-        ],
-        'description' => [],
-        'required' => true,
-        'options' => [[
-            'id' => 'tank',
-            'label' => [
-                'en' => 'Tank',
-                'de' => '',
-                'fr' => '',
-                'ja' => '',
-            ],
-        ], [
-            'id' => 'healer',
-            'label' => [
-                'en' => 'Healer',
-                'de' => '',
-                'fr' => '',
-                'ja' => '',
-            ],
-        ]],
-    ], [
-        'id' => 'are_you_a_gamer',
-        'type' => 'toggle',
-        'name' => [
-            'en' => 'Are you a gamer?',
-            'de' => '',
-            'fr' => '',
-            'ja' => '',
-        ],
-        'description' => [],
-        'required' => true,
-        'options' => [],
-    ]];
-}
+it('rejects retired membership mode when creating either group type', function (string $type) {
+    $this->actingAs(User::factory()->create())
+        ->post(route('groups.store'), membershipApplicationGroupPayload('retired', Group::JOIN_MODE_APPLICATION, $type))
+        ->assertSessionHasErrors('join_mode');
 
-it('creates the default membership application form for application based groups', function () {
-    $owner = User::factory()->create();
+    expect(Group::where('slug', 'retired')->exists())->toBeFalse();
+})->with([Group::TYPE_COMMUNITY, Group::TYPE_STATIC]);
 
-    $this->actingAs($owner)
-        ->post(route('groups.store'), membershipApplicationGroupPayload('appform'))
-        ->assertRedirect();
+it('allows either supported join mode for both group types when updating settings', function (string $type, string $mode) {
+    $group = Group::factory()->create(['group_type' => $type]);
 
-    $group = Group::query()->where('slug', 'appform')->firstOrFail();
+    $this->actingAs($group->owner)
+        ->put(route('groups.dashboard.settings.update', $group), membershipApplicationSettingsPayload($group, $mode))
+        ->assertSessionDoesntHaveErrors();
 
-    expect($group->join_mode)->toBe(Group::JOIN_MODE_APPLICATION)
-        ->and($group->membership_application_schema)->toHaveCount(1)
-        ->and($group->membership_application_schema[0]['type'])->toBe('toggle')
-        ->and($group->membership_application_schema[0]['name']['en'])->toBe('Are you a gamer?');
-});
+    expect($group->fresh()->join_mode)->toBe($mode)
+        ->and($group->fresh()->membership_application_schema)->toBeNull()
+        ->and($group->fresh()->hasPermanentInvite())->toBe($mode === Group::JOIN_MODE_OPEN);
+})->with([
+    [Group::TYPE_COMMUNITY, Group::JOIN_MODE_OPEN],
+    [Group::TYPE_COMMUNITY, Group::JOIN_MODE_INVITE_ONLY],
+    [Group::TYPE_STATIC, Group::JOIN_MODE_OPEN],
+    [Group::TYPE_STATIC, Group::JOIN_MODE_INVITE_ONLY],
+]);
 
-it('generates the default form when a group is changed to application based', function () {
-    $owner = User::factory()->create();
-    $group = Group::factory()->inviteOnly()->create([
-        'owner_id' => $owner->id,
-        'membership_application_schema' => null,
-    ]);
+it('rejects retired membership mode in settings without changing membership or forms', function (string $type) {
+    $group = Group::factory()->create(['group_type' => $type]);
 
-    $this->actingAs($owner)
+    $this->actingAs($group->owner)
         ->put(route('groups.dashboard.settings.update', $group), membershipApplicationSettingsPayload($group, Group::JOIN_MODE_APPLICATION))
-        ->assertRedirect();
+        ->assertSessionHasErrors('join_mode');
 
-    $group->refresh();
+    expect($group->fresh()->join_mode)->toBe(Group::JOIN_MODE_INVITE_ONLY)
+        ->and($group->fresh()->membership_application_schema)->toBeNull();
+})->with([Group::TYPE_COMMUNITY, Group::TYPE_STATIC]);
 
-    expect($group->join_mode)->toBe(Group::JOIN_MODE_APPLICATION)
-        ->and($group->membership_application_schema)->toHaveCount(1)
-        ->and($group->membership_application_schema[0]['name']['en'])->toBe('Are you a gamer?');
+it('rejects the retired join-mode discovery filter', function () {
+    $this->actingAs(User::factory()->create())
+        ->getJson(route('groups.search', ['join_mode' => Group::JOIN_MODE_APPLICATION]))
+        ->assertUnprocessable()->assertJsonValidationErrors('join_mode');
 });
 
-it('allows admins and owners, but not moderators, to update the membership application form', function () {
-    $owner = User::factory()->create();
-    $admin = User::factory()->create();
-    $moderator = User::factory()->create();
-    $group = Group::factory()->applicationBased()->create([
-        'owner_id' => $owner->id,
-    ]);
+it('keeps retired request and review endpoints closed even for legacy groups', function (string $method, string $routeName, bool $withApplication) {
+    Queue::fake();
+    $group = Group::factory()->applicationBased()->create();
+    $request = GroupMembershipApplication::factory()->create(['group_id' => $group->id]);
+    $parameters = ['group' => $group];
+    if ($withApplication) {
+        $parameters['application'] = $request;
+    }
 
-    $group->memberships()->create([
-        'user_id' => $admin->id,
-        'role' => GroupMembership::ROLE_ADMIN,
-        'joined_at' => now(),
-    ]);
-    $group->memberships()->create([
-        'user_id' => $moderator->id,
-        'role' => GroupMembership::ROLE_MODERATOR,
-        'joined_at' => now(),
-    ]);
+    $this->actingAs($group->owner)->{$method}(route($routeName, $parameters), [
+        'answers' => ['intro' => 'This should not be saved.'],
+        'fields' => [],
+    ])->assertNotFound();
 
-    $this->actingAs($moderator)
-        ->put(route('groups.dashboard.membership-application-form.update', $group), [
-            'fields' => membershipApplicationSchemaPayload(),
-        ])
-        ->assertForbidden();
+    expect($request->fresh()->status)->toBe(GroupMembershipApplication::STATUS_PENDING)
+        ->and(GroupMembershipApplication::count())->toBe(1)
+        ->and($group->memberships()->where('user_id', $request->user_id)->exists())->toBeFalse();
+    Queue::assertNothingPushed();
+})->with([
+    ['get', 'groups.membership-applications.create', false],
+    ['post', 'groups.membership-applications.store', false],
+    ['put', 'groups.membership-applications.update', false],
+    ['get', 'groups.dashboard.membership-applications.index', false],
+    ['post', 'groups.dashboard.membership-applications.approve', true],
+    ['post', 'groups.dashboard.membership-applications.decline', true],
+    ['get', 'groups.dashboard.membership-application-form.edit', false],
+    ['put', 'groups.dashboard.membership-application-form.update', false],
+]);
 
-    $this->actingAs($admin)
-        ->put(route('groups.dashboard.membership-application-form.update', $group), [
-            'fields' => membershipApplicationSchemaPayload(),
-        ])
-        ->assertRedirect()
-        ->assertSessionDoesntHaveErrors();
-
-    $group->refresh();
-
-    expect($group->membership_application_schema)->toHaveCount(3)
-        ->and($group->membership_application_schema[0]['id'])->toBe('intro');
+it('redirects old request-list bookmarks to groups', function () {
+    $this->actingAs(User::factory()->create())
+        ->get(route('groups.requests.index'))->assertRedirect(route('groups.index'));
 });
 
-it('hides membership application dashboard permissions when the group is not application based', function () {
-    $owner = User::factory()->create();
-    $group = Group::factory()->inviteOnly()->create([
-        'owner_id' => $owner->id,
-    ]);
-
-    $this->actingAs($owner)
-        ->get(route('groups.dashboard', $group))
-        ->assertOk()
-        ->assertInertia(fn (Assert $page) => $page
-            ->where('group.permissions.can_review_membership_applications', false)
-            ->where('group.permissions.can_manage_membership_application_form', false)
-        );
-
-    $this->actingAs($owner)
-        ->get(route('groups.dashboard.membership-applications.index', $group))
-        ->assertNotFound();
-
-    $this->actingAs($owner)
-        ->get(route('groups.dashboard.membership-application-form.edit', $group))
-        ->assertNotFound();
+it('does not advertise request actions for legacy records before the migration runs', function () {
+    $group = Group::factory()->applicationBased()->create();
+    $this->actingAs($group->owner)->get(route('groups.dashboard.settings', $group))
+        ->assertOk()->assertInertia(fn (Assert $page) => $page
+        ->where('group.permissions.can_review_membership_applications', false)
+        ->where('group.permissions.can_manage_membership_application_form', false));
 });
 
-it('submits membership applications and snapshots the current form schema', function () {
-    $owner = User::factory()->create();
-    $applicant = User::factory()->create();
-    $group = Group::factory()->applicationBased()->create([
-        'owner_id' => $owner->id,
-        'membership_application_schema' => membershipApplicationSchemaPayload(),
+it('cancels every pending membership request and preserves membership and historical evidence', function () {
+    Queue::fake();
+    $legacy = Group::factory()->applicationBased()->create([
+        'membership_application_schema' => [['id' => 'intro', 'type' => 'small_text']],
+        'is_visible' => false,
     ]);
+    $open = Group::factory()->open()->create();
+    $inviteOnly = Group::factory()->inviteOnly()->create();
+    $pending = collect([$legacy, $open, $inviteOnly])->map(fn (Group $group) => GroupMembershipApplication::factory()->create(['group_id' => $group->id]));
+    $approved = GroupMembershipApplication::factory()->approved()->create(['group_id' => $legacy->id]);
+    $declined = GroupMembershipApplication::factory()->declined()->create(['group_id' => $legacy->id]);
+    $approvedBefore = $approved->fresh()->getAttributes();
+    $declinedBefore = $declined->fresh()->getAttributes();
+    $answers = $pending->mapWithKeys(fn ($request) => [$request->id => [$request->answers, $request->form_snapshot]]);
+    $memberships = GroupMembership::count();
+    $invites = DB::table('group_invites')->count();
+    $schema = $legacy->membership_application_schema;
 
-    $this->actingAs($applicant)
-        ->get(route('groups.membership-applications.create', $group))
-        ->assertOk()
-        ->assertInertia(fn (Assert $page) => $page
-            ->component('Groups/MembershipApplications/Create')
-            ->has('formSchema', 3)
-            ->where('existingApplication', null)
-        );
+    $migration = require database_path('migrations/2026_10_21_200000_retire_group_membership_requests.php');
+    $migration->up();
 
-    $this->actingAs($applicant)
-        ->post(route('groups.membership-applications.store', $group), [
-            'answers' => [
-                'intro' => 'I like structured groups.',
-                'favorite_role' => 'tank',
-                'are_you_a_gamer' => false,
-            ],
-        ])
-        ->assertRedirect(route('groups.membership-applications.create', $group))
-        ->assertSessionDoesntHaveErrors();
+    expect($legacy->fresh()->join_mode)->toBe(Group::JOIN_MODE_INVITE_ONLY)
+        ->and($legacy->fresh()->is_visible)->toBeFalse()
+        ->and($legacy->fresh()->membership_application_schema)->toBe($schema)
+        ->and($open->fresh()->join_mode)->toBe(Group::JOIN_MODE_OPEN)
+        ->and($inviteOnly->fresh()->join_mode)->toBe(Group::JOIN_MODE_INVITE_ONLY)
+        ->and(GroupMembership::count())->toBe($memberships)
+        ->and(DB::table('group_invites')->count())->toBe($invites)
+        ->and($approved->fresh()->getAttributes())->toBe($approvedBefore)
+        ->and($declined->fresh()->getAttributes())->toBe($declinedBefore)
+        ->and(GroupMembershipApplication::where('status', 'pending')->count())->toBe(0);
 
-    $application = GroupMembershipApplication::query()->where('group_id', $group->id)->firstOrFail();
+    foreach ($pending as $request) {
+        $request->refresh();
+        expect($request->status)->toBe(GroupMembershipApplication::STATUS_CANCELLED)
+            ->and($request->cancelled_at)->not->toBeNull()
+            ->and($request->cancellation_reason)->toBe('membership_requests_retired')
+            ->and($request->reviewed_at)->toBeNull()
+            ->and($request->reviewed_by_user_id)->toBeNull()
+            ->and([$request->answers, $request->form_snapshot])->toBe($answers[$request->id]);
+    }
 
-    $group->update([
-        'membership_application_schema' => [[
-            'id' => 'new_question',
-            'type' => 'small_text',
-            'name' => ['en' => 'New question'],
-            'description' => [],
-            'required' => true,
-            'options' => [],
-        ]],
-    ]);
+    $logs = AuditLog::where('action', 'group.membership_requests.retired')->get();
+    expect($logs)->toHaveCount(3);
+    $legacyLog = $logs->firstWhere('scope_id', $legacy->id);
+    expect($legacyLog->actor_user_id)->toBeNull()
+        ->and($legacyLog->metadata['previous_join_mode'])->toBe('application')
+        ->and($legacyLog->metadata['join_mode'])->toBe('invite_only')
+        ->and($legacyLog->metadata['cancelled_request_count'])->toBe(1);
 
-    expect($application->answers['intro'])->toBe('I like structured groups.')
-        ->and($application->answers['are_you_a_gamer'])->toBeFalse()
-        ->and($application->form_snapshot)->toHaveCount(3)
-        ->and($application->form_snapshot[0]['id'])->toBe('intro')
-        ->and($group->memberships()->where('user_id', $applicant->id)->exists())->toBeFalse();
-});
-
-it('requires required answers and blocks duplicate pending applications', function () {
-    $owner = User::factory()->create();
-    $applicant = User::factory()->create();
-    $group = Group::factory()->applicationBased()->create([
-        'owner_id' => $owner->id,
-        'membership_application_schema' => membershipApplicationSchemaPayload(),
-    ]);
-
-    $this->actingAs($applicant)
-        ->from(route('groups.membership-applications.create', $group))
-        ->post(route('groups.membership-applications.store', $group), [
-            'answers' => [
-                'intro' => '',
-                'favorite_role' => 'tank',
-                'are_you_a_gamer' => true,
-            ],
-        ])
-        ->assertRedirect(route('groups.membership-applications.create', $group))
-        ->assertSessionHasErrors('answers.intro');
-
-    $this->actingAs($applicant)
-        ->post(route('groups.membership-applications.store', $group), [
-            'answers' => [
-                'intro' => 'Ready to join.',
-                'favorite_role' => 'tank',
-                'are_you_a_gamer' => true,
-            ],
-        ])
-        ->assertRedirect()
-        ->assertSessionDoesntHaveErrors();
-
-    $this->actingAs($applicant)
-        ->from(route('groups.membership-applications.create', $group))
-        ->post(route('groups.membership-applications.store', $group), [
-            'answers' => [
-                'intro' => 'Trying again.',
-                'favorite_role' => 'healer',
-                'are_you_a_gamer' => true,
-            ],
-        ])
-        ->assertRedirect(route('groups.membership-applications.create', $group))
-        ->assertSessionHasErrors('application');
-
-    expect(GroupMembershipApplication::query()->where('group_id', $group->id)->count())->toBe(1);
-});
-
-it('rejects membership application free text answers above one thousand characters', function () {
-    $owner = User::factory()->create();
-    $applicant = User::factory()->create();
-    $schema = [[
-        'id' => 'intro',
-        'type' => 'small_text',
-        'name' => ['en' => 'Short intro'],
-        'description' => [],
-        'required' => true,
-        'options' => [],
-    ], [
-        'id' => 'details',
-        'type' => 'big_text',
-        'name' => ['en' => 'More detail'],
-        'description' => [],
-        'required' => true,
-        'options' => [],
-    ], [
-        'id' => 'are_you_a_gamer',
-        'type' => 'toggle',
-        'name' => ['en' => 'Are you a gamer?'],
-        'description' => [],
-        'required' => true,
-        'options' => [],
-    ]];
-    $group = Group::factory()->applicationBased()->create([
-        'owner_id' => $owner->id,
-        'membership_application_schema' => $schema,
-    ]);
-
-    $this->actingAs($applicant)
-        ->from(route('groups.membership-applications.create', $group))
-        ->post(route('groups.membership-applications.store', $group), [
-            'answers' => [
-                'intro' => str_repeat('a', 1001),
-                'details' => str_repeat('b', 1001),
-                'are_you_a_gamer' => true,
-            ],
-        ])
-        ->assertRedirect(route('groups.membership-applications.create', $group))
-        ->assertSessionHasErrors([
-            'answers.intro' => 'This answer must be 1000 characters or fewer.',
-            'answers.details' => 'This answer must be 1000 characters or fewer.',
-        ]);
-});
-
-it('lets applicants update pending group requests', function () {
-    $owner = User::factory()->create();
-    $applicant = User::factory()->create();
-    $group = Group::factory()->applicationBased()->create([
-        'owner_id' => $owner->id,
-        'membership_application_schema' => membershipApplicationSchemaPayload(),
-    ]);
-
-    $application = GroupMembershipApplication::factory()->create([
-        'group_id' => $group->id,
-        'user_id' => $applicant->id,
-        'answers' => [
-            'intro' => 'Original intro.',
-            'favorite_role' => 'tank',
-            'are_you_a_gamer' => true,
-        ],
-        'form_snapshot' => membershipApplicationSchemaPayload(),
-    ]);
-
-    $this->actingAs($applicant)
-        ->get(route('groups.membership-applications.create', $group))
-        ->assertOk()
-        ->assertInertia(fn (Assert $page) => $page
-            ->component('Groups/MembershipApplications/Create')
-            ->where('existingApplication.id', $application->id)
-            ->where('existingApplication.answers.intro', 'Original intro.')
-        );
-
-    $this->actingAs($applicant)
-        ->put(route('groups.membership-applications.update', $group), [
-            'answers' => [
-                'intro' => 'Updated intro.',
-                'favorite_role' => 'healer',
-                'are_you_a_gamer' => false,
-            ],
-        ])
-        ->assertRedirect(route('groups.membership-applications.create', $group))
-        ->assertSessionDoesntHaveErrors();
-
-    $application->refresh();
-
-    expect($application->answers['intro'])->toBe('Updated intro.')
-        ->and($application->answers['favorite_role'])->toBe('healer')
-        ->and($application->answers['are_you_a_gamer'])->toBeFalse();
-});
-
-it('shows the current users group requests', function () {
-    $user = User::factory()->create();
-    $otherUser = User::factory()->create();
-    $activeGroup = Group::factory()->applicationBased()->create([
-        'name' => 'Active Request Group',
-    ]);
-    $reviewedGroup = Group::factory()->applicationBased()->create([
-        'name' => 'Reviewed Request Group',
-    ]);
-    $otherGroup = Group::factory()->applicationBased()->create([
-        'name' => 'Other Request Group',
-    ]);
-
-    $activeRequest = GroupMembershipApplication::factory()->create([
-        'group_id' => $activeGroup->id,
-        'user_id' => $user->id,
-        'status' => GroupMembershipApplication::STATUS_PENDING,
-        'answers' => ['intro' => 'Still waiting.'],
-        'form_snapshot' => membershipApplicationSchemaPayload(),
-    ]);
-    $reviewedRequest = GroupMembershipApplication::factory()->declined()->create([
-        'group_id' => $reviewedGroup->id,
-        'user_id' => $user->id,
-        'answers' => ['intro' => 'Not this time.'],
-        'form_snapshot' => membershipApplicationSchemaPayload(),
-    ]);
-    GroupMembershipApplication::factory()->create([
-        'group_id' => $otherGroup->id,
-        'user_id' => $otherUser->id,
-        'answers' => ['intro' => 'Not mine.'],
-        'form_snapshot' => membershipApplicationSchemaPayload(),
-    ]);
-
-    $this->actingAs($user)
-        ->get(route('groups.requests.index'))
-        ->assertOk()
-        ->assertInertia(fn (Assert $page) => $page
-            ->component('Dashboard/Groups/MembershipRequests/Index')
-            ->has('activeRequests', 1)
-            ->where('activeRequests.0.id', $activeRequest->id)
-            ->where('activeRequests.0.can_edit', true)
-            ->where('activeRequests.0.group.name', 'Active Request Group')
-            ->has('historicalRequests', 1)
-            ->where('historicalRequests.0.id', $reviewedRequest->id)
-            ->where('historicalRequests.0.group.name', 'Reviewed Request Group')
-        );
-});
-
-it('lets moderators approve and decline membership applications', function () {
-    $owner = User::factory()->create();
-    $moderator = User::factory()->create();
-    $approvedApplicant = User::factory()->create();
-    $declinedApplicant = User::factory()->create();
-    $group = Group::factory()->applicationBased()->create([
-        'owner_id' => $owner->id,
-        'membership_application_schema' => membershipApplicationSchemaPayload(),
-    ]);
-
-    $group->memberships()->create([
-        'user_id' => $moderator->id,
-        'role' => GroupMembership::ROLE_MODERATOR,
-        'joined_at' => now(),
-    ]);
-
-    $approvedApplication = GroupMembershipApplication::factory()->create([
-        'group_id' => $group->id,
-        'user_id' => $approvedApplicant->id,
-        'answers' => [
-            'intro' => 'Approve me.',
-            'favorite_role' => 'tank',
-            'are_you_a_gamer' => true,
-        ],
-        'form_snapshot' => membershipApplicationSchemaPayload(),
-    ]);
-    $declinedApplication = GroupMembershipApplication::factory()->create([
-        'group_id' => $group->id,
-        'user_id' => $declinedApplicant->id,
-        'answers' => [
-            'intro' => 'Maybe not.',
-            'favorite_role' => 'healer',
-            'are_you_a_gamer' => true,
-        ],
-        'form_snapshot' => membershipApplicationSchemaPayload(),
-    ]);
-
-    $this->actingAs($moderator)
-        ->get(route('groups.dashboard.membership-applications.index', $group))
-        ->assertOk()
-        ->assertInertia(fn (Assert $page) => $page
-            ->component('Dashboard/Groups/MembershipApplications/Index')
-            ->has('applications', 2)
-        );
-
-    $this->actingAs($moderator)
-        ->post(route('groups.dashboard.membership-applications.approve', [$group, $approvedApplication]))
-        ->assertRedirect()
-        ->assertSessionDoesntHaveErrors();
-
-    $this->actingAs($moderator)
-        ->post(route('groups.dashboard.membership-applications.decline', [$group, $declinedApplication]), [
-            'review_reason' => 'Not a fit right now.',
-        ])
-        ->assertRedirect()
-        ->assertSessionDoesntHaveErrors();
-
-    expect($approvedApplication->fresh()->status)->toBe(GroupMembershipApplication::STATUS_APPROVED)
-        ->and($declinedApplication->fresh()->status)->toBe(GroupMembershipApplication::STATUS_DECLINED)
-        ->and($declinedApplication->fresh()->review_reason)->toBe('Not a fit right now.')
-        ->and($group->memberships()->where('user_id', $approvedApplicant->id)->exists())->toBeTrue()
-        ->and($group->memberships()->where('user_id', $declinedApplicant->id)->exists())->toBeFalse();
+    // Retrying or rolling back must not reopen requests or duplicate the audit events.
+    $migration->down();
+    $migration->up();
+    expect(GroupMembershipApplication::where('status', 'cancelled')->count())->toBe(3)
+        ->and(AuditLog::where('action', 'group.membership_requests.retired')->count())->toBe(3);
+    Queue::assertNothingPushed();
 });

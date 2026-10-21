@@ -7,18 +7,21 @@ use App\Models\ActivitySlot;
 use App\Models\Character;
 use App\Models\User;
 use App\Services\Groups\ActivitySlotBench;
+use App\Services\Runs\RunAccessService;
 use Illuminate\Support\Collection;
 
 class XivPluginRunRealtimeService
 {
     public function __construct(
         private readonly ActivitySlotBench $slotBench,
+        private readonly RunAccessService $access,
     ) {}
 
     public function loadRealtimeRelations(Activity $activity): Activity
     {
         return $activity->loadMissing([
             'group.memberships',
+            'group.bans',
             'slots.assignedCharacter.user',
         ]);
     }
@@ -27,10 +30,12 @@ class XivPluginRunRealtimeService
     {
         $this->loadRealtimeRelations($activity);
 
-        if (! $this->runCanUseRealtime($activity)) {
+        if (! $this->access->canView($activity->group, $activity, $user->id)
+            || ! $this->runCanUseRealtime($activity)) {
             return false;
         }
 
+        // Realtime party data additionally requires membership or an assignment; viewing a public run is insufficient.
         if ($activity->status === Activity::STATUS_DRAFT) {
             return $activity->group->hasModeratorAccess($user->id);
         }

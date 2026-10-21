@@ -32,6 +32,18 @@ beforeEach(function () {
     ]);
 });
 
+it('recommends public runs independently of group visibility and never recommends banned or members-only runs', function () {
+    $service = app(V2HomeDataService::class);
+    $this->group->update(['join_mode' => Group::JOIN_MODE_INVITE_ONLY, 'is_visible' => false]);
+    expect(array_column($service->recommendedRuns($this->user), 'id'))->toBe([$this->run->id]);
+
+    $this->run->update(['is_public' => false]);
+    expect($service->recommendedRuns($this->user))->toBe([]);
+    $this->run->update(['is_public' => true]);
+    $this->group->bans()->create(['user_id' => $this->user->id, 'banned_by_user_id' => $this->group->owner_id]);
+    expect($service->recommendedRuns($this->user))->toBe([]);
+});
+
 it('provides the published progress label and localized attendee links for a recommended card', function () {
     app()->setLocale('de');
     $run = app(V2HomeDataService::class)->recommendedRuns($this->user)[0];

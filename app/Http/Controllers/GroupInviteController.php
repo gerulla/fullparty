@@ -7,6 +7,7 @@ use App\Models\Group;
 use App\Models\GroupInvite;
 use App\Models\GroupMembership;
 use App\Services\AuditLogger;
+use App\Services\Groups\GroupPersonalInvitationService;
 use App\Services\Notifications\GroupUpdateNotificationService;
 use App\Services\Quotas\QuotaService;
 use App\Support\Audit\AuditScope;
@@ -27,14 +28,22 @@ class GroupInviteController extends Controller
         private readonly GroupUpdateNotificationService $groupUpdateNotificationService,
         private readonly ServerMeta $serverMeta,
         private readonly QuotaService $quotaService,
+        private readonly GroupPersonalInvitationService $personalInvitations,
     ) {}
 
-    public function show(string $token): Response
+    public function show(string $token): Response|RedirectResponse
     {
         $invite = GroupInvite::query()
             ->with('group.owner')
             ->where('token', $token)
             ->firstOrFail();
+
+        if ($invite->isPersonal()) {
+            if (! auth()->check()) {
+                return redirect()->guest(route('login', ['invite' => $token]));
+            }
+            $this->personalInvitations->authorizeRecipient($invite, auth()->user());
+        }
 
         $group = $invite->group->loadMissing('memberships');
 
@@ -46,6 +55,8 @@ class GroupInviteController extends Controller
                 'max_uses' => $invite->max_uses,
                 'expires_at' => $invite->expires_at,
                 'can_accept' => $this->canAcceptInvite($invite),
+                'is_personal' => $invite->isPersonal(),
+                'status' => $invite->status === GroupInvite::STATUS_PENDING && $invite->isExpired() ? GroupInvite::STATUS_EXPIRED : $invite->status,
             ],
             'group' => [
                 'id' => $group->id,
@@ -139,6 +150,13 @@ class GroupInviteController extends Controller
     public function accept(string $token): RedirectResponse|JsonResponse
     {
         $user = auth()->user();
+        $personalInvite = GroupInvite::query()->where('token', $token)->whereNotNull('recipient_user_id')->first();
+        if ($personalInvite) {
+            $group = $this->personalInvitations->accept($personalInvite, $user);
+
+            return MemberApi::active() ? MemberApi::success(['group_slug' => $group->slug])
+                : redirect()->route('groups.dashboard', $group)->with('success', 'group_joined');
+        }
         $inviteGroupId = GroupInvite::query()
             ->where('token', $token)
             ->value('group_id');
@@ -253,6 +271,12 @@ class GroupInviteController extends Controller
             abort(404);
         }
 
+        if ($invite->isPersonal()) {
+            $this->personalInvitations->revoke($group, $invite, auth()->user());
+
+            return redirect()->back()->with('success', 'group_invite_deleted');
+        }
+
         if ($invite->is_system) {
             return redirect()->back()->withErrors([
                 'error' => 'group_system_invite_locked',
@@ -295,6 +319,9 @@ class GroupInviteController extends Controller
 
     private function canAcceptInvite(GroupInvite $invite): bool
     {
+        if ($invite->isPersonal() && (int) $invite->recipient_user_id !== (int) auth()->id()) {
+            return false;
+        }
         if ($invite->is_system && ! $invite->group->hasPermanentInvite()) {
             return false;
         }

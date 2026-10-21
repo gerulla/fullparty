@@ -81,6 +81,29 @@ function createAccessControlActivity(array $groupOverrides = [], array $activity
     return compact('owner', 'group', 'activity');
 }
 
+it('omits members-only runs from public group summaries and run lists', function () {
+    extract(createAccessControlActivity());
+    $private = Activity::factory()->create([
+        'group_id' => $group->id,
+        'activity_type_id' => $activity->activity_type_id,
+        'activity_type_version_id' => $activity->activity_type_version_id,
+        'status' => Activity::STATUS_SCHEDULED,
+        'starts_at' => now()->addDay(),
+        'is_public' => false,
+        'title' => 'Members Only Secret',
+    ]);
+
+    $this->get(route('groups.dashboard', $group))->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->has('group.upcoming_activities', 1)
+            ->where('group.upcoming_activities.0.id', $activity->id));
+    $this->get(route('groups.dashboard.activities.index', $group))->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->has('activities', 1)->where('activities.0.id', $activity->id));
+    $this->actingAs($owner)->get(route('groups.dashboard.activities.index', $group))->assertOk()
+        ->assertInertia(fn (Assert $page) => $page->has('activities', 2));
+});
+
 it('allows guests and non members to view visible open-join group dashboards', function () {
     extract(createAccessControlActivity());
 
@@ -101,7 +124,7 @@ it('allows guests and non members to view visible open-join group dashboards', f
         ->assertOk();
 });
 
-it('allows guests to view visible application-based dashboards and exposes the apply action', function () {
+it('preserves legacy dashboard visibility but disables the retired request action', function () {
     extract(createAccessControlActivity([
         'join_mode' => Group::JOIN_MODE_APPLICATION,
         'is_visible' => true,
@@ -113,7 +136,7 @@ it('allows guests to view visible application-based dashboards and exposes the a
             ->where('group.current_user_role', null)
             ->where('group.membership_application.pending', false)
             ->where('group.permissions.can_join', false)
-            ->where('group.permissions.can_apply', true));
+            ->where('group.permissions.can_apply', false));
 
     $this->get(route('groups.dashboard.activities.index', $group))->assertOk();
 });
@@ -169,7 +192,7 @@ it('returns not found for non member writes to dashboard endpoints', function ()
     expect($application->fresh()->status)->toBe(ActivityApplication::STATUS_APPROVED);
 });
 
-it('requires membership to view public activities that belong to hidden groups', function () {
+it('allows public runs regardless of legacy group visibility', function () {
     extract(createAccessControlActivity([
         'is_visible' => false,
     ], [
@@ -181,7 +204,7 @@ it('requires membership to view public activities that belong to hidden groups',
         'activity' => $activity->id,
     ]));
 
-    $response->assertNotFound();
+    $response->assertOk();
 });
 
 it('only exposes draft activity overviews to moderators', function () {
@@ -249,7 +272,7 @@ it('keeps complete and cancelled public activity overviews visible', function (s
     'cancelled' => [Activity::STATUS_CANCELLED],
 ]);
 
-it('lets non members view members-only application pages without submitting', function () {
+it('hides members-only overviews and application pages from non-members', function () {
     extract(createAccessControlActivity([], [
         'is_public' => false,
     ]));
@@ -264,7 +287,7 @@ it('lets non members view members-only application pages without submitting', fu
     $this->get(route('groups.activities.overview', [
         'group' => $group->slug,
         'activity' => $activity->id,
-    ]))->assertOk();
+    ]))->assertNotFound();
 
     $outsider = User::factory()->create();
 
@@ -273,13 +296,7 @@ it('lets non members view members-only application pages without submitting', fu
             'group' => $group->slug,
             'activity' => $activity->id,
         ]))
-        ->assertOk()
-        ->assertInertia(fn (Assert $page) => $page
-            ->component('Groups/Activities/Application')
-            ->where('permissions.can_apply', false)
-            ->where('permissions.requires_group_membership', true)
-            ->where('permissions.can_join_group', true)
-        );
+        ->assertNotFound();
 
     $this->actingAs($outsider)
         ->post(route('groups.activities.application.store', [
@@ -315,8 +332,8 @@ it('lets group owners apply to members-only runs even without a membership row',
         ->assertInertia(fn (Assert $page) => $page
             ->component('Groups/Activities/Application')
             ->where('permissions.can_apply', true)
-            ->where('permissions.requires_group_membership', false)
-            ->where('permissions.can_join_group', false)
+            ->missing('permissions.requires_group_membership')
+            ->missing('permissions.can_join_group')
         );
 });
 
@@ -344,8 +361,8 @@ it('lets owners apply to public application runs in hidden invite-only static gr
         ->assertInertia(fn (Assert $page) => $page
             ->component('Groups/Activities/Application')
             ->where('permissions.can_apply', true)
-            ->where('permissions.requires_group_membership', false)
-            ->where('permissions.can_join_group', false)
+            ->missing('permissions.requires_group_membership')
+            ->missing('permissions.can_join_group')
         );
 });
 
@@ -380,8 +397,8 @@ it('lets run organizers apply to public application runs in hidden invite-only s
         ->assertInertia(fn (Assert $page) => $page
             ->component('Groups/Activities/Application')
             ->where('permissions.can_apply', true)
-            ->where('permissions.requires_group_membership', false)
-            ->where('permissions.can_join_group', false)
+            ->missing('permissions.requires_group_membership')
+            ->missing('permissions.can_join_group')
         );
 });
 
@@ -406,12 +423,12 @@ it('lets owners apply to draft application runs in hidden invite-only static gro
         ->assertInertia(fn (Assert $page) => $page
             ->component('Groups/Activities/Application')
             ->where('permissions.can_apply', true)
-            ->where('permissions.requires_group_membership', false)
-            ->where('permissions.can_join_group', false)
+            ->missing('permissions.requires_group_membership')
+            ->missing('permissions.can_join_group')
         );
 });
 
-it('points non members toward group applications for application based groups', function () {
+it('does not offer retired group membership requests to non members', function () {
     extract(createAccessControlActivity([
         'join_mode' => Group::JOIN_MODE_APPLICATION,
     ], [
@@ -425,14 +442,7 @@ it('points non members toward group applications for application based groups', 
             'group' => $group->slug,
             'activity' => $activity->id,
         ]))
-        ->assertOk()
-        ->assertInertia(fn (Assert $page) => $page
-            ->component('Groups/Activities/Application')
-            ->where('permissions.can_apply', false)
-            ->where('permissions.requires_group_membership', true)
-            ->where('permissions.can_join_group', false)
-            ->where('permissions.can_request_group_membership', true)
-        );
+        ->assertNotFound();
 });
 
 it('does not let guest application tokens bypass members-only activity membership requirements', function () {

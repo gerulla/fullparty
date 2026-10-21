@@ -23,6 +23,7 @@ final class RunDiscoveryService
     public function __construct(
         private readonly GeneratedRunImageService $generatedRunImageService,
         private readonly ActivitySlotKind $slotKind,
+        private readonly RunAccessService $access,
     ) {}
 
     private const SUPPORTED_LOCALES = ['en', 'de', 'fr', 'ja'];
@@ -141,7 +142,7 @@ final class RunDiscoveryService
     {
         $activities = Activity::query()
             ->with($this->discoveryRelationsForUser($user->id))
-            ->whereHas('group', fn (Builder $query) => $query->where('is_visible', true))
+            ->tap(fn (Builder $query) => $this->access->scopeVisibleTo($query, $user->id))
             ->whereNotNull('starts_at')
             ->whereNotIn('status', Activity::ARCHIVED_STATUSES)
             ->orderBy('starts_at')
@@ -485,31 +486,15 @@ final class RunDiscoveryService
 
     private function canUserDiscoverActivity(Activity $activity, int $userId): bool
     {
-        $group = $activity->group;
-
-        if (! $group || ! $group->is_visible || $group->isBanned($userId)) {
-            return false;
-        }
-
-        if ($group->hasModeratorAccess($userId)) {
-            return true;
-        }
-
-        return ! Activity::isModeratorOnlyStatus($activity->status);
+        return $activity->group !== null
+            && $this->access->canView($activity->group, $activity, $userId);
     }
 
     private function canUserTakeDiscoveryAction(Activity $activity, User $user): bool
     {
-        if ($this->userHasExistingApplication($activity)
+        return $this->userHasExistingApplication($activity)
             || $this->canUserApplyToActivity($activity, $user)
-            || $this->canUserSelfAssignToActivity($activity, $user)) {
-            return true;
-        }
-
-        return ! $activity->is_public
-            && $this->canUserAccessOverviewWithoutSecret($activity, $user->id)
-            && $this->hasOpenMainSlot($activity)
-            && ($activity->needs_application ? $activity->acceptsApplications() : ! $activity->isArchived());
+            || $this->canUserSelfAssignToActivity($activity, $user);
     }
 
     private function userHasExistingApplication(Activity $activity): bool
@@ -524,15 +509,7 @@ final class RunDiscoveryService
 
     private function canUserApplyToActivity(Activity $activity, User $user): bool
     {
-        if (! $activity->needs_application || ! $activity->acceptsApplications()) {
-            return false;
-        }
-
-        if (! $this->canUserAccessOverviewWithoutSecret($activity, $user->id)) {
-            return false;
-        }
-
-        if (! $this->canUserUseParticipationFlow($activity, $user->id)) {
+        if (! $this->access->canApply($activity->group, $activity, $user->id)) {
             return false;
         }
 
@@ -545,15 +522,7 @@ final class RunDiscoveryService
 
     private function canUserSelfAssignToActivity(Activity $activity, User $user): bool
     {
-        if ($activity->needs_application || $activity->isArchived()) {
-            return false;
-        }
-
-        if (! $this->canUserAccessOverviewWithoutSecret($activity, $user->id)) {
-            return false;
-        }
-
-        if (! $this->canUserUseParticipationFlow($activity, $user->id)) {
+        if (! $this->access->canSelfAssign($activity->group, $activity, $user->id)) {
             return false;
         }
 
@@ -582,44 +551,6 @@ final class RunDiscoveryService
             ->filter(fn (ActivitySlot $slot) => $this->slotKind->isMainRoster($slot));
     }
 
-    private function canUserAccessOverviewWithoutSecret(Activity $activity, int $userId): bool
-    {
-        $group = $activity->group;
-
-        if (! $group) {
-            return false;
-        }
-
-        if (Activity::isModeratorOnlyStatus($activity->status)) {
-            return $group->hasModeratorAccess($userId);
-        }
-
-        if ($group->is_visible) {
-            return true;
-        }
-
-        return $group->hasMember($userId) || $group->hasModeratorAccess($userId);
-    }
-
-    private function canUserUseParticipationFlow(Activity $activity, int $userId): bool
-    {
-        $group = $activity->group;
-
-        if (! $group || $group->isBanned($userId)) {
-            return false;
-        }
-
-        if (Activity::isModeratorOnlyStatus($activity->status)) {
-            return $group->hasModeratorAccess($userId);
-        }
-
-        if ($activity->is_public) {
-            return $group->is_visible || $group->hasMember($userId) || $group->hasModeratorAccess($userId);
-        }
-
-        return $group->hasMember($userId) || $group->hasModeratorAccess($userId);
-    }
-
     /**
      * @return array<string, mixed>
      */
@@ -635,9 +566,6 @@ final class RunDiscoveryService
         $canManage = $group?->hasModeratorAccess($user->id) ?? false;
         $hasExistingApplication = $this->userHasExistingApplication($activity);
         $canApply = $this->canUserApplyToActivity($activity, $user);
-        $canOpenApplicationPage = $activity->needs_application
-            && $activity->acceptsApplications()
-            && $this->hasOpenMainSlot($activity);
         $region = Group::regionForDatacenter($activity->datacenter ?: $group?->datacenter);
 
         $secondaryLocationLabel = $activity->organizerCharacter?->world
@@ -706,7 +634,7 @@ final class RunDiscoveryService
                         'group' => $group?->slug,
                         'activity' => $activity->id,
                     ]),
-                'apply' => ($canApply || $hasExistingApplication || $canOpenApplicationPage)
+                'apply' => ($canApply || $hasExistingApplication)
                     ? route('groups.activities.application', [
                         'locale' => app()->getLocale(),
                         'group' => $group?->slug,

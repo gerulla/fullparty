@@ -1,9 +1,6 @@
 <script setup lang="ts">
-// @ts-ignore
-import { useConfirmationModal } from "@/composables/useConfirmationModal";
 import type { SettingsUser } from "@/Types/Settings";
-import { router, useForm } from "@inertiajs/vue3";
-import { useToast } from "@nuxt/ui/composables";
+import { useForm } from "@inertiajs/vue3";
 import { ref } from "vue";
 import { route } from "ziggy-js";
 import { useI18n } from "vue-i18n";
@@ -13,8 +10,6 @@ const props = defineProps<{
 }>();
 
 const { t } = useI18n();
-const toast = useToast();
-const confirmationModal = useConfirmationModal();
 
 const form = useForm({
 	public_profile: props.user.public_profile,
@@ -36,43 +31,6 @@ const submit = () => {
 	form.post(route('settings.privacy'));
 };
 
-const promptDeleteAccount = async () => {
-	await confirmationModal.open({
-		title: t('settings.privacy.delete_account_modal.title'),
-		description: t('settings.privacy.delete_account_modal.description'),
-		severity: 'error',
-		warningText: t('settings.privacy.delete_account_modal.warning'),
-		confirmLabel: t('settings.privacy.delete_account_modal.confirm'),
-		confirmIcon: 'i-lucide-trash-2',
-		onConfirm: async ({ patch }) => {
-			patch({ confirmLoading: true });
-
-			return await new Promise<boolean>((resolve) => {
-				router.delete(route('settings.account.destroy'), {
-					preserveScroll: true,
-					onSuccess: () => {
-						resolve(true);
-					},
-					onError: (errors) => {
-						if (errors.error === 'account_delete_group_owner') {
-							toast.add({
-								title: t('general.error'),
-								description: t('settings.privacy.delete_account_owner_blocked'),
-								color: 'error',
-								icon: 'i-lucide-triangle-alert',
-							});
-						}
-
-						resolve(false);
-					},
-					onFinish: () => {
-						patch({ confirmLoading: false });
-					},
-				});
-			});
-		},
-	});
-};
 </script>
 
 <template>
@@ -106,19 +64,7 @@ const promptDeleteAccount = async () => {
 			</div>
 		</form>
 
-		<div class="flex flex-col items-start gap-4 mb-4 border-t border-neutral-200 pt-4">
-			<div class="w-full">
-				<p class="font-semibold">{{ t('settings.privacy.danger_zone') }}</p>
-				<p class="text-sm">{{ t('settings.privacy.delete_account_description') }}</p>
-			</div>
-			<UButton
-				:label="t('settings.privacy.delete_account')"
-				size="lg"
-				color="error"
-				icon="i-lucide-trash-2"
-				@click="promptDeleteAccount"
-			/>
-		</div>
+
 	</UCard>
 </template>
 

@@ -176,6 +176,12 @@
       "transferred": "hat einen Charakter zwischen Konten übertragen."
     },
     "group": {
+      "personal_invite": {
+        "sent": "hat eine persönliche Gruppeneinladung gesendet.",
+        "accepted": "hat eine persönliche Gruppeneinladung angenommen.",
+        "declined": "hat eine persönliche Gruppeneinladung abgelehnt.",
+        "revoked": "hat eine persönliche Gruppeneinladung widerrufen."
+      },
       "resources": {
         "created": "hat eine Ressource erstellt.",
         "save": "hat einen Ressourcenentwurf gespeichert.",
@@ -504,6 +510,13 @@
       "transferred": "Charakter zwischen Konten übertragen"
     },
     "group": {
+      "personal_invite": {
+        "sent": "Persönliche Gruppeneinladung gesendet",
+        "accepted": "Persönliche Gruppeneinladung angenommen",
+        "declined": "Persönliche Gruppeneinladung abgelehnt",
+        "revoked": "Persönliche Gruppeneinladung widerrufen"
+      },
+      "membership_requests_retired": "hat Beitrittsanfragen eingestellt, ausstehende Anfragen storniert und genehmigungspflichtige Mitgliedschaften auf Einladungen umgestellt.",
       "resources": {
         "created": "hat eine Ressource erstellt.",
         "save": "hat einen Ressourcenentwurf gespeichert.",

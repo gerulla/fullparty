@@ -6,13 +6,15 @@ use App\Models\Activity;
 use App\Models\ActivitySlot;
 use App\Models\User;
 use App\Services\Groups\ActivitySlotBench;
+use App\Services\Runs\RunAccessService;
 use Carbon\CarbonImmutable;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 final class LandingPageDataService
 {
+    public function __construct(private readonly RunAccessService $access) {}
+
     /**
      * @return array{this_week: array<string, mixed>}
      */
@@ -30,7 +32,7 @@ final class LandingPageDataService
     {
         $start = CarbonImmutable::now()->startOfWeek();
         $end = $start->addWeek();
-        $activities = $this->discoverableActivitiesBetween($start, $end);
+        $activities = $this->discoverableActivitiesBetween($start, $end, $user);
 
         return [
             'start' => $start->toDateString(),
@@ -62,9 +64,9 @@ final class LandingPageDataService
     /**
      * @return Collection<int, Activity>
      */
-    private function discoverableActivitiesBetween(CarbonImmutable $start, CarbonImmutable $end): Collection
+    private function discoverableActivitiesBetween(CarbonImmutable $start, CarbonImmutable $end, ?User $user): Collection
     {
-        return Activity::query()
+        return $this->access->scopeVisibleTo(Activity::query(), $user?->id, includeDrafts: false)
             ->with([
                 'group' => fn ($query) => $query->select(['id', 'name', 'slug', 'datacenter', 'is_visible']),
                 'activityTypeVersion' => fn ($query) => $query->select(['id', 'name', 'difficulty']),
@@ -76,10 +78,8 @@ final class LandingPageDataService
                     ->orderBy('id'),
                 'slots.assignedCharacter' => fn ($query) => $query->select(['id', 'name', 'avatar_url']),
             ])
-            ->whereHas('group', fn (Builder $query) => $query->where('is_visible', true))
             ->whereNotIn('status', [
                 Activity::STATUS_CANCELLED,
-                ...Activity::MODERATOR_ONLY_STATUSES,
             ])
             ->whereNotNull('starts_at')
             ->where('starts_at', '>=', $start)

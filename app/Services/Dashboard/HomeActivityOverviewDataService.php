@@ -11,6 +11,7 @@ use App\Models\GroupMembership;
 use App\Models\User;
 use App\Services\Characters\CharacterTransferHistory;
 use App\Services\Notifications\NotificationInboxService;
+use App\Services\Runs\RunAccessService;
 use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
 use Illuminate\Support\Collection;
@@ -20,6 +21,7 @@ final class HomeActivityOverviewDataService
     public function __construct(
         private readonly NotificationInboxService $notificationInboxService,
         private readonly CharacterTransferHistory $transferHistory,
+        private readonly RunAccessService $runAccess,
     ) {}
 
     /**
@@ -52,8 +54,8 @@ final class HomeActivityOverviewDataService
 
         return collect([
             ...$this->applicationRuns($user),
-            ...$this->assignmentRuns($characterIds),
-            ...$this->currentSlotRuns($characterIds),
+            ...$this->assignmentRuns($characterIds, $user->id),
+            ...$this->currentSlotRuns($characterIds, $user->id),
         ])
             ->sortByDesc(fn (array $run) => $this->timestampFor($run['starts_at']))
             ->unique('activity_id')
@@ -71,7 +73,8 @@ final class HomeActivityOverviewDataService
             ->select('activity_applications.*')
             ->join('activities', 'activities.id', '=', 'activity_applications.activity_id')
             ->with([
-                'activity.group',
+                'activity.group.memberships',
+                'activity.group.bans',
                 'activity.activityTypeVersion',
             ])
             ->where('activity_applications.user_id', $user->id)
@@ -86,6 +89,7 @@ final class HomeActivityOverviewDataService
             ->map(fn (ActivityApplication $application) => $this->serializeUserActivity(
                 $application->activity,
                 $application->status === ActivityApplication::STATUS_ON_BENCH ? 'benched' : 'confirmed',
+                $user->id,
             ))
             ->filter()
             ->values()
@@ -96,7 +100,7 @@ final class HomeActivityOverviewDataService
      * @param  array<int, int>  $characterIds
      * @return array<int, array<string, mixed>>
      */
-    private function assignmentRuns(array $characterIds): array
+    private function assignmentRuns(array $characterIds, int $userId): array
     {
         if ($characterIds === []) {
             return [];
@@ -106,7 +110,8 @@ final class HomeActivityOverviewDataService
             ->select('activity_slot_assignments.*')
             ->join('activities', 'activities.id', '=', 'activity_slot_assignments.activity_id')
             ->with([
-                'activity.group',
+                'activity.group.memberships',
+                'activity.group.bans',
                 'activity.activityTypeVersion',
             ])
             ->whereIn('activity_slot_assignments.character_id', $characterIds)
@@ -125,6 +130,7 @@ final class HomeActivityOverviewDataService
             ->map(fn (ActivitySlotAssignment $assignment) => $this->serializeUserActivity(
                 $assignment->activity,
                 'confirmed',
+                $userId,
             ))
             ->filter()
             ->values()
@@ -135,14 +141,14 @@ final class HomeActivityOverviewDataService
      * @param  array<int, int>  $characterIds
      * @return array<int, array<string, mixed>>
      */
-    private function currentSlotRuns(array $characterIds): array
+    private function currentSlotRuns(array $characterIds, int $userId): array
     {
         if ($characterIds === []) {
             return [];
         }
 
         return Activity::query()
-            ->with(['group', 'activityTypeVersion'])
+            ->with(['group.memberships', 'group.bans', 'activityTypeVersion'])
             ->whereHas('slots', fn ($query) => $query->whereIn('assigned_character_id', $characterIds)
                 ->tap(fn ($slots) => $this->transferHistory
                     ->excludeUnaccepted($slots, 'activity_slots.assigned_character_id', 'activity_slots.activity_id')))
@@ -150,7 +156,7 @@ final class HomeActivityOverviewDataService
             ->orderByDesc('starts_at')
             ->limit(40)
             ->get()
-            ->map(fn (Activity $activity) => $this->serializeUserActivity($activity, 'confirmed'))
+            ->map(fn (Activity $activity) => $this->serializeUserActivity($activity, 'confirmed', $userId))
             ->values()
             ->all();
     }
@@ -158,7 +164,7 @@ final class HomeActivityOverviewDataService
     /**
      * @return array<string, mixed>|null
      */
-    private function serializeUserActivity(?Activity $activity, string $participationStatusKey): ?array
+    private function serializeUserActivity(?Activity $activity, string $participationStatusKey, int $userId): ?array
     {
         if (! $activity) {
             return null;
@@ -182,7 +188,8 @@ final class HomeActivityOverviewDataService
             'datacenter' => $activity->datacenter,
             'run_style' => $activity->run_style,
             'difficulty' => $activity->activityTypeVersion?->difficulty,
-            'href' => $this->activityOverviewUrl($activity),
+            'href' => $activity->group && $this->runAccess->canView($activity->group, $activity, $userId)
+                ? $this->activityOverviewUrl($activity) : null,
         ];
     }
 
@@ -208,7 +215,8 @@ final class HomeActivityOverviewDataService
     {
         return ActivityApplication::query()
             ->with([
-                'activity.group',
+                'activity.group.memberships',
+                'activity.group.bans',
                 'activity.activityTypeVersion',
                 'selectedCharacter',
             ])
@@ -217,7 +225,7 @@ final class HomeActivityOverviewDataService
             ->orderByDesc('id')
             ->limit(20)
             ->get()
-            ->map(fn (ActivityApplication $application) => $this->serializeApplication($application))
+            ->map(fn (ActivityApplication $application) => $this->serializeApplication($application, $user->id))
             ->values()
             ->all();
     }
@@ -225,7 +233,7 @@ final class HomeActivityOverviewDataService
     /**
      * @return array<string, mixed>
      */
-    private function serializeApplication(ActivityApplication $application): array
+    private function serializeApplication(ActivityApplication $application, int $userId): array
     {
         $activity = $application->activity;
         $status = $this->applicationDisplayStatus($application);
@@ -239,7 +247,8 @@ final class HomeActivityOverviewDataService
             'title' => $activity?->title,
             'activity_type_name' => $activity?->activityTypeVersion?->name,
             'image_url' => $activity ? $this->activityImageUrl($activity) : null,
-            'href' => $activity ? $this->applicationUrl($application, $activity) : null,
+            'href' => $activity?->group && $this->runAccess->canView($activity->group, $activity, $userId)
+                ? $this->applicationUrl($application, $activity) : null,
             'group' => [
                 'name' => $activity?->group?->name,
                 'slug' => $activity?->group?->slug,

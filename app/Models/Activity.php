@@ -185,6 +185,7 @@ class Activity extends Model
         'furthest_progress_percent' => 'decimal:2',
         'is_completed' => 'boolean',
         'completed_at' => 'datetime',
+        'group_follow_up_prepared_at' => 'datetime',
         'progress_recorded_at' => 'datetime',
     ];
 

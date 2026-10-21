@@ -1,6 +1,24 @@
 {
   "title": "Settings",
   "subtitle": "Manage your account preferences and notifications.",
+  "navigation": {
+    "back": "All settings",
+    "groups": {
+      "account": "Account",
+      "preferences": "Preferences",
+      "external": "External",
+      "danger": "Danger Zone"
+    },
+    "sections": {
+      "general": { "title": "General", "description": "Your picture, username and homepage." },
+      "socials": { "title": "Socials", "description": "Manage the accounts you use to sign in." },
+      "notifications": { "title": "Notifications", "description": "Choose what you hear about and where." },
+      "privacy": { "title": "Privacy & Security", "description": "Control visibility and change your password." },
+      "discord": { "title": "Discord Integration", "description": "Connect FullParty to your Discord account." },
+      "plugin": { "title": "FFXIV Plugin", "description": "Manage access for linked apps and plugins." },
+      "delete": { "title": "Delete Account", "description": "Permanently delete your FullParty account." }
+    }
+  },
   "account": {
     "title": "Account Settings",
     "save": "Save Changes",
@@ -37,6 +55,32 @@
   "unlink_social_account_warning": "You will be able to link it again later if needed.",
   "unlink_social_account_confirm": "Unlink Account",
   "unlink_social_account_cancel": "Keep Linked",
+  "ffxiv_plugin": {
+    "title": "FullParty in FFXIV",
+    "description": "View your FullParty roster and check in party members directly from the game.",
+    "audience_title": "Mainly for hosts and party leads",
+    "audience_description": "The plugin currently focuses on helping organisers manage runs and coordinate their party.",
+    "install_title": "Install with Dalamud",
+    "requirement": "You’ll need XIVLauncher with Dalamud enabled.",
+    "copy_repository": "Copy URL",
+    "copied": "Copied",
+    "copy_failed": "Could not copy the repository URL",
+    "copy_manually": "Select the URL and copy it manually instead.",
+    "steps": {
+      "repository": {
+        "title": "Add the repository",
+        "description": "Open Dalamud Settings (/xlsettings), then Experimental → Custom Plugin Repositories. Paste this URL, click + and save."
+      },
+      "install": {
+        "title": "Install FullParty",
+        "description": "Open the Plugin Installer (/xlplugins), search for FullParty and choose Install."
+      },
+      "connect": {
+        "title": "Connect your account",
+        "description": "Open the plugin and follow its sign-in instructions to connect your FullParty account in your browser. You can manage or revoke that connection below."
+      }
+    }
+  },
   "active_sessions": {
     "title": "Linked App Sessions",
     "subtitle": "Apps and plugins connected to your account.",
@@ -71,7 +115,7 @@
     "discord_app_connected_title": "Discord app connected",
     "discord_app_connected_description": "FullParty can send supported Discord notifications to this account.",
     "discord_app_not_connected_title": "Discord app not connected",
-    "discord_app_not_connected_description": "Connect the Discord app to enable Discord delivery and bot-powered group features.",
+    "discord_app_not_connected_description": "Connect the FullParty app to enable supported Discord notifications for your account.",
     "channels": {
       "inApp": "On-site",
       "email": "Email",
@@ -174,7 +218,7 @@
         "description": "Optional product updates, feature news, and project notices."
       }
     },
-    "install_discord_app": "Install Discord App",
+    "connect_discord_app": "Connect Discord App",
     "generate_discord_link_token": "Generate Link Token",
     "discord_link_token_title": "Discord link token",
     "discord_link_token_expires": "Share this token with the FullParty Discord bot. It expires {date}.",
@@ -190,7 +234,70 @@
       "confirm": "Disconnect Discord"
     }
   },
+  "discord_integration": {
+    "title": "Keep up with your runs in Discord",
+    "description": "Connect the FullParty app to receive useful updates where you already chat with your party.",
+    "benefits": {
+      "reminders": {
+        "title": "Run reminders",
+        "description": "Get notified when a run is starting soon or starting now, with a link back to the run."
+      },
+      "applications": {
+        "title": "Application and roster updates",
+        "description": "Keep track of application decisions and published roster or bench changes."
+      },
+      "identity": {
+        "title": "Let the bot recognise you",
+        "description": "Link your FullParty identity and primary character so the bot can match you to your account."
+      }
+    },
+    "difference_title": "How is this different from Discord login?",
+    "login_title": "Sign in with Discord",
+    "login_description": "This is a way to log into the FullParty website. It does not connect the FullParty app or enable Discord notifications.",
+    "manage_login": "Manage sign-in accounts",
+    "app_title": "Connect the Discord app",
+    "app_description": "This links your account to the FullParty bot for supported notifications and bot features. You can use it even if you sign in with email, Google or XIVAuth.",
+    "personal_connection": "This is your personal connection. Group Discord servers are linked separately by group organisers.",
+    "how_title": "How to connect",
+    "steps": {
+      "connect": "Choose Connect Discord App to open Discord’s authorisation screen.",
+      "authorize": "Check that you are using the right Discord account, review the permissions and authorise FullParty.",
+      "preferences": "Open Notifications and choose which supported updates you want delivered through Discord."
+    },
+    "manage_notifications": "Manage notifications",
+    "token_title": "Connecting from the bot instead?",
+    "token_description": "If the FullParty bot asks for a link token, generate one here. Share it only with the FullParty bot; it expires and can only be used once.",
+    "disconnect_description": "Disconnecting here stops the app connection and Discord notifications, but does not change your sign-in methods. To remove the app from Discord too, remove FullParty under Authorized Apps in Discord’s settings."
+  },
   "privacy": {
+    "deletion_details": {
+      "warning_title": "Deleting your account is permanent",
+      "warning_description": "Your FullParty account will be closed and you will be signed out immediately. You will no longer be able to sign in to this account.",
+      "effects_title": "What happens to your account",
+      "effects": {
+        "account": {
+          "title": "Account details and access",
+          "description": "Your account name and email are replaced with deleted-account details, and your profile picture is cleared. Website sessions and linked app or plugin access are revoked."
+        },
+        "connections": {
+          "title": "Memberships and connections",
+          "description": "Your group memberships, social sign-in links, Discord app connection and notification inbox are removed."
+        },
+        "characters": {
+          "title": "Characters are released",
+          "description": "Your characters are unlinked from your account. Their Primary, Verified and Claimed statuses are cleared."
+        },
+        "runs": {
+          "title": "Active run commitments",
+          "description": "Active applications are withdrawn and your characters are removed from upcoming rosters. Affected group organisers are notified when assignments are cleared."
+        }
+      },
+      "history_title": "Shared history is kept",
+      "history_description": "Past applications, run and attendance history, character records and audit logs are retained to preserve shared group records. Deleting your account does not erase every reference to your past participation.",
+      "external_accounts": "This only closes your FullParty account. Your in-game FFXIV characters and accounts with Discord, Google or XIVAuth are not deleted.",
+      "groups_title": "Do you own a group?",
+      "confirmation_hint": "You will be asked to confirm before anything is deleted."
+    },
     "title": "Privacy & Security",
     "profile_visibility": "Profile Visibility",
     "profile_visibility_description": "Make your profile visible to other users",

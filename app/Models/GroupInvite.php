@@ -10,8 +10,21 @@ class GroupInvite extends Model
 {
     use HasFactory;
 
+    public const STATUS_PENDING = 'pending';
+
+    public const STATUS_ACCEPTED = 'accepted';
+
+    public const STATUS_DECLINED = 'declined';
+
+    public const STATUS_REVOKED = 'revoked';
+
+    public const STATUS_EXPIRED = 'expired';
+
     private const TOKEN_CHARACTERS = 'abcdefghijklmnopqrstuvwxyz0123456789';
+
     private const TOKEN_LENGTH = 10;
+
+    protected $attributes = ['status' => self::STATUS_PENDING];
 
     protected $fillable = [
         'group_id',
@@ -21,11 +34,20 @@ class GroupInvite extends Model
         'uses',
         'expires_at',
         'is_system',
+        'recipient_user_id',
+        'source_activity_id',
+        'status',
+        'accepted_at',
+        'declined_at',
+        'revoked_at',
     ];
 
     protected $casts = [
         'expires_at' => 'datetime',
         'is_system' => 'boolean',
+        'accepted_at' => 'datetime',
+        'declined_at' => 'datetime',
+        'revoked_at' => 'datetime',
     ];
 
     public function group(): BelongsTo
@@ -38,9 +60,24 @@ class GroupInvite extends Model
         return $this->belongsTo(User::class, 'created_by');
     }
 
+    public function recipient(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'recipient_user_id');
+    }
+
+    public function sourceActivity(): BelongsTo
+    {
+        return $this->belongsTo(Activity::class, 'source_activity_id');
+    }
+
+    public function isPersonal(): bool
+    {
+        return $this->recipient_user_id !== null;
+    }
+
     public function isExpired(): bool
     {
-        return $this->expires_at !== null && $this->expires_at->isPast();
+        return $this->expires_at !== null && $this->expires_at->lessThanOrEqualTo(now());
     }
 
     public function hasRemainingUses(): bool
@@ -50,7 +87,7 @@ class GroupInvite extends Model
 
     public function canBeAccepted(): bool
     {
-        return !$this->isExpired() && $this->hasRemainingUses();
+        return $this->status === self::STATUS_PENDING && ! $this->isExpired() && $this->hasRemainingUses();
     }
 
     public static function generateUniqueToken(): string

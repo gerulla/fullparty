@@ -16,6 +16,7 @@ use App\Models\GroupMembership;
 use App\Models\OccultProgress;
 use App\Models\PhantomJob;
 use App\Models\User;
+use App\Services\XivPlugin\XivPluginRunRealtimeService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;
 use Laravel\Passport\Passport;
@@ -1152,6 +1153,21 @@ it('does not return slot application data for manual assignments', function () {
 
     $this->getJson(route('api.xivplugin.runs.slots.application.show', [$activity, $slot]))
         ->assertNotFound();
+});
+
+it('enforces the shared run ban rules in plugin readers and realtime access', function () {
+    $user = User::factory()->create();
+    $group = Group::factory()->withMember($user, GroupMembership::ROLE_MODERATOR)->create();
+    $activity = Activity::factory()->create([
+        'group_id' => $group->id,
+        'status' => Activity::STATUS_SCHEDULED,
+        'starts_at' => now()->addDay(),
+    ]);
+    $group->bans()->create(['user_id' => $user->id, 'banned_by_user_id' => $group->owner_id]);
+    Passport::actingAs($user, ['xivplugin:read']);
+
+    $this->getJson(route('api.xivplugin.runs.show', $activity))->assertNotFound();
+    expect(app(XivPluginRunRealtimeService::class)->canAccessRun($activity->fresh(), $user))->toBeFalse();
 });
 
 it('does not expose drafts or outside group runs to regular plugin users', function () {

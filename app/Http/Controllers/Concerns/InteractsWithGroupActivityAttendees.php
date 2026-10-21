@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Concerns;
 
 use App\Models\Activity;
 use App\Models\Group;
-use App\Services\Groups\ActivityOverviewAccessService;
 use App\Services\Groups\ActivitySlotSerializer;
+use App\Services\Runs\RunAccessService;
 use Illuminate\Http\Request;
 
 trait InteractsWithGroupActivityAttendees
@@ -19,38 +19,13 @@ trait InteractsWithGroupActivityAttendees
 
     private function canAccessOverview(Request $request, Group $group, Activity $activity, ?string $secretKey): bool
     {
-        return app(ActivityOverviewAccessService::class)
-            ->allows($group, $activity, $request->user()?->id);
+        return app(RunAccessService::class)
+            ->canView($group, $activity, $request->user()?->id);
     }
 
     private function canUseActivityParticipationFlow(Group $group, Activity $activity, ?int $userId): bool
     {
-        if ($group->isBanned($userId)) {
-            return false;
-        }
-
-        if (Activity::isModeratorOnlyStatus($activity->status)) {
-            return $group->hasModeratorAccess($userId)
-                || $this->isActivityOrganizer($activity, $userId);
-        }
-
-        if ($this->isActivityOrganizer($activity, $userId)) {
-            return true;
-        }
-
-        if ($activity->is_public) {
-            return $group->is_visible
-                || $group->hasMember($userId)
-                || $group->hasModeratorAccess($userId);
-        }
-
-        return $userId !== null
-            && ($group->hasMember($userId) || $group->hasModeratorAccess($userId));
-    }
-
-    private function isActivityOrganizer(Activity $activity, ?int $userId): bool
-    {
-        return $userId !== null && (int) $activity->organized_by_user_id === $userId;
+        return app(RunAccessService::class)->canParticipate($group, $activity, $userId);
     }
 
     /**

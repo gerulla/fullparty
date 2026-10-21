@@ -7,12 +7,13 @@ use App\Http\Resources\XivPlugin\XivPluginRunListResource;
 use App\Models\Activity;
 use App\Models\ActivityApplication;
 use App\Models\Group;
+use App\Services\Runs\RunAccessService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class XivPluginGroupRunController extends Controller
 {
-    public function index(Request $request, Group $group): JsonResponse
+    public function index(Request $request, Group $group, RunAccessService $access): JsonResponse
     {
         $user = $request->user();
         $group->loadMissing('memberships');
@@ -23,6 +24,7 @@ class XivPluginGroupRunController extends Controller
         $visibleFrom = now()->subHours(6);
 
         $runs = $group->activities()
+            ->tap(fn ($query) => $access->scopeVisibleTo($query, $user->id))
             ->with(['activityTypeVersion'])
             ->withCount([
                 'applications as active_application_count' => fn ($query) => $query->whereIn('status', ActivityApplication::ACTIVE_STATUSES),

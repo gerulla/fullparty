@@ -698,7 +698,7 @@ it('does not return full application runs in discovery search', function () {
         ->assertJsonPath('items.0.can_apply', true);
 });
 
-it('returns members-only runs in discovery while blocking non-member applications', function () {
+it('only discovers members-only runs after joining the group', function () {
     $viewer = User::factory()->create();
     $activityType = createRunDiscoveryActivityType([
         'slug' => 'members-only-discovery',
@@ -735,14 +735,8 @@ it('returns members-only runs in discovery while blocking non-member application
     $this->actingAs($viewer)
         ->getJson(route('dashboard.runs.discover', $params))
         ->assertOk()
-        ->assertJsonPath('ids', [$activity->id])
-        ->assertJsonPath('items.0.id', $activity->id)
-        ->assertJsonPath('items.0.can_apply', false)
-        ->assertJsonPath('items.0.links.apply', route('groups.activities.application', [
-            'locale' => app()->getLocale(),
-            'group' => $group->slug,
-            'activity' => $activity->id,
-        ]));
+        ->assertJsonPath('ids', [])
+        ->assertJsonCount(0, 'items');
 
     $group->memberships()->create([
         'user_id' => $viewer->id,

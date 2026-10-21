@@ -70,7 +70,7 @@ it('rejects unknown group types when creating a group', function () {
     expect(Group::query()->where('slug', 'oddgroup')->exists())->toBeFalse();
 });
 
-it('rejects open join mode for static groups', function () {
+it('accepts open join mode for static groups', function () {
     $user = User::factory()->create();
 
     $this->actingAs($user)
@@ -81,10 +81,10 @@ it('rejects open join mode for static groups', function () {
             'group_type' => Group::TYPE_STATIC,
             'join_mode' => Group::JOIN_MODE_OPEN,
         ]))
-        ->assertRedirect(route('groups.index'))
-        ->assertSessionHasErrors('join_mode');
+        ->assertRedirect(route('groups.dashboard', 'openstat'))
+        ->assertSessionDoesntHaveErrors();
 
-    expect(Group::query()->where('slug', 'openstat')->exists())->toBeFalse();
+    expect(Group::query()->where('slug', 'openstat')->firstOrFail()->join_mode)->toBe(Group::JOIN_MODE_OPEN);
 });
 
 it('rejects unsupported profile picture formats when creating a group', function () {

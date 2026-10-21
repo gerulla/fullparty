@@ -15,6 +15,7 @@ use App\Services\Groups\ActivitySlotAttendanceService;
 use App\Services\Groups\ActivitySlotDesignationService;
 use App\Services\Notifications\ApplicationNotificationService;
 use App\Services\Notifications\AssignmentNotificationService;
+use App\Services\Runs\RunAccessService;
 use App\Support\Audit\AuditScope;
 use App\Support\Audit\AuditSeverity;
 use Illuminate\Support\Facades\DB;
@@ -30,6 +31,7 @@ final class CharacterTransferRunService
         private readonly ActivityManagementRealtimeService $realtime,
         private readonly ActivityManagementWarningService $warnings,
         private readonly AuditLogger $audit,
+        private readonly RunAccessService $access,
     ) {}
 
     /** Caller holds the receiving account, character, transfer and activity locks. */
@@ -55,10 +57,7 @@ final class CharacterTransferRunService
             return;
         }
         if ($choice === 'keep') {
-            $group = $activity->group;
-            $member = $group->hasMember($user->id) || $group->hasModeratorAccess($user->id);
-            if ($group->isBanned($user->id) || (! $member && (! $group->is_visible || ! $activity->is_public))
-                || (Activity::isModeratorOnlyStatus($activity->status) && ! $group->hasModeratorAccess($user->id))) {
+            if (! $this->access->canParticipate($activity->group, $activity, $user->id)) {
                 throw ValidationException::withMessages(['transfer' => 'ineligible']);
             }
             if ($activity->applications()->where('user_id', $user->id)->where('status', '!=', ActivityApplication::STATUS_WITHDRAWN)->exists()

@@ -1,0 +1,22 @@
+{
+    "notification_title": "Invitation à rejoindre {group}",
+    "notification_body": "Vous avez été invité à rejoindre {group}. Cette invitation personnelle expire dans 72 heures.",
+    "notification_after_run": "Merci d’avoir participé à {activity} ! Vous avez été invité à rejoindre {group}. Cette invitation personnelle expire dans 72 heures.",
+    "ineligible": "Ce compte ne peut plus recevoir cette invitation.",
+    "declined": "Ce compte a déjà refusé l’invitation liée à cette activité.",
+    "resend_expired_only": "Seule une invitation personnelle expirée peut être renvoyée.",
+    "banned": "Vous ne pouvez pas rejoindre ce groupe.",
+    "unavailable": "Cette invitation n’est plus disponible.",
+    "audit_sent": "Invitation personnelle au groupe envoyée.",
+    "audit_accepted": "Invitation personnelle au groupe acceptée.",
+    "audit_declined": "Invitation personnelle au groupe refusée.",
+    "audit_revoked": "Invitation personnelle au groupe révoquée.",
+    "personal_notice": "Cette invitation est réservée à votre compte. Personne d’autre ne peut l’utiliser.",
+    "expires": "Expire le {date}",
+    "states": {
+        "accepted": "Cette invitation a déjà été utilisée.",
+        "declined": "Vous avez refusé cette invitation.",
+        "revoked": "Le groupe a retiré cette invitation.",
+        "expired": "Cette invitation a expiré. Demandez-en une nouvelle au groupe."
+    }
+}

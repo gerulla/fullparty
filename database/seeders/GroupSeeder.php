@@ -6,7 +6,6 @@ require_once __DIR__.'/SeederFaker.php';
 
 use App\Models\Group;
 use App\Models\GroupMembership;
-use App\Models\GroupMembershipApplication;
 use App\Models\ScheduledRun;
 use App\Models\User;
 use App\Services\Groups\GeneratedGroupImageService;
@@ -64,7 +63,6 @@ class GroupSeeder extends Seeder
             ]);
 
             $this->seedMemberships($group, $users, $owner);
-            $this->prepareMembershipApplications($group, $users);
             $this->seedLegacyRunsForGroup($group, $owner->id);
         });
     }
@@ -86,7 +84,7 @@ class GroupSeeder extends Seeder
             'datacenter' => 'Light',
             'is_visible' => true,
             'group_type' => Group::TYPE_STATIC,
-            'join_mode' => Group::JOIN_MODE_APPLICATION,
+            'join_mode' => Group::JOIN_MODE_INVITE_ONLY,
             'slug' => 'ftel',
             'primary_focuses' => ['progression', 'clears', 'reclears'],
             'experience_expectation' => 'midcore',
@@ -112,7 +110,6 @@ class GroupSeeder extends Seeder
         $group->ensureSystemInvite();
 
         $this->seedMemberships($group, $users, $owner, 120);
-        $this->prepareMembershipApplications($group, $users, 8);
         $this->seedLegacyRunsForGroup($group, $owner->id);
     }
 
@@ -153,137 +150,10 @@ class GroupSeeder extends Seeder
         });
     }
 
-    private function prepareMembershipApplications(Group $group, Collection $users, ?int $forcedApplicantCount = null): void
-    {
-        if (! $group->usesMembershipApplications()) {
-            return;
-        }
-
-        $group->forceFill([
-            'membership_application_schema' => $this->membershipApplicationSchema(),
-        ])->save();
-
-        $this->seedMembershipApplications($group, $users, $forcedApplicantCount);
-    }
-
-    private function seedMembershipApplications(Group $group, Collection $users, ?int $forcedCount = null): void
-    {
-        if (! $group->usesMembershipApplications()) {
-            return;
-        }
-
-        $memberUserIds = $group->memberships()
-            ->pluck('user_id')
-            ->all();
-        $schema = $group->membership_application_schema ?? $this->membershipApplicationSchema();
-        $applicantCount = $forcedCount ?? fake()->numberBetween(3, 7);
-        $applicants = $users
-            ->reject(fn (User $user) => in_array($user->id, $memberUserIds, true))
-            ->shuffle()
-            ->take($applicantCount)
-            ->values();
-
-        $applicants->each(function (User $user, int $index) use ($group, $schema): void {
-            $submittedAt = $group->created_at->copy()->addDays($index + 2)->addHours(fake()->numberBetween(1, 12));
-
-            GroupMembershipApplication::query()->firstOrCreate(
-                [
-                    'group_id' => $group->id,
-                    'user_id' => $user->id,
-                    'status' => GroupMembershipApplication::STATUS_PENDING,
-                ],
-                [
-                    'answers' => $this->membershipApplicationAnswers($schema, $user),
-                    'form_snapshot' => $schema,
-                    'submitted_at' => $submittedAt,
-                    'created_at' => $submittedAt,
-                    'updated_at' => $submittedAt,
-                ],
-            );
-        });
-    }
-
-    /**
-     * @return array<int, array<string, mixed>>
-     */
-    private function membershipApplicationSchema(): array
-    {
-        return [
-            [
-                'id' => 'preferred_name',
-                'type' => 'small_text',
-                'name' => ['en' => 'What should we call you?'],
-                'description' => ['en' => 'Your account name is fine if you do not use another handle.'],
-                'required' => true,
-                'options' => [],
-            ],
-            [
-                'id' => 'experience',
-                'type' => 'big_text',
-                'name' => ['en' => 'Tell us about your recent group experience.'],
-                'description' => ['en' => 'A few lines about recent content, schedule fit, or what you enjoy running.'],
-                'required' => true,
-                'options' => [],
-            ],
-            [
-                'id' => 'preferred_role',
-                'type' => 'select',
-                'name' => ['en' => 'Preferred role'],
-                'description' => ['en' => 'Pick the role you most often want to play with this group.'],
-                'required' => true,
-                'options' => [
-                    ['id' => 'tank', 'label' => ['en' => 'Tank']],
-                    ['id' => 'healer', 'label' => ['en' => 'Healer']],
-                    ['id' => 'melee', 'label' => ['en' => 'Melee DPS']],
-                    ['id' => 'ranged', 'label' => ['en' => 'Ranged DPS']],
-                    ['id' => 'caster', 'label' => ['en' => 'Caster DPS']],
-                    ['id' => 'flex', 'label' => ['en' => 'Flexible']],
-                ],
-            ],
-            [
-                'id' => 'voice_ready',
-                'type' => 'toggle',
-                'name' => ['en' => 'Can you join voice when needed?'],
-                'description' => [],
-                'required' => true,
-                'options' => [],
-            ],
-        ];
-    }
-
-    /**
-     * @param  array<int, array<string, mixed>>  $schema
-     * @return array<string, mixed>
-     */
-    private function membershipApplicationAnswers(array $schema, User $user): array
-    {
-        $answers = [];
-
-        foreach ($schema as $field) {
-            $fieldId = (string) ($field['id'] ?? '');
-
-            if ($fieldId === '') {
-                continue;
-            }
-
-            $answers[$fieldId] = match ($field['type'] ?? null) {
-                'big_text' => fake()->paragraph(2),
-                'select' => collect($field['options'] ?? [])->pluck('id')->filter()->random(),
-                'toggle' => fake()->boolean(85),
-                default => $user->primaryCharacter?->name ?? $user->name,
-            };
-        }
-
-        return $answers;
-    }
-
-    /**
-     * @return array<int, array<string, mixed>>
-     */
     private function groupBlueprints(): array
     {
         return [
-            $this->groupBlueprint('Lich Nightwatch', 'Late evening raid planning and progression for players based on Lich and beyond.', 'lnight', 'Light', Group::JOIN_MODE_APPLICATION, true, null, [
+            $this->groupBlueprint('Lich Nightwatch', 'Late evening raid planning and progression for players based on Lich and beyond.', 'lnight', 'Light', Group::JOIN_MODE_INVITE_ONLY, true, null, [
                 'primary_focuses' => ['progression', 'reclears'],
                 'experience_expectation' => 'semi_hardcore',
                 'voice_expectation' => 'required',
@@ -312,7 +182,7 @@ class GroupSeeder extends Seeder
                 'tags' => ['Criterion', 'Flexible'],
                 'active_days' => ['thu', 'sat'],
             ]),
-            $this->groupBlueprint('Meteor Archive', 'A planning-heavy group for spreadsheets, assignments, and clean execution.', 'metearch', 'Meteor', Group::JOIN_MODE_APPLICATION, true, null, [
+            $this->groupBlueprint('Meteor Archive', 'A planning-heavy group for spreadsheets, assignments, and clean execution.', 'metearch', 'Meteor', Group::JOIN_MODE_INVITE_ONLY, true, null, [
                 'primary_focuses' => ['progression', 'clears'],
                 'experience_expectation' => 'hardcore',
                 'voice_expectation' => 'preferred',
@@ -324,7 +194,7 @@ class GroupSeeder extends Seeder
                 'voice_expectation' => 'optional',
                 'tags' => ['Casual', 'Friendly'],
             ]),
-            $this->groupBlueprint('Mana Pioneers', 'JP-centered schedule coordination for players who like well-prepared runs.', 'manapion', 'Mana', Group::JOIN_MODE_APPLICATION, true, null, [
+            $this->groupBlueprint('Mana Pioneers', 'JP-centered schedule coordination for players who like well-prepared runs.', 'manapion', 'Mana', Group::JOIN_MODE_INVITE_ONLY, true, null, [
                 'primary_focuses' => ['progression', 'reclears'],
                 'experience_expectation' => 'midcore',
                 'voice_expectation' => 'preferred',
@@ -353,7 +223,7 @@ class GroupSeeder extends Seeder
                 'voice_expectation' => 'preferred',
                 'tags' => ['Weekly Clears', 'Mounts'],
             ]),
-            $this->groupBlueprint('Crystal Cartel', 'Tightly coordinated scheduling for players who want polished group operations.', 'crystalc', 'Crystal', Group::JOIN_MODE_APPLICATION, true, null, [
+            $this->groupBlueprint('Crystal Cartel', 'Tightly coordinated scheduling for players who want polished group operations.', 'crystalc', 'Crystal', Group::JOIN_MODE_INVITE_ONLY, true, null, [
                 'group_type' => Group::TYPE_STATIC,
                 'primary_focuses' => ['clears', 'reclears'],
                 'experience_expectation' => 'semi_hardcore',
@@ -374,7 +244,7 @@ class GroupSeeder extends Seeder
                 'preferred_languages' => ['en'],
                 'tags' => ['Oceanic', 'Night Raids'],
             ]),
-            $this->groupBlueprint('Gaia Relay', 'JP relay-style organization for people juggling multiple raid groups.', 'gaiarely', 'Gaia', Group::JOIN_MODE_APPLICATION, true, null, [
+            $this->groupBlueprint('Gaia Relay', 'JP relay-style organization for people juggling multiple raid groups.', 'gaiarely', 'Gaia', Group::JOIN_MODE_INVITE_ONLY, true, null, [
                 'primary_focuses' => ['maps'],
                 'experience_expectation' => 'casual',
                 'voice_expectation' => 'optional',
@@ -387,14 +257,14 @@ class GroupSeeder extends Seeder
                 'voice_expectation' => 'preferred',
                 'tags' => ['Learning Runs', 'Welcoming'],
             ]),
-            $this->groupBlueprint('Chaos Lantern', 'EU scheduling and recruitment hub for mixed-skill groups.', 'chaoslan', 'Chaos', Group::JOIN_MODE_APPLICATION, false, null, [
+            $this->groupBlueprint('Chaos Lantern', 'EU scheduling and recruitment hub for mixed-skill groups.', 'chaoslan', 'Chaos', Group::JOIN_MODE_INVITE_ONLY, false, null, [
                 'primary_focuses' => ['casual_roulettes'],
                 'experience_expectation' => 'mixed',
                 'voice_expectation' => 'optional',
                 'preferred_languages' => ['en', 'fr'],
                 'tags' => ['Recruiting Hub', 'Mixed Skill'],
             ]),
-            $this->groupBlueprint('Primal Garrison', 'Consistent moderation, roster stability, and no-drama clears.', 'primgarr', 'Primal', Group::JOIN_MODE_APPLICATION, true, 'https://discord.gg/primgarr', [
+            $this->groupBlueprint('Primal Garrison', 'Consistent moderation, roster stability, and no-drama clears.', 'primgarr', 'Primal', Group::JOIN_MODE_INVITE_ONLY, true, 'https://discord.gg/primgarr', [
                 'group_type' => Group::TYPE_STATIC,
                 'primary_focuses' => ['clears', 'reclears'],
                 'experience_expectation' => 'semi_hardcore',

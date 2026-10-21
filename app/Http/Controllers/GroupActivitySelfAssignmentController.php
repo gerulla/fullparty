@@ -49,7 +49,7 @@ class GroupActivitySelfAssignmentController extends Controller
             abort(404);
         }
 
-        $this->ensureCanSelfAssign($group, $user);
+        $this->ensureCanSelfAssign($group, $activity, $user);
 
         if ($activity->needs_application) {
             abort(404);
@@ -154,7 +154,7 @@ class GroupActivitySelfAssignmentController extends Controller
             abort(404);
         }
 
-        $this->ensureCanSelfAssign($group, $user);
+        $this->ensureCanSelfAssign($group, $activity, $user);
 
         if ($activity->needs_application) {
             abort(404);
@@ -249,14 +249,8 @@ class GroupActivitySelfAssignmentController extends Controller
         ]);
     }
 
-    private function ensureCanSelfAssign(Group $group, User $user): void
+    private function ensureCanSelfAssign(Group $group, Activity $activity, User $user): void
     {
-        if ($group->isBanned($user->id)) {
-            abort(404);
-        }
-
-        if (! $group->isOwnedBy($user->id) && ! $group->hasMember($user->id)) {
-            abort(404);
-        }
+        abort_unless($this->canUseActivityParticipationFlow($group, $activity, $user->id), 404);
     }
 }

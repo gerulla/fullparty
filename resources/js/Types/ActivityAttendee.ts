@@ -2,6 +2,7 @@ import type { ActivityRosterSummaryPreset, ActivitySlot } from "@/Types/Activity
 import type { LocalizedText } from "@/Types/Common"
 import type { ActivityProgressPoint } from "@/Types/ActivityCore"
 import type { ActivityProgressionMilestoneRecord } from "@/Types/ActivityProgression"
+import type { RunParticipationPermissions } from "@/Types/RunAccess"
 
 export type PublicGroupSummary = {
 	id: number
@@ -72,9 +73,6 @@ export type AttendeeActivity = {
 	slots: ActivitySlot[]
 }
 
-export type ActivityOverviewPermissions = {
-	can_apply: boolean
-	can_apply_as_guest: boolean
+export type ActivityOverviewPermissions = RunParticipationPermissions & {
 	can_manage: boolean
-	can_self_assign: boolean
 }

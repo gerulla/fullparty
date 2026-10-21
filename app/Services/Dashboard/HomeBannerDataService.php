@@ -10,13 +10,17 @@ use App\Models\CharacterClass;
 use App\Models\PhantomJob;
 use App\Models\User;
 use App\Services\Characters\CharacterTransferHistory;
+use App\Services\Runs\RunAccessService;
 use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
 use Illuminate\Support\Collection;
 
 final class HomeBannerDataService
 {
-    public function __construct(private readonly CharacterTransferHistory $transferHistory) {}
+    public function __construct(
+        private readonly CharacterTransferHistory $transferHistory,
+        private readonly RunAccessService $runAccess,
+    ) {}
 
     /**
      * @return array<string, mixed>
@@ -448,8 +452,8 @@ final class HomeBannerDataService
             ->all();
         $activity = collect([
             $this->nextApplicationActivity($user, $now, $until),
-            $this->nextAssignedActivity($characterIds, $now, $until),
-            $this->nextCurrentSlotActivity($characterIds, $now, $until),
+            $this->nextAssignedActivity($characterIds, $user->id, $now, $until),
+            $this->nextCurrentSlotActivity($characterIds, $user->id, $now, $until),
         ])
             ->filter()
             ->unique('id')
@@ -482,6 +486,7 @@ final class HomeBannerDataService
                 'activity.activityTypeVersion',
             ])
             ->where('activity_applications.user_id', $user->id)
+            ->whereHas('activity', fn ($query) => $this->runAccess->scopeVisibleTo($query, $user->id))
             ->whereIn('activity_applications.status', [
                 ActivityApplication::STATUS_APPROVED,
                 ActivityApplication::STATUS_ON_BENCH,
@@ -498,7 +503,7 @@ final class HomeBannerDataService
     /**
      * @param  array<int, int>  $characterIds
      */
-    private function nextAssignedActivity(array $characterIds, CarbonImmutable $now, CarbonImmutable $until): ?Activity
+    private function nextAssignedActivity(array $characterIds, int $userId, CarbonImmutable $now, CarbonImmutable $until): ?Activity
     {
         if ($characterIds === []) {
             return null;
@@ -512,6 +517,7 @@ final class HomeBannerDataService
                 'activity.activityTypeVersion',
             ])
             ->whereIn('activity_slot_assignments.character_id', $characterIds)
+            ->whereHas('activity', fn ($query) => $this->runAccess->scopeVisibleTo($query, $userId))
             ->whereNull('activity_slot_assignments.ended_at')
             ->whereNotIn('activities.status', Activity::ARCHIVED_STATUSES)
             ->whereNotNull('activities.starts_at')
@@ -525,13 +531,14 @@ final class HomeBannerDataService
     /**
      * @param  array<int, int>  $characterIds
      */
-    private function nextCurrentSlotActivity(array $characterIds, CarbonImmutable $now, CarbonImmutable $until): ?Activity
+    private function nextCurrentSlotActivity(array $characterIds, int $userId, CarbonImmutable $now, CarbonImmutable $until): ?Activity
     {
         if ($characterIds === []) {
             return null;
         }
 
         return Activity::query()
+            ->tap(fn ($query) => $this->runAccess->scopeVisibleTo($query, $userId))
             ->with(['group', 'activityTypeVersion'])
             ->whereHas('slots', fn ($query) => $query->whereIn('assigned_character_id', $characterIds))
             ->whereNotIn('status', Activity::ARCHIVED_STATUSES)

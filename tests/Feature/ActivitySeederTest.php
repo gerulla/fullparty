@@ -32,21 +32,9 @@ it('seeds activities with slots, field values, milestones, and applications', fu
         maxTotalActivitiesPerGroup: $maxActivitiesPerGroup,
     ));
 
-    $applicationGroupCount = Group::query()
-        ->where('join_mode', Group::JOIN_MODE_APPLICATION)
-        ->count();
-    $staticApplicationGroupCount = Group::query()
-        ->where('group_type', Group::TYPE_STATIC)
-        ->where('join_mode', Group::JOIN_MODE_APPLICATION)
-        ->count();
-
-    expect($applicationGroupCount)->toBeGreaterThan(0)
-        ->and($staticApplicationGroupCount)->toBeGreaterThan(0)
-        ->and(Group::query()
-            ->where('join_mode', Group::JOIN_MODE_APPLICATION)
-            ->whereNotNull('membership_application_schema')
-            ->count())->toBe($applicationGroupCount)
-        ->and(GroupMembershipApplication::query()->count())->toBeGreaterThan(0);
+    expect(Group::query()->whereNotIn('join_mode', Group::JOIN_MODES)->exists())->toBeFalse()
+        ->and(Group::query()->where('group_type', Group::TYPE_STATIC)->where('join_mode', Group::JOIN_MODE_INVITE_ONLY)->exists())->toBeTrue()
+        ->and(GroupMembershipApplication::query()->count())->toBe(0);
 
     $seededGroupCount = Group::query()->count();
 

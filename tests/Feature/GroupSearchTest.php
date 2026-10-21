@@ -328,7 +328,7 @@ it('rejects hidden groups from featured curation', function () {
 it('applies discovery filters to the group search results', function () {
     $user = User::factory()->create();
 
-    $matchingGroup = Group::factory()->applicationBased()->create([
+    $matchingGroup = Group::factory()->inviteOnly()->create([
         'name' => 'Night Prog',
         'slug' => 'nightpro',
         'group_type' => Group::TYPE_STATIC,
@@ -343,7 +343,7 @@ it('applies discovery filters to the group search results', function () {
 
     attachAdditionalMembers($matchingGroup, 49);
 
-    Group::factory()->applicationBased()->create([
+    Group::factory()->inviteOnly()->create([
         'name' => 'Wrong Region',
         'slug' => 'wrongreg',
         'group_type' => Group::TYPE_STATIC,
@@ -356,7 +356,7 @@ it('applies discovery filters to the group search results', function () {
         'active_days' => ['fri'],
     ]);
 
-    Group::factory()->applicationBased()->create([
+    Group::factory()->inviteOnly()->create([
         'name' => 'Wrong Focus',
         'slug' => 'wrongfoc',
         'group_type' => Group::TYPE_STATIC,
@@ -369,7 +369,7 @@ it('applies discovery filters to the group search results', function () {
         'active_days' => ['fri'],
     ]);
 
-    Group::factory()->inviteOnly()->create([
+    Group::factory()->open()->create([
         'name' => 'Wrong Method',
         'slug' => 'wrongmet',
         'group_type' => Group::TYPE_STATIC,
@@ -385,7 +385,7 @@ it('applies discovery filters to the group search results', function () {
     $this->actingAs($user)
         ->getJson(route('groups.search', [
             'group_type' => Group::TYPE_STATIC,
-            'join_mode' => Group::JOIN_MODE_APPLICATION,
+            'join_mode' => Group::JOIN_MODE_INVITE_ONLY,
             'experience_expectation' => 'hardcore',
             'region' => 'EU',
             'size' => '50',

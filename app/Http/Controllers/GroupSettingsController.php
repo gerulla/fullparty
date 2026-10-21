@@ -7,7 +7,6 @@ use App\Http\Requests\UpdateGroupSettingsRequest;
 use App\Models\Group;
 use App\Models\GroupMembership;
 use App\Services\AuditLogger;
-use App\Services\Groups\MembershipApplicationFormSchemaService;
 use App\Services\Groups\Resources\ResourceStarterLibraryService;
 use App\Services\ManagedImageStorage;
 use App\Support\Audit\AuditScope;
@@ -27,7 +26,6 @@ class GroupSettingsController extends Controller
         private readonly ManagedImageStorage $managedImageStorage,
         private readonly AuditLogger $auditLogger,
         private readonly GroupDiscoveryBadgePalette $groupDiscoveryBadgePalette,
-        private readonly MembershipApplicationFormSchemaService $membershipApplicationFormSchemaService,
         private readonly ResourceStarterLibraryService $resourceStarterLibraryService,
     ) {}
 
@@ -109,8 +107,6 @@ class GroupSettingsController extends Controller
             } else {
                 $group->removeSystemInvite();
             }
-
-            $this->membershipApplicationFormSchemaService->ensureDefaultForm($group);
 
             if (isset($validated['features']) && is_array($validated['features'])) {
                 $group->features()->updateOrCreate([], $validated['features']);
@@ -327,6 +323,7 @@ class GroupSettingsController extends Controller
                 'joined_at' => $membership->joined_at,
             ]);
         $payload['invites'] = $group->invites
+            ->reject(fn ($invite) => $invite->isPersonal())
             ->sortByDesc('created_at')
             ->values()
             ->map(fn ($invite) => [

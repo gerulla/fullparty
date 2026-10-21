@@ -5,18 +5,17 @@ namespace App\Services\Integrations;
 use App\Models\Activity;
 use App\Models\ActivityApplication;
 use App\Models\User;
+use App\Services\Runs\RunAccessService;
 use App\Support\Activities\ActivityDisplayName;
 use Illuminate\Database\Eloquent\Builder;
 
 final class MemberRunReader
 {
+    public function __construct(private readonly RunAccessService $access) {}
+
     public function query(User $user): Builder
     {
-        return Activity::query()->whereNotIn('status', Activity::MODERATOR_ONLY_STATUSES)
-            ->whereHas('group', fn ($q) => $q
-                ->whereDoesntHave('bans', fn ($bans) => $bans->where('user_id', $user->id))
-                ->where(fn ($groups) => $groups->where('is_visible', true)
-                    ->orWhereHas('memberships', fn ($members) => $members->where('user_id', $user->id))))
+        return $this->access->scopeVisibleTo(Activity::query(), $user->id, includeDrafts: false)
             ->with(['group:id,name,slug', 'activityTypeVersion', 'organizer:id,name,avatar_url']);
     }
 

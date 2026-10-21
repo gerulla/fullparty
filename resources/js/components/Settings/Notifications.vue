@@ -1,12 +1,10 @@
 <script setup lang="ts">
-// @ts-ignore
-import { useConfirmationModal } from "@/composables/useConfirmationModal";
 import type { SettingsUser } from "@/Types/Settings";
-import { router, useForm, usePage } from "@inertiajs/vue3";
+import { useForm } from "@inertiajs/vue3";
 import { useToast } from "@nuxt/ui/composables";
 import axios from "axios";
 import { route } from "ziggy-js";
-import { computed, onUnmounted, ref, watch } from "vue";
+import { computed, onUnmounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
 
 const props = defineProps<{
@@ -41,12 +39,8 @@ type NotificationGroup = {
 	topics: NotificationTopic[]
 };
 
-const { t, locale } = useI18n();
-const page = usePage();
+const { t } = useI18n();
 const toast = useToast();
-const confirmationModal = useConfirmationModal();
-const linkToken = ref<{ token: string; expires_at: string } | null>(null);
-const generatingLinkToken = ref(false);
 const selectedNotificationGroupKey = ref<string | null>(null);
 const autosaveRequestId = ref(0);
 let autosaveTimer: ReturnType<typeof window.setTimeout> | null = null;
@@ -244,18 +238,6 @@ const form = useForm({
 });
 
 const hasDiscordIntegration = computed(() => props.user.discord_user_integration !== null);
-const hasActiveLinkToken = computed(() => {
-	if (linkToken.value) {
-		return true;
-	}
-
-	if (!props.user.discord_link_token_expires_at) {
-		return false;
-	}
-
-	return new Date(props.user.discord_link_token_expires_at).getTime() > Date.now();
-});
-const linkTokenExpiresAt = computed(() => linkToken.value?.expires_at ?? props.user.discord_link_token_expires_at);
 const selectedNotificationGroup = computed(() => notificationGroups.find((group) => group.key === selectedNotificationGroupKey.value) ?? null);
 const isGranularModalOpen = computed({
 	get: () => selectedNotificationGroupKey.value !== null,
@@ -483,62 +465,6 @@ const setTopicChannel = (group: NotificationGroup, topic: NotificationTopic, cha
 	scheduleAutosave();
 };
 
-const disconnectDiscord = async () => {
-	await confirmationModal.open({
-		title: t("settings.notifications.disconnect_discord_modal.title"),
-		description: t("settings.notifications.disconnect_discord_modal.description"),
-		severity: "warning",
-		warningText: t("settings.notifications.disconnect_discord_modal.warning"),
-		confirmLabel: t("settings.notifications.disconnect_discord_modal.confirm"),
-		confirmIcon: "i-lucide-unplug",
-		onConfirm: async ({ patch }) => {
-			patch({ confirmLoading: true });
-
-			return await new Promise<boolean>((resolve) => {
-				router.delete(route("settings.discord-integration.destroy"), {
-					preserveScroll: true,
-					onSuccess: () => resolve(true),
-					onError: () => resolve(false),
-					onFinish: () => patch({ confirmLoading: false }),
-				});
-			});
-		},
-	});
-};
-
-const generateDiscordLinkToken = () => {
-	generatingLinkToken.value = true;
-
-	router.post(route("settings.discord-integration.link-token"), {}, {
-		preserveScroll: true,
-		onFinish: () => {
-			generatingLinkToken.value = false;
-		},
-	});
-};
-
-const copyDiscordLinkToken = async () => {
-	if (!linkToken.value) {
-		return;
-	}
-
-	await navigator.clipboard.writeText(linkToken.value.token);
-
-	toast.add({
-		title: t("settings.notifications.discord_link_token_copied"),
-		color: "success",
-		icon: "i-lucide-copy-check",
-	});
-};
-
-watch(
-	() => page.props.flash?.data?.discord_user_link_token,
-	(value) => {
-		linkToken.value = (value as { token: string; expires_at: string } | null) ?? null;
-	},
-	{ immediate: true },
-);
-
 onUnmounted(() => {
 	if (autosaveTimer) {
 		window.clearTimeout(autosaveTimer);
@@ -547,175 +473,71 @@ onUnmounted(() => {
 </script>
 
 <template>
-	<UCard class="w-full dark:bg-elevated/25">
+	<UCard class="w-full bg-elevation-2">
 		<template #header>
-			<div class="flex flex-row items-center font-semibold text-md">
-				<UIcon name="i-lucide-bell" class="mr-2" size="22" />
-				<p>{{ t("settings.notifications.title") }}</p>
+			<div class="space-y-1">
+				<p class="font-semibold text-toned">{{ t("settings.notifications.categories_title") }}</p>
+				<p class="text-sm text-muted">{{ t("settings.notifications.categories_description") }}</p>
 			</div>
 		</template>
 
-		<div class="w-full flex flex-col items-stretch gap-5 mb-4">
-			<div class="section">
-				<div class="section-heading">
-					<p class="font-semibold text-toned">{{ t("settings.notifications.discord_app_title") }}</p>
-					<p class="text-sm text-muted">{{ t("settings.notifications.discord_app_description") }}</p>
-				</div>
-
-				<div :class="hasDiscordIntegration ? 'discord-card' : 'discord-card-muted'">
-					<div class="flex min-w-0 items-center gap-3">
-						<div class="flex size-11 shrink-0 items-center justify-center border border-white/10 bg-brand-500/12 text-brand-200">
-							<UIcon name="ic:baseline-discord" class="size-6" />
-						</div>
-						<div class="min-w-0">
-							<div class="flex flex-wrap items-center gap-2">
-								<p class="font-semibold text-toned">
-									{{ hasDiscordIntegration ? t("settings.notifications.discord_app_connected_title") : t("settings.notifications.discord_app_not_connected_title") }}
-								</p>
-								<UBadge
-									:color="hasDiscordIntegration ? 'success' : 'neutral'"
-									variant="soft"
-									size="sm"
-									:label="hasDiscordIntegration ? t('settings.connected') : t('settings.not_connected')"
-								/>
-							</div>
-							<p class="mt-1 text-sm text-muted">
-								{{ hasDiscordIntegration ? t("settings.notifications.discord_app_connected_description") : t("settings.notifications.discord_app_not_connected_description") }}
-							</p>
-							<p v-if="hasDiscordIntegration && user.discord_user_integration" class="mt-2 truncate text-xs text-muted">
-								{{ user.discord_user_integration.global_name || user.discord_user_integration.username || user.discord_user_integration.discord_user_id }}
-							</p>
-						</div>
-					</div>
-
-					<div class="flex flex-wrap justify-end gap-2">
-						<template v-if="!hasDiscordIntegration">
-							<UButton
-								:to="route('discord-app.user.redirect')"
-								size="sm"
-								color="neutral"
-								variant="subtle"
-								icon="ic:baseline-discord"
-								:label="t('settings.notifications.install_discord_app')"
-							/>
-							<UButton
-								size="sm"
-								color="neutral"
-								variant="subtle"
-								icon="i-lucide-key-round"
-								:loading="generatingLinkToken"
-								:label="t('settings.notifications.generate_discord_link_token')"
-								@click="generateDiscordLinkToken"
-							/>
-						</template>
-						<UButton
-							v-else
-							size="sm"
-							color="error"
-							variant="subtle"
-							icon="i-lucide-unplug"
-							:label="t('settings.notifications.disconnect_discord')"
-							@click="disconnectDiscord"
-						/>
-					</div>
-				</div>
-
-				<div
-					v-if="!hasDiscordIntegration && (linkToken || hasActiveLinkToken)"
-					class="border border-brand-400/25 bg-brand-500/10 px-4 py-3"
-				>
-					<div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-						<div class="min-w-0">
-							<p class="text-sm font-semibold text-toned">{{ t("settings.notifications.discord_link_token_title") }}</p>
-							<p v-if="linkToken" class="mt-1 break-all font-mono text-base font-semibold text-highlighted">{{ linkToken.token }}</p>
-							<p class="mt-1 text-xs text-muted">
-								{{ t(
-									linkToken
-										? "settings.notifications.discord_link_token_expires"
-										: "settings.notifications.discord_link_token_active",
-									{ date: linkTokenExpiresAt ? new Date(linkTokenExpiresAt).toLocaleString(locale) : "" },
-								) }}
-							</p>
-						</div>
-						<UButton
-							v-if="linkToken"
-							size="xs"
-							color="neutral"
-							variant="soft"
-							icon="i-lucide-copy"
-							:label="t('settings.notifications.copy_discord_link_token')"
-							@click="copyDiscordLinkToken"
-						/>
-					</div>
-				</div>
+		<div class="notification-table">
+			<div class="notification-table-header">
+				<span />
+				<span>{{ channelLabel("in_app") }}</span>
+				<span>{{ channelLabel("email") }}</span>
+				<span>{{ channelLabel("discord") }}</span>
+				<span />
 			</div>
 
-			<div class="section">
-				<div class="section-heading">
-					<p class="font-semibold text-toned">{{ t("settings.notifications.categories_title") }}</p>
-					<p class="text-sm text-muted">{{ t("settings.notifications.categories_description") }}</p>
+			<div
+				v-for="group in notificationGroups"
+				:key="group.key"
+				class="notification-row"
+			>
+				<div class="notification-copy">
+					<p class="font-semibold">{{ t(group.titleKey) }}</p>
+					<p class="text-sm text-muted">{{ t(group.descriptionKey) }}</p>
 				</div>
 
-				<div class="notification-table">
-					<div class="notification-table-header">
-						<span />
-						<span>{{ channelLabel("in_app") }}</span>
-						<span>{{ channelLabel("email") }}</span>
-						<span>{{ channelLabel("discord") }}</span>
-						<span />
-					</div>
+				<div class="channel-cell" :data-label="channelLabel('in_app')">
+					<USwitch
+						:model-value="Boolean(form[group.formKey])"
+						@update:model-value="setGroupChannel(group, 'in_app', Boolean($event))"
+					/>
+				</div>
 
-					<div
-						v-for="group in notificationGroups"
-						:key="group.key"
-						class="notification-row"
-					>
-						<div class="notification-copy">
-							<p class="font-semibold">{{ t(group.titleKey) }}</p>
-							<p class="text-sm text-muted">{{ t(group.descriptionKey) }}</p>
-						</div>
+				<div class="channel-cell" :data-label="channelLabel('email')">
+					<USwitch
+						v-if="group.supports.email"
+						:model-value="Boolean(groupChannelStates[group.key]?.email)"
+						@update:model-value="setGroupChannel(group, 'email', Boolean($event))"
+					/>
+					<span v-else class="unsupported-mark">-</span>
+				</div>
 
-						<div class="channel-cell" :data-label="channelLabel('in_app')">
-							<USwitch
-								:model-value="Boolean(form[group.formKey])"
-								@update:model-value="setGroupChannel(group, 'in_app', Boolean($event))"
-							/>
-						</div>
+				<div class="channel-cell" :data-label="channelLabel('discord')">
+					<USwitch
+						v-if="group.supports.discord"
+						:model-value="Boolean(groupChannelStates[group.key]?.discord)"
+						:disabled="!hasDiscordIntegration"
+						@update:model-value="setGroupChannel(group, 'discord', Boolean($event))"
+					/>
+					<span v-else class="unsupported-mark">-</span>
+				</div>
 
-						<div class="channel-cell" :data-label="channelLabel('email')">
-							<USwitch
-								v-if="group.supports.email"
-								:model-value="Boolean(groupChannelStates[group.key]?.email)"
-								@update:model-value="setGroupChannel(group, 'email', Boolean($event))"
-							/>
-							<span v-else class="unsupported-mark">-</span>
-						</div>
-
-						<div class="channel-cell" :data-label="channelLabel('discord')">
-							<USwitch
-								v-if="group.supports.discord"
-								:model-value="Boolean(groupChannelStates[group.key]?.discord)"
-								:disabled="!hasDiscordIntegration"
-								@update:model-value="setGroupChannel(group, 'discord', Boolean($event))"
-							/>
-							<span v-else class="unsupported-mark">-</span>
-						</div>
-
-						<div class="channel-cell justify-end" data-label="">
-							<UButton
-								color="neutral"
-								variant="ghost"
-								size="sm"
-								icon="i-lucide-settings"
-								class="rounded-none"
-								:aria-label="t('settings.notifications.customize')"
-								@click="openGranularSettings(group)"
-							/>
-						</div>
-					</div>
+				<div class="channel-cell justify-end" data-label="">
+					<UButton
+						color="neutral"
+						variant="ghost"
+						size="sm"
+						icon="i-lucide-settings"
+						class="rounded-none"
+						:aria-label="t('settings.notifications.customize')"
+						@click="openGranularSettings(group)"
+					/>
 				</div>
 			</div>
-
 		</div>
 
 		<UModal
@@ -769,29 +591,8 @@ onUnmounted(() => {
 <style scoped>
 @reference "../../../css/app.css";
 
-.section {
-	@apply flex flex-col gap-4;
-}
-
-.section-heading {
-	@apply flex flex-col gap-1 pb-1;
-}
-
-.discord-card,
-.discord-card-muted {
-	@apply flex flex-col gap-4 border px-4 py-3 md:flex-row md:items-center md:justify-between;
-}
-
-.discord-card {
-	@apply border-default bg-default/30 dark:border-white/20 dark:bg-white/5;
-}
-
-.discord-card-muted {
-	@apply border-default/70 bg-muted/20 dark:border-white/15 dark:bg-white/3;
-}
-
 .notification-table {
-	@apply overflow-hidden border border-default dark:border-white/20;
+	@apply min-w-0;
 }
 
 .notification-table-header,
@@ -800,11 +601,11 @@ onUnmounted(() => {
 }
 
 .notification-table-header {
-	@apply border-b border-default bg-muted/30 px-4 py-2 text-center text-xs font-semibold uppercase tracking-[0.12em] text-muted dark:border-white/10 dark:bg-white/5;
+	@apply border-b border-default py-2 text-center text-xs font-semibold uppercase tracking-[0.12em] text-muted;
 }
 
 .notification-row {
-	@apply border-b border-default bg-default/25 px-4 py-3 last:border-b-0 dark:border-white/10 dark:bg-white/3;
+	@apply border-b border-default py-4 last:border-b-0;
 }
 
 .notification-copy {
@@ -829,7 +630,7 @@ onUnmounted(() => {
 }
 
 .granular-row {
-	@apply border border-default bg-default/25 px-4 py-3 dark:border-white/15 dark:bg-white/5;
+	@apply border-b border-default py-4 last:border-b-0;
 }
 
 @media (max-width: 767px) {

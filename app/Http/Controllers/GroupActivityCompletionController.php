@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Activity;
 use App\Models\Group;
 use App\Services\Groups\ActivityCompletionService;
-use App\Services\Groups\GroupActivityAuditService;
-use App\Services\Notifications\RunNotificationService;
 use App\Support\Input\RequestTextInputSanitizer;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -15,8 +13,6 @@ class GroupActivityCompletionController extends Controller
 {
     public function __construct(
         private readonly ActivityCompletionService $completionService,
-        private readonly GroupActivityAuditService $activityAuditService,
-        private readonly RunNotificationService $runNotificationService,
         private readonly RequestTextInputSanitizer $requestTextInputSanitizer,
     ) {}
 
@@ -52,12 +48,7 @@ class GroupActivityCompletionController extends Controller
             'milestones.*.best_progress_percent' => ['sometimes', 'nullable', 'numeric', 'min:0', 'max:100'],
         ]);
 
-        $changes = $this->completionService->complete($activity, $validated, (int) auth()->id());
-        $this->activityAuditService->logActivityUpdated($activity->fresh(['group']), auth()->user(), $changes);
-        $this->runNotificationService->notifyCompleted(
-            $activity->fresh(['group', 'applications.user', 'applications.selectedCharacter']),
-            auth()->user(),
-        );
+        $this->completionService->completeAndNotify($activity, $validated, $request->user());
 
         return response()->json([
             'status' => 'completed',

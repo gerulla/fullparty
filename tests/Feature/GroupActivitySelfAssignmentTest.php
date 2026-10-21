@@ -141,9 +141,13 @@ it('renders the dedicated non-application attendee overview with self-assignment
             ->where('slotFieldDefinitions.1.key', 'phantom_job'));
 });
 
-it('allows a signed-in user to self-assign one of their verified characters to a free slot', function () {
+it('allows signed-in members and non-members to self-assign a public run', function (bool $member) {
     extract(createNonApplicationSelfAssignmentSetup());
 
+    if (! $member) {
+        $group->memberships()->where('user_id', $user->id)->delete();
+        $group->update(['join_mode' => Group::JOIN_MODE_INVITE_ONLY, 'is_visible' => false]);
+    }
     $slot = $mainSlots->first();
 
     $response = $this->actingAs($user)
@@ -179,7 +183,7 @@ it('allows a signed-in user to self-assign one of their verified characters to a
         ->and($assignment?->assignment_source)->toBe(ActivitySlotAssignment::SOURCE_MANUAL)
         ->and($auditLog)->not->toBeNull()
         ->and($auditLog?->actor_user_id)->toBe($user->id);
-});
+})->with([true, false]);
 
 it('does not allow banned group members to view the attendee overview', function () {
     extract(createNonApplicationSelfAssignmentSetup());

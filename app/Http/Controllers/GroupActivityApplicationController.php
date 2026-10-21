@@ -26,6 +26,7 @@ use App\Services\Groups\GroupActivityAuditService;
 use App\Services\Lodestone\LodestoneCharacterSearchService;
 use App\Services\Notifications\ApplicationNotificationService;
 use App\Services\Quotas\QuotaService;
+use App\Services\Runs\RunAccessService;
 use App\Support\Input\RequestTextInputSanitizer;
 use App\Support\Input\TextInputSanitizer;
 use App\Support\Integrations\MemberApi;
@@ -60,6 +61,7 @@ class GroupActivityApplicationController extends Controller
         private readonly ActivityManagementRealtimeService $activityManagementRealtimeService,
         private readonly BozjaHolsterPairService $bozjaHolsterPairService,
         private readonly QuotaService $quotaService,
+        private readonly RunAccessService $runAccess,
     ) {}
 
     public function show(Request $request, Group $group, Activity $activity, ?string $secretKey = null): Response|JsonResponse
@@ -226,7 +228,7 @@ class GroupActivityApplicationController extends Controller
         $group->loadMissing('memberships');
         $this->ensureApplicationPageAccessible($request, $group, $activity, $secretKey);
 
-        if (! $activity->allow_guest_applications) {
+        if (! $this->runAccess->canParticipate($group, $activity, null)) {
             abort(404);
         }
 
@@ -291,10 +293,6 @@ class GroupActivityApplicationController extends Controller
                 $existingUserApplication,
                 'submitted',
             );
-        }
-
-        if (! $user && ! $activity->allow_guest_applications) {
-            abort(403);
         }
 
         $validated = $this->validateApplicationPayload($request, $activity, $user?->id);
@@ -653,7 +651,7 @@ class GroupActivityApplicationController extends Controller
             ! $allowParticipationBlocked
             && ! $this->canUseActivityParticipationFlow($group, $activity, $request->user()?->id)
         ) {
-            abort(404);
+            abort($request->user() === null ? 403 : 404);
         }
 
         if (
@@ -673,16 +671,13 @@ class GroupActivityApplicationController extends Controller
         ?string $guestAccessToken = null,
     ): Response|JsonResponse {
         $acceptsApplications = $activity->acceptsApplications();
-        $canUseParticipationFlow = $this->canUseActivityParticipationFlow(
-            $group,
-            $activity,
-            $request->user()?->id,
+        $participationPermissions = $this->runAccess->participationPermissions(
+            $group, $activity, $guestAccessToken === null ? $request->user()?->id : null,
         );
-        $requiresGroupMembership = $acceptsApplications
-            && $guestAccessToken === null
-            && $application === null
-            && $request->user() !== null
-            && ! $canUseParticipationFlow;
+
+        if ($participationPermissions['requires_login'] && ! MemberApi::active($request)) {
+            $request->session()->put('url.intended', route('groups.activities.application', [$group, $activity]));
+        }
 
         $payload = [
             'group' => $this->serializePublicGroup($group),
@@ -705,23 +700,11 @@ class GroupActivityApplicationController extends Controller
             'secretKey' => null,
             'guestAccessToken' => $guestAccessToken,
             'permissions' => [
-                'can_apply' => $acceptsApplications
-                    && $guestAccessToken === null
-                    && $request->user() !== null
-                    && $canUseParticipationFlow,
-                'can_apply_as_guest' => $acceptsApplications
-                    && $activity->is_public
-                    && $canUseParticipationFlow
-                    && (($request->user() === null && $activity->allow_guest_applications) || $guestAccessToken !== null),
+                ...$participationPermissions,
                 'can_edit_application' => $application ? $this->applicationIsEditable($activity, $application) : $acceptsApplications,
                 'can_withdraw_application' => $application ? $this->applicationWithdrawalService->applicationCanBeWithdrawn($activity, $application) : false,
                 'can_manage' => $group->hasModeratorAccess($request->user()?->id),
                 'has_existing_application' => $application !== null,
-                'requires_group_membership' => $requiresGroupMembership,
-                'can_join_group' => $requiresGroupMembership && $group->allowsOpenJoin(),
-                'can_request_group_membership' => $requiresGroupMembership
-                    && $group->usesMembershipApplications()
-                    && $group->is_visible,
             ],
         ];
 

@@ -1,3 +1,17 @@
+export const settingsSections = ['general', 'socials', 'notifications', 'privacy', 'discord', 'plugin', 'delete'] as const
+
+export type SettingsSection = typeof settingsSections[number]
+
+export type SettingsNavigationState = {
+    activeSection: SettingsSection
+    sectionOpen: boolean
+}
+
+export type SettingsNavigationGroup = {
+    key: 'account' | 'preferences' | 'external' | 'danger'
+    sections: { key: SettingsSection; icon: string }[]
+}
+
 export type SettingsSocialAccount = {
 	id: number
 	provider: string

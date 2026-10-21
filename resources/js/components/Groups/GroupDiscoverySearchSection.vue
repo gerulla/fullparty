@@ -127,10 +127,6 @@ const recruitingMethodOptions = computed(() => ([
 		label: t("groups.index.discovery.filters.recruiting_methods.invite_only"),
 		value: "invite_only",
 	},
-	{
-		label: t("groups.index.discovery.filters.recruiting_methods.application"),
-		value: "application",
-	},
 ]));
 
 const primaryFocusOptions = computed(() => (groupDiscoveryLookups.value.primary_focuses ?? []).map((value) => ({

@@ -3,16 +3,19 @@
 namespace App\Services\Moderation\Targets;
 
 use App\Models\Activity;
-use App\Models\Group;
 use App\Models\User;
 use App\Services\Moderation\ReportTarget;
+use App\Services\Runs\RunAccessService;
 use Illuminate\Database\Eloquent\Model;
 
 // Context targets can be reviewed and their known authors sanctioned. Hiding is
 // enabled only by adapters that also enforce it at every content delivery path.
 class ContextReportTarget implements ReportTarget
 {
-    public function __construct(private readonly string $model) {}
+    public function __construct(
+        private readonly string $model,
+        private readonly RunAccessService $access,
+    ) {}
 
     public function modelClass(): string
     {
@@ -29,16 +32,15 @@ class ContextReportTarget implements ReportTarget
         if ($target instanceof User) {
             return $target->public_profile || $target->id === $reporter->id;
         }
-        $group = $target instanceof Group ? $target : $target->group;
+        if ($target instanceof Activity) {
+            return $this->access->canView($target->group, $target, $reporter->id);
+        }
+        $group = $target;
         if ($group->isBanned($reporter->id)) {
             return false;
         }
-        if ($target instanceof Activity && Activity::isModeratorOnlyStatus($target->status)) {
-            return $group->hasModeratorAccess($reporter->id) || $target->organized_by_user_id === $reporter->id;
-        }
 
-        return $group->is_visible || $group->hasMember($reporter->id)
-            || ($target instanceof Activity && $target->organized_by_user_id === $reporter->id);
+        return $group->is_visible || $group->hasMember($reporter->id);
     }
 
     public function snapshot(Model $target): array

@@ -7,12 +7,15 @@ use App\Models\ActivityType;
 use App\Models\Group;
 use App\Models\GroupMembership;
 use App\Models\User;
+use App\Services\Runs\RunAccessService;
 use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 
 final class GlobalSearchService
 {
+    public function __construct(private readonly RunAccessService $access) {}
+
     private const LIMIT_PER_SECTION = 6;
 
     private const CANDIDATE_LIMIT = 30;
@@ -88,11 +91,7 @@ final class GlobalSearchService
                         fn (Builder $tagQuery) => $tagQuery->whereRaw('LOWER(activity_tags.name) LIKE ?', [$like])
                     );
             })
-            ->whereHas('group', function (Builder $queryBuilder) use ($user): void {
-                $queryBuilder
-                    ->where('is_visible', true)
-                    ->orWhereHas('memberships', fn (Builder $membershipQuery) => $membershipQuery->where('user_id', $user->id));
-            })
+            ->tap(fn (Builder $queryBuilder) => $this->access->scopeVisibleTo($queryBuilder, $user->id))
             ->when($past,
                 fn (Builder $queryBuilder) => $queryBuilder
                     ->where('starts_at', '>=', $now->subDays(self::PAST_RUN_BUFFER_DAYS))
@@ -103,7 +102,6 @@ final class GlobalSearchService
             ->orderBy('id')
             ->limit(self::CANDIDATE_LIMIT)
             ->get()
-            ->filter(fn (Activity $activity): bool => $this->canUserAccessRunResult($activity, $user))
             ->take(self::LIMIT_PER_SECTION)
             ->map(fn (Activity $activity): array => $this->serializeRunResult($activity))
             ->values()
@@ -172,21 +170,6 @@ final class GlobalSearchService
             ->map(fn (ActivityType $activityType): array => $this->serializeActivityTypeResult($activityType))
             ->values()
             ->all();
-    }
-
-    private function canUserAccessRunResult(Activity $activity, User $user): bool
-    {
-        $group = $activity->group;
-
-        if (! $group || $group->isBanned($user->id)) {
-            return false;
-        }
-
-        if (Activity::isModeratorOnlyStatus($activity->status)) {
-            return $group->hasModeratorAccess($user->id);
-        }
-
-        return $group->is_visible || $group->hasMember($user->id) || $group->hasModeratorAccess($user->id);
     }
 
     /**

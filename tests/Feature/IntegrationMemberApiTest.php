@@ -96,11 +96,11 @@ it('uses the same join and leave rules without requiring a browser session', fun
     $this->postJson('/api/integrations/v1/groups/'.$closed->slug.'/join', [], $this->headers)->assertUnprocessable();
 });
 
-it('hides private groups and draft runs including from linked group owners', function () {
+it('keeps group visibility separate from public runs and hides drafts even from linked owners', function () {
     $group = Group::factory()->create(['is_visible' => false]);
     $run = Activity::factory()->create(['group_id' => $group->id, 'status' => Activity::STATUS_SCHEDULED]);
     $this->getJson('/api/integrations/v1/groups/'.$group->slug, $this->headers)->assertNotFound();
-    $this->getJson('/api/integrations/v1/runs/'.$run->id, $this->headers)->assertNotFound();
+    $this->getJson('/api/integrations/v1/runs/'.$run->id, $this->headers)->assertOk();
     $ownGroup = Group::factory()->create(['owner_id' => $this->member->id]);
     $draft = Activity::factory()->create(['group_id' => $ownGroup->id, 'status' => Activity::STATUS_DRAFT]);
     $this->getJson('/api/integrations/v1/runs/'.$draft->id, $this->headers)->assertNotFound();
@@ -201,13 +201,13 @@ it('does not accept unverified characters or another members character in an app
     expect(ActivityApplication::where('activity_id', $run->id)->count())->toBe(0);
 });
 
-it('submits and edits membership requests using the returned schema', function () {
+it('rejects retired membership request endpoints for member integrations', function () {
     $group = Group::factory()->create(['join_mode' => Group::JOIN_MODE_APPLICATION]);
     $path = '/api/integrations/v1/groups/'.$group->slug.'/membership-application';
-    $this->getJson($path, $this->headers)->assertOk()->assertJsonPath('formSchema.0.id', 'are_you_a_gamer');
-    $this->postJson($path, ['answers' => ['are_you_a_gamer' => true]], $this->headers)->assertOk()->assertJsonPath('data.status', 'pending');
-    $this->putJson($path, ['answers' => ['are_you_a_gamer' => false]], $this->headers)->assertOk()->assertJsonPath('data.answers.are_you_a_gamer', false);
-    $this->getJson('/api/integrations/v1/me/membership-requests', $this->headers)->assertOk()->assertJsonCount(1, 'data');
+    $this->getJson($path, $this->headers)->assertNotFound();
+    $this->postJson($path, ['answers' => ['are_you_a_gamer' => true]], $this->headers)->assertNotFound();
+    $this->putJson($path, ['answers' => ['are_you_a_gamer' => false]], $this->headers)->assertNotFound();
+    $this->assertDatabaseMissing('group_membership_applications', ['group_id' => $group->id]);
 });
 
 it('returns rendered localized notification text and protects notification ownership', function () {

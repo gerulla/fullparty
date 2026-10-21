@@ -1,0 +1,22 @@
+{
+    "notification_title": "Invitation to {group}",
+    "notification_body": "You have been invited to join {group}. This personal invitation expires in 72 hours.",
+    "notification_after_run": "Thanks for joining {activity}! You have been invited to join {group}. This personal invitation expires in 72 hours.",
+    "ineligible": "This account is no longer eligible for an invitation.",
+    "declined": "This account has already declined the invitation from this run.",
+    "resend_expired_only": "Only an expired personal invitation can be resent.",
+    "banned": "You cannot join this group.",
+    "unavailable": "This invitation is no longer available.",
+    "audit_sent": "Personal group invitation sent.",
+    "audit_accepted": "Personal group invitation accepted.",
+    "audit_declined": "Personal group invitation declined.",
+    "audit_revoked": "Personal group invitation revoked.",
+    "personal_notice": "This invitation is just for your account. It cannot be used by anyone else.",
+    "expires": "Expires {date}",
+    "states": {
+        "accepted": "This invitation has already been used.",
+        "declined": "You declined this invitation.",
+        "revoked": "This invitation was withdrawn by the group.",
+        "expired": "This invitation has expired. Ask the group for a new one."
+    }
+}

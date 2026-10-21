@@ -16,10 +16,13 @@ class GroupMembershipApplication extends Model
 
     public const STATUS_DECLINED = 'declined';
 
+    public const STATUS_CANCELLED = 'cancelled';
+
     public const STATUSES = [
         self::STATUS_PENDING,
         self::STATUS_APPROVED,
         self::STATUS_DECLINED,
+        self::STATUS_CANCELLED,
     ];
 
     public const REVIEW_REASON_MAX_LENGTH = 2000;
@@ -34,6 +37,8 @@ class GroupMembershipApplication extends Model
         'submitted_at',
         'reviewed_at',
         'review_reason',
+        'cancelled_at',
+        'cancellation_reason',
     ];
 
     protected $casts = [
@@ -41,6 +46,7 @@ class GroupMembershipApplication extends Model
         'form_snapshot' => 'array',
         'submitted_at' => 'datetime',
         'reviewed_at' => 'datetime',
+        'cancelled_at' => 'datetime',
     ];
 
     public function group(): BelongsTo

@@ -171,12 +171,16 @@ it('uses whole-fight kills for phase clears without estimating later phases from
 
 it('limits progress lookups to the visible run and its currently assigned characters', function () {
     [$group, $activity, $characters, $fetcher] = allianceProgressSetup();
-    $fetcher->shouldNotReceive('fetchEncounterProgressForCharacter');
+    $fetcher->shouldReceive('fetchEncounterProgressForCharacter')->once()
+        ->withArgs(fn ($character) => $character->id === $characters[0]->id)
+        ->andReturn(['encounters' => []]);
     $url = route('groups.activities.alliance-progress', [$group, $activity]);
     $this->getJson($url.'?'.http_build_query(['character_ids' => [Character::factory()->create()->id]]))->assertNotFound();
     $this->getJson($url.'?'.http_build_query(['character_ids' => [...$characters->modelKeys(), 999999]]))->assertUnprocessable();
     $this->getJson(route('groups.activities.alliance-progress', [Group::factory()->create(), $activity]).'?'.http_build_query(['character_ids' => [$characters[0]->id]]))->assertNotFound();
     $group->update(['is_visible' => false]);
+    $this->getJson($url.'?'.http_build_query(['character_ids' => [$characters[0]->id]]))->assertOk();
+    $activity->update(['is_public' => false]);
     $this->getJson($url.'?'.http_build_query(['character_ids' => [$characters[0]->id]]))->assertNotFound();
 });
 

@@ -1,6 +1,24 @@
 {
     "title": "設定",
     "subtitle": "アカウント設定と通知を管理します。",
+    "navigation": {
+        "back": "設定一覧",
+        "groups": {
+            "account": "アカウント",
+            "preferences": "環境設定",
+            "external": "外部サービス",
+            "danger": "重要な操作"
+        },
+        "sections": {
+            "general": { "title": "一般", "description": "画像、ユーザー名、ホームページを設定します。" },
+            "socials": { "title": "連携アカウント", "description": "ログインに使うアカウントを管理します。" },
+            "notifications": { "title": "通知", "description": "通知の内容と受信方法を選択します。" },
+            "privacy": { "title": "プライバシーとセキュリティ", "description": "公開範囲とパスワードを変更します。" },
+            "discord": { "title": "Discord連携", "description": "FullPartyをDiscordアカウントに接続します。" },
+            "plugin": { "title": "FFXIVプラグイン", "description": "連携アプリとプラグインのアクセスを管理します。" },
+            "delete": { "title": "アカウント削除", "description": "FullPartyアカウントを完全に削除します。" }
+        }
+    },
     "account": {
         "title": "アカウント設定",
         "save": "変更を保存",
@@ -37,6 +55,32 @@
     "unlink_social_account_warning": "必要であれば後で再度連携できます。",
     "unlink_social_account_confirm": "連携を解除",
     "unlink_social_account_cancel": "このままにする",
+    "ffxiv_plugin": {
+        "title": "FFXIVでFullPartyを使う",
+        "description": "ゲーム内からFullPartyの編成を確認し、パーティメンバーのチェックインを行えます。",
+        "audience_title": "現在は主に主催者・パーティリーダー向け",
+        "audience_description": "現在のプラグインは、主催者によるイベント管理やパーティの連携を支援する機能が中心です。",
+        "install_title": "Dalamudからインストール",
+        "requirement": "Dalamudを有効にしたXIVLauncherが必要です。",
+        "copy_repository": "URLをコピー",
+        "copied": "コピーしました",
+        "copy_failed": "リポジトリURLをコピーできませんでした",
+        "copy_manually": "URLを選択して手動でコピーしてください。",
+        "steps": {
+            "repository": {
+                "title": "リポジトリを追加",
+                "description": "Dalamud設定（/xlsettings）を開き、Experimental → Custom Plugin Repositoriesに進みます。このURLを貼り付け、＋を押して保存してください。"
+            },
+            "install": {
+                "title": "FullPartyをインストール",
+                "description": "プラグインインストーラー（/xlplugins）を開き、FullPartyを検索してインストールしてください。"
+            },
+            "connect": {
+                "title": "アカウントを接続",
+                "description": "プラグインを開き、ログインの案内に従ってブラウザーでFullPartyアカウントを接続してください。接続の管理や解除は下の一覧から行えます。"
+            }
+        }
+    },
     "active_sessions": {
         "title": "連携中のアプリセッション",
         "subtitle": "アカウントに接続されているアプリやプラグインです。",
@@ -71,7 +115,7 @@
         "discord_app_connected_title": "Discordアプリ連携済み",
         "discord_app_connected_description": "FullPartyは対応しているDiscord通知をこのアカウントへ送信できます。",
         "discord_app_not_connected_title": "Discordアプリ未連携",
-        "discord_app_not_connected_description": "Discord送信とボット連携のグループ機能を使うには、Discordアプリを連携してください。",
+        "discord_app_not_connected_description": "FullPartyアプリを連携すると、対応するDiscord通知を受け取れます。",
         "channels": {
             "inApp": "サイト内",
             "email": "メール",
@@ -174,7 +218,7 @@
                 "description": "任意の製品更新、機能ニュース、プロジェクト告知です。"
             }
         },
-        "install_discord_app": "Discordアプリをインストール",
+        "connect_discord_app": "Discordアプリを連携",
         "generate_discord_link_token": "連携トークンを生成",
         "discord_link_token_title": "Discord連携トークン",
         "discord_link_token_expires": "このトークンをFullParty Discordボットに渡してください。有効期限は {date} です。",
@@ -190,7 +234,70 @@
             "confirm": "Discord連携を解除"
         }
     },
+    "discord_integration": {
+        "title": "Discordでランの最新情報を確認",
+        "description": "FullPartyアプリを連携すると、パーティとの会話に使っているDiscordで便利な更新情報を受け取れます。",
+        "benefits": {
+            "reminders": {
+                "title": "ランのリマインダー",
+                "description": "ランの開始前や開始時に、ランへのリンク付きで通知を受け取れます。"
+            },
+            "applications": {
+                "title": "申請・編成の更新",
+                "description": "参加申請の結果や、公開された編成・補欠の変更を確認できます。"
+            },
+            "identity": {
+                "title": "ボットがあなたを認識",
+                "description": "FullPartyのアカウントとメインキャラクターを関連付け、ボットがあなたを識別できるようにします。"
+            }
+        },
+        "difference_title": "Discordログインとの違いは？",
+        "login_title": "Discordでログイン",
+        "login_description": "FullPartyのウェブサイトにログインするための機能です。これだけではFullPartyアプリは連携されず、Discord通知も有効になりません。",
+        "manage_login": "ログイン用アカウントを管理",
+        "app_title": "Discordアプリを連携",
+        "app_description": "対応する通知やボット機能を使うために、アカウントをFullPartyボットと連携します。メール、Google、XIVAuthでログインしている場合も利用できます。",
+        "personal_connection": "これは個人用の連携です。グループのDiscordサーバーは、グループの主催者が別途連携します。",
+        "how_title": "連携の手順",
+        "steps": {
+            "connect": "「Discordアプリを連携」を選択して、Discordの認証画面を開きます。",
+            "authorize": "正しいDiscordアカウントであることと権限の内容を確認し、FullPartyを認証します。",
+            "preferences": "「通知」を開き、Discordで受け取りたい対応通知を選択します。"
+        },
+        "manage_notifications": "通知を管理",
+        "token_title": "ボットから連携する場合",
+        "token_description": "FullPartyボットから連携トークンを求められた場合は、ここで生成してください。トークンはFullPartyボットにのみ渡してください。有効期限があり、一度だけ使用できます。",
+        "disconnect_description": "ここで連携を解除するとアプリ連携とDiscord通知が停止しますが、ログイン方法は変更されません。Discord側からもアプリを削除するには、Discordの設定の「認証済みアプリ」からFullPartyを削除してください。"
+    },
     "privacy": {
+        "deletion_details": {
+            "warning_title": "アカウントの削除は取り消せません",
+            "warning_description": "FullPartyアカウントが閉鎖され、直ちにログアウトされます。そのアカウントにはログインできなくなります。",
+            "effects_title": "アカウントに起きること",
+            "effects": {
+                "account": {
+                    "title": "アカウント情報とアクセス",
+                    "description": "アカウント名とメールアドレスは削除済みアカウント用の情報に置き換えられ、プロフィール画像は解除されます。サイトのセッションと連携アプリ・プラグインのアクセス権は失効します。"
+                },
+                "connections": {
+                    "title": "所属と連携",
+                    "description": "グループへの所属、ログイン用アカウントの連携、Discordアプリ連携、受信した通知が削除されます。"
+                },
+                "characters": {
+                    "title": "キャラクターの紐付けを解除",
+                    "description": "キャラクターはアカウントから解除されます。メイン、認証済み、所有権認証済みの状態もリセットされます。"
+                },
+                "runs": {
+                    "title": "参加予定のラン",
+                    "description": "有効な参加申請は取り下げられ、キャラクターは今後の編成から外されます。割り当てが解除された場合、関係するグループの主催者に通知されます。"
+                }
+            },
+            "history_title": "共有されている履歴は残ります",
+            "history_description": "グループの共有記録を維持するため、過去の申請、ランと出欠の履歴、キャラクターの記録、監査ログは保持されます。アカウントを削除しても、過去の参加に関するすべての記録が消えるわけではありません。",
+            "external_accounts": "閉鎖されるのはFullPartyアカウントのみです。ゲーム内のFFXIVキャラクターや、Discord、Google、XIVAuthのアカウントは削除されません。",
+            "groups_title": "グループを所有していますか？",
+            "confirmation_hint": "削除の前に、最終確認が表示されます。"
+        },
         "title": "プライバシーとセキュリティ",
         "profile_visibility": "プロフィール公開設定",
         "profile_visibility_description": "他のユーザーにプロフィールを表示する",

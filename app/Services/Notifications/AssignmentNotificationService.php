@@ -10,9 +10,11 @@ use App\Models\ActivitySlot;
 use App\Models\ActivitySlotFieldValue;
 use App\Models\Character;
 use App\Models\User;
+use App\Services\Runs\RunAccessService;
 use App\Support\Activities\ActivityDisplayName;
 use App\Support\Notifications\NotificationCategory;
 use App\Support\Notifications\NotificationTopic;
+use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 
 class AssignmentNotificationService
 {
@@ -21,6 +23,7 @@ class AssignmentNotificationService
     public function __construct(
         private readonly NotificationService $notificationService,
         private readonly ActivityNotificationPayloadBuilder $payloadBuilder,
+        private readonly RunAccessService $runAccess,
     ) {}
 
     public function notifyRosterPublished(Activity $activity, mixed $actor): void
@@ -183,7 +186,7 @@ class AssignmentNotificationService
             return;
         }
 
-        $recipient = $this->characterRecipient($character);
+        $recipient = $this->characterRecipient($character, $activity);
 
         if (! $recipient) {
             return;
@@ -257,7 +260,7 @@ class AssignmentNotificationService
             return;
         }
 
-        $recipient = $this->characterRecipient($character);
+        $recipient = $this->characterRecipient($character, $activity);
 
         if (! $recipient) {
             return;
@@ -350,7 +353,7 @@ class AssignmentNotificationService
         mixed $actor,
         bool $published,
     ): void {
-        $recipient = $this->characterRecipient($character);
+        $recipient = $this->characterRecipient($character, $activity);
 
         if (! $recipient) {
             return;
@@ -406,7 +409,7 @@ class AssignmentNotificationService
         mixed $actor,
         string $attendanceStatus,
     ): void {
-        $recipient = $this->characterRecipient($character);
+        $recipient = $this->characterRecipient($character, $activity);
 
         if (! $recipient) {
             return;
@@ -478,10 +481,10 @@ class AssignmentNotificationService
             return null;
         }
 
-        return $recipient;
+        return $this->runAccess->filterViewers($application->activity, new EloquentCollection([$recipient]))->first();
     }
 
-    private function characterRecipient(Character $character): ?User
+    private function characterRecipient(Character $character, Activity $activity): ?User
     {
         $character->loadMissing('user');
 
@@ -491,7 +494,7 @@ class AssignmentNotificationService
             return null;
         }
 
-        return $recipient;
+        return $this->runAccess->filterViewers($activity, new EloquentCollection([$recipient]))->first();
     }
 
     private function findAssignedSlotForApplication(Activity $activity, ActivityApplication $application): ?ActivitySlot

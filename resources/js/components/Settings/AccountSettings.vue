@@ -3,7 +3,6 @@ import type { SettingsUser } from "@/Types/Settings";
 import { useForm } from "@inertiajs/vue3";
 import { route } from "ziggy-js";
 import { useI18n } from "vue-i18n";
-import { usePasswordVisibility } from "@/composables/usePasswordVisibility";
 import { computed, onBeforeUnmount, ref, watch } from "vue";
 
 const profilePictureMaxBytes = 5 * 1024 * 1024;
@@ -16,17 +15,11 @@ const props = defineProps<{
 }>();
 
 const { t } = useI18n();
-const passwordVisibility = usePasswordVisibility(['current_password', 'password', 'password_confirmation'] as const);
 const form = useForm({
 	username: props.user.name ?? '',
 });
 const profilePictureForm = useForm({
 	profile_picture: null as File | null,
-});
-const passwordForm = useForm({
-	current_password: '',
-	password: '',
-	password_confirmation: '',
 });
 const profilePicturePreviewUrl = ref<string | null>(props.user.avatar_url ?? null);
 const profilePictureInput = ref<HTMLInputElement | null>(null);
@@ -121,20 +114,6 @@ const submitProfilePicture = () => {
 	});
 };
 
-const submitPasswordForm = () => {
-	passwordForm.post(route('settings.password'), {
-		preserveScroll: true,
-		onSuccess: () => {
-			passwordForm.reset();
-			passwordForm.clearErrors();
-		},
-		onFinish: () => {
-			passwordForm.password = '';
-			passwordForm.password_confirmation = '';
-		},
-	});
-};
-
 watch(
 	() => props.user.avatar_url,
 	(avatarUrl) => {
@@ -157,7 +136,7 @@ onBeforeUnmount(() => {
 		</template>
 
 		<div class="w-full flex flex-col items-start gap-4">
-			<form class="w-full flex flex-col gap-4 rounded-sm border border-default bg-muted/20 p-4" @submit.prevent="submitProfilePicture">
+			<form class="w-full flex flex-col gap-4" @submit.prevent="submitProfilePicture">
 				<div class="flex flex-col gap-4 sm:flex-row sm:items-center">
 					<div class="flex h-24 w-24 shrink-0 items-center justify-center overflow-hidden rounded-full border border-default bg-muted/40 text-xl font-semibold text-muted">
 						<img
@@ -238,103 +217,7 @@ onBeforeUnmount(() => {
 				/>
 			</form>
 
-			<div class="w-full border-t border-default pt-4">
-				<form class="flex w-full flex-col items-start gap-4" @submit.prevent="submitPasswordForm">
-					<UFormField
-						class="w-full"
-						:label="t('settings.account.old_password')"
-						:error="passwordForm.errors.current_password"
-					>
-						<UInput
-							v-model="passwordForm.current_password"
-							:type="passwordVisibility.inputType('current_password')"
-							size="xl"
-							class="w-full"
-							:placeholder="t('settings.account.old_password')"
-							autocomplete="current-password"
-							:ui="{ trailing: 'pe-1' }"
-						>
-							<template #trailing>
-								<UButton
-									type="button"
-									color="neutral"
-									variant="ghost"
-									size="sm"
-									:icon="passwordVisibility.icon('current_password')"
-									:aria-label="t('settings.account.old_password')"
-									@click="passwordVisibility.toggle('current_password')"
-								/>
-							</template>
-						</UInput>
-					</UFormField>
 
-					<div class="grid w-full grid-cols-1 gap-4 xl:grid-cols-2">
-						<UFormField
-							class="w-full"
-							:label="t('settings.account.new_password')"
-							:error="passwordForm.errors.password"
-						>
-							<UInput
-								v-model="passwordForm.password"
-								:type="passwordVisibility.inputType('password')"
-								size="xl"
-								class="w-full"
-								:placeholder="t('settings.account.new_password')"
-								autocomplete="new-password"
-								:ui="{ trailing: 'pe-1' }"
-							>
-								<template #trailing>
-									<UButton
-										type="button"
-										color="neutral"
-										variant="ghost"
-										size="sm"
-										:icon="passwordVisibility.icon('password')"
-										:aria-label="t('settings.account.new_password')"
-										@click="passwordVisibility.toggle('password')"
-									/>
-								</template>
-							</UInput>
-						</UFormField>
-
-						<UFormField
-							class="w-full"
-							:label="t('settings.account.new_password_confirmation')"
-							:error="passwordForm.errors.password_confirmation"
-						>
-							<UInput
-								v-model="passwordForm.password_confirmation"
-								:type="passwordVisibility.inputType('password_confirmation')"
-								size="xl"
-								class="w-full"
-								:placeholder="t('settings.account.new_password_confirmation')"
-								autocomplete="new-password"
-								:ui="{ trailing: 'pe-1' }"
-							>
-								<template #trailing>
-									<UButton
-										type="button"
-										color="neutral"
-										variant="ghost"
-										size="sm"
-										:icon="passwordVisibility.icon('password_confirmation')"
-										:aria-label="t('settings.account.new_password_confirmation')"
-										@click="passwordVisibility.toggle('password_confirmation')"
-									/>
-								</template>
-							</UInput>
-						</UFormField>
-					</div>
-
-					<UButton
-						type="submit"
-						:label="t('settings.account.update_password')"
-						size="lg"
-						color="neutral"
-						:loading="passwordForm.processing"
-					/>
-				</form>
-			</div>
 		</div>
 	</UCard>
 </template>

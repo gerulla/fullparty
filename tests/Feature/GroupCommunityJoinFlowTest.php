@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\AuditLog;
 use App\Models\Group;
 use App\Models\GroupInvite;
 use App\Models\User;
@@ -8,12 +9,12 @@ use Inertia\Testing\AssertableInertia as Assert;
 
 uses(RefreshDatabase::class);
 
-it('allows open community groups to be joined directly and keeps a permanent slug invite', function () {
+it('allows open groups of either type to be joined directly and keeps a permanent slug invite', function (string $groupType) {
     $owner = User::factory()->create();
     $viewer = User::factory()->create();
     $group = Group::factory()->open()->create([
         'owner_id' => $owner->id,
-        'group_type' => Group::TYPE_COMMUNITY,
+        'group_type' => $groupType,
     ]);
 
     expect($group->join_mode)->toBe(Group::JOIN_MODE_OPEN)
@@ -25,7 +26,7 @@ it('allows open community groups to be joined directly and keeps a permanent slu
         ->assertRedirect(route('groups.dashboard', $group));
 
     expect($group->memberships()->where('user_id', $viewer->id)->exists())->toBeTrue();
-});
+})->with([Group::TYPE_COMMUNITY, Group::TYPE_STATIC]);
 
 it('redirects root invite badges to the localized invite page', function () {
     $owner = User::factory()->create();
@@ -39,6 +40,21 @@ it('redirects root invite badges to the localized invite page', function () {
 
     $this->get('/ftel')
         ->assertRedirect('/en/invite/ftel');
+});
+
+it('preserves bans and idempotent joining for open static groups', function () {
+    $group = Group::factory()->open()->create(['group_type' => Group::TYPE_STATIC]);
+    $member = User::factory()->create();
+    $banned = User::factory()->create();
+    $group->bans()->create(['user_id' => $banned->id, 'banned_by_user_id' => $group->owner_id]);
+
+    $this->actingAs($banned)->post(route('groups.join', $group))->assertSessionHasErrors('error');
+    expect($group->memberships()->where('user_id', $banned->id)->exists())->toBeFalse();
+
+    $this->actingAs($member)->post(route('groups.join', $group))->assertSessionDoesntHaveErrors();
+    $this->post(route('groups.join', $group))->assertSessionDoesntHaveErrors();
+    expect($group->memberships()->where('user_id', $member->id)->count())->toBe(1)
+        ->and(AuditLog::where('action', 'group.member.joined')->where('actor_user_id', $member->id)->count())->toBe(1);
 });
 
 it('does not redirect unknown root invite badges', function () {

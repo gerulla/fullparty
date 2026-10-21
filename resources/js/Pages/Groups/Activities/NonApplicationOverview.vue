@@ -400,6 +400,13 @@ const removeSelfFromSlot = async (slot: ActivitySlot) => {
 					:progress-point="targetProgPointLabel"
 				/>
 				<UButton
+					v-if="permissions.requires_login"
+					color="primary"
+					icon="i-lucide-log-in"
+					:label="t('auth.login')"
+					:to="route('login')"
+				/>
+				<UButton
 					v-if="permissions.can_manage"
 					color="neutral"
 					variant="outline"

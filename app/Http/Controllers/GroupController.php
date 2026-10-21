@@ -14,10 +14,10 @@ use App\Models\User;
 use App\Services\AuditLogger;
 use App\Services\Groups\FeaturedGroupService;
 use App\Services\Groups\GeneratedGroupImageService;
-use App\Services\Groups\MembershipApplicationFormSchemaService;
 use App\Services\ManagedImageStorage;
 use App\Services\Notifications\NotificationPreferenceSettingsService;
 use App\Services\Quotas\QuotaService;
+use App\Services\Runs\RunAccessService;
 use App\Support\Audit\AuditScope;
 use App\Support\Audit\AuditSeverity;
 use App\Support\Groups\GroupDiscoveryBadgePalette;
@@ -46,11 +46,11 @@ class GroupController extends Controller
         private readonly RequestTextInputSanitizer $requestTextInputSanitizer,
         private readonly GroupDiscoveryBadgePalette $groupDiscoveryBadgePalette,
         private readonly GeneratedGroupImageService $generatedGroupImageService,
-        private readonly MembershipApplicationFormSchemaService $membershipApplicationFormSchemaService,
         private readonly FeaturedGroupService $featuredGroupService,
         private readonly NotificationPreferenceSettingsService $notificationPreferenceSettingsService,
         private readonly ServerMeta $serverMeta,
         private readonly QuotaService $quotaService,
+        private readonly RunAccessService $runAccess,
     ) {}
 
     public function index(Request $request): Response
@@ -247,7 +247,6 @@ class GroupController extends Controller
             }
 
             $group->save();
-            $this->membershipApplicationFormSchemaService->ensureDefaultForm($group);
 
             $group->memberships()->create([
                 'user_id' => auth()->id(),
@@ -357,7 +356,8 @@ class GroupController extends Controller
 
     private function serializeGroupDiscoveryDetail(Group $group, int $currentUserId): array
     {
-        $discoverableRunsQuery = $group->activities();
+        $discoverableRunsQuery = $group->activities()
+            ->tap(fn ($query) => $this->runAccess->scopeVisibleTo($query, $currentUserId));
         $allDiscoverableRuns = (clone $discoverableRunsQuery)
             ->with('activityTypeVersion.activityType')
             ->orderByDesc('starts_at')
@@ -916,7 +916,7 @@ class GroupController extends Controller
         $currentMembership = $group->memberships->firstWhere('user_id', $currentUserId);
         $isMember = $currentMembership instanceof GroupMembership;
         $isBanned = $includeBanCheck ? $group->isBanned($currentUserId) : false;
-        $hasPendingMembershipApplication = $group->membershipApplications()
+        $hasPendingMembershipApplication = $group->usesMembershipApplications() && $group->membershipApplications()
             ->where('user_id', $currentUserId)
             ->where('status', GroupMembershipApplication::STATUS_PENDING)
             ->exists();

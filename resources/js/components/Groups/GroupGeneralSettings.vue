@@ -53,9 +53,7 @@ const form = useForm({
 const profilePicturePreviewUrl = ref<string | null>(props.group.profile_picture_url ?? null);
 const bannerImagePreviewUrl = ref<string | null>(props.group.banner_image_url ?? null);
 const joinModeOptions = computed(() => {
-	const values: GroupJoinMode[] = props.group.group_type === 'static'
-		? ['invite_only', 'application']
-		: ['open', 'invite_only', 'application'];
+	const values: GroupJoinMode[] = ['open', 'invite_only'];
 
 	return values.map((value) => ({
 		value,

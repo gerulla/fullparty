@@ -6,19 +6,24 @@ use App\Models\Activity;
 use App\Models\Group;
 use App\Services\Groups\ActivityIndexItemSerializer;
 use App\Services\Groups\MyRunsCommitmentService;
+use App\Services\Runs\RunAccessService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
 
 class MyRunsController extends Controller
 {
-    public function __invoke(Request $request, ActivityIndexItemSerializer $serializer, MyRunsCommitmentService $commitments): Response
+    public function __invoke(Request $request, ActivityIndexItemSerializer $serializer, MyRunsCommitmentService $commitments, RunAccessService $access): Response
     {
         $user = $request->user();
         $groups = $user->runListGroups()
+            ->whereDoesntHave('bans', fn ($query) => $query->where('user_id', $user->id))
             ->with([
                 'memberships',
-                'activities.group',
+                'bans',
+                'activities' => fn ($query) => $query->tap(fn ($query) => $access->scopeVisibleTo($query, $user->id)),
+                'activities.group.memberships',
+                'activities.group.bans',
                 'activities.organizer',
                 'activities.organizerCharacter',
                 'activities.activityType',
@@ -29,7 +34,7 @@ class MyRunsController extends Controller
             ])
             ->orderBy('groups.name')
             ->get()
-            ->filter(fn (Group $group): bool => $group->hasMember($user->id) || $group->allowsPublicDashboardAccess())
+            ->filter(fn (Group $group): bool => $group->hasMember($user->id) || $group->activities->isNotEmpty())
             ->values();
 
         $activities = $groups
@@ -37,12 +42,6 @@ class MyRunsController extends Controller
                 $canManageActivities = $group->hasModeratorAccess($user->id);
 
                 return $group->activities
-                    ->when(
-                        ! $canManageActivities,
-                        fn ($activities) => $activities->reject(
-                            fn (Activity $activity): bool => Activity::isModeratorOnlyStatus($activity->status),
-                        ),
-                    )
                     ->sortByDesc('updated_at')
                     ->map(fn (Activity $activity): array => $serializer->serialize(
                         $activity,

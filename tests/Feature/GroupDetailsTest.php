@@ -175,14 +175,13 @@ it('exposes discoverable runs in discovery activity details', function () {
     $this->actingAs($user)
         ->getJson(route('groups.details', $group))
         ->assertOk()
-        ->assertJsonPath('data.activity_summary.completed_runs', 2)
-        ->assertJsonPath('data.activity_summary.total_runs', 2)
-        ->assertJsonPath('data.content_summary.total_runs', 2)
-        ->assertJsonPath('data.content_items.0.total_runs', 2)
-        ->assertJsonCount(2, 'data.recent_runs')
+        ->assertJsonPath('data.activity_summary.completed_runs', 1)
+        ->assertJsonPath('data.activity_summary.total_runs', 1)
+        ->assertJsonPath('data.content_summary.total_runs', 1)
+        ->assertJsonPath('data.content_items.0.total_runs', 1)
+        ->assertJsonCount(1, 'data.recent_runs')
         ->assertJsonCount(1, 'data.content_items')
-        ->assertJsonPath('data.recent_runs.0.id', $membersOnlyActivity->id)
-        ->assertJsonPath('data.recent_runs.1.id', $publicActivity->id);
+        ->assertJsonPath('data.recent_runs.0.id', $publicActivity->id);
 
     expect($publicActivity->id)->not->toBe($membersOnlyActivity->id);
 });

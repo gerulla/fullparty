@@ -75,10 +75,10 @@ it('persists an unresolved step and resumes it on the claim page without leaking
 
 it('offers links only when the actual overview policy allows them', function () {
     $transfer = pendingCharacterTransfer($this);
-    $this->group->update(['is_visible' => false]);
+    $this->group->activities()->update(['is_public' => false]);
     $summary = app(CharacterTransferCompletionService::class)->summary($transfer, $this->recipient);
     expect(collect($summary['runs'])->pluck('url')->all())->toBe([null, null]);
-    $this->group->update(['is_visible' => true]);
+    $this->group->activities()->update(['is_public' => true]);
     $summary = app(CharacterTransferCompletionService::class)->summary($transfer->fresh(), $this->recipient);
     expect(collect($summary['runs'])->every(fn ($run) => str_contains($run['url'], '/activities/')))->toBeTrue();
     $this->upcoming->update(['status' => 'draft']);
@@ -138,9 +138,9 @@ it('rolls back every choice when the receiving account already applied to the sa
         ->and($this->futureApp->fresh()->status)->toBe('approved')->and($this->assignment->fresh()->ended_at)->toBeNull();
 });
 
-it('blocks inherited participation in groups that the receiving account cannot join', function () {
+it('blocks inherited participation in members-only runs without membership', function () {
     $transfer = pendingCharacterTransfer($this);
-    $this->group->update(['is_visible' => false]);
+    $this->upcoming->update(['is_public' => false]);
     $this->postJson(route('characters.transfer.complete', $transfer), ['history' => 'keep', 'upcoming' => 'keep'])
         ->assertUnprocessable()->assertJsonPath('errors.transfer.0', 'ineligible');
     $this->postJson(route('characters.transfer.complete', $transfer), ['history' => 'keep', 'upcoming' => 'discard'])->assertOk();

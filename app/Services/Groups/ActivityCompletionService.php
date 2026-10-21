@@ -5,7 +5,9 @@ namespace App\Services\Groups;
 use App\Models\Activity;
 use App\Models\ActivityProgressMilestone;
 use App\Models\ActivityTypeVersion;
+use App\Models\User;
 use App\Services\Integrations\DiscordGuildRunsChangedService;
+use App\Services\Notifications\RunNotificationService;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
@@ -18,6 +20,9 @@ class ActivityCompletionService
 
     public function __construct(
         private readonly DiscordGuildRunsChangedService $discordRunsChanged,
+        private readonly ActivityGroupFollowUpService $groupFollowUps,
+        private readonly GroupActivityAuditService $activityAuditService,
+        private readonly RunNotificationService $runNotificationService,
     ) {}
 
     /**
@@ -25,6 +30,40 @@ class ActivityCompletionService
      * @return array<string, mixed>
      */
     public function complete(Activity $activity, array $payload, int $recordedByUserId): array
+    {
+        return DB::transaction(function () use ($activity, $payload, $recordedByUserId): array {
+            // Share the roster lock so attendance cannot change halfway through completion.
+            $current = Activity::query()->lockForUpdate()->findOrFail($activity->id);
+            if ($current->status === Activity::STATUS_COMPLETE) {
+                return [];
+            }
+
+            return $this->recordCompletion($current, $payload, $recordedByUserId);
+        });
+    }
+
+    /** @param array<string, mixed> $payload */
+    public function completeAndNotify(Activity $activity, array $payload, User $actor): void
+    {
+        DB::transaction(function () use ($activity, $payload, $actor): void {
+            $current = Activity::query()->lockForUpdate()->findOrFail($activity->id);
+            if ($current->status === Activity::STATUS_COMPLETE) {
+                return;
+            }
+            abort_unless($current->canBeCompleted(), 403);
+
+            $changes = $this->recordCompletion($current, $payload, $actor->id);
+            $completed = $current->fresh(['group', 'applications.user', 'applications.selectedCharacter']);
+            $this->activityAuditService->logActivityUpdated($completed, $actor, $changes);
+            $this->runNotificationService->notifyCompleted($completed, $actor);
+        });
+    }
+
+    /**
+     * @param  array<string, mixed>  $payload
+     * @return array<string, mixed>
+     */
+    private function recordCompletion(Activity $activity, array $payload, int $recordedByUserId): array
     {
         $activity->loadMissing(['activityTypeVersion', 'progressMilestones']);
 
@@ -49,6 +88,7 @@ class ActivityCompletionService
                     'progress_recorded_at' => now(),
                 ]);
 
+                $this->groupFollowUps->prepare($activity, $recordedByUserId);
                 $this->discordRunsChanged->notifyChanged($activity);
 
                 return [
@@ -135,6 +175,7 @@ class ActivityCompletionService
                 'progress_recorded_at' => now(),
             ]);
 
+            $this->groupFollowUps->prepare($activity, $recordedByUserId);
             $this->discordRunsChanged->notifyChanged($activity);
 
             return [

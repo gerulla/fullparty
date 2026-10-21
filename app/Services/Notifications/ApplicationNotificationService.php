@@ -6,6 +6,7 @@ use App\Models\Activity;
 use App\Models\ActivityApplication;
 use App\Models\Group;
 use App\Models\User;
+use App\Services\Runs\RunAccessService;
 use App\Support\Activities\ActivityDisplayName;
 use App\Support\Notifications\NotificationCategory;
 use App\Support\Notifications\NotificationTopic;
@@ -17,6 +18,7 @@ class ApplicationNotificationService
         private readonly NotificationService $notificationService,
         private readonly ActivityNotificationPayloadBuilder $payloadBuilder,
         private readonly NotificationActionUrlService $actionUrls,
+        private readonly RunAccessService $runAccess,
     ) {}
 
     public function notifySubmitted(ActivityApplication $application, mixed $actor): void
@@ -228,7 +230,7 @@ class ApplicationNotificationService
             return new EloquentCollection;
         }
 
-        return User::query()
+        $recipients = User::query()
             ->whereKey($hostId)
             ->when(
                 $application->user_id !== null,
@@ -237,6 +239,8 @@ class ApplicationNotificationService
             ->get()
             ->filter(fn (User $recipient) => $this->hasApplicationNotificationCandidatePreference($recipient, $topics))
             ->values();
+
+        return $this->runAccess->filterViewers($activity, $recipients);
     }
 
     /**

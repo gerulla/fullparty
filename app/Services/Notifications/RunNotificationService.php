@@ -11,6 +11,7 @@ use App\Models\IntegrationClient;
 use App\Models\NotificationEvent;
 use App\Models\User;
 use App\Services\Integrations\IntegrationWebhookDispatcher;
+use App\Services\Runs\RunAccessService;
 use App\Support\Activities\ActivityDisplayName;
 use App\Support\Notifications\NotificationCategory;
 use App\Support\Notifications\NotificationChannel;
@@ -34,6 +35,7 @@ class RunNotificationService
         private readonly ActivityNotificationPayloadBuilder $payloadBuilder,
         private readonly PartyFinderNotificationPayloadBuilder $partyFinderPayloadBuilder,
         private readonly RunReminderContactPayloadBuilder $reminderContacts,
+        private readonly RunAccessService $runAccess,
     ) {}
 
     /**
@@ -84,7 +86,12 @@ class RunNotificationService
             ],
         );
 
-        $this->sendDiscordGuildRunCompleted($activity);
+        // A rolled-back completion must not reach the external Discord bot.
+        if (DB::transactionLevel() > 0) {
+            DB::afterCommit(fn () => $this->sendDiscordGuildRunCompleted($activity));
+        } else {
+            $this->sendDiscordGuildRunCompleted($activity);
+        }
     }
 
     public function notifyPartyFinderPublished(
@@ -249,6 +256,8 @@ class RunNotificationService
         array $messageParams = [],
         array $payload = [],
     ): void {
+        $recipients = $this->runAccess->filterViewers($activity, $recipients);
+
         if ($recipients->isEmpty()) {
             return;
         }

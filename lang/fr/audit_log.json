@@ -176,6 +176,12 @@
       "transferred": "a transféré un personnage entre deux comptes."
     },
     "group": {
+      "personal_invite": {
+        "sent": "a envoyé une invitation personnelle au groupe.",
+        "accepted": "a accepté une invitation personnelle au groupe.",
+        "declined": "a refusé une invitation personnelle au groupe.",
+        "revoked": "a révoqué une invitation personnelle au groupe."
+      },
       "resources": {
         "created": "a créé une ressource.",
         "save": "a enregistré un brouillon de ressource.",
@@ -504,6 +510,13 @@
       "transferred": "Personnage transféré entre deux comptes"
     },
     "group": {
+      "personal_invite": {
+        "sent": "Invitation personnelle au groupe envoyée",
+        "accepted": "Invitation personnelle au groupe acceptée",
+        "declined": "Invitation personnelle au groupe refusée",
+        "revoked": "Invitation personnelle au groupe révoquée"
+      },
+      "membership_requests_retired": "a supprimé les demandes d’adhésion, annulé les demandes en attente et remplacé l’adhésion sur approbation par l’adhésion sur invitation.",
       "resources": {
         "created": "a créé une ressource.",
         "save": "a enregistré un brouillon de ressource.",

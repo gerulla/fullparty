@@ -6,12 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\XivPlugin\XivPluginRunResource;
 use App\Models\Activity;
 use App\Models\ActivityApplication;
+use App\Services\Runs\RunAccessService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class XivPluginRunController extends Controller
 {
-    public function show(Request $request, Activity $activity): JsonResponse
+    public function show(Request $request, Activity $activity, RunAccessService $access): JsonResponse
     {
         $user = $request->user();
 
@@ -27,6 +28,7 @@ class XivPluginRunController extends Controller
 
         $group = $activity->group;
 
+        abort_unless($access->canView($group, $activity, $user->id), 404);
         abort_unless($group->hasMember($user->id), 404);
 
         $canModerate = $group->hasModeratorAccess($user->id);

@@ -116,9 +116,7 @@ const form = useForm<GroupCreateFormData>({
 });
 
 const joinModeOptions = computed(() => {
-	const values: GroupJoinMode[] = form.group_type === 'static'
-		? ['invite_only', 'application']
-		: ['open', 'invite_only', 'application'];
+	const values: GroupJoinMode[] = ['open', 'invite_only'];
 
 	return values.map((value) => ({
 		value,
@@ -189,11 +187,7 @@ const visibilitySummary = computed(() => {
 	return t(`groups.index.create_modal.visibility_summary.${joinModeKey}_${visibilityKey}`, { name: displayGroupName.value });
 });
 
-watch(() => form.group_type, (groupType) => {
-	if (groupType === 'static' && form.join_mode === 'open') {
-		form.join_mode = 'invite_only';
-	}
-
+watch(() => form.group_type, () => {
 	clearFieldError('group_type');
 	clearFieldError('join_mode');
 });

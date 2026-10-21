@@ -30,7 +30,7 @@ beforeEach(function () {
 
 it('keeps application history while redacting runs the actor can no longer read', function (string $restriction) {
     $group = Group::factory()->withMember($this->member)->create(['is_visible' => $restriction !== 'left_private_group']);
-    $run = Activity::factory()->create(['group_id' => $group->id, 'status' => Activity::STATUS_SCHEDULED]);
+    $run = Activity::factory()->create(['group_id' => $group->id, 'status' => Activity::STATUS_SCHEDULED, 'is_public' => $restriction !== 'left_private_group']);
     $application = ActivityApplication::factory()->create([
         'activity_id' => $run->id, 'user_id' => $this->member->id,
         'status' => ActivityApplication::STATUS_WITHDRAWN, 'notes' => 'My application notes',

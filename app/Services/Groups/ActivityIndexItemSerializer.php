@@ -5,11 +5,13 @@ namespace App\Services\Groups;
 use App\Models\Activity;
 use App\Models\ActivityApplication;
 use App\Models\ActivitySlot;
+use App\Services\Runs\RunAccessService;
 
 final class ActivityIndexItemSerializer
 {
     public function __construct(
         private readonly ActivitySlotKind $slotKind,
+        private readonly RunAccessService $access,
     ) {}
 
     /** @return array<string, mixed> */
@@ -23,8 +25,7 @@ final class ActivityIndexItemSerializer
                 ->where('status', '!=', ActivityApplication::STATUS_WITHDRAWN)
                 ->isNotEmpty();
         $canOpenApplication = $hasExistingApplication || (
-            $activity->needs_application
-            && $activity->acceptsApplications()
+            $this->access->canApply($activity->group, $activity, $viewerUserId)
             && $mainSlots->contains(fn (ActivitySlot $slot): bool => $slot->assigned_character_id === null)
         );
 

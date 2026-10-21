@@ -185,7 +185,7 @@ const providerDisplayName = computed(() => {
 @reference "../../../css/app.css";
 
 .social-block {
-	@apply w-full grid items-center p-4 border border-neutral-200 dark:border-neutral-700 rounded-sm gap-4;
+	@apply w-full grid items-center p-4 bg-elevation-3 rounded-sm gap-4;
 	grid-template-columns: auto minmax(0, 1fr) auto;
 }
 

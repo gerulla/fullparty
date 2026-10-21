@@ -11,14 +11,14 @@ use App\Models\CharacterTransferRun;
 use App\Models\Group;
 use App\Models\GroupMembership;
 use App\Models\User;
-use App\Services\Groups\ActivityOverviewAccessService;
+use App\Services\Runs\RunAccessService;
 use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
 
 final class V2HomeDataService
 {
-    public function __construct(private readonly ActivityOverviewAccessService $overviewAccess) {}
+    public function __construct(private readonly RunAccessService $runAccess) {}
 
     private const UPCOMING_STATUSES = [
         Activity::STATUS_SCHEDULED,
@@ -122,17 +122,23 @@ final class V2HomeDataService
                     'avatar_url' => $application->applicant_avatar_url,
                 ],
                 'run' => $this->serializeRun($application->activity),
-                'can_view_run' => $this->overviewAccess
-                    ->allows($application->activity->group, $application->activity, $user->id),
-                'href' => (int) $application->user_id !== (int) $user->id
-                    ? ($this->overviewAccess->allows($application->activity->group, $application->activity, $user->id)
-                        ? route('groups.activities.overview', ['group' => $application->activity->group->slug, 'activity' => $application->activity_id], false) : null)
-                    : route('groups.activities.application', [
-                        'locale' => app()->getLocale(),
-                        'group' => $application->activity->group->slug,
-                        'activity' => $application->activity_id,
-                    ], false),
+                'can_view_run' => $this->runAccess
+                    ->canView($application->activity->group, $application->activity, $user->id),
+                'href' => $this->applicationHref($application, $user),
             ])->all();
+    }
+
+    private function applicationHref(ActivityApplication $application, User $user): ?string
+    {
+        $activity = $application->activity;
+        if (! $this->runAccess->canView($activity->group, $activity, $user->id)) {
+            return null;
+        }
+
+        return route((int) $application->user_id === (int) $user->id
+            ? 'groups.activities.application' : 'groups.activities.overview', [
+                'locale' => app()->getLocale(), 'group' => $activity->group->slug, 'activity' => $activity->id,
+            ], false);
     }
 
     private function applicationDisplayStatus(ActivityApplication $application, bool $history): string
@@ -238,11 +244,10 @@ final class V2HomeDataService
             ->whereIn('status', self::UPCOMING_STATUSES)
             ->where('is_completed', false)
             ->where('is_public', true)
-            ->whereHas('group', fn (Builder $query) => $this->excludeBannedGroups($query->visible(), $user))
             ->inRandomOrder()
             ->limit(10)
             ->get()
-            ->map(fn (Activity $activity): array => $this->serializeRunCard($activity))
+            ->map(fn (Activity $activity): array => $this->serializeRunCard($activity, $user))
             ->all();
     }
 
@@ -263,7 +268,7 @@ final class V2HomeDataService
             ->orderBy('id')
             ->get()
             ->groupBy('group_id')
-            ->map(function ($activities): array {
+            ->map(function ($activities) use ($user): array {
                 $group = $activities->first()->group;
 
                 return [
@@ -271,7 +276,7 @@ final class V2HomeDataService
                     'runs_href' => route('groups.dashboard.activities.index', [
                         'locale' => app()->getLocale(), 'group' => $group->slug,
                     ], false),
-                    'runs' => $activities->map(fn (Activity $activity): array => $this->serializeRunCard($activity))->all(),
+                    'runs' => $activities->map(fn (Activity $activity): array => $this->serializeRunCard($activity, $user))->all(),
                 ];
             })
             ->values()
@@ -280,9 +285,10 @@ final class V2HomeDataService
 
     private function runCardQuery(User $user): Builder
     {
-        return Activity::query()
+        return $this->runAccess->scopeVisibleTo(Activity::query(), $user->id)
             ->with([
-                'group',
+                'group.memberships' => fn ($query) => $query->where('user_id', $user->id),
+                'group.bans' => fn ($query) => $query->where('user_id', $user->id),
                 'activityTypeVersion',
                 'applications' => fn ($query) => $query
                     ->select('id', 'activity_id', 'user_id', 'applicant_avatar_url')
@@ -298,10 +304,10 @@ final class V2HomeDataService
     }
 
     /** @return array<string, mixed> */
-    private function serializeRunCard(Activity $activity): array
+    private function serializeRunCard(Activity $activity, User $user): array
     {
         $hasApplication = (bool) $activity->has_existing_application;
-        $canApply = ! $hasApplication && $activity->needs_application && $activity->acceptsApplications();
+        $canApply = ! $hasApplication && $this->runAccess->canApply($activity->group, $activity, $user->id);
         $progPoint = collect($activity->activityTypeVersion?->prog_points ?? [])
             ->firstWhere('key', $activity->target_prog_point_key);
 

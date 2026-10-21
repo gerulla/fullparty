@@ -9,8 +9,8 @@ use App\Models\CharacterTransfer;
 use App\Models\CharacterTransferRun;
 use App\Models\User;
 use App\Services\AuditLogger;
-use App\Services\Groups\ActivityOverviewAccessService;
 use App\Services\Groups\ActivitySlotAttendanceService;
+use App\Services\Runs\RunAccessService;
 use App\Support\Audit\AuditScope;
 use App\Support\Audit\AuditSeverity;
 use Illuminate\Support\Facades\DB;
@@ -20,7 +20,7 @@ final class CharacterTransferCompletionService
 {
     public function __construct(
         private readonly CharacterTransferRunService $runTransfers,
-        private readonly ActivityOverviewAccessService $access,
+        private readonly RunAccessService $access,
         private readonly AuditLogger $audit,
         private readonly ActivitySlotAttendanceService $attendance,
     ) {}
@@ -93,7 +93,7 @@ final class CharacterTransferCompletionService
                     'activity_type' => $activity->activityTypeVersion?->name,
                     'group' => $activity->group->name,
                     'starts_at' => $activity->starts_at?->toIso8601String(),
-                    'url' => $this->access->allows($activity->group, $activity, $user->id)
+                    'url' => $this->access->canView($activity->group, $activity, $user->id)
                         ? route('groups.activities.overview', ['group' => $activity->group->slug, 'activity' => $activity->id], false)
                         : null,
                 ];

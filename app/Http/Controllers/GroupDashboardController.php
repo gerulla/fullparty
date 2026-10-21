@@ -10,6 +10,7 @@ use App\Models\GroupMembership;
 use App\Models\GroupMembershipApplication;
 use App\Models\User;
 use App\Services\Notifications\NotificationPreferenceSettingsService;
+use App\Services\Runs\RunAccessService;
 use App\Support\Groups\GroupDiscoveryBadgePalette;
 use App\Support\Seo\ServerMeta;
 use Illuminate\Support\Collection;
@@ -19,6 +20,7 @@ use Inertia\Response;
 class GroupDashboardController extends Controller
 {
     public function __construct(
+        private readonly RunAccessService $runAccess,
         private readonly GroupDiscoveryBadgePalette $groupDiscoveryBadgePalette,
         private readonly NotificationPreferenceSettingsService $notificationPreferenceSettingsService,
         private readonly ServerMeta $serverMeta,
@@ -31,8 +33,10 @@ class GroupDashboardController extends Controller
         $group->load([
             'owner.primaryCharacter',
             'memberships.user',
+            'bans',
             'features',
             'activities' => fn ($query) => $query
+                ->tap(fn ($query) => $this->runAccess->scopeVisibleTo($query, $currentUserId))
                 ->with([
                     'organizer',
                     'organizerCharacter',
@@ -65,6 +69,7 @@ class GroupDashboardController extends Controller
         $isBanned = $group->isBanned($currentUserId);
         $hasPendingMembershipApplication = $currentUserId !== null
             && ! $isMember
+            && $group->usesMembershipApplications()
             && $group->membershipApplications()
                 ->where('user_id', $currentUserId)
                 ->where('status', GroupMembershipApplication::STATUS_PENDING)
@@ -74,10 +79,6 @@ class GroupDashboardController extends Controller
         $weekStart = $now->copy()->startOfDay();
         $weekEnd = $weekStart->copy()->addDays(6)->endOfDay();
         $activities = $group->activities
-            ->when(
-                ! $canManageActivities,
-                fn ($activities) => $activities->reject(fn (Activity $activity) => Activity::isModeratorOnlyStatus($activity->status))
-            )
             ->sortByDesc('updated_at')
             ->values();
         $upcomingActivities = $activities
@@ -396,7 +397,7 @@ class GroupDashboardController extends Controller
      */
     private function serializeDashboardActivity(Activity $activity, Group $group, bool $canManageActivities): array
     {
-        $canViewOverview = $this->canViewActivityOverview($activity, $group, $canManageActivities);
+        $canViewOverview = $this->runAccess->canView($group, $activity, auth()->id());
         $hasExistingApplication = $activity->applications->isNotEmpty();
         $viewLink = $canManageActivities
             ? route('groups.dashboard.activities.show', [
@@ -409,9 +410,7 @@ class GroupDashboardController extends Controller
                     'group' => $group,
                 ], false));
         $canApply = ! $hasExistingApplication
-            && $activity->needs_application
-            && $activity->acceptsApplications()
-            && $canViewOverview;
+            && $this->runAccess->canApply($group, $activity, auth()->id());
 
         return [
             'id' => $activity->id,
@@ -482,15 +481,6 @@ class GroupDashboardController extends Controller
             'group' => $group,
             'activity' => $activity,
         ];
-    }
-
-    private function canViewActivityOverview(Activity $activity, Group $group, bool $canManageActivities): bool
-    {
-        if (Activity::isModeratorOnlyStatus($activity->status)) {
-            return $canManageActivities;
-        }
-
-        return $group->is_visible || $group->hasMember(auth()->id()) || $canManageActivities;
     }
 
     private function resolveDashboardActivityDisplayName(Activity $activity): string

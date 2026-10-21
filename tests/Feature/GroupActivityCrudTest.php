@@ -540,7 +540,7 @@ it('hides draft activities from non moderators on the dashboard runs page', func
             ->has('activities', 2));
 });
 
-it('shows guests discoverable runs including member-only application runs', function () {
+it('shows guests public runs and excludes members-only runs', function () {
     $owner = User::factory()->create();
     $group = Group::factory()->open()->create([
         'owner_id' => $owner->id,
@@ -586,13 +586,10 @@ it('shows guests discoverable runs including member-only application runs', func
             ->where('group.current_user_role', null)
             ->where('group.permissions.can_view_members', false)
             ->where('group.permissions.can_manage_activities', false)
-            ->has('activities', 2)
-            ->where('activities.0.id', $membersOnlyRun->id)
-            ->where('activities.0.is_public', false)
-            ->where('activities.0.has_existing_application', false)
-            ->where('activities.1.id', $publicRun->id)
-            ->where('activities.1.is_public', true)
-            ->where('activities.1.has_existing_application', false));
+            ->has('activities', 1)
+            ->where('activities.0.id', $publicRun->id)
+            ->where('activities.0.is_public', true)
+            ->where('activities.0.has_existing_application', false));
 });
 
 it('rejects organizer characters that do not belong to the organizer user', function () {

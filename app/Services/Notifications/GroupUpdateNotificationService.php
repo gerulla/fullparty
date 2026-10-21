@@ -6,6 +6,7 @@ use App\Models\Activity;
 use App\Models\Group;
 use App\Models\GroupMembership;
 use App\Models\User;
+use App\Services\Runs\RunAccessService;
 use App\Support\Activities\ActivityDisplayName;
 use App\Support\Notifications\NotificationCategory;
 use App\Support\Notifications\NotificationTopic;
@@ -15,6 +16,7 @@ class GroupUpdateNotificationService
 {
     public function __construct(
         private readonly NotificationService $notificationService,
+        private readonly RunAccessService $runAccess,
     ) {}
 
     public function notifyRunCreated(Activity $activity, mixed $actor): void
@@ -26,6 +28,8 @@ class GroupUpdateNotificationService
         $recipients = $isDraftNotification
             ? $this->moderatorRecipients($activity->group, $actor instanceof User ? $actor->id : null)
             : $this->memberRecipients($activity->group, $actor instanceof User ? $actor->id : null);
+
+        $recipients = $this->runAccess->filterViewers($activity, $recipients);
 
         if ($recipients->isEmpty()) {
             return;
@@ -69,6 +73,7 @@ class GroupUpdateNotificationService
         $activity->loadMissing('group');
 
         $recipients = $this->memberRecipients($activity->group, $actor instanceof User ? $actor->id : null);
+        $recipients = $this->runAccess->filterViewers($activity, $recipients);
 
         if ($recipients->isEmpty()) {
             return;

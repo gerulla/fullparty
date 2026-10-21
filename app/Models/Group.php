@@ -23,6 +23,7 @@ class Group extends Model
 
     public const JOIN_MODE_INVITE_ONLY = 'invite_only';
 
+    /** Legacy value retained for historical records and migration fixtures. */
     public const JOIN_MODE_APPLICATION = 'application';
 
     public const TYPES = [
@@ -33,19 +34,11 @@ class Group extends Model
     public const JOIN_MODES = [
         self::JOIN_MODE_OPEN,
         self::JOIN_MODE_INVITE_ONLY,
-        self::JOIN_MODE_APPLICATION,
     ];
 
-    public const COMMUNITY_JOIN_MODES = [
-        self::JOIN_MODE_OPEN,
-        self::JOIN_MODE_INVITE_ONLY,
-        self::JOIN_MODE_APPLICATION,
-    ];
+    public const COMMUNITY_JOIN_MODES = self::JOIN_MODES;
 
-    public const STATIC_JOIN_MODES = [
-        self::JOIN_MODE_INVITE_ONLY,
-        self::JOIN_MODE_APPLICATION,
-    ];
+    public const STATIC_JOIN_MODES = self::JOIN_MODES;
 
     protected $fillable = [
         'owner_id',
@@ -359,19 +352,19 @@ class Group extends Model
 
     public function allowsOpenJoin(): bool
     {
-        return $this->usesCommunityJoinFlow()
-            && $this->join_mode === self::JOIN_MODE_OPEN;
+        return $this->join_mode === self::JOIN_MODE_OPEN;
     }
 
     public function usesMembershipApplications(): bool
     {
-        return $this->join_mode === self::JOIN_MODE_APPLICATION;
+        // Keep legacy routes and permission payloads closed, including before migration.
+        return false;
     }
 
     public function allowsPublicDashboardAccess(): bool
     {
         return $this->is_visible
-            && ($this->allowsOpenJoin() || $this->usesMembershipApplications());
+            && ($this->allowsOpenJoin() || $this->join_mode === self::JOIN_MODE_APPLICATION);
     }
 
     public function hasPermanentInvite(): bool

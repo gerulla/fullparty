@@ -95,13 +95,6 @@ const items = computed<DropdownMenuItem[][]>(() => user.value ? [
 				router.get(route('groups.index'));
 			}
 		},
-		{
-			label: t('navigation.topbar.menu.my_requests'),
-			icon: 'i-lucide-inbox',
-			onSelect(){
-				router.get(route('groups.requests.index'));
-			}
-		},
 	],
     ...(props.mobile ? [preferences.value] : []),
 	[

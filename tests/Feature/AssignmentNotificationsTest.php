@@ -12,6 +12,7 @@ use App\Models\Character;
 use App\Models\CharacterClass;
 use App\Models\DiscordUserIntegration;
 use App\Models\Group;
+use App\Models\GroupMembership;
 use App\Models\NotificationDelivery;
 use App\Models\NotificationEvent;
 use App\Models\PhantomJob;
@@ -469,6 +470,7 @@ it('includes selected roster details in assignment notification payloads', funct
         'lodestone_id' => '12121212',
         'verified_at' => now(),
     ]);
+    $group->memberships()->create(['user_id' => $member->id, 'role' => GroupMembership::ROLE_MEMBER]);
 
     $slot = $activity->slots()->where('group_key', 'party-a')->firstOrFail();
     $slot->update([

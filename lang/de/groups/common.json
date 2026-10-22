@@ -1,5 +1,11 @@
 {
-    "roles": {
+  "language_names": {
+    "en": "Englisch",
+    "de": "Deutsch",
+    "fr": "Französisch",
+    "ja": "Japanisch"
+  },
+  "roles": {
         "owner": "Besitzer",
         "admin": "Admin",
         "moderator": "Moderator",
@@ -67,6 +73,8 @@
         "no_recent_activity": "Noch keine aktuelle Aktivität"
     },
     "validation": {
+    "tag_covered_by_field": "Das ist bereits durch eine andere Gruppeneinstellung abgedeckt. Nutze diese Option statt eines zusätzlichen Tags.",
+    "remove_covered_tags": "Entferne ausgewählte Tags, die eine Gruppeneinstellung wiederholen, bevor du fortfährst.",
         "active_time_pair_required": "Aktive Start- und Endzeiten müssen gemeinsam angegeben werden.",
         "active_timezone_required": "Eine aktive Zeitzone ist erforderlich, wenn aktive Tage oder Zeiten angegeben werden.",
         "active_end_time_after_start": "Die aktive Endzeit muss nach der Startzeit liegen.",

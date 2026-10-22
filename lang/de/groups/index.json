@@ -551,30 +551,70 @@
         "change_type": "Gruppentyp ändern",
         "continue_with": "Weiter mit {type}",
         "identity": {
-          "title": {
-            "community": "Erzähle uns von deiner Community",
-            "static": "Erzähle uns von deiner Stammgruppe"
-          },
-          "subtitle": "Gib deiner Gruppe einen Namen und erzähle anderen Spielern, was euch ausmacht.",
-          "group_link": "Gruppenlink",
-          "optional": "Optional",
-          "edit_details": "Angaben bearbeiten"
+            "title": {
+                "community": "Erzähle uns von deiner Community",
+                "static": "Erzähle uns von deiner Stammgruppe"
+            },
+            "subtitle": "Gib deiner Gruppe einen Namen und erzähle anderen Spielern, was euch ausmacht.",
+            "group_link": "Gruppenlink",
+            "optional": "Optional",
+            "edit_details": "Angaben bearbeiten"
+        },
+        "artwork": {
+            "title": {
+                "community": "Füge Bilder für deine Community hinzu",
+                "static": "Füge Bilder für deine Stammgruppe hinzu"
+            },
+            "subtitle": "Wähle ein Profilbild und ein Banner. Beide sind optional und können später geändert werden.",
+            "preview": "Vorschau der Gruppenkarte",
+            "profile_picture_upload": "Profilbild hier ablegen oder per Klick auswählen",
+            "banner_image_upload": "Banner hier ablegen oder per Klick auswählen",
+            "file_requirements": "JPG, PNG oder WebP · Bis zu {max} MB pro Bild",
+            "profile_picture_help": "Ein quadratisches Bild eignet sich am besten. Es wird wie in der Vorschau mittig zugeschnitten.",
+            "banner_image_help": "Verwende ein breites Bild und platziere wichtige Details in der Mitte. Der Ausschnitt hängt von der Breite der Karte ab.",
+            "unreadable_image": "Dieses Bild konnte nicht geöffnet werden. Versuche eine andere JPG-, PNG- oder WebP-Datei.",
+            "edit_images": "Bilder bearbeiten"
+        },
+        "choices": {
+            "single": "Wähle eine Option.",
+            "multiple": "Wähle eine oder mehrere Optionen."
+        },
+        "fit": {
+            "title": {
+                "community": "Wer passt zu deiner Community?",
+                "static": "Wer passt zu deiner Static?"
+            },
+            "subtitle": "Zeige Spielern, was sie bei euch erwartet.",
+            "edit_fit": "Erwartungen bearbeiten"
+        },
+        "focus": {
+            "title": {
+                "community": "Worauf konzentriert sich deine Community?",
+                "static": "Worauf konzentriert sich deine Static?"
+            },
+            "subtitle": "Wähle eure Hauptaktivitäten und ergänze Details, die eure Gruppe ausmachen.",
+            "tags_help": "Optional. Wähle beliebte Tags oder füge eigene hinzu. Bis zu {max} Tags.",
+            "other_tag": "Weitere Tags",
+            "tag_placeholder": "z. B. Nachtschwärmer oder Blind Prog",
+            "tag_count": "{count} / {max} ausgewählt",
+            "edit_focus": "Schwerpunkte & Tags"
         },
         "datacenter": {
-          "title": {
-            "community": "Wo spielt deine Community?",
-            "static": "Wo spielt deine Stammgruppe?"
-          },
-          "subtitle": "Wähle deine Region und anschließend das Datenzentrum, auf dem ihr Inhalte spielt.",
-          "region_label": "Region auswählen",
-          "regions": {
-            "NA": "Nordamerika",
-            "EU": "Europa",
-            "JP": "Japan",
-            "OCE": "Ozeanien"
-          },          "selected": "Ausgewählt: {datacenter}",
-          "select_prompt": "Wähle ein Datenzentrum, um fortzufahren.",
-          "change_datacenter": "Datenzentrum ändern"
+            "title": {
+                "community": "Wo spielt deine Community?",
+                "static": "Wo spielt deine Stammgruppe?"
+            },
+            "subtitle": "Wähle deine Region und anschließend das Datenzentrum, auf dem ihr Inhalte spielt.",
+            "region_label": "Region auswählen",
+            "regions": {
+                "NA": "Nordamerika",
+                "EU": "Europa",
+                "JP": "Japan",
+                "OCE": "Ozeanien"
+            },
+            "selected": "Ausgewählt: {datacenter}",
+            "select_prompt": "Wähle ein Datenzentrum, um fortzufahren.",
+            "change_datacenter": "Datenzentrum ändern"
         },
         "static_notice": {
             "title": "In Entwicklung",
@@ -598,6 +638,82 @@
                     "coordination": "Terminplanung nach der Verfügbarkeit derselben Spieler"
                 }
             }
+        },
+        "activity": {
+            "timezone": "Zeitzone",
+            "map_help": "Wähle einen Ort auf der Karte oder suche nach deiner Zeitzone.",
+            "search_timezone": "Stadt oder Zeitzone suchen…",
+            "timezone_help": "Tage und Uhrzeiten gelten in dieser Zeitzone, einschließlich der Sommerzeit. Die angezeigten UTC-Abstände gelten aktuell.",
+            "day_presets": {
+                "every_day": "Jeden Tag",
+                "weekends": "Wochenenden",
+                "custom": "Benutzerdefiniert"
+            },
+            "custom_days": "Wähle deine Tage",
+            "active_time": "Aktive Uhrzeit",
+            "time_help": "Wähle den Zeitraum, in dem ihr normalerweise spielt. Alle Uhrzeiten gelten in der gewählten Zeitzone.",
+            "next_day": "(Folgetag)",
+            "overnight_help": "Dieser Zeitraum beginnt an jedem ausgewählten Tag und endet am Folgetag um {end} Uhr.",
+            "edit_activity": "Aktivitätszeiten bearbeiten",
+            "time_presets": {
+                "all_day": "Ganztägig",
+                "morning": "Vormittag",
+                "evening": "Abend",
+                "late_night": "Späte Nacht",
+                "custom": "Benutzerdefiniert"
+            },
+            "custom_time": "Eigene Aktivitätszeiten",
+            "start": "Beginn",
+            "end": "Ende",
+            "slider_help": "Ziehe die Start- und Endmarkierungen in 15-Minuten-Schritten. Liegt das Ende vor dem Beginn, geht der Zeitraum über Mitternacht.",
+            "same_time": "Wähle unterschiedliche Start- und Endzeiten oder Ganztägig."
+        },
+        "progress_label": "Fortschritt der Gruppenerstellung",
+        "progress_value": "{percent}% abgeschlossen",
+        "joining": {
+            "title": "Beitritt und Auffindbarkeit",
+            "subtitle": "Lege fest, wie Spieler beitreten und ob sie deine Gruppe finden können.",
+            "join_label": "Wie Spieler beitreten",
+            "choices": {
+                "invite_only": {
+                    "title": "Nur auf Einladung",
+                    "description": "Spieler benötigen einen Einladungslink deiner Gruppe, um Mitglied zu werden.",
+                    "reason": "Nimm nur Personen auf, die du einlädst."
+                },
+                "open": {
+                    "title": "Offener Beitritt",
+                    "description": "Spieler können sofort Mitglied werden, ohne Einladung oder Genehmigung.",
+                    "reason": "Erleichtere neuen Spielern den Beitritt zu deiner Gruppe."
+                }
+            },
+            "discovery_label": "In der Gruppensuche sichtbar?",
+            "discovery_help": "Lass Spieler deine Gruppe beim Stöbern auf FullParty finden.",
+            "summary_title": "Was bedeutet das?",
+            "summary": {
+                "invite_only_visible": "{name} kann in der Gruppensuche erscheinen. Spieler benötigen jedoch einen Einladungslink, um Mitglied zu werden.",
+                "invite_only_hidden": "{name} erscheint nicht in der Gruppensuche. Mitglieder treten über Einladungslinks bei, die deine Gruppe teilt.",
+                "open_visible": "{name} kann in der Gruppensuche erscheinen. Spieler können sofort beitreten, ohne Einladung oder Genehmigung.",
+                "open_hidden": "{name} erscheint nicht in der Gruppensuche. Spieler mit einem Einladungslink können trotzdem sofort beitreten."
+            },
+            "run_access": "Runs haben eigene Zugangseinstellungen. Ob eine Mitgliedschaft für die Teilnahme nötig ist, wird für jeden Run einzeln festgelegt.",
+            "edit_joining": "Beitritt und Auffindbarkeit ändern"
+        },
+        "submission": {
+            "loading_title": "Deine Gruppe wird erstellt",
+            "uploading": "Profilbild und Banner werden hochgeladen…",
+            "creating": "Alles wird eingerichtet. Sobald deine Gruppe bereit ist, öffnet sich das Dashboard.",
+            "keep_open": "Bitte lass diese Seite geöffnet, bis wir fertig sind.",
+            "error_title": "Deine Gruppe konnte nicht fertig erstellt werden",
+            "validation_title": "Bitte prüfe diese Angaben",
+            "server_error": "Beim Erstellen deiner Gruppe ist ein Fehler aufgetreten. Deine Angaben sind noch vorhanden. Bitte versuche es gleich noch einmal.",
+            "network_error": "Wir konnten nicht bestätigen, dass deine Gruppe erstellt wurde. Prüfe deine Verbindung und versuche es erneut. Deine Angaben sind noch vorhanden.",
+            "upload_too_large": "Der Upload war für den Server zu groß. Wähle kleinere Bilder und versuche es erneut.",
+            "session_expired": "Deine Sitzung ist abgelaufen. Melde dich erneut an, bevor du die Gruppe erstellst.",
+            "forbidden": "Du hast keine Berechtigung, diese Gruppe zu erstellen. Bitte prüfe deinen Kontozugriff.",
+            "too_many_requests": "Es gab zu viele Anfragen. Bitte warte kurz, bevor du es erneut versuchst.",
+            "preview_loading": "Ladebildschirm der Erstellung ansehen",
+            "preview_error": "Fehler bei der Erstellung ansehen",
+            "close_preview": "Ladevorschau schließen"
         }
     },
     "create_preview": {

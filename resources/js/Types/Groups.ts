@@ -137,6 +137,51 @@ export type GroupCreateFormData = {
 
 export type GroupCreateIdentity = Pick<GroupCreateFormData, 'name' | 'slug' | 'description'>
 
+export type GroupCreateFit = Pick<GroupCreateFormData, 'experience_expectation' | 'voice_expectation' | 'preferred_languages'>
+export type GroupCreateFocus = Pick<GroupCreateFormData, 'primary_focuses' | 'tags'>
+export type GroupCreateJoining = { join_mode: 'open' | 'invite_only'; is_visible: boolean }
+export type GroupCreateStep = 'type' | 'datacenter' | 'details' | 'artwork' | 'fit' | 'focus' | 'activity' | 'joining'
+export type GroupCreateDraft = {
+    groupType: GroupType | null
+    step: GroupCreateStep | 'next'
+    region: DatacenterRegion | null
+    datacenter: string | null
+    identity: GroupCreateIdentity
+    fit: GroupCreateFit
+    focus: GroupCreateFocus
+    activity: GroupCreateActivityWindow
+    joining: GroupCreateJoining
+}
+export type GroupCreateChoice = { value: string; label: string; description?: string }
+export type GroupActiveDaysPreset = 'every_day' | 'weekends' | 'custom'
+export type GroupActiveTimePreset = 'all_day' | 'morning' | 'evening' | 'late_night' | 'custom'
+export type GroupActivityTimeRange = { start: string; end: string }
+export type GroupCreateActivityWindow = Pick<GroupCreateFormData, 'active_timezone' | 'active_days' | 'active_start_time' | 'active_end_time'> & {
+	daysPreset: GroupActiveDaysPreset
+	customDays: string[]
+	timePreset: GroupActiveTimePreset
+	customTime: GroupActivityTimeRange
+}
+export type GroupTimeZoneOption = {
+	value: string
+	label: string
+	city: string
+	offsetLabel: string
+	x?: number
+	y?: number
+}
+
+export type GroupCreateArtwork = Pick<GroupCreateFormData, 'profile_picture' | 'banner_image'>
+export type GroupCreateArtworkField = keyof GroupCreateArtwork
+export type GroupCreateArtworkController = {
+	files: GroupCreateArtwork
+	previewUrls: Record<GroupCreateArtworkField, string | null>
+	errors: Record<GroupCreateArtworkField, string | null>
+	checking: Record<GroupCreateArtworkField, boolean>
+	canContinue: boolean
+	selectFile: (field: GroupCreateArtworkField, file: File | null | undefined) => Promise<void>
+}
+
 export type NoteAuthor = {
 	id: number
 	name: string

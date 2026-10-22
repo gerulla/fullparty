@@ -34,6 +34,7 @@ use Laravel\Passport\Passport;
 use League\OAuth2\Server\AuthorizationServer;
 use SocialiteProviders\Discord\Provider;
 use SocialiteProviders\Manager\SocialiteWasCalled;
+use Symfony\Component\HttpFoundation\Response;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -167,10 +168,18 @@ class AppServiceProvider extends ServiceProvider
             return Limit::perMinute(30)->by($actor);
         });
 
-        RateLimiter::for('group.create', fn (Request $request) => [
-            Limit::perHour(2)->by('hour:user:'.$request->user()->id),
-            Limit::perDay(5)->by('day:user:'.$request->user()->id),
-        ]);
+        RateLimiter::for('group.create', function (Request $request) {
+            $actor = 'user:'.$request->user()->id;
+            // Validation redirects carry their exception; only completed creations use the longer limits.
+            $created = static fn (Response $response): bool => $response->isRedirect()
+                && ($response->exception ?? null) === null;
+
+            return [
+                Limit::perMinute(20)->by('attempts:'.$actor),
+                Limit::perHour(2)->by('created:hour:'.$actor)->after($created),
+                Limit::perDay(5)->by('created:day:'.$actor)->after($created),
+            ];
+        });
 
         RateLimiter::for('run.create', function (Request $request) {
             $group = $request->route('group');

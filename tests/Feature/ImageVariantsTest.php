@@ -55,7 +55,8 @@ it('fits inside both dimensions without stretching and preserves transparency', 
     imagealphablending($image, false);
     imagesavealpha($image, true);
     imagefill($image, 0, 0, imagecolorallocatealpha($image, 0, 0, 0, 127));
-    imagefilledrectangle($image, 100, 50, 300, 150, imagecolorallocate($image, 255, 0, 0));
+    imagefilledrectangle($image, 100, 50, 199, 150, imagecolorallocatealpha($image, 255, 0, 0, 64));
+    imagefilledrectangle($image, 200, 50, 300, 150, imagecolorallocate($image, 255, 0, 0));
     ob_start();
     imagepng($image);
     Storage::disk('public')->put('activity-types/banner.png', ob_get_clean());
@@ -63,7 +64,9 @@ it('fits inside both dimensions without stretching and preserves transparency', 
     $response = $this->get(variantTestUrl(['height' => 100]))->assertOk();
     $result = imagecreatefromwebp($response->baseResponse->getFile()->getPathname());
     expect([imagesx($result), imagesy($result)])->toBe([200, 100])
-        ->and(imagecolorsforindex($result, imagecolorat($result, 0, 0))['alpha'])->toBe(127);
+        ->and(imagecolorsforindex($result, imagecolorat($result, 0, 0))['alpha'])->toBe(127)
+        ->and(imagecolorsforindex($result, imagecolorat($result, 75, 50))['alpha'])->toBe(64)
+        ->and(imagecolorsforindex($result, imagecolorat($result, 125, 50))['alpha'])->toBe(0);
     imagedestroy($result);
 });
 

@@ -551,30 +551,70 @@
         "change_type": "グループの種類を変更",
         "continue_with": "{type}で続ける",
         "identity": {
-          "title": {
-            "community": "コミュニティについて教えてください",
-            "static": "固定について教えてください"
-          },
-          "subtitle": "グループに名前を付けて、どんなグループなのかを他のプレイヤーに紹介しましょう。",
-          "group_link": "グループのリンク",
-          "optional": "任意",
-          "edit_details": "内容を編集"
+            "title": {
+                "community": "コミュニティについて教えてください",
+                "static": "固定について教えてください"
+            },
+            "subtitle": "グループに名前を付けて、どんなグループなのかを他のプレイヤーに紹介しましょう。",
+            "group_link": "グループのリンク",
+            "optional": "任意",
+            "edit_details": "内容を編集"
+        },
+        "artwork": {
+            "title": {
+                "community": "コミュニティの画像を追加",
+                "static": "固定の画像を追加"
+            },
+            "subtitle": "プロフィール画像とバナーを選びましょう。どちらも任意で、後から変更できます。",
+            "preview": "グループカードのプレビュー",
+            "profile_picture_upload": "プロフィール画像をここにドロップ、またはクリックして選択",
+            "banner_image_upload": "バナーをここにドロップ、またはクリックして選択",
+            "file_requirements": "JPG・PNG・WebP · 1枚あたり最大{max} MB",
+            "profile_picture_help": "正方形の画像がおすすめです。プレビューのように、画像の中央を基準に切り抜かれます。",
+            "banner_image_help": "横長の画像を使い、大切な部分は中央に配置してください。カードの幅によって表示範囲が変わります。",
+            "unreadable_image": "この画像を開けませんでした。別のJPG・PNG・WebPファイルをお試しください。",
+            "edit_images": "画像を編集"
+        },
+        "choices": {
+            "single": "1つ選択してください。",
+            "multiple": "1つ以上選択してください。"
+        },
+        "fit": {
+            "title": {
+                "community": "コミュニティの参加方針を決めましょう",
+                "static": "固定パーティの参加方針を決めましょう"
+            },
+            "subtitle": "参加するプレイヤーに、経験や交流方法の目安を伝えましょう。",
+            "edit_fit": "参加方針を変更"
+        },
+        "focus": {
+            "title": {
+                "community": "コミュニティの主な活動は？",
+                "static": "固定パーティの主な活動は？"
+            },
+            "subtitle": "主な活動を選び、グループの特徴をタグで伝えましょう。",
+            "tags_help": "任意。人気のタグを選ぶか、自分で追加できます。最大{max}個。",
+            "other_tag": "その他のタグ",
+            "tag_placeholder": "例：深夜活動、初見攻略",
+            "tag_count": "{count} / {max} 個選択中",
+            "edit_focus": "活動・タグを変更"
         },
         "datacenter": {
-          "title": {
-            "community": "コミュニティはどこで活動しますか？",
-            "static": "固定はどこで活動しますか？"
-          },
-          "subtitle": "リージョンを選び、グループでコンテンツに参加するデータセンターを選択してください。",
-          "region_label": "リージョンを選択",
-          "regions": {
-            "NA": "北米",
-            "EU": "欧州",
-            "JP": "日本",
-            "OCE": "オセアニア"
-          },          "selected": "選択中：{datacenter}",
-          "select_prompt": "データセンターを選択して次に進んでください。",
-          "change_datacenter": "データセンターを変更"
+            "title": {
+                "community": "コミュニティはどこで活動しますか？",
+                "static": "固定はどこで活動しますか？"
+            },
+            "subtitle": "リージョンを選び、グループでコンテンツに参加するデータセンターを選択してください。",
+            "region_label": "リージョンを選択",
+            "regions": {
+                "NA": "北米",
+                "EU": "欧州",
+                "JP": "日本",
+                "OCE": "オセアニア"
+            },
+            "selected": "選択中：{datacenter}",
+            "select_prompt": "データセンターを選択して次に進んでください。",
+            "change_datacenter": "データセンターを変更"
         },
         "static_notice": {
             "title": "開発中",
@@ -598,6 +638,82 @@
                     "coordination": "固定メンバーの空き時間に合わせた日程調整"
                 }
             }
+        },
+        "activity": {
+            "timezone": "タイムゾーン",
+            "map_help": "地図上の場所を選ぶか、タイムゾーンを検索してください。",
+            "search_timezone": "都市・タイムゾーンを検索…",
+            "timezone_help": "曜日と時刻は、夏時間の切り替えを含め、このタイムゾーンに基づきます。UTCとの差は現在の値です。",
+            "day_presets": {
+                "every_day": "毎日",
+                "weekends": "週末",
+                "custom": "カスタム"
+            },
+            "custom_days": "曜日を選択",
+            "active_time": "活動時間",
+            "time_help": "普段プレイする時間帯を選んでください。すべて選択したタイムゾーンの現地時刻です。",
+            "next_day": "（翌日）",
+            "overnight_help": "この時間帯は選択した曜日に始まり、翌日の{end}に終わります。",
+            "edit_activity": "活動時間を変更",
+            "time_presets": {
+                "all_day": "終日",
+                "morning": "午前",
+                "evening": "夜",
+                "late_night": "深夜",
+                "custom": "カスタム"
+            },
+            "custom_time": "カスタム活動時間",
+            "start": "開始",
+            "end": "終了",
+            "slider_help": "開始と終了のマーカーを15分単位で動かしてください。終了を開始より前に置くと、翌日までの時間帯になります。",
+            "same_time": "開始と終了を異なる時刻にするか、「終日」を選んでください。"
+        },
+        "progress_label": "グループ作成の進行状況",
+        "progress_value": "{percent}%完了",
+        "joining": {
+            "title": "参加方法と検索表示",
+            "subtitle": "プレイヤーの参加方法と、グループを検索に表示するかを選びましょう。",
+            "join_label": "プレイヤーの参加方法",
+            "choices": {
+                "invite_only": {
+                    "title": "招待制",
+                    "description": "メンバーになるには、グループの招待リンクが必要です。",
+                    "reason": "招待した人だけをメンバーとして迎えられます。"
+                },
+                "open": {
+                    "title": "自由参加",
+                    "description": "招待や承認なしで、すぐにメンバーになれます。",
+                    "reason": "新しいプレイヤーが気軽にグループに参加できます。"
+                }
+            },
+            "discovery_label": "グループ検索に表示する？",
+            "discovery_help": "FullPartyでグループを探しているプレイヤーに見つけてもらえます。",
+            "summary_title": "この設定について",
+            "summary": {
+                "invite_only_visible": "{name}はグループ検索に表示されますが、メンバーになるには招待リンクが必要です。",
+                "invite_only_hidden": "{name}はグループ検索に表示されません。グループが共有する招待リンクから参加できます。",
+                "open_visible": "{name}はグループ検索に表示されます。招待や承認なしで、すぐに参加できます。",
+                "open_hidden": "{name}はグループ検索に表示されませんが、招待リンクを持っているプレイヤーはすぐに参加できます。"
+            },
+            "run_access": "ランへの参加条件は別途設定します。参加にグループのメンバーであることが必要かどうかは、ランごとに決められます。",
+            "edit_joining": "参加方法と検索表示を変更"
+        },
+        "submission": {
+            "loading_title": "グループを作成しています",
+            "uploading": "プロフィール画像とバナーをアップロードしています…",
+            "creating": "設定を準備しています。完了すると、グループのダッシュボードに移動します。",
+            "keep_open": "完了するまで、このページを開いたままにしてください。",
+            "error_title": "グループの作成を完了できませんでした",
+            "validation_title": "以下の内容を確認してください",
+            "server_error": "グループの作成中に問題が発生しました。入力内容は保持されています。少し待ってからもう一度お試しください。",
+            "network_error": "グループが作成されたか確認できませんでした。接続を確認して、もう一度お試しください。入力内容は保持されています。",
+            "upload_too_large": "アップロードするファイルがサーバーの上限を超えています。画像を小さくして、もう一度お試しください。",
+            "session_expired": "セッションの有効期限が切れました。再度ログインしてから、グループの作成をお試しください。",
+            "forbidden": "このグループを作成する権限がありません。アカウントのアクセス権を確認してください。",
+            "too_many_requests": "リクエストが多すぎます。少し待ってからもう一度お試しください。",
+            "preview_loading": "作成中の画面をプレビュー",
+            "preview_error": "作成エラーをプレビュー",
+            "close_preview": "作成中のプレビューを閉じる"
         }
     },
     "create_preview": {

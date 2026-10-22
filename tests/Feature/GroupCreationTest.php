@@ -70,6 +70,14 @@ it('rejects unknown group types when creating a group', function () {
     expect(Group::query()->where('slug', 'oddgroup')->exists())->toBeFalse();
 });
 
+it('rejects extra tags already represented by a structured group setting', function (string $tag) {
+    $this->actingAs(User::factory()->create())
+        ->post(route('groups.store'), validCreateGroupPayload(['tags' => [$tag]]))
+        ->assertSessionHasErrors(['tags.0' => __('groups.common.validation.tag_covered_by_field')]);
+
+    expect(Group::query()->where('slug', 'staticfp')->exists())->toBeFalse();
+})->with(['English', ' EN ', 'Deutsch', 'Français', '日本語', 'Voice Preferred', 'voice-preferred', 'Progression', 'Reclears', 'Beginner Friendly', 'BEGINNER_FRIENDLY', 'Light', 'Static']);
+
 it('accepts open join mode for static groups', function () {
     $user = User::factory()->create();
 
@@ -289,6 +297,38 @@ it('allows overnight active schedule windows when creating a group', function ()
         ->and($group->active_start_time)->toBe('22:00')
         ->and($group->active_end_time)->toBe('05:00');
 });
+
+it('stores activity window presets without changing their local hours or days', function (string $start, string $end, string $timezone, array $days) {
+    Storage::fake('public');
+    $user = User::factory()->create();
+
+    $this->actingAs($user)
+        ->post(route('groups.store'), validCreateGroupPayload([
+            'active_timezone' => $timezone,
+            'active_days' => $days,
+            'active_start_time' => $start,
+            'active_end_time' => $end,
+        ]))
+        ->assertSessionHasNoErrors()
+        ->assertRedirect(route('groups.dashboard', 'staticfp'));
+
+    $group = Group::query()->where('slug', 'staticfp')->firstOrFail();
+
+    expect($group->active_timezone)->toBe($timezone)
+        ->and($group->active_days)->toBe($days)
+        ->and($group->active_start_time)->toBe($start)
+        ->and($group->active_end_time)->toBe($end);
+})->with([
+    'all day, every day' => ['00:00', '23:59', 'UTC', ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']],
+    'morning, weekends' => ['08:00', '12:00', 'Europe/London', ['sat', 'sun']],
+    'custom midday, half-hour timezone' => ['12:00', '14:00', 'Asia/Kolkata', ['mon', 'wed']],
+    'custom afternoon, quarter-hour timezone' => ['14:00', '18:00', 'Asia/Kathmandu', ['tue', 'thu']],
+    'evening, daylight saving timezone' => ['18:00', '22:00', 'America/New_York', ['fri']],
+    'late night, crossing midnight' => ['22:00', '03:00', 'Australia/Adelaide', ['sat', 'sun']],
+    'custom early hours, beyond UTC plus twelve' => ['03:00', '08:00', 'Pacific/Kiritimati', ['sun']],
+    'custom daytime slider window' => ['11:00', '18:00', 'Europe/London', ['mon']],
+    'custom overnight slider window' => ['22:00', '05:00', 'Europe/London', ['fri']],
+]);
 
 it('allows the UTC minus twelve active timezone when creating a group', function () {
     $user = User::factory()->create();

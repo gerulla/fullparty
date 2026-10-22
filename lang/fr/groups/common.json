@@ -1,5 +1,11 @@
 {
-    "roles": {
+  "language_names": {
+    "en": "Anglais",
+    "de": "Allemand",
+    "fr": "Français",
+    "ja": "Japonais"
+  },
+  "roles": {
         "owner": "Propriétaire",
         "admin": "Admin",
         "moderator": "Modérateur",
@@ -67,6 +73,8 @@
         "no_recent_activity": "Aucune activité récente pour le moment"
     },
     "validation": {
+    "tag_covered_by_field": "Cette information figure déjà dans un autre réglage du groupe. Utilisez cette option plutôt qu’un tag supplémentaire.",
+    "remove_covered_tags": "Retirez les tags sélectionnés qui répètent un réglage du groupe avant de continuer.",
         "active_time_pair_required": "Les heures de début et de fin d'activité doivent être fournies ensemble.",
         "active_timezone_required": "Un fuseau horaire actif est requis lorsque des jours ou des heures d'activité sont fournis.",
         "active_end_time_after_start": "L'heure de fin d'activité doit être postérieure à l'heure de début.",

@@ -1,5 +1,11 @@
 {
-    "roles": {
+  "language_names": {
+    "en": "英語",
+    "de": "ドイツ語",
+    "fr": "フランス語",
+    "ja": "日本語"
+  },
+  "roles": {
         "owner": "オーナー",
         "admin": "管理者",
         "moderator": "モデレーター",
@@ -67,6 +73,8 @@
         "no_recent_activity": "最近のアクティビティはありません"
     },
     "validation": {
+    "tag_covered_by_field": "この情報は他のグループ設定で指定できます。追加タグではなく、該当する項目を選択してください。",
+    "remove_covered_tags": "グループ設定と重複する選択済みタグを削除してから続行してください。",
         "active_time_pair_required": "活動開始時刻と終了時刻は両方とも指定してください。",
         "active_timezone_required": "活動日または活動時間を設定する場合は、活動タイムゾーンが必要です。",
         "active_end_time_after_start": "活動終了時刻は開始時刻より後である必要があります。",

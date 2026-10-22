@@ -14,6 +14,8 @@ use App\Models\User;
 use App\Services\AuditLogger;
 use App\Services\Groups\FeaturedGroupService;
 use App\Services\Groups\GeneratedGroupImageService;
+use App\Services\Groups\GroupExtraTagPolicy;
+use App\Services\Groups\PopularGroupTags;
 use App\Services\Groups\YourGroupsService;
 use App\Services\ManagedImageStorage;
 use App\Services\Notifications\NotificationPreferenceSettingsService;
@@ -120,10 +122,12 @@ class GroupController extends Controller
             : $this->serverMeta->groupDiscovery());
     }
 
-    public function create(): Response
+    public function create(PopularGroupTags $popularGroupTags, GroupExtraTagPolicy $tagPolicy): Response
     {
         return Inertia::render('V2/Groups/Create', [
             'datacenterWorlds' => config('datacenters.worlds', []),
+            'popularTags' => $popularGroupTags->suggestions(),
+            'reservedTagKeys' => $tagPolicy->reservedKeys(),
         ]);
     }
 

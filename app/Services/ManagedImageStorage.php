@@ -115,7 +115,6 @@ class ManagedImageStorage
             sourceHeight: $sourceHeight,
             targetWidth: $targetWidth,
             targetHeight: $targetHeight,
-            preserveTransparency: true,
             field: 'image',
         );
 
@@ -217,7 +216,6 @@ class ManagedImageStorage
             sourceHeight: $sourceHeight,
             targetWidth: $targetWidth,
             targetHeight: $targetHeight,
-            preserveTransparency: true,
             field: 'image',
         );
 
@@ -246,7 +244,6 @@ class ManagedImageStorage
             sourceHeight: $squareSize,
             targetWidth: self::GROUP_IMAGE_SIZE,
             targetHeight: self::GROUP_IMAGE_SIZE,
-            preserveTransparency: false,
             field: 'profile_picture',
         );
 
@@ -368,7 +365,6 @@ class ManagedImageStorage
         int $sourceHeight,
         int $targetWidth,
         int $targetHeight,
-        bool $preserveTransparency,
         string $field,
     ): \GdImage {
         $canvas = imagecreatetruecolor($targetWidth, $targetHeight);
@@ -379,13 +375,10 @@ class ManagedImageStorage
             ]);
         }
 
-        if ($preserveTransparency) {
-            imagealphablending($canvas, false);
-            imagesavealpha($canvas, true);
-            $background = imagecolorallocatealpha($canvas, 0, 0, 0, 127);
-        } else {
-            $background = imagecolorallocate($canvas, 255, 255, 255);
-        }
+        // Preserve source alpha during resizing and profile-picture cropping.
+        imagealphablending($canvas, false);
+        imagesavealpha($canvas, true);
+        $background = imagecolorallocatealpha($canvas, 0, 0, 0, 127);
 
         if ($background === false) {
             imagedestroy($canvas);

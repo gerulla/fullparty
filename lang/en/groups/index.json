@@ -560,6 +560,45 @@
       "optional": "Optional",
       "edit_details": "Edit details"
     },
+    "artwork": {
+      "title": {
+        "community": "Add images for your community",
+        "static": "Add images for your static"
+      },
+      "subtitle": "Choose a profile picture and banner. Both are optional, and you can change them later.",
+      "preview": "Group card preview",
+      "profile_picture_upload": "Drop a profile picture here or click to choose",
+      "banner_image_upload": "Drop a banner here or click to choose",
+      "file_requirements": "JPG, PNG or WebP · Up to {max} MB per image",
+      "profile_picture_help": "A square image works best. Your picture is cropped to the center, just like in the preview.",
+      "banner_image_help": "Use a wide image and keep the important details near the center. The crop varies with the card's width.",
+      "unreadable_image": "This image could not be opened. Try another JPG, PNG, or WebP file.",
+      "edit_images": "Edit images"
+    },
+    "choices": {
+      "single": "Choose one.",
+      "multiple": "Select one or more."
+    },
+    "fit": {
+      "title": {
+        "community": "Find the right fit for your community",
+        "static": "Find the right fit for your static"
+      },
+      "subtitle": "Let players know what to expect when they join you.",
+      "edit_fit": "Edit group fit"
+    },
+    "focus": {
+      "title": {
+        "community": "What is your community focused on?",
+        "static": "What is your static focused on?"
+      },
+      "subtitle": "Choose your main activities and add a few details that make your group yours.",
+      "tags_help": "Optional. Choose from popular tags or add your own. Up to {max} tags.",
+      "other_tag": "Other tags",
+      "tag_placeholder": "e.g. Late Night or Blind Prog",
+      "tag_count": "{count} / {max} selected",
+      "edit_focus": "Edit focus & tags"
+    },
     "datacenter": {
       "title": {
         "community": "Where does your community play?",
@@ -572,7 +611,8 @@
         "EU": "Europe",
         "JP": "Japan",
         "OCE": "Oceania"
-      },      "selected": "Selected: {datacenter}",
+      },
+      "selected": "Selected: {datacenter}",
       "select_prompt": "Choose a data center to continue.",
       "change_datacenter": "Change data center"
     },
@@ -598,6 +638,82 @@
           "coordination": "Scheduling around the same players' availability"
         }
       }
+    },
+    "activity": {
+      "timezone": "Timezone",
+      "map_help": "Choose a location on the map, or search for your timezone.",
+      "search_timezone": "Search city or timezone…",
+      "timezone_help": "Days and hours use this timezone, including its daylight-saving changes. UTC offsets shown are current.",
+      "day_presets": {
+        "every_day": "Every Day",
+        "weekends": "Weekends",
+        "custom": "Custom"
+      },
+      "custom_days": "Choose your days",
+      "active_time": "Active Time",
+      "time_help": "Choose the window when you usually play. All times are local to your selected timezone.",
+      "next_day": "(next day)",
+      "overnight_help": "This window starts on each selected day and ends at {end} the following day.",
+      "edit_activity": "Edit activity window",
+      "time_presets": {
+        "all_day": "All day",
+        "morning": "Morning",
+        "evening": "Evening",
+        "late_night": "Late night",
+        "custom": "Custom"
+      },
+      "custom_time": "Custom active hours",
+      "start": "Start",
+      "end": "End",
+      "slider_help": "Drag the start and end markers in 15-minute steps. Move the end before the start for an overnight window.",
+      "same_time": "Choose different start and end times, or select All day."
+    },
+    "progress_label": "Group creation progress",
+    "progress_value": "{percent}% complete",
+    "joining": {
+      "title": "Joining and Discovery",
+      "subtitle": "Choose how players join and whether they can find your group.",
+      "join_label": "How players join",
+      "choices": {
+        "invite_only": {
+          "title": "Invite only",
+          "description": "Players need an invite link from your group to become members.",
+          "reason": "Keep membership to the people you invite."
+        },
+        "open": {
+          "title": "Open join",
+          "description": "Players can become members immediately, without an invitation or approval.",
+          "reason": "Make it easy for new players to join your group."
+        }
+      },
+      "discovery_label": "Visible in discovery?",
+      "discovery_help": "Let players find your group while browsing FullParty.",
+      "summary_title": "What does this mean?",
+      "summary": {
+        "invite_only_visible": "{name} can appear in the group finder, but players need an invite link to become members.",
+        "invite_only_hidden": "{name} stays out of the group finder. Members join through invitation links shared by your group.",
+        "open_visible": "{name} can appear in the group finder. Players can join immediately, without an invite or approval.",
+        "open_hidden": "{name} stays out of the group finder. Players with its invite link can still join immediately."
+      },
+      "run_access": "Runs have their own access settings. Whether someone must be a member to participate is decided per run.",
+      "edit_joining": "Edit joining & discovery"
+    },
+    "submission": {
+      "loading_title": "Creating your group",
+      "uploading": "Uploading your profile picture and banner…",
+      "creating": "Setting everything up. We’ll take you to your dashboard when it’s ready.",
+      "keep_open": "Please keep this page open while we finish.",
+      "error_title": "We couldn’t finish creating your group",
+      "validation_title": "Please check these details",
+      "server_error": "Something went wrong while creating your group. Your details are still here. Please try again in a moment.",
+      "network_error": "We couldn’t confirm that your group was created. Check your connection and try again. Your details are still here.",
+      "upload_too_large": "The upload was too large for the server. Choose smaller images and try again.",
+      "session_expired": "Your session has expired. Sign in again before trying to create your group.",
+      "forbidden": "You don’t have permission to create this group. Please check your account access.",
+      "too_many_requests": "There have been too many requests. Please wait a moment before trying again.",
+      "preview_loading": "Preview creation loading screen",
+      "preview_error": "Preview creation error",
+      "close_preview": "Close loading preview"
     }
   },
   "create_preview": {

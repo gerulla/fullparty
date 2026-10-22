@@ -1,4 +1,10 @@
 {
+  "language_names": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "ja": "Japanese"
+  },
   "roles": {
     "owner": "Owner",
     "admin": "Admin",
@@ -67,6 +73,8 @@
     "no_recent_activity": "No recent activity yet"
   },
   "validation": {
+    "tag_covered_by_field": "This is already covered by another group setting. Use that option instead of an extra tag.",
+    "remove_covered_tags": "Remove selected tags that repeat a group setting before continuing.",
     "active_time_pair_required": "Active start and end times must be provided together.",
     "active_timezone_required": "Active timezone is required when active days or hours are provided.",
     "active_end_time_after_start": "Active end time must be later than the start time.",

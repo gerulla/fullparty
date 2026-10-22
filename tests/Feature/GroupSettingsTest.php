@@ -769,7 +769,7 @@ it('stores discovery metadata when updating discovery settings', function () {
             'experience_expectation' => 'casual',
             'voice_expectation' => 'optional',
             'preferred_languages' => ['de', 'fr'],
-            'tags' => ['Weekend', 'weekend', 'Maps'],
+            'tags' => ['Weekend', 'weekend', 'Treasure Hunters'],
             'active_timezone' => 'Europe/Berlin',
             'active_days' => ['sat', 'sun'],
             'active_start_time' => '18:00',
@@ -784,7 +784,7 @@ it('stores discovery metadata when updating discovery settings', function () {
         ->and($group->experience_expectation)->toBe('casual')
         ->and($group->voice_expectation)->toBe('optional')
         ->and($group->preferred_languages)->toBe(['de', 'fr'])
-        ->and($group->tags)->toBe(['Weekend', 'Maps'])
+        ->and($group->tags)->toBe(['Weekend', 'Treasure Hunters'])
         ->and($group->active_timezone)->toBe('Europe/Berlin')
         ->and($group->active_days)->toBe(['sat', 'sun'])
         ->and($group->active_start_time)->toBe('18:00')
@@ -799,7 +799,7 @@ it('stores discovery metadata when updating discovery settings', function () {
             ->where('group.experience_expectation', 'casual')
             ->where('group.voice_expectation', 'optional')
             ->where('group.preferred_languages', ['de', 'fr'])
-            ->where('group.tags', ['Weekend', 'Maps'])
+            ->where('group.tags', ['Weekend', 'Treasure Hunters'])
             ->where('group.active_timezone', 'Europe/Berlin')
             ->where('group.active_days', ['sat', 'sun'])
             ->where('group.active_start_time', '18:00')

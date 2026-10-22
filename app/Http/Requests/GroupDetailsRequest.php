@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Models\Group;
+use App\Rules\NotReservedGroupTag;
 use App\Support\Input\RequestTextInputSanitizer;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
@@ -52,7 +53,7 @@ abstract class GroupDetailsRequest extends FormRequest
             'preferred_languages' => ['nullable', 'array'],
             'preferred_languages.*' => ['required', 'string', Rule::in(config('group_discovery.preferred_languages', []))],
             'tags' => ['nullable', 'array', 'max:'.config('group_discovery.max_tags', 12)],
-            'tags.*' => ['required', 'string', 'max:50'],
+            'tags.*' => ['required', 'string', 'max:50', app(NotReservedGroupTag::class)],
             'active_timezone' => ['nullable', 'timezone:all_with_bc'],
             'active_days' => ['nullable', 'array'],
             'active_days.*' => ['required', 'string', Rule::in(config('group_discovery.active_days', []))],

@@ -1,12 +1,10 @@
 import type { GroupCreateField, GroupCreateFormData } from "@/Types/Groups";
 import type { InertiaForm } from "@inertiajs/vue3";
 import { isValidDiscordInviteUrl } from "@/utils/discordInviteValidation";
-import { validateGroupProfilePictureFile } from "@/utils/groupProfilePictureValidation";
+import { groupImageMaxBytes, validateGroupProfilePictureFile } from "@/utils/groupProfilePictureValidation";
 import { groupNameMaxLength, groupSlugMaxLength, groupSlugValidationError, normalizeGroupSlug } from "@/utils/groupIdentity";
 import { computed, type ComputedRef, type Ref } from "vue";
 import { useI18n } from "vue-i18n";
-
-const groupImageMaxBytes = 5 * 1024 * 1024;
 
 const stepFields: Record<number, GroupCreateField[]> = {
 	1: ["name", "slug", "group_type", "description", "datacenter"],

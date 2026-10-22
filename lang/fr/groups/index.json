@@ -551,30 +551,70 @@
         "change_type": "Changer le type de groupe",
         "continue_with": "Continuer avec {type}",
         "identity": {
-          "title": {
-            "community": "Parlez-nous de votre communauté",
-            "static": "Parlez-nous de votre groupe fixe"
-          },
-          "subtitle": "Donnez un nom à votre groupe et présentez-le aux autres joueurs.",
-          "group_link": "Lien du groupe",
-          "optional": "Facultatif",
-          "edit_details": "Modifier les informations"
+            "title": {
+                "community": "Parlez-nous de votre communauté",
+                "static": "Parlez-nous de votre groupe fixe"
+            },
+            "subtitle": "Donnez un nom à votre groupe et présentez-le aux autres joueurs.",
+            "group_link": "Lien du groupe",
+            "optional": "Facultatif",
+            "edit_details": "Modifier les informations"
+        },
+        "artwork": {
+            "title": {
+                "community": "Ajoutez des images pour votre communauté",
+                "static": "Ajoutez des images pour votre groupe fixe"
+            },
+            "subtitle": "Choisissez une image de profil et une bannière. Elles sont facultatives et peuvent être modifiées plus tard.",
+            "preview": "Aperçu de la carte du groupe",
+            "profile_picture_upload": "Déposez une image de profil ici ou cliquez pour choisir",
+            "banner_image_upload": "Déposez une bannière ici ou cliquez pour choisir",
+            "file_requirements": "JPG, PNG ou WebP · Jusqu’à {max} Mo par image",
+            "profile_picture_help": "Privilégiez une image carrée. Elle sera recadrée au centre, comme dans l’aperçu.",
+            "banner_image_help": "Utilisez une image large et gardez les éléments importants près du centre. Le recadrage varie selon la largeur de la carte.",
+            "unreadable_image": "Impossible d’ouvrir cette image. Essayez un autre fichier JPG, PNG ou WebP.",
+            "edit_images": "Modifier les images"
+        },
+        "choices": {
+            "single": "Choisissez une option.",
+            "multiple": "Choisissez une ou plusieurs options."
+        },
+        "fit": {
+            "title": {
+                "community": "À qui s’adresse votre communauté ?",
+                "static": "À qui s’adresse votre équipe fixe ?"
+            },
+            "subtitle": "Indiquez aux joueurs à quoi s’attendre en vous rejoignant.",
+            "edit_fit": "Modifier les attentes"
+        },
+        "focus": {
+            "title": {
+                "community": "Quelles sont les priorités de votre communauté ?",
+                "static": "Quelles sont les priorités de votre équipe fixe ?"
+            },
+            "subtitle": "Choisissez vos activités principales et ajoutez ce qui rend votre groupe unique.",
+            "tags_help": "Facultatif. Choisissez des tags populaires ou ajoutez les vôtres. Jusqu’à {max} tags.",
+            "other_tag": "Autres tags",
+            "tag_placeholder": "Ex. En soirée ou Progression à l’aveugle",
+            "tag_count": "{count} / {max} sélectionnés",
+            "edit_focus": "Modifier activités et tags"
         },
         "datacenter": {
-          "title": {
-            "community": "Où joue votre communauté ?",
-            "static": "Où joue votre groupe fixe ?"
-          },
-          "subtitle": "Choisissez votre région, puis le centre de données où vous participez aux activités.",
-          "region_label": "Choisir une région",
-          "regions": {
-            "NA": "Amérique du Nord",
-            "EU": "Europe",
-            "JP": "Japon",
-            "OCE": "Océanie"
-          },          "selected": "Sélection : {datacenter}",
-          "select_prompt": "Choisissez un centre de données pour continuer.",
-          "change_datacenter": "Changer de centre de données"
+            "title": {
+                "community": "Où joue votre communauté ?",
+                "static": "Où joue votre groupe fixe ?"
+            },
+            "subtitle": "Choisissez votre région, puis le centre de données où vous participez aux activités.",
+            "region_label": "Choisir une région",
+            "regions": {
+                "NA": "Amérique du Nord",
+                "EU": "Europe",
+                "JP": "Japon",
+                "OCE": "Océanie"
+            },
+            "selected": "Sélection : {datacenter}",
+            "select_prompt": "Choisissez un centre de données pour continuer.",
+            "change_datacenter": "Changer de centre de données"
         },
         "static_notice": {
             "title": "En développement",
@@ -598,6 +638,82 @@
                     "coordination": "Un planning adapté aux disponibilités des mêmes joueurs"
                 }
             }
+        },
+        "activity": {
+            "timezone": "Fuseau horaire",
+            "map_help": "Choisissez un lieu sur la carte ou recherchez votre fuseau horaire.",
+            "search_timezone": "Rechercher une ville ou un fuseau…",
+            "timezone_help": "Les jours et horaires suivent ce fuseau, y compris les changements d’heure. Les décalages UTC affichés sont ceux en vigueur.",
+            "day_presets": {
+                "every_day": "Tous les jours",
+                "weekends": "Week-ends",
+                "custom": "Personnalisé"
+            },
+            "custom_days": "Choisissez vos jours",
+            "active_time": "Horaires d’activité",
+            "time_help": "Choisissez la période où vous jouez habituellement. Toutes les heures sont locales au fuseau sélectionné.",
+            "next_day": "(lendemain)",
+            "overnight_help": "Cette plage commence chaque jour sélectionné et se termine à {end} le lendemain.",
+            "edit_activity": "Modifier les horaires",
+            "time_presets": {
+                "all_day": "Toute la journée",
+                "morning": "Matin",
+                "evening": "Soir",
+                "late_night": "Fin de nuit",
+                "custom": "Personnalisé"
+            },
+            "custom_time": "Horaires personnalisés",
+            "start": "Début",
+            "end": "Fin",
+            "slider_help": "Déplacez les marqueurs de début et de fin par pas de 15 minutes. Une fin placée avant le début correspond au lendemain.",
+            "same_time": "Choisissez des heures de début et de fin différentes, ou Toute la journée."
+        },
+        "progress_label": "Progression de la création du groupe",
+        "progress_value": "{percent}% terminé",
+        "joining": {
+            "title": "Adhésion et visibilité",
+            "subtitle": "Choisissez comment les joueurs rejoignent votre groupe et peuvent le trouver.",
+            "join_label": "Comment rejoindre le groupe",
+            "choices": {
+                "invite_only": {
+                    "title": "Sur invitation",
+                    "description": "Les joueurs ont besoin d’un lien d’invitation de votre groupe pour devenir membres.",
+                    "reason": "Réservez l’adhésion aux personnes que vous invitez."
+                },
+                "open": {
+                    "title": "Adhésion libre",
+                    "description": "Les joueurs peuvent devenir membres immédiatement, sans invitation ni approbation.",
+                    "reason": "Facilitez l’arrivée de nouveaux joueurs dans votre groupe."
+                }
+            },
+            "discovery_label": "Visible dans la recherche ?",
+            "discovery_help": "Permettez aux joueurs de trouver votre groupe en parcourant FullParty.",
+            "summary_title": "Qu’est-ce que cela signifie ?",
+            "summary": {
+                "invite_only_visible": "{name} peut apparaître dans la recherche de groupes, mais les joueurs ont besoin d’un lien d’invitation pour devenir membres.",
+                "invite_only_hidden": "{name} n’apparaît pas dans la recherche de groupes. Les membres rejoignent le groupe grâce aux liens d’invitation que vous partagez.",
+                "open_visible": "{name} peut apparaître dans la recherche de groupes. Les joueurs peuvent le rejoindre immédiatement, sans invitation ni approbation.",
+                "open_hidden": "{name} n’apparaît pas dans la recherche de groupes. Les joueurs disposant de son lien d’invitation peuvent tout de même le rejoindre immédiatement."
+            },
+            "run_access": "Chaque run possède ses propres paramètres d’accès. La nécessité d’être membre pour participer se définit pour chaque run.",
+            "edit_joining": "Modifier l’adhésion et la visibilité"
+        },
+        "submission": {
+            "loading_title": "Création de votre groupe",
+            "uploading": "Envoi de votre image de profil et de votre bannière…",
+            "creating": "Nous préparons votre groupe. Vous serez redirigé vers son tableau de bord dès qu’il sera prêt.",
+            "keep_open": "Veuillez garder cette page ouverte jusqu’à la fin.",
+            "error_title": "La création de votre groupe n’a pas pu aboutir",
+            "validation_title": "Veuillez vérifier ces informations",
+            "server_error": "Un problème est survenu lors de la création de votre groupe. Vos informations sont conservées. Veuillez réessayer dans un instant.",
+            "network_error": "Nous n’avons pas pu confirmer la création de votre groupe. Vérifiez votre connexion et réessayez. Vos informations sont conservées.",
+            "upload_too_large": "Les fichiers envoyés sont trop volumineux pour le serveur. Choisissez des images plus petites et réessayez.",
+            "session_expired": "Votre session a expiré. Reconnectez-vous avant de réessayer de créer votre groupe.",
+            "forbidden": "Vous n’avez pas l’autorisation de créer ce groupe. Veuillez vérifier les accès de votre compte.",
+            "too_many_requests": "Trop de requêtes ont été envoyées. Veuillez patienter un instant avant de réessayer.",
+            "preview_loading": "Aperçu du chargement de la création",
+            "preview_error": "Aperçu d’une erreur de création",
+            "close_preview": "Fermer l’aperçu du chargement"
         }
     },
     "create_preview": {

@@ -7,7 +7,7 @@ import type { GroupCreateIdentity } from '@/Types/Groups'
 import { groupDescriptionMaxLength, groupNameMaxLength, groupSlugMaxLength, groupSlugValidationError, normalizeGroupSlug } from '@/utils/groupIdentity'
 import { sanitizeMultilineText, sanitizeMultilineTextForInput, sanitizeSingleLineText, sanitizeSingleLineTextForInput } from '@/utils/textInputSanitizer'
 
-const props = defineProps<{ modelValue: GroupCreateIdentity }>()
+const props = withDefaults(defineProps<{ modelValue: GroupCreateIdentity; errors?: Record<string, string> }>(), { errors: () => ({}) })
 const emit = defineEmits<{
     'update:modelValue': [identity: GroupCreateIdentity]
     continue: [identity: GroupCreateIdentity]
@@ -65,7 +65,7 @@ async function focusFirstError(event: FormErrorEvent) {
 <template>
     <UForm :state="modelValue" :validate="validate" :loading-auto="false"
         class="mx-auto w-full max-w-2xl space-y-6 pt-4 sm:pt-6" @submit="submit" @error="focusFirstError">
-        <UFormField name="name" :label="t('general.name')" required>
+        <UFormField name="name" :label="t('general.name')" :error="errors.name" required>
             <UInput :model-value="modelValue.name" :maxlength="groupNameMaxLength" class="w-full" size="xl"
                 :placeholder="t('groups.index.create_modal.fields.name.placeholder')"
                 :ui="inputUi" autocomplete="off"
@@ -78,6 +78,7 @@ async function focusFirstError(event: FormErrorEvent) {
                 <p class="text-xs text-muted">{{ t('groups.index.create_modal.slug_warning') }}</p>
             </div>
             <UFormField name="slug" :label="t('groups.index.create_modal.fields.slug.label')"
+                :error="errors.slug"
                 :help="t('groups.index.create_modal.fields.slug.help')" required class="min-w-0 sm:col-span-2">
                 <UInput :model-value="modelValue.slug" :maxlength="groupSlugMaxLength" class="w-full" size="xl"
                     :placeholder="t('groups.index.create_modal.fields.slug.placeholder')"
@@ -86,6 +87,7 @@ async function focusFirstError(event: FormErrorEvent) {
             </UFormField>
         </div>
         <UFormField name="description" :label="t('general.description')"
+            :error="errors.description"
             :hint="t('groups.index.create_flow.identity.optional')">
             <UTextarea :model-value="modelValue.description" :rows="7" :maxlength="groupDescriptionMaxLength"
                 class="w-full" size="lg" :placeholder="t('groups.index.create_modal.fields.description.placeholder')"

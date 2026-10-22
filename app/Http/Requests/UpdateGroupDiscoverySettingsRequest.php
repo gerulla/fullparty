@@ -18,6 +18,7 @@ class UpdateGroupDiscoverySettingsRequest extends GroupDetailsRequest
             'voice_expectation',
             'preferred_languages',
             'tags',
+            'tags.*',
             'active_timezone',
             'active_days',
             'active_start_time',

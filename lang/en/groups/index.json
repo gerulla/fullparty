@@ -1,4 +1,12 @@
 {
+  "your_groups": {
+    "title": "Your Groups",
+    "subtitle": "All the groups you're part of, in one place.",
+    "empty": "You haven't joined any groups yet. Explore the groups below to find your people.",
+    "last_active": "Last active {time}",
+    "view_all": "View all ({count})",
+    "show_less": "Show less"
+  },
   "title": "Groups",
   "subtitle": "Manage your raid groups and discover new communities",
   "tabs": {
@@ -435,6 +443,7 @@
       "size_placeholder": "Size",
       "sort_placeholder": "Sort By",
       "more_filters_open": "More Filters",
+      "toggle": "Filters",
       "more_filters_close": "Hide Extra Filters",
       "clear_filters": "Clear Filters",
       "recruiting_method_label": "Recruiting Method",
@@ -529,7 +538,70 @@
         "complete": "Completed",
         "cancelled": "Cancelled"
       }
+    },
+    "results": {
+      "management": "Management",
+      "statistics": "Statistics",
+      "active": "Active"
     }
+  },
+  "create_flow": {
+    "subtitle": "Start by choosing the kind of group you want to build.",
+    "back_to_groups": "Back to Groups",
+    "change_type": "Change group type",
+    "continue_with": "Continue with {type}",
+    "identity": {
+      "title": {
+        "community": "Tell us about your community",
+        "static": "Tell us about your static"
+      },
+      "subtitle": "Give your group a name and tell players what you're all about.",
+      "group_link": "Group link",
+      "optional": "Optional",
+      "edit_details": "Edit details"
+    },
+    "datacenter": {
+      "title": {
+        "community": "Where does your community play?",
+        "static": "Where does your static play?"
+      },
+      "subtitle": "Choose your region, then the data center where you run content.",
+      "region_label": "Select a region",
+      "regions": {
+        "NA": "North America",
+        "EU": "Europe",
+        "JP": "Japan",
+        "OCE": "Oceania"
+      },      "selected": "Selected: {datacenter}",
+      "select_prompt": "Choose a data center to continue.",
+      "change_datacenter": "Change data center"
+    },
+    "static_notice": {
+      "title": "Work in progress",
+      "info_label": "About unfinished Static features",
+      "description": "You can choose Static and use the shared group and run tools today. Dedicated static recruitment, roster tools, and further scheduling improvements are planned for a future update. These features are not available yet."
+    },
+    "types": {
+      "community": {
+        "description": "For FCs, Discord servers, and raid communities where different players come together for each event.",
+        "benefits": {
+          "roster": "A shared player pool for large raids and events",
+          "activities": "Several hosts organizing their own runs",
+          "coordination": "A home for newcomers, regulars, and learning groups"
+        }
+      },
+      "static": {
+        "description": "For a regular team tackling content together, with shared raid nights, roles, and expectations.",
+        "benefits": {
+          "roster": "The same core roster from one raid night to the next",
+          "activities": "Progression focused on your team's current fight",
+          "coordination": "Scheduling around the same players' availability"
+        }
+      }
+    }
+  },
+  "create_preview": {
+    "help": "Preview the existing creation steps for reference. No groups will be created."
   },
   "create_modal": {
     "title": "Create Group",

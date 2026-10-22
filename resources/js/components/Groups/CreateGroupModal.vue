@@ -32,6 +32,14 @@ type GroupDiscoveryLookups = {
 }
 
 
+const props = withDefaults(defineProps<{
+	showTrigger?: boolean
+	preview?: boolean
+}>(), {
+	showTrigger: true,
+	preview: false,
+});
+
 const { t, tm, locale } = useI18n();
 const toast = useToast();
 const page = usePage();
@@ -205,8 +213,9 @@ const replacePreviewUrl = (target: typeof profilePicturePreviewUrl, url: string 
 	target.value = url;
 };
 
-const open = () => {
-	step.value = 1;
+const open = (initialStep = 1) => {
+	step.value = props.preview ? Math.min(max_steps, Math.max(1, Math.trunc(initialStep))) : 1;
+	form.clearErrors();
 	self_open.value = true;
 };
 
@@ -244,7 +253,7 @@ const close = () => {
 };
 
 const nextStep = () => {
-	if (step.value >= max_steps || !canContinue.value || !validateCurrentStep()) {
+	if (step.value >= max_steps || (!props.preview && (!canContinue.value || !validateCurrentStep()))) {
 		return;
 	}
 
@@ -277,6 +286,10 @@ const addCreatedTag = (rawTag: string) => {
 };
 
 const submit = () => {
+	if (props.preview) {
+		return;
+	}
+
 	form.transform((data) => ({
 		...data,
 		name: sanitizeSingleLineText(data.name),
@@ -331,12 +344,14 @@ defineExpose({
 		v-model:open="self_open"
 		:ui="{ content: 'rounded-sm', header: 'border-0' }"
 	>
-		<UButton
-			:label="t('groups.index.create_modal.open_button')"
-			color="neutral"
-			class="w-full cursor-pointer rounded-none"
-			icon="i-lucide-plus"
-		/>
+		<template v-if="showTrigger" #default>
+			<UButton
+				:label="t('groups.index.create_modal.open_button')"
+				color="neutral"
+				class="w-full cursor-pointer rounded-md"
+				icon="i-lucide-plus"
+			/>
+		</template>
 
 		<template #header>
 			<div class="w-full flex flex-col items-stretch">
@@ -778,7 +793,7 @@ defineExpose({
 						size="lg"
 						:ui="{ base: 'rounded-none' }"
 						:label="t('general.continue')"
-						:disabled="!canContinue"
+						:disabled="!preview && !canContinue"
 						@click.prevent="nextStep"
 					/>
 					<UButton
@@ -789,6 +804,7 @@ defineExpose({
 						size="lg"
 						:ui="{ base: 'rounded-none' }"
 						:label="t('general.create')"
+						:disabled="preview"
 						:loading="form.processing"
 					/>
 				</div>

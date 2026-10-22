@@ -8,6 +8,7 @@ use App\Models\GroupMembership;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Validation\ValidationException;
 
 /**
  * Participant run access, independent of group discovery and join mode.
@@ -69,23 +70,37 @@ final class RunAccessService
 
     /**
      * Available participant actions shared by overview and application responses.
-     * Guest self-assignment still needs its own token-based workflow; until then
-     * anonymous visitors must sign in to select a roster slot.
      *
-     * @return array{can_apply: bool, can_apply_as_guest: bool, can_self_assign: bool, requires_login: bool}
+     * @return array{can_apply: bool, can_apply_as_guest: bool, can_self_assign: bool, can_self_assign_as_guest: bool, requires_login: bool}
      */
     public function participationPermissions(Group $group, Activity $activity, ?int $userId): array
     {
         $canApplyAsGuest = $userId === null && $this->canApply($group, $activity, null);
+        $canSelfAssignAsGuest = $userId === null && $this->canSelfAssign($group, $activity, null);
         $joiningOpen = $activity->needs_application ? $activity->acceptsApplications() : ! $activity->isArchived();
 
         return [
             'can_apply' => $userId !== null && $this->canApply($group, $activity, $userId),
             'can_apply_as_guest' => $canApplyAsGuest,
             'can_self_assign' => $userId !== null && $this->canSelfAssign($group, $activity, $userId),
-            'requires_login' => $userId === null && $joiningOpen && ! $canApplyAsGuest
+            'can_self_assign_as_guest' => $canSelfAssignAsGuest,
+            'requires_login' => $userId === null && $joiningOpen && ! $canApplyAsGuest && ! $canSelfAssignAsGuest
                 && $this->canView($group, $activity, null),
         ];
+    }
+
+    /** Existing forms may resend these settings, but cannot change them after creation. */
+    public function validateUnchangedSettings(Activity $activity, array $input): void
+    {
+        $errors = [];
+        foreach (['is_public', 'allow_guest_applications'] as $field) {
+            if (array_key_exists($field, $input) && (bool) $input[$field] !== (bool) $activity->{$field}) {
+                $errors[$field] = __('errors.run_access_settings_locked');
+            }
+        }
+        if ($errors !== []) {
+            throw ValidationException::withMessages($errors);
+        }
     }
 
     /**

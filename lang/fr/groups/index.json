@@ -1,4 +1,12 @@
 {
+    "your_groups": {
+        "title": "Vos groupes",
+        "subtitle": "Tous les groupes dont vous faites partie, au même endroit.",
+        "empty": "Vous n’avez pas encore rejoint de groupe. Explorez les groupes ci-dessous pour trouver vos compagnons de jeu.",
+        "last_active": "Dernière activité : {time}",
+        "view_all": "Tout voir ({count})",
+        "show_less": "Voir moins"
+    },
     "title": "Groupes",
     "subtitle": "Gérez vos groupes de raid et découvrez de nouvelles communautés",
     "tabs": {
@@ -435,6 +443,7 @@
             "size_placeholder": "Taille",
             "sort_placeholder": "Trier par",
             "more_filters_open": "Plus de filtres",
+            "toggle": "Filtres",
             "more_filters_close": "Masquer les filtres supplémentaires",
             "clear_filters": "Effacer les filtres",
             "recruiting_method_label": "Méthode de recrutement",
@@ -529,7 +538,70 @@
                 "complete": "Terminé",
                 "cancelled": "Annulé"
             }
+        },
+        "results": {
+            "management": "Direction",
+            "statistics": "Statistiques",
+            "active": "Activité"
         }
+    },
+    "create_flow": {
+        "subtitle": "Commencez par choisir le type de groupe que vous souhaitez créer.",
+        "back_to_groups": "Retour aux groupes",
+        "change_type": "Changer le type de groupe",
+        "continue_with": "Continuer avec {type}",
+        "identity": {
+          "title": {
+            "community": "Parlez-nous de votre communauté",
+            "static": "Parlez-nous de votre groupe fixe"
+          },
+          "subtitle": "Donnez un nom à votre groupe et présentez-le aux autres joueurs.",
+          "group_link": "Lien du groupe",
+          "optional": "Facultatif",
+          "edit_details": "Modifier les informations"
+        },
+        "datacenter": {
+          "title": {
+            "community": "Où joue votre communauté ?",
+            "static": "Où joue votre groupe fixe ?"
+          },
+          "subtitle": "Choisissez votre région, puis le centre de données où vous participez aux activités.",
+          "region_label": "Choisir une région",
+          "regions": {
+            "NA": "Amérique du Nord",
+            "EU": "Europe",
+            "JP": "Japon",
+            "OCE": "Océanie"
+          },          "selected": "Sélection : {datacenter}",
+          "select_prompt": "Choisissez un centre de données pour continuer.",
+          "change_datacenter": "Changer de centre de données"
+        },
+        "static_notice": {
+            "title": "En développement",
+            "info_label": "À propos des fonctionnalités de roster fixe inachevées",
+            "description": "Vous pouvez choisir un roster fixe et utiliser les outils communs de gestion des groupes et des runs dès maintenant. Le recrutement dédié, les outils de composition d'équipe et d'autres améliorations du planning sont prévus dans une future mise à jour. Ces fonctionnalités ne sont pas encore disponibles."
+        },
+        "types": {
+            "community": {
+                "description": "Pour les CL, les serveurs Discord et les communautés de raid où différents joueurs se retrouvent à chaque événement.",
+                "benefits": {
+                    "roster": "Un vivier commun de joueurs pour les grands raids et événements",
+                    "activities": "Plusieurs organisateurs gèrent leurs propres runs",
+                    "coordination": "Un lieu pour les nouveaux, les habitués et les groupes d'apprentissage"
+                }
+            },
+            "static": {
+                "description": "Pour une équipe régulière qui aborde le contenu ensemble, avec des soirées de raid, des rôles et des attentes partagés.",
+                "benefits": {
+                    "roster": "Le même noyau de joueurs d'une soirée de raid à l'autre",
+                    "activities": "Une progression centrée sur le combat actuel de l'équipe",
+                    "coordination": "Un planning adapté aux disponibilités des mêmes joueurs"
+                }
+            }
+        }
+    },
+    "create_preview": {
+        "help": "Prévisualisez les étapes de création actuelles à titre de référence. Aucun groupe ne sera créé."
     },
     "create_modal": {
         "title": "Créer un groupe",

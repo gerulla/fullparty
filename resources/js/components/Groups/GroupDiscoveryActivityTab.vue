@@ -98,7 +98,7 @@ function formatStatNumber(value: number) {
 				<div
 					v-for="item in activitySummaryItems"
 					:key="item.key"
-					class="border border-default bg-muted/18 px-4 py-3"
+					class="rounded-xl border border-default bg-muted/18 dark:border-elevation-7 dark:bg-elevation-4 px-4 py-3"
 				>
 					<p class="text-[11px] font-semibold uppercase tracking-[0.14em] text-dimmed">
 						{{ item.label }}
@@ -110,7 +110,7 @@ function formatStatNumber(value: number) {
 			</div>
 		</section>
 
-		<div class="h-px bg-default/80" />
+		<div class="h-px bg-default/80 dark:bg-elevation-6" />
 
 		<section class="space-y-3">
 			<div class="flex items-end justify-between gap-3">
@@ -131,7 +131,7 @@ function formatStatNumber(value: number) {
 				:ui="{
 					item: 'grid grid-cols-1 gap-y-2 md:grid-cols-[minmax(0,1fr)_3rem_minmax(0,1fr)] md:gap-x-4',
 					container: 'flex justify-center md:col-start-2 md:row-start-1',
-					indicator: 'size-12 overflow-hidden border border-default bg-elevated shadow-sm',
+					indicator: 'size-12 overflow-hidden rounded-xl border border-default bg-elevated shadow-sm dark:border-elevation-7 dark:bg-elevation-5',
 					wrapper: 'min-w-0 md:col-[1/-1] md:row-start-1',
 				}"
 			>
@@ -142,7 +142,7 @@ function formatStatNumber(value: number) {
 						:alt="item.activity_name"
 						class="size-12 object-cover"
 					>
-					<div v-else class="flex size-12 items-center justify-center bg-elevated text-dimmed">
+					<div v-else class="flex size-12 items-center justify-center bg-elevated text-dimmed dark:bg-elevation-5">
 						<UIcon name="i-lucide-swords" class="size-5" />
 					</div>
 				</template>
@@ -150,7 +150,7 @@ function formatStatNumber(value: number) {
 				<template #wrapper="{ item }">
 					<div class="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_3rem_minmax(0,1fr)] md:gap-x-4">
 						<div
-							class="min-w-0 border border-default bg-muted/18 px-4 py-3"
+							class="min-w-0 rounded-xl border border-default bg-muted/18 dark:border-elevation-7 dark:bg-elevation-4 px-4 py-3"
 							:class="item.side === 'left'
 								? 'md:col-start-1 md:text-right'
 								: 'md:col-start-3 md:text-left'"

@@ -324,6 +324,7 @@ class GroupActivityController extends Controller
         $this->sanitizeActivityInput($request);
 
         $validated = $request->validate($this->rules($group, false, true));
+        $this->runAccess->validateUnchangedSettings($activity, $validated);
         $validated = $this->normalizeAndValidateOrganizerCharacter($validated);
         $validated = $this->normalizeAndValidateStartsAt($validated);
 
@@ -353,10 +354,9 @@ class GroupActivityController extends Controller
             'needs_application',
             'allow_guest_applications',
         ]);
-        $nextIsPublic = $validated['is_public'] ?? $activity->is_public;
 
         $nextStartsAt = $validated['starts_at'] ?? $activity->starts_at;
-        $updateActivity = function () use ($activity, $validated, $nextIsPublic, $nextStartsAt): void {
+        $updateActivity = function () use ($activity, $validated, $nextStartsAt): void {
             $activity->update([
                 'organized_by_user_id' => $validated['organized_by_user_id'] ?? $activity->organized_by_user_id,
                 'organized_by_character_id' => array_key_exists('organized_by_character_id', $validated)
@@ -377,9 +377,7 @@ class GroupActivityController extends Controller
                 'target_prog_point_key' => array_key_exists('target_prog_point_key', $validated)
                     ? $validated['target_prog_point_key']
                     : $activity->target_prog_point_key,
-                'is_public' => $nextIsPublic,
                 'needs_application' => $validated['needs_application'] ?? $activity->needs_application,
-                'allow_guest_applications' => $nextIsPublic && ($validated['allow_guest_applications'] ?? $activity->allow_guest_applications),
                 'secret_key' => null,
             ]);
         };

@@ -71,7 +71,7 @@ const providerDisplayName = computed(() => {
 </script>
 
 <template>
-	<UCard class="h-full w-full dark:bg-elevated/25">
+	<UCard class="h-full w-full bg-elevation-1 dark:bg-elevated/25">
 		<template #header>
 			<div class="flex flex-row items-center font-semibold text-md">
 				<UIcon name="i-lucide-globe" class="mr-2" size="22" />
@@ -185,7 +185,7 @@ const providerDisplayName = computed(() => {
 @reference "../../../css/app.css";
 
 .social-block {
-	@apply w-full grid items-center p-4 bg-elevation-3 rounded-sm gap-4;
+	@apply w-full grid items-center p-4 bg-elevation-1 border border-default shadow-lg rounded-sm gap-4 dark:bg-elevation-3 dark:border-0 dark:shadow-none;
 	grid-template-columns: auto minmax(0, 1fr) auto;
 }
 

@@ -28,6 +28,8 @@ class ActivityDuplicationService
         string $status,
         bool $copyBench,
         bool $copyFillIns,
+        ?bool $isPublic = null,
+        ?bool $allowGuests = null,
     ): Activity {
         $source->load([
             'group',
@@ -50,6 +52,8 @@ class ActivityDuplicationService
             $status,
             $copyBench,
             $copyFillIns,
+            $isPublic,
+            $allowGuests,
         ): Activity {
             $duplicate = $source->group()->firstOrFail()->activities()->create([
                 'activity_type_id' => $source->activity_type_id,
@@ -68,9 +72,9 @@ class ActivityDuplicationService
                 'beginner_friendly' => $source->beginner_friendly,
                 'run_style' => $source->run_style,
                 'target_prog_point_key' => $source->target_prog_point_key,
-                'is_public' => $source->is_public,
+                'is_public' => $isPublic ?? $source->is_public,
                 'needs_application' => $source->needs_application,
-                'allow_guest_applications' => $source->allow_guest_applications,
+                'allow_guest_applications' => ($isPublic ?? $source->is_public) && ($allowGuests ?? $source->allow_guest_applications),
                 'secret_key' => null,
                 'settings' => [],
                 'progress_entry_mode' => null,

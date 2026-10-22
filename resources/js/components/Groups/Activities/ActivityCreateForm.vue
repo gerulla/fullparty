@@ -125,12 +125,6 @@ watch(selectedActivityType, (activityType, previousActivityType) => {
 	}
 }, { immediate: true });
 
-watch(() => props.form.needs_application, (needsApplication) => {
-	if (!needsApplication) {
-		props.form.allow_guest_applications = false;
-	}
-}, { immediate: true });
-
 watch(() => props.form.is_public, (isPublic) => {
 	if (!isPublic) {
 		props.form.allow_guest_applications = false;
@@ -311,7 +305,7 @@ const goNext = () => {
 					</UFormField>
 
 					<UFormField
-						v-if="form.needs_application && form.is_public"
+						v-if="form.is_public"
 						:label="t('groups.activities.create.fields.allow_guest_applications.label')"
 						:description="t('groups.activities.create.fields.allow_guest_applications.help')"
 						:error="form.errors.allow_guest_applications"

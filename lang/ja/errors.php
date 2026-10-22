@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'run_access_settings_locked' => '公開範囲とゲスト参加の設定は開催を作成した時点で確定します。別の設定を使う場合は、新しく作成するか複製してください。',
     'image_dimensions_exceeded' => '画像は各辺 :dimension ピクセル以下、合計 :megapixels メガピクセル以下にしてください。',
     'this_application_cannot_be_withdrawn' => 'この申請は取り下げられません。',
     'an_english_activity_type_name_is_required' => 'アクティビティタイプの英語名が必要です。',

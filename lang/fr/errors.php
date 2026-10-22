@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'run_access_settings_locked' => 'Le public et l’accès des invités sont définis à la création du run. Créez ou dupliquez un run pour utiliser d’autres paramètres.',
     'image_dimensions_exceeded' => 'Les images ne doivent pas dépasser :dimension pixels par côté et :megapixels mégapixels au total.',
     'this_application_cannot_be_withdrawn' => 'Cette candidature ne peut pas être retirée.',
     'an_english_activity_type_name_is_required' => 'Un nom anglais est requis pour le type d’activité.',

@@ -49,8 +49,8 @@ defineExpose({ focusSection })
                 variant="ghost"
                 class="w-full items-center gap-3 rounded-lg border p-4 text-left whitespace-normal transition-colors"
                 :class="activeSection === section.key
-                    ? (section.key === 'delete' ? 'border-error/50 bg-error/10' : 'border-brand/50 bg-brand/10')
-                    : 'border-default bg-elevation-2 hover:bg-elevation-3'"
+                    ? (section.key === 'delete' ? 'border-error/50 bg-elevation-1 dark:bg-error/10' : 'border-brand/50 bg-elevation-1 dark:bg-brand/10')
+                    : 'border-default bg-elevation-1 dark:bg-elevation-2 hover:bg-elevation-3'"
                 @click="emit('select', section.key)"
             >
                 <UIcon :name="section.icon" class="size-5 shrink-0"

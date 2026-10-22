@@ -102,6 +102,7 @@ it('shares participant actions between run overview and application responses', 
         'can_apply' => $signedIn && ! $closed,
         'can_apply_as_guest' => ! $signedIn && $guests && ! $closed,
         'can_self_assign' => false,
+        'can_self_assign_as_guest' => false,
         'requires_login' => ! $signedIn && ! $guests && ! $closed,
     ];
 
@@ -120,13 +121,14 @@ it('shares participant actions between run overview and application responses', 
     }
 })->with([false, true])->with([false, true])->with([false, true]);
 
-it('offers sign in on slot selection runs until the guest slot workflow is available', function (bool $guests) {
+it('offers guest slot selection only when guests are enabled', function (bool $guests) {
     $run = Activity::factory()->create([
         'status' => Activity::STATUS_SCHEDULED, 'needs_application' => false, 'allow_guest_applications' => $guests,
     ]);
     $url = route('groups.activities.overview', [$run->group, $run]);
-    $this->get($url)->assertOk()->assertSessionHas('url.intended', $url)
-        ->assertInertia(fn (Assert $page) => $page->where('permissions.requires_login', true)
+    $this->get($url)->assertOk()
+        ->assertInertia(fn (Assert $page) => $page->where('permissions.requires_login', ! $guests)
+            ->where('permissions.can_self_assign_as_guest', $guests)
             ->where('permissions.can_self_assign', false));
     $this->actingAs(User::factory()->create())->get($url)->assertOk()
         ->assertInertia(fn (Assert $page) => $page->where('permissions.requires_login', false)

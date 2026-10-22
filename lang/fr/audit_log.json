@@ -355,6 +355,7 @@
     "selected_character_name": "Personnage sélectionné",
     "displaced_character_name": "Personnage remplacé",
     "application_status": "Statut de candidature",
+    "self_assignment": "Auto-attribution",
     "review_reason": "Note de revue",
     "starts_at": "Commence le",
     "duration_hours": "Durée (heures)",

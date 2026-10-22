@@ -32,6 +32,8 @@ class GroupActivityDuplicationController extends Controller
             status: (string) $validated['status'],
             copyBench: (bool) $validated['copy_bench'],
             copyFillIns: (bool) $validated['copy_fill_ins'],
+            isPublic: isset($validated['is_public']) ? (bool) $validated['is_public'] : null,
+            allowGuests: isset($validated['allow_guest_applications']) ? (bool) $validated['allow_guest_applications'] : null,
         );
 
         return redirect()

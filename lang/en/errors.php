@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'run_access_settings_locked' => 'Audience and guest access are fixed when the run is created. Create or duplicate a run to use different settings.',
     'image_dimensions_exceeded' => 'Images must be at most :dimension pixels on each side and :megapixels megapixels in total.',
     'this_application_cannot_be_withdrawn' => 'This application cannot be withdrawn.',
     'an_english_activity_type_name_is_required' => 'An English activity type name is required.',

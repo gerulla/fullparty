@@ -29,6 +29,17 @@ type SharedPageProps = {
 }
 
 const { t } = useI18n();
+const filterInputUi = {
+	base: "rounded-md border-neutral-300 bg-elevation-1 text-default placeholder:text-muted ring-neutral-300 focus-visible:ring-brand-700 dark:border-default dark:bg-elevation-3 dark:ring-default dark:focus-visible:ring-brand-400",
+	leadingIcon: "text-muted",
+	trailingIcon: "text-muted",
+};
+const filterSelectUi = {
+	...filterInputUi,
+	placeholder: "text-muted",
+	content: "rounded-lg bg-elevation-1 shadow-lg ring-neutral-200 dark:bg-elevation-3 dark:ring-default",
+	item: "rounded-md text-default data-highlighted:bg-elevation-2 dark:data-highlighted:bg-elevation-5",
+};
 const page = usePage<SharedPageProps>();
 const emit = defineEmits<{
 	openGroup: [group: GroupIndexRecord]
@@ -58,6 +69,7 @@ const preferredLanguageFilters = ref<string[]>([]);
 const activeDayFilters = ref<string[]>([]);
 const extraTagsFilter = ref("");
 const currentPage = ref(page.props.discoverGroups?.meta.current_page ?? 1);
+const resultsPerPage = ref(page.props.discoverGroups?.meta.per_page ?? emptyResults.meta.per_page);
 const discoveryResults = ref<PaginatedGroups>(page.props.discoverGroups ?? emptyResults);
 const isLoadingResults = ref(false);
 let searchRequestCounter = 0;
@@ -176,11 +188,6 @@ const sortByOptions = computed(() => ([
 	},
 ]));
 
-const moreFiltersButtonLabel = computed(() => (
-	isMoreFiltersOpen.value
-		? t("groups.index.discovery.filters.more_filters_close")
-		: t("groups.index.discovery.filters.more_filters_open")
-));
 const hasActiveFilters = computed(() => (
 	selectedTopLevelFilter.value !== "all"
 	|| searchQuery.value.trim() !== ""
@@ -209,6 +216,7 @@ const requestParams = computed(() => ({
 	active_days: activeDayFilters.value,
 	extra_tags: extraTagsFilter.value.trim() || undefined,
 	page: currentPage.value,
+	per_page: resultsPerPage.value,
 }));
 const filterSignature = computed(() => JSON.stringify({
 	query: requestParams.value.query ?? null,
@@ -223,6 +231,7 @@ const filterSignature = computed(() => JSON.stringify({
 	preferred_languages: [...preferredLanguageFilters.value],
 	active_days: [...activeDayFilters.value],
 	extra_tags: requestParams.value.extra_tags ?? null,
+	per_page: requestParams.value.per_page,
 }));
 
 function resolveLanguageLabel(value: string) {
@@ -253,6 +262,11 @@ function clearFilters() {
 }
 
 async function fetchDiscoveryResults() {
+	if (scheduledFetchTimeout !== null) {
+		clearTimeout(scheduledFetchTimeout);
+		scheduledFetchTimeout = null;
+	}
+
 	const requestId = ++searchRequestCounter;
 	isLoadingResults.value = true;
 
@@ -276,6 +290,10 @@ async function fetchDiscoveryResults() {
 }
 
 function scheduleFetch() {
+	// Ignore any older response while filters or grid sizing are settling.
+	searchRequestCounter++;
+	isLoadingResults.value = true;
+
 	if (scheduledFetchTimeout !== null) {
 		clearTimeout(scheduledFetchTimeout);
 	}
@@ -284,6 +302,15 @@ function scheduleFetch() {
 		scheduledFetchTimeout = null;
 		void fetchDiscoveryResults();
 	}, 250);
+}
+
+function onPageSizeChange(pageSize: number) {
+	if (pageSize === resultsPerPage.value) {
+		return;
+	}
+
+	resultsPerPage.value = pageSize;
+	isLoadingResults.value = true;
 }
 
 watch(filterSignature, () => {
@@ -305,6 +332,7 @@ watch(currentPage, (pageNumber, previousPageNumber) => {
 });
 
 onBeforeUnmount(() => {
+	searchRequestCounter++;
 	if (scheduledFetchTimeout !== null) {
 		clearTimeout(scheduledFetchTimeout);
 	}
@@ -314,198 +342,275 @@ onBeforeUnmount(() => {
 <template>
 	<section class="mt-10 flex flex-col gap-5">
 		<div class="flex flex-col gap-2">
-			<h2 class="text-xl font-semibold text-highlighted">
-				{{ t('groups.index.discovery.title') }}
-			</h2>
-			<p class="text-sm text-muted">
-				{{ t('groups.index.discovery.subtitle') }}
-			</p>
+			<h2 class="text-xl font-semibold text-highlighted">{{ t('groups.index.discovery.title') }}</h2>
+			<p class="text-sm text-muted">{{ t('groups.index.discovery.subtitle') }}</p>
 		</div>
 
-		<div class="border border-neutral-900 bg-neutral-900/25 p-4 sm:p-5">
+		<div class="flex flex-col gap-3 border-b border-neutral-200 pb-3 dark:border-default md:flex-row md:items-center md:justify-between">
 			<UTabs
 				v-model="selectedTopLevelFilter"
 				:items="topLevelItems"
 				:content="false"
 				variant="link"
+				:ui="{ list: 'border-0', trigger: 'dark:data-[state=active]:text-brand-400', indicator: 'dark:bg-brand-400' }"
 				size="xl"
-				class="w-full"
+				class="min-w-0 md:w-auto"
 			/>
+			<USelectMenu
+				v-model="sortBy"
+				:items="sortByOptions"
+				value-key="value"
+				size="lg"
+				class="w-full md:w-80 md:shrink-0"
+				:ui="filterSelectUi"
+				:search-input="{ ui: filterInputUi }"
+				variant="outline"
+				:placeholder="t('groups.index.discovery.filters.sort_placeholder')"
+				:aria-label="t('groups.index.discovery.filters.sort_placeholder')"
+			/>
+		</div>
 
-			<div class="mt-5 flex flex-col gap-4">
-				<div class="flex flex-col gap-4 xl:flex-row xl:items-center">
-					<div class="grid flex-1 gap-3 md:grid-cols-2 xl:grid-cols-[minmax(0,1.9fr)_minmax(12rem,1fr)_minmax(10rem,0.9fr)_minmax(9rem,0.8fr)_auto_auto]">
-						<UInput
-							v-model="searchQuery"
-							:placeholder="t('groups.index.discovery.filters.search_placeholder')"
-							icon="i-lucide-search"
-							:maxlength="255"
-							size="xl"
-							class="w-full "
-							:ui="{ base: 'w-full bg-neutral-950 placeholder:text-neutral-600 ring-neutral-800', leadingIcon: 'text-neutral-600' }"
-						/>
+		<div>
+			<div class="grid grid-cols-[minmax(0,1fr)_auto] gap-3 xl:grid-cols-2">
+				<UInput
+					v-model="searchQuery"
+					:placeholder="t('groups.index.discovery.filters.search_placeholder')"
+					icon="i-lucide-search"
+					:maxlength="255"
+					size="lg"
+					class="w-full min-w-0"
+					:ui="filterInputUi"
+					variant="outline"
+				/>
+				<div class="grid gap-3 xl:grid-cols-[minmax(0,1.15fr)_minmax(0,0.8fr)_minmax(0,0.8fr)_auto]">
+					<USelectMenu
+						v-model="experienceFilter"
+						:items="experienceOptions"
+						value-key="value"
+						size="lg"
+						class="hidden w-full min-w-0 xl:inline-flex"
+						:ui="filterSelectUi"
+						:search-input="{ ui: filterInputUi }"
+						variant="outline"
+						:placeholder="t('groups.index.discovery.filters.experience_placeholder')"
+						:aria-label="t('groups.index.discovery.filters.experience_placeholder')"
+					/>
+					<USelectMenu
+						v-model="regionFilter"
+						:items="regionOptions"
+						value-key="value"
+						size="lg"
+						class="hidden w-full min-w-0 xl:inline-flex"
+						:ui="filterSelectUi"
+						:search-input="{ ui: filterInputUi }"
+						variant="outline"
+						:placeholder="t('groups.index.discovery.filters.region_placeholder')"
+						:aria-label="t('groups.index.discovery.filters.region_placeholder')"
+					/>
+					<USelectMenu
+						v-model="memberCountFilter"
+						:items="memberCountOptions"
+						value-key="value"
+						size="lg"
+						class="hidden w-full min-w-0 xl:inline-flex"
+						:ui="filterSelectUi"
+						:search-input="{ ui: filterInputUi }"
+						variant="outline"
+						:placeholder="t('groups.index.discovery.filters.size_placeholder')"
+						:aria-label="t('groups.index.discovery.filters.size_placeholder')"
+					/>
+					<UButton
+						color="neutral"
+						variant="outline"
+						size="lg"
+						trailing-icon="i-lucide-sliders-horizontal"
+						class="justify-center rounded-md border-neutral-300 bg-elevation-1 text-default ring-neutral-300 hover:bg-elevation-2 dark:border-default dark:bg-elevation-3 dark:ring-default dark:hover:bg-elevation-4"
+						:aria-expanded="isMoreFiltersOpen"
+						@click="isMoreFiltersOpen = !isMoreFiltersOpen"
+					>
+						<span class="sr-only md:not-sr-only xl:hidden">{{ t('groups.index.discovery.filters.toggle') }}</span>
+						<span class="hidden xl:inline">{{ t('groups.index.discovery.filters.more_filters_open') }}</span>
+					</UButton>
+				</div>
+			</div>
 
-						<USelectMenu
-							v-model="experienceFilter"
-							:items="experienceOptions"
-							value-key="value"
-							size="xl"
-							class="w-full"
-							:ui="{base: 'rounded-none bg-neutral-950 placeholder:text-neutral-600 border-neutral-800',
-							 content:'ring-neutral-800'}"
-							:placeholder="t('groups.index.discovery.filters.experience_placeholder')"
-						/>
-
-						<USelectMenu
-							v-model="regionFilter"
-							:items="regionOptions"
-							value-key="value"
-							size="xl"
-							class="w-full"
-							:placeholder="t('groups.index.discovery.filters.region_placeholder')"
-						/>
-
-						<USelectMenu
-							v-model="memberCountFilter"
-							:items="memberCountOptions"
-							value-key="value"
-							size="xl"
-							class="w-full"
-							:placeholder="t('groups.index.discovery.filters.size_placeholder')"
-						/>
-
-						<UButton
-							color="neutral"
-							variant="soft"
-							size="xl"
-							trailing-icon="i-lucide-sliders-horizontal"
-							class="justify-center xl:min-w-44"
-							@click="isMoreFiltersOpen = !isMoreFiltersOpen"
+			<UCollapsible v-model:open="isMoreFiltersOpen" :class="isMoreFiltersOpen ? 'mt-4' : undefined">
+				<template #content>
+					<div class="grid gap-4 border-t border-neutral-200 dark:border-default py-4 md:grid-cols-2 xl:grid-cols-3">
+						<UFormField
+							class="xl:hidden"
+							:ui="{ label: 'text-muted' }"
+							:label="t('groups.index.discovery.filters.experience_placeholder')"
 						>
-							{{ moreFiltersButtonLabel }}
-						</UButton>
+							<USelectMenu
+								v-model="experienceFilter"
+								:items="experienceOptions"
+								value-key="value"
+								size="lg"
+								class="w-full"
+								:ui="filterSelectUi"
+								:search-input="{ ui: filterInputUi }"
+								variant="outline"
+								:placeholder="t('groups.index.discovery.filters.experience_placeholder')"
+								:aria-label="t('groups.index.discovery.filters.experience_placeholder')"
+							/>
+						</UFormField>
+						<UFormField
+							class="xl:hidden"
+							:ui="{ label: 'text-muted' }"
+							:label="t('groups.index.discovery.filters.region_placeholder')"
+						>
+							<USelectMenu
+								v-model="regionFilter"
+								:items="regionOptions"
+								value-key="value"
+								size="lg"
+								class="w-full"
+								:ui="filterSelectUi"
+								:search-input="{ ui: filterInputUi }"
+								variant="outline"
+								:placeholder="t('groups.index.discovery.filters.region_placeholder')"
+								:aria-label="t('groups.index.discovery.filters.region_placeholder')"
+							/>
+						</UFormField>
+						<UFormField
+							class="xl:hidden"
+							:ui="{ label: 'text-muted' }"
+							:label="t('groups.index.discovery.filters.size_placeholder')"
+						>
+							<USelectMenu
+								v-model="memberCountFilter"
+								:items="memberCountOptions"
+								value-key="value"
+								size="lg"
+								class="w-full"
+								:ui="filterSelectUi"
+								:search-input="{ ui: filterInputUi }"
+								variant="outline"
+								:placeholder="t('groups.index.discovery.filters.size_placeholder')"
+								:aria-label="t('groups.index.discovery.filters.size_placeholder')"
+							/>
+						</UFormField>
+						<UFormField
+							:ui="{ label: 'text-muted' }"
+							:label="t('groups.index.discovery.filters.recruiting_method_label')"
+						>
+							<USelectMenu
+								v-model="recruitingMethodFilter"
+								:items="recruitingMethodOptions"
+								value-key="value"
+								class="w-full"
+								:ui="filterSelectUi"
+								:search-input="{ ui: filterInputUi }"
+								variant="outline"
+								:placeholder="t('groups.index.discovery.filters.recruiting_method_placeholder')"
+							/>
+						</UFormField>
 
+						<UFormField
+							:ui="{ label: 'text-muted' }"
+							:label="t('groups.index.create_modal.fields.primary_focuses.label')"
+						>
+							<USelectMenu
+								v-model="primaryFocusFilters"
+								:items="primaryFocusOptions"
+								value-key="value"
+								multiple
+								class="w-full"
+								:ui="filterSelectUi"
+								:search-input="{ ui: filterInputUi }"
+								variant="outline"
+								:placeholder="t('groups.index.create_modal.fields.primary_focuses.placeholder')"
+							/>
+						</UFormField>
+
+						<UFormField
+							:ui="{ label: 'text-muted' }"
+							:label="t('groups.index.create_modal.fields.voice_expectation.label')"
+						>
+							<USelectMenu
+								v-model="voiceExpectationFilter"
+								:items="voiceExpectationOptions"
+								value-key="value"
+								class="w-full"
+								:ui="filterSelectUi"
+								:search-input="{ ui: filterInputUi }"
+								variant="outline"
+								:placeholder="t('groups.index.create_modal.fields.voice_expectation.placeholder')"
+							/>
+						</UFormField>
+
+						<UFormField
+							:ui="{ label: 'text-muted' }"
+							:label="t('groups.index.create_modal.fields.preferred_languages.label')"
+						>
+							<USelectMenu
+								v-model="preferredLanguageFilters"
+								:items="preferredLanguageOptions"
+								value-key="value"
+								multiple
+								class="w-full"
+								:ui="filterSelectUi"
+								:search-input="{ ui: filterInputUi }"
+								variant="outline"
+								:placeholder="t('groups.index.create_modal.fields.preferred_languages.placeholder')"
+							/>
+						</UFormField>
+
+						<UFormField
+							:ui="{ label: 'text-muted' }"
+							:label="t('groups.index.create_modal.fields.active_days.label')"
+						>
+							<USelectMenu
+								v-model="activeDayFilters"
+								:items="activeDayOptions"
+								value-key="value"
+								multiple
+								class="w-full"
+								:ui="filterSelectUi"
+								:search-input="{ ui: filterInputUi }"
+								variant="outline"
+								:placeholder="t('groups.index.create_modal.fields.active_days.placeholder')"
+							/>
+						</UFormField>
+
+						<UFormField
+							:ui="{ label: 'text-muted' }"
+							:label="t('groups.index.create_modal.fields.tags.label')"
+						>
+							<UInput
+								v-model="extraTagsFilter"
+								:placeholder="t('groups.index.discovery.filters.tags_placeholder')"
+								icon="i-lucide-tags"
+								:maxlength="255"
+								class="w-full"
+								:ui="filterInputUi"
+								variant="outline"
+							/>
+						</UFormField>
+					</div>
+					<div class="flex justify-end">
 						<UButton
 							color="neutral"
 							variant="ghost"
-							size="xl"
 							icon="i-lucide-filter-x"
-							class="justify-center xl:min-w-36"
+							class="justify-center rounded-md text-muted hover:text-highlighted"
 							:disabled="!hasActiveFilters"
 							@click="clearFilters"
 						>
 							{{ t('groups.index.discovery.filters.clear_filters') }}
 						</UButton>
 					</div>
-
-					<div class="h-px w-full bg-default xl:hidden" />
-					<div class="hidden h-10 w-px shrink-0 bg-default xl:block" />
-
-					<div class="w-full xl:w-72">
-						<USelectMenu
-							v-model="sortBy"
-							:items="sortByOptions"
-							value-key="value"
-							size="xl"
-							class="w-full"
-							:placeholder="t('groups.index.discovery.filters.sort_placeholder')"
-						/>
-					</div>
-				</div>
-
-				<UCollapsible
-					v-model:open="isMoreFiltersOpen"
-					class="flex flex-col gap-4"
-				>
-					<template #content>
-						<div class="grid gap-4 border-t border-default py-4 md:grid-cols-2 xl:grid-cols-3">
-							<UFormField
-								:label="t('groups.index.discovery.filters.recruiting_method_label')"
-							>
-								<USelectMenu
-									v-model="recruitingMethodFilter"
-									:items="recruitingMethodOptions"
-									value-key="value"
-									class="w-full"
-									:placeholder="t('groups.index.discovery.filters.recruiting_method_placeholder')"
-								/>
-							</UFormField>
-
-							<UFormField
-								:label="t('groups.index.create_modal.fields.primary_focuses.label')"
-							>
-								<USelectMenu
-									v-model="primaryFocusFilters"
-									:items="primaryFocusOptions"
-									value-key="value"
-									multiple
-									class="w-full"
-									:placeholder="t('groups.index.create_modal.fields.primary_focuses.placeholder')"
-								/>
-							</UFormField>
-
-							<UFormField
-								:label="t('groups.index.create_modal.fields.voice_expectation.label')"
-							>
-								<USelectMenu
-									v-model="voiceExpectationFilter"
-									:items="voiceExpectationOptions"
-									value-key="value"
-									class="w-full"
-									:placeholder="t('groups.index.create_modal.fields.voice_expectation.placeholder')"
-								/>
-							</UFormField>
-
-							<UFormField
-								:label="t('groups.index.create_modal.fields.preferred_languages.label')"
-							>
-								<USelectMenu
-									v-model="preferredLanguageFilters"
-									:items="preferredLanguageOptions"
-									value-key="value"
-									multiple
-									class="w-full"
-									:placeholder="t('groups.index.create_modal.fields.preferred_languages.placeholder')"
-								/>
-							</UFormField>
-
-							<UFormField
-								:label="t('groups.index.create_modal.fields.active_days.label')"
-							>
-								<USelectMenu
-									v-model="activeDayFilters"
-									:items="activeDayOptions"
-									value-key="value"
-									multiple
-									class="w-full"
-									:placeholder="t('groups.index.create_modal.fields.active_days.placeholder')"
-								/>
-							</UFormField>
-
-							<UFormField
-								:label="t('groups.index.create_modal.fields.tags.label')"
-							>
-								<UInput
-									v-model="extraTagsFilter"
-									:placeholder="t('groups.index.discovery.filters.tags_placeholder')"
-									icon="i-lucide-tags"
-									:maxlength="255"
-									class="w-full"
-								/>
-							</UFormField>
-						</div>
-					</template>
-				</UCollapsible>
-			</div>
-
-			<div>
-				<GroupSearchResults
-					:results="discoveryResults"
-					:loading="isLoadingResults"
-					@page-change="currentPage = $event"
-					@open-group="emit('openGroup', $event)"
-				/>
-			</div>
+				</template>
+			</UCollapsible>
 		</div>
+
+		<GroupSearchResults
+			:results="discoveryResults"
+			:loading="isLoadingResults"
+			@page-change="currentPage = $event"
+			@page-size-change="onPageSizeChange"
+			@open-group="emit('openGroup', $event)"
+		/>
 	</section>
 </template>

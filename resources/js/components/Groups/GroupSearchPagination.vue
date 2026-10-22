@@ -38,6 +38,7 @@ function goToPage(page: number) {
 				color="neutral"
 				variant="ghost"
 				icon="i-lucide-chevron-left"
+				class="rounded-md"
 				:disabled="!canGoBack"
 				@click="goToPage(currentPage - 1)"
 			/>
@@ -47,7 +48,8 @@ function goToPage(page: number) {
 				:key="page"
 				color="neutral"
 				:variant="page === currentPage ? 'soft' : 'ghost'"
-				class="min-w-10 justify-center"
+				class="min-w-10 justify-center rounded-md"
+				:class="page === currentPage ? 'bg-brand-50 text-brand-700 ring-1 ring-inset ring-brand-200 hover:bg-brand-100 dark:bg-elevation-4 dark:text-highlighted dark:ring-transparent dark:hover:bg-elevation-5' : 'text-muted hover:text-highlighted'"
 				:disabled="disabled"
 				@click="goToPage(page)"
 			>
@@ -58,6 +60,7 @@ function goToPage(page: number) {
 				color="neutral"
 				variant="ghost"
 				icon="i-lucide-chevron-right"
+				class="rounded-md"
 				:disabled="!canGoForward"
 				@click="goToPage(currentPage + 1)"
 			/>

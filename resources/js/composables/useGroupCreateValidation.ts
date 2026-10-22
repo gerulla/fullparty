@@ -2,24 +2,11 @@ import type { GroupCreateField, GroupCreateFormData } from "@/Types/Groups";
 import type { InertiaForm } from "@inertiajs/vue3";
 import { isValidDiscordInviteUrl } from "@/utils/discordInviteValidation";
 import { validateGroupProfilePictureFile } from "@/utils/groupProfilePictureValidation";
+import { groupNameMaxLength, groupSlugMaxLength, groupSlugValidationError, normalizeGroupSlug } from "@/utils/groupIdentity";
 import { computed, type ComputedRef, type Ref } from "vue";
 import { useI18n } from "vue-i18n";
 
-const groupSlugMaxLength = 8;
 const groupImageMaxBytes = 5 * 1024 * 1024;
-
-const reservedGroupSlugs = new Set([
-	"admin",
-	"api",
-	"auth",
-	"groups",
-	"group",
-	"invite",
-	"invites",
-	"login",
-	"register",
-	"settings",
-]);
 
 const stepFields: Record<number, GroupCreateField[]> = {
 	1: ["name", "slug", "group_type", "description", "datacenter"],
@@ -49,11 +36,6 @@ export const useGroupCreateValidation = ({
 	maxTagCount,
 }: UseGroupCreateValidationOptions) => {
 	const { t } = useI18n();
-
-	const normalizeGroupSlug = (value: string) => value
-		.toLowerCase()
-		.replace(/[^a-z]/g, "")
-		.slice(0, groupSlugMaxLength);
 
 	const slugFieldValue = computed({
 		get: () => form.slug,
@@ -91,24 +73,19 @@ export const useGroupCreateValidation = ({
 				field: t("general.name"),
 			}));
 			isValid = false;
-		} else if (form.name.length > 255) {
+		} else if (form.name.length > groupNameMaxLength) {
 			setFieldError("name", t("groups.index.create_modal.validation.max_characters", {
 				field: t("general.name"),
-				max: 255,
+				max: groupNameMaxLength,
 			}));
 			isValid = false;
 		}
 
-		if (!form.slug) {
-			setFieldError("slug", t("groups.index.create_modal.validation.required", {
+		const slugError = groupSlugValidationError(form.slug);
+		if (slugError) {
+			setFieldError("slug", t(`groups.index.create_modal.validation.${slugError}`, {
 				field: t("groups.index.create_modal.fields.slug.label"),
 			}));
-			isValid = false;
-		} else if (!/^[a-z]{1,8}$/.test(form.slug)) {
-			setFieldError("slug", t("groups.index.create_modal.validation.slug_letters_only"));
-			isValid = false;
-		} else if (reservedGroupSlugs.has(form.slug)) {
-			setFieldError("slug", t("groups.index.create_modal.validation.slug_reserved"));
 			isValid = false;
 		}
 

@@ -52,7 +52,7 @@ class ActivityApplicationWithdrawalService
         $previousStatus = $application->status;
         $characterId = $assignedSlot?->assigned_character_id
             ? (int) $assignedSlot->assigned_character_id
-            : ($application->selected_character_id ? (int) $application->selected_character_id : null);
+            : (! $application->is_self_assignment && $application->selected_character_id ? (int) $application->selected_character_id : null);
         $managementWarning = null;
 
         DB::transaction(function () use ($application, $assignedSlot, $activity, $characterId, &$managementWarning): void {
@@ -143,7 +143,7 @@ class ActivityApplicationWithdrawalService
 
     public function applicationCanBeWithdrawn(Activity $activity, ActivityApplication $application): bool
     {
-        return $activity->needs_application
+        return ($activity->needs_application || $application->is_self_assignment)
             && ! Activity::isArchivedStatus($activity->status)
             && in_array($application->status, ActivityApplication::WITHDRAWABLE_STATUSES, true);
     }
@@ -165,6 +165,16 @@ class ActivityApplicationWithdrawalService
     {
         if (! $application->activity) {
             return null;
+        }
+
+        if ($application->is_self_assignment) {
+            // A guest token controls this registration, never a later placement of the same character.
+            return $application->activity->slots()
+                ->with(['assignedCharacter', 'fieldValues', 'assignments'])
+                ->where('assigned_character_id', $application->selected_character_id)
+                ->whereHas('assignments', fn ($query) => $query
+                    ->where('application_id', $application->id)->whereNull('ended_at'))
+                ->first();
         }
 
         $flaggedSlot = $application->activity

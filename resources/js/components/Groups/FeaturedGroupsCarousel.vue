@@ -35,7 +35,7 @@ const scrollByDirection = (direction: "left" | "right") => {
 	<section>
 		<div class="relative">
 			<UButton
-				class="absolute top-1/2 left-0 z-10 hidden -translate-x-1/2 -translate-y-1/2 border border-white/10 bg-neutral-950/85 backdrop-blur-sm lg:inline-flex"
+				class="absolute rounded-full top-1/2 left-0 z-10 hidden -translate-x-1/2 -translate-y-1/2 border border-neutral-200 bg-elevation-1 text-neutral-700 shadow-sm hover:bg-neutral-100 dark:border-white/10 dark:bg-neutral-950/85 dark:text-white dark:hover:bg-neutral-900 backdrop-blur-sm lg:inline-flex"
 				color="neutral"
 				variant="soft"
 				icon="i-lucide-chevron-left"
@@ -43,7 +43,7 @@ const scrollByDirection = (direction: "left" | "right") => {
 				@click="scrollByDirection('left')"
 			/>
 			<UButton
-				class="absolute top-1/2 right-0 z-10 hidden translate-x-1/2 -translate-y-1/2 border border-white/10 bg-neutral-950/85 backdrop-blur-sm lg:inline-flex"
+				class="absolute rounded-full top-1/2 right-0 z-10 hidden translate-x-1/2 -translate-y-1/2 border border-neutral-200 bg-elevation-1 text-neutral-700 shadow-sm hover:bg-neutral-100 dark:border-white/10 dark:bg-neutral-950/85 dark:text-white dark:hover:bg-neutral-900 backdrop-blur-sm lg:inline-flex"
 				color="neutral"
 				variant="soft"
 				icon="i-lucide-chevron-right"
@@ -53,7 +53,7 @@ const scrollByDirection = (direction: "left" | "right") => {
 
 			<div
 				ref="scrollContainer"
-				class="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+				class="-mx-4 -mt-4 -mb-4 flex snap-x snap-mandatory scroll-px-4 gap-4 overflow-x-auto px-4 pt-4 pb-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
 			>
 				<template v-if="isLoading">
 					<div
@@ -61,7 +61,7 @@ const scrollByDirection = (direction: "left" | "right") => {
 						:key="item"
 						class="min-w-[18.5rem] flex-1 snap-start md:min-w-[22rem]"
 					>
-						<div class="min-h-52 border border-white/10 bg-neutral-900/70 p-4">
+						<div class="min-h-52 rounded-xl border border-neutral-200 bg-elevation-1 p-4 dark:border-white/10 dark:bg-neutral-900/70">
 							<USkeleton class="h-6 w-20" />
 							<div class="mt-20 space-y-3">
 								<USkeleton class="h-6 w-2/3" />
@@ -94,7 +94,7 @@ const scrollByDirection = (direction: "left" | "right") => {
 					color="neutral"
 					variant="soft"
 					icon="i-lucide-users"
-					class="w-full border border-dashed border-default"
+					class="w-full rounded-xl border border-dashed border-neutral-300 bg-elevation-1 dark:border-default dark:bg-elevation-2"
 					:title="t('groups.index.featured.empty_title')"
 					:description="t('groups.index.featured.empty_description')"
 				/>

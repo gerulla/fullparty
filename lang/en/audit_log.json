@@ -355,6 +355,7 @@
     "selected_character_name": "Selected Character",
     "displaced_character_name": "Displaced Character",
     "application_status": "Application Status",
+    "self_assignment": "Self-assignment",
     "review_reason": "Review Reason",
     "starts_at": "Starts At",
     "duration_hours": "Duration (Hours)",

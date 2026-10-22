@@ -221,23 +221,28 @@ const openNotificationPreferences = () => {
 		side="right"
 		:title="t('groups.index.discovery.detail.title')"
 		:description="loading && !group ? t('groups.index.discovery.detail.loading') : undefined"
-		:ui="{ body: 'p-0 sm:p-0', content: 'max-w-2xl' }"
+		:ui="{
+			body: 'p-0 sm:p-0',
+			content: 'max-w-2xl overflow-hidden rounded-l-2xl dark:bg-elevation-2',
+			header: 'dark:border-elevation-6 dark:bg-elevation-3',
+			close: 'rounded-md dark:hover:bg-elevation-5',
+		}"
 	>
 		<template #body>
 			<div class="flex h-full flex-col overflow-hidden">
 				<div v-if="loading && !group" class="space-y-4 p-4">
-					<USkeleton class="h-40 w-full" />
+					<USkeleton class="h-40 w-full rounded-xl" />
 					<div class="grid gap-4">
-						<USkeleton class="h-24 w-full" />
-						<USkeleton class="h-32 w-full" />
-						<USkeleton class="h-28 w-full" />
+						<USkeleton class="h-24 w-full rounded-xl" />
+						<USkeleton class="h-32 w-full rounded-xl" />
+						<USkeleton class="h-28 w-full rounded-xl" />
 					</div>
 				</div>
 
 				<div v-else-if="group" class="flex h-full min-h-0 flex-col">
-					<div class="sticky top-0 z-20 shrink-0 bg-default">
+					<div class="sticky top-0 z-20 shrink-0 bg-default dark:bg-elevation-3">
 						<div class="relative h-44 overflow-hidden border-b border-default bg-neutral-950">
-							<div v-if="!loading" class="absolute right-4 top-4 z-10"><ReportButton :target="{ type: 'group', id: group.id, label: group.name }" class="bg-black/45 text-white ring-white/30 hover:bg-black/65" /></div>
+							<div v-if="!loading" class="absolute right-4 top-4 z-10"><ReportButton :target="{ type: 'group', id: group.id, label: group.name }" class="rounded-md bg-black/45 text-white ring-white/30 hover:bg-black/65" /></div>
 							<img
 								:src="bannerUrl"
 								:alt="group.name"
@@ -247,7 +252,7 @@ const openNotificationPreferences = () => {
 							<div class="absolute inset-x-0 bottom-0 p-4">
 								<div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
 									<div class="flex items-end gap-4">
-										<div class="flex size-16 shrink-0 items-center justify-center overflow-hidden border border-white/10 bg-neutral-900">
+										<div class="flex size-16 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-neutral-900">
 											<img
 												v-if="group.profile_picture_url"
 												:src="group.profile_picture_url"
@@ -287,6 +292,8 @@ const openNotificationPreferences = () => {
 									>
 										<UButton
 											v-if="showMembershipAction"
+											class="rounded-md"
+											:class="!group.permissions.can_leave ? 'dark:bg-brand-400 dark:text-neutral-950 dark:hover:bg-brand-300' : undefined"
 											:color="group.permissions.can_leave ? 'error' : 'primary'"
 											:variant="group.permissions.can_leave ? 'outline' : 'solid'"
 											:icon="group.permissions.can_leave ? 'i-lucide-log-out' : group.permissions.can_apply ? 'i-lucide-file-check-2' : 'i-lucide-user-plus'"
@@ -296,6 +303,7 @@ const openNotificationPreferences = () => {
 										/>
 										<UButton
 											v-if="showDashboardAction"
+											class="rounded-md dark:bg-elevation-4 dark:hover:bg-elevation-6"
 											color="neutral"
 											variant="outline"
 											icon="i-lucide-layout-dashboard"
@@ -305,6 +313,7 @@ const openNotificationPreferences = () => {
 										/>
 										<UButton
 											v-if="accessStatusLabel"
+											class="rounded-md dark:bg-elevation-4"
 											color="neutral"
 											variant="outline"
 											:icon="joinModeIcon"
@@ -313,6 +322,7 @@ const openNotificationPreferences = () => {
 										/>
 										<UButton
 											v-if="showNotificationsAction"
+											class="rounded-md text-white hover:bg-white/10 hover:text-white dark:bg-elevation-4 dark:hover:bg-elevation-6"
 											color="neutral"
 											variant="ghost"
 											:icon="groupNotificationIcon(group.notifications)"
@@ -326,11 +336,12 @@ const openNotificationPreferences = () => {
 							</div>
 						</div>
 
-						<div class="border-b border-default bg-default/95 px-4 py-4 backdrop-blur">
+						<div class="border-b border-default bg-default/95 px-4 py-4 backdrop-blur dark:border-elevation-6 dark:bg-elevation-3">
 							<UTabs
 								v-model="selectedDetailTab"
 								:items="detailTabs"
 								variant="link"
+								:ui="{ trigger: 'rounded-md dark:hover:bg-elevation-4 dark:data-[state=active]:text-brand-400', indicator: 'dark:bg-brand-400' }"
 								:content="false"
 								size="lg"
 								class="w-full"

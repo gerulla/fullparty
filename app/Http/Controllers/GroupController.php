@@ -14,6 +14,7 @@ use App\Models\User;
 use App\Services\AuditLogger;
 use App\Services\Groups\FeaturedGroupService;
 use App\Services\Groups\GeneratedGroupImageService;
+use App\Services\Groups\YourGroupsService;
 use App\Services\ManagedImageStorage;
 use App\Services\Notifications\NotificationPreferenceSettingsService;
 use App\Services\Quotas\QuotaService;
@@ -38,7 +39,7 @@ class GroupController extends Controller
 {
     private const IMAGE_DIRECTORY = 'groups';
 
-    private const DISCOVERY_PER_PAGE = 6;
+    private const DISCOVERY_PER_PAGE = 15;
 
     public function __construct(
         private readonly ManagedImageStorage $managedImageStorage,
@@ -51,6 +52,7 @@ class GroupController extends Controller
         private readonly ServerMeta $serverMeta,
         private readonly QuotaService $quotaService,
         private readonly RunAccessService $runAccess,
+        private readonly YourGroupsService $yourGroups,
     ) {}
 
     public function index(Request $request): Response
@@ -111,10 +113,18 @@ class GroupController extends Controller
             'ownedGroups' => $ownedGroups,
             'moderatedGroups' => $moderatedGroups,
             'memberGroups' => $memberGroups,
+            'yourGroups' => $this->yourGroups->forUser($user, $ownedGroups->concat($moderatedGroups)->concat($memberGroups)),
             'discoverGroups' => $discoverGroups,
         ])->withViewData('serverMeta', $metaGroup
             ? $this->serverMeta->group($metaGroup)
             : $this->serverMeta->groupDiscovery());
+    }
+
+    public function create(): Response
+    {
+        return Inertia::render('V2/Groups/Create', [
+            'datacenterWorlds' => config('datacenters.worlds', []),
+        ]);
     }
 
     public function search(Request $request): JsonResponse
@@ -145,6 +155,7 @@ class GroupController extends Controller
             'active_days.*' => [Rule::in(config('group_discovery.active_days', []))],
             'extra_tags' => ['nullable', 'string', 'max:255'],
             'page' => ['nullable', 'integer', 'min:1'],
+            'per_page' => ['nullable', 'integer', 'min:1', 'max:60'],
         ]);
 
         $user = $request->user();
@@ -152,7 +163,7 @@ class GroupController extends Controller
         $this->applyDiscoverySearchFilters($paginator, $validated);
 
         $paginator = $paginator->paginate(
-            perPage: self::DISCOVERY_PER_PAGE,
+            perPage: (int) ($validated['per_page'] ?? self::DISCOVERY_PER_PAGE),
             page: (int) ($validated['page'] ?? 1)
         );
 
@@ -872,6 +883,9 @@ class GroupController extends Controller
                 ->orderByDesc('groups.created_at')
                 ->orderBy('groups.name'),
         };
+
+        // Keep page boundaries stable when groups share the same sort values.
+        $query->orderBy('groups.id');
     }
 
     /**

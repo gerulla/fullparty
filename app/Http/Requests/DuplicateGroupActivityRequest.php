@@ -25,6 +25,8 @@ class DuplicateGroupActivityRequest extends FormRequest
                 Activity::STATUS_DRAFT,
                 Activity::STATUS_SCHEDULED,
             ])],
+            'is_public' => ['sometimes', 'boolean'],
+            'allow_guest_applications' => ['sometimes', 'boolean'],
             'copy_bench' => ['required', 'boolean'],
             'copy_fill_ins' => ['required', 'boolean'],
         ];

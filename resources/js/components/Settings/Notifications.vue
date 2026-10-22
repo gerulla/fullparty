@@ -473,7 +473,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-	<UCard class="w-full bg-elevation-2">
+	<UCard class="w-full bg-elevation-1 dark:bg-elevation-2">
 		<template #header>
 			<div class="space-y-1">
 				<p class="font-semibold text-toned">{{ t("settings.notifications.categories_title") }}</p>

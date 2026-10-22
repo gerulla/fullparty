@@ -77,7 +77,7 @@ function formatTime(value: string) {
 			</p>
 		</section>
 
-		<div class="h-px bg-default/80" />
+		<div class="h-px bg-default/80 dark:bg-elevation-6" />
 
 		<section class="flex flex-wrap items-start justify-between gap-4">
 			<div class="min-w-0 flex-1">
@@ -103,11 +103,11 @@ function formatTime(value: string) {
 			</div>
 		</section>
 
-		<div class="h-px bg-default/80" />
+		<div class="h-px bg-default/80 dark:bg-elevation-6" />
 
 		<section class="flex flex-col gap-4 sm:flex-row">
 			<div class="flex items-start gap-3 sm:flex-1">
-				<div class="mt-0.5 flex size-8 shrink-0 items-center justify-center border border-default bg-muted/40 text-dimmed">
+				<div class="mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-lg border border-default bg-muted/40 text-dimmed dark:border-elevation-7 dark:bg-elevation-5">
 					<UIcon name="i-lucide-activity" class="size-4" />
 				</div>
 				<div class="min-w-0">
@@ -121,7 +121,7 @@ function formatTime(value: string) {
 			</div>
 
 			<div class="flex items-start gap-3 sm:flex-1">
-				<div class="mt-0.5 flex size-8 shrink-0 items-center justify-center border border-default bg-muted/40 text-dimmed">
+				<div class="mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-lg border border-default bg-muted/40 text-dimmed dark:border-elevation-7 dark:bg-elevation-5">
 					<UIcon name="i-lucide-link-2" class="size-4" />
 				</div>
 				<div class="min-w-0">
@@ -133,7 +133,7 @@ function formatTime(value: string) {
 						:href="group.discord_invite_url"
 						target="_blank"
 						rel="noreferrer"
-						class="mt-1 inline-flex max-w-full items-center gap-2 text-sm text-primary hover:text-primary/80"
+						class="mt-1 inline-flex max-w-full items-center gap-2 text-sm text-primary hover:text-primary/80 dark:text-brand-400 dark:hover:text-brand-300"
 					>
 						<UIcon name="i-lucide-external-link" class="size-4 shrink-0" />
 						<span class="truncate">{{ group.discord_invite_url }}</span>
@@ -145,7 +145,7 @@ function formatTime(value: string) {
 			</div>
 
 			<div class="flex items-start gap-3 sm:flex-1">
-				<div class="mt-0.5 flex size-8 shrink-0 items-center justify-center border border-default bg-muted/40 text-dimmed">
+				<div class="mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-lg border border-default bg-muted/40 text-dimmed dark:border-elevation-7 dark:bg-elevation-5">
 					<UIcon name="i-lucide-languages" class="size-4" />
 				</div>
 				<div class="min-w-0">
@@ -159,7 +159,7 @@ function formatTime(value: string) {
 			</div>
 		</section>
 
-		<div class="h-px bg-default/80" />
+		<div class="h-px bg-default/80 dark:bg-elevation-6" />
 
 		<section class="space-y-3">
 			<p class="text-[11px] font-semibold uppercase tracking-[0.16em] text-dimmed">
@@ -185,7 +185,7 @@ function formatTime(value: string) {
 			</div>
 		</section>
 
-		<div class="h-px bg-default/80" />
+		<div class="h-px bg-default/80 dark:bg-elevation-6" />
 
 		<section class="space-y-3">
 			<p class="text-[11px] font-semibold uppercase tracking-[0.16em] text-dimmed">
@@ -204,14 +204,14 @@ function formatTime(value: string) {
 			</p>
 		</section>
 
-		<div class="h-px bg-default/80" />
+		<div class="h-px bg-default/80 dark:bg-elevation-6" />
 
 		<section class="space-y-3">
 			<p class="text-[11px] font-semibold uppercase tracking-[0.16em] text-dimmed">
 				{{ t('groups.common.labels.activity_window') }}
 			</p>
-			<div class="overflow-hidden border border-default bg-muted/20">
-				<div class="border-b border-default/80 px-4 py-3">
+			<div class="overflow-hidden rounded-xl border border-default bg-muted/20 dark:border-elevation-7 dark:bg-elevation-3">
+				<div class="border-b border-default/80 px-4 py-3 dark:border-elevation-7 dark:bg-elevation-4">
 					<p class="text-[11px] font-semibold uppercase tracking-[0.14em] text-dimmed">
 						{{ t('groups.common.labels.timezone') }}
 					</p>
@@ -223,13 +223,13 @@ function formatTime(value: string) {
 				<div
 					v-for="row in weeklyActivityRows"
 					:key="row.value"
-					class="flex items-center justify-between gap-4 border-t border-default/70 px-4 py-3 first:border-t-0"
-					:class="row.isActive ? 'bg-elevated/55' : 'bg-transparent'"
+					class="flex items-center justify-between gap-4 border-t border-default/70 px-4 py-3 first:border-t-0 dark:border-elevation-7"
+					:class="row.isActive ? 'bg-elevated/55 dark:bg-elevation-5' : 'bg-transparent'"
 				>
 					<div class="flex items-center gap-3">
 						<div
 							class="size-2.5 shrink-0 rounded-full"
-							:class="row.isActive ? 'bg-primary' : 'bg-neutral-700'"
+							:class="row.isActive ? 'bg-primary dark:bg-brand-400' : 'bg-neutral-700 dark:bg-elevation-9'"
 						/>
 						<p class="text-sm font-medium" :class="row.isActive ? 'text-highlighted' : 'text-muted'">
 							{{ row.label }}

@@ -55,7 +55,7 @@ const promptDeleteAccount = async () => {
 </script>
 
 <template>
-    <UCard class="w-full bg-elevation-2">
+    <UCard class="w-full bg-elevation-1 dark:bg-elevation-2">
         <div class="space-y-6">
             <UAlert color="error" variant="subtle" icon="i-lucide-triangle-alert"
                 :title="t('settings.privacy.deletion_details.warning_title')"

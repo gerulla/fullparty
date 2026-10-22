@@ -92,7 +92,7 @@ watch(
 </script>
 
 <template>
-    <UCard class="w-full bg-elevation-2">
+    <UCard class="w-full bg-elevation-1 dark:bg-elevation-2">
         <div class="space-y-6">
             <header class="space-y-1">
                 <h3 class="font-semibold text-highlighted">{{ t('settings.discord_integration.title') }}</h3>

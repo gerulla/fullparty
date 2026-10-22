@@ -151,7 +151,7 @@ const submit = () => {
 				<div
 					v-for="topic in topics"
 					:key="topic.key"
-					class="flex flex-col gap-3 border border-default bg-default/25 px-4 py-3 sm:flex-row sm:items-center sm:justify-between dark:border-white/15 dark:bg-white/5"
+					class="flex flex-col gap-3 rounded-lg bg-elevation-1 px-4 py-3 shadow-md sm:flex-row sm:items-center sm:justify-between dark:bg-white/5 dark:shadow-none"
 				>
 					<div class="min-w-0">
 						<p class="font-semibold text-toned">{{ t(topic.titleKey) }}</p>

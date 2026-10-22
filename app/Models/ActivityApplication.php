@@ -59,6 +59,7 @@ class ActivityApplication extends Model
         'applicant_datacenter',
         'applicant_avatar_url',
         'guest_access_token',
+        'is_self_assignment',
         'status',
         'notes',
         'reviewed_by_user_id',
@@ -69,6 +70,7 @@ class ActivityApplication extends Model
     ];
 
     protected $casts = [
+        'is_self_assignment' => 'boolean',
         'submitted_at' => 'datetime',
         'edited_at' => 'datetime',
         'reviewed_at' => 'datetime',

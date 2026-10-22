@@ -1,4 +1,12 @@
 {
+    "your_groups": {
+        "title": "Deine Gruppen",
+        "subtitle": "Alle Gruppen, denen du angehörst, an einem Ort.",
+        "empty": "Du bist noch keiner Gruppe beigetreten. Entdecke die Gruppen unten und finde passende Mitspieler.",
+        "last_active": "Zuletzt aktiv: {time}",
+        "view_all": "Alle anzeigen ({count})",
+        "show_less": "Weniger anzeigen"
+    },
     "title": "Gruppen",
     "subtitle": "Verwalte deine Raid-Gruppen und entdecke neue Communities",
     "tabs": {
@@ -435,6 +443,7 @@
             "size_placeholder": "Größe",
             "sort_placeholder": "Sortieren nach",
             "more_filters_open": "Weitere Filter",
+            "toggle": "Filter",
             "more_filters_close": "Zusatzfilter ausblenden",
             "clear_filters": "Filter zurücksetzen",
             "recruiting_method_label": "Recruiting-Methode",
@@ -529,7 +538,70 @@
                 "complete": "Abgeschlossen",
                 "cancelled": "Abgebrochen"
             }
+        },
+        "results": {
+            "management": "Leitung",
+            "statistics": "Statistik",
+            "active": "Aktiv"
         }
+    },
+    "create_flow": {
+        "subtitle": "Wähle zuerst, welche Art von Gruppe du aufbauen möchtest.",
+        "back_to_groups": "Zurück zu den Gruppen",
+        "change_type": "Gruppentyp ändern",
+        "continue_with": "Weiter mit {type}",
+        "identity": {
+          "title": {
+            "community": "Erzähle uns von deiner Community",
+            "static": "Erzähle uns von deiner Stammgruppe"
+          },
+          "subtitle": "Gib deiner Gruppe einen Namen und erzähle anderen Spielern, was euch ausmacht.",
+          "group_link": "Gruppenlink",
+          "optional": "Optional",
+          "edit_details": "Angaben bearbeiten"
+        },
+        "datacenter": {
+          "title": {
+            "community": "Wo spielt deine Community?",
+            "static": "Wo spielt deine Stammgruppe?"
+          },
+          "subtitle": "Wähle deine Region und anschließend das Datenzentrum, auf dem ihr Inhalte spielt.",
+          "region_label": "Region auswählen",
+          "regions": {
+            "NA": "Nordamerika",
+            "EU": "Europa",
+            "JP": "Japan",
+            "OCE": "Ozeanien"
+          },          "selected": "Ausgewählt: {datacenter}",
+          "select_prompt": "Wähle ein Datenzentrum, um fortzufahren.",
+          "change_datacenter": "Datenzentrum ändern"
+        },
+        "static_notice": {
+            "title": "In Entwicklung",
+            "info_label": "Über noch unfertige Static-Funktionen",
+            "description": "Du kannst Static wählen und die gemeinsamen Gruppen- und Run-Werkzeuge bereits nutzen. Spezielle Static-Rekrutierung, Kader-Werkzeuge und weitere Verbesserungen der Terminplanung sind für ein zukünftiges Update geplant. Diese Funktionen sind noch nicht verfügbar."
+        },
+        "types": {
+            "community": {
+                "description": "Für Freie Gesellschaften, Discord-Server und Raid-Communitys, in denen zu jedem Event unterschiedliche Spieler zusammenkommen.",
+                "benefits": {
+                    "roster": "Ein gemeinsamer Spielerpool für große Raids und Events",
+                    "activities": "Mehrere Hosts organisieren ihre eigenen Runs",
+                    "coordination": "Ein Zuhause für Neulinge, Stammspieler und Lerngruppen"
+                }
+            },
+            "static": {
+                "description": "Für ein festes Team, das Inhalte gemeinsam angeht – mit gemeinsamen Raidabenden, Rollen und Erwartungen.",
+                "benefits": {
+                    "roster": "Dieselbe Kernbesetzung von Raidabend zu Raidabend",
+                    "activities": "Progress mit Fokus auf den aktuellen Kampf des Teams",
+                    "coordination": "Terminplanung nach der Verfügbarkeit derselben Spieler"
+                }
+            }
+        }
+    },
+    "create_preview": {
+        "help": "Sieh dir die bisherigen Erstellungsschritte als Referenz an. Es werden keine Gruppen erstellt."
     },
     "create_modal": {
         "title": "Gruppe erstellen",

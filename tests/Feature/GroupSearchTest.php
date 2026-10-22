@@ -38,7 +38,7 @@ it('returns the initial discovery results when the query is empty', function () 
         'slug' => 'hiddengp',
     ]);
 
-    $groups = Group::factory()->count(7)->open()->create()->values();
+    $groups = Group::factory()->count(16)->open()->create()->values();
 
     $groups->each(function (Group $group, int $index): void {
         $group->owner->update([
@@ -60,7 +60,7 @@ it('returns the initial discovery results when the query is empty', function () 
             'voice_expectation' => 'preferred',
             'preferred_languages' => ['en'],
             'tags' => ["Tag {$index}"],
-            'created_at' => now()->subMinutes(7 - $index),
+            'created_at' => now()->subMinutes(16 - $index),
         ])->save();
     });
 
@@ -69,17 +69,75 @@ it('returns the initial discovery results when the query is empty', function () 
 
     $response
         ->assertOk()
-        ->assertJsonCount(6, 'data')
+        ->assertJsonCount(15, 'data')
         ->assertJsonPath('meta.current_page', 1)
         ->assertJsonPath('meta.last_page', 2)
-        ->assertJsonPath('meta.per_page', 6)
-        ->assertJsonPath('meta.total', 8)
-        ->assertJsonPath('data.0.name', 'Search Group 6')
-        ->assertJsonPath('data.0.owner.name', 'Character 6')
-        ->assertJsonPath('data.0.owner.avatar_url', 'https://example.com/character-avatar-6.png')
-        ->assertJsonPath('data.0.badge_meta.tags.0.color', app(GroupDiscoveryBadgePalette::class)->tagColor('Tag 6'))
+        ->assertJsonPath('meta.per_page', 15)
+        ->assertJsonPath('meta.total', 17)
+        ->assertJsonPath('data.0.name', 'Search Group 15')
+        ->assertJsonPath('data.0.owner.name', 'Character 15')
+        ->assertJsonPath('data.0.owner.avatar_url', 'https://example.com/character-avatar-15.png')
+        ->assertJsonPath('data.0.badge_meta.tags.0.color', app(GroupDiscoveryBadgePalette::class)->tagColor('Tag 15'))
         ->assertJsonMissing(['name' => 'Hidden Group']);
+
+    $this->get(route('groups.index'))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->component('Dashboard/Groups/Index')
+            ->has('discoverGroups.data', 15)
+            ->where('discoverGroups.meta.per_page', 15)
+            ->where('discoverGroups.meta.last_page', 2)
+            ->where('discoverGroups.data.0.name', 'Search Group 15')
+        );
+
+    $this->getJson(route('groups.search', ['page' => 2]))
+        ->assertOk()
+        ->assertJsonCount(2, 'data')
+        ->assertJsonPath('meta.current_page', 2)
+        ->assertJsonPath('data.0.name', 'Search Group 0')
+        ->assertJsonPath('data.1.name', 'Joined Group');
 });
+
+it('paginates filtered discovery results using the requested grid page size', function (int $perPage) {
+    $user = User::factory()->create();
+    Group::factory()->count(19)->open()->create([
+        'name' => 'Matching Group',
+        'created_at' => now()->subDay(),
+        'updated_at' => now()->subDay(),
+    ]);
+    Group::factory()->open()->create(['name' => 'Different Group']);
+    Group::factory()->hidden()->create(['name' => 'Matching Group']);
+
+    $firstPage = $this->actingAs($user)
+        ->getJson(route('groups.search', ['query' => 'Matching', 'per_page' => $perPage]))
+        ->assertOk()
+        ->assertJsonCount($perPage, 'data')
+        ->assertJsonPath('meta.per_page', $perPage)
+        ->assertJsonPath('meta.total', 19)
+        ->assertJsonPath('meta.last_page', (int) ceil(19 / $perPage));
+
+    $secondPage = $this->getJson(route('groups.search', [
+        'query' => 'Matching',
+        'per_page' => $perPage,
+        'page' => 2,
+    ]))
+        ->assertOk()
+        ->assertJsonCount(min($perPage, 19 - $perPage), 'data')
+        ->assertJsonPath('meta.current_page', 2)
+        ->assertJsonPath('meta.per_page', $perPage);
+
+    expect(array_intersect(
+        array_column($firstPage->json('data'), 'id'),
+        array_column($secondPage->json('data'), 'id'),
+    ))->toBeEmpty();
+})->with([3, 6, 9, 12, 15, 18]);
+
+it('rejects invalid discovery page sizes', function (mixed $perPage) {
+    $this->actingAs(User::factory()->create())
+        ->getJson(route('groups.search', ['per_page' => $perPage]))
+        ->assertUnprocessable()
+        ->assertJsonValidationErrors('per_page');
+})->with([0, -1, 61, 1.5, 'invalid', [[3]]]);
 
 it('uses the owner primary character in the initial discovery page payload', function () {
     $user = User::factory()->create();

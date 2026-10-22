@@ -23,6 +23,7 @@ use App\Services\Groups\ActivityApplicationWithdrawalService;
 use App\Services\Groups\ActivityManagementRealtimeService;
 use App\Services\Groups\BozjaHolsterPairService;
 use App\Services\Groups\GroupActivityAuditService;
+use App\Services\Groups\GuestActivityCharacterService;
 use App\Services\Lodestone\LodestoneCharacterSearchService;
 use App\Services\Notifications\ApplicationNotificationService;
 use App\Services\Quotas\QuotaService;
@@ -62,6 +63,7 @@ class GroupActivityApplicationController extends Controller
         private readonly BozjaHolsterPairService $bozjaHolsterPairService,
         private readonly QuotaService $quotaService,
         private readonly RunAccessService $runAccess,
+        private readonly GuestActivityCharacterService $guestCharacters,
     ) {}
 
     public function show(Request $request, Group $group, Activity $activity, ?string $secretKey = null): Response|JsonResponse
@@ -226,7 +228,11 @@ class GroupActivityApplicationController extends Controller
     public function searchCharacters(Request $request, Group $group, Activity $activity, ?string $secretKey = null): JsonResponse
     {
         $group->loadMissing('memberships');
-        $this->ensureApplicationPageAccessible($request, $group, $activity, $secretKey);
+        if ($activity->needs_application) {
+            $this->ensureApplicationPageAccessible($request, $group, $activity, $secretKey);
+        } else {
+            abort_unless($this->runAccess->canSelfAssign($group, $activity, $request->user()?->id), 404);
+        }
 
         if (! $this->runAccess->canParticipate($group, $activity, null)) {
             abort(404);
@@ -253,7 +259,7 @@ class GroupActivityApplicationController extends Controller
 
         $verifiedLodestoneIds = Character::query()
             ->whereIn('lodestone_id', collect($results)->map(fn ($result) => $result->lodestoneId)->all())
-            ->whereNotNull('verified_at')
+            ->where(fn ($query) => $query->whereNotNull('verified_at')->orWhereNotNull('claimed_at'))
             ->pluck('lodestone_id')
             ->all();
 
@@ -1119,62 +1125,12 @@ class GroupActivityApplicationController extends Controller
      */
     private function ensureGuestApplicantCanBeUsed(array $applicant): void
     {
-        $verifiedCharacterExists = Character::query()
-            ->where('lodestone_id', $applicant['lodestone_id'])
-            ->whereNotNull('verified_at')
-            ->exists();
-
-        if ($verifiedCharacterExists) {
-            throw ValidationException::withMessages([
-                'guest_applicant.lodestone_id' => __('errors.this_character_is_already_claimed_by_a_verified_fullparty_account'),
-            ]);
-        }
+        $this->guestCharacters->ensureEligible($applicant);
     }
 
-    /**
-     * @param  array{lodestone_id: string, name: string, world: string, datacenter: string, avatar_url: ?string}  $applicant
-     */
     private function resolveGuestApplicantCharacter(array $applicant): Character
     {
-        $character = Character::query()
-            ->where('lodestone_id', $applicant['lodestone_id'])
-            ->lockForUpdate()
-            ->first();
-
-        if (! $character) {
-            return Character::query()->create([
-                'user_id' => null,
-                'is_primary' => false,
-                'name' => $applicant['name'],
-                'world' => $applicant['world'],
-                'datacenter' => $applicant['datacenter'],
-                'lodestone_id' => $applicant['lodestone_id'],
-                'avatar_url' => $applicant['avatar_url'],
-                'token' => null,
-                'expires_at' => null,
-                'verified_at' => null,
-                'add_method' => 'guest_application',
-            ]);
-        }
-
-        if ($character->verified_at !== null) {
-            throw ValidationException::withMessages([
-                'guest_applicant.lodestone_id' => __('errors.this_character_is_already_claimed_by_a_verified_fullparty_account'),
-            ]);
-        }
-
-        $character->fill([
-            'name' => $applicant['name'],
-            'world' => $applicant['world'],
-            'datacenter' => $applicant['datacenter'],
-            'avatar_url' => $applicant['avatar_url'],
-        ]);
-
-        if ($character->isDirty(['name', 'world', 'datacenter', 'avatar_url'])) {
-            $character->save();
-        }
-
-        return $character;
+        return $this->guestCharacters->resolve($applicant);
     }
 
     private function findGuestApplicationByAccessToken(Activity $activity, string $accessToken): ActivityApplication

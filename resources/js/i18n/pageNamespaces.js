@@ -61,6 +61,7 @@ const features = {
     'Groups/Activities/NonApplicationOverview': ['calendar', 'groups/activities'],
     'Groups/Activities/Overview': ['calendar', 'groups/activities'],
     'Groups/MembershipApplications/Create': ['groups/membership_applications'],
+    'V2/Groups/Create': ['groups/common'],
 }
 
 const standalone = {

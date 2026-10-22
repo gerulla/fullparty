@@ -5,6 +5,7 @@ import { useI18n } from "vue-i18n";
 const props = defineProps<{
 	modelValue: boolean
 	error?: string
+	disabled?: boolean
 }>();
 
 const emit = defineEmits<{
@@ -29,12 +30,13 @@ const visibilityDescription = computed(() => props.modelValue
 <template>
 	<UFormField
 		:label="visibilityLabel"
-		:description="visibilityDescription"
+		:description="disabled ? t('errors.run_access_settings_locked') : visibilityDescription"
 		:error="error"
 		orientation="horizontal"
 		class="rounded-lg border border-default px-4 py-4"
 	>
 		<USwitch
+			:disabled="disabled"
 			:model-value="modelValue"
 			:aria-label="t('groups.activities.create.fields.visibility.toggle_label')"
 			@update:model-value="(value) => emit('update:modelValue', Boolean(value))"

@@ -1002,8 +1002,8 @@
                 "help": "Activez ceci si les membres doivent postuler au lieu de s'inscrire eux-mêmes."
             },
             "allow_guest_applications": {
-                "label": "Autoriser les candidatures invitées",
-                "help": "Permettez aux gens de postuler sans compte FullParty. Ils utiliseront le flux de candidature invité à une étape ultérieure."
+                "label": "Autoriser les invités",
+                "help": "Permettez aux invités de postuler ou de choisir une place libre sans compte FullParty."
             }
         },
         "summary": {

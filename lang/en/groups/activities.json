@@ -1002,8 +1002,8 @@
                 "help": "Turn this on if members should apply instead of assigning themselves."
             },
             "allow_guest_applications": {
-                "label": "Allow Guest Applications",
-                "help": "Let people apply without a FullParty account."
+                "label": "Allow Guests",
+                "help": "Let people apply or select a free roster slot without a FullParty account."
             }
         },
         "summary": {

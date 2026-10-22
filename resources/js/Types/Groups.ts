@@ -135,6 +135,8 @@ export type GroupCreateFormData = {
 	active_end_time: string
 }
 
+export type GroupCreateIdentity = Pick<GroupCreateFormData, 'name' | 'slug' | 'description'>
+
 export type NoteAuthor = {
 	id: number
 	name: string
@@ -249,6 +251,10 @@ export type GroupIndexRecord = {
 	}
 }
 
+export type YourGroupRecord = GroupIndexRecord & {
+	last_interaction_at: string | null
+}
+
 export type FeaturedGroupRecord = {
 	id: number
 	slug: string
@@ -272,6 +278,12 @@ export type DatacenterLookup = {
 	label: string
 	value: string
 	region: string | null
+}
+
+export type DatacenterRegion = "NA" | "EU" | "JP" | "OCE"
+
+export type GroupDatacenterOption = DatacenterLookup & {
+    worlds: string[]
 }
 
 export type GroupDiscoveryLookups = {

@@ -38,7 +38,7 @@ class ActivitySlotAssignmentService
         ActivityApplication $application,
         array $fieldSelections,
         array $fieldDefinitions,
-        int $assignedByUserId,
+        ?int $assignedByUserId,
         ?ActivitySlot $sourceSlot = null,
         bool $ignoreApplicationChoices = false,
         ?string $filledGroupKey = null,
@@ -73,7 +73,7 @@ class ActivitySlotAssignmentService
         ActivityApplication $application,
         array $fieldSelections,
         array $fieldDefinitions,
-        int $assignedByUserId,
+        ?int $assignedByUserId,
         ?ActivitySlot $sourceSlot,
         bool $ignoreApplicationChoices,
         ?string $filledGroupKey,
@@ -168,6 +168,11 @@ class ActivitySlotAssignmentService
 
             if ($isTargetBench) {
                 $this->clearSlotFieldValues($targetSlot);
+            } elseif ($application->is_self_assignment) {
+                // Direct entrants choose roster fields, without an approval questionnaire.
+                $this->applyManualSlotFieldSelections(
+                    $targetSlot, $fieldSelections, $fieldDefinitions, $application->selectedCharacter,
+                );
             } else {
                 $this->applySlotFieldSelections(
                     $targetSlot,
@@ -257,6 +262,7 @@ class ActivitySlotAssignmentService
 
         $metadata = [
             'application_status' => $application->fresh()?->status,
+            'self_assignment' => $application->is_self_assignment,
             'selected_character_name' => $application->selectedCharacter?->name,
             'source_slot_label' => $sourceSlot ? ($sourceSlot->slot_label['en'] ?? $sourceSlot->slot_key) : null,
             'source_group_label' => $sourceSlot ? ($sourceSlot->group_label['en'] ?? $sourceSlot->group_key) : null,

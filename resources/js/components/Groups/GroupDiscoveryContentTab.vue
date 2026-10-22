@@ -77,8 +77,8 @@ function formatRunTime(value: string | null) {
 				</div>
 			</div>
 
-			<div class="overflow-hidden border border-default bg-muted/18">
-				<div class="flex h-3 w-full overflow-hidden bg-elevated/80">
+			<div class="overflow-hidden rounded-xl border border-default bg-muted/18 dark:border-elevation-7 dark:bg-elevation-4">
+				<div class="flex h-3 w-full overflow-hidden bg-elevated/80 dark:bg-elevation-6">
 					<div
 						v-for="item in statusItems"
 						:key="item.status"
@@ -111,7 +111,7 @@ function formatRunTime(value: string | null) {
 			</div>
 		</section>
 
-		<div class="h-px bg-default/80" />
+		<div class="h-px bg-default/80 dark:bg-elevation-6" />
 
 		<section class="space-y-3">
 			<div class="flex items-end justify-between gap-3">
@@ -127,9 +127,9 @@ function formatRunTime(value: string | null) {
 				<div
 					v-for="item in group.content_items"
 					:key="item.key"
-					class="flex items-center gap-4 border border-default bg-muted/18 px-4 py-4"
+					class="flex items-center gap-4 rounded-xl border border-default bg-muted/18 dark:border-elevation-7 dark:bg-elevation-4 px-4 py-4"
 				>
-					<div class="relative h-20 w-32 shrink-0 overflow-hidden border border-default bg-elevated">
+					<div class="relative h-20 w-32 shrink-0 overflow-hidden rounded-lg border border-default bg-elevated dark:border-elevation-7 dark:bg-elevation-5">
 						<img
 							v-if="item.activity_image_url"
 							:src="item.activity_image_url"

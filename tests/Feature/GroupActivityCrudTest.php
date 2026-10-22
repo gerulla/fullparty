@@ -641,7 +641,7 @@ it('updates mutable activity fields while keeping members-only access intact', f
         'activity_type_version_id' => $activityType->current_published_version_id,
         'organized_by_user_id' => $owner->id,
         'target_prog_point_key' => 'clear',
-        'allow_guest_applications' => true,
+        'allow_guest_applications' => false,
         'datacenter' => 'Light',
         'intensity' => Activity::INTENSITY_CASUAL,
         'min_item_level' => 710,
@@ -703,56 +703,7 @@ it('updates mutable activity fields while keeping members-only access intact', f
         ->and($auditLog->metadata['changes']['organized_by_user_id']['new'])->toBe($moderator->id)
         ->and($auditLog->metadata['changes']['datacenter']['new'])->toBe('Aether')
         ->and($auditLog->metadata['changes']['min_item_level']['new'])->toBeNull()
-        ->and($auditLog->metadata['changes']['allow_guest_applications']['new'])->toBeFalse();
-});
-
-it('allows moderators to update activity visibility', function () {
-    $owner = User::factory()->create();
-    $group = Group::factory()->open()->create([
-        'owner_id' => $owner->id,
-    ]);
-    $activityType = createCrudActivityType($owner);
-    $activity = Activity::factory()->create([
-        'group_id' => $group->id,
-        'activity_type_id' => $activityType->id,
-        'activity_type_version_id' => $activityType->current_published_version_id,
-        'organized_by_user_id' => $owner->id,
-        'status' => Activity::STATUS_DRAFT,
-        'is_public' => true,
-        'secret_key' => null,
-    ]);
-
-    $this->actingAs($owner)
-        ->put(route('groups.dashboard.activities.update', [
-            'group' => $group->slug,
-            'activity' => $activity->id,
-        ]), [
-            'is_public' => false,
-        ])
-        ->assertRedirect(route('groups.dashboard.activities.show', [
-            'group' => $group->slug,
-            'activity' => $activity->id,
-        ]));
-
-    $activity->refresh();
-
-    expect($activity->is_public)->toBeFalse()
-        ->and($activity->secret_key)->toBeNull();
-
-    $this->put(route('groups.dashboard.activities.update', [
-        'group' => $group->slug,
-        'activity' => $activity->id,
-    ]), [
-        'is_public' => true,
-    ])->assertRedirect(route('groups.dashboard.activities.show', [
-        'group' => $group->slug,
-        'activity' => $activity->id,
-    ]));
-
-    $activity->refresh();
-
-    expect($activity->is_public)->toBeTrue()
-        ->and($activity->secret_key)->toBeNull();
+        ->and($auditLog->metadata['changes'])->not->toHaveKey('allow_guest_applications');
 });
 
 it('rejects updating activities with past start times', function () {

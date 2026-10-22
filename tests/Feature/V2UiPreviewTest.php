@@ -18,6 +18,7 @@ it('opens v2 pages with preview controls for a signed-in local user', function (
 })->with([
     'homepage' => ['dashboard', 'V2/Home'],
     'add character' => ['characters.create', 'V2/Characters/Create'],
+    'create group' => ['groups.create', 'V2/Groups/Create'],
 ]);
 
 it('requires sign-in for local v2 previews', function (string $routeName) {
@@ -25,7 +26,24 @@ it('requires sign-in for local v2 previews', function (string $routeName) {
 
     $this->get(route($routeName, ['locale' => 'en']))
         ->assertRedirect(route('login', ['locale' => 'en']));
-})->with(['dashboard', 'characters.create']);
+})->with(['dashboard', 'characters.create', 'groups.create']);
+
+it('requires email verification for the group creation page', function () {
+    $this->actingAs(User::factory()->unverified()->create())
+        ->get(route('groups.create', ['locale' => 'en']))
+        ->assertRedirect(route('verification.notice', ['locale' => 'en']));
+});
+
+it('keeps group creation reference controls disabled in production', function () {
+    app()->instance('env', 'production');
+
+    $this->actingAs(User::factory()->create())
+        ->get(route('groups.create', ['locale' => 'en']))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->component('V2/Groups/Create')
+            ->where('theme_preview_enabled', false));
+});
 
 it('does not expose unreleased character previews in production', function (string $routeName) {
     app()->instance('env', 'production');

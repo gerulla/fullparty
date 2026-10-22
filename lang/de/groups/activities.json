@@ -1002,8 +1002,8 @@
                 "help": "Aktiviere dies, wenn Mitglieder sich bewerben sollen, statt sich selbst einzutragen."
             },
             "allow_guest_applications": {
-                "label": "Gastbewerbungen erlauben",
-                "help": "Erlaube Bewerbungen ohne FullParty-Account. Sie nutzen dabei den Gastbewerbungsablauf."
+                "label": "Gäste erlauben",
+                "help": "Erlaube Gästen, sich ohne FullParty-Account zu bewerben oder einen freien Platz zu wählen."
             }
         },
         "summary": {

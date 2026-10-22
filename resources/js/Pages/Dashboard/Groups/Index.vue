@@ -1,14 +1,21 @@
 <script setup lang="ts">
 import axios from "axios";
+import V2Layout from "@/Layouts/V2Layout.vue";
 import PageHeader from "@/components/PageHeader.vue";
-import CreateGroupModal from "@/components/Groups/CreateGroupModal.vue";
 import FeaturedGroupsCarousel from "@/components/Groups/FeaturedGroupsCarousel.vue";
+import YourGroupsSection from "@/components/Groups/YourGroupsSection.vue";
 import GroupDiscoverySearchSection from "@/components/Groups/GroupDiscoverySearchSection.vue";
 import GroupDiscoverySlideover from "@/components/Groups/GroupDiscoverySlideover.vue";
-import type { FeaturedGroupRecord, GroupDiscoveryDetailRecord, GroupIndexRecord } from "@/Types/Groups";
+import type { FeaturedGroupRecord, GroupDiscoveryDetailRecord, GroupIndexRecord, YourGroupRecord } from "@/Types/Groups";
 import { onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { route } from "ziggy-js";
 import { useI18n } from "vue-i18n";
+
+defineOptions({ layout: V2Layout });
+
+defineProps<{
+	yourGroups: YourGroupRecord[]
+}>();
 
 const { t } = useI18n();
 const featuredGroups = ref<FeaturedGroupRecord[]>([]);
@@ -190,10 +197,22 @@ watch(isGroupDetailsOpen, (isOpen) => {
 
 <template>
 	<div class="w-full">
-		<PageHeader :title="t('groups.index.featured.title')" :subtitle="t('groups.index.featured.subtitle')">
-			<CreateGroupModal />
+		<PageHeader desktop-breakpoint="md" class="[&_h1]:text-2xl [&_p]:text-sm" :title="t('groups.index.your_groups.title')" :subtitle="t('groups.index.your_groups.subtitle')">
+			<UButton
+				:to="route('groups.create')"
+				:label="t('groups.index.create_modal.open_button')"
+				color="neutral"
+				class="w-full justify-center rounded-md"
+				icon="i-lucide-plus"
+			/>
 		</PageHeader>
 
+		<YourGroupsSection :groups="yourGroups" />
+
+		<div class="mt-10 mb-5 space-y-2">
+			<h2 class="text-2xl font-semibold text-highlighted">{{ t('groups.index.featured.title') }}</h2>
+			<p class="text-base text-muted">{{ t('groups.index.featured.subtitle') }}</p>
+		</div>
 		<FeaturedGroupsCarousel
 			:groups="featuredGroups"
 			:is-loading="isFeaturedGroupsLoading"

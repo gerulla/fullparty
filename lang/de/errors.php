@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'run_access_settings_locked' => 'Zielgruppe und Gastzugang werden beim Erstellen des Runs festgelegt. Erstelle oder dupliziere einen Run, um andere Einstellungen zu verwenden.',
     'image_dimensions_exceeded' => 'Bilder dürfen pro Seite höchstens :dimension Pixel und insgesamt höchstens :megapixels Megapixel groß sein.',
     'this_application_cannot_be_withdrawn' => 'Diese Bewerbung kann nicht zurückgezogen werden.',
     'an_english_activity_type_name_is_required' => 'Ein englischer Name für den Aktivitätstyp ist erforderlich.',

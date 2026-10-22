@@ -102,18 +102,6 @@ const updateMinimumItemLevel = (value: unknown) => {
 		: Math.min(9999, Math.max(1, Number(value) || 1));
 };
 
-watch(() => props.form.needs_application, (needsApplication) => {
-	if (!needsApplication) {
-		props.form.allow_guest_applications = false;
-	}
-}, { immediate: true });
-
-watch(() => props.form.is_public, (isPublic) => {
-	if (!isPublic) {
-		props.form.allow_guest_applications = false;
-	}
-}, { immediate: true });
-
 const stepCopy = computed(() => {
 	const key = activeStepIndex.value === 0
 		? 'schedule'
@@ -271,19 +259,20 @@ const goNext = () => {
 					</UFormField>
 
 					<ActivityVisibilityPicker
+						disabled
 						v-model="form.is_public"
 						:error="form.errors.is_public"
 					/>
 
 					<UFormField
-						v-if="form.needs_application && form.is_public"
+						v-if="form.is_public"
 						:label="t('groups.activities.create.fields.allow_guest_applications.label')"
-						:description="t('groups.activities.create.fields.allow_guest_applications.help')"
+						:description="t('errors.run_access_settings_locked')"
 						:error="form.errors.allow_guest_applications"
 						orientation="horizontal"
 						class="rounded-lg border border-default px-4 py-4"
 					>
-						<USwitch v-model="form.allow_guest_applications" />
+						<USwitch v-model="form.allow_guest_applications" disabled />
 					</UFormField>
 				</div>
 			</section>

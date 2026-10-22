@@ -35,7 +35,7 @@ function roleLabel(role: "owner" | "admin" | "moderator") {
 			<div v-if="ownerMember || adminMembers.length > 0" class="space-y-3">
 				<div
 					v-if="ownerMember"
-					class="border border-default bg-muted/18 px-4 py-4"
+					class="rounded-xl border border-default bg-muted/18 dark:border-elevation-7 dark:bg-elevation-4 px-4 py-4"
 				>
 					<div class="flex flex-wrap items-start justify-between gap-4">
 						<div class="min-w-0 flex-1">
@@ -60,7 +60,7 @@ function roleLabel(role: "owner" | "admin" | "moderator") {
 				<div
 					v-for="member in adminMembers"
 					:key="member.id"
-					class="flex flex-wrap items-center justify-between gap-4 border border-default bg-muted/18 px-4 py-4"
+					class="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-default bg-muted/18 dark:border-elevation-7 dark:bg-elevation-4 px-4 py-4"
 				>
 					<div class="min-w-0 flex-1">
 						<UUser
@@ -82,7 +82,7 @@ function roleLabel(role: "owner" | "admin" | "moderator") {
 			</div>
 		</section>
 
-		<div class="h-px bg-default/80" />
+		<div class="h-px bg-default/80 dark:bg-elevation-6" />
 
 		<section class="space-y-3">
 			<div class="flex items-end justify-between gap-3">
@@ -103,7 +103,7 @@ function roleLabel(role: "owner" | "admin" | "moderator") {
 				<div
 					v-for="member in moderatorMembers"
 					:key="member.id"
-					class="flex flex-wrap items-center justify-between gap-4 border border-default bg-muted/18 px-4 py-4"
+					class="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-default bg-muted/18 dark:border-elevation-7 dark:bg-elevation-4 px-4 py-4"
 				>
 					<div class="min-w-0 flex-1">
 						<UUser

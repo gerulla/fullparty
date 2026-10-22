@@ -44,6 +44,7 @@ use App\Http\Controllers\GroupActivityPartyFinderInfoController;
 use App\Http\Controllers\GroupActivityRosterDiscordController;
 use App\Http\Controllers\GroupActivityRosterExportController;
 use App\Http\Controllers\GroupActivitySelfAssignmentController;
+use App\Http\Controllers\GuestActivitySelfAssignmentController;
 use App\Http\Controllers\GroupActivitySlotApplicationReviewWarningController;
 use App\Http\Controllers\GroupActivitySlotAssignmentContextController;
 use App\Http\Controllers\GroupActivitySlotAssignmentController;
@@ -268,6 +269,18 @@ Route::prefix('{locale?}')
         |
         */
 
+        Route::post('/groups/{group:slug}/activities/{activity}/guest-self-assignments/slots/{slot}', [GuestActivitySelfAssignmentController::class, 'store'])
+            ->middleware(['throttle:guest.application', 'throttle:application.submit', 'roster.write'])
+            ->name('groups.activities.guest-self-assignments.store');
+        Route::get('/groups/{group:slug}/activities/{activity}/guest-self-assignments/{accessToken}', [GuestActivitySelfAssignmentController::class, 'show'])
+            ->where('accessToken', '[A-Za-z0-9]{40}')
+            ->middleware('throttle:guest.application')
+            ->name('groups.activities.guest-self-assignments.show');
+        Route::delete('/groups/{group:slug}/activities/{activity}/guest-self-assignments/{accessToken}', [GuestActivitySelfAssignmentController::class, 'destroy'])
+            ->where('accessToken', '[A-Za-z0-9]{40}')
+            ->middleware(['throttle:guest.application', 'roster.write'])
+            ->name('groups.activities.guest-self-assignments.destroy');
+
         // Activity application entry points and guest application flows.
         Route::get('/groups/{group:slug}/activities/{activity}/application/{secretKey?}', [GroupActivityApplicationController::class, 'show'])
             ->where('secretKey', '[A-Za-z0-9]{40}')
@@ -481,6 +494,7 @@ Route::prefix('{locale?}')
             */
 
             Route::get('/groups', [GroupController::class, 'index'])->name('groups.index');
+            Route::get('/groups/create', [GroupController::class, 'create'])->name('groups.create');
             Route::get('/groups/requests', [GroupMembershipRequestController::class, 'index'])->name('groups.requests.index');
             Route::get('/groups/featured', [GroupController::class, 'featured'])->name('groups.featured');
             Route::get('/groups/{group:slug}/details', [GroupController::class, 'details'])->name('groups.details');

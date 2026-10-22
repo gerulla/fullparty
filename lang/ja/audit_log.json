@@ -355,6 +355,7 @@
     "selected_character_name": "選択キャラクター",
     "displaced_character_name": "押し出されたキャラクター",
     "application_status": "応募ステータス",
+    "self_assignment": "自己割り当て",
     "review_reason": "審査メモ",
     "starts_at": "開始日時",
     "duration_hours": "時間数",

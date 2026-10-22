@@ -1,4 +1,12 @@
 {
+    "your_groups": {
+        "title": "参加中のグループ",
+        "subtitle": "参加しているすべてのグループをここで確認できます。",
+        "empty": "まだグループに参加していません。下の一覧から、自分に合ったグループを探してみましょう。",
+        "last_active": "最終活動：{time}",
+        "view_all": "すべて表示（{count}）",
+        "show_less": "表示を減らす"
+    },
     "title": "グループ",
     "subtitle": "レイドグループを管理し、新しいコミュニティを見つけましょう",
     "tabs": {
@@ -435,6 +443,7 @@
             "size_placeholder": "規模",
             "sort_placeholder": "並び替え",
             "more_filters_open": "追加フィルター",
+            "toggle": "フィルター",
             "more_filters_close": "追加フィルターを隠す",
             "clear_filters": "フィルターをクリア",
             "recruiting_method_label": "募集方法",
@@ -529,7 +538,70 @@
                 "complete": "完了",
                 "cancelled": "キャンセル"
             }
+        },
+        "results": {
+            "management": "運営",
+            "statistics": "統計",
+            "active": "最終活動"
         }
+    },
+    "create_flow": {
+        "subtitle": "まず、作りたいグループの種類を選びましょう。",
+        "back_to_groups": "グループ一覧に戻る",
+        "change_type": "グループの種類を変更",
+        "continue_with": "{type}で続ける",
+        "identity": {
+          "title": {
+            "community": "コミュニティについて教えてください",
+            "static": "固定について教えてください"
+          },
+          "subtitle": "グループに名前を付けて、どんなグループなのかを他のプレイヤーに紹介しましょう。",
+          "group_link": "グループのリンク",
+          "optional": "任意",
+          "edit_details": "内容を編集"
+        },
+        "datacenter": {
+          "title": {
+            "community": "コミュニティはどこで活動しますか？",
+            "static": "固定はどこで活動しますか？"
+          },
+          "subtitle": "リージョンを選び、グループでコンテンツに参加するデータセンターを選択してください。",
+          "region_label": "リージョンを選択",
+          "regions": {
+            "NA": "北米",
+            "EU": "欧州",
+            "JP": "日本",
+            "OCE": "オセアニア"
+          },          "selected": "選択中：{datacenter}",
+          "select_prompt": "データセンターを選択して次に進んでください。",
+          "change_datacenter": "データセンターを変更"
+        },
+        "static_notice": {
+            "title": "開発中",
+            "info_label": "開発中の固定グループ向け機能について",
+            "description": "固定グループを選び、共通のグループ管理・ラン管理ツールを今から利用できます。固定向けのメンバー募集、チーム編成ツール、日程調整のさらなる改善は、今後のアップデートでの提供を予定しています。これらの新機能はまだ利用できません。"
+        },
+        "types": {
+            "community": {
+                "description": "イベントごとにさまざまなプレイヤーが集まる、FC、Discordサーバー、レイドコミュニティ向けです。",
+                "benefits": {
+                    "roster": "大人数レイドやイベントの参加者が集まる場所",
+                    "activities": "複数の主催者がそれぞれのランを企画",
+                    "coordination": "新規参加者、常連、練習グループの交流の場"
+                }
+            },
+            "static": {
+                "description": "活動日、役割、方針を共有し、いつものメンバーで一緒にコンテンツへ挑戦するチーム向けです。",
+                "benefits": {
+                    "roster": "毎回同じコアメンバーでレイドに参加",
+                    "activities": "チームが挑戦中のボスに集中して攻略",
+                    "coordination": "固定メンバーの空き時間に合わせた日程調整"
+                }
+            }
+        }
+    },
+    "create_preview": {
+        "help": "参考用に、現在のグループ作成手順をプレビューできます。グループは作成されません。"
     },
     "create_modal": {
         "title": "グループを作成",

@@ -33,6 +33,8 @@
         "discover": "最新の活動順に並んだ表示可能なグループ"
     },
     "navigation": {
+    "menu": "グループメニュー",
+    "back_to_groups": "グループ一覧に戻る",
         "general": "概要",
         "home": "ホーム",
         "info": "情報",

@@ -10,7 +10,7 @@ export function createPageResolver({ pages, application, composer, translations,
         ])
         const component = module.default ?? module
         if (!component.layout && loadDefaultLayout) {
-            const layout = await loadDefaultLayout()
+            const layout = await loadDefaultLayout(name)
             component.layout = layout.default ?? layout
         }
         return module

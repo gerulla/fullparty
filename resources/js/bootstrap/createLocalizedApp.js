@@ -5,6 +5,7 @@ import { createI18n } from 'vue-i18n'
 import ui from '@nuxt/ui/vue-plugin'
 import { createPageResolver } from '../i18n/createPageResolver.js'
 import { normalizeLocale, supportedLocales } from '../i18n/createTranslationLoader.js'
+import { initializeScrollbars } from '../utils/browserScrollbars'
 import enLoading from '../../../lang/en/loading.json'
 import deLoading from '../../../lang/de/loading.json'
 import frLoading from '../../../lang/fr/loading.json'
@@ -41,6 +42,7 @@ export async function createLocalizedApp({ pages, translations, application = 'm
             setup({ el, App, props, plugin }) {
                 const app = createApp({ render: () => [h(App, props), ...rootComponents.map(component => h(component))] }).use(plugin).use(ui).use(i18n)
                 for (const extra of plugins) app.use(extra)
+                app.onUnmount(initializeScrollbars())
                 app.mount(el)
             },
         })

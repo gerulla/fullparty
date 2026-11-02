@@ -33,6 +33,8 @@
         "discover": "Sichtbare Gruppen, sortiert nach ihrer letzten Aktivität"
     },
     "navigation": {
+    "menu": "Gruppenmenü",
+    "back_to_groups": "Zurück zu den Gruppen",
         "general": "Allgemein",
         "home": "Start",
         "info": "Info",

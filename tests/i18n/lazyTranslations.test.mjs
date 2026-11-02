@@ -108,7 +108,7 @@ test('default layouts are loaded lazily and failed page imports remain retryable
     const resolve = createPageResolver({
         application: 'main', composer: {}, getLocale: () => 'en', translations: { load: async () => {} },
         pages: { './Pages/Profile/Show.vue': async () => { if (++attempts === 1) throw Error('offline'); return { default: component }; } },
-        loadDefaultLayout: async () => { layoutLoads++; return { default: layout }; },
+        loadDefaultLayout: async name => { assert.equal(name, 'Profile/Show'); layoutLoads++; return { default: layout }; },
     });
     await assert.rejects(resolve('Profile/Show'), /offline/);
     await resolve('Profile/Show');

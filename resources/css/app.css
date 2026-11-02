@@ -19,6 +19,7 @@
 @import "@nuxt/ui";
 @import "tw-animate-css";
 @import "./fonts.css";
+@import "./scrollbars.css";
 @import "./themes/medas.css";
 @import "./themes/elevation.css";
 

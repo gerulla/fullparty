@@ -10,7 +10,9 @@ import { waitForPageTransition } from './composables/usePageTransition'
 createLocalizedApp({
     pages: import.meta.glob('./Pages/**/*.vue'),
     translations,
-    loadDefaultLayout: () => import('./Layouts/DefaultLayout.vue'),
+    loadDefaultLayout: name => name.startsWith('Dashboard/Groups/')
+        ? import('./Layouts/V2Layout.vue')
+        : import('./Layouts/DefaultLayout.vue'),
     plugins: [ZiggyVue, {
         install(app) {
             app.onUnmount(initializeAppearance())

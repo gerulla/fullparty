@@ -1,0 +1,61 @@
+@layer base {
+    :where(*) {
+        --scrollbar-visible-thumb: color-mix(in srgb, var(--ui-text-muted, #71717a) 65%, transparent);
+        --scrollbar-thumb: var(--scrollbar-visible-thumb);
+        scrollbar-width: thin;
+        scrollbar-color: var(--scrollbar-thumb) transparent;
+        transition: scrollbar-color 180ms ease-out;
+    }
+
+    /* Older WebKit engines do not support the standard scrollbar properties. */
+    :where(*)::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+
+    :where(*)::-webkit-scrollbar-track,
+    :where(*)::-webkit-scrollbar-corner {
+        background: transparent;
+    }
+
+    :where(*)::-webkit-scrollbar-button {
+        display: none;
+    }
+
+    :where(*)::-webkit-scrollbar-thumb {
+        border-radius: 999px;
+        background-color: var(--scrollbar-thumb);
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+        /* Reset each element so a hovered parent does not reveal nested scrollbars. */
+        :where([data-scrollbar-enhanced], [data-scrollbar-enhanced] *) {
+            --scrollbar-thumb: transparent;
+        }
+
+        :where(
+            [data-scrollbar-enhanced]:is(:hover, :focus-within, [data-scrollbar-scrolling]),
+            [data-scrollbar-enhanced] :is(:hover, :focus-within, [data-scrollbar-scrolling])
+        ) {
+            --scrollbar-thumb: var(--scrollbar-visible-thumb);
+        }
+
+        :where([data-scrollbar-inactive], [data-scrollbar-inactive] *) {
+            --scrollbar-thumb: transparent;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        :where(*) {
+            transition: none;
+        }
+    }
+
+    @media (forced-colors: active) {
+        :where(*) {
+            scrollbar-width: auto;
+            scrollbar-color: auto;
+            --scrollbar-thumb: CanvasText;
+        }
+    }
+}

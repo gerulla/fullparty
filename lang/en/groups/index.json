@@ -33,6 +33,8 @@
     "discover": "Visible groups ordered by their latest activity"
   },
   "navigation": {
+    "menu": "Group menu",
+    "back_to_groups": "Back to groups",
     "general": "General",
     "home": "Home",
     "info": "Info",

@@ -12,6 +12,9 @@ import TimeDisplayModeToggle from '@/components/Navigation/TimeDisplayModeToggle
 import UserMenuV2 from '@/components/Navigation/UserMenuV2.vue'
 import V2Footer from '@/components/Navigation/V2Footer.vue'
 import AccountFlags from '@/components/Navigation/AccountFlags.vue'
+import GroupDashboardNavigation from '@/components/Groups/GroupDashboardNavigation.vue'
+import SystemBanner from '@/components/SystemBanner.vue'
+import type { GroupNavigationContext } from '@/Types/GroupNavigation'
 import DevelopmentPreviewHost from '@/components/Shared/DevelopmentPreviewHost.vue'
 import { useAppearance } from '@/composables/useAppearance'
 import { usePersistentLocale } from '@/composables/usePersistentLocale'
@@ -35,6 +38,15 @@ const hasCompactSearch = breakpoints.smaller('2xl')
 const searchOpen = ref(false)
 const searchRegion = ref<HTMLElement | null>(null)
 const searchId = useId()
+const groupMenuOpen = ref(false)
+const dashboardGroup = computed<GroupNavigationContext | null>(() =>
+    page.component.startsWith('Dashboard/Groups/') && page.props.group
+        ? page.props.group as GroupNavigationContext
+        : null,
+)
+const isResourceWorkspace = computed(() => page.component === 'Dashboard/Groups/Resources/Manage')
+
+watch([isMobileOrTablet, () => page.url], () => { groupMenuOpen.value = false })
 
 async function closeSearch(restoreFocus = true) {
     if (!searchOpen.value) return
@@ -58,6 +70,7 @@ watch([isMobileOrTablet, hasCompactSearch, () => page.url], () => { void closeSe
 <template>
     <UApp :locale="currentUiLocale" class="font-inter">
         <div class="flex min-h-dvh flex-col text-default font-inter">
+            <SystemBanner v-if="dashboardGroup && page.props.system_banner" :banner="page.props.system_banner" />
             <UHeader
                 data-account-flags-header
                 title="FullParty"
@@ -73,6 +86,16 @@ watch([isMobileOrTablet, hasCompactSearch, () => page.url], () => { void closeSe
             >
                 <GlobalSearchBox v-if="user && !hasCompactSearch" align="center" class="w-full max-w-lg" />
                 <template #left>
+                    <USlideover v-if="dashboardGroup && isMobileOrTablet" v-model:open="groupMenuOpen" side="left"
+                        :title="t('groups.index.navigation.menu')"
+                        :ui="{ content: 'w-80 max-w-[calc(100vw-2rem)] bg-elevation-1 dark:bg-elevation-2 font-inter', header: 'min-h-16 px-4', body: 'p-4 sm:p-4' }">
+                        <UButton color="neutral" variant="ghost" icon="i-lucide-menu"
+                            class="size-11 shrink-0 justify-center rounded-md hover:bg-elevated"
+                            :aria-label="t('groups.index.navigation.menu')" />
+                        <template #body>
+                            <GroupDashboardNavigation :group="dashboardGroup" @navigate="groupMenuOpen = false" />
+                        </template>
+                    </USlideover>
                     <Link :href="route('dashboard', { locale: currentLocale })" aria-label="FullParty" class="min-w-0 shrink-0">
                         <span class="flex min-w-0 items-center gap-3">
                             <span
@@ -122,10 +145,20 @@ watch([isMobileOrTablet, hasCompactSearch, () => page.url], () => { void closeSe
             </UHeader>
             <AccountFlags v-if="user" />
 
-            <main id="main-content" class="bg-elevation-2 dark:bg-elevation-1 min-w-0 flex-1 p-4 sm:p-6 lg:p-8">
-                <slot />
-            </main>
-            <V2Footer />
+            <div class="flex min-w-0 flex-1">
+                <aside v-if="dashboardGroup" class="hidden w-64 shrink-0 border-r border-muted bg-elevation-1 dark:bg-elevation-2 xl:block">
+                    <div class="sticky top-(--ui-header-height) max-h-[calc(100dvh-var(--ui-header-height))] overflow-y-auto overscroll-contain p-4">
+                        <GroupDashboardNavigation :group="dashboardGroup" />
+                    </div>
+                </aside>
+                <div class="flex min-w-0 flex-1 flex-col">
+                    <main id="main-content" class="min-w-0 flex-1 bg-elevation-2 dark:bg-elevation-1"
+                        :class="isResourceWorkspace ? 'p-0 lg:flex lg:h-[calc(100dvh-var(--ui-header-height))] lg:flex-none lg:flex-col lg:overflow-hidden' : 'p-4 sm:p-6 lg:p-8'">
+                        <slot />
+                    </main>
+                    <V2Footer />
+                </div>
+            </div>
         </div>
     </UApp>
 </template>

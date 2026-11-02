@@ -70,23 +70,3 @@ defineProps({
 		</template>
 	</UModal>
 </template>
-
-<style scoped>
-/* Optional: Add custom scrollbar styling for the notifications panel */
-.max-h-96::-webkit-scrollbar {
-	width: 6px;
-}
-
-.max-h-96::-webkit-scrollbar-track {
-	background: transparent;
-}
-
-.max-h-96::-webkit-scrollbar-thumb {
-	background: rgba(156, 163, 175, 0.3);
-	border-radius: 3px;
-}
-
-.max-h-96::-webkit-scrollbar-thumb:hover {
-	background: rgba(156, 163, 175, 0.5);
-}
-</style>

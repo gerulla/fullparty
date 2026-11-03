@@ -1,37 +1,17 @@
 <script setup lang="ts">
-import type { GroupFeatureSettings, GroupJoinMode, GroupType } from "@/Types/Groups";
+import type { GroupSettingsGroup } from "@/Types/GroupSettings";
+import type { GroupFeatureSettings } from "@/Types/Groups";
 import { useForm } from "@inertiajs/vue3";
 import { route } from "ziggy-js";
 import { useToast } from "@nuxt/ui/composables";
 import { useI18n } from "vue-i18n";
 
-const props = defineProps<{
-	group: {
-		name: string
-		description: string | null
-		discord_invite_url: string | null
-		datacenter: string
-		group_type: GroupType
-		join_mode: GroupJoinMode
-		is_visible: boolean
-		slug: string
-		features: GroupFeatureSettings
-		permissions: {
-			can_update_group_settings: boolean
-		}
-	}
-}>();
+const props = defineProps<{ group: GroupSettingsGroup }>();
 
 const { t } = useI18n();
 const toast = useToast();
 
 const form = useForm({
-	name: props.group.name ?? "",
-	description: props.group.description ?? "",
-	discord_invite_url: props.group.discord_invite_url ?? "",
-	datacenter: props.group.datacenter ?? "",
-	join_mode: props.group.join_mode ?? "invite_only",
-	is_visible: props.group.is_visible ?? true,
 	features: {
 		availability_scheduler_enabled: props.group.features?.availability_scheduler_enabled ?? false,
 		statistics_enabled: props.group.features?.statistics_enabled ?? true,
@@ -54,11 +34,18 @@ const submit = () => {
 		return;
 	}
 
-	form
-		.transform((data) => ({
-			...data,
-			_method: "put",
-		}))
+    form
+        .transform((data) => ({
+            // The shared update endpoint also requires the latest saved general settings.
+            name: props.group.name,
+            description: props.group.description ?? "",
+            discord_invite_url: props.group.discord_invite_url ?? "",
+            datacenter: props.group.datacenter,
+            join_mode: props.group.join_mode,
+            is_visible: props.group.is_visible,
+            ...data,
+            _method: "put",
+        }))
 		.post(route("groups.dashboard.settings.update", props.group.slug), {
 			preserveScroll: true,
 			onSuccess: () => {

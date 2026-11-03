@@ -1,4 +1,11 @@
 {
+  "preview": {
+    "label": "Aperçu de Discord connecté",
+    "description": "Afficher un exemple de serveur connecté.",
+    "notice": "Données de démonstration. Les modifications restent dans cet aperçu et ne sont pas enregistrées dans Discord.",
+    "saved": "Aperçu uniquement — aucun paramètre Discord enregistré."
+  },
+  "load_error": "Impossible de charger les paramètres Discord.",
     "title": "Intégration Discord",
     "subtitle": "Connectez {group} à un serveur Discord.",
     "install": {

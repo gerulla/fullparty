@@ -32,12 +32,15 @@ class AuditLogIndexRequest extends FormRequest
                 : ['prohibited'],
             'beforeDate' => ['nullable', 'date_format:Y-m-d'],
             'afterDate' => ['nullable', 'date_format:Y-m-d'],
+            'category' => ['nullable', Rule::in(['runs', 'members', 'resources', 'settings'])],
+            'timezone' => ['nullable', 'timezone:all'],
             'cursor' => ['nullable', 'string', 'max:1000'],
+            'include_options' => ['sometimes', 'boolean'],
         ];
     }
 
     public function filters(): array
     {
-        return array_filter($this->safe()->except('cursor'), fn ($value) => filled($value));
+        return array_filter($this->safe()->except(['cursor', 'include_options']), fn ($value) => filled($value));
     }
 }

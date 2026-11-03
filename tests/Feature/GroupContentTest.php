@@ -12,7 +12,7 @@ use Inertia\Testing\AssertableInertia as Assert;
 
 uses(RefreshDatabase::class);
 
-it('allows moderators to open Delubrum Reginae content', function () {
+it('allows moderators to open content customization and Delubrum Reginae content', function () {
     $owner = User::factory()->create();
     $moderator = User::factory()->create();
     $group = Group::factory()->create(['owner_id' => $owner->id]);
@@ -22,6 +22,17 @@ it('allows moderators to open Delubrum Reginae content', function () {
         'role' => GroupMembership::ROLE_MODERATOR,
         'joined_at' => now(),
     ]);
+
+    $this->actingAs($moderator)
+        ->get(route('groups.dashboard.content.index', $group))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->component('Dashboard/Groups/Content/Index')
+            ->where('group.slug', $group->slug)
+            ->where('group.permissions.can_manage_members', true)
+            ->missing('holsters')
+            ->missing('phantom_jobs')
+        );
 
     $holster = BozjaHolster::query()->create([
         'group_id' => $group->id,
@@ -428,7 +439,7 @@ it('allows moderators to open Forked Tower Blood content', function () {
         );
 });
 
-it('prevents regular members from opening Delubrum Reginae content', function () {
+it('prevents regular members from opening content customization and Delubrum Reginae content', function () {
     $owner = User::factory()->create();
     $member = User::factory()->create();
     $group = Group::factory()->create(['owner_id' => $owner->id]);
@@ -438,6 +449,10 @@ it('prevents regular members from opening Delubrum Reginae content', function ()
         'role' => GroupMembership::ROLE_MEMBER,
         'joined_at' => now(),
     ]);
+
+    $this->actingAs($member)
+        ->get(route('groups.dashboard.content.index', $group))
+        ->assertForbidden();
 
     $this->actingAs($member)
         ->get(route('groups.dashboard.content.delubrum-reginae-savage', $group))

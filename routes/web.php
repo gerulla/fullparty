@@ -603,6 +603,7 @@ Route::prefix('{locale?}')
                 Route::get('/resources/{slug}/history', [GroupResourceController::class, 'history'])->name('groups.dashboard.resources.history');
                 Route::get('/content/resources/{resource}/edit', [GroupResourceController::class, 'edit'])->name('groups.dashboard.resources.edit');
                 require __DIR__.'/resource-management.php';
+                Route::get('/content', [GroupContentController::class, 'index'])->name('groups.dashboard.content.index');
                 Route::get('/content/delubrum-reginae-savage', [GroupContentController::class, 'delubrumReginaeSavage'])->name('groups.dashboard.content.delubrum-reginae-savage');
                 Route::post('/content/delubrum-reginae-savage/holsters', [GroupBozjaHolsterController::class, 'store'])->middleware('throttle:group.content.write')->name('groups.dashboard.content.delubrum-reginae-savage.holsters.store');
                 Route::post('/content/delubrum-reginae-savage/holsters/{bozjaHolster}/clone', [GroupBozjaHolsterController::class, 'duplicate'])->middleware('throttle:group.content.write')->name('groups.dashboard.content.delubrum-reginae-savage.holsters.clone');
@@ -634,6 +635,7 @@ Route::prefix('{locale?}')
                 Route::get('/membership-application-form', [GroupMembershipApplicationFormController::class, 'edit'])->name('groups.dashboard.membership-application-form.edit');
                 Route::put('/membership-application-form', [GroupMembershipApplicationFormController::class, 'update'])->name('groups.dashboard.membership-application-form.update');
                 Route::get('/audit-log', [GroupAuditLogController::class, 'index'])->name('groups.dashboard.audit-log');
+                Route::get('/audit-log/{auditLog}', [GroupAuditLogController::class, 'show'])->whereNumber('auditLog')->name('groups.dashboard.audit-log.show');
                 Route::get('/discovery-settings', [GroupSettingsController::class, 'showDiscovery'])->name('groups.dashboard.discovery-settings');
                 Route::put('/discovery-settings', [GroupSettingsController::class, 'updateDiscovery'])->name('groups.dashboard.discovery-settings.update');
                 Route::get('/settings', [GroupSettingsController::class, 'show'])->name('groups.dashboard.settings');

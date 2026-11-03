@@ -23,6 +23,7 @@ export type GroupNavigationContext = Pick<GroupDashboardGroup, 'slug'> &
     }
 
 export type GroupNavigationLink = {
+    key: string
     label: string
     icon: string
     href: string
@@ -33,4 +34,25 @@ export type GroupNavigationSection = {
     key: string
     label: string
     links: GroupNavigationLink[]
+}
+
+export type GroupHomeNavigationLink = GroupNavigationLink & {
+    description: string
+    badge?: string
+}
+
+export type GroupHomeNavigationItem = {
+    key: string
+    label: string
+    icon: string
+    active: boolean
+    href?: string
+    links?: GroupHomeNavigationLink[]
+}
+
+export type GroupHomeQuickLinkSection = {
+    key: string
+    label: string
+    icon: string
+    links: GroupHomeNavigationLink[]
 }

@@ -1,4 +1,35 @@
 {
+  "navigation": {
+    "overview": "Vue d’ensemble",
+    "planning": "Planning",
+    "insights": "Statistiques",
+    "manage": "Gestion",
+    "run_calendar": "Calendrier des sorties",
+    "create_run": "Créer une sortie",
+    "content_customization": "Personnalisation du contenu",
+    "staff_only": "Équipe uniquement",
+    "descriptions": {
+      "activities": "Voir les sorties prévues et le calendrier du groupe",
+      "availability": "Voir quand les membres sont disponibles pour jouer",
+      "statistics": "Explorer l’historique des sorties et l’activité du groupe",
+      "leaderboard": "Voir les classements et les contributions des membres",
+      "legacy_leaderboard": "Consulter les anciens classements du groupe",
+      "create_run": "Planifier une nouvelle sortie de groupe",
+      "manage_resources": "Créer et organiser les guides et les collections",
+      "content_customization": "Holsters, compositions et préréglages",
+      "audit_log": "Consulter les modifications et les actions de l’équipe",
+      "settings": "Détails du groupe, fonctionnalités et intégrations",
+      "membership_applications": "Examiner les demandes d’adhésion au groupe",
+      "application_form": "Personnaliser le formulaire d’adhésion du groupe",
+      "resources": "Parcourir les guides et les collections"
+    }
+  },
+  "quick_links": {
+    "title": "Accès rapides",
+    "runs": "Sorties",
+    "staff_workspace": "Espace de gestion",
+    "explore": "Explorer"
+  },
   "staff_home": {
     "hosted_runs": "Vos sorties organisées",
     "run_updates": "Actualités des sorties",

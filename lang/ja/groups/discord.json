@@ -1,4 +1,11 @@
 {
+  "preview": {
+    "label": "Discord接続状態をプレビュー",
+    "description": "接続済みのサンプルサーバーを表示します。",
+    "notice": "プレビュー用のデータです。変更はこのプレビュー内にとどまり、Discordには保存されません。",
+    "saved": "プレビューのみです。Discord設定は保存されていません。"
+  },
+  "load_error": "Discord設定を読み込めませんでした。",
     "title": "Discord連携",
     "subtitle": "{group} をDiscordサーバーに接続します。",
     "install": {

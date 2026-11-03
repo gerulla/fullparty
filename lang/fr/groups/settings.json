@@ -1,9 +1,44 @@
 {
+    "navigation": {
+        "back": "Tous les paramètres",
+        "groups": {
+            "general": "Général",
+            "danger_zone": "Zone de danger",
+            "management": "Gestion",
+            "integrations": "Intégrations"
+        },
+        "categories": {
+            "general": "Détails du groupe",
+            "invites": "Invitations",
+            "features": "Fonctionnalités",
+            "ownership": "Transférer la propriété",
+            "danger_zone": "Supprimer le groupe",
+            "discovery": "Découverte",
+            "shortcuts": "Raccourcis",
+            "audit_log": "Journal d’audit",
+            "discord": "Discord"
+        },
+        "descriptions": {
+            "general": "Modifier le profil et l’accès du groupe.",
+            "invites": "Créer des invitations et fixer leurs limites.",
+            "features": "Choisir les outils disponibles au groupe.",
+            "ownership": "Transférer la propriété à un autre membre.",
+            "danger_zone": "Supprimer le groupe et toutes ses données.",
+            "discovery": "Gérer la visibilité de votre groupe.",
+            "shortcuts": "Gérer les horaires de création rapide.",
+            "audit_log": "Consulter les changements du groupe.",
+            "discord": "Connectez et gérez votre serveur Discord."
+        }
+    },
     "title": "Paramètres du groupe",
     "subtitle": "Gérez la configuration générale de votre groupe et les détails sensibles liés à l'accès.",
     "general": {
-        "title": "Paramètres généraux",
-        "subtitle": "Mettez à jour les détails modifiables qui définissent l'apparence de votre groupe et la manière dont les membres le rejoignent.",
+        "title": "Profil du groupe",
+        "subtitle": "Modifiez le nom, la description et l’apparence de votre groupe.",
+        "images_title": "Images du groupe",
+        "images_help": "Facultatif · JPG, PNG ou WEBP · 5 Mo maximum par image.",
+        "access_title": "Accès et visibilité",
+        "access_help": "Choisissez comment rejoindre votre groupe et où il apparaît.",
         "owner_only_notice": "Seuls les propriétaires et admins du groupe peuvent mettre à jour ces paramètres. Les modérateurs peuvent les consulter ici.",
         "visibility_summary_label": "Résumé de visibilité",
         "visibility_summary": {
@@ -24,15 +59,15 @@
             },
             "profile_picture": {
                 "placeholder": "Choisir une image",
-                "help": "Optionnel. Téléversez une nouvelle image pour remplacer l'image actuelle du groupe.",
+                "help": "Recadrée en carré centré pour l’icône de votre groupe.",
                 "preview_alt": "Aperçu de l'image de profil du groupe",
                 "preview_label": "Aperçu du recadrage visible",
                 "preview_help": "Cet aperçu montre le recadrage carré centré qui sera redimensionné et utilisé comme image de profil de votre groupe."
             },
             "banner_image": {
                 "label": "Image de bannière",
-                "placeholder": "Choisir une bannière large",
-                "help": "Optionnel. Téléversez une nouvelle bannière large pour les cartes de découverte et le dashboard du groupe.",
+                "placeholder": "Choisir une bannière",
+                "help": "Un recadrage large pour l’en-tête du groupe et les cartes de découverte.",
                 "preview_alt": "Aperçu de la bannière du groupe",
                 "preview_label": "Aperçu de la bannière",
                 "preview_help": "Cet aperçu montre le recadrage large utilisé pour l'en-tête du groupe et les cartes de découverte."
@@ -99,7 +134,8 @@
         "active_window_subtitle": "Gardez le fuseau horaire, les jours actifs et les heures de jeu habituelles à jour pour que les gens sachent quand votre groupe est le plus souvent présent.",
         "toasts": {
             "updated": "Les paramètres Discovery ont été mis à jour."
-        }
+        },
+        "clear_active_time": "Effacer la plage horaire"
     },
     "invites": {
         "title": "Liens d'invitation",
@@ -146,11 +182,11 @@
         }
     },
     "ownership": {
-        "title": "Propriété",
-        "subtitle": "Transférez la propriété à un autre membre existant lorsque vous devez céder le groupe.",
+        "title": "Transférer la propriété",
+        "subtitle": "Confiez ce groupe à un autre membre en conservant ses membres, ses runs et ses ressources partagées.",
         "owner_only_notice": "Seul le propriétaire actuel peut transférer la propriété.",
-        "warning_title": "Le transfert de propriété est une action à fort impact.",
-        "warning_description": "Une fois transférée, vous perdrez vos droits de propriétaire et deviendrez modérateur du groupe.",
+        "warning_title": "Les droits de propriétaire changent immédiatement.",
+        "warning_description": "Après confirmation, le membre choisi devient propriétaire et vous devenez Admin. Vous ne pouvez pas annuler ce changement vous-même : le nouveau propriétaire devra vous restituer la propriété.",
         "selected_member": "Nouveau propriétaire",
         "empty": "Vous devez avoir au moins un autre membre dans le groupe avant de pouvoir transférer la propriété.",
         "transfer_button": "Transférer la propriété",
@@ -161,28 +197,64 @@
                 "label": "Sélectionner un membre",
                 "placeholder": "Choisir un membre"
             },
-            "warning": "Cette action ne peut pas être annulée depuis ce flux. Vous deviendrez immédiatement modérateur.",
+            "warning": "Le membre choisi obtient immédiatement tous les droits de propriétaire, dont la suppression du groupe. Vous devenez Admin. Seul le nouveau propriétaire pourra vous restituer la propriété.",
             "confirm_button": "Confirmer le transfert"
         },
         "toasts": {
             "transferred": "Propriété transférée avec succès."
-        }
+        },
+        "effects_title": "Ce qui change après le transfert",
+        "effects": {
+            "new_owner": {
+                "title": "Le nouveau propriétaire prend le contrôle du groupe",
+                "description": "Il obtient tous les droits de propriétaire, y compris la gestion de l’intégration Discord, le transfert de propriété et la suppression définitive du groupe. Le propriétaire du serveur Discord lié ne change pas."
+            },
+            "your_role": {
+                "title": "Vous restez membre avec le rôle Admin",
+                "description": "Vous pouvez continuer à gérer le groupe, mais perdez les actions réservées au propriétaire. Le nouveau propriétaire peut modifier votre rôle ou vous retirer du groupe, comme pour les autres membres."
+            },
+            "group_data": {
+                "title": "Le groupe poursuit ses activités",
+                "description": "Les membres, runs prévus et passés, candidatures, ressources et paramètres sont conservés. Le transfert ne crée pas de nouveau groupe et ne réinitialise pas son historique."
+            }
+        },
+        "before_title": "Choisissez une personne prête à prendre le relais",
+        "before_description": "Convenez de la passation avec une personne de confiance avant de confirmer. Elle doit déjà être membre et pouvoir posséder un groupe supplémentaire dans la limite de son compte. Si vous avez seulement besoin d’aide, envisagez plutôt de lui attribuer un rôle dans l’équipe sans céder la propriété."
     },
     "danger_zone": {
-        "title": "Zone de danger",
-        "subtitle": "Supprimez définitivement le groupe si vous êtes absolument certain qu'il doit être retiré.",
+        "title": "Supprimer le groupe",
+        "subtitle": "Retirez définitivement ce groupe et ses données d’activité partagées de FullParty. Tous les membres sont concernés, pas seulement votre compte.",
         "owner_only_notice": "Seul le propriétaire actuel peut supprimer ce groupe.",
-        "warning_title": "Cette action ne peut pas être annulée.",
-        "warning_description": "La suppression du groupe retirera définitivement ses paramètres, invitations, adhésions et runs planifiés.",
+        "warning_title": "Aucune annulation ni restauration n’est possible.",
+        "warning_description": "La confirmation supprime immédiatement le groupe. Les membres perdent leur accès et les liens existants ne fonctionnent plus. Créer un autre groupe plus tard ne récupérera pas ces données.",
         "delete_button": "Supprimer le groupe",
         "confirm_modal": {
             "title": "Supprimer le groupe",
             "subtitle": "Cela supprimera définitivement {name}. Veuillez confirmer que vous souhaitez continuer.",
-            "warning": "Une fois supprimé, ce groupe et toutes ses données associées disparaîtront définitivement.",
+            "warning": "Le groupe, ses runs, candidatures, adhésions et ressources partagées seront définitivement supprimés. Tous les membres perdent leur accès. Aucune annulation ni restauration n’est possible.",
             "confirm_button": "Oui, supprimer le groupe"
         },
         "toasts": {
             "deleted": "Groupe supprimé avec succès."
-        }
+        },
+        "effects_title": "Ce qui sera supprimé",
+        "effects": {
+            "group": {
+                "title": "Le profil du groupe et l’accès des membres",
+                "description": "Le profil, les images, paramètres, adhésions, notes sur les membres, bannissements, demandes d’adhésion et liens d’invitation sont supprimés. Personne ne pourra ouvrir ce tableau de bord ni rejoindre le groupe avec une ancienne invitation."
+            },
+            "runs": {
+                "title": "Les prochains runs et leur historique",
+                "description": "Les runs prévus et passés sont supprimés, avec leurs candidatures, places de roster, affectations et données de progression. Les membres perdent l’accès à ces pages de runs et aux détails de participation."
+            },
+            "resources": {
+                "title": "Les ressources partagées et la planification",
+                "description": "Les pages et collections de ressources, raccourcis de création et plannings de disponibilité enregistrés sont supprimés. Sauvegardez les guides, notes et informations de planification à conserver avant de continuer."
+            }
+        },
+        "retained_title": "Les comptes et le serveur Discord sont conservés",
+        "retained_description": "Les comptes FullParty, personnages vérifiés et adhésions à d’autres groupes restent inchangés. Cette suppression ne supprime pas le serveur Discord et ne désinstalle pas le bot ; gérez-les séparément dans Discord.",
+        "before_title": "Avant de supprimer ce groupe",
+        "before_description": "Prévenez les membres et les organisateurs, décidez du devenir des prochains runs et copiez les ressources ou informations encore nécessaires. Si vous souhaitez simplement vous retirer tout en laissant le groupe continuer, transférez plutôt la propriété à un autre membre."
     }
 }

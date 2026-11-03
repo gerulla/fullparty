@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { GroupSettingsGroup } from "@/Types/GroupSettings";
 import { computed, ref } from "vue";
 import { router } from "@inertiajs/vue3";
 import { route } from "ziggy-js";
@@ -6,24 +7,7 @@ import { useToast } from "@nuxt/ui/composables";
 import { useI18n } from "vue-i18n";
 import { createDateTimeFormatter } from "@/utils/dateTimeFormat";
 
-const props = defineProps<{
-	group: {
-		slug: string
-		permissions: {
-			can_manage_invites: boolean
-		}
-		invites: Array<{
-			id: number
-			token: string
-			is_system: boolean
-			uses: number
-			max_uses: number | null
-			expires_at: string | null
-			created_by: string | null
-			created_at: string | null
-		}>
-	}
-}>();
+const props = defineProps<{ group: GroupSettingsGroup }>();
 
 const { t } = useI18n();
 const toast = useToast();

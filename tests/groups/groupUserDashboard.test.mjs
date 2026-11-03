@@ -31,7 +31,7 @@ const translate = (key, values = {}) => {
 }
 
 function context() {
-    const page = vue.reactive({ props: { auth: { user: { id: 7, time_display_mode: 'server' } }, locale: { fallback: 'en' } } })
+    const page = vue.reactive({ url: '/en/groups/raiders/dashboard', props: { auth: { user: { id: 7, time_display_mode: 'server' } }, locale: { fallback: 'en' } } })
     const now = vue.ref(new Date('2026-11-02T12:00:00Z'))
     const locale = vue.ref('en')
     const calls = []
@@ -53,7 +53,8 @@ function context() {
             },
         },
         'ziggy-js': { route: (name, params) => name === 'dashboard.runs.index'
-            ? `/${params.locale}/dashboard/runs?activity_type_id=${params.activity_type_id}&group=${params.group}` : `${name}:${params}` },
+            ? `/${params.locale}/dashboard/runs?activity_type_id=${params.activity_type_id}&group=${params.group}`
+            : name === 'groups.dashboard.settings' ? `/${params.locale}/groups/${params.group}/dashboard/settings` : `${name}:${params}` },
         '@inertiajs/vue3': {
             usePage: () => page,
             Link: { props: ['href'], setup: (props, { slots }) => () => vue.h('a', { href: props.href }, slots.default?.()) },
@@ -197,6 +198,14 @@ test('renders the group, notification settings and shared run cards in the selec
     assert.equal(discord.getAttribute('href'), 'https://discord.gg/fullparty')
     assert.equal(discord.getAttribute('rel'), 'noopener noreferrer')
 
+    ui.props.view = 'staff'
+    await vue.nextTick()
+    assert.equal(ui.root.querySelector('[aria-label="Open Settings"]'), null)
+    ui.props.group.permissions.can_manage_activities = true
+    await vue.nextTick()
+    assert.equal(ui.root.querySelector('[aria-label="Open Settings"]').getAttribute('href'), '/en/groups/storm/dashboard/settings')
+    ui.props.view = 'user'
+
     ui.button(translate('groups.notifications.preferences.title')).click()
     await vue.nextTick()
     assert.equal(ui.root.querySelector('[role="dialog"]').textContent, 'Notifications: Storm Keepers')
@@ -265,7 +274,9 @@ test('empty groups show the seven-day empty state and hide unavailable membershi
     const ui = mount(t, data)
     assert.match(ui.root.textContent, /No runs are scheduled in the next 7 days/)
     assert.equal(ui.root.querySelector('select').disabled, true)
-    assert.deepEqual([...ui.root.querySelectorAll('button:not([role="switch"]), a')].map(button => button.textContent), ['Report'])
+    const actions = [...ui.root.querySelectorAll('button, a')]
+    assert.ok(!actions.some(action => action.textContent === translate('groups.dashboard.actions.leave_group')))
+    assert.ok(!actions.some(action => action.getAttribute('aria-label') === translate('groups.notifications.preferences.title')))
     assert.equal(ui.root.querySelector('#group-applied-runs-title'), null)
     assert.equal(ui.root.querySelector('[role="dialog"]'), null)
 })

@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { useNow } from '@vueuse/core'
 import { useI18n } from 'vue-i18n'
+import { route } from 'ziggy-js'
 import type { GroupDashboardGroup, GroupDashboardView } from '@/Types/Groups'
 import GroupInfoSection from '@/components/Groups/Dashboard/GroupInfoSection.vue'
+import GroupHomeNavigation from '@/components/Groups/Dashboard/GroupHomeNavigation.vue'
+import GroupHomeQuickLinks from '@/components/Groups/Dashboard/GroupHomeQuickLinks.vue'
 import GroupAppliedRunsSection from '@/components/Groups/Dashboard/GroupAppliedRunsSection.vue'
 import GroupHostedRunsSection from '@/components/Groups/Dashboard/GroupHostedRunsSection.vue'
 import GroupUpcomingRunsSection from '@/components/Groups/Dashboard/GroupUpcomingRunsSection.vue'
@@ -10,11 +13,13 @@ import GroupActivityTypesSection from '@/components/Groups/Dashboard/GroupActivi
 import GroupNotificationPreferencesModal from '@/components/Groups/GroupNotificationPreferencesModal.vue'
 import ReportButton from '@/components/Shared/Reports/ReportButton.vue'
 import { useGroupMembershipActions } from '@/composables/useGroupMembershipActions'
+import { useGroupHomeNavigation } from '@/composables/useGroupHomeNavigation'
 import { groupNotificationIcon } from '@/utils/groupNotifications'
 
 const props = withDefaults(defineProps<{ group: GroupDashboardGroup; view?: GroupDashboardView }>(), { view: 'user' })
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const now = useNow({ interval: 60_000 })
+const { navigation, quickLinkSections } = useGroupHomeNavigation(() => props.group)
 const { notificationPreferencesOpen, openNotificationPreferences, leaveConfirmationOpen, leaveGroup } =
     useGroupMembershipActions(() => props.group)
 </script>
@@ -60,6 +65,14 @@ const { notificationPreferencesOpen, openNotificationPreferences, leaveConfirmat
                             @click="openNotificationPreferences"
                         />
                     </UTooltip>
+                    <UTooltip v-if="group.permissions.can_manage_activities" :text="t('groups.dashboard.actions.open_settings')">
+                        <UButton
+                            :href="route('groups.dashboard.settings', { group: group.slug, locale }, false)"
+                            icon="i-lucide-settings" color="neutral" variant="solid"
+                            :aria-label="t('groups.dashboard.actions.open_settings')"
+                            class="bg-neutral-950/75 text-white backdrop-blur-sm hover:bg-neutral-950"
+                        />
+                    </UTooltip>
                     <UButton
                         v-if="group.permissions.can_leave" icon="i-lucide-log-out" color="neutral" variant="solid"
                         :label="t('groups.dashboard.actions.leave_group')" :disabled="leaveConfirmationOpen"
@@ -70,7 +83,10 @@ const { notificationPreferencesOpen, openNotificationPreferences, leaveConfirmat
             </div>
         </div>
 
+        <GroupHomeNavigation :items="navigation" />
+
         <div class="space-y-6 p-4 sm:space-y-8 sm:p-6 lg:p-8">
+            <GroupHomeQuickLinks :sections="quickLinkSections" />
             <GroupInfoSection :group="group" />
             <GroupHostedRunsSection v-if="view === 'staff'" :group="group" />
             <GroupAppliedRunsSection v-else :group="group" :now="now" />

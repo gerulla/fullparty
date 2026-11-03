@@ -1,4 +1,11 @@
 {
+  "preview": {
+    "label": "Preview connected Discord",
+    "description": "Show a sample connected server.",
+    "notice": "Preview data. Changes stay in this preview and are not saved to Discord.",
+    "saved": "Preview only — no Discord settings were saved."
+  },
+  "load_error": "Could not load Discord settings.",
   "title": "Discord Integration",
   "subtitle": "Connect {group} to a Discord server.",
   "install": {

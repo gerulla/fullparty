@@ -33,6 +33,13 @@ it('shows the discord integration page to group owners only', function () {
         ->get(route('groups.dashboard.discord-integration', $group))
         ->assertForbidden();
 
+    $this->actingAs($moderator)
+        ->getJson(route('groups.dashboard.discord-integration', $group))
+        ->assertForbidden();
+    $this->actingAs($moderator)
+        ->getJson(route('groups.dashboard.discord-integration', [$group, 'section' => 'coverage']))
+        ->assertForbidden();
+
     $this->actingAs($owner)
         ->get(route('groups.dashboard.discord-integration', $group))
         ->assertOk()
@@ -279,6 +286,35 @@ it('loads a discord guild snapshot for linked group settings', function () {
         'discord_guild_id' => '123456789012345678',
         'name' => 'Linked Server',
         'guild_installed_at' => now(),
+    ]);
+
+    $this->actingAs($owner)
+        ->get(route('groups.dashboard.settings', [$group, 'section' => 'discord']))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->component('Dashboard/Groups/Settings/Index')
+            ->missing('snapshot')
+            ->missing('membershipCoverage')
+        );
+    Http::assertNothingSent();
+
+    $this->actingAs($owner)
+        ->getJson(route('groups.dashboard.discord-integration', $group))
+        ->assertOk()
+        ->assertJsonPath('integration.discord_guild_id', '123456789012345678')
+        ->assertJsonPath('snapshot.settings.member_facing_channel_id', '222')
+        ->assertJsonMissingPath('membershipCoverage');
+    expect($sentEvents)->toBe([IntegrationClient::EVENT_DISCORD_GUILD_SNAPSHOT_REQUESTED]);
+
+    $this->actingAs($owner)
+        ->getJson(route('groups.dashboard.discord-integration', [$group, 'section' => 'coverage']))
+        ->assertOk()
+        ->assertJsonPath('membershipCoverage.app_linked_member_count', 2)
+        ->assertJsonPath('membershipCoverage.stats_available', true)
+        ->assertJsonMissingPath('snapshot');
+    expect($sentEvents)->toBe([
+        IntegrationClient::EVENT_DISCORD_GUILD_SNAPSHOT_REQUESTED,
+        IntegrationClient::EVENT_DISCORD_GUILD_MEMBERSHIP_SNAPSHOT_REQUESTED,
     ]);
 
     $this->actingAs($owner)

@@ -1,4 +1,35 @@
 {
+  "navigation": {
+    "overview": "概要",
+    "planning": "予定",
+    "insights": "活動データ",
+    "manage": "管理",
+    "run_calendar": "ランカレンダー",
+    "create_run": "ランを作成",
+    "content_customization": "コンテンツのカスタマイズ",
+    "staff_only": "運営メンバー専用",
+    "descriptions": {
+      "activities": "予定されたランとグループのカレンダーを確認",
+      "availability": "メンバーがプレイできる時間を確認",
+      "statistics": "グループのラン履歴と活動状況を確認",
+      "leaderboard": "メンバーのランキングと貢献を確認",
+      "legacy_leaderboard": "過去のグループランキングを閲覧",
+      "create_run": "新しいグループのランを計画",
+      "manage_resources": "ガイドとコレクションを作成・整理",
+      "content_customization": "ホルダー・編成・プリセット",
+      "audit_log": "変更履歴と運営メンバーの操作を確認",
+      "settings": "グループ情報・機能・外部連携",
+      "membership_applications": "グループへの参加申請を審査",
+      "application_form": "グループの参加申請フォームを編集",
+      "resources": "ガイドとコレクションを閲覧"
+    }
+  },
+  "quick_links": {
+    "title": "クイックリンク",
+    "runs": "ラン",
+    "staff_workspace": "運営メニュー",
+    "explore": "グループを知る"
+  },
   "staff_home": {
     "hosted_runs": "主催する募集",
     "run_updates": "募集の更新情報",

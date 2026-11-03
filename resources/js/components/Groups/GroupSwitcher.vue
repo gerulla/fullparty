@@ -7,7 +7,7 @@ import { route } from 'ziggy-js'
 import type { GroupNavigationContext, GroupNavigationSharedData } from '@/Types/GroupNavigation'
 import type { GroupRole } from '@/Types/Groups'
 
-const props = defineProps<{ group: GroupNavigationContext }>()
+const props = withDefaults(defineProps<{ group: GroupNavigationContext; expanded?: boolean }>(), { expanded: false })
 const emit = defineEmits<{ navigate: [] }>()
 const page = usePage()
 const { t, locale } = useI18n()
@@ -69,17 +69,18 @@ watch(() => page.url, () => { open.value = false })
             itemLeadingAvatar: 'shrink-0 rounded-lg',
             itemLeadingAvatarSize: 'lg',
         }">
-        <UButton color="neutral" variant="ghost" block
+        <UButton color="neutral" variant="ghost"
             :aria-label="t('groups.index.navigation.switch_group', { group: name })"
-            class="min-w-0 justify-start gap-3 rounded-lg p-2 text-highlighted hover:bg-elevation-3 data-[state=open]:bg-elevation-3">
+            class="min-w-0 shrink-0 justify-start gap-2 rounded-lg p-2 text-highlighted hover:bg-elevation-3 data-[state=open]:bg-elevation-3"
+            :class="expanded ? 'w-full' : 'sm:max-w-44 sm:shrink md:max-w-56 2xl:max-w-64'">
             <UAvatar :src="avatar" :alt="name" icon="i-lucide-users" size="lg" :ui="{ root: 'shrink-0 rounded-lg' }" />
-            <span class="min-w-0 flex-1 truncate text-left text-sm font-semibold">{{ name }}</span>
+            <span class="min-w-0 flex-1 truncate text-left text-sm font-semibold" :class="expanded ? 'block' : 'hidden sm:block'">{{ name }}</span>
             <UTooltip v-if="roleIcon(role)" :text="t(`groups.common.roles.${role}`)" :delay-duration="0">
-                <span class="inline-flex shrink-0 text-inherit" role="img" :aria-label="t(`groups.common.roles.${role}`)">
+                <span class="shrink-0 text-inherit" :class="expanded ? 'inline-flex' : 'hidden sm:inline-flex'" role="img" :aria-label="t(`groups.common.roles.${role}`)">
                     <UIcon :name="roleIcon(role)" class="size-4" aria-hidden="true" />
                 </span>
             </UTooltip>
-            <UIcon name="i-lucide-chevrons-up-down" class="size-4 shrink-0 text-muted" aria-hidden="true" />
+            <UIcon name="i-lucide-chevrons-up-down" class="size-4 shrink-0 text-muted" :class="expanded ? 'block' : 'hidden sm:block'" aria-hidden="true" />
         </UButton>
 
         <template #group-trailing="{ item }">

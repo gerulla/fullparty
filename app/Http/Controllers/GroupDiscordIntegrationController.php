@@ -9,6 +9,7 @@ use App\Models\Group;
 use App\Models\IntegrationClient;
 use App\Services\Integrations\DiscordGuildLinkService;
 use App\Services\Integrations\IntegrationWebhookDispatcher;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -18,12 +19,32 @@ use Inertia\Response;
 
 class GroupDiscordIntegrationController extends Controller
 {
-    public function show(Group $group, IntegrationWebhookDispatcher $webhooks): Response
+    public function show(Request $request, Group $group, IntegrationWebhookDispatcher $webhooks): Response|JsonResponse
     {
         $this->authorizeOwner($group);
 
         $group->loadMissing(['memberships', 'activeDiscordGuildIntegration']);
         $integration = $group->activeDiscordGuildIntegration;
+
+        if ($request->wantsJson()) {
+            $validated = $request->validate([
+                'section' => ['sometimes', 'in:settings,coverage'],
+            ]);
+
+            if (($validated['section'] ?? 'settings') === 'coverage') {
+                return response()->json([
+                    'membershipCoverage' => $this->fetchMembershipCoverage($integration, $webhooks),
+                ]);
+            }
+
+            return response()->json([
+                'group' => $this->serializeGroup($group),
+                'integration' => $this->serializeIntegration($integration),
+                'inviteUrl' => route('discord-app.guild.redirect'),
+                'activityTypes' => $this->serializeActivityTypes(),
+                'snapshot' => $this->fetchGuildSettingsSnapshot($integration, $webhooks),
+            ]);
+        }
 
         return Inertia::render('Dashboard/Groups/DiscordIntegration', [
             'group' => $this->serializeGroup($group),

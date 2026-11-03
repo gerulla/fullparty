@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\AuditLog;
 use App\Models\Group;
 use App\Models\User;
+use App\Services\Groups\Resources\ResourceAuditContext;
 use App\Services\Groups\Resources\ResourceReaderService;
 use App\Services\Groups\Resources\ResourceWorkflowService;
 use App\Services\RichText\RichTextDocument;
@@ -97,7 +99,7 @@ it('records the actual publisher separately and paginates edit and publication h
 
 it('keeps restricted publication events private and preserves repeated publication events', function () {
     $lease = publication_action($this, 'acquire')['editing_token'];
-    publication_action($this, 'save', ['editing_token' => $lease, 'content' => array_replace($this->content, ['access_level' => 'admin']), 'summary' => 'Private edit.']);
+    publication_action($this, 'save', ['editing_token' => $lease, 'content' => array_replace($this->content, ['access_level' => 'admin', 'title' => 'Private strategy']), 'summary' => 'Private edit.']);
     publication_action($this, 'publish', ['editing_token' => $lease]);
     publication_action($this, 'save', ['editing_token' => $lease, 'content' => $this->content, 'summary' => 'Public edit.']);
     publication_action($this, 'publish', ['editing_token' => $lease]);
@@ -107,6 +109,33 @@ it('keeps restricted publication events private and preserves repeated publicati
     expect($this->resource->revisions()->count())->toBe(2)->and(DB::table('group_resource_publications')->count())->toBe(3);
     $data = $this->getJson(route('public-resources.history', ['group' => $this->group, 'slug' => $this->resource->uuid]))->assertOk()->json('data');
     expect($data)->toHaveCount(3)->and(array_column($data, 'summary'))->not->toContain('Private edit.');
+
+    $logs = AuditLog::where('action', 'group.resources.publish')->where('subject_id', $this->resource->id)->orderBy('id')->get();
+    expect($logs)->toHaveCount(3)
+        ->and($logs[0]->metadata['resource_title'])->toBe('Private strategy')
+        ->and($logs[0]->metadata['revision_id'])->toBe($this->resource->revisions()->orderBy('id')->first()->id)
+        ->and($logs[0]->metadata['revision_summary'])->toBe('Private edit.')
+        ->and($logs[2]->metadata['revision_id'])->toBe($logs[1]->metadata['revision_id']);
+    $context = app(ResourceAuditContext::class);
+    $ownerContext = $context->forLogs($logs, $this->group, $this->user);
+    expect($ownerContext[$logs[0]->id]['resource']['title'])->toBe('Private strategy')
+        ->and($ownerContext[$logs[0]->id]['metadata']['revision_summary'])->toBe('Private edit.')
+        ->and($ownerContext[$logs[1]->id]['metadata']['revision_summary'])->toBe('Public edit.');
+
+    $moderator = User::factory()->create();
+    $this->group->memberships()->create(['user_id' => $moderator->id, 'role' => 'moderator', 'joined_at' => now()]);
+    $group = $this->group->fresh();
+    $moderatorContext = $context->forLogs($logs, $group, $moderator);
+    expect($moderatorContext->has($logs[0]->id))->toBeFalse()
+        ->and($moderatorContext[$logs[1]->id]['resource']['title'])->toBe('Guide')
+        ->and($moderatorContext[$logs[1]->id]['resource']['url'])->toBe(route('groups.dashboard.resources.show', ['group' => $group, 'slug' => $this->resource->uuid]));
+
+    // Legacy entries may show the accessible resource but must not borrow a newer comment.
+    $logs[0]->update(['metadata' => null]);
+    $legacyContext = $context->forLogs(collect([$logs[0]]), $group, $moderator);
+    expect($legacyContext[$logs[0]->id]['metadata']['revision_summary'])->toBe(__('audit_log.presentation.revision_comment_unavailable'));
+    $this->resource->refresh()->update(['management_access_level' => 'admin']);
+    expect($context->forLogs($logs, $group, $moderator))->toBeEmpty();
 });
 
 it('rejects content changelogs and combined save-publish requests at the endpoint', function () {

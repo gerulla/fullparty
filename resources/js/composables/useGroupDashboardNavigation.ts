@@ -18,13 +18,12 @@ export function useGroupDashboardNavigation(group: () => GroupNavigationContext)
             && (features.availability_minimum_role !== 'moderator'
                 || ['owner', 'admin', 'moderator'].includes(current.current_user_role ?? '')
                 || permissions.can_manage_members)
-        const settings = permissions.can_update_group_settings || permissions.can_manage_discovery || permissions.can_manage_group
         const path = page.url.split(/[?#]/)[0].replace(/\/$/, '')
         const link = (key: string, name: string, icon: string, exact = false): GroupNavigationLink => {
             const params = { group: current.slug, locale: String(page.props.locale?.current ?? 'en') }
             const href = route(name, params, false)
             return {
-                label: t(`groups.index.navigation.${key}`), icon, href,
+                key, label: t(`groups.index.navigation.${key}`), icon, href,
                 active: path === href || (!exact && path.startsWith(`${href}/`)),
             }
         }
@@ -62,19 +61,12 @@ export function useGroupDashboardNavigation(group: () => GroupNavigationContext)
                 key: 'moderation', label: t('groups.index.navigation.moderation'),
                 links: [
                     ...(permissions.can_review_membership_applications ? [link('membership_applications', 'groups.dashboard.membership-applications.index', 'i-lucide-clipboard-check')] : []),
-                    ...(permissions.can_manage_discovery ? [link('discovery_settings', 'groups.dashboard.discovery-settings', 'i-lucide-radar')] : []),
-                    ...(permissions.can_manage_members ? [link('audit_log', 'groups.dashboard.audit-log', 'i-lucide-scroll-text')] : []),
                 ],
             },
             {
                 key: 'configuration', label: t('groups.index.navigation.configuration'),
                 links: [
                     ...(permissions.can_manage_membership_application_form ? [link('application_form', 'groups.dashboard.membership-application-form.edit', 'i-lucide-list-checks')] : []),
-                    ...(permissions.can_manage_group ? [link('discord_integration', 'groups.dashboard.discord-integration', 'ic:baseline-discord')] : []),
-                    ...(settings ? [
-                        link('shortcuts', 'groups.dashboard.shortcuts.index', 'i-lucide-mouse-pointer-click'),
-                        link('settings', 'groups.dashboard.settings', 'i-lucide-settings-2', true),
-                    ] : []),
                 ],
             },
         ].filter(section => section.links.length > 0)

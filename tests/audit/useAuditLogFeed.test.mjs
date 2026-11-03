@@ -12,7 +12,7 @@ const renderer = createRenderer({
 });
 
 function mountFeed(t, page = { auditLogs: [{ id: 1 }], nextCursor: 'page-two' }) {
-    const initial = reactive(page);
+    const initial = page ? reactive(page) : undefined;
     let feed;
     const app = renderer.createApp({
         setup() {
@@ -21,9 +21,37 @@ function mountFeed(t, page = { auditLogs: [{ id: 1 }], nextCursor: 'page-two' })
         },
     });
     app.mount({});
-    t.after(() => app.unmount());
-    return { feed, initial };
+    let mounted = true;
+    const unmount = () => { if (mounted) app.unmount(); mounted = false; };
+    t.after(unmount);
+    return { feed, initial, unmount };
 }
+
+test('a lazily opened log loads rows and options, retries failures and aborts when closed', async (t) => {
+    const request = t.mock.method(axios, 'get', async () => { throw new Error('Offline'); });
+    const { feed, unmount } = mountFeed(t, null);
+    assert.equal(feed.loading.value, true);
+    assert.deepEqual(feed.rows.value, []);
+    assert.deepEqual(request.mock.calls[0].arguments[1].params, { include_options: '1' });
+    await nextTick();
+    assert.equal(feed.failed.value, true);
+    const options = { actions: [], severities: [], users: [], activities: [] };
+    request.mock.mockImplementation(async () => ({ data: { auditLogs: [{ id: 2 }], nextCursor: 'next', filters: options } }));
+    feed.retry();
+    await nextTick();
+    assert.deepEqual(feed.filterOptions.value, options);
+    assert.deepEqual(feed.rows.value.map(row => row.id), [2]);
+
+    let finish;
+    request.mock.mockImplementation(() => new Promise(resolve => { finish = resolve; }));
+    feed.loadMore();
+    assert.deepEqual(request.mock.calls[2].arguments[1].params, { cursor: 'next' });
+    unmount();
+    assert.equal(request.mock.calls[2].arguments[1].signal.aborted, true);
+    finish({ data: { auditLogs: [{ id: 99 }], nextCursor: null } });
+    await nextTick();
+    assert.deepEqual(feed.rows.value.map(row => row.id), [2]);
+});
 
 test('requests the next cursor only once and appends without duplicate rows', async (t) => {
     let resolve;

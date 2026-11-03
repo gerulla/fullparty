@@ -67,6 +67,7 @@ class ResourceWorkflowService
             abort_if($resource->is_home && (in_array($action, ['organize', 'pin', 'archive', 'unpublish'], true) || isset($data['collection_id'])), 422, __('resource_errors.home_protected'));
 
             $response = [];
+            $auditRevision = null;
             abort_if($resource->status === 'archived' && ! in_array($action, ['unarchive', 'release'], true) && ! ($action === 'pin' && ! $data['is_pinned']), 409, __('resource_errors.archived'));
             switch ($action) {
                 case 'acquire':
@@ -117,7 +118,7 @@ class ResourceWorkflowService
                     if ($action === 'autosave') {
                         break;
                     }
-                    $this->recordRevision($resource, $user, $snapshot, $data['summary'] ?? null);
+                    $auditRevision = $this->recordRevision($resource, $user, $snapshot, $data['summary'] ?? null);
                     break;
                 case 'publish':
                     if ($this->hasLease($resource)) {
@@ -127,6 +128,7 @@ class ResourceWorkflowService
                     abort_unless($snapshot !== null, 409);
                     $this->checkNames($group, $snapshot, $resource);
                     if (! $this->publication->hasChanges($resource)) {
+                        $auditRevision = $resource->publishedRevision;
                         break;
                     }
                     $revision = $this->publication->savedRevision($resource);
@@ -134,6 +136,7 @@ class ResourceWorkflowService
                         throw ValidationException::withMessages(['resource' => __('resource_errors.save_before_publish')]);
                     }
                     $this->publication->publish($resource, $revision, $user);
+                    $auditRevision = $revision;
                     break;
                 case 'archive':
                 case 'unpublish':
@@ -174,7 +177,7 @@ class ResourceWorkflowService
             $resource->save();
             if (! in_array($action, ['heartbeat', 'acquire', 'release'], true)) {
                 $auditAction = $action === 'pin' ? ($resource->is_pinned ? 'pin' : 'unpin') : $action;
-                $this->audit->record($group, $user, $resource, $auditAction === 'autosave' ? 'save' : ($auditAction === 'unarchive' ? 'unpublish' : $auditAction));
+                $this->audit->record($group, $user, $resource, $auditAction === 'autosave' ? 'save' : ($auditAction === 'unarchive' ? 'unpublish' : $auditAction), $auditRevision);
             }
 
             return $response + ['id' => $resource->id, 'version' => $resource->version, 'status' => $resource->status, 'editing_expires_at' => $resource->editing_expires_at?->toIso8601String()];

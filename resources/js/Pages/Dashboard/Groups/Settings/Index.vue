@@ -1,44 +1,26 @@
 <script setup lang="ts">
-import AccessBadge from "@/components/Groups/AccessBadge.vue";
-import PageHeader from "@/components/PageHeader.vue";
-import GroupGeneralSettings from "@/components/Groups/GroupGeneralSettings.vue";
-import GroupFeatureSettings from "@/components/Groups/GroupFeatureSettings.vue";
-import GroupInviteSettings from "@/components/Groups/GroupInviteSettings.vue";
-import GroupOwnershipSettings from "@/components/Groups/GroupOwnershipSettings.vue";
-import GroupDangerZoneSettings from "@/components/Groups/GroupDangerZoneSettings.vue";
-import { useI18n } from "vue-i18n";
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { route } from 'ziggy-js'
+import type { GroupSettingsGroup } from '@/Types/GroupSettings'
+import GroupSettingsPanel from '@/components/Groups/Settings/GroupSettingsPanel.vue'
 
-const props = defineProps<{
-	group: any
-}>();
-
-const { t } = useI18n();
+const props = defineProps<{ group: GroupSettingsGroup }>()
+const { t, locale } = useI18n()
+const breadcrumbs = computed(() => [
+    { label: t('navigation.sidebar.dashboard'), icon: 'i-lucide-house', to: route('dashboard', { locale: locale.value }, false), ui: { linkLabel: 'sr-only' } },
+    { label: t('navigation.sidebar.groups'), to: route('groups.index', { locale: locale.value }, false) },
+    { label: props.group.name, to: route('groups.dashboard', { group: props.group.slug, locale: locale.value }, false), ui: { linkLabel: 'max-w-40 truncate sm:max-w-72' } },
+    { label: t('groups.index.navigation.settings') },
+])
 </script>
 
 <template>
-	<div class="w-full">
-		<PageHeader
-			:title="t('groups.settings.title')"
-			:subtitle="t('groups.settings.subtitle')"
-		>
-			<AccessBadge
-				:role="group.current_user_role"
-				fallback-role="moderator"
-			/>
-		</PageHeader>
+    <div class="w-full">
+        <h1 class="sr-only">{{ t('groups.settings.title') }}</h1>
+        <UBreadcrumb :items="breadcrumbs" color="brand"
+            :ui="{ list: 'flex-wrap', link: 'text-xs', linkLeadingIcon: 'size-4', separatorIcon: 'size-3' }" />
 
-		<div class="mt-4 grid grid-cols-1 gap-6 md:grid-cols-2">
-			<GroupGeneralSettings :group="group" />
-			<div class="flex h-full w-full flex-col gap-6">
-				<GroupInviteSettings v-if="group.permissions.can_manage_invites" :group="group" />
-				<GroupFeatureSettings :group="group" />
-				<GroupOwnershipSettings :group="group" />
-				<GroupDangerZoneSettings :group="group" />
-			</div>
-		</div>
-	</div>
+        <GroupSettingsPanel :key="group.id" :group="group" />
+    </div>
 </template>
-
-<style scoped>
-
-</style>

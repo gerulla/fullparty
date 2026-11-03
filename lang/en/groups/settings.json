@@ -1,9 +1,44 @@
 {
+    "navigation": {
+        "back": "All settings",
+        "groups": {
+            "general": "General",
+            "danger_zone": "Danger Zone",
+            "management": "Management",
+            "integrations": "Integrations"
+        },
+        "categories": {
+            "general": "Group Details",
+            "invites": "Invites",
+            "features": "Features",
+            "ownership": "Transfer Ownership",
+            "danger_zone": "Delete Group",
+            "discovery": "Discovery Settings",
+            "shortcuts": "Shortcuts",
+            "audit_log": "Audit Log",
+            "discord": "Discord"
+        },
+        "descriptions": {
+            "general": "Update your group's profile and access.",
+            "invites": "Create invite links and set their limits.",
+            "features": "Choose which group tools are available.",
+            "ownership": "Transfer ownership to another member.",
+            "danger_zone": "Permanently delete your group and data.",
+            "discovery": "Control how your group is discovered.",
+            "shortcuts": "Manage quick-create times for runs.",
+            "audit_log": "Review changes made within your group.",
+            "discord": "Connect and manage your Discord server."
+        }
+    },
   "title": "Group Settings",
   "subtitle": "Manage your group's general configuration and access-sensitive details.",
     "general": {
-        "title": "General Settings",
-        "subtitle": "Update the mutable details that define how your group appears and how members join it.",
+        "title": "Group profile",
+        "subtitle": "Edit your group’s name, description and appearance.",
+        "images_title": "Group images",
+        "images_help": "Optional · JPG, PNG or WEBP · up to 5 MB per image.",
+        "access_title": "Joining & discovery",
+        "access_help": "Choose how people join your group and where it appears.",
         "owner_only_notice": "Only group owners and admins can update these settings. Moderators can review them here.",
         "visibility_summary_label": "Visibility Summary",
     "visibility_summary": {
@@ -24,15 +59,15 @@
       },
       "profile_picture": {
         "placeholder": "Choose an image",
-        "help": "Optional. Upload a new image to replace the current group picture.",
+        "help": "Cropped to a centered square for your group’s icon.",
         "preview_alt": "Group profile picture preview",
         "preview_label": "Visible Crop Preview",
         "preview_help": "This preview shows the centered square crop that will be resized and used as your group's profile image."
       },
       "banner_image": {
         "label": "Banner Image",
-        "placeholder": "Choose a wide banner image",
-        "help": "Optional. Upload a new wide banner for discovery cards and the group dashboard.",
+        "placeholder": "Choose a banner",
+        "help": "A wide crop for your group header and discovery cards.",
         "preview_alt": "Group banner preview",
         "preview_label": "Banner Preview",
         "preview_help": "This preview shows the wide banner crop used for the group header and discovery cards."
@@ -93,14 +128,15 @@
         }
     },
     "discovery": {
-    "title": "Discovery Settings",
-    "subtitle": "Update how your group appears in discovery and the windows when your group is usually active.",
-    "active_window_title": "Active Window",
-    "active_window_subtitle": "Keep your usual timezone, days, and play hours up to date so people know when your group tends to be around.",
-    "toasts": {
-      "updated": "Discovery settings have been updated."
-    }
-  },
+        "title": "Discovery Settings",
+        "subtitle": "Update how your group appears in discovery and the windows when your group is usually active.",
+        "active_window_title": "Active Window",
+        "active_window_subtitle": "Keep your usual timezone, days, and play hours up to date so people know when your group tends to be around.",
+        "toasts": {
+            "updated": "Discovery settings have been updated."
+        },
+        "clear_active_time": "Clear active time"
+    },
   "invites": {
     "title": "Invite Links",
     "subtitle": "Manage invite links for new members.",
@@ -146,11 +182,11 @@
     }
   },
   "ownership": {
-    "title": "Ownership",
-    "subtitle": "Transfer ownership to another existing member when you need to hand the group over.",
+    "title": "Transfer Ownership",
+    "subtitle": "Hand this group over to another member while keeping its members, runs and shared resources together.",
     "owner_only_notice": "Only the current owner can transfer ownership.",
-    "warning_title": "Transfering ownership is a high-impact action.",
-    "warning_description": "Once transferred, you will lose owner rights and become a moderator in the group.",
+    "warning_title": "Owner access changes immediately.",
+    "warning_description": "Once you confirm, the selected member becomes the owner and you become an Admin. You cannot reverse this yourself; the new owner would need to transfer ownership back.",
     "selected_member": "New owner",
     "empty": "You need at least one other member in the group before ownership can be transferred.",
     "transfer_button": "Transfer Ownership",
@@ -161,28 +197,64 @@
         "label": "Select Member",
         "placeholder": "Choose a member"
       },
-      "warning": "This action cannot be undone from this flow. You will immediately become a moderator.",
+      "warning": "The selected member will immediately gain full owner control, including the ability to delete this group. You will become an Admin. Only the new owner can transfer ownership back to you.",
       "confirm_button": "Confirm Transfer"
     },
     "toasts": {
       "transferred": "Ownership transferred successfully."
-    }
+    },
+    "effects_title": "What changes after a transfer",
+    "effects": {
+      "new_owner": {
+        "title": "The new owner takes full control",
+        "description": "They gain all owner permissions, including managing the Discord integration, transferring ownership again and permanently deleting the group. Ownership of a linked Discord server does not change."
+      },
+      "your_role": {
+        "title": "You stay in the group as an Admin",
+        "description": "You can continue helping manage the group, but lose owner-only actions. The new owner can change your role or remove you, just as they can with other members."
+      },
+      "group_data": {
+        "title": "The group continues where it left off",
+        "description": "Members, scheduled and past runs, applications, resources and settings stay with the group. Transferring ownership does not create a new group or reset its history."
+      }
+    },
+    "before_title": "Choose someone ready to take over",
+    "before_description": "Agree on the handover with someone you trust before confirming. They must already be a member and have room to own another group within their account limit. If you only need help running the group, consider granting a staff role instead of giving up ownership."
   },
   "danger_zone": {
-    "title": "Danger Zone",
-    "subtitle": "Delete the group permanently if you are absolutely sure it should be removed.",
+    "title": "Delete Group",
+    "subtitle": "Permanently remove this group and its shared activity data from FullParty. This affects every member, not just your own account.",
     "owner_only_notice": "Only the current owner can delete this group.",
-    "warning_title": "This action cannot be undone.",
-    "warning_description": "Deleting the group will permanently remove its settings, invites, memberships, and scheduled runs.",
+    "warning_title": "There is no undo or restore option.",
+    "warning_description": "Confirming deletion removes the group immediately. Members lose access and existing group links stop working. Creating another group later will not bring back this group’s data.",
     "delete_button": "Delete Group",
     "confirm_modal": {
       "title": "Delete Group",
       "subtitle": "This will permanently delete {name}. Please confirm that you want to continue.",
-      "warning": "Once deleted, this group and all of its related data will be gone forever.",
+      "warning": "This permanently deletes the group, its runs, applications, memberships and shared resources. All members lose access. There is no undo or restore option.",
       "confirm_button": "Yes, Delete Group"
     },
     "toasts": {
       "deleted": "Group deleted successfully."
-    }
+    },
+    "effects_title": "What will be removed",
+    "effects": {
+      "group": {
+        "title": "The group profile and member access",
+        "description": "The group’s profile, artwork, settings, memberships, member notes, bans, membership applications and invite links are removed. Nobody will be able to open this group’s dashboard or join through an old invite."
+      },
+      "runs": {
+        "title": "Upcoming runs and run history",
+        "description": "Both scheduled and past runs are deleted, along with their applications, roster slots, assignments and progress records. Members will lose access to those run pages and participation details."
+      },
+      "resources": {
+        "title": "Shared resources and planning",
+        "description": "The group’s resource pages and collections, quick-create shortcuts and saved availability schedules are removed. Save any guides, notes or planning information you want to keep before continuing."
+      }
+    },
+    "retained_title": "Your accounts and Discord server remain",
+    "retained_description": "Members’ FullParty accounts, verified characters and memberships in other groups are unaffected. Deleting this group does not delete its Discord server or uninstall the bot; manage those separately in Discord.",
+    "before_title": "Before you delete this group",
+    "before_description": "Let your members and hosts know, agree what will happen to upcoming runs, and copy any resources or run information you still need. If you simply want to step away while the group continues, transfer ownership to another member instead."
   }
 }

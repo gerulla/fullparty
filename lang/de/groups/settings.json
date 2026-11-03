@@ -1,9 +1,44 @@
 {
+    "navigation": {
+        "back": "Alle Einstellungen",
+        "groups": {
+            "general": "Allgemein",
+            "danger_zone": "Gefahrenzone",
+            "management": "Verwaltung",
+            "integrations": "Integrationen"
+        },
+        "categories": {
+            "general": "Gruppendetails",
+            "invites": "Einladungen",
+            "features": "Funktionen",
+            "ownership": "Besitz übertragen",
+            "danger_zone": "Gruppe löschen",
+            "discovery": "Sichtbarkeit",
+            "shortcuts": "Schnellaktionen",
+            "audit_log": "Audit-Protokoll",
+            "discord": "Discord"
+        },
+        "descriptions": {
+            "general": "Gruppenprofil und Zugang bearbeiten.",
+            "invites": "Einladungslinks und Limits verwalten.",
+            "features": "Verfügbare Gruppenfunktionen wählen.",
+            "ownership": "Besitz an ein anderes Mitglied übertragen.",
+            "danger_zone": "Gruppe und Daten dauerhaft löschen.",
+            "discovery": "Sichtbarkeit deiner Gruppe anpassen.",
+            "shortcuts": "Zeiten für die Schnellerstellung verwalten.",
+            "audit_log": "Änderungen in deiner Gruppe verfolgen.",
+            "discord": "Discord-Server verbinden und verwalten."
+        }
+    },
     "title": "Gruppeneinstellungen",
     "subtitle": "Verwalte die allgemeine Konfiguration deiner Gruppe und zugriffssensible Details.",
     "general": {
-        "title": "Allgemeine Einstellungen",
-        "subtitle": "Aktualisiere die veränderbaren Details, die definieren, wie deine Gruppe erscheint und wie Mitglieder beitreten.",
+        "title": "Gruppenprofil",
+        "subtitle": "Bearbeite Namen, Beschreibung und Erscheinungsbild deiner Gruppe.",
+        "images_title": "Gruppenbilder",
+        "images_help": "Optional · JPG, PNG oder WEBP · bis zu 5 MB pro Bild.",
+        "access_title": "Beitritt & Sichtbarkeit",
+        "access_help": "Lege fest, wie andere deiner Gruppe beitreten und wo sie erscheint.",
         "owner_only_notice": "Nur Gruppenbesitzer und Admins können diese Einstellungen aktualisieren. Moderatoren können sie hier einsehen.",
         "visibility_summary_label": "Sichtbarkeitsübersicht",
         "visibility_summary": {
@@ -24,15 +59,15 @@
             },
             "profile_picture": {
                 "placeholder": "Bild auswählen",
-                "help": "Optional. Lade ein neues Bild hoch, um das aktuelle Gruppenbild zu ersetzen.",
+                "help": "Wird für dein Gruppensymbol mittig quadratisch zugeschnitten.",
                 "preview_alt": "Vorschau des Gruppenprofilbilds",
                 "preview_label": "Sichtbare Beschnittvorschau",
                 "preview_help": "Diese Vorschau zeigt den zentrierten quadratischen Zuschnitt, der skaliert und als Profilbild deiner Gruppe verwendet wird."
             },
             "banner_image": {
                 "label": "Bannerbild",
-                "placeholder": "Breites Bannerbild auswählen",
-                "help": "Optional. Lade ein neues breites Banner für Discovery-Karten und das Gruppen-Dashboard hoch.",
+                "placeholder": "Banner auswählen",
+                "help": "Ein breiter Zuschnitt für den Gruppenheader und die Discovery-Karten.",
                 "preview_alt": "Vorschau des Gruppenbanners",
                 "preview_label": "Bannervorschau",
                 "preview_help": "Diese Vorschau zeigt den breiten Beschnitt, der für den Gruppenheader und Discovery-Karten verwendet wird."
@@ -99,7 +134,8 @@
         "active_window_subtitle": "Halte Zeitzone, aktive Tage und typische Spielzeiten aktuell, damit andere wissen, wann deine Gruppe meistens online ist.",
         "toasts": {
             "updated": "Discovery-Einstellungen wurden aktualisiert."
-        }
+        },
+        "clear_active_time": "Aktive Spielzeit entfernen"
     },
     "invites": {
         "title": "Einladungslinks",
@@ -146,11 +182,11 @@
         }
     },
     "ownership": {
-        "title": "Besitz",
-        "subtitle": "Übertrage den Besitz an ein anderes bestehendes Mitglied, wenn du die Gruppe übergeben musst.",
+        "title": "Besitz übertragen",
+        "subtitle": "Übergib die Gruppe an ein anderes Mitglied. Mitglieder, Runs und gemeinsame Ressourcen bleiben zusammen.",
         "owner_only_notice": "Nur der aktuelle Besitzer kann den Besitz übertragen.",
-        "warning_title": "Das Übertragen des Besitzes ist eine weitreichende Aktion.",
-        "warning_description": "Nach der Übertragung verlierst du deine Besitzerrechte und wirst Moderator der Gruppe.",
+        "warning_title": "Die Besitzerrechte wechseln sofort.",
+        "warning_description": "Nach deiner Bestätigung wird das gewählte Mitglied Besitzer und du wirst Admin. Du kannst dies nicht selbst rückgängig machen; der neue Besitzer müsste den Besitz zurückübertragen.",
         "selected_member": "Neuer Besitzer",
         "empty": "Du brauchst mindestens ein weiteres Mitglied in der Gruppe, bevor der Besitz übertragen werden kann.",
         "transfer_button": "Besitz übertragen",
@@ -161,28 +197,64 @@
                 "label": "Mitglied auswählen",
                 "placeholder": "Wähle ein Mitglied"
             },
-            "warning": "Diese Aktion kann in diesem Ablauf nicht rückgängig gemacht werden. Du wirst sofort Moderator.",
+            "warning": "Das gewählte Mitglied erhält sofort alle Besitzerrechte und kann die Gruppe auch löschen. Du wirst Admin. Nur der neue Besitzer kann dir den Besitz zurückübertragen.",
             "confirm_button": "Übertragung bestätigen"
         },
         "toasts": {
             "transferred": "Besitz erfolgreich übertragen."
-        }
+        },
+        "effects_title": "Was sich nach der Übergabe ändert",
+        "effects": {
+            "new_owner": {
+                "title": "Der neue Besitzer erhält die volle Kontrolle",
+                "description": "Dazu gehören die Verwaltung der Discord-Integration, weitere Besitzübertragungen und das dauerhafte Löschen der Gruppe. Der Besitz eines verknüpften Discord-Servers ändert sich nicht."
+            },
+            "your_role": {
+                "title": "Du bleibst als Admin in der Gruppe",
+                "description": "Du kannst die Gruppe weiter mitverwalten, verlierst aber die Aktionen, die nur Besitzern vorbehalten sind. Der neue Besitzer kann deine Rolle ändern oder dich wie andere Mitglieder entfernen."
+            },
+            "group_data": {
+                "title": "Die Gruppe besteht unverändert weiter",
+                "description": "Mitglieder, geplante und vergangene Runs, Bewerbungen, Ressourcen und Einstellungen bleiben erhalten. Die Übergabe erstellt keine neue Gruppe und setzt den Verlauf nicht zurück."
+            }
+        },
+        "before_title": "Wähle jemanden, der bereit für die Übernahme ist",
+        "before_description": "Sprich die Übergabe vor der Bestätigung mit einer Person ab, der du vertraust. Sie muss bereits Mitglied sein und innerhalb ihres Kontolimits noch eine weitere Gruppe besitzen können. Wenn du nur Unterstützung brauchst, vergib stattdessen eine Teamrolle, ohne den Besitz abzugeben."
     },
     "danger_zone": {
-        "title": "Gefahrenbereich",
-        "subtitle": "Lösche die Gruppe dauerhaft, wenn du absolut sicher bist, dass sie entfernt werden soll.",
+        "title": "Gruppe löschen",
+        "subtitle": "Entferne diese Gruppe und ihre gemeinsamen Aktivitätsdaten dauerhaft aus FullParty. Dies betrifft alle Mitglieder, nicht nur dein Konto.",
         "owner_only_notice": "Nur der aktuelle Besitzer kann diese Gruppe löschen.",
-        "warning_title": "Diese Aktion kann nicht rückgängig gemacht werden.",
-        "warning_description": "Durch das Löschen der Gruppe werden ihre Einstellungen, Einladungen, Mitgliedschaften und geplanten Runs dauerhaft entfernt.",
+        "warning_title": "Es gibt keine Möglichkeit zur Wiederherstellung.",
+        "warning_description": "Nach der Bestätigung wird die Gruppe sofort gelöscht. Mitglieder verlieren den Zugriff und bestehende Gruppenlinks funktionieren nicht mehr. Eine später neu erstellte Gruppe bringt diese Daten nicht zurück.",
         "delete_button": "Gruppe löschen",
         "confirm_modal": {
             "title": "Gruppe löschen",
             "subtitle": "Dadurch wird {name} dauerhaft gelöscht. Bitte bestätige, dass du fortfahren möchtest.",
-            "warning": "Nach dem Löschen sind diese Gruppe und alle zugehörigen Daten für immer verloren.",
+            "warning": "Die Gruppe, ihre Runs, Bewerbungen, Mitgliedschaften und gemeinsamen Ressourcen werden dauerhaft gelöscht. Alle Mitglieder verlieren den Zugriff. Eine Wiederherstellung ist nicht möglich.",
             "confirm_button": "Ja, Gruppe löschen"
         },
         "toasts": {
             "deleted": "Gruppe erfolgreich gelöscht."
-        }
+        },
+        "effects_title": "Was gelöscht wird",
+        "effects": {
+            "group": {
+                "title": "Gruppenprofil und Mitgliederzugriff",
+                "description": "Profil, Bilder, Einstellungen, Mitgliedschaften, Mitgliedsnotizen, Sperren, Mitgliedschaftsbewerbungen und Einladungslinks werden entfernt. Niemand kann mehr das Dashboard öffnen oder über eine alte Einladung beitreten."
+            },
+            "runs": {
+                "title": "Kommende Runs und Run-Verlauf",
+                "description": "Geplante und vergangene Runs werden samt Bewerbungen, Kaderplätzen, Zuweisungen und Fortschrittseinträgen gelöscht. Mitglieder verlieren den Zugriff auf diese Run-Seiten und Teilnahmedetails."
+            },
+            "resources": {
+                "title": "Gemeinsame Ressourcen und Planung",
+                "description": "Ressourcenseiten und Sammlungen, Schnellerstellungs-Shortcuts und gespeicherte Verfügbarkeitspläne werden entfernt. Sichere vorher alle Anleitungen, Notizen und Planungsinformationen, die du behalten möchtest."
+            }
+        },
+        "retained_title": "Konten und Discord-Server bleiben bestehen",
+        "retained_description": "FullParty-Konten, verifizierte Charaktere und Mitgliedschaften in anderen Gruppen bleiben unverändert. Der Discord-Server wird nicht gelöscht und der Bot nicht deinstalliert; verwalte beides separat in Discord.",
+        "before_title": "Bevor du die Gruppe löschst",
+        "before_description": "Informiere Mitglieder und Hosts, kläre den Umgang mit kommenden Runs und kopiere Ressourcen oder Run-Informationen, die noch gebraucht werden. Wenn du dich nur zurückziehen möchtest und die Gruppe weiterbestehen soll, übertrage stattdessen den Besitz an ein anderes Mitglied."
     }
 }

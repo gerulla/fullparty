@@ -12,6 +12,11 @@ use Inertia\Response;
 
 class GroupContentController extends Controller
 {
+    public function index(Group $group): Response
+    {
+        return $this->renderContentPage($group, 'Dashboard/Groups/Content/Index');
+    }
+
     public function delubrumReginaeSavage(Group $group): Response
     {
         $holsters = $group->bozjaHolsters()

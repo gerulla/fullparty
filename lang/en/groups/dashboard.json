@@ -1,4 +1,35 @@
 {
+  "navigation": {
+    "overview": "Overview",
+    "planning": "Planning",
+    "insights": "Insights",
+    "manage": "Manage",
+    "run_calendar": "Run calendar",
+    "create_run": "Create Run",
+    "content_customization": "Content Customization",
+    "staff_only": "Staff only",
+    "descriptions": {
+      "activities": "View scheduled runs and the group calendar",
+      "availability": "See when members are available to play",
+      "statistics": "Explore the group’s run history and activity",
+      "leaderboard": "See member rankings and contributions",
+      "legacy_leaderboard": "Browse earlier group rankings",
+      "create_run": "Schedule a new group run",
+      "manage_resources": "Create and organize guides and collections",
+      "content_customization": "Holsters, compositions and presets",
+      "audit_log": "Review changes and staff activity",
+      "settings": "Group details, features and integrations",
+      "membership_applications": "Review requests to join the group",
+      "application_form": "Customize the group’s membership form",
+      "resources": "Browse guides and collections"
+    }
+  },
+  "quick_links": {
+    "title": "Quick links",
+    "runs": "Runs",
+    "staff_workspace": "Staff workspace",
+    "explore": "Explore"
+  },
   "staff_home": {
     "hosted_runs": "Runs You Host",
     "run_updates": "Run Updates",

@@ -5,6 +5,7 @@ use App\Models\ActivityApplication;
 use App\Models\AuditLog;
 use App\Models\Group;
 use App\Models\GroupMembership;
+use App\Models\GroupResource;
 use App\Models\User;
 use App\Services\Groups\GroupActivityAuditService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -116,7 +117,10 @@ it('filters exact runs and keeps run options and records inside their group', fu
     $this->actingAs($group->owner)->get($url)->assertInertia(fn (Assert $page) => $page
         ->has('filters.activities', 2)->where('filters.activities', fn ($options) => collect($options)
         ->pluck('value')->sort()->values()->all() === collect([(string) $run->id, (string) $otherRun->id])->sort()->values()->all()));
-    $result = $this->getJson($url.'?activity='.$run->id)->assertOk()->assertJsonCount(3, 'auditLogs');
+    $result = $this->getJson($url.'?activity='.$run->id.'&include_options=1')
+        ->assertOk()->assertJsonCount(3, 'auditLogs')->assertJsonCount(2, 'filters.activities');
+    expect(collect($result->json('filters.activities'))->pluck('value')->sort()->values()->all())
+        ->toBe(collect([(string) $run->id, (string) $otherRun->id])->sort()->values()->all());
     expect(collect($result->json('auditLogs'))->pluck('id')->all())->toBe([$legacy->id, $metadata->id, $direct->id]);
     $this->getJson($url.'?activity='.$foreignRun->id)->assertUnprocessable()->assertJsonValidationErrors('activity');
 });
@@ -139,5 +143,107 @@ it('protects both html and incremental audit requests', function () {
     foreach ([$groupUrl, $adminUrl] as $url) {
         $this->actingAs($member)->get($url)->assertForbidden();
         $this->getJson($url)->assertForbidden();
+        $this->getJson($url.'?include_options=1')->assertForbidden();
     }
+});
+
+it('keeps list entries light and presents recorded run changes only when their details are requested', function () {
+    $group = Group::factory()->create();
+    $run = Activity::factory()->create(['group_id' => $group->id, 'title' => 'Current run title']);
+    $log = createFeedAuditLog($group, [
+        'actor_user_id' => $group->owner_id,
+        'subject_type' => Activity::class, 'subject_id' => $run->id,
+        'metadata' => [
+            'activity_id' => $run->id, 'activity_title' => 'Recorded <run> title',
+            'changes' => [
+                'starts_at' => ['old' => '2026-08-03T18:00:00Z', 'new' => '2026-08-03T19:00:00Z'],
+                'duration_hours' => ['old' => 3, 'new' => 4],
+                'is_public' => ['old' => true, 'new' => false],
+            ],
+            'application_status' => 'on_bench',
+            'invite_token' => 'never-return-this-token',
+            'assignment' => ['role' => 'moderator', 'enabled' => true],
+        ],
+    ]);
+    $listUrl = route('groups.dashboard.audit-log', ['locale' => 'en', 'group' => $group]);
+    $detailUrl = route('groups.dashboard.audit-log.show', ['locale' => 'en', 'group' => $group, 'auditLog' => $log]);
+    $this->actingAs($group->owner)->getJson($listUrl)->assertOk()
+        ->assertJsonPath('auditLogs.0.changes', [])->assertJsonPath('auditLogs.0.change_count', 3)
+        ->assertJsonMissingPath('auditLogs.0.facts')->assertJsonMissingPath('auditLogs.0.formatted_changes')
+        ->assertJsonPath('auditLogs.0.category', 'runs')->assertJsonPath('auditLogs.0.icon', 'i-lucide-calendar-clock')
+        ->assertJsonPath('auditLogs.0.summary_parts.2', ['kind' => 'activity', 'text' => 'Recorded <run> title'])
+        ->assertJsonPath('auditLogs.0.summary_parts.4.display_value', ['type' => 'datetime', 'value' => '2026-08-03T18:00:00+00:00']);
+    $response = $this->getJson($detailUrl)->assertOk()
+        ->assertJsonPath('event.activity.title', 'Recorded <run> title')
+        ->assertJsonPath('event.activity.url', route('groups.dashboard.activities.show', ['locale' => 'en', 'group' => $group, 'activity' => $run]))
+        ->assertJsonCount(3, 'event.formatted_changes');
+    $changes = collect($response->json('event.formatted_changes'))->keyBy('key');
+    $facts = collect($response->json('event.facts'))->keyBy('key');
+    expect($changes['starts_at']['old_value'])->toBe(['type' => 'datetime', 'value' => '2026-08-03T18:00:00+00:00'])
+        ->and($changes['duration_hours']['new_value'])->toBe(['type' => 'duration', 'value' => 4])
+        ->and($changes['is_public']['new_value'])->toBe(['type' => 'boolean', 'value' => false])
+        ->and($facts['application_status']['value'])->toBe(['type' => 'text', 'value' => 'On Bench'])
+        ->and($facts['assignment']['value']['type'])->toBe('object');
+    expect($response->getContent())->not->toContain('never-return-this-token');
+
+    $run->delete();
+    $this->getJson($detailUrl)->assertOk()->assertJsonPath('event.activity.title', 'Recorded <run> title')
+        ->assertJsonPath('event.activity.url', null)->assertJsonPath('event.subject.id', $run->id);
+});
+
+it('scopes event details to moderators of the requested group and preserves resource confidentiality', function () {
+    $group = Group::factory()->create();
+    $other = Group::factory()->create();
+    $member = User::factory()->create();
+    $group->memberships()->create(['user_id' => $member->id, 'role' => GroupMembership::ROLE_MEMBER, 'joined_at' => now()]);
+    $foreign = createFeedAuditLog($other);
+    $url = fn ($log) => route('groups.dashboard.audit-log.show', ['locale' => 'en', 'group' => $group, 'auditLog' => $log]);
+    $this->actingAs($group->owner)->getJson($url($foreign))->assertNotFound();
+    $foreignRun = Activity::factory()->create(['group_id' => $other->id, 'title' => 'Foreign group private run']);
+    $foreignReference = createFeedAuditLog($group, ['subject_type' => Activity::class, 'subject_id' => $foreignRun->id]);
+    $foreignResponse = $this->getJson($url($foreignReference))->assertOk()->assertJsonPath('event.activity.url', null);
+    expect($foreignResponse->getContent())->not->toContain('Foreign group private run');
+    $group->features()->update(['resource_hub_enabled' => true]);
+    $moderator = User::factory()->create();
+    $group->memberships()->create(['user_id' => $moderator->id, 'role' => GroupMembership::ROLE_MODERATOR, 'joined_at' => now()]);
+    $resource = GroupResource::factory()->create([
+        'group_id' => $group->id, 'access_level' => 'admin', 'management_access_level' => 'admin',
+        'working_copy' => ['title' => 'Restricted resource title', 'access_level' => 'admin'],
+    ]);
+    $log = createFeedAuditLog($group, [
+        'action' => 'group.resources.publish', 'message' => 'audit_log.events.group.resources.publish',
+        'subject_type' => $resource::class, 'subject_id' => $resource->id,
+        'metadata' => ['title' => 'Restricted resource title', 'changes' => ['body' => ['old' => '', 'new' => 'Private resource body']]],
+    ]);
+    $this->actingAs($member)->getJson($url($log))->assertForbidden();
+    $response = $this->actingAs($moderator)->getJson($url($log))->assertOk()
+        ->assertJsonPath('event.resource', null)->assertJsonPath('event.category', 'resources')->assertJsonPath('event.facts', [])
+        ->assertJsonPath('event.formatted_changes', [])->assertJsonPath('event.change_count', 0);
+    expect($response->getContent())->not->toContain('Restricted resource title', 'Private resource body');
+    $this->getJson(route('groups.dashboard.audit-log', ['locale' => 'en', 'group' => $group, 'search' => 'Restricted resource title']))
+        ->assertOk()->assertJsonCount(0, 'auditLogs');
+    $allowed = $this->actingAs($group->owner)->getJson($url($log))->assertOk()
+        ->assertJsonPath('event.resource.id', $resource->id)
+        ->assertJsonPath('event.resource.title', 'Restricted resource title')
+        ->assertJsonPath('event.resource.url', fn ($url) => is_string($url) && str_contains($url, $group->slug));
+    expect($allowed->getContent())->not->toContain('Private resource body');
+});
+
+it('combines category filtering with complete local-day boundaries across a daylight saving change', function () {
+    $group = Group::factory()->create();
+    $first = createFeedAuditLog($group, ['created_at' => '2026-03-29 00:00:00']);
+    $last = createFeedAuditLog($group, ['created_at' => '2026-03-29 22:59:59']);
+    createFeedAuditLog($group, ['created_at' => '2026-03-29 23:00:00']);
+    createFeedAuditLog($group, ['created_at' => '2026-03-28 23:59:59']);
+    $member = createFeedAuditLog($group, ['created_at' => '2026-03-29 12:00:00', 'action' => 'group.member.joined']);
+    $settings = createFeedAuditLog($group, ['created_at' => '2026-03-29 12:00:00', 'action' => 'group.updated']);
+    $url = route('groups.dashboard.audit-log', ['locale' => 'en', 'group' => $group]);
+    $params = ['afterDate' => '2026-03-29', 'beforeDate' => '2026-03-29', 'timezone' => 'Europe/London'];
+    $this->actingAs($group->owner)->getJson($url.'?'.http_build_query([...$params, 'category' => 'runs']))
+        ->assertOk()->assertJsonCount(2, 'auditLogs')->assertJsonPath('auditLogs.0.id', $last->id)->assertJsonPath('auditLogs.1.id', $first->id);
+    $this->getJson($url.'?'.http_build_query([...$params, 'category' => 'members']))
+        ->assertOk()->assertJsonCount(1, 'auditLogs')->assertJsonPath('auditLogs.0.id', $member->id);
+    $this->getJson($url.'?'.http_build_query([...$params, 'category' => 'settings']))
+        ->assertOk()->assertJsonCount(1, 'auditLogs')->assertJsonPath('auditLogs.0.id', $settings->id);
+    $this->getJson($url.'?category=unknown&timezone=invalid')->assertUnprocessable()->assertJsonValidationErrors(['category', 'timezone']);
 });

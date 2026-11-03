@@ -35,12 +35,18 @@ class AuditLogFeedService
             $query->where('scope_type', 'group')->where('scope_id', $filters['group']);
         }
 
+        if (filled($filters['category'] ?? null)) {
+            GroupAuditCategory::apply($query, $filters['category']);
+        }
+
+        $timezone = $filters['timezone'] ?? 'UTC';
+
         if (filled($filters['afterDate'] ?? null)) {
-            $query->where('created_at', '>=', Carbon::parse($filters['afterDate'])->startOfDay());
+            $query->where('created_at', '>=', Carbon::parse($filters['afterDate'], $timezone)->startOfDay()->utc());
         }
 
         if (filled($filters['beforeDate'] ?? null)) {
-            $query->where('created_at', '<', Carbon::parse($filters['beforeDate'])->addDay()->startOfDay());
+            $query->where('created_at', '<', Carbon::parse($filters['beforeDate'], $timezone)->addDay()->startOfDay()->utc());
         }
 
         if (filled($filters['activity'] ?? null)) {
@@ -121,9 +127,13 @@ class AuditLogFeedService
         }
 
         $query->where(function (Builder $searchQuery) use ($pattern, $translatedActions, $needle) {
-            foreach (['message', 'action', 'severity', 'scope_type', 'metadata'] as $column) {
+            foreach (['message', 'action', 'severity', 'scope_type'] as $column) {
                 $searchQuery->orWhereRaw("LOWER(CAST({$column} AS TEXT)) LIKE ? ESCAPE '\\'", [$pattern]);
             }
+            // Resource metadata can contain historical restricted titles and revision comments.
+            // Presentation authorization cannot protect metadata that is matched by a SQL search.
+            $searchQuery->orWhere(fn (Builder $metadata) => $metadata->where('action', 'not like', 'group.resources.%')
+                ->whereRaw("LOWER(CAST(metadata AS TEXT)) LIKE ? ESCAPE '\\'", [$pattern]));
             $searchQuery->orWhereIn('action', $translatedActions)
                 ->orWhereHas('actor', fn (Builder $actor) => $actor->whereRaw("LOWER(name) LIKE ? ESCAPE '\\'", [$pattern]))
                 ->orWhereHasMorph('subject', [User::class, Group::class, Character::class, Activity::class],

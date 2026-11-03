@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateGroupDiscoverySettingsRequest;
 use App\Http\Requests\UpdateGroupSettingsRequest;
+use App\Http\Resources\GroupQuickCreateShortcutResource;
 use App\Models\Group;
 use App\Models\GroupMembership;
 use App\Services\AuditLogger;
@@ -309,6 +310,10 @@ class GroupSettingsController extends Controller
         if (! $includeMembersAndInvites) {
             return $payload;
         }
+
+        $payload['quick_create_shortcuts'] = $group->hasAdminAccess($currentUserId)
+            ? GroupQuickCreateShortcutResource::collection($group->resolvedQuickCreateShortcuts())->resolve()
+            : [];
 
         $payload['members'] = $group->memberships
             ->sortBy(function (GroupMembership $membership) {

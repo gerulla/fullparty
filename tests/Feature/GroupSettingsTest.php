@@ -4,6 +4,7 @@ use App\Http\Requests\GroupDetailsRequest;
 use App\Models\Group;
 use App\Models\GroupMembership;
 use App\Models\User;
+use App\Services\Audit\AuditLogFeedService;
 use App\Services\Groups\GroupAvailabilityScheduleService;
 use App\Support\Groups\GroupDiscoveryBadgePalette;
 use App\Support\Input\TextInputSanitizer;
@@ -180,6 +181,8 @@ it('allows admins to update general group settings but forbids moderators', func
         ->assertInertia(fn (Assert $page) => $page
             ->where('group.permissions.can_manage_group', false)
             ->where('group.permissions.can_update_group_settings', true)
+            ->where('group.permissions.can_manage_discovery', true)
+            ->has('group.quick_create_shortcuts', 3)
         );
 
     $this->actingAs($admin)
@@ -201,6 +204,8 @@ it('allows admins to update general group settings but forbids moderators', func
         ->assertInertia(fn (Assert $page) => $page
             ->where('group.permissions.can_manage_group', false)
             ->where('group.permissions.can_update_group_settings', false)
+            ->where('group.permissions.can_manage_discovery', false)
+            ->where('group.quick_create_shortcuts', [])
         );
 
     $this->actingAs($moderator)
@@ -218,6 +223,10 @@ it('allows admins to update general group settings but forbids moderators', func
 });
 
 it('includes group feature settings when viewing settings', function () {
+    $this->mock(AuditLogFeedService::class, function ($mock) {
+        $mock->shouldNotReceive('paginate');
+        $mock->shouldNotReceive('options');
+    });
     $owner = User::factory()->create();
     $group = Group::factory()->create([
         'owner_id' => $owner->id,
@@ -227,7 +236,7 @@ it('includes group feature settings when viewing settings', function () {
     expect($group->features()->exists())->toBeTrue();
 
     $this->actingAs($owner)
-        ->get(route('groups.dashboard.settings', $group))
+        ->get(route('groups.dashboard.settings', ['group' => $group, 'section' => 'audit_log']))
         ->assertOk()
         ->assertInertia(fn (Assert $page) => $page
             ->where('group.features.availability_scheduler_enabled', false)
@@ -235,6 +244,9 @@ it('includes group feature settings when viewing settings', function () {
             ->where('group.features.leaderboard_enabled', true)
             ->where('group.features.calendar_sync_enabled', false)
             ->where('group.features.resource_hub_enabled', false)
+            ->has('group.quick_create_shortcuts', 3)
+            ->missing('auditLogs')
+            ->missing('filters')
         );
 });
 

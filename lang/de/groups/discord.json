@@ -1,4 +1,11 @@
 {
+  "preview": {
+    "label": "Verbundenes Discord anzeigen",
+    "description": "Zeige einen verbundenen Beispielserver.",
+    "notice": "Vorschaudaten. Änderungen bleiben in dieser Vorschau und werden nicht in Discord gespeichert.",
+    "saved": "Nur Vorschau — keine Discord-Einstellungen gespeichert."
+  },
+  "load_error": "Discord-Einstellungen konnten nicht geladen werden.",
     "title": "Discord-Integration",
     "subtitle": "Verbinde {group} mit einem Discord-Server.",
     "install": {

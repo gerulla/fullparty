@@ -1,4 +1,35 @@
 {
+  "navigation": {
+    "overview": "Übersicht",
+    "planning": "Planung",
+    "insights": "Auswertung",
+    "manage": "Verwaltung",
+    "run_calendar": "Run-Kalender",
+    "create_run": "Run erstellen",
+    "content_customization": "Inhalte anpassen",
+    "staff_only": "Nur Gruppenleitung",
+    "descriptions": {
+      "activities": "Geplante Runs und den Gruppenkalender ansehen",
+      "availability": "Sehen, wann Mitglieder Zeit zum Spielen haben",
+      "statistics": "Run-Verlauf und Gruppenaktivität auswerten",
+      "leaderboard": "Ranglisten und Beiträge der Mitglieder ansehen",
+      "legacy_leaderboard": "Frühere Gruppenranglisten durchsuchen",
+      "create_run": "Einen neuen Gruppen-Run planen",
+      "manage_resources": "Anleitungen und Sammlungen erstellen und ordnen",
+      "content_customization": "Holster, Zusammenstellungen und Vorlagen",
+      "audit_log": "Änderungen und Aktionen der Gruppenleitung prüfen",
+      "settings": "Gruppendetails, Funktionen und Integrationen",
+      "membership_applications": "Beitrittsanfragen für die Gruppe prüfen",
+      "application_form": "Das Bewerbungsformular der Gruppe anpassen",
+      "resources": "Anleitungen und Sammlungen durchstöbern"
+    }
+  },
+  "quick_links": {
+    "title": "Schnellzugriff",
+    "runs": "Runs",
+    "staff_workspace": "Gruppenverwaltung",
+    "explore": "Entdecken"
+  },
   "staff_home": {
     "hosted_runs": "Von dir organisierte Runs",
     "run_updates": "Run-Updates",

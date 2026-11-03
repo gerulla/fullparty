@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import RunCard from '@/components/Home/RunCard.vue'
-import type { V2HomeRunCard } from '../../Types/V2Home'
+import RunCard from '@/components/Runs/RunCard.vue'
+import type { RunCardData, RunCardType } from '@/Types/RunCards'
 
 const props = withDefaults(defineProps<{
-    runs: V2HomeRunCard[]
+    runs: RunCardData[]
     label: string
     rows?: 1 | 2
-}>(), { rows: 1 })
+    type?: RunCardType
+}>(), { rows: 1, type: 'default' })
 
 const columns = computed(() => Array.from(
     { length: Math.ceil(props.runs.length / props.rows) },
@@ -28,8 +29,8 @@ const columns = computed(() => Array.from(
             next: 'static translate-y-0 rounded-md bg-elevation-1 hover:bg-elevation-2 dark:bg-elevation-3 dark:hover:bg-elevation-5',
         }">
         <div v-if="rows === 2" class="grid h-full grid-rows-2 gap-6">
-            <RunCard v-for="run in item" :key="run.id" :run="run" />
+            <RunCard v-for="run in item" :key="run.id" :run="run" :type="type" carousel />
         </div>
-        <RunCard v-else :key="item[0].id" :run="item[0]" />
+        <RunCard v-else :key="item[0].id" :run="item[0]" :type="type" carousel />
     </UCarousel>
 </template>

@@ -597,7 +597,37 @@ self-hosting notes in `README.md` and `LocalDevelopment.md`.
 
 ## Testing Expectations
 
-Backend behavior changes should usually have Pest coverage.
+**Be VERY careful about test bloat. Keep the suite small and useful. Test count
+and coverage percentages are not goals.**
+
+Backend behavior changes should use relevant Pest coverage. Existing tests may
+already provide sufficient coverage; a code change does not automatically need
+new tests.
+
+### Avoid Test Bloat
+
+- Before adding a test, inspect existing coverage and identify the concrete,
+  meaningful regression it would catch. If existing checks cover it, add nothing.
+- Prefer updating an existing focused test over adding another test file or
+  duplicating the same behavior across unit, component, and feature tests.
+- Do not add tests for cosmetic changes, spacing, CSS classes, static copy,
+  component placement, trivial prop forwarding, or implementation structure.
+  Use the build, relevant existing checks, and visual review as appropriate.
+- Test observable behavior and important domain rules. Avoid tests that merely
+  repeat the implementation, verify framework behavior, or mainly test mocks.
+- Keep cases representative. Add boundary or error cases only when they protect
+  distinct risks; do not multiply cases across every locale, status, role, prop,
+  or combination without a concrete reason.
+- Do not introduce a new test harness, testing dependency, or framework for a
+  small change. Reuse existing tooling; broader test infrastructure work needs
+  an explicit task.
+- Consolidate redundant coverage and remove obsolete assertions in tests being
+  touched. Preserve meaningful coverage of permissions, data integrity, roster
+  state, and other high-risk behavior.
+- For new tests, be able to explain the coverage gap and why the maintenance
+  cost is justified. Default to the smallest useful addition, including none.
+
+### Existing Conventions And Validation
 
 Existing test conventions:
 
@@ -735,6 +765,7 @@ Before finishing a task, check the relevant items:
 - No unrelated user changes were reverted.
 - No temporary debug output remains.
 - Backend behavior changes have targeted Pest coverage or a clear explanation.
+- Any new tests cover a meaningful gap without redundant cases or new harnesses.
 - Frontend changes build with `npm run build`, unless not run for a stated reason.
 - Migrations were considered against both SQLite tests and PostgreSQL intent.
 - Permissions, audit logs, notifications, queues, and realtime updates were

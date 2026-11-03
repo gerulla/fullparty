@@ -6,8 +6,7 @@ import { router, usePage } from "@inertiajs/vue3";
 import { route } from "ziggy-js";
 import { computed, ref } from "vue";
 import { useI18n } from "vue-i18n";
-// @ts-ignore
-import { useConfirmationModal } from "@/composables/useConfirmationModal";
+import { useGroupMembershipActions } from "@/composables/useGroupMembershipActions";
 import GroupNotificationPreferencesModal from "@/components/Groups/GroupNotificationPreferencesModal.vue";
 import { groupNotificationIcon } from "@/utils/groupNotifications";
 
@@ -17,9 +16,8 @@ const props = defineProps<{
 
 const { t } = useI18n();
 const page = usePage();
-const confirmationModal = useConfirmationModal();
 const toast = useToast();
-const notificationPreferencesOpen = ref(false);
+const { notificationPreferencesOpen, openNotificationPreferences, leaveGroup } = useGroupMembershipActions(() => props.group);
 const membershipActionPending = ref(false);
 const runListActionPending = ref(false);
 const isInMyRuns = ref(Boolean(props.group.is_in_my_runs));
@@ -89,14 +87,6 @@ const openSettings = () => {
 	router.get(route("groups.dashboard.settings", props.group.slug));
 };
 
-const openNotificationPreferences = () => {
-	if (!props.group.permissions.can_toggle_notifications) {
-		return;
-	}
-
-	notificationPreferencesOpen.value = true;
-};
-
 const joinOrApply = () => {
 	if (membershipActionPending.value || props.group.membership_application.pending) {
 		return;
@@ -124,40 +114,6 @@ const joinOrApply = () => {
 		redirect_to: "dashboard",
 	}, {
 		onFinish: () => membershipActionPending.value = false,
-	});
-};
-
-const leaveGroup = async () => {
-	if (!props.group.permissions.can_leave) {
-		return;
-	}
-
-	await confirmationModal.open({
-		title: t("groups.dashboard.leave_group_modal.title", { name: props.group.name }),
-		description: t("groups.dashboard.leave_group_modal.description", { name: props.group.name }),
-		severity: "error",
-		warningText: t("groups.dashboard.leave_group_modal.warning"),
-		confirmLabel: t("groups.dashboard.leave_group_modal.confirm"),
-		confirmIcon: "i-lucide-log-out",
-		onConfirm: async ({ patch }) => {
-			patch({ confirmLoading: true });
-
-			return await new Promise<boolean>((resolve) => {
-				router.post(route("groups.leave", props.group.slug), {
-					redirect_to: props.group.is_visible ? "profile" : "groups",
-				}, {
-					onSuccess: () => {
-						resolve(true);
-					},
-					onError: () => {
-						resolve(false);
-					},
-					onFinish: () => {
-						patch({ confirmLoading: false });
-					},
-				});
-			});
-		},
 	});
 };
 

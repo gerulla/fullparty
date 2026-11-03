@@ -7,8 +7,9 @@ import { route } from 'ziggy-js'
 import HomeEmptyState from '@/components/Home/HomeEmptyState.vue'
 import { useAppearance } from '@/composables/useAppearance'
 import { formatRelativeTime } from '@/utils/formatRelativeTime'
+import { getRunParticipationColor } from '@/utils/runParticipationMeta'
 import { localizedValue } from '@/utils/localizedValue'
-import type { V2HomeApplication, V2HomeCharacter, V2HomeParticipationStatus } from '../../Types/V2Home'
+import type { V2HomeApplication, V2HomeCharacter } from '../../Types/V2Home'
 import { useDateTimeFormat } from '@/composables/useDateTimeFormat'
 
 const { t, locale } = useI18n()
@@ -36,20 +37,6 @@ const tabs = computed(() => [
 	{ label: t('dashboard.runs_tabs.upcoming'), value: 'upcoming', slot: 'upcoming', applications: forCharacter(props.applications), loading: props.loading ?? props.applications === undefined },
 	{ label: t('dashboard.runs_tabs.history'), value: 'history', slot: 'history', applications: forCharacter(props.history), loading: props.historyLoading ?? props.history === undefined },
 ])
-
-const statusColors = {
-	approved: 'success',
-	pending: 'warning',
-	on_bench: 'info',
-	declined: 'error',
-	withdrawn: 'error',
-	cancelled: 'error',
-	assigned: 'brand',
-	checked_in: 'success',
-	late: 'warning',
-	missing: 'error',
-	filled_in: 'info',
-} as const satisfies Record<V2HomeParticipationStatus, string>
 
 const runTitle = (application: V2HomeApplication) => (
 	application.run.title || localizedValue(application.run.activity_type.name, locale.value)
@@ -121,7 +108,7 @@ const fullStart = (application: V2HomeApplication) => formatDateTime(new Date(ap
 						<div class="flex min-w-0 flex-1 flex-col items-center justify-stretch gap-2">
 							<div class="w-full flex flex-row items-start justify-between gap-4">
 								<p class="text-sm min-w-0 break-words">{{ runTitle(application) }}</p>
-								<UBadge :variant="badgeVariant" :color="statusColors[application.display_status]" class="shrink-0">{{ t(`dashboard.character_applications.statuses.${application.display_status}`) }}</UBadge>
+								<UBadge :variant="badgeVariant" :color="getRunParticipationColor(application.display_status)" class="shrink-0">{{ t(`dashboard.character_applications.statuses.${application.display_status}`) }}</UBadge>
 							</div>
 							<div class="w-full flex flex-row flex-wrap items-start justify-between gap-x-4 gap-y-1">
 								<p class="text-muted text-xs">{{ t('dashboard.character_applications.host', { name: application.run.group.name }) }}</p>

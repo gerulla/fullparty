@@ -4,7 +4,7 @@ import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { route } from 'ziggy-js'
 import HomeEmptyState from '@/components/Home/HomeEmptyState.vue'
-import RunCarousel from '@/components/Home/RunCarousel.vue'
+import RunCarousel from '@/components/Runs/RunCarousel.vue'
 import RunCarouselSkeleton from '@/components/Home/RunCarouselSkeleton.vue'
 import type { V2HomeGroupRuns } from '../../Types/V2Home'
 

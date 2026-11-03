@@ -9,8 +9,10 @@ use App\Models\Group;
 use App\Models\GroupMembership;
 use App\Models\GroupMembershipApplication;
 use App\Models\User;
+use App\Services\Groups\GroupHostedRunUpdatesService;
 use App\Services\Notifications\NotificationPreferenceSettingsService;
 use App\Services\Runs\RunAccessService;
+use App\Services\Runs\RunParticipationService;
 use App\Support\Groups\GroupDiscoveryBadgePalette;
 use App\Support\Seo\ServerMeta;
 use Illuminate\Support\Collection;
@@ -21,9 +23,11 @@ class GroupDashboardController extends Controller
 {
     public function __construct(
         private readonly RunAccessService $runAccess,
+        private readonly RunParticipationService $participation,
         private readonly GroupDiscoveryBadgePalette $groupDiscoveryBadgePalette,
         private readonly NotificationPreferenceSettingsService $notificationPreferenceSettingsService,
         private readonly ServerMeta $serverMeta,
+        private readonly GroupHostedRunUpdatesService $hostedRunUpdates,
     ) {}
 
     public function show(Group $group): Response
@@ -41,15 +45,21 @@ class GroupDashboardController extends Controller
                     'organizer',
                     'organizerCharacter',
                     'applications' => fn ($applicationQuery) => $applicationQuery
-                        ->select(['id', 'activity_id', 'user_id', 'status'])
+                        ->select(['id', 'activity_id', 'user_id', 'applicant_avatar_url'])
+                        ->whereIn('status', ActivityApplication::ACTIVE_STATUSES)
+                        ->orderBy('created_at')->orderBy('id')->limit(3),
+                    'applications.user:id,public_profile,public_characters',
+                    'activityType',
+                    'activityTypeVersion.activityType',
+                ])
+                ->withExists([
+                    'applications as has_existing_application' => fn ($applicationQuery) => $applicationQuery
                         ->when(
                             $currentUserId !== null,
                             fn ($query) => $query->where('user_id', $currentUserId),
                             fn ($query) => $query->whereRaw('1 = 0'),
                         )
                         ->where('status', '!=', ActivityApplication::STATUS_WITHDRAWN),
-                    'activityType',
-                    'activityTypeVersion.activityType',
                 ])
                 ->withCount([
                     'slots' => fn ($query) => $query->where('slot_kind', '!=', ActivitySlot::SLOT_KIND_FILL_IN),
@@ -65,6 +75,7 @@ class GroupDashboardController extends Controller
             abort(404);
         }
 
+        $participationStatuses = $this->participation->statusesFor($group->activities, $currentUserId);
         $currentMembership = $group->memberships->firstWhere('user_id', $currentUserId);
         $isBanned = $group->isBanned($currentUserId);
         $hasPendingMembershipApplication = $currentUserId !== null
@@ -80,6 +91,13 @@ class GroupDashboardController extends Controller
         $weekEnd = $weekStart->copy()->addDays(6)->endOfDay();
         $activities = $group->activities
             ->sortByDesc('updated_at')
+            ->values();
+        $hostedActivities = $activities
+            ->filter(fn (Activity $activity) => $canManageActivities
+                && (int) $activity->organized_by_user_id === $currentUserId
+                && ! $activity->is_completed
+                && ! Activity::isArchivedStatus($activity->status))
+            ->sortBy(fn (Activity $activity) => [$activity->starts_at?->getTimestamp() ?? PHP_INT_MAX, $activity->id])
             ->values();
         $upcomingActivities = $activities
             ->filter(fn (Activity $activity) => ! Activity::isArchivedStatus($activity->status)
@@ -114,6 +132,15 @@ class GroupDashboardController extends Controller
 
                 return $left->id <=> $right->id;
             })
+            ->values();
+        // Include the adjacent UTC days so the browser can render seven local
+        // calendar days without dropping runs at either timezone boundary.
+        $calendarStart = $weekStart->copy()->subDay();
+        $calendarEnd = $weekEnd->copy()->addDay();
+        $calendarActivities = $activities
+            ->filter(fn (Activity $activity) => $activity->starts_at !== null
+                && $activity->starts_at->betweenIncluded($calendarStart, $calendarEnd))
+            ->sortBy('starts_at')
             ->values();
         $statusCounts = collect(Activity::STATUSES)
             ->mapWithKeys(fn (string $status) => [$status => $activities->where('status', $status)->count()]);
@@ -247,13 +274,24 @@ class GroupDashboardController extends Controller
                     'end_date' => $weekEnd->toDateString(),
                 ],
                 'current_week_activities' => $currentWeekActivities
-                    ->map(fn (Activity $activity) => $this->serializeDashboardActivity($activity, $group, $canManageActivities)),
+                    ->map(fn (Activity $activity) => $this->serializeDashboardActivity($activity, $group, $canManageActivities, $participationStatuses[$activity->id] ?? null)),
+                'calendar_activities' => $calendarActivities
+                    ->map(fn (Activity $activity) => $this->serializeDashboardActivity($activity, $group, $canManageActivities, $participationStatuses[$activity->id] ?? null)),
+                'applied_activities' => $upcomingActivities
+                    ->filter(fn (Activity $activity) => ! $activity->is_completed
+                        && in_array($activity->status, [Activity::STATUS_SCHEDULED, Activity::STATUS_ASSIGNED, Activity::STATUS_UPCOMING], true)
+                        && in_array($participationStatuses[$activity->id] ?? null, RunParticipationService::ACTIVE_STATUSES, true))
+                    ->values()
+                    ->map(fn (Activity $activity) => $this->serializeDashboardActivity($activity, $group, $canManageActivities, $participationStatuses[$activity->id])),
+                'hosted_activities' => $hostedActivities
+                    ->map(fn (Activity $activity) => $this->serializeDashboardActivity($activity, $group, $canManageActivities, $participationStatuses[$activity->id] ?? null)),
+                'hosted_run_notifications' => $this->hostedRunUpdates->forHost($group, auth()->user(), $hostedActivities),
                 'upcoming_activities' => $upcomingActivities
                     ->take(8)
-                    ->map(fn (Activity $activity) => $this->serializeDashboardActivity($activity, $group, $canManageActivities)),
+                    ->map(fn (Activity $activity) => $this->serializeDashboardActivity($activity, $group, $canManageActivities, $participationStatuses[$activity->id] ?? null)),
                 'history_activities' => $historyActivities
                     ->take(6)
-                    ->map(fn (Activity $activity) => $this->serializeDashboardActivity($activity, $group, $canManageActivities)),
+                    ->map(fn (Activity $activity) => $this->serializeDashboardActivity($activity, $group, $canManageActivities, $participationStatuses[$activity->id] ?? null)),
             ],
         ])->withViewData('serverMeta', $this->serverMeta->group($group));
     }
@@ -306,8 +344,10 @@ class GroupDashboardController extends Controller
     /**
      * @return array<int, array{
      *     key: string,
+     *     activity_type_id: int|null,
      *     activity_name: string,
      *     activity_image_url: string|null,
+     *     activity_banner_image_url: string|null,
      *     total_runs: int,
      *     completed_runs: int,
      *     active_runs: int,
@@ -354,8 +394,11 @@ class GroupDashboardController extends Controller
 
                 return [
                     'key' => $key,
+                    'activity_type_id' => $representativeRun->activity_type_id
+                        ?? $representativeRun->activityTypeVersion?->activity_type_id,
                     'activity_name' => $this->resolveDashboardActivityDisplayName($representativeRun),
                     'activity_image_url' => $representativeRun->activityTypeVersion?->small_image_url,
+                    'activity_banner_image_url' => $representativeRun->activityTypeVersion?->banner_image_url,
                     'total_runs' => (int) $runs->count(),
                     'completed_runs' => (int) $runs->where('status', Activity::STATUS_COMPLETE)->count(),
                     'active_runs' => (int) $runs->whereIn('status', [
@@ -395,10 +438,10 @@ class GroupDashboardController extends Controller
     /**
      * @return array<string, mixed>
      */
-    private function serializeDashboardActivity(Activity $activity, Group $group, bool $canManageActivities): array
+    private function serializeDashboardActivity(Activity $activity, Group $group, bool $canManageActivities, ?string $participationStatus): array
     {
         $canViewOverview = $this->runAccess->canView($group, $activity, auth()->id());
-        $hasExistingApplication = $activity->applications->isNotEmpty();
+        $hasExistingApplication = (bool) $activity->has_existing_application;
         $viewLink = $canManageActivities
             ? route('groups.dashboard.activities.show', [
                 'group' => $group,
@@ -431,6 +474,7 @@ class GroupDashboardController extends Controller
             'secret_key' => null,
             'can_view_overview' => $canViewOverview,
             'has_existing_application' => $hasExistingApplication,
+            'participation_status' => $participationStatus,
             'can_apply' => $canApply,
             'needs_application' => $activity->needs_application,
             'allow_guest_applications' => $activity->allow_guest_applications,
@@ -447,6 +491,11 @@ class GroupDashboardController extends Controller
             ] : null,
             'slot_count' => (int) ($activity->slots_count ?? 0),
             'application_count' => (int) ($activity->applications_count ?? 0),
+            // Match home-page previews: private profiles and guests remain anonymous.
+            'applicant_avatars' => $activity->applications
+                ->map(fn (ActivityApplication $application): ?string => $application->user?->public_profile
+                    && $application->user?->public_characters ? $application->applicant_avatar_url : null)
+                ->all(),
             'created_at' => $activity->created_at?->toIso8601String(),
             'updated_at' => $activity->updated_at?->toIso8601String(),
             'links' => [

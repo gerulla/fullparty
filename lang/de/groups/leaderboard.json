@@ -1,4 +1,10 @@
 {
+  "loading": {
+    "label": "Rangliste wird geladen…",
+    "error_title": "Die Rangliste konnte nicht geladen werden",
+    "error_description": "Bitte versuche erneut, die Rangliste zu laden.",
+    "retry": "Erneut versuchen"
+  },
     "title": "Bestenliste",
     "subtitle": "{group}-Teilnahmeranglisten uber eingeteilte Runs.",
     "summary": {

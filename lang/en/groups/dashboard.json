@@ -1,4 +1,15 @@
 {
+  "staff_home": {
+    "hosted_runs": "Runs You Host",
+    "run_updates": "Run Updates",
+    "no_updates": "No updates for your hosted runs yet."
+  },
+  "user_home": {
+    "hide_participating": "Hide participating",
+    "no_matching_runs": "No runs match your filters.",
+    "your_upcoming_runs": "Your Upcoming Runs",
+    "view_run": "View Run"
+  },
   "actions": {
     "view_runs": "View Runs",
     "view_members": "View Members",
@@ -74,6 +85,9 @@
     "empty": "No runs are scheduled in the next 7 days."
   },
   "content": {
+    "runs_done": "{count} runs done | {count} run done | {count} runs done",
+    "find_runs": "Find runs",
+    "find_type_runs": "Find runs for {name}",
     "title": "What This Group Runs",
     "subtitle": "See the kinds of content this group keeps coming back to, along with their history for each one.",
     "total_runs": "{count} visible runs",

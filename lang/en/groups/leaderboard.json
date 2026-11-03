@@ -1,4 +1,10 @@
 {
+  "loading": {
+    "label": "Loading leaderboard…",
+    "error_title": "Leaderboard could not be loaded",
+    "error_description": "Please try loading the leaderboard again.",
+    "retry": "Try again"
+  },
   "title": "Leaderboard",
   "subtitle": "{group} participation rankings across rostered runs.",
   "summary": {

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { getRunParticipationColor } from "@/utils/runParticipationMeta"
 import type { SlotDesignation } from "@/Types/ActivityRoster";
 import type { ContextMenuItem } from "@nuxt/ui";
 import { computed } from "vue";
@@ -332,10 +333,10 @@ const rows = computed(() => [...props.slots]
 			: t('groups.activities.management.roster.open'),
 		statusColor: slot.assigned_character_id
 			? (slot.attendance_status === 'checked_in'
-				? 'info'
+				? getRunParticipationColor('checked_in')
 				: slot.attendance_status === 'late'
-					? 'warning'
-					: 'success')
+					? getRunParticipationColor('late')
+					: getRunParticipationColor('assigned'))
 			: 'neutral',
 		designationBadges: [
 			slot.is_host

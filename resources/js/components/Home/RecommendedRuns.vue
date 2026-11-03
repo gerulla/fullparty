@@ -4,7 +4,7 @@ import { computed } from 'vue'
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
 import { useI18n } from 'vue-i18n'
 import type { V2HomeRunCard } from '../../Types/V2Home'
-import RunCarousel from '@/components/Home/RunCarousel.vue'
+import RunCarousel from '@/components/Runs/RunCarousel.vue'
 import RunCarouselSkeleton from '@/components/Home/RunCarouselSkeleton.vue'
 
 const props = defineProps<{

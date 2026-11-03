@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
 import { createI18n } from 'vue-i18n';
 import { createTranslationLoader } from '../../resources/js/i18n/createTranslationLoader.js';
@@ -6,6 +7,30 @@ import { createPageResolver } from '../../resources/js/i18n/createPageResolver.j
 import { pageNamespaces } from '../../resources/js/i18n/pageNamespaces.js';
 
 const composer = () => createI18n({ legacy: false, locale: 'de', fallbackLocale: 'en', missingWarn: false, fallbackWarn: false, messages: {} }).global;
+
+test('fresh home and group dashboard loads resolve participation badges in every supported locale', async () => {
+    const dictionary = (locale, namespace) => JSON.parse(readFileSync(new URL(`../../lang/${locale}/${namespace}.json`, import.meta.url), 'utf8'));
+    for (const name of ['V2/Home', 'Dashboard/Groups/CommunityDashboard']) {
+        for (const locale of ['en', 'de', 'fr', 'ja']) {
+            const i18n = composer();
+            i18n.locale.value = locale;
+            const files = Object.fromEntries([...new Set(['en', locale])].flatMap(code => pageNamespaces(name).map(namespace => [
+                `../../lang/${code}/${namespace}.json`, async () => ({ default: dictionary(code, namespace) }),
+            ])));
+            const resolve = createPageResolver({
+                application: 'main', composer: i18n, getLocale: () => locale,
+                translations: createTranslationLoader(files),
+                pages: { [`./Pages/${name}.vue`]: async () => ({ default: {} }) },
+            });
+            await resolve(name);
+            for (const [status, label] of Object.entries(dictionary(locale, 'runs').participation.statuses)) {
+                const key = `runs.participation.statuses.${status}`;
+                assert.ok(i18n.te(key, locale), `${name}: ${locale} is missing ${key}`);
+                assert.equal(i18n.t(key), label);
+            }
+        }
+    }
+});
 
 test('loads only requested features in the selected language and English', async () => {
     const calls = [];

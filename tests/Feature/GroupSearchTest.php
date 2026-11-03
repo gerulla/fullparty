@@ -190,18 +190,20 @@ it('renders group embed meta when discovery opens a specific group', function ()
     expect(substr_count($response->getContent(), '<meta property="og:image"'))->toBe(1);
 });
 
-it('shares the sidebar group quick links as my and joined buckets', function () {
+it('shares only the users groups with avatars and membership roles for the group switcher', function () {
     $user = User::factory()->create();
 
     $ownedGroup = Group::factory()->open()->create([
         'owner_id' => $user->id,
         'name' => 'Owned Sidebar Group',
         'slug' => 'ownedsb',
+        'profile_picture_url' => '/storage/groups/owned.png',
     ]);
 
     $adminGroup = Group::factory()->open()->create([
         'name' => 'Admin Sidebar Group',
         'slug' => 'adminsb',
+        'profile_picture_url' => '/storage/groups/admin.png',
     ]);
     $adminGroup->memberships()->create([
         'user_id' => $user->id,
@@ -219,15 +221,45 @@ it('shares the sidebar group quick links as my and joined buckets', function () 
         'joined_at' => now(),
     ]);
 
+    $moderatorGroup = Group::factory()->open()->create([
+        'name' => 'Moderator Sidebar Group', 'slug' => 'modsb', 'profile_picture_url' => null,
+    ]);
+    $moderatorGroup->memberships()->create([
+        'user_id' => $user->id, 'role' => GroupMembership::ROLE_MODERATOR, 'joined_at' => now(),
+    ]);
+    $followedGroup = Group::factory()->open()->create(['name' => 'Followed but not joined']);
+    $user->runListGroups()->attach($followedGroup->id);
+    Group::factory()->hidden()->create(['name' => 'Another users private group']);
+
     $this->actingAs($user)
         ->get(route('groups.index'))
         ->assertOk()
         ->assertInertia(fn (Assert $page) => $page
             ->component('Dashboard/Groups/Index')
+            ->has('navigation.group_quick_links.my', 3)
+            ->has('navigation.group_quick_links.joined', 1)
             ->where('navigation.group_quick_links.my.0.slug', 'adminsb')
-            ->where('navigation.group_quick_links.my.1.slug', 'ownedsb')
+            ->where('navigation.group_quick_links.my.0.role', 'admin')
+            ->where('navigation.group_quick_links.my.0.profile_picture_url', '/storage/groups/admin.png')
+            ->where('navigation.group_quick_links.my.1.slug', 'modsb')
+            ->where('navigation.group_quick_links.my.1.role', 'moderator')
+            ->where('navigation.group_quick_links.my.1.profile_picture_url', null)
+            ->where('navigation.group_quick_links.my.2.slug', 'ownedsb')
+            ->where('navigation.group_quick_links.my.2.role', 'owner')
+            ->where('navigation.group_quick_links.my.2.profile_picture_url', '/storage/groups/owned.png')
+            ->where('navigation.group_quick_links.my.2.href', route('groups.dashboard', $ownedGroup, false))
             ->where('navigation.group_quick_links.joined.0.slug', 'membersb')
+            ->where('navigation.group_quick_links.joined.0.role', 'member')
         );
+});
+
+it('shares no group switcher memberships with public dashboard visitors', function () {
+    $group = Group::factory()->open()->create();
+
+    $this->get(route('groups.dashboard', $group))->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->where('navigation.group_quick_links.my', [])
+            ->where('navigation.group_quick_links.joined', []));
 });
 
 it('includes groups the current user already belongs to in discovery results', function () {

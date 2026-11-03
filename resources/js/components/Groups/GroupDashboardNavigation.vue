@@ -3,6 +3,7 @@ import { Link } from '@inertiajs/vue3'
 import { useI18n } from 'vue-i18n'
 import { route } from 'ziggy-js'
 import { useGroupDashboardNavigation } from '@/composables/useGroupDashboardNavigation'
+import GroupSwitcher from '@/components/Groups/GroupSwitcher.vue'
 import type { GroupNavigationContext } from '@/Types/GroupNavigation'
 
 const props = defineProps<{ group: GroupNavigationContext }>()
@@ -13,13 +14,7 @@ const { sections } = useGroupDashboardNavigation(() => props.group)
 
 <template>
     <nav :aria-label="t('groups.index.navigation.menu')" class="space-y-6">
-        <Link :href="route('groups.dashboard', { group: group.slug })"
-            class="flex min-w-0 items-center gap-3 rounded-lg p-2 transition-colors hover:bg-elevation-3 focus-visible:outline-2 focus-visible:outline-brand-400"
-            @click="emit('navigate')">
-            <UAvatar :src="group.profile_picture_url ?? undefined" :alt="group.name" icon="i-lucide-users"
-                size="lg" :ui="{ root: 'shrink-0 rounded-lg' }" />
-            <span class="min-w-0 text-sm font-semibold leading-snug text-highlighted wrap-break-word">{{ group.name ?? group.slug }}</span>
-        </Link>
+        <GroupSwitcher :group="group" @navigate="emit('navigate')" />
 
         <section v-for="section in sections" :key="section.key" class="space-y-1">
             <h2 class="px-3 pb-1 text-xs font-semibold tracking-wide text-muted">{{ section.label }}</h2>

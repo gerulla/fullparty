@@ -1,4 +1,15 @@
 {
+  "staff_home": {
+    "hosted_runs": "Vos sorties organisées",
+    "run_updates": "Actualités des sorties",
+    "no_updates": "Aucune actualité pour les sorties que vous organisez pour le moment."
+  },
+  "user_home": {
+    "hide_participating": "Masquer mes participations",
+    "no_matching_runs": "Aucune sortie ne correspond à vos filtres.",
+    "your_upcoming_runs": "Vos prochaines sorties",
+    "view_run": "Voir la session"
+  },
     "actions": {
         "view_runs": "Voir les runs",
         "view_members": "Voir les membres",
@@ -74,6 +85,9 @@
         "empty": "Aucun run n’est prévu dans les 7 prochains jours."
     },
     "content": {
+    "runs_done": "{count} sorties terminées | {count} sortie terminée | {count} sorties terminées",
+    "find_runs": "Chercher",
+    "find_type_runs": "Chercher des sorties pour {name}",
         "title": "Ce que ce groupe joue",
         "subtitle": "Découvrez les types de contenu auxquels ce groupe revient régulièrement, ainsi que leur historique pour chacun.",
         "total_runs": "{count} runs visibles",

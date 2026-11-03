@@ -31,6 +31,21 @@ export type GroupLeaderboardCountEntry = {
 
 export type GroupLeaderboardPeriod = "all_time" | "past_6_months" | "past_30_days"
 
+export type GroupLeaderboardCategory = 'overall' | 'raid_leaders' | 'hosts'
+export type GroupLeaderboardLimit = '10' | '100' | 'all'
+
+export type GroupLeaderboardRankingController = {
+    category: GroupLeaderboardCategory
+    period: GroupLeaderboardPeriod
+    limit: GroupLeaderboardLimit
+    entries: GroupLeaderboardCountEntry[]
+    loading: boolean
+    error: boolean
+    setPeriod: (period: GroupLeaderboardPeriod) => void
+    setLimit: (limit: GroupLeaderboardLimit) => void
+    retry: () => void
+}
+
 export type GroupLeaderboardHostSuccessEntry = {
 	rank: number
 	character: GroupLeaderboardCharacter

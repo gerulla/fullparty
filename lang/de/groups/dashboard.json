@@ -1,4 +1,15 @@
 {
+  "staff_home": {
+    "hosted_runs": "Von dir organisierte Runs",
+    "run_updates": "Run-Updates",
+    "no_updates": "Noch keine Updates zu deinen organisierten Runs."
+  },
+  "user_home": {
+    "hide_participating": "Runs mit eigener Teilnahme ausblenden",
+    "no_matching_runs": "Keine Runs entsprechen deinen Filtern.",
+    "your_upcoming_runs": "Deine nächsten Runs",
+    "view_run": "Run ansehen"
+  },
     "actions": {
         "view_runs": "Runs ansehen",
         "view_members": "Mitglieder ansehen",
@@ -74,6 +85,9 @@
         "empty": "In den nächsten 7 Tagen sind keine Runs geplant."
     },
     "content": {
+    "runs_done": "{count} Runs abgeschlossen | {count} Run abgeschlossen | {count} Runs abgeschlossen",
+    "find_runs": "Runs finden",
+    "find_type_runs": "Runs für {name} finden",
         "title": "Was diese Gruppe laeuft",
         "subtitle": "Sieh dir an, zu welchen Inhalten diese Gruppe immer wieder zurückkehrt, zusammen mit ihrer Historie pro Inhalt.",
         "total_runs": "{count} sichtbare Runs",

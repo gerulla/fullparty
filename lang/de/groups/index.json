@@ -1,4 +1,9 @@
 {
+  "dashboard_preview": {
+    "view": "Dashboard-Ansicht",
+    "user": "Nutzeransicht",
+    "staff": "Teamansicht"
+  },
     "your_groups": {
         "title": "Deine Gruppen",
         "subtitle": "Alle Gruppen, denen du angehörst, an einem Ort.",
@@ -33,6 +38,9 @@
         "discover": "Sichtbare Gruppen, sortiert nach ihrer letzten Aktivität"
     },
     "navigation": {
+    "switch_group": "Gruppe wechseln: {group}",
+    "create_group": "Gruppe erstellen",
+    "find_groups": "Gruppen finden",
     "menu": "Gruppenmenü",
     "back_to_groups": "Zurück zu den Gruppen",
         "general": "Allgemein",

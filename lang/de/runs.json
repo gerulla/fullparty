@@ -1,4 +1,19 @@
 {
+  "participation": {
+    "statuses": {
+      "pending": "Beworben",
+      "approved": "Genehmigt",
+      "assigned": "Zugewiesen",
+      "on_bench": "Auf der Ersatzbank",
+      "filled_in": "Aushilfe",
+      "checked_in": "Eingecheckt",
+      "late": "Verspätet",
+      "missing": "Fehlend",
+      "declined": "Abgelehnt",
+      "cancelled": "Abgesagt",
+      "withdrawn": "Zurückgezogen"
+    }
+  },
     "discovery": {
         "title": "Runs entdecken",
         "subtitle": "Finde öffentliche Runs von Gruppen auf FullParty.",

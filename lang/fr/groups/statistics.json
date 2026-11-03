@@ -1,4 +1,10 @@
 {
+  "loading": {
+    "label": "Chargement des statistiques…",
+    "error_title": "Impossible de charger les statistiques",
+    "error_description": "Veuillez réessayer de charger les statistiques.",
+    "retry": "Réessayer"
+  },
     "title": "Statistiques",
     "subtitle": "Activite, participation, candidatures et tendances de loadout pour {group}.",
     "common": {

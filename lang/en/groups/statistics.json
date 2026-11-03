@@ -1,4 +1,10 @@
 {
+  "loading": {
+    "label": "Loading statistics…",
+    "error_title": "Statistics could not be loaded",
+    "error_description": "Please try loading the statistics again.",
+    "retry": "Try again"
+  },
   "title": "Statistics",
   "subtitle": "{group} activity, attendance, applications, and loadout trends.",
   "common": {

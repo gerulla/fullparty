@@ -1,4 +1,10 @@
 {
+  "loading": {
+    "label": "Chargement du classement…",
+    "error_title": "Impossible de charger le classement",
+    "error_description": "Veuillez réessayer de charger le classement.",
+    "retry": "Réessayer"
+  },
     "title": "Classement",
     "subtitle": "Classements de participation de {group} sur les runs avec composition.",
     "summary": {

@@ -1,5 +1,5 @@
 const common = ['general', 'meta', 'reports']
-const dashboard = [...common, 'applications', 'auth', 'characters', 'changelog', 'dashboard', 'forms', 'groups/dashboard', 'groups/index', 'navigation', 'notifications', 'settings']
+const dashboard = [...common, 'applications', 'auth', 'characters', 'changelog', 'dashboard', 'forms', 'groups/common', 'groups/dashboard', 'groups/index', 'navigation', 'notifications', 'settings']
 
 // Include modal and shared-component dictionaries, not just the page's visible labels.
 const features = {
@@ -34,7 +34,8 @@ const features = {
     'Dashboard/Groups/Activities/Show': ['audit_log', 'groups/activities', 'groups/members', 'party_finder'],
     'Dashboard/Groups/AuditLog/Index': ['audit_log', 'groups/access'],
     'Dashboard/Groups/Availability': ['groups/availability'],
-    'Dashboard/Groups/CommunityDashboard': ['groups/activities', 'groups/common', 'groups/notifications'],
+    'Dashboard/Groups/CommunityDashboard': ['groups/activities', 'groups/common', 'groups/notifications', 'runs'],
+    'Dashboard/Groups/GroupProfile': ['groups/activities', 'groups/common', 'groups/notifications'],
     'Dashboard/Groups/Content/DelubrumReginaeSavage': ['rich_text'],
     'Dashboard/Groups/Content/ForkedTowerBlood': [],
     'Dashboard/Groups/DiscordIntegration': ['groups/access', 'groups/discord'],
@@ -65,16 +66,16 @@ const features = {
 }
 
 const standalone = {
-    'V2/Characters/Claim': ['auth', 'characters', 'changelog', 'dashboard', 'groups/activities', 'groups/dashboard', 'navigation', 'notifications', 'settings'],
-    'V2/Characters/Create': ['auth', 'characters', 'changelog', 'dashboard', 'groups/activities', 'groups/dashboard', 'navigation', 'notifications', 'settings'],
-    'V2/Home': ['auth', 'characters', 'changelog', 'dashboard', 'groups/activities', 'groups/dashboard', 'navigation', 'notifications', 'settings'],
+    'V2/Characters/Claim': ['auth', 'characters', 'changelog', 'dashboard', 'groups/activities', 'groups/common', 'groups/dashboard', 'groups/index', 'navigation', 'notifications', 'settings'],
+    'V2/Characters/Create': ['auth', 'characters', 'changelog', 'dashboard', 'groups/activities', 'groups/common', 'groups/dashboard', 'groups/index', 'navigation', 'notifications', 'settings'],
+    'V2/Home': ['auth', 'characters', 'changelog', 'dashboard', 'groups/activities', 'groups/common', 'groups/dashboard', 'groups/index', 'navigation', 'notifications', 'runs', 'settings'],
     'Forms/Show': ['forms'],
     'auth/Banned': [],
     'Resources/Show': ['groups/resources'],
     Home: ['auth', 'groups/activities', 'landing'],
     'Legal/CookiesPolicy': ['legal'],
     'Legal/PrivacyPolicy': ['legal'],
-    'Groups/Invite': ['groups/index', 'groups/invite'],
+    'Groups/Invite': ['group_invitations', 'groups/index', 'groups/invite', 'navigation'],
     'auth/ForgotPassword': ['auth', 'xivplugin', 'navigation'],
     'auth/LinkSocial': ['auth', 'xivplugin', 'navigation'],
     'auth/Login': ['auth', 'xivplugin', 'navigation'],

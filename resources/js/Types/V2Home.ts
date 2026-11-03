@@ -1,6 +1,8 @@
+import type { RunApplicationStatus, RunParticipationStatus } from './RunParticipation'
 import type { ActivityStatus } from './ActivityCore'
 import type { LocalizedText } from './Common'
 import type { CharacterIdentity } from './Characters'
+import type { RunCardData } from './RunCards'
 
 export type V2HomeCharacter = CharacterIdentity
 
@@ -55,10 +57,8 @@ export type V2HomeRun = {
     href: string
 }
 
-export type V2HomeRunCard = V2HomeRun & {
-    application_count: number
+export type V2HomeRunCard = V2HomeRun & RunCardData & {
     applicant_avatars: (string | null)[]
-    is_public: boolean
     allow_guest_applications: boolean
     target_prog_point_key: string | null
     target_prog_point_label: LocalizedText
@@ -73,8 +73,8 @@ export type V2HomeGroupRuns = {
     runs: V2HomeRunCard[]
 }
 
-export type V2HomeApplicationStatus = 'pending' | 'approved' | 'on_bench' | 'declined' | 'cancelled' | 'withdrawn'
-export type V2HomeParticipationStatus = V2HomeApplicationStatus | 'assigned' | 'checked_in' | 'late' | 'missing' | 'filled_in'
+export type V2HomeApplicationStatus = RunApplicationStatus
+export type V2HomeParticipationStatus = RunParticipationStatus
 
 export type V2HomeApplication = {
     id: number

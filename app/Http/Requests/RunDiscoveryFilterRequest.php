@@ -6,6 +6,7 @@ use App\Models\Activity;
 use App\Models\ActivityType;
 use App\Models\CharacterClass;
 use App\Models\Group;
+use App\Services\Runs\RunDiscoveryService;
 use App\Support\Input\RequestTextInputSanitizer;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Arr;
@@ -197,8 +198,7 @@ class RunDiscoveryFilterRequest extends FormRequest
      */
     private function availableGroupSlugs(): array
     {
-        return Group::query()
-            ->where('is_visible', true)
+        return app(RunDiscoveryService::class)->filterableGroupsForUser($this->user()?->id)
             ->pluck('slug')
             ->filter(fn (mixed $value) => is_string($value) && $value !== '')
             ->values()

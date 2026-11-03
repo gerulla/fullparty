@@ -1,4 +1,9 @@
 {
+  "dashboard_preview": {
+    "view": "Vue du tableau de bord",
+    "user": "Vue utilisateur",
+    "staff": "Vue équipe"
+  },
     "your_groups": {
         "title": "Vos groupes",
         "subtitle": "Tous les groupes dont vous faites partie, au même endroit.",
@@ -33,6 +38,9 @@
         "discover": "Groupes visibles classés par activité la plus récente"
     },
     "navigation": {
+    "switch_group": "Changer de groupe : {group}",
+    "create_group": "Créer un groupe",
+    "find_groups": "Trouver des groupes",
     "menu": "Menu du groupe",
     "back_to_groups": "Retour aux groupes",
         "general": "Général",

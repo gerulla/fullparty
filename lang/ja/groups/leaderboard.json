@@ -1,4 +1,10 @@
 {
+  "loading": {
+    "label": "ランキングを読み込み中…",
+    "error_title": "ランキングを読み込めませんでした",
+    "error_description": "ランキングの読み込みをもう一度お試しください。",
+    "retry": "再試行"
+  },
     "title": "リーダーボード",
     "subtitle": "{group} のロスター参加ランキングです。",
     "summary": {

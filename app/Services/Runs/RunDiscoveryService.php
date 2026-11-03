@@ -38,19 +38,34 @@ final class RunDiscoveryService
     /**
      * @return array<string, mixed>
      */
-    public function buildLookups(): array
+    public function buildLookups(?User $user = null): array
     {
         return [
             'activity_types' => $this->activityTypeOptions(),
             'class_options' => $this->classOptions(),
             'regions' => $this->regionOptions(),
             'datacenters' => $this->datacenterOptions(),
-            'groups' => $this->groupOptions(),
+            'groups' => $this->groupOptions($user?->id),
             'languages' => $this->languageOptions(),
             'run_styles' => Activity::RUN_STYLES,
             'intensities' => Activity::INTENSITIES,
             'voice_expectations' => config('group_discovery.voice_expectations', []),
         ];
+    }
+
+    /** @return Builder<Group> */
+    public function filterableGroupsForUser(?int $userId): Builder
+    {
+        return Group::query()
+            ->where(function (Builder $groups) use ($userId): void {
+                $groups->where('is_visible', true);
+                if ($userId !== null) {
+                    $groups->orWhere('owner_id', $userId)
+                        ->orWhereHas('memberships', fn (Builder $memberships) => $memberships->where('user_id', $userId));
+                }
+            })
+            ->when($userId !== null, fn (Builder $groups) => $groups
+                ->whereDoesntHave('bans', fn (Builder $bans) => $bans->where('user_id', $userId)));
     }
 
     /**
@@ -116,6 +131,7 @@ final class RunDiscoveryService
                 $version = $activityType->currentPublishedVersion;
 
                 return [
+                    'id' => $activityType->id,
                     'value' => $activityType->slug,
                     'label' => $this->resolveLocalizedText($version?->name) ?? $activityType->slug,
                     'small_image_url' => $version?->small_image_url,
@@ -390,17 +406,17 @@ final class RunDiscoveryService
     }
 
     /**
-     * @return array<int, array{label: string, value: string}>
+     * @return array<int, array{label: string, value: string, group_type: string}>
      */
-    private function groupOptions(): array
+    private function groupOptions(?int $userId): array
     {
-        return Group::query()
-            ->where('is_visible', true)
+        return $this->filterableGroupsForUser($userId)
             ->orderBy('name')
-            ->get(['name', 'slug'])
+            ->get(['name', 'slug', 'group_type'])
             ->map(fn (Group $group): array => [
                 'label' => $group->name,
                 'value' => $group->slug,
+                'group_type' => $group->group_type,
             ])
             ->values()
             ->all();

@@ -38,7 +38,7 @@ it('renders the run discovery scaffold with lookup data', function () {
         'icon_url' => 'https://example.com/icons/whm.png',
     ]);
 
-    createRunDiscoveryActivityType([
+    $activityType = createRunDiscoveryActivityType([
         'slug' => 'forked-tower',
         'draft_name' => ['en' => 'Forked Tower'],
         'draft_difficulty' => ActivityType::DIFFICULTY_CHAOTIC,
@@ -59,6 +59,7 @@ it('renders the run discovery scaffold with lookup data', function () {
             ->has('lookups.activity_types', 1)
             ->has('lookups.class_options', 1)
             ->has('lookups.groups', 1)
+            ->where('lookups.activity_types.0.id', $activityType->id)
             ->where('lookups.activity_types.0.value', 'forked-tower')
             ->where('lookups.activity_types.0.label', 'Forked Tower')
             ->where('lookups.activity_types.0.prog_points.0.value', 'clear')
@@ -69,6 +70,61 @@ it('renders the run discovery scaffold with lookup data', function () {
             ->where('lookups.datacenters.0.value', 'Aether')
             ->where('lookups.groups.0.value', 'testgrup'));
 });
+
+it('allows group filters for hidden memberships and ownership while preserving access boundaries', function (string $role) {
+    $viewer = User::factory()->create();
+    $hidden = Group::factory()->hidden()->inviteOnly()->create([
+        'owner_id' => $role === 'owner' ? $viewer->id : User::factory()->create()->id,
+        'group_type' => Group::TYPE_STATIC,
+    ]);
+    $visible = Group::factory()->open()->create(['group_type' => Group::TYPE_STATIC]);
+    if (in_array($role, ['member', 'banned'], true)) {
+        $hidden->memberships()->create(['user_id' => $viewer->id, 'role' => 'member', 'joined_at' => now()]);
+    }
+    if ($role === 'banned') {
+        $hidden->bans()->create(['user_id' => $viewer->id, 'banned_by_user_id' => $hidden->owner_id]);
+    }
+    $type = createRunDiscoveryActivityType(['slug' => 'selected-type']);
+    $otherType = createRunDiscoveryActivityType(['slug' => 'other-type']);
+    $runs = collect([
+        [$hidden, $type], [$visible, $type], [$hidden, $otherType],
+    ])->map(fn (array $entry) => Activity::factory()->create([
+        'group_id' => $entry[0]->id,
+        'activity_type_id' => $entry[1]->id,
+        'activity_type_version_id' => $entry[1]->current_published_version_id,
+        'status' => Activity::STATUS_SCHEDULED,
+        'starts_at' => now()->addDay(),
+        'is_public' => false,
+        'needs_application' => true,
+    ]));
+    $allowed = in_array($role, ['owner', 'member'], true);
+
+    $this->actingAs($viewer)->get(route('dashboard.runs.index'))
+        ->assertOk()->assertInertia(fn (Assert $page) => $page
+        ->has('lookups.groups', $allowed ? 2 : 1)
+        ->where('lookups.groups', function ($groups) use ($hidden, $allowed) {
+            $option = collect($groups)->firstWhere('value', $hidden->slug);
+            expect($option !== null)->toBe($allowed);
+            if ($allowed) {
+                expect($option['group_type'])->toBe(Group::TYPE_STATIC);
+            }
+
+            return true;
+        }));
+
+    $response = $this->getJson(route('dashboard.runs.discover', [
+        'group' => $hidden->slug,
+        'activity_type' => $type->slug,
+        'group_type' => Group::TYPE_STATIC,
+        'timezone' => 'UTC',
+        'date_range' => 'upcoming',
+    ]));
+    if ($allowed) {
+        $response->assertOk()->assertJsonPath('ids', [$runs->first()->id]);
+    } else {
+        $response->assertUnprocessable()->assertJsonValidationErrors('group');
+    }
+})->with(['owner', 'member', 'outsider', 'banned']);
 
 it('returns matching discoverable run ids for the filter payload', function () {
     $viewer = User::factory()->create();

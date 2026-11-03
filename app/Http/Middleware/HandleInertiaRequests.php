@@ -167,10 +167,10 @@ class HandleInertiaRequests extends Middleware
                                     GroupMembership::ROLE_ADMIN,
                                     GroupMembership::ROLE_MODERATOR,
                                 ])
-                                ->get(['groups.id', 'groups.name', 'groups.slug'])
+                                ->get(['groups.id', 'groups.name', 'groups.slug', 'groups.profile_picture_url'])
                         ),
                         'joined' => $this->serializeGroupQuickLinks(
-                            $request->user()->memberGroups()->get(['groups.id', 'groups.name', 'groups.slug'])
+                            $request->user()->memberGroups()->get(['groups.id', 'groups.name', 'groups.slug', 'groups.profile_picture_url'])
                         ),
                     ]
                     : [
@@ -229,7 +229,7 @@ class HandleInertiaRequests extends Middleware
 
     /**
      * @param  Collection<int, Group>  $groups
-     * @return array<int, array<string, string|int>>
+     * @return array<int, array<string, string|int|null>>
      */
     private function serializeGroupQuickLinks($groups): array
     {
@@ -240,6 +240,8 @@ class HandleInertiaRequests extends Middleware
                 'id' => $group->id,
                 'name' => $group->name,
                 'slug' => $group->slug,
+                'profile_picture_url' => $group->profile_picture_url,
+                'role' => $group->pivot?->role,
                 'href' => route('groups.dashboard', $group, false),
             ])
             ->all();

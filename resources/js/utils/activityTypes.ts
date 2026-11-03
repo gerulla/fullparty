@@ -1,6 +1,6 @@
 import type { ActivityIndexItem, ActivityListType } from "@/Types/ActivityCore";
 
-export const availableActivityTypes = (activities: ActivityIndexItem[]): ActivityListType[] => {
+export const availableActivityTypes = (activities: Pick<ActivityIndexItem, 'activity_type'>[]): ActivityListType[] => {
 	const types = new Map<number, ActivityListType>();
 	for (const activity of activities) {
 		const type = activity.activity_type;

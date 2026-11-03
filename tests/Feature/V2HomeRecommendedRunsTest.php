@@ -4,6 +4,7 @@ use App\Models\Activity;
 use App\Models\ActivityApplication;
 use App\Models\ActivityTypeVersion;
 use App\Models\Group;
+use App\Models\GroupMembership;
 use App\Models\User;
 use App\Services\Dashboard\V2HomeDataService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -54,11 +55,39 @@ it('provides the published progress label and localized attendee links for a rec
         ->and($run['is_public'])->toBeTrue()
         ->and($run['allow_guest_applications'])->toBeTrue()
         ->and($run['has_existing_application'])->toBeFalse()
+        ->and($run['participation_status'])->toBeNull()
         ->and($run['can_apply'])->toBeTrue()
         ->and($run['href'])->toBe(route('groups.activities.overview', $parameters, false))
         ->and($run['application_href'])->toBe(route('groups.activities.application', $parameters, false))
         ->and($run)->not->toHaveKey('secret_key');
 });
+
+it('only links a recommended cards group when the viewer can access its dashboard', function (bool $visible, string $joinMode, ?string $role, bool $allowed) {
+    app()->setLocale('de');
+    $this->group->update(['is_visible' => $visible, 'join_mode' => $joinMode]);
+    if ($role === 'owner') {
+        $this->group->update(['owner_id' => $this->user->id]);
+    } elseif ($role !== null) {
+        $this->group->memberships()->create([
+            'user_id' => $this->user->id, 'role' => $role, 'joined_at' => now(),
+        ]);
+    }
+    $href = route('groups.dashboard', ['locale' => 'de', 'group' => $this->group->slug], false);
+    $card = app(V2HomeDataService::class)->recommendedRuns($this->user)[0];
+
+    expect($card['group']['dashboard_href'])->toBe($allowed ? $href : null);
+    $this->actingAs($this->user)->get($href)->assertStatus($allowed ? 200 : 404);
+})->with([
+    'public open group' => [true, Group::JOIN_MODE_OPEN, null, true],
+    'legacy application group' => [true, Group::JOIN_MODE_APPLICATION, null, true],
+    'visible invite-only group' => [true, Group::JOIN_MODE_INVITE_ONLY, null, false],
+    'hidden open group' => [false, Group::JOIN_MODE_OPEN, null, false],
+    'hidden invite-only group' => [false, Group::JOIN_MODE_INVITE_ONLY, null, false],
+    'member of a hidden group' => [false, Group::JOIN_MODE_INVITE_ONLY, GroupMembership::ROLE_MEMBER, true],
+    'moderator of a hidden group' => [false, Group::JOIN_MODE_INVITE_ONLY, GroupMembership::ROLE_MODERATOR, true],
+    'admin of a hidden group' => [false, Group::JOIN_MODE_INVITE_ONLY, GroupMembership::ROLE_ADMIN, true],
+    'owner without membership row' => [false, Group::JOIN_MODE_INVITE_ONLY, 'owner', true],
+]);
 
 it('offers view application only for the viewers non-withdrawn application', function (string $status) {
     ActivityApplication::factory()->create([
@@ -70,6 +99,7 @@ it('offers view application only for the viewers non-withdrawn application', fun
 
     expect($run['has_existing_application'])->toBe($status !== ActivityApplication::STATUS_WITHDRAWN)
         ->and($run['can_apply'])->toBe($status === ActivityApplication::STATUS_WITHDRAWN)
+        ->and($run['participation_status'])->toBe($status)
         ->and($run['application_href'])->not->toBeNull()
         ->and($run)->not->toHaveKey('applications');
 })->with(['pending', 'approved', 'on_bench', 'declined', 'cancelled', 'withdrawn']);
@@ -78,7 +108,8 @@ it('does not confuse another users application with the viewers application', fu
     ActivityApplication::factory()->create(['activity_id' => $this->run->id]);
     $run = app(V2HomeDataService::class)->recommendedRuns($this->user)[0];
 
-    expect($run['has_existing_application'])->toBeFalse()
+    expect($run['participation_status'])->toBeNull()
+        ->and($run['has_existing_application'])->toBeFalse()
         ->and($run['can_apply'])->toBeTrue()
         ->and($run)->not->toHaveKey('applications');
 });

@@ -1,82 +1,13 @@
 <script setup lang="ts">
-import type { GroupDashboardGroup } from "@/Types/Groups";
-import { computed } from "vue";
-import { useI18n } from "vue-i18n";
-import GroupDiscoveryBadge from "@/components/Groups/GroupDiscoveryBadge.vue";
+import type { GroupDashboardGroup } from '@/Types/Groups'
+import { useI18n } from 'vue-i18n'
+import GroupDiscoveryBadge from '@/components/Groups/GroupDiscoveryBadge.vue'
+import { useGroupInfo } from '@/composables/useGroupInfo'
 
-const props = defineProps<{
-	group: GroupDashboardGroup
-}>();
-
-const { t } = useI18n();
-
-const experienceBadge = computed(() => props.group.badge_meta.experience_expectation ?? null);
-const voiceBadge = computed(() => props.group.badge_meta.voice_expectation ?? null);
-const focusBadges = computed(() => props.group.badge_meta.primary_focuses ?? []);
-const tagBadges = computed(() => props.group.badge_meta.tags ?? []);
-
-const languageLabels: Record<string, string> = {
-	en: "English",
-	de: "Deutsch",
-	fr: "Français",
-	ja: "日本語",
-};
-
-const languagesText = computed(() => (props.group.preferred_languages ?? [])
-	.map((value) => languageLabels[value] ?? value.toUpperCase())
-	.join(", "));
-
-const locationText = computed(() => {
-	if (props.group.region) {
-		return `${props.group.datacenter} · ${props.group.region}`;
-	}
-
-	return props.group.datacenter;
-});
-
-const activityWindowText = computed(() => {
-	const activeDays = props.group.active_days ?? [];
-
-	if (!props.group.active_timezone || activeDays.length === 0) {
-		return null;
-	}
-
-	const days = activeDays
-		.map((day) => t(`groups.common.active_days.${day}`))
-		.join(", ");
-
-	if (props.group.active_start_time && props.group.active_end_time) {
-		return `${days} · ${props.group.active_start_time.slice(0, 5)} - ${props.group.active_end_time.slice(0, 5)} · ${props.group.active_timezone}`;
-	}
-
-	return `${days} · ${props.group.active_timezone}`;
-});
-
-const descriptionText = computed(() => props.group.description || t("groups.common.states.no_description_long"));
-
-const primaryBadges = computed(() => [
-	experienceBadge.value,
-	voiceBadge.value,
-	...focusBadges.value,
-].filter((badge): badge is NonNullable<typeof badge> => badge !== null));
-
-const primaryFocusValues = computed(() => new Set((props.group.primary_focuses ?? []).map((value) => String(value))));
-
-const resolveBadgeLabel = (value: string) => {
-	if (value === props.group.experience_expectation) {
-		return t(`groups.index.create_modal.fields.experience_expectation.options.${value}`);
-	}
-
-	if (value === props.group.voice_expectation) {
-		return t(`groups.common.voice_expectations.${value}`);
-	}
-
-	if (primaryFocusValues.value.has(value)) {
-		return t(`groups.index.create_modal.fields.primary_focuses.options.${value}`);
-	}
-
-	return value;
-};
+const props = defineProps<{ group: GroupDashboardGroup }>()
+const { t } = useI18n()
+const { languagesText, locationText, activityWindowText, descriptionText, primaryBadges, tagBadges, resolveBadgeLabel } =
+    useGroupInfo(() => props.group)
 </script>
 
 <template>

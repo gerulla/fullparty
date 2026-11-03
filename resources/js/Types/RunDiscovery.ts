@@ -40,9 +40,14 @@ export type RunDiscoveryDatacenterOption = RunDiscoveryLookupOption & {
 	region: string | null
 }
 
+export type RunDiscoveryGroupOption = RunDiscoveryLookupOption & {
+    group_type: import('./Groups').GroupType
+}
+
 export type RunDiscoveryProgPointOption = RunDiscoveryLookupOption
 
 export type RunDiscoveryActivityTypeOption = {
+	id: number
 	value: string
 	label: string
 	small_image_url: string | null
@@ -63,7 +68,7 @@ export type RunDiscoveryLookups = {
 	class_options: RunDiscoveryClassOption[]
 	regions: RunDiscoveryLookupOption[]
 	datacenters: RunDiscoveryDatacenterOption[]
-	groups: RunDiscoveryLookupOption[]
+	groups: RunDiscoveryGroupOption[]
 	languages: RunDiscoveryLookupOption[]
 	run_styles: string[]
 	intensities: string[]

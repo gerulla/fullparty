@@ -1,4 +1,15 @@
 {
+  "staff_home": {
+    "hosted_runs": "主催する募集",
+    "run_updates": "募集の更新情報",
+    "no_updates": "主催する募集の更新情報はまだありません。"
+  },
+  "user_home": {
+    "hide_participating": "参加中のランを非表示",
+    "no_matching_runs": "フィルターに一致するランはありません。",
+    "your_upcoming_runs": "あなたの参加予定ラン",
+    "view_run": "ランを見る"
+  },
     "actions": {
         "view_runs": "ランを見る",
         "view_members": "メンバーを見る",
@@ -74,6 +85,9 @@
         "empty": "今後7日間に予定されているランはありません。"
     },
     "content": {
+    "runs_done": "{count}回完了",
+    "find_runs": "ランを探す",
+    "find_type_runs": "{name}のランを探す",
         "title": "このグループが遊ぶコンテンツ",
         "subtitle": "このグループがよく走るコンテンツと、それぞれの履歴を確認できます。",
         "total_runs": "表示中のラン {count} 件",

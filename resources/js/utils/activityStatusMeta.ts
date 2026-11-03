@@ -14,16 +14,16 @@ const STATUS_META: Record<ActivityStatus, ActivityStatusMeta> = {
 		dotClass: 'bg-warning',
 	},
 	assigned: {
-		color: 'primary',
+		color: 'brand',
 		icon: 'i-lucide-user-round-check',
-		borderClass: 'border-t-primary',
-		dotClass: 'bg-primary',
+		borderClass: 'border-t-brand',
+		dotClass: 'bg-brand',
 	},
 	upcoming: {
-		color: 'primary',
+		color: 'brand',
 		icon: 'i-lucide-sparkles',
-		borderClass: 'border-t-primary',
-		dotClass: 'bg-primary',
+		borderClass: 'border-t-brand',
+		dotClass: 'bg-brand',
 	},
 	ongoing: {
 		color: 'secondary',

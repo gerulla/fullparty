@@ -1,4 +1,9 @@
 {
+  "dashboard_preview": {
+    "view": "ダッシュボード表示",
+    "user": "ユーザー表示",
+    "staff": "スタッフ表示"
+  },
     "your_groups": {
         "title": "参加中のグループ",
         "subtitle": "参加しているすべてのグループをここで確認できます。",
@@ -33,6 +38,9 @@
         "discover": "最新の活動順に並んだ表示可能なグループ"
     },
     "navigation": {
+    "switch_group": "グループを切り替え：{group}",
+    "create_group": "グループを作成",
+    "find_groups": "グループを探す",
     "menu": "グループメニュー",
     "back_to_groups": "グループ一覧に戻る",
         "general": "概要",

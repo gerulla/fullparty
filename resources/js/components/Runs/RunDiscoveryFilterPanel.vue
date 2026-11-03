@@ -414,7 +414,10 @@ const applyInitialFiltersFromUrl = () => {
 
 	const params = new URL(window.location.href).searchParams;
 	const activityCategory = params.get("activity_category");
-	const activityType = params.get("activity_type");
+	const activityTypeId = params.get("activity_type_id");
+	const activityType = activityTypeDefinitions.value
+		.find((option) => String(option.id) === activityTypeId)?.value ?? params.get("activity_type");
+	const group = props.lookups.groups.find((option) => option.value === params.get("group"));
 
 	if (activityCategory && activityCategoryOptions.value.some((option) => option.value === activityCategory)) {
 		selectedActivityCategory.value = activityCategory;
@@ -422,6 +425,11 @@ const applyInitialFiltersFromUrl = () => {
 
 	if (activityType && activityTypeDefinitions.value.some((option) => option.value === activityType)) {
 		selectedActivityType.value = activityType;
+	}
+
+	if (group) {
+		selectedGroup.value = group.value;
+		selectedGroupType.value = group.group_type;
 	}
 };
 

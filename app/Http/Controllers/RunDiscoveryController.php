@@ -20,7 +20,7 @@ class RunDiscoveryController extends Controller
     public function index(): Response
     {
         return Inertia::render('Dashboard/Runs/Index', [
-            'lookups' => $this->runDiscoveryService->buildLookups(),
+            'lookups' => $this->runDiscoveryService->buildLookups(request()->user()),
         ])->withViewData('serverMeta', $this->serverMeta->runDiscovery());
     }
 

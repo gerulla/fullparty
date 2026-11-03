@@ -21,6 +21,7 @@ export type NotificationTranslator = (key: string, params?: Record<string, unkno
 export type NotificationDisplayMeta = {
 	icon: string
 	iconColor: string
+	surfaceClass?: string
 }
 
 export type NotificationPageData = {

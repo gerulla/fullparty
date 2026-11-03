@@ -72,6 +72,11 @@ it('includes every membership rank and owners without membership rows including 
 
     expect(array_column(array_column($rows, 'group'), 'id'))->toBe($expected)
         ->and($rows)->toHaveCount(4);
+    foreach ($rows as $row) {
+        expect($row['runs'][0]['group']['dashboard_href'])->toBe(route('groups.dashboard', [
+            'locale' => app()->getLocale(), 'group' => $row['group']['slug'],
+        ], false));
+    }
 });
 
 it('excludes unrelated groups and bans even when the user still owns or belongs to the group', function () {
@@ -136,6 +141,9 @@ it('defers group runs with localized links and protects private applicant previe
                 'locale' => 'de', 'group' => $this->group->slug,
             ], false))
             ->where('groupRuns.0.runs.0.href', route('groups.activities.overview', $parameters, false))
+            ->where('groupRuns.0.runs.0.group.dashboard_href', route('groups.dashboard', [
+                'locale' => 'de', 'group' => $this->group->slug,
+            ], false))
             ->where('groupRuns.0.runs.0.application_href', route('groups.activities.application', $parameters, false))
             ->where('groupRuns.0.runs.0.application_count', 3)
             ->where('groupRuns.0.runs.0.applicant_avatars', [null, null, 'https://example.test/avatar-2.png'])

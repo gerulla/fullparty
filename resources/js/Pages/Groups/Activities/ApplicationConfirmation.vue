@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { getRunParticipationColor } from "@/utils/runParticipationMeta"
 import type { ActivityApplicationRecord, ApplicationQuestion } from "@/Types/ActivityApplications";
 import { computed, ref } from "vue";
 import { router, usePage } from "@inertiajs/vue3";
@@ -174,12 +175,12 @@ const submittedAtLabel = computed(() => {
 
 const applicationStatusMeta = computed(() => {
 	return {
-		pending: { color: "warning", label: t("groups.activities.application.confirmation.statuses.pending") },
-		approved: { color: "success", label: t("groups.activities.application.confirmation.statuses.approved") },
-		on_bench: { color: "info", label: t("groups.activities.application.confirmation.statuses.on_bench") },
-		declined: { color: "error", label: t("groups.activities.application.confirmation.statuses.declined") },
-		cancelled: { color: "neutral", label: t("groups.activities.application.confirmation.statuses.cancelled") },
-		withdrawn: { color: "neutral", label: t("groups.activities.application.confirmation.statuses.withdrawn") },
+		pending: { color: getRunParticipationColor("pending"), label: t("groups.activities.application.confirmation.statuses.pending") },
+		approved: { color: getRunParticipationColor("approved"), label: t("groups.activities.application.confirmation.statuses.approved") },
+		on_bench: { color: getRunParticipationColor("on_bench"), label: t("groups.activities.application.confirmation.statuses.on_bench") },
+		declined: { color: getRunParticipationColor("declined"), label: t("groups.activities.application.confirmation.statuses.declined") },
+		cancelled: { color: getRunParticipationColor("cancelled"), label: t("groups.activities.application.confirmation.statuses.cancelled") },
+		withdrawn: { color: getRunParticipationColor("withdrawn"), label: t("groups.activities.application.confirmation.statuses.withdrawn") },
 	}[props.application?.status ?? "pending"] ?? { color: "neutral", label: props.application?.status ?? "" };
 });
 

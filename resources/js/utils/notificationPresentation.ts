@@ -3,6 +3,21 @@ import { createRelativeTimeFormatter } from "@/utils/dateTimeFormat"
 import { translateCharacterClassName, translatePhantomJobName, translateRaidPositionName } from "@/utils/characterJobTranslations"
 
 const TYPE_META: Record<string, NotificationDisplayMeta> = {
+	'applications.new_for_review': {
+		icon: 'i-lucide-user-round-plus',
+		iconColor: 'text-success',
+		surfaceClass: 'border-l-success bg-success/5',
+	},
+	'applications.updated': {
+		icon: 'i-lucide-file-pen-line',
+		iconColor: 'text-warning',
+		surfaceClass: 'border-l-warning bg-warning/5',
+	},
+	'applications.withdrawn_for_review': {
+		icon: 'i-lucide-user-round-minus',
+		iconColor: 'text-error',
+		surfaceClass: 'border-l-error bg-error/5',
+	},
 	'user.settings.notifications_updated': {
 		icon: 'i-lucide-bell-ring',
 		iconColor: 'text-brand-500',
@@ -103,7 +118,7 @@ const formatLabelKeyList = (keys: unknown, t: NotificationTranslator) => {
 		.join(', ')
 }
 
-export const resolveNotificationMeta = (notification: NotificationRecord) => {
+export const resolveNotificationMeta = (notification: NotificationRecord): NotificationDisplayMeta => {
 	if (notification.type && TYPE_META[notification.type]) {
 		return TYPE_META[notification.type]
 	}

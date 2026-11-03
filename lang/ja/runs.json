@@ -1,4 +1,19 @@
 {
+  "participation": {
+    "statuses": {
+      "pending": "応募済み",
+      "approved": "承認済み",
+      "assigned": "配置済み",
+      "on_bench": "補欠",
+      "filled_in": "助っ人",
+      "checked_in": "チェックイン済み",
+      "late": "遅刻",
+      "missing": "欠席",
+      "declined": "却下",
+      "cancelled": "中止",
+      "withdrawn": "辞退"
+    }
+  },
     "discovery": {
         "title": "ランを探す",
         "subtitle": "FullParty 内のグループが公開しているランを探せます。",

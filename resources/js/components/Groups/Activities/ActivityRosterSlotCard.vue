@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { getRunParticipationColor } from "@/utils/runParticipationMeta"
 import type { ContextMenuItem } from "@nuxt/ui";
 import { computed, ref } from "vue";
 import { useI18n } from "vue-i18n";
@@ -249,20 +250,20 @@ const canPasteCutSlot = computed(() => (
 const statusBadge = computed(() => {
 	if (props.slot.attendance_status === 'checked_in') {
 		return {
-			color: 'info' as const,
+			color: getRunParticipationColor('checked_in'),
 			label: t('groups.activities.management.roster.checked_in'),
 		};
 	}
 
 	if (props.slot.attendance_status === 'late') {
 		return {
-			color: 'warning' as const,
+			color: getRunParticipationColor('late'),
 			label: t('groups.activities.management.roster.late'),
 		};
 	}
 
 	return {
-		color: 'success' as const,
+		color: getRunParticipationColor('assigned'),
 		label: t('groups.activities.management.roster.assigned'),
 	};
 });

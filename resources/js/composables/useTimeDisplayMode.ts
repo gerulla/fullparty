@@ -1,5 +1,6 @@
 import { computed, ref, watch } from "vue";
 import { usePage } from "@inertiajs/vue3";
+import { useI18n } from "vue-i18n";
 
 export type TimeDisplayMode = "local" | "server";
 
@@ -26,6 +27,7 @@ export function setSharedTimeDisplayMode(mode: TimeDisplayMode): void {
 
 export function useTimeDisplayMode() {
 	const page = usePage<SharedTimeDisplayPageProps>();
+	const { t } = useI18n({ useScope: "global" });
 
 	const pageTimeDisplayMode = computed(() => normalizeTimeDisplayMode(
 		page.props.auth?.user?.time_display_mode,
@@ -44,7 +46,7 @@ export function useTimeDisplayMode() {
 	const displayTimeZone = computed(() => (isServerTime.value ? SERVER_TIME_ZONE : undefined));
 	const displayTimeZoneLabel = computed(() => (
 		isServerTime.value
-			? SERVER_TIME_ZONE
+			? t("navigation.topbar.time_display.server")
 			: Intl.DateTimeFormat().resolvedOptions().timeZone
 	));
 

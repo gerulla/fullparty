@@ -1,4 +1,10 @@
 {
+  "loading": {
+    "label": "統計を読み込み中…",
+    "error_title": "統計を読み込めませんでした",
+    "error_description": "統計の読み込みをもう一度お試しください。",
+    "retry": "再試行"
+  },
     "title": "統計",
     "subtitle": "{group} の活動、参加、応募、ロードアウト傾向。",
     "common": {

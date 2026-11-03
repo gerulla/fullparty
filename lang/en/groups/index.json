@@ -1,4 +1,9 @@
 {
+  "dashboard_preview": {
+    "view": "Dashboard view",
+    "user": "User View",
+    "staff": "Staff View"
+  },
   "your_groups": {
     "title": "Your Groups",
     "subtitle": "All the groups you're part of, in one place.",
@@ -33,6 +38,9 @@
     "discover": "Visible groups ordered by their latest activity"
   },
   "navigation": {
+    "switch_group": "Switch group: {group}",
+    "create_group": "Create Group",
+    "find_groups": "Find Groups",
     "menu": "Group menu",
     "back_to_groups": "Back to groups",
     "general": "General",

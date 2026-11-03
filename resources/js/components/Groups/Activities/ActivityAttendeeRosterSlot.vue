@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { getRunParticipationColor } from "@/utils/runParticipationMeta"
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { usePage } from "@inertiajs/vue3";
@@ -74,21 +75,21 @@ const benchApplicationFieldGroups = computed<ActivityApplicationFieldGroup[]>(()
 const attendanceBadge = computed(() => {
 	if (props.slot.attendance_status === "checked_in") {
 		return {
-			color: "success" as const,
+			color: getRunParticipationColor("checked_in"),
 			label: t("groups.activities.management.roster.checked_in"),
 		};
 	}
 
 	if (props.slot.attendance_status === "late") {
 		return {
-			color: "warning" as const,
+			color: getRunParticipationColor("late"),
 			label: t("groups.activities.management.roster.late"),
 		};
 	}
 
 	if (props.slot.assigned_character_id !== null) {
 		return {
-			color: "primary" as const,
+			color: getRunParticipationColor("assigned"),
 			label: t("groups.activities.management.roster.assigned"),
 		};
 	}

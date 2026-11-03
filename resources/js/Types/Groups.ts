@@ -1,9 +1,12 @@
+import type { RunParticipationStatus } from './RunParticipation'
+import type { NotificationRecord } from './Notifications'
 import type { LocalizedText } from "@/Types/Common"
 
 export type MemberNoteSeverity = "commendation" | "info" | "warning" | "critical"
 export type GroupType = "community" | "static"
 export type GroupJoinMode = "open" | "invite_only" | "application"
 export type GroupRole = "owner" | "admin" | "moderator" | "member"
+export type GroupDashboardView = "user" | "staff"
 export type GroupFeatureSettings = {
 	availability_scheduler_enabled: boolean
 	availability_minimum_role?: GroupAvailabilityMinimumRole
@@ -381,6 +384,7 @@ export type GroupDashboardActivity = {
 	secret_key: string | null
 	can_view_overview: boolean
 	has_existing_application: boolean
+	participation_status: RunParticipationStatus | null
 	can_apply: boolean
 	needs_application: boolean
 	allow_guest_applications: boolean
@@ -397,6 +401,7 @@ export type GroupDashboardActivity = {
 	} | null
 	slot_count: number
 	application_count: number
+	applicant_avatars: (string | null)[]
 	created_at: string | null
 	updated_at: string | null
 	links: {
@@ -412,6 +417,13 @@ export type GroupDashboardMemberPreview = {
 	home_background_image_url: string | null
 	role: GroupRole
 	joined_at: string | null
+}
+
+export type GroupDashboardCalendarDay = {
+    key: string
+    date: Date
+    isToday: boolean
+    activities: GroupDashboardActivity[]
 }
 
 export type GroupDashboardGroup = {
@@ -494,13 +506,17 @@ export type GroupDashboardGroup = {
 		count: number
 	}>
 	content_summary: GroupDiscoveryContentSummary
-	content_items: GroupDiscoveryContentItem[]
+	content_items: GroupDashboardContentItem[]
 	current_week: {
 		start_date: string
 		end_date: string
 	}
 	current_week_activities: GroupDashboardActivity[]
+	calendar_activities: GroupDashboardActivity[]
 	upcoming_activities: GroupDashboardActivity[]
+	applied_activities: GroupDashboardActivity[]
+	hosted_activities: GroupDashboardActivity[]
+	hosted_run_notifications: NotificationRecord[]
 	history_activities: GroupDashboardActivity[]
 }
 
@@ -551,6 +567,11 @@ export type GroupDiscoveryContentItem = {
 	active_runs: number
 	last_run_at: string | null
 	next_run_at: string | null
+}
+
+export type GroupDashboardContentItem = GroupDiscoveryContentItem & {
+    activity_type_id: number | null
+    activity_banner_image_url: string | null
 }
 
 export type GroupDiscoveryTeamMember = {

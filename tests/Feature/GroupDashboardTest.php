@@ -378,6 +378,7 @@ it('groups dashboard content by activity type instead of published version', fun
         'version' => 2,
         'name' => ['en' => 'Forked Tower V2'],
         'small_image_url' => '/storage/activities/forked-tower-v2.webp',
+        'banner_image_url' => '/storage/activities/forked-tower-v2-banner.webp',
     ]);
 
     $activityType->update(['current_published_version_id' => $secondVersion->id]);
@@ -402,8 +403,10 @@ it('groups dashboard content by activity type instead of published version', fun
         ->assertInertia(fn (Assert $page) => $page
             ->has('group.content_items', 1)
             ->where('group.content_items.0.key', 'type:'.$activityType->id)
+            ->where('group.content_items.0.activity_type_id', $activityType->id)
             ->where('group.content_items.0.activity_name', 'Forked Tower V2')
             ->where('group.content_items.0.activity_image_url', '/storage/activities/forked-tower-v2.webp')
+            ->where('group.content_items.0.activity_banner_image_url', '/storage/activities/forked-tower-v2-banner.webp')
             ->where('group.content_items.0.total_runs', 2)
             ->where('group.content_items.0.completed_runs', 1)
             ->where('group.content_items.0.active_runs', 1)
@@ -430,11 +433,15 @@ it('renders the group statistics page when no participants have been rostered', 
             ->assertInertia(fn (Assert $page) => $page
                 ->component('Dashboard/Groups/Statistics')
                 ->where('group.slug', $group->slug)
-                ->where('statistics.summary.total_runs', 1)
-                ->where('statistics.summary.total_participants', 0)
-                ->where('statistics.summary.unique_participants', 0)
-                ->where('statistics.classes.total', 0)
-                ->where('statistics.phantom_jobs.total', 0)
+                ->missing('statistics')
+                ->missing('statistics_cache')
+                ->loadDeferredProps('group-statistics', fn (Assert $page) => $page
+                    ->where('statistics.summary.total_runs', 1)
+                    ->where('statistics.summary.total_participants', 0)
+                    ->where('statistics.summary.unique_participants', 0)
+                    ->where('statistics.classes.total', 0)
+                    ->where('statistics.phantom_jobs.total', 0)
+                )
             );
     } finally {
         Cache::flush();
@@ -593,34 +600,38 @@ it('renders the group statistics page with participation application and loadout
             ->assertInertia(fn (Assert $page) => $page
                 ->component('Dashboard/Groups/Statistics')
                 ->where('group.slug', $group->slug)
-                ->where('statistics.summary.total_runs', 3)
-                ->where('statistics.summary.total_participants', 4)
-                ->where('statistics.summary.unique_participants', 2)
-                ->where('statistics.summary.active_players_past_month', 2)
-                ->where('statistics.summary.average_participants_per_raid', 1.3)
-                ->where('statistics.participation_trend.0.participant_count', 2)
-                ->where('statistics.participation_trend.1.participant_count', 2)
-                ->where('statistics.applications.distribution.0.key', 'pending')
-                ->where('statistics.applications.distribution.0.count', 1)
-                ->where('statistics.applications.distribution.1.key', 'approved')
-                ->where('statistics.applications.distribution.1.count', 1)
-                ->where('statistics.applications.distribution.2.key', 'declined')
-                ->where('statistics.applications.distribution.2.count', 1)
-                ->has('statistics.applications.daily_submissions', 7)
-                ->where('statistics.applications.daily_submissions.0.date', '2026-05-20')
-                ->where('statistics.applications.daily_submissions.0.count', 0)
-                ->where('statistics.applications.daily_submissions.4.date', '2026-05-24')
-                ->where('statistics.applications.daily_submissions.4.count', 1)
-                ->where('statistics.applications.daily_submissions.6.date', '2026-05-26')
-                ->where('statistics.applications.daily_submissions.6.count', 0)
-                ->where('statistics.classes.distribution.0.label', 'White Mage')
-                ->where('statistics.classes.distribution.0.count', 3)
-                ->where('statistics.classes.distribution.1.label', 'Warrior')
-                ->where('statistics.classes.distribution.1.count', 1)
-                ->where('statistics.phantom_jobs.distribution.0.label', 'Phantom Bard')
-                ->where('statistics.phantom_jobs.distribution.0.count', 3)
-                ->where('statistics_cache.can_refresh', true)
-                ->where('statistics_cache.refresh_cooldown_seconds', 0)
+                ->missing('statistics')
+                ->missing('statistics_cache')
+                ->loadDeferredProps('group-statistics', fn (Assert $page) => $page
+                    ->where('statistics.summary.total_runs', 3)
+                    ->where('statistics.summary.total_participants', 4)
+                    ->where('statistics.summary.unique_participants', 2)
+                    ->where('statistics.summary.active_players_past_month', 2)
+                    ->where('statistics.summary.average_participants_per_raid', 1.3)
+                    ->where('statistics.participation_trend.0.participant_count', 2)
+                    ->where('statistics.participation_trend.1.participant_count', 2)
+                    ->where('statistics.applications.distribution.0.key', 'pending')
+                    ->where('statistics.applications.distribution.0.count', 1)
+                    ->where('statistics.applications.distribution.1.key', 'approved')
+                    ->where('statistics.applications.distribution.1.count', 1)
+                    ->where('statistics.applications.distribution.2.key', 'declined')
+                    ->where('statistics.applications.distribution.2.count', 1)
+                    ->has('statistics.applications.daily_submissions', 7)
+                    ->where('statistics.applications.daily_submissions.0.date', '2026-05-20')
+                    ->where('statistics.applications.daily_submissions.0.count', 0)
+                    ->where('statistics.applications.daily_submissions.4.date', '2026-05-24')
+                    ->where('statistics.applications.daily_submissions.4.count', 1)
+                    ->where('statistics.applications.daily_submissions.6.date', '2026-05-26')
+                    ->where('statistics.applications.daily_submissions.6.count', 0)
+                    ->where('statistics.classes.distribution.0.label', 'White Mage')
+                    ->where('statistics.classes.distribution.0.count', 3)
+                    ->where('statistics.classes.distribution.1.label', 'Warrior')
+                    ->where('statistics.classes.distribution.1.count', 1)
+                    ->where('statistics.phantom_jobs.distribution.0.label', 'Phantom Bard')
+                    ->where('statistics.phantom_jobs.distribution.0.count', 3)
+                    ->where('statistics_cache.can_refresh', true)
+                    ->where('statistics_cache.refresh_cooldown_seconds', 0)
+                )
             );
 
         Activity::factory()->complete()->create([
@@ -632,7 +643,11 @@ it('renders the group statistics page with participation application and loadout
             ->get(route('groups.dashboard.statistics', $group))
             ->assertOk()
             ->assertInertia(fn (Assert $page) => $page
-                ->where('statistics.summary.total_runs', 3)
+                ->missing('statistics')
+                ->missing('statistics_cache')
+                ->loadDeferredProps('group-statistics', fn (Assert $page) => $page
+                    ->where('statistics.summary.total_runs', 3)
+                )
             );
 
         $this->actingAs($owner)
@@ -644,9 +659,13 @@ it('renders the group statistics page with participation application and loadout
             ->get(route('groups.dashboard.statistics', $group))
             ->assertOk()
             ->assertInertia(fn (Assert $page) => $page
-                ->where('statistics.summary.total_runs', 4)
-                ->where('statistics_cache.can_refresh', false)
-                ->where('statistics_cache.refresh_cooldown_seconds', 300)
+                ->missing('statistics')
+                ->missing('statistics_cache')
+                ->loadDeferredProps('group-statistics', fn (Assert $page) => $page
+                    ->where('statistics.summary.total_runs', 4)
+                    ->where('statistics_cache.can_refresh', false)
+                    ->where('statistics_cache.refresh_cooldown_seconds', 300)
+                )
             );
 
         Activity::factory()->complete()->create([
@@ -663,7 +682,11 @@ it('renders the group statistics page with participation application and loadout
             ->get(route('groups.dashboard.statistics', $group))
             ->assertOk()
             ->assertInertia(fn (Assert $page) => $page
-                ->where('statistics.summary.total_runs', 4)
+                ->missing('statistics')
+                ->missing('statistics_cache')
+                ->loadDeferredProps('group-statistics', fn (Assert $page) => $page
+                    ->where('statistics.summary.total_runs', 4)
+                )
             );
 
         Carbon::setTestNow(Carbon::parse('2026-05-26 12:05:01'));
@@ -678,9 +701,13 @@ it('renders the group statistics page with participation application and loadout
             ->get(route('groups.dashboard.statistics', $group))
             ->assertOk()
             ->assertInertia(fn (Assert $page) => $page
-                ->where('statistics.summary.total_runs', 5)
-                ->where('statistics_cache.can_refresh', false)
-                ->where('statistics_cache.refresh_cooldown_seconds', 300)
+                ->missing('statistics')
+                ->missing('statistics_cache')
+                ->loadDeferredProps('group-statistics', fn (Assert $page) => $page
+                    ->where('statistics.summary.total_runs', 5)
+                    ->where('statistics_cache.can_refresh', false)
+                    ->where('statistics_cache.refresh_cooldown_seconds', 300)
+                )
             );
 
         $this->actingAs($owner)
@@ -781,27 +808,29 @@ it('renders the group leaderboard with participation and host success rankings',
         ->assertOk()
         ->assertInertia(fn (Assert $page) => $page
             ->component('Dashboard/Groups/Leaderboard')
-            ->where('leaderboard.summary.total_participations', 17)
-            ->where('leaderboard.summary.ranked_participants', 14)
-            ->where('leaderboard.summary.raid_leader_participations', 3)
-            ->where('leaderboard.summary.host_participations', 4)
-            ->where('leaderboard.summary.completed_hosted_runs', 4)
-            ->where('leaderboard.rankings.overall.0.character.name', 'Kevin Clear')
-            ->where('leaderboard.rankings.overall.0.count', 3)
-            ->where('leaderboard.rankings.raid_leaders.0.character.name', 'Alice Anchor')
-            ->where('leaderboard.rankings.raid_leaders.0.count', 2)
-            ->where('leaderboard.rankings.hosts.0.character.name', 'Kevin Clear')
-            ->where('leaderboard.rankings.hosts.0.count', 3)
-            ->has('leaderboard.rankings.host_success', 1)
-            ->where('leaderboard.rankings.host_success.0.character.name', 'Kevin Clear')
-            ->where('leaderboard.rankings.host_success.0.hosted_runs', 3)
-            ->where('leaderboard.rankings.host_success.0.successful_runs', 2)
-            ->where('leaderboard.rankings.host_success.0.documented_successes', 1)
-            ->where('leaderboard.rankings.host_success.0.auto_successes', 1)
-            ->where('leaderboard.rankings.host_success.0.failed_runs', 1)
-            ->where('leaderboard.rankings.host_success.0.success_rate', 66.7)
-            ->where('leaderboard.rankings.host_success.0.weighted_success_rate', 50)
-            ->where('leaderboard.rankings.host_success.0.performance_score', 50)
+            ->loadDeferredProps('group-leaderboard', fn (Assert $page) => $page
+                ->where('leaderboard.summary.total_participations', 17)
+                ->where('leaderboard.summary.ranked_participants', 14)
+                ->where('leaderboard.summary.raid_leader_participations', 3)
+                ->where('leaderboard.summary.host_participations', 4)
+                ->where('leaderboard.summary.completed_hosted_runs', 4)
+                ->where('leaderboard.rankings.overall.0.character.name', 'Kevin Clear')
+                ->where('leaderboard.rankings.overall.0.count', 3)
+                ->where('leaderboard.rankings.raid_leaders.0.character.name', 'Alice Anchor')
+                ->where('leaderboard.rankings.raid_leaders.0.count', 2)
+                ->where('leaderboard.rankings.hosts.0.character.name', 'Kevin Clear')
+                ->where('leaderboard.rankings.hosts.0.count', 3)
+                ->has('leaderboard.rankings.host_success', 1)
+                ->where('leaderboard.rankings.host_success.0.character.name', 'Kevin Clear')
+                ->where('leaderboard.rankings.host_success.0.hosted_runs', 3)
+                ->where('leaderboard.rankings.host_success.0.successful_runs', 2)
+                ->where('leaderboard.rankings.host_success.0.documented_successes', 1)
+                ->where('leaderboard.rankings.host_success.0.auto_successes', 1)
+                ->where('leaderboard.rankings.host_success.0.failed_runs', 1)
+                ->where('leaderboard.rankings.host_success.0.success_rate', 66.7)
+                ->where('leaderboard.rankings.host_success.0.weighted_success_rate', 50)
+                ->where('leaderboard.rankings.host_success.0.performance_score', 50)
+            )
         );
 
     $this->actingAs($owner)
@@ -880,10 +909,12 @@ it('caches the group leaderboard and refreshes it with a cooldown', function () 
             ->get(route('groups.dashboard.leaderboard', $group))
             ->assertOk()
             ->assertInertia(fn (Assert $page) => $page
-                ->where('leaderboard.summary.completed_hosted_runs', 2)
-                ->where('leaderboard.rankings.host_success.0.hosted_runs', 2)
-                ->where('leaderboard_cache.can_refresh', true)
-                ->where('leaderboard_cache.refresh_cooldown_seconds', 0)
+                ->loadDeferredProps('group-leaderboard', fn (Assert $page) => $page
+                    ->where('leaderboard.summary.completed_hosted_runs', 2)
+                    ->where('leaderboard.rankings.host_success.0.hosted_runs', 2)
+                    ->where('leaderboard_cache.can_refresh', true)
+                    ->where('leaderboard_cache.refresh_cooldown_seconds', 0)
+                )
             );
 
         $createHostedRun();
@@ -892,7 +923,9 @@ it('caches the group leaderboard and refreshes it with a cooldown', function () 
             ->get(route('groups.dashboard.leaderboard', $group))
             ->assertOk()
             ->assertInertia(fn (Assert $page) => $page
-                ->where('leaderboard.summary.completed_hosted_runs', 2)
+                ->loadDeferredProps('group-leaderboard', fn (Assert $page) => $page
+                    ->where('leaderboard.summary.completed_hosted_runs', 2)
+                )
             );
 
         $this->actingAs($owner)
@@ -904,9 +937,11 @@ it('caches the group leaderboard and refreshes it with a cooldown', function () 
             ->get(route('groups.dashboard.leaderboard', $group))
             ->assertOk()
             ->assertInertia(fn (Assert $page) => $page
-                ->where('leaderboard.summary.completed_hosted_runs', 3)
-                ->where('leaderboard_cache.can_refresh', false)
-                ->where('leaderboard_cache.refresh_cooldown_seconds', 300)
+                ->loadDeferredProps('group-leaderboard', fn (Assert $page) => $page
+                    ->where('leaderboard.summary.completed_hosted_runs', 3)
+                    ->where('leaderboard_cache.can_refresh', false)
+                    ->where('leaderboard_cache.refresh_cooldown_seconds', 300)
+                )
             );
 
         $createHostedRun();
@@ -920,7 +955,9 @@ it('caches the group leaderboard and refreshes it with a cooldown', function () 
             ->get(route('groups.dashboard.leaderboard', $group))
             ->assertOk()
             ->assertInertia(fn (Assert $page) => $page
-                ->where('leaderboard.summary.completed_hosted_runs', 3)
+                ->loadDeferredProps('group-leaderboard', fn (Assert $page) => $page
+                    ->where('leaderboard.summary.completed_hosted_runs', 3)
+                )
             );
 
         Carbon::setTestNow(Carbon::parse('2026-05-26 12:05:01'));
@@ -935,9 +972,11 @@ it('caches the group leaderboard and refreshes it with a cooldown', function () 
             ->get(route('groups.dashboard.leaderboard', $group))
             ->assertOk()
             ->assertInertia(fn (Assert $page) => $page
-                ->where('leaderboard.summary.completed_hosted_runs', 4)
-                ->where('leaderboard_cache.can_refresh', false)
-                ->where('leaderboard_cache.refresh_cooldown_seconds', 300)
+                ->loadDeferredProps('group-leaderboard', fn (Assert $page) => $page
+                    ->where('leaderboard.summary.completed_hosted_runs', 4)
+                    ->where('leaderboard_cache.can_refresh', false)
+                    ->where('leaderboard_cache.refresh_cooldown_seconds', 300)
+                )
             );
     } finally {
         Cache::flush();

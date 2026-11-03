@@ -4,21 +4,23 @@ namespace App\Services\Dashboard;
 
 use App\Models\Activity;
 use App\Models\ActivityApplication;
-use App\Models\ActivitySlot;
-use App\Models\ActivitySlotAssignment;
 use App\Models\Character;
 use App\Models\CharacterTransferRun;
 use App\Models\Group;
 use App\Models\GroupMembership;
 use App\Models\User;
 use App\Services\Runs\RunAccessService;
+use App\Services\Runs\RunParticipationService;
 use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
 
 final class V2HomeDataService
 {
-    public function __construct(private readonly RunAccessService $runAccess) {}
+    public function __construct(
+        private readonly RunAccessService $runAccess,
+        private readonly RunParticipationService $participation,
+    ) {}
 
     private const UPCOMING_STATUSES = [
         Activity::STATUS_SCHEDULED,
@@ -113,7 +115,7 @@ final class V2HomeDataService
             ->map(fn (ActivityApplication $application): array => [
                 'id' => $application->id,
                 'status' => $application->status,
-                'display_status' => $this->applicationDisplayStatus($application, $history),
+                'display_status' => $this->participation->applicationStatus($application, $history),
                 'submitted_at' => $application->submitted_at?->toIso8601String(),
                 'selected_character_id' => $application->selected_character_id,
                 'character' => [
@@ -139,42 +141,6 @@ final class V2HomeDataService
             ? 'groups.activities.application' : 'groups.activities.overview', [
                 'locale' => app()->getLocale(), 'group' => $activity->group->slug, 'activity' => $activity->id,
             ], false);
-    }
-
-    private function applicationDisplayStatus(ActivityApplication $application, bool $history): string
-    {
-        $activity = $application->activity;
-        if ($activity->status === Activity::STATUS_CANCELLED) {
-            return ActivityApplication::STATUS_CANCELLED;
-        }
-
-        $assignment = $activity->slotAssignments->firstWhere('character_id', $application->selected_character_id);
-        $slot = $activity->slots->firstWhere('assigned_character_id', $application->selected_character_id);
-
-        // Missing players leave the roster, but their ended assignment retains the attendance record.
-        if ($history && $assignment) {
-            if (in_array($assignment->attendance_status, [ActivitySlotAssignment::STATUS_MISSING, ActivitySlotAssignment::STATUS_LATE], true)) {
-                return $assignment->attendance_status;
-            }
-            if ($assignment->attendance_status === ActivitySlotAssignment::STATUS_CHECKED_IN) {
-                return $assignment->slot?->slot_kind === ActivitySlot::SLOT_KIND_FILL_IN
-                    ? 'filled_in'
-                    : ActivitySlotAssignment::STATUS_CHECKED_IN;
-            }
-        }
-
-        if (! in_array($application->status, ActivityApplication::ACTIVE_STATUSES, true)) {
-            return $application->status;
-        }
-        if ($slot && (! $assignment || $assignment->ended_at === null)) {
-            return match ($slot->slot_kind) {
-                ActivitySlot::SLOT_KIND_BENCH => ActivityApplication::STATUS_ON_BENCH,
-                ActivitySlot::SLOT_KIND_FILL_IN => 'filled_in',
-                default => ActivitySlotAssignment::STATUS_ASSIGNED,
-            };
-        }
-
-        return $application->status;
     }
 
     /** @return array<int, array<string, mixed>> */
@@ -239,15 +205,18 @@ final class V2HomeDataService
     /** @return array<int, array<string, mixed>> */
     public function recommendedRuns(User $user): array
     {
-        return $this->runCardQuery($user)
+        $activities = $this->runCardQuery($user)
             ->where('starts_at', '>=', now())
             ->whereIn('status', self::UPCOMING_STATUSES)
             ->where('is_completed', false)
             ->where('is_public', true)
             ->inRandomOrder()
             ->limit(10)
-            ->get()
-            ->map(fn (Activity $activity): array => $this->serializeRunCard($activity, $user))
+            ->get();
+        $statuses = $this->participation->statusesFor($activities, $user->id);
+
+        return $activities
+            ->map(fn (Activity $activity): array => $this->serializeRunCard($activity, $user, $statuses[$activity->id] ?? null))
             ->all();
     }
 
@@ -256,7 +225,7 @@ final class V2HomeDataService
     {
         $now = CarbonImmutable::now();
 
-        return $this->runCardQuery($user)
+        $activities = $this->runCardQuery($user)
             ->whereBetween('starts_at', [$now, $now->addDays(7)])
             ->whereIn('status', self::UPCOMING_STATUSES)
             ->where('is_completed', false)
@@ -266,9 +235,11 @@ final class V2HomeDataService
                     ->orWhereHas('memberships', fn (Builder $membership) => $membership->where('user_id', $user->id))))
             ->orderBy('starts_at')
             ->orderBy('id')
-            ->get()
-            ->groupBy('group_id')
-            ->map(function ($activities) use ($user): array {
+            ->get();
+        $statuses = $this->participation->statusesFor($activities, $user->id);
+
+        return $activities->groupBy('group_id')
+            ->map(function ($activities) use ($user, $statuses): array {
                 $group = $activities->first()->group;
 
                 return [
@@ -276,7 +247,7 @@ final class V2HomeDataService
                     'runs_href' => route('groups.dashboard.activities.index', [
                         'locale' => app()->getLocale(), 'group' => $group->slug,
                     ], false),
-                    'runs' => $activities->map(fn (Activity $activity): array => $this->serializeRunCard($activity, $user))->all(),
+                    'runs' => $activities->map(fn (Activity $activity): array => $this->serializeRunCard($activity, $user, $statuses[$activity->id] ?? null))->all(),
                 ];
             })
             ->values()
@@ -304,8 +275,10 @@ final class V2HomeDataService
     }
 
     /** @return array<string, mixed> */
-    private function serializeRunCard(Activity $activity, User $user): array
+    private function serializeRunCard(Activity $activity, User $user, ?string $participationStatus): array
     {
+        $group = $activity->group;
+        $canViewGroupDashboard = $group->hasMember($user->id) || $group->allowsPublicDashboardAccess();
         $hasApplication = (bool) $activity->has_existing_application;
         $canApply = ! $hasApplication && $this->runAccess->canApply($activity->group, $activity, $user->id);
         $progPoint = collect($activity->activityTypeVersion?->prog_points ?? [])
@@ -313,6 +286,12 @@ final class V2HomeDataService
 
         return [
             ...$this->serializeRun($activity),
+            'group' => [
+                ...$this->serializeGroup($group),
+                'dashboard_href' => $canViewGroupDashboard
+                    ? route('groups.dashboard', ['locale' => app()->getLocale(), 'group' => $group->slug], false)
+                    : null,
+            ],
             'application_count' => (int) $activity->applications_count,
             // Private profiles and guests use an anonymous avatar in the card preview.
             'applicant_avatars' => $activity->applications
@@ -324,6 +303,7 @@ final class V2HomeDataService
             'target_prog_point_key' => $activity->target_prog_point_key,
             'target_prog_point_label' => is_array($progPoint['label'] ?? null) ? $progPoint['label'] : null,
             'has_existing_application' => $hasApplication,
+            'participation_status' => $participationStatus,
             'can_apply' => $canApply,
             'application_href' => ($canApply || $hasApplication)
                 ? route('groups.activities.application', [

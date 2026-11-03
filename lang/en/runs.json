@@ -1,4 +1,19 @@
 {
+  "participation": {
+    "statuses": {
+      "pending": "Applied",
+      "approved": "Approved",
+      "assigned": "Assigned",
+      "on_bench": "On Bench",
+      "filled_in": "Fill-in",
+      "checked_in": "Checked in",
+      "late": "Late",
+      "missing": "Missing",
+      "declined": "Declined",
+      "cancelled": "Cancelled",
+      "withdrawn": "Withdrawn"
+    }
+  },
   "discovery": {
     "title": "Run Discovery",
     "subtitle": "Find public runs from groups across FullParty.",

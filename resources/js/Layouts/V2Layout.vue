@@ -45,6 +45,7 @@ const dashboardGroup = computed<GroupNavigationContext | null>(() =>
         : null,
 )
 const isResourceWorkspace = computed(() => page.component === 'Dashboard/Groups/Resources/Manage')
+const isGroupHomepage = computed(() => page.component === 'Dashboard/Groups/CommunityDashboard')
 
 watch([isMobileOrTablet, () => page.url], () => { groupMenuOpen.value = false })
 
@@ -153,7 +154,7 @@ watch([isMobileOrTablet, hasCompactSearch, () => page.url], () => { void closeSe
                 </aside>
                 <div class="flex min-w-0 flex-1 flex-col">
                     <main id="main-content" class="min-w-0 flex-1 bg-elevation-2 dark:bg-elevation-1"
-                        :class="isResourceWorkspace ? 'p-0 lg:flex lg:h-[calc(100dvh-var(--ui-header-height))] lg:flex-none lg:flex-col lg:overflow-hidden' : 'p-4 sm:p-6 lg:p-8'">
+                        :class="isResourceWorkspace ? 'p-0 lg:flex lg:h-[calc(100dvh-var(--ui-header-height))] lg:flex-none lg:flex-col lg:overflow-hidden' : isGroupHomepage ? 'p-0' : 'p-4 sm:p-6 lg:p-8'">
                         <slot />
                     </main>
                     <V2Footer />

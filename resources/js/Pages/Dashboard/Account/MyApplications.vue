@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { getRunParticipationColor } from "@/utils/runParticipationMeta"
 import type { AccountApplication } from "@/Types/ActivityCore";
 import axios from "axios";
 import { computed, ref, watch } from "vue";
@@ -102,12 +103,12 @@ const formatDuration = (hours: number | null) => {
 };
 
 const applicationStatusMeta = (status: string) => ({
-	pending: { color: "warning", label: t("groups.activities.application.confirmation.statuses.pending") },
-	approved: { color: "success", label: t("groups.activities.application.confirmation.statuses.approved") },
-	on_bench: { color: "info", label: t("groups.activities.application.confirmation.statuses.on_bench") },
-	declined: { color: "error", label: t("groups.activities.application.confirmation.statuses.declined") },
-	cancelled: { color: "neutral", label: t("groups.activities.application.confirmation.statuses.cancelled") },
-	withdrawn: { color: "neutral", label: t("applications.statuses.withdrawn") },
+	pending: { color: getRunParticipationColor("pending"), label: t("groups.activities.application.confirmation.statuses.pending") },
+	approved: { color: getRunParticipationColor("approved"), label: t("groups.activities.application.confirmation.statuses.approved") },
+	on_bench: { color: getRunParticipationColor("on_bench"), label: t("groups.activities.application.confirmation.statuses.on_bench") },
+	declined: { color: getRunParticipationColor("declined"), label: t("groups.activities.application.confirmation.statuses.declined") },
+	cancelled: { color: getRunParticipationColor("cancelled"), label: t("groups.activities.application.confirmation.statuses.cancelled") },
+	withdrawn: { color: getRunParticipationColor("withdrawn"), label: t("applications.statuses.withdrawn") },
 }[status] ?? { color: "neutral", label: status });
 
 const applicationTypeName = (application: AccountApplication) => (

@@ -1,4 +1,10 @@
 {
+  "loading": {
+    "label": "Statistiken werden geladen…",
+    "error_title": "Statistiken konnten nicht geladen werden",
+    "error_description": "Bitte versuche erneut, die Statistiken zu laden.",
+    "retry": "Erneut versuchen"
+  },
     "title": "Statistiken",
     "subtitle": "Aktivität, Teilnahme, Bewerbungen und Loadout-Trends für {group}.",
     "common": {

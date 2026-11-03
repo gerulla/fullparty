@@ -1,4 +1,19 @@
 {
+  "participation": {
+    "statuses": {
+      "pending": "Candidature envoyée",
+      "approved": "Approuvé",
+      "assigned": "Assigné",
+      "on_bench": "En réserve",
+      "filled_in": "Remplaçant",
+      "checked_in": "Présent",
+      "late": "En retard",
+      "missing": "Absent",
+      "declined": "Refusé",
+      "cancelled": "Annulé",
+      "withdrawn": "Retiré"
+    }
+  },
     "discovery": {
         "title": "Découverte des runs",
         "subtitle": "Trouvez des runs publics proposés par les groupes de FullParty.",

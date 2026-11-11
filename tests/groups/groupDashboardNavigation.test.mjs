@@ -25,7 +25,7 @@ function setup(overrides = {}) {
         'vue-i18n': { useI18n: () => ({ t: key => key.split('.').at(-1) }) },
         'ziggy-js': { route: (name, params) => {
             const suffix = name.replace(/^groups\.dashboard\.?/, '')
-            const query = new URLSearchParams(params._query).toString()
+            const query = new URLSearchParams({ ...(params.type ? { type: params.type } : {}), ...params._query }).toString()
             return `/${params.locale}/groups/${params.group}/dashboard${suffix ? `/${paths[suffix] ?? suffix.replaceAll('.', '/')}` : ''}${query ? `?${query}` : ''}`
         } },
     }
@@ -117,6 +117,11 @@ test('active links follow query strings, nested runs, group switches and locale 
     nav.page.url = '/en/groups/ftel/dashboard/content'
     assert.deepEqual(nav.homeLinks().filter(link => link.active).map(link => link.key), ['content_customization'])
     nav.page.url = '/en/groups/ftel/dashboard/content?type=drs'
+    assert.deepEqual(nav.active(), ['delubrum_reginae_savage'])
+    assert.deepEqual(nav.homeLinks().filter(link => link.active).map(link => link.key), ['content_customization'])
+    nav.page.url = '/en/groups/ftel/dashboard/content?type=forkedtower'
+    assert.deepEqual(nav.active(), ['forked_tower_blood'])
+    assert.equal(nav.sections.value.flatMap(section => section.links).find(link => link.key === 'forked_tower_blood').href, nav.page.url)
     assert.deepEqual(nav.homeLinks().filter(link => link.active).map(link => link.key), ['content_customization'])
     nav.page.url = '/en/groups/ftel/dashboard/settings?section=audit_log'
     assert.ok(nav.homeLinks().find(link => link.key === 'audit_log').active)

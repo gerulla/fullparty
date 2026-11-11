@@ -243,7 +243,7 @@ function loadModule(path, modules, globals = {}) {
     return exports
 }
 
-function workspaceHarness({ existing = resource(), fail = () => false, revisions = {}, library, embedContext, recovery, fields = [], collections = [{ id: 5, parent_id: null, name: 'Guides' }] } = {}) {
+function workspaceHarness({ existing = resource(), fail = () => false, revisions = {}, library, embedContext, recovery, createResource = false, fields = [], collections = [{ id: 5, parent_id: null, name: 'Guides' }] } = {}) {
     const calls = []
     let autosaveTimer
     let saved = structuredClone(existing)
@@ -296,7 +296,7 @@ function workspaceHarness({ existing = resource(), fail = () => false, revisions
         './useResourceAutosave': loadModule('../../resources/js/composables/useResourceAutosave.ts', { vue: { ref, watch, onBeforeUnmount: () => {} } }, {
             setTimeout: callback => { autosaveTimer = callback; return 1 }, clearTimeout: () => { autosaveTimer = undefined },
         }),
-    }, { document: { querySelectorAll: () => fields }, sessionStorage: { getItem: key => recovery?.get(key) ?? null, setItem: (key, value) => recovery?.set(key, value), removeItem: key => recovery?.delete(key) } }).useResourceWorkspace({ groupSlug: 'group', collections, library, data: { editor_user_id: recovery ? 1 : undefined, resources: [], authors: [], activities: [], access_levels: ['everyone'], embed_context: embedContext } })
+    }, { document: { querySelectorAll: () => fields }, sessionStorage: { getItem: key => recovery?.get(key) ?? null, setItem: (key, value) => recovery?.set(key, value), removeItem: key => recovery?.delete(key) } }).useResourceWorkspace({ groupSlug: 'group', collections, library, createResource, data: { editor_user_id: recovery ? 1 : undefined, resources: [], authors: [], activities: [], access_levels: ['everyone'], embed_context: embedContext } })
     return { api, calls, mutations, async runAutosave() { const timer = autosaveTimer; autosaveTimer = undefined; timer?.(); await flush() } }
 }
 
@@ -375,6 +375,18 @@ test('optimistic editor moves happen before lease release and preserve a release
     assert.equal(api.selected.collectionId, '5')
     assert.equal(api.selected.version, 20)
     assert.equal(api.busy, false)
+})
+
+test('the new-resource entry point waits for creation before opening an editable root draft', async () => {
+    const { api, calls } = workspaceHarness({ createResource: true, collections: [] })
+    await flush()
+    assert.equal(api.state.createResourceDialog, true)
+    assert.equal(calls.length, 0)
+    api.confirmCreateResource(); await flush()
+    assert.equal(calls.filter(call => call[0] === 'create').length, 1)
+    assert.equal(api.state.createResourceDialog, false)
+    assert.equal(api.state.mode, 'editor')
+    assert.equal(api.state.draft.collectionId, null)
 })
 
 test('creating the first resource immediately opens a root draft without requiring a folder', async () => {

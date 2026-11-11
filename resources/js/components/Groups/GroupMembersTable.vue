@@ -424,16 +424,19 @@ watch(activitySummaryModalOpen, (open) => {
 </script>
 
 <template>
-	<UCard class="w-full dark:bg-elevated/25">
+	<UCard
+		class="w-full overflow-hidden rounded-xl border border-elevation-3 bg-elevation-1 shadow-sm ring-0 divide-elevation-3 dark:border-elevation-6 dark:bg-elevation-2 dark:shadow-none dark:divide-elevation-6 dark:[--ui-primary:var(--color-brand-400)] [&_button]:rounded-md"
+		:ui="{ header: 'p-4 sm:p-5', body: 'bg-elevation-2/50 p-4 sm:p-5 dark:bg-transparent' }"
+	>
 		<template #header>
 			<div class="flex flex-col gap-4">
 				<div class="flex flex-col items-start gap-3 lg:flex-row lg:items-center lg:justify-between">
 					<div class="flex flex-col gap-1">
-						<p class="font-semibold text-md">{{ currentTitle }}</p>
+						<h2 class="text-base font-semibold text-highlighted">{{ currentTitle }}</h2>
 						<p class="text-sm text-muted">{{ currentSubtitle }}</p>
 					</div>
 
-					<UBadge :label="currentCountLabel" color="neutral" variant="subtle" />
+					<UBadge :label="currentCountLabel" color="neutral" variant="soft" class="rounded-full not-dark:bg-elevation-2 not-dark:text-toned" />
 				</div>
 
 				<div class="flex flex-col gap-2 xl:flex-row xl:items-center xl:justify-between">
@@ -442,12 +445,14 @@ watch(activitySummaryModalOpen, (open) => {
 						class="w-full xl:max-w-md"
 						icon="i-lucide-search"
 						:placeholder="currentSearchPlaceholder"
+						:ui="{ base: 'rounded-lg bg-elevation-1 text-default placeholder:text-muted ring-elevation-4 shadow-xs dark:bg-elevation-3 dark:ring-elevation-6 dark:shadow-none' }"
 					/>
 
 					<div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-end">
 						<div class="flex w-full gap-1 sm:w-auto">
 							<UButton
 								class="flex-1 sm:flex-none"
+								:class="{ 'not-dark:bg-elevation-1 not-dark:text-toned not-dark:ring-elevation-4 not-dark:shadow-xs not-dark:hover:bg-elevation-2': !listViewActive }"
 								:color="listViewActive ? 'primary' : 'neutral'"
 								:variant="listViewActive ? 'solid' : 'subtle'"
 								icon="i-lucide-list"
@@ -456,6 +461,7 @@ watch(activitySummaryModalOpen, (open) => {
 							/>
 							<UButton
 								class="flex-1 sm:flex-none"
+								:class="{ 'not-dark:bg-elevation-1 not-dark:text-toned not-dark:ring-elevation-4 not-dark:shadow-xs not-dark:hover:bg-elevation-2': !gridViewActive }"
 								:color="gridViewActive ? 'primary' : 'neutral'"
 								:variant="gridViewActive ? 'solid' : 'subtle'"
 								icon="i-lucide-layout-grid"
@@ -466,6 +472,7 @@ watch(activitySummaryModalOpen, (open) => {
 
 						<UButton
 							v-if="props.canViewBans"
+							class="not-dark:bg-elevation-1 not-dark:text-toned not-dark:ring-elevation-4 not-dark:shadow-xs not-dark:hover:bg-elevation-2"
 							color="neutral"
 							variant="subtle"
 							:icon="showBannedMembers ? 'i-lucide-users' : 'i-lucide-ban'"
@@ -478,7 +485,7 @@ watch(activitySummaryModalOpen, (open) => {
 		</template>
 
 		<div class="space-y-4">
-			<div v-if="shouldShowNoResults" class="flex min-h-52 flex-col items-center justify-center gap-3 border border-dashed border-default bg-muted/10 px-6 py-12 text-center">
+			<div v-if="shouldShowNoResults" class="flex min-h-52 flex-col items-center justify-center gap-3 rounded-lg border border-dashed border-elevation-4 bg-elevation-1 px-6 py-12 text-center dark:border-elevation-6 dark:bg-elevation-3">
 				<UIcon :name="showBannedMembers ? 'i-lucide-ban' : 'i-lucide-users'" class="size-8 text-muted" />
 				<p class="font-medium text-toned">{{ emptyLabel }}</p>
 				<p v-if="search" class="max-w-md text-sm text-muted">
@@ -490,11 +497,11 @@ watch(activitySummaryModalOpen, (open) => {
 				<div
 					v-for="card in visibleCards"
 					:key="card.id"
-					class="overflow-hidden border border-default bg-default/60 shadow-sm transition hover:border-primary/35 hover:bg-elevated/60"
+					class="overflow-hidden rounded-lg border border-elevation-3 bg-elevation-1 transition-colors hover:border-brand-300 dark:border-elevation-6 dark:bg-elevation-3 dark:hover:border-brand-400/50 dark:hover:bg-elevation-4"
 				>
 					<div class="flex items-center gap-2 p-3 sm:gap-3 sm:p-4 xl:gap-4 xl:p-5">
 						<div class="flex min-w-0 flex-1 items-center gap-2 sm:gap-3">
-							<div v-if="card.avatarUrl" class="h-10 w-10 shrink-0 overflow-hidden rounded-full border border-primary/40 bg-muted/30 shadow-sm shadow-primary/10 sm:h-12 sm:w-12 xl:h-16 xl:w-16">
+							<div v-if="card.avatarUrl" class="h-10 w-10 shrink-0 overflow-hidden rounded-full border border-elevation-3 bg-elevation-2 dark:border-elevation-6 dark:bg-elevation-4 sm:h-12 sm:w-12 xl:h-16 xl:w-16">
 								<img
 									:src="card.avatarUrl"
 									:alt="t('general.image_alt.avatar', { name: card.displayName })"
@@ -502,13 +509,13 @@ watch(activitySummaryModalOpen, (open) => {
 									loading="lazy"
 								>
 							</div>
-							<div v-else class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-primary/40 bg-primary/10 text-base font-semibold text-toned shadow-sm shadow-primary/10 sm:h-12 sm:w-12 sm:text-lg xl:h-16 xl:w-16 xl:text-2xl">
+							<div v-else class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-base font-semibold text-primary sm:h-12 sm:w-12 sm:text-lg xl:h-16 xl:w-16 xl:text-2xl">
 								{{ initialsForName(card.displayName) }}
 							</div>
 
 							<div class="min-w-0 space-y-1">
 								<div class="min-w-0">
-									<p class="truncate text-sm font-semibold leading-tight text-toned sm:text-base lg:text-lg xl:text-2xl" :title="card.displayName">
+									<p class="truncate text-sm font-semibold leading-tight text-highlighted sm:text-base lg:text-lg xl:text-2xl" :title="card.displayName">
 										{{ card.displayName }}
 									</p>
 									<p v-if="card.kind === 'active'" class="truncate text-xs text-muted sm:text-sm">
@@ -524,14 +531,14 @@ watch(activitySummaryModalOpen, (open) => {
 
 								<div class="flex flex-wrap items-center gap-1.5 sm:gap-2">
 									<template v-if="card.kind === 'active'">
-									<UBadge
+									<UBadge class="rounded-md"
 										:label="roleBadge(card.member.role).label"
 										:color="roleBadge(card.member.role).color"
 										:icon="roleBadge(card.member.role).icon"
 										variant="subtle"
 										size="sm"
 									/>
-									<UBadge
+									<UBadge class="rounded-md"
 										:label="t('groups.members.roster.runs_badge', { count: card.member.participated_run_count })"
 										color="neutral"
 										variant="subtle"
@@ -539,7 +546,7 @@ watch(activitySummaryModalOpen, (open) => {
 										size="sm"
 									/>
 								</template>
-								<UBadge
+								<UBadge class="rounded-md"
 									v-else
 									:label="bannedBadge.label"
 									:color="bannedBadge.color"
@@ -551,7 +558,7 @@ watch(activitySummaryModalOpen, (open) => {
 							</div>
 						</div>
 
-						<div class="hidden h-12 shrink-0 border-l border-default sm:block xl:h-16"></div>
+						<div class="hidden h-12 shrink-0 border-l border-elevation-3 dark:border-elevation-6 sm:block xl:h-16"></div>
 
 						<div
 							class="min-w-0 w-28 shrink-0 sm:w-40 md:w-48 xl:w-72"
@@ -559,10 +566,10 @@ watch(activitySummaryModalOpen, (open) => {
 						>
 							<div
 								v-if="featuredCharacter(card.characters)"
-								class="flex min-w-0 items-center gap-2 border border-default bg-muted/15 p-1.5 sm:p-2 xl:gap-2.5 xl:p-2.5"
+								class="flex min-w-0 items-center gap-2 rounded-lg bg-elevation-2 p-1.5 dark:bg-elevation-4 sm:p-2 xl:gap-2.5 xl:p-2.5"
 								:title="`${featuredCharacter(card.characters)?.name} - ${featuredCharacter(card.characters)?.world}`"
 							>
-								<div v-if="featuredCharacter(card.characters)?.avatar_url" class="h-7 w-7 shrink-0 overflow-hidden border border-default bg-muted/30 sm:h-8 sm:w-8 xl:h-10 xl:w-10">
+								<div v-if="featuredCharacter(card.characters)?.avatar_url" class="h-7 w-7 shrink-0 overflow-hidden rounded-md bg-elevation-3 dark:bg-elevation-5 sm:h-8 sm:w-8 xl:h-10 xl:w-10">
 									<img
 										:src="featuredCharacter(card.characters)?.avatar_url || undefined"
 										:alt="t('general.image_alt.avatar', { name: featuredCharacter(card.characters)?.name })"
@@ -570,7 +577,7 @@ watch(activitySummaryModalOpen, (open) => {
 										loading="lazy"
 									>
 								</div>
-								<div v-else class="flex h-7 w-7 shrink-0 items-center justify-center border border-default bg-primary/10 text-xs font-semibold text-toned sm:h-8 sm:w-8 xl:h-10 xl:w-10 xl:text-sm">
+								<div v-else class="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-primary/10 text-xs font-semibold text-primary sm:h-8 sm:w-8 xl:h-10 xl:w-10 xl:text-sm">
 									{{ initialsForName(featuredCharacter(card.characters)?.name) }}
 								</div>
 
@@ -590,14 +597,14 @@ watch(activitySummaryModalOpen, (open) => {
 								/>
 								<UBadge
 									v-if="extraCharacterCount(card.characters) > 0"
-									class="hidden sm:inline-flex"
+									class="hidden rounded-md sm:inline-flex"
 									color="neutral"
 									variant="subtle"
 									:label="`+${extraCharacterCount(card.characters)}`"
 								/>
 							</div>
 
-							<div v-else class="flex min-h-10 items-center border border-dashed border-default bg-muted/10 px-2 py-1.5 text-xs text-muted sm:px-3 sm:py-2 sm:text-sm">
+							<div v-else class="flex min-h-10 items-center rounded-lg border border-dashed border-elevation-4 bg-elevation-2 px-2 py-1.5 text-xs text-muted dark:border-elevation-6 dark:bg-elevation-4 sm:px-3 sm:py-2 sm:text-sm">
 								{{ t('groups.members.roster.no_characters') }}
 							</div>
 						</div>
@@ -700,7 +707,7 @@ watch(activitySummaryModalOpen, (open) => {
 
 					<div
 						v-if="card.kind === 'active' && canShowActiveActions(card.member)"
-						class="grid grid-cols-2 gap-2 border-t border-default p-3 sm:hidden"
+						class="grid grid-cols-2 gap-2 border-t border-elevation-3 bg-elevation-2/50 p-3 dark:border-elevation-6 dark:bg-elevation-2 sm:hidden"
 					>
 						<UButton
 							v-if="props.canViewActivitySummary"
@@ -769,7 +776,7 @@ watch(activitySummaryModalOpen, (open) => {
 
 					<div
 						v-if="card.kind === 'banned' && canShowBannedActions(card.member)"
-						class="grid grid-cols-2 gap-2 border-t border-default p-3 sm:hidden"
+						class="grid grid-cols-2 gap-2 border-t border-elevation-3 bg-elevation-2/50 p-3 dark:border-elevation-6 dark:bg-elevation-2 sm:hidden"
 					>
 						<MemberNotesButton
 							v-if="card.member.user_id"
@@ -800,7 +807,7 @@ watch(activitySummaryModalOpen, (open) => {
 				<div
 					v-for="card in visibleCards"
 					:key="card.id"
-					class="overflow-hidden border border-default bg-default/60 shadow-sm transition hover:border-primary/35 hover:bg-elevated/60"
+					class="overflow-hidden rounded-lg border border-elevation-3 bg-elevation-1 transition-colors hover:border-brand-300 dark:border-elevation-6 dark:bg-elevation-3 dark:hover:border-brand-400/50 dark:hover:bg-elevation-4"
 				>
 					<div
 						class="h-24 bg-cover bg-center bg-muted/30"
@@ -809,7 +816,7 @@ watch(activitySummaryModalOpen, (open) => {
 
 					<div class="px-4 pb-4">
 						<div class="-mt-10 flex justify-center">
-							<div v-if="card.avatarUrl" class="h-20 w-20 overflow-hidden rounded-full border-4 border-default bg-muted/30 shadow-sm">
+							<div v-if="card.avatarUrl" class="h-20 w-20 overflow-hidden rounded-full border-4 border-elevation-1 bg-elevation-2 shadow-sm dark:border-elevation-3 dark:bg-elevation-4">
 								<img
 									:src="card.avatarUrl"
 									:alt="t('general.image_alt.avatar', { name: card.displayName })"
@@ -817,31 +824,31 @@ watch(activitySummaryModalOpen, (open) => {
 									loading="lazy"
 								>
 							</div>
-							<div v-else class="flex h-20 w-20 items-center justify-center rounded-full border-4 border-default bg-muted/20 shadow-sm">
+							<div v-else class="flex h-20 w-20 items-center justify-center rounded-full border-4 border-elevation-1 bg-elevation-2 shadow-sm dark:border-elevation-3 dark:bg-elevation-4">
 								<UIcon name="i-lucide-user" size="26" class="text-muted" />
 							</div>
 						</div>
 
 						<div class="mt-3 space-y-3 text-center">
-							<p class="break-words text-lg font-semibold leading-tight text-toned [overflow-wrap:anywhere]">{{ card.displayName }}</p>
+							<p class="break-words text-lg font-semibold leading-tight text-highlighted [overflow-wrap:anywhere]">{{ card.displayName }}</p>
 
 							<div class="flex flex-wrap items-center justify-center gap-2">
 								<template v-if="card.kind === 'active'">
-									<UBadge
+									<UBadge class="rounded-md"
 										:label="roleBadge(card.member.role).label"
 										:color="roleBadge(card.member.role).color"
 										:icon="roleBadge(card.member.role).icon"
 										variant="subtle"
 										size="sm"
 									/>
-									<UBadge
+									<UBadge class="rounded-md"
 										:label="t('groups.members.roster.runs_badge', { count: card.member.participated_run_count })"
 										color="neutral"
 										variant="subtle"
 										icon="i-lucide-swords"
 										size="sm"
 									/>
-									<UBadge
+									<UBadge class="rounded-md"
 										:label="joinedLabel(card.member)"
 										color="neutral"
 										variant="outline"
@@ -850,14 +857,14 @@ watch(activitySummaryModalOpen, (open) => {
 									/>
 								</template>
 								<template v-else>
-									<UBadge
+									<UBadge class="rounded-md"
 										:label="bannedBadge.label"
 										:color="bannedBadge.color"
 										:icon="bannedBadge.icon"
 										variant="subtle"
 										size="sm"
 									/>
-									<UBadge
+									<UBadge class="rounded-md"
 										:label="bannedAtLabel(card.member)"
 										color="neutral"
 										variant="outline"
@@ -873,10 +880,10 @@ watch(activitySummaryModalOpen, (open) => {
 								<div
 									v-for="character in card.characters"
 									:key="character.id"
-									class="inline-flex max-w-full items-center gap-2 rounded-sm border border-default bg-muted/20 px-2.5 py-2 text-left"
+									class="inline-flex max-w-full items-center gap-2 rounded-lg bg-elevation-2 px-2.5 py-2 text-left dark:bg-elevation-4"
 									:title="`${character.name} - ${character.world}`"
 								>
-									<div v-if="character.avatar_url" class="h-8 w-8 shrink-0 overflow-hidden rounded-sm border border-default bg-muted/30">
+									<div v-if="character.avatar_url" class="h-8 w-8 shrink-0 overflow-hidden rounded-md bg-elevation-3 dark:bg-elevation-5">
 										<img
 											:src="character.avatar_url"
 											:alt="t('general.image_alt.avatar', { name: character.name })"
@@ -884,7 +891,7 @@ watch(activitySummaryModalOpen, (open) => {
 											loading="lazy"
 										>
 									</div>
-									<div v-else class="flex h-8 w-8 shrink-0 items-center justify-center rounded-sm border border-default bg-muted/20">
+									<div v-else class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-elevation-3 dark:bg-elevation-5">
 										<UIcon name="i-lucide-user-round" size="13" class="text-muted" />
 									</div>
 
@@ -906,7 +913,7 @@ watch(activitySummaryModalOpen, (open) => {
 							</p>
 						</div>
 
-						<div v-if="canShowCardActions(card)" class="mt-4 border-t border-default pt-4">
+						<div v-if="canShowCardActions(card)" class="mt-4 border-t border-elevation-3 pt-4 dark:border-elevation-6">
 							<template v-if="card.kind === 'active'">
 								<div v-if="canShowActiveActions(card.member)" class="flex flex-col items-center gap-2">
 									<div class="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:justify-center">
@@ -1028,7 +1035,12 @@ watch(activitySummaryModalOpen, (open) => {
 		v-model:open="activitySummaryModalOpen"
 		:title="activitySummaryModalTitle"
 		:description="activitySummaryModalDescription"
-		:ui="{ content: 'sm:max-w-5xl' }"
+		:ui="{
+			content: 'rounded-xl bg-elevation-1 shadow-lg ring-elevation-3 divide-elevation-3 dark:bg-elevation-2 dark:ring-elevation-6 dark:divide-elevation-6 dark:[--ui-primary:var(--color-brand-400)] sm:max-w-5xl',
+			header: 'p-4 sm:p-5',
+			body: 'bg-elevation-2/50 p-4 dark:bg-transparent sm:p-5',
+			close: 'rounded-md',
+		}"
 	>
 		<template #body>
 			<GroupMemberActivitySummaryPanel

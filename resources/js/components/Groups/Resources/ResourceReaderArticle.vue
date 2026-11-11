@@ -24,13 +24,16 @@ const contentExtensions = resourceContentExtensions()
             </template>
             <div class="relative min-w-0" :class="resource.metadata_image_id ? 'px-5 pb-5 pt-24 sm:px-7 sm:pb-7 sm:pt-28' : ''">
                 <div v-if="resource.tags.length || resource.activity_type_ids.length || resource.access_level !== 'everyone'" class="mb-4 flex flex-wrap items-center gap-2">
-                    <UButton v-for="tag in resource.tags" :key="tag" size="xs" :color="resource.metadata_image_id ? 'neutral' : 'primary'" variant="soft" :class="resource.metadata_image_id ? 'bg-black/45 text-white ring-1 ring-inset ring-white/20 hover:bg-black/65' : ''" :label="tag" @click="$emit('tag', tag)" />
-                    <UBadge v-for="activity in activities.filter(item => resource.activity_type_ids.includes(item.id))" :key="activity.id" color="neutral" variant="subtle" :class="resource.metadata_image_id ? 'bg-black/45 text-white ring-white/20' : ''">{{ localizedValue(activity.name, locale) }}</UBadge>
-                    <UBadge v-if="resource.access_level !== 'everyone'" icon="i-lucide-lock-keyhole" color="neutral" variant="outline" :class="resource.metadata_image_id ? 'bg-black/45 text-white ring-white/20' : ''">{{ t(`groups.resources.reader.access_${resource.access_level}`) }}</UBadge>
+                    <UButton v-for="tag in resource.tags" :key="tag" size="xs" :color="resource.metadata_image_id ? 'neutral' : 'primary'" variant="soft" class="rounded-md" :class="resource.metadata_image_id ? 'bg-black/45 text-white ring-1 ring-inset ring-white/20 hover:bg-black/65' : ''" :label="tag" @click="$emit('tag', tag)" />
+                    <UBadge v-for="activity in activities.filter(item => resource.activity_type_ids.includes(item.id))" :key="activity.id" color="neutral" variant="subtle" class="rounded-md" :class="resource.metadata_image_id ? 'bg-black/45 text-white ring-white/20' : 'not-dark:bg-elevation-1 not-dark:text-toned not-dark:ring-elevation-3'">{{ localizedValue(activity.name, locale) }}</UBadge>
+                    <UBadge v-if="resource.access_level !== 'everyone'" icon="i-lucide-lock-keyhole" color="neutral" variant="outline" class="rounded-md" :class="resource.metadata_image_id ? 'bg-black/45 text-white ring-white/20' : 'not-dark:bg-elevation-1 not-dark:text-toned not-dark:ring-elevation-3'">{{ t(`groups.resources.reader.access_${resource.access_level}`) }}</UBadge>
                 </div>
                 <div class="flex flex-wrap items-start justify-between gap-3">
                     <h1 class="min-w-0 flex-1 break-words text-2xl font-semibold tracking-tight sm:text-3xl" :class="resource.metadata_image_id ? 'text-white' : 'text-highlighted'">{{ resource.title }}</h1>
-                    <ReportButton :target="{ type: resource.holster_id ? 'holster' : 'resource', id: resource.holster_id ?? resource.id, label: resource.title }" :entry-url="resource.report_url" :class="resource.metadata_image_id ? 'bg-black/45 text-white ring-white/30 hover:bg-black/65' : ''" />
+                    <div class="flex shrink-0 items-center gap-2">
+                        <UButton v-if="resource.edit_url" :href="resource.edit_url" icon="i-lucide-pencil" color="primary" variant="soft" size="sm" class="rounded-md" :class="resource.metadata_image_id ? 'bg-black/45 text-white ring-1 ring-inset ring-white/30 hover:bg-black/65' : ''" :label="t('general.edit')" />
+                        <ReportButton :target="{ type: resource.holster_id ? 'holster' : 'resource', id: resource.holster_id ?? resource.id, label: resource.title }" :entry-url="resource.report_url" :class="resource.metadata_image_id ? 'bg-black/45 text-white ring-white/30 hover:bg-black/65' : ''" />
+                    </div>
                 </div>
                 <p v-if="resource.description" class="mt-3 break-words leading-relaxed" :class="resource.metadata_image_id ? 'text-white/85' : 'text-muted'">{{ resource.description }}</p>
                 <div v-if="resource.author || resource.published_at" class="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs" :class="resource.metadata_image_id ? 'text-white/70' : 'text-muted'">

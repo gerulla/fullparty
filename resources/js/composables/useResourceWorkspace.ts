@@ -14,7 +14,7 @@ import { resourceFieldPath, resourceFieldValue, validateResourceFields } from '@
 import { useResourceAutosave } from './useResourceAutosave'
 import { useResourceNavigation } from './useResourceNavigation'
 
-export function useResourceWorkspace(props: { groupSlug: string; collections: ResourceCollectionData[]; data: ResourceWorkspaceData; resource?: ResourceDetailData; library?: ResourceLibrary }, libraryChanged: () => void = () => {}): ResourceWorkspaceController {
+export function useResourceWorkspace(props: { groupSlug: string; collections: ResourceCollectionData[]; data: ResourceWorkspaceData; resource?: ResourceDetailData; library?: ResourceLibrary; createResource?: boolean }, libraryChanged: () => void = () => {}): ResourceWorkspaceController {
     const { t, locale } = useI18n()
     const label = (key: string, params: Record<string, string | number> = {}) => t(`groups.resources.workspace.${key}`, params)
     const activities = computed(() => new Map(props.data.activities.map(item => [item.id, item.name[locale.value] || item.name.en || String(item.id)])))
@@ -26,7 +26,7 @@ export function useResourceWorkspace(props: { groupSlug: string; collections: Re
         historyOpen: false, sourceRevisionId: null, saveDialog: false, error: '',
         commandValidationAttempted: false, commandErrors: {},
         fieldErrors: {}, autosaveError: false, conflict: false,
-        createResourceDialog: false, createCollectionId: '', moveDialog: false, moveTarget: 'root', moveIds: [],
+        createResourceDialog: Boolean(props.createResource), createCollectionId: 'root', moveDialog: false, moveTarget: 'root', moveIds: [],
         confirmation: { open: false, title: '', description: '', label: '' },
     })
     const loadingResource = ref(false)
@@ -464,7 +464,7 @@ export function useResourceWorkspace(props: { groupSlug: string; collections: Re
                 await create(collectionId)
             })
         },
-        confirmCreateResource() { void run(() => create(state.createCollectionId)) },
+        confirmCreateResource() { void run(() => create(state.createCollectionId === 'root' ? null : state.createCollectionId)) },
         viewUrl(resource = selected.value ?? undefined) {
             const urls = resource?.readerUrls
             if (!urls) return undefined

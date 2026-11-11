@@ -121,8 +121,8 @@ const phantomJobIconUrl = (run: GroupMemberActivitySummaryRun) => (
 <template>
 	<div class="space-y-4">
 		<div v-if="loading" class="space-y-3">
-			<div v-for="item in 6" :key="item" class="grid gap-3 border border-primary/25 bg-primary/5 p-3 sm:grid-cols-[3.5rem_minmax(0,1fr)_7rem] sm:items-center">
-				<USkeleton class="h-14 w-14" />
+			<div v-for="item in 6" :key="item" class="grid gap-3 rounded-lg border border-elevation-3 bg-elevation-1 p-4 dark:border-elevation-6 dark:bg-elevation-3 sm:grid-cols-[3.5rem_minmax(0,1fr)_7rem] sm:items-center">
+				<USkeleton class="h-14 w-14 rounded-lg" />
 				<div class="space-y-2">
 					<USkeleton class="h-4 w-2/3" />
 					<USkeleton class="h-3 w-1/2" />
@@ -133,12 +133,13 @@ const phantomJobIconUrl = (run: GroupMemberActivitySummaryRun) => (
 			</div>
 		</div>
 
-		<div v-else-if="error" class="flex flex-col items-start gap-3 border border-error/30 bg-error/10 p-4 sm:flex-row sm:items-center sm:justify-between">
+		<div v-else-if="error" class="flex flex-col items-start gap-3 rounded-lg border border-error/20 bg-error/5 p-4 sm:flex-row sm:items-center sm:justify-between">
 			<div>
 				<p class="font-medium text-error">{{ t("groups.members.activity_summary.load_error") }}</p>
 				<p class="text-sm text-muted">{{ t("groups.members.activity_summary.load_error_hint") }}</p>
 			</div>
 			<UButton
+				class="rounded-md"
 				color="error"
 				variant="subtle"
 				icon="i-lucide-refresh-cw"
@@ -147,25 +148,25 @@ const phantomJobIconUrl = (run: GroupMemberActivitySummaryRun) => (
 			/>
 		</div>
 
-		<div v-else-if="recentRuns.length === 0" class="flex min-h-48 items-center justify-center border border-dashed border-default bg-muted/10 px-4 py-8 text-center">
+		<div v-else-if="recentRuns.length === 0" class="flex min-h-48 items-center justify-center rounded-lg border border-dashed border-elevation-4 bg-elevation-1 px-4 py-8 text-center dark:border-elevation-6 dark:bg-elevation-3">
 			<p class="text-sm text-muted">{{ t("groups.members.activity_summary.empty_recent") }}</p>
 		</div>
 
 		<div v-else class="space-y-3">
-			<div class="flex flex-col gap-2 border border-default bg-muted/10 px-3 py-2 sm:flex-row sm:items-center sm:justify-between">
+			<div class="flex flex-wrap items-center justify-between gap-2">
 				<div class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-muted">
 					<UIcon name="i-lucide-history" class="size-4 text-primary" />
 					{{ t("groups.members.activity_summary.recent_runs") }}
 				</div>
-				<UBadge color="neutral" variant="subtle" :label="recentRunCountLabel" />
+				<UBadge color="neutral" variant="soft" class="rounded-full bg-elevation-3 text-toned dark:bg-elevation-4" :label="recentRunCountLabel" />
 			</div>
 
 			<div
 				v-for="run in recentRuns"
 				:key="run.id"
-				class="grid gap-3 border border-primary/35 bg-primary/5 p-3 shadow-sm shadow-primary/5 transition hover:border-primary/55 hover:bg-primary/10 sm:grid-cols-[3.5rem_minmax(0,1fr)_minmax(7rem,auto)] sm:items-start"
+				class="grid gap-3 rounded-lg border border-elevation-3 bg-elevation-1 p-4 shadow-xs dark:border-elevation-6 dark:bg-elevation-3 dark:shadow-none sm:grid-cols-[3.5rem_minmax(0,1fr)_minmax(7rem,auto)] sm:items-start"
 			>
-				<div v-if="run.activity_icon_url" class="h-14 w-14 shrink-0 overflow-hidden border border-default bg-muted/30">
+				<div v-if="run.activity_icon_url" class="h-14 w-14 shrink-0 overflow-hidden rounded-lg border border-elevation-3 bg-elevation-2 dark:border-elevation-6 dark:bg-elevation-4">
 					<img
 						:src="run.activity_icon_url"
 						:alt="t('general.image_alt.icon', { name: runDisplayName(run) })"
@@ -173,13 +174,13 @@ const phantomJobIconUrl = (run: GroupMemberActivitySummaryRun) => (
 						loading="lazy"
 					>
 				</div>
-				<div v-else class="flex h-14 w-14 shrink-0 items-center justify-center border border-default bg-muted/20">
+				<div v-else class="flex h-14 w-14 shrink-0 items-center justify-center rounded-lg bg-elevation-2 dark:bg-elevation-4">
 					<UIcon name="i-lucide-swords" class="size-5 text-muted" />
 				</div>
 
 				<div class="min-w-0 space-y-2">
 					<div class="min-w-0">
-						<p class="break-words text-sm font-semibold leading-tight text-toned [overflow-wrap:anywhere] sm:text-base">
+						<p class="break-words text-sm font-semibold leading-tight text-highlighted [overflow-wrap:anywhere] sm:text-base">
 							{{ runDisplayName(run) }}
 						</p>
 						<p v-if="run.activity_type_name" class="mt-0.5 text-xs text-muted">
@@ -198,11 +199,11 @@ const phantomJobIconUrl = (run: GroupMemberActivitySummaryRun) => (
 						</span>
 					</div>
 
-					<div class="border-t border-default"></div>
+					<div class="border-t border-elevation-3 dark:border-elevation-6"></div>
 
 					<div class="flex min-w-0 flex-col gap-2 xl:flex-row xl:items-center">
 						<div class="flex min-w-0 items-center gap-2 xl:min-w-56">
-							<div v-if="run.character.avatar_url" class="h-8 w-8 shrink-0 overflow-hidden border border-default bg-muted/30">
+							<div v-if="run.character.avatar_url" class="h-8 w-8 shrink-0 overflow-hidden rounded-md border border-elevation-3 bg-elevation-2 dark:border-elevation-6 dark:bg-elevation-4">
 								<img
 									:src="run.character.avatar_url"
 									:alt="t('general.image_alt.avatar', { name: run.character.name })"
@@ -210,7 +211,7 @@ const phantomJobIconUrl = (run: GroupMemberActivitySummaryRun) => (
 									loading="lazy"
 								>
 							</div>
-							<div v-else class="flex h-8 w-8 shrink-0 items-center justify-center border border-default bg-primary/10 text-xs font-semibold text-toned">
+							<div v-else class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-primary/10 text-xs font-semibold text-primary">
 								{{ run.character.name.slice(0, 2).toUpperCase() }}
 							</div>
 
@@ -220,10 +221,10 @@ const phantomJobIconUrl = (run: GroupMemberActivitySummaryRun) => (
 							</div>
 						</div>
 
-						<div class="hidden h-8 border-l border-default xl:block"></div>
+						<div class="hidden h-8 border-l border-elevation-3 dark:border-elevation-6 xl:block"></div>
 
 						<div class="flex flex-wrap gap-1.5">
-							<span class="inline-flex items-center gap-1.5 border border-default bg-muted/10 px-2 py-1 text-xs font-medium text-toned">
+							<span class="inline-flex items-center gap-1.5 rounded-md bg-elevation-2 px-2 py-1 text-xs font-medium text-toned dark:bg-elevation-4">
 								<img
 									v-if="classIconUrl(run)"
 									:src="classIconUrl(run) || undefined"
@@ -237,7 +238,7 @@ const phantomJobIconUrl = (run: GroupMemberActivitySummaryRun) => (
 
 							<span
 								v-if="phantomJobLabel(run)"
-								class="inline-flex items-center gap-1.5 border border-default bg-muted/10 px-2 py-1 text-xs font-medium text-toned"
+								class="inline-flex items-center gap-1.5 rounded-md bg-elevation-2 px-2 py-1 text-xs font-medium text-toned dark:bg-elevation-4"
 							>
 								<img
 									v-if="phantomJobIconUrl(run)"
@@ -259,8 +260,9 @@ const phantomJobIconUrl = (run: GroupMemberActivitySummaryRun) => (
 					</p>
 					<UBadge
 						v-if="run.group"
+						class="max-w-full rounded-md bg-elevation-2 text-toned dark:bg-elevation-4 [&>span]:truncate"
 						color="neutral"
-						variant="outline"
+						variant="soft"
 						size="sm"
 						icon="i-lucide-users"
 						:label="run.group.name"

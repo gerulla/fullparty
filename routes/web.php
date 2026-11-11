@@ -597,6 +597,7 @@ Route::prefix('{locale?}')
                 Route::get('/members', [GroupMemberController::class, 'index'])->name('groups.dashboard.members');
                 Route::get('/resources', [GroupResourceController::class, 'index'])->name('groups.dashboard.resources.index');
                 Route::get('/content/resources', [GroupResourceController::class, 'manage'])->name('groups.dashboard.resources.manage');
+                Route::get('/content/resources/create', [GroupResourceController::class, 'manage'])->name('groups.dashboard.resources.create');
                 Route::get('/resources/collections/{collectionSlug}', [GroupResourceController::class, 'collection'])->name('groups.dashboard.resources.collections.show');
                 Route::get('/resources/holsters/{holster}', [GroupResourceController::class, 'holster'])->whereNumber('holster')->name('groups.dashboard.resources.holsters.show');
                 Route::get('/resources/{slug}', [GroupResourceController::class, 'show'])->name('groups.dashboard.resources.show');
@@ -610,7 +611,6 @@ Route::prefix('{locale?}')
                 Route::patch('/content/delubrum-reginae-savage/holsters/{bozjaHolster}/status', [GroupBozjaHolsterController::class, 'updateStatus'])->name('groups.dashboard.content.delubrum-reginae-savage.holsters.status.update');
                 Route::patch('/content/delubrum-reginae-savage/holsters/{bozjaHolster}/default', [GroupBozjaHolsterController::class, 'makeDefault'])->name('groups.dashboard.content.delubrum-reginae-savage.holsters.default.update');
                 Route::delete('/content/delubrum-reginae-savage/holsters/{bozjaHolster}', [GroupBozjaHolsterController::class, 'destroy'])->name('groups.dashboard.content.delubrum-reginae-savage.holsters.destroy');
-                Route::get('/content/forked-tower-blood', [GroupContentController::class, 'forkedTowerBlood'])->name('groups.dashboard.content.forked-tower-blood');
                 Route::get('/content/forked-tower-blood/phantom-compositions', [GroupPhantomCompositionController::class, 'index'])->name('groups.dashboard.content.forked-tower-blood.phantom-compositions.index');
                 Route::post('/content/forked-tower-blood/phantom-compositions', [GroupPhantomCompositionController::class, 'store'])->middleware('throttle:group.content.write')->name('groups.dashboard.content.forked-tower-blood.phantom-compositions.store');
                 Route::put('/content/forked-tower-blood/phantom-compositions/reorder', [GroupPhantomCompositionController::class, 'reorder'])->name('groups.dashboard.content.forked-tower-blood.phantom-compositions.reorder');

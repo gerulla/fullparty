@@ -117,6 +117,9 @@ class ResourceReaderService
         $recentItems = ResourceSummaryResource::collection($recent)->resolve($request);
 
         return [
+            'create_url' => ! $public && $request->user() && $this->policy->manageLibrary($request->user(), $group)
+                ? route('groups.dashboard.resources.create', ['group' => $group], false)
+                : null,
             'activities' => $activities,
             'recent_resources' => $recentItems,
             'pinned_resources' => ResourceSummaryResource::collection($pinned)->resolve($request),
@@ -205,6 +208,9 @@ class ResourceReaderService
             + ($resource->holster_id ? $this->holsters->presentation($resource, $request->user(), $public) : []) + [
                 'body' => $snapshot['body'], 'body_html' => $this->documents->html($snapshot['body'], resourceBlocks: true), 'images' => $images, 'editors' => $editors,
                 'report_url' => ReportUrl::for($resource->holster_id ? 'holster' : 'resource', $resource->holster_id ?? $resource->id),
+                'edit_url' => ! $public && $request->user() && $this->policy->manage($request->user(), $resource)
+                    ? route('groups.dashboard.resources.edit', ['group' => $resource->group, 'resource' => $resource], false)
+                    : null,
                 'linked_resources' => ResourceSummaryResource::collection($linked)->resolve($request),
                 'related_resources' => $this->related($resource->group, $resource->collection_id, $request, $public, $resource->id), 'public_url' => $this->libraries->publicUrl($resource),
                 'history' => $this->history->preview($resource, $request),

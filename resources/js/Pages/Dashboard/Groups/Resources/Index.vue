@@ -11,5 +11,5 @@ const { t } = useI18n()
 
 <template>
     <Head :title="resource && !resource.is_home ? resource.title : t('groups.resources.reader.title')" />
-    <ResourceKnowledgeHub v-bind="props" class="border border-default p-4 sm:p-6 xl:p-8" />
+    <ResourceKnowledgeHub v-bind="props" class="mx-auto w-full max-w-7xl dark:[--ui-primary:var(--color-brand-400)]" />
 </template>

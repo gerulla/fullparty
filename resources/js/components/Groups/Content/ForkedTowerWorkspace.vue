@@ -22,12 +22,8 @@ import { computed, nextTick, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const props = defineProps<{
-	group: {
-		id: number
-		name: string
-		slug: string
-	}
-	phantom_jobs: PhantomJobOption[]
+	groupSlug: string
+	phantomJobs: PhantomJobOption[]
 }>()
 
 const { locale, t } = useI18n()
@@ -68,10 +64,10 @@ const selectedComposition = computed(() => (
 	compositions.value.find(composition => composition.id === selectedCompositionId.value) ?? null
 ))
 
-const groupRouteParams = computed(() => props.group.slug)
+const groupRouteParams = computed(() => props.groupSlug)
 
 const compositionRouteParams = (compositionId: number) => ({
-	group: props.group.slug,
+	group: props.groupSlug,
 	phantomComposition: compositionId,
 })
 
@@ -231,7 +227,7 @@ const apiRuleToEditorRule = (
 		return null
 	}
 
-	const targetId = Number(rule.phantom_job_id ?? rule.phantom_job_ids?.[0] ?? props.phantom_jobs[0]?.id ?? 0)
+	const targetId = Number(rule.phantom_job_id ?? rule.phantom_job_ids?.[0] ?? props.phantomJobs[0]?.id ?? 0)
 
 	if (!targetId) {
 		return null
@@ -518,11 +514,11 @@ onMounted(loadCompositions)
 <template>
     <div class="w-full dark:[--ui-primary:var(--color-brand-400)]">
         <header ref="workspaceHeading" tabindex="-1" class="mb-5 flex scroll-mt-20 flex-wrap items-center justify-between gap-3 outline-none">
-            <ContentEditorSwitcher :group-slug="group.slug" content="forked_tower" class="md:hidden" />
+            <ContentEditorSwitcher :group-slug="groupSlug" content="forked_tower" class="md:hidden" />
             <h1 class="hidden text-2xl font-bold md:block">{{ t('groups.index.content.overview.forked_tower_title') }}</h1>
             <UButton v-if="!isBigDesktop && compactEditorOpen" color="neutral" variant="ghost" icon="i-lucide-arrow-left"
                 :label="t('groups.index.content.forked_tower_blood.compositions.workspace.library')" :disabled="isSaving" class="ml-auto rounded-md" @click="showLibrary" />
-            <UButton v-else :href="route('groups.dashboard.content.index', { group: group.slug, locale })" color="neutral" variant="ghost" icon="i-lucide-chevron-left"
+            <UButton v-else :href="route('groups.dashboard.content.index', { group: groupSlug, locale }, false)" preserve-state preserve-scroll color="neutral" variant="ghost" icon="i-lucide-chevron-left"
                 :label="t('groups.index.content.delubrum_reginae_savage.holsters.workspace.change_content')" class="hidden rounded-md md:inline-flex" />
         </header>
         <UAlert v-if="loadError" color="error" variant="soft" icon="i-lucide-alert-triangle" class="mb-4 rounded-lg" :title="t('general.error')" :description="loadError" />
@@ -538,7 +534,7 @@ onMounted(loadCompositions)
                 :compositions="compositions" :selected-composition-id="selectedCompositionId" :is-creating="isCreating" :is-busy="isSaving || isReordering"
                 @create="createComposition" @select="selectComposition" @toggle-active="toggleCompositionActive" @reorder="reorderCompositions" />
             <PhantomCompositionEditor v-show="editorVisible"
-                :composition="selectedComposition" :is-creating="isCreating" :next-rule-id="nextRuleId" :phantom-jobs="props.phantom_jobs" :is-saving="isSaving" :separate-metadata="isBigDesktop"
+                :composition="selectedComposition" :is-creating="isCreating" :next-rule-id="nextRuleId" :phantom-jobs="phantomJobs" :is-saving="isSaving" :separate-metadata="isBigDesktop"
                 @save="saveComposition" @delete="deleteComposition" @add-rule="reserveRuleId" />
         </div>
     </div>

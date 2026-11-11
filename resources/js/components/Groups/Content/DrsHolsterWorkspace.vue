@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { computed, nextTick, ref } from 'vue'
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
-import { Link } from '@inertiajs/vue3'
 import { useI18n } from 'vue-i18n'
 import { route } from 'ziggy-js'
 import type { BozjaHolsterSummary, DrsWorkspaceData } from '@/Types/Bozja'
@@ -64,7 +63,7 @@ async function showActions() {
             <ContentEditorSwitcher :group-slug="groupSlug" content="drs" class="md:hidden" />
             <h1 class="hidden text-2xl font-bold md:block">{{ t('groups.index.content.delubrum_reginae_savage.title') }}</h1>
             <UButton v-if="!isDesktop && mobileEditorOpen" color="neutral" variant="ghost" icon="i-lucide-arrow-left" :label="t(k + 'workspace.library')" class="ml-auto" @click="showLibrary" />
-            <UButton v-else :as="Link" :href="route('groups.dashboard.content.index', { group: groupSlug, locale })" color="neutral" variant="ghost" icon="i-lucide-chevron-left" :label="t(k + 'workspace.change_content')" class="hidden md:inline-flex" />
+            <UButton v-else :href="route('groups.dashboard.content.index', { group: groupSlug, locale }, false)" preserve-state preserve-scroll color="neutral" variant="ghost" icon="i-lucide-chevron-left" :label="t(k + 'workspace.change_content')" class="hidden md:inline-flex" />
         </header>
         <UAlert v-if="Object.keys(workspace.errors).length" color="error" variant="soft" icon="i-lucide-circle-alert" :title="t('general.error')" :description="Object.values(workspace.errors).join(' ')" class="mb-4" />
         <div class="grid items-start gap-4 xl:grid-cols-[16rem_minmax(0,1fr)_18rem] 2xl:grid-cols-[18rem_minmax(0,1fr)_19rem]">

@@ -2,6 +2,7 @@
 
 use App\Models\Group;
 use App\Models\GroupMembership;
+use App\Models\GroupResource;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Inertia\Testing\AssertableInertia as Assert;
@@ -30,6 +31,8 @@ it('lets group members open the resources reader', function (string $role) {
             ->where('group.features.resource_hub_enabled', true)
             ->where('group.permissions.can_view_members', true)
             ->where('group.permissions.can_manage_members', $role !== GroupMembership::ROLE_MEMBER)
+            ->where('reader.create_url', $role === GroupMembership::ROLE_MEMBER ? null : route('groups.dashboard.resources.create', $this->group, false))
+            ->where('resource.edit_url', fn ($url) => $role === GroupMembership::ROLE_MEMBER ? $url === null : is_string($url))
             ->where('resources.total', 1)->where('resource.is_home', true)
         );
 })->with(['owner', 'admin', 'moderator', 'member']);
@@ -48,8 +51,15 @@ it('lets group managers open resource management', function (string $role) {
             ->component('Dashboard/Groups/Resources/Manage')
             ->where('group.features.resource_hub_enabled', true)
             ->where('group.permissions.can_manage_members', true)
+            ->where('create_resource', false)
             ->where('resources.total', 1)->where('resources.data.0.is_home', true)
         );
+
+    $resourceCount = GroupResource::count();
+    $this->get(route('groups.dashboard.resources.create', $this->group))
+        ->assertOk()->assertInertia(fn (Assert $page) => $page
+        ->component('Dashboard/Groups/Resources/Manage')->where('create_resource', true));
+    expect(GroupResource::count())->toBe($resourceCount);
 })->with(['owner', 'admin', 'moderator']);
 
 it('does not let ordinary members manage resources', function () {
@@ -63,6 +73,7 @@ it('does not let ordinary members manage resources', function () {
     $this->actingAs($member)
         ->get(route('groups.dashboard.resources.manage', $this->group))
         ->assertForbidden();
+    $this->get(route('groups.dashboard.resources.create', $this->group))->assertForbidden();
 });
 
 it('blocks both resource pages when the feature is disabled', function (string $routeName) {

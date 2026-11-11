@@ -68,13 +68,33 @@ it('includes the complete public hub context when opening an article directly', 
     $folder = GroupResourceCollection::create(['group_id' => $this->group->id, 'name' => 'Guides', 'slug' => 'guides']);
     $resource = hub_resource($this->group, 'Published title', collectionId: $folder->id);
     $resource->update(['working_copy' => ['title' => 'Unpublished secret'], 'updated_at' => now()->addDay()]);
-    $this->withSession(['locale' => 'fr'])->get(route('public-resources.show', ['group' => $this->group, 'slug' => $resource->uuid]))
+    $this->actingAs($this->group->owner)->withSession(['locale' => 'fr'])->get(route('public-resources.show', ['group' => $this->group, 'slug' => $resource->uuid]))
         ->assertOk()->assertInertia(fn (Assert $page) => $page->component('Resources/Show')
         ->where('locale.current', 'fr')->where('resource.title', 'Published title')
         ->where('library.visibility', 'public')->where('collections.0.id', $folder->id)
         ->where('reader.recent_resources.0.title', 'Published title')
+        ->where('reader.create_url', null)->where('resource.edit_url', null)
         ->where('group.description', $this->group->description)->where('group.datacenter', $this->group->datacenter)
         ->missing('auth')->missing('resource.working_copy'));
+});
+
+it('offers the edit link only when the reader can manage the working copy', function () {
+    $resource = hub_resource($this->group, 'Published guide');
+    $moderator = User::factory()->create();
+    $this->group->memberships()->create(['user_id' => $moderator->id, 'role' => 'moderator', 'joined_at' => now()]);
+    $view = route('groups.dashboard.resources.show', ['group' => $this->group, 'slug' => $resource->uuid]);
+    $edit = route('groups.dashboard.resources.edit', ['group' => $this->group, 'resource' => $resource], false);
+
+    $this->actingAs($moderator)->get($view)->assertOk()
+        ->assertInertia(fn (Assert $page) => $page->where('resource.edit_url', $edit));
+    $resource->update(['management_access_level' => 'admin']);
+    $this->get($view)->assertOk()->assertInertia(fn (Assert $page) => $page->where('resource.edit_url', null));
+    $this->get($edit)->assertForbidden();
+
+    $this->actingAs($this->group->owner)->get($view)->assertOk()
+        ->assertInertia(fn (Assert $page) => $page->where('resource.edit_url', $edit));
+    $this->get($edit)->assertOk()->assertInertia(fn (Assert $page) => $page
+        ->component('Dashboard/Groups/Resources/Manage')->where('resource.id', $resource->id));
 });
 
 it('renders public article sharing metadata from published content with the library image as fallback', function (bool $cover) {

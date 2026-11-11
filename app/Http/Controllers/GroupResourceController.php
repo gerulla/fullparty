@@ -34,6 +34,7 @@ class GroupResourceController extends Controller
         return Inertia::render('Dashboard/Groups/Resources/Manage', [
             'group' => $this->navigationGroup($group),
             'workspace' => $this->reader->workspace($group, $request->user()),
+            'create_resource' => $request->routeIs('groups.dashboard.resources.create'),
         ] + $this->reader->index($group, $request, manage: true));
     }
 

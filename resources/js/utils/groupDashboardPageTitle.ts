@@ -11,7 +11,6 @@ const titleKeys: Record<string, string> = {
     'Resources/Index': 'groups.index.navigation.resources',
     'Resources/Manage': 'groups.index.navigation.manage_resources',
     'Content/Index': 'groups.dashboard.navigation.content_customization',
-    'Content/ForkedTowerBlood': 'groups.index.navigation.forked_tower_blood',
     'Settings/Index': 'groups.index.navigation.settings',
     'Settings/Discovery': 'groups.index.navigation.discovery_settings',
     'Settings/Shortcuts': 'groups.index.navigation.shortcuts',
@@ -22,6 +21,9 @@ const titleKeys: Record<string, string> = {
     GroupProfile: 'groups.index.navigation.info',
 }
 
-export function groupDashboardPageTitleKey(component: string): string {
+export function groupDashboardPageTitleKey(component: string, forkedTower = false): string {
+    if (component === 'Dashboard/Groups/Content/Index' && forkedTower) {
+        return 'groups.index.content.overview.forked_tower_title'
+    }
     return titleKeys[component.replace(/^Dashboard\/Groups\//, '')] ?? 'groups.dashboard.navigation.overview'
 }

@@ -30,8 +30,8 @@ const { notificationPreferencesOpen, openNotificationPreferences, leaveConfirmat
                     <h1 class="mt-1 text-2xl font-bold leading-tight text-white [overflow-wrap:anywhere] md:text-3xl xl:text-4xl">
                         <span>{{ group.name }}</span>
                         <template v-if="pageTitle">
-                            <span class="hidden md:inline"> - </span>
-                            <span class="mt-1 block text-lg font-medium text-white/80 md:mt-0 md:inline md:text-[length:inherit] md:font-bold md:text-white">{{ pageTitle }}</span>
+                            <span class="hidden font-normal text-white/80 md:inline"> - </span>
+                            <span class="mt-1 block text-lg font-normal text-white/80 md:mt-0 md:inline md:text-[length:inherit]">{{ pageTitle }}</span>
                         </template>
                     </h1>
                 </header>

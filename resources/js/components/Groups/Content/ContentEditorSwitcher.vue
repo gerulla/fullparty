@@ -18,7 +18,7 @@ const options = computed(() => [
         value: 'forked_tower',
         label: t('groups.index.content.overview.forked_tower_title'),
         icon: 'i-lucide-sparkles',
-        href: route('groups.dashboard.content.forked-tower-blood', { group: props.groupSlug, locale: locale.value }),
+        href: route('groups.dashboard.content.index', { group: props.groupSlug, locale: locale.value, type: 'forkedtower' }),
     },
 ])
 const title = computed(() => options.value.find(option => option.value === props.content)?.label)
@@ -27,12 +27,12 @@ const items = computed<DropdownMenuItem[][]>(() => [
         label: option.label,
         icon: option.value === props.content ? 'i-lucide-check' : option.icon,
         disabled: option.value === props.content,
-        onSelect: () => router.visit(option.href),
+        onSelect: () => router.visit(option.href, { preserveState: true, preserveScroll: true }),
     })),
     [{
         label: t('groups.dashboard.navigation.content_customization'),
         icon: 'i-lucide-layout-grid',
-        onSelect: () => router.visit(route('groups.dashboard.content.index', { group: props.groupSlug, locale: locale.value })),
+        onSelect: () => router.visit(route('groups.dashboard.content.index', { group: props.groupSlug, locale: locale.value }), { preserveState: true, preserveScroll: true }),
     }],
 ])
 </script>

@@ -5,16 +5,18 @@ import { useI18n } from 'vue-i18n'
 import { route } from 'ziggy-js'
 import type { GroupNavigationContext } from '@/Types/GroupNavigation'
 import type { DrsWorkspaceData } from '@/Types/Bozja'
-import type { GroupContentSummary } from '@/Types/GroupContent'
+import type { ForkedTowerWorkspaceData, GroupContentSummary } from '@/Types/GroupContent'
 
 const props = defineProps<{
     group: GroupNavigationContext
     content_summary: GroupContentSummary
     drs: DrsWorkspaceData | null
+    forkedtower: ForkedTowerWorkspaceData | null
 }>()
 const DrsHolsterWorkspace = defineAsyncComponent(() => import('@/components/Groups/Content/DrsHolsterWorkspace.vue'))
+const ForkedTowerWorkspace = defineAsyncComponent(() => import('@/components/Groups/Content/ForkedTowerWorkspace.vue'))
 const { t, locale } = useI18n()
-const title = computed(() => t('groups.dashboard.navigation.content_customization'))
+const title = computed(() => t(props.forkedtower ? 'groups.index.content.overview.forked_tower_title' : 'groups.dashboard.navigation.content_customization'))
 const cards = computed(() => [
     {
         key: 'drs',
@@ -32,7 +34,7 @@ const cards = computed(() => [
         action: t('groups.index.content.overview.open_compositions'),
         count: t('groups.index.content.overview.composition_count', props.content_summary.compositions.total),
         active: props.content_summary.compositions.active,
-        href: route('groups.dashboard.content.forked-tower-blood', { group: props.group.slug, locale: locale.value }, false),
+        href: route('groups.dashboard.content.index', { group: props.group.slug, locale: locale.value, type: 'forkedtower' }, false),
     },
 ])
 const holsterIcons = ['i-lucide-shield', 'i-lucide-swords', 'i-lucide-heart-pulse']
@@ -43,9 +45,10 @@ const parties = ['A', 'B', 'C', 'D', 'E', 'F']
     <Head :title="title" />
     <div class="w-full">
         <h1 class="sr-only">{{ title }}</h1>
-        <DrsHolsterWorkspace v-if="drs" :key="group.id" :group-slug="group.slug" :initial-data="drs" />
+        <DrsHolsterWorkspace v-if="drs" :key="group.slug" :group-slug="group.slug" :initial-data="drs" />
+        <ForkedTowerWorkspace v-else-if="forkedtower" :key="group.slug" :group-slug="group.slug" :phantom-jobs="forkedtower.phantom_jobs" />
         <div v-else class="grid max-w-6xl gap-5 md:mx-auto md:grid-cols-2">
-            <UCard v-for="card in cards" :key="card.key" :as="Link" :href="card.href"
+            <UCard v-for="card in cards" :key="card.key" :as="Link" :href="card.href" preserve-state preserve-scroll
                 :aria-labelledby="`content-choice-${card.key}`"
                 class="group flex min-w-0 flex-col rounded-xl border border-elevation-3 bg-elevation-1 text-left shadow-sm ring-0 transition-colors hover:border-brand-500 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand motion-reduce:transition-none dark:border-elevation-7 dark:bg-elevation-3 dark:shadow-none dark:hover:border-brand-400"
                 :ui="{ body: 'flex flex-1 flex-col p-5 sm:p-6' }">

@@ -125,6 +125,9 @@ it('renders the current localized guide and quantified loadout on both reader su
     }
     $this->withSession(['locale' => 'ja'])->get($url)->assertOk()->assertInertia(fn (Assert $page) => $page
         ->where('resource.title', '月光タンク')->where('resource.description', 'Updated description')
+        ->where('resource.edit_url', $public ? null : route('groups.dashboard.resources.edit', [
+            'locale' => 'ja', 'group' => $this->group, 'resource' => GroupResource::where('holster_id', $this->holster->id)->firstOrFail(),
+        ], false))
         ->where('resource.holster.capacity_used', 6)->where('resource.holster.items.0.quantity', 2)
         ->where('resource.body.content.0.content.0.text', 'Preparation')->where('resource.history.has_more', false));
     if ($public) {

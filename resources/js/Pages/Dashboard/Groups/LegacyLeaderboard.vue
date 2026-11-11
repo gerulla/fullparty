@@ -117,7 +117,7 @@ const rankTone = (rank: number) => {
 </script>
 
 <template>
-	<div class="w-full">
+	<div class="w-full dark:[--ui-primary:var(--color-brand-400)]">
 		<PageHeader
 			:title="t('groups.legacy_leaderboard.title')"
 			:subtitle="t('groups.legacy_leaderboard.subtitle', { group: group.name })"

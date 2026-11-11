@@ -23,6 +23,7 @@ export type ResourceReaderSummary = {
 }
 export type ResourceReaderDocument = ResourceReaderSummary & {
     report_url: string
+    edit_url: string | null
     holster?: ResourceHolsterLoadout
     legacy_body_html?: string | null
     commands: ResourceReaderCommand[]
@@ -46,7 +47,7 @@ export type ResourceReaderPage = {
     resources: { data: ResourceReaderSummary[]; current_page: number; last_page: number; per_page: number; total: number }
     resource?: ResourceReaderDocument
     filters: ResourceReaderFilters
-    reader: { selected_collection_id: number | null; activities: { id: number; name: Record<string, string> }[]; recent_resources: ResourceReaderSummary[]; pinned_resources: ResourceReaderSummary[] }
+    reader: { create_url: string | null; selected_collection_id: number | null; activities: { id: number; name: Record<string, string> }[]; recent_resources: ResourceReaderSummary[]; pinned_resources: ResourceReaderSummary[] }
 }
 
 export type ResourceLibrary = {

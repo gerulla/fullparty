@@ -72,7 +72,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-    <div class="w-full">
+    <div class="w-full dark:[--ui-primary:var(--color-brand-400)]">
         <PageHeader :title="t('groups.statistics.title')" :subtitle="t('groups.statistics.subtitle', { group: group.name })">
             <UButton color="neutral" variant="soft" icon="i-lucide-refresh-cw"
                 :label="refreshButtonLabel" :title="refreshButtonTitle" :loading="isRefreshing"

@@ -22,6 +22,13 @@ class GroupContentController extends Controller
                 'holsters' => BozjaHolsterResource::collection($group->bozjaHolsters()->with('items')->latest('updated_at')->get())->resolve(),
                 'bozja_items' => BozjaItemOptionResource::collection(BozjaItem::query()->active()->ordered()->get())->resolve(),
             ] : null,
+            'forkedtower' => $request->query('type') === 'forkedtower' ? fn () => [
+                'phantom_jobs' => PhantomJob::query()
+                    ->select(['id', 'name', 'max_level', 'icon_url', 'black_icon_url', 'transparent_icon_url', 'sprite_url'])
+                    ->orderBy('name')
+                    ->get()
+                    ->toArray(),
+            ] : null,
             'content_summary' => function () use ($group): array {
                 $holsters = $group->bozjaHolsters()
                     ->where('type', BozjaHolster::TYPE_PREPOP)
@@ -47,33 +54,6 @@ class GroupContentController extends Controller
                 ];
             },
         ]);
-    }
-
-    public function forkedTowerBlood(Group $group): Response
-    {
-        $phantomJobs = PhantomJob::query()
-            ->select(['id', 'name', 'max_level', 'icon_url', 'black_icon_url', 'transparent_icon_url', 'sprite_url'])
-            ->orderBy('name')
-            ->get()
-            ->map(fn (PhantomJob $phantomJob) => [
-                'id' => $phantomJob->id,
-                'name' => $phantomJob->name,
-                'max_level' => $phantomJob->max_level,
-                'icon_url' => $phantomJob->icon_url,
-                'black_icon_url' => $phantomJob->black_icon_url,
-                'transparent_icon_url' => $phantomJob->transparent_icon_url,
-                'sprite_url' => $phantomJob->sprite_url,
-            ])
-            ->values()
-            ->all();
-
-        return $this->renderContentPage(
-            $group,
-            'Dashboard/Groups/Content/ForkedTowerBlood',
-            [
-                'phantom_jobs' => $phantomJobs,
-            ],
-        );
     }
 
     private function renderContentPage(Group $group, string $component, array $props = []): Response

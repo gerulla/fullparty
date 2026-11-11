@@ -28,8 +28,3 @@ const accent = computed(() => /^#[a-fA-F0-9]{6}$/.test(props.library.customizati
         </div>
     </UApp>
 </template>
-
-<style scoped>
-.public-resource-page :deep(input), .public-resource-page :deep(button[role="combobox"]) { background-color: var(--ui-bg-elevated); color: var(--ui-text); }
-.public-resource-page :deep(input::placeholder) { color: var(--ui-text-muted); }
-</style>

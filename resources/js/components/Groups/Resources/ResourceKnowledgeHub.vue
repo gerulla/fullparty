@@ -60,10 +60,20 @@ const contents = computed(() => outline.value ? [
 ] : [])
 const contentRoot = ref<HTMLElement | null>(null)
 const { activeId } = useResourceContents(() => contentRoot.value, () => contents.value)
+const filterInputUi = {
+    base: 'rounded-lg bg-elevation-1 text-default placeholder:text-muted ring-elevation-4 shadow-xs focus-visible:ring-primary dark:bg-elevation-3 dark:ring-elevation-6 dark:shadow-none dark:focus-visible:ring-primary',
+    leadingIcon: 'text-muted',
+    trailingIcon: 'text-muted',
+}
+const activitySelectUi = {
+    ...filterInputUi,
+    content: 'rounded-lg bg-elevation-1 shadow-lg ring-elevation-3 dark:bg-elevation-3 dark:ring-elevation-6',
+    item: 'rounded-md',
+}
 </script>
 
 <template>
-    <section class="resource-knowledge-hub min-w-0 bg-default text-default" :aria-label="t('groups.resources.reader.title')" :aria-busy="loading">
+    <section class="resource-knowledge-hub min-w-0 text-default not-dark:[--ui-border:var(--ui-bg-elevation-4)]" :aria-label="t('groups.resources.reader.title')" :aria-busy="loading">
         <header class="grid items-start gap-5 border-b border-default pb-6 lg:grid-cols-[minmax(0,1fr)_18rem]">
             <div class="min-w-0">
                 <nav v-if="article || selectedCollection" class="mb-3 flex flex-wrap items-center gap-1.5 text-xs text-muted" :aria-label="t('groups.resources.reader.breadcrumbs')">
@@ -78,12 +88,13 @@ const { activeId } = useResourceContents(() => contentRoot.value, () => contents
                 </template>
             </div>
             <form class="min-w-0 space-y-2" role="search" @submit.prevent="hub.visit()">
+                <UButton v-if="reader.create_url" :href="reader.create_url" icon="i-lucide-file-plus" color="primary" variant="soft" class="w-full justify-center rounded-lg" :label="t('groups.resources.workspace.new_resource')" />
                 <div class="flex gap-1.5">
-                    <UInput v-model="draft.q" icon="i-lucide-search" :placeholder="t('groups.resources.reader.search_placeholder')" :aria-label="t('groups.resources.reader.search_placeholder')" :maxlength="200" class="min-w-0 flex-1" />
-                    <UButton type="submit" icon="i-lucide-arrow-right" color="neutral" variant="outline" :loading="loading" :aria-label="t('groups.resources.reader.search')" />
+                    <UInput v-model="draft.q" icon="i-lucide-search" :placeholder="t('groups.resources.reader.search_placeholder')" :aria-label="t('groups.resources.reader.search_placeholder')" :maxlength="200" class="min-w-0 flex-1" :ui="filterInputUi" />
+                    <UButton type="submit" icon="i-lucide-arrow-right" color="neutral" variant="outline" class="rounded-lg bg-elevation-1 text-default ring-elevation-4 shadow-xs hover:bg-elevation-2 dark:bg-elevation-3 dark:ring-elevation-6 dark:shadow-none dark:hover:bg-elevation-4" :loading="loading" :aria-label="t('groups.resources.reader.search')" />
                 </div>
                 <div class="flex items-center gap-2">
-                    <USelect v-if="reader.activities.length" :model-value="draft.activity" :items="activityItems" :aria-label="t('groups.resources.reader.all_activities')" size="sm" class="min-w-0 flex-1" @update:model-value="hub.activity(String($event))" />
+                    <USelect v-if="reader.activities.length" :model-value="draft.activity" :items="activityItems" :aria-label="t('groups.resources.reader.all_activities')" size="sm" class="min-w-0 flex-1" :ui="activitySelectUi" @update:model-value="hub.activity(String($event))" />
                     <UButton v-if="filtered" color="neutral" variant="ghost" size="xs" icon="i-lucide-x" :label="t('groups.resources.reader.clear_filters')" @click="hub.clear" />
                 </div>
                 <UButton v-if="filters.tag" color="primary" variant="soft" size="xs" trailing-icon="i-lucide-x" :label="`#${filters.tag}`" :aria-label="t('groups.resources.reader.remove_tag', { tag: filters.tag })" @click="hub.visit(1, null)" />
@@ -110,7 +121,10 @@ const { activeId } = useResourceContents(() => contentRoot.value, () => contents
                     <section v-if="showHome && resource" class="resource-home mb-8 border-b border-default pb-6">
                         <div class="mb-4 flex flex-wrap items-start justify-between gap-3">
                             <h2 class="min-w-0 flex-1 break-words text-xl font-semibold text-highlighted">{{ resource.title }}</h2>
-                            <ReportButton :target="{ type: 'resource', id: resource.id, label: resource.title }" :entry-url="resource.report_url" />
+                            <div class="flex shrink-0 items-center gap-2">
+                                <UButton v-if="resource.edit_url" :href="resource.edit_url" icon="i-lucide-pencil" color="primary" variant="soft" size="sm" class="rounded-md" :label="t('general.edit')" />
+                                <ReportButton :target="{ type: 'resource', id: resource.id, label: resource.title }" :entry-url="resource.report_url" />
+                            </div>
                         </div>
                         <RichTextReader :document="outline?.document ?? resource.body" :additional-extensions="contentExtensions" />
                         <ResourceReaderCommands :commands="resource.commands ?? []" />

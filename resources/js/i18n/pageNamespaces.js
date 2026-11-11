@@ -37,7 +37,6 @@ const features = {
     'Dashboard/Groups/CommunityDashboard': ['groups/activities', 'groups/common', 'groups/notifications', 'runs'],
     'Dashboard/Groups/GroupProfile': ['groups/activities', 'groups/common', 'groups/notifications'],
     'Dashboard/Groups/Content/Index': ['rich_text'],
-    'Dashboard/Groups/Content/ForkedTowerBlood': [],
     'Dashboard/Groups/DiscordIntegration': ['groups/access', 'groups/discord'],
     'Dashboard/Groups/Index': ['groups/common', 'groups/notifications'],
     'Dashboard/Groups/Leaderboard': ['groups/leaderboard'],

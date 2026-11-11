@@ -10,7 +10,7 @@ import { groupDashboardPageTitleKey } from '@/utils/groupDashboardPageTitle'
 const page = usePage()
 const { t } = useI18n()
 const group = computed(() => page.props.group_dashboard as GroupDashboardHeaderGroup | null)
-const pageTitle = computed(() => t(groupDashboardPageTitleKey(page.component)))
+const pageTitle = computed(() => t(groupDashboardPageTitleKey(page.component, Boolean(page.props.forkedtower))))
 </script>
 
 <template>

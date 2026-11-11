@@ -34,6 +34,7 @@ it('allows moderators to open content customization and Delubrum Reginae content
             ->where('content_summary.holsters', ['total' => 0, 'active' => 0])
             ->where('content_summary.compositions', ['total' => 0, 'active' => 0])
             ->where('drs', null)
+            ->where('forkedtower', null)
             ->missing('holsters')
             ->missing('phantom_jobs')
         );
@@ -62,6 +63,7 @@ it('allows moderators to open content customization and Delubrum Reginae content
             ->where('group.slug', $group->slug)
             ->where('group.permissions.can_manage_members', true)
             ->has('drs.holsters', 1)
+            ->where('forkedtower', null)
             ->where('drs.holsters.0.id', $holster->id)
             ->where('drs.holsters.0.display_name', 'Progression Holster')
             ->where('drs.holsters.0.name.en', 'Progression Holster')
@@ -439,7 +441,7 @@ it('requires refills to belong to a prepop holster in the same group', function 
         ->assertJsonValidationErrors('holster');
 });
 
-it('allows moderators to open Forked Tower Blood content', function () {
+it('allows moderators to open Forked Tower content', function () {
     $owner = User::factory()->create();
     $moderator = User::factory()->create();
     $group = Group::factory()->create(['owner_id' => $owner->id]);
@@ -458,17 +460,18 @@ it('allows moderators to open Forked Tower Blood content', function () {
     ]);
 
     $this->actingAs($moderator)
-        ->get(route('groups.dashboard.content.forked-tower-blood', $group))
+        ->get(route('groups.dashboard.content.index', ['group' => $group, 'type' => 'forkedtower']))
         ->assertOk()
         ->assertInertia(fn (Assert $page) => $page
-            ->component('Dashboard/Groups/Content/ForkedTowerBlood')
+            ->component('Dashboard/Groups/Content/Index')
             ->where('group.slug', $group->slug)
             ->where('group.permissions.can_manage_members', true)
-            ->has('phantom_jobs', 1)
-            ->where('phantom_jobs.0.id', $phantomJob->id)
-            ->where('phantom_jobs.0.name', 'Phantom Bard')
-            ->where('phantom_jobs.0.max_level', 99)
-            ->where('phantom_jobs.0.transparent_icon_url', '/reference-icons/phantom-jobs/transparent-icons/phantom-bard.webp')
+            ->where('drs', null)
+            ->has('forkedtower.phantom_jobs', 1)
+            ->where('forkedtower.phantom_jobs.0.id', $phantomJob->id)
+            ->where('forkedtower.phantom_jobs.0.name', 'Phantom Bard')
+            ->where('forkedtower.phantom_jobs.0.max_level', 99)
+            ->where('forkedtower.phantom_jobs.0.transparent_icon_url', '/reference-icons/phantom-jobs/transparent-icons/phantom-bard.webp')
         );
 });
 
@@ -492,7 +495,7 @@ it('prevents regular members from opening content customization and Delubrum Reg
         ->assertForbidden();
 });
 
-it('prevents regular members from opening Forked Tower Blood content', function () {
+it('prevents regular members from opening Forked Tower content', function () {
     $owner = User::factory()->create();
     $member = User::factory()->create();
     $group = Group::factory()->create(['owner_id' => $owner->id]);
@@ -504,6 +507,6 @@ it('prevents regular members from opening Forked Tower Blood content', function 
     ]);
 
     $this->actingAs($member)
-        ->get(route('groups.dashboard.content.forked-tower-blood', $group))
+        ->get(route('groups.dashboard.content.index', ['group' => $group, 'type' => 'forkedtower']))
         ->assertForbidden();
 });

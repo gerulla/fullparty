@@ -56,7 +56,7 @@ export function useGroupDashboardNavigation(group: () => GroupNavigationContext)
                 links: permissions.can_manage_members ? [
                     ...(resources ? [link('manage_resources', 'groups.dashboard.resources.manage', 'i-lucide-folder-open')] : []),
                     link('delubrum_reginae_savage', 'groups.dashboard.content.index', 'i-lucide-castle', true, 'drs'),
-                    link('forked_tower_blood', 'groups.dashboard.content.forked-tower-blood', 'i-lucide-droplets'),
+                    link('forked_tower_blood', 'groups.dashboard.content.index', 'i-lucide-sparkles', true, 'forkedtower'),
                 ] : [],
             },
             {

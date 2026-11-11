@@ -21,7 +21,7 @@ import ResourceImageInspector from './ResourceImageInspector.vue'
 import { resourceImageLibraryKey, useResourceImages } from '@/composables/useResourceImages'
 import { gearsetImportKey } from '@/Types/XivGear'
 
-const props = defineProps<{ groupSlug: string; collections: ResourceCollectionData[]; data: ResourceWorkspaceData; resource?: ResourceDetailData; library?: ResourceLibrary }>()
+const props = defineProps<{ groupSlug: string; collections: ResourceCollectionData[]; data: ResourceWorkspaceData; resource?: ResourceDetailData; library?: ResourceLibrary; createResource?: boolean }>()
 const emit = defineEmits<{ libraryChanged: [] }>()
 const workspace = useResourceWorkspace(props, () => emit('libraryChanged'))
 const { state } = workspace
@@ -73,7 +73,7 @@ const iconCollection = computed(() => state.collections.find(item => item.id ===
             <template #body>
                 <form class="space-y-5" @submit.prevent="workspace.confirmCreateResource()">
                     <UAlert v-if="state.error" :title="state.error" color="error" variant="soft" />
-                    <UFormField :label="l('collection')" required><USelect v-model="state.createCollectionId" :items="folders.filter(item => item.value !== 'root')" :disabled="workspace.creatingResource" class="w-full" /></UFormField>
+                    <UFormField :label="l('collection')"><USelect v-model="state.createCollectionId" :items="folders" :disabled="workspace.creatingResource" class="w-full" /></UFormField>
                     <div class="flex justify-end gap-2"><UButton color="neutral" variant="outline" :label="l('cancel')" :disabled="workspace.creatingResource" @click="state.createResourceDialog = false" /><UButton type="submit" color="neutral" icon="i-lucide-plus" :label="l('new_resource')" :loading="workspace.creatingResource" /></div>
                 </form>
             </template>

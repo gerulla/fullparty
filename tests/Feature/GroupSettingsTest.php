@@ -8,6 +8,7 @@ use App\Services\Audit\AuditLogFeedService;
 use App\Services\Groups\GroupAvailabilityScheduleService;
 use App\Support\Groups\GroupDiscoveryBadgePalette;
 use App\Support\Input\TextInputSanitizer;
+use Carbon\CarbonImmutable;
 use Database\Seeders\GroupAvailabilitySeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
@@ -715,6 +716,40 @@ it('evaluates selected availability ranges in each member schedule timezone', fu
         ->assertJsonPath('data.available_count', 1)
         ->assertJsonPath('data.highest_overlap', 1)
         ->assertJsonPath('data.members.0.name', $owner->name);
+});
+
+it('validates and returns availability exceptions using the schedule date and keeps ongoing overnight exceptions', function () {
+    $this->travelTo(CarbonImmutable::parse('2026-07-14T00:30:00Z'));
+    $owner = User::factory()->create();
+    $group = Group::factory()->create(['owner_id' => $owner->id, 'group_type' => Group::TYPE_COMMUNITY]);
+    $group->features()->update(['availability_scheduler_enabled' => true]);
+    $payload = [
+        'cycle_weeks' => 1, 'repeats' => true, 'lock_weekends' => false, 'on_hiatus' => false,
+        'starts_on' => '2026-07-13', 'timezone' => 'America/Los_Angeles', 'windows' => [],
+        'exceptions' => [['date' => '2026-07-13', 'starts_at' => null, 'ends_at' => null]],
+    ];
+    $endpoint = route('groups.dashboard.availability.schedule.update', $group);
+    $this->actingAs($owner)->put($endpoint, $payload)->assertSessionHasNoErrors();
+    $this->get(route('groups.dashboard.availability', $group))->assertInertia(fn (Assert $page) => $page
+        ->has('schedule.exceptions', 1)->where('schedule.exceptions.0.date', '2026-07-13'));
+
+    // This date is still today on the UTC server, but already yesterday in Tokyo.
+    $payload['timezone'] = 'Asia/Tokyo';
+    $payload['exceptions'][0]['date'] = '2026-07-14';
+    $this->travelTo(CarbonImmutable::parse('2026-07-14T23:30:00Z'));
+    $this->put($endpoint, $payload)->assertSessionHasErrors('exceptions.0.date');
+
+    // Yesterday's exception is still active until 05:00 in Los Angeles.
+    $payload['timezone'] = 'America/Los_Angeles';
+    $payload['exceptions'] = [['date' => '2026-07-13', 'starts_at' => '22:00', 'ends_at' => '05:00']];
+    $this->travelTo(CarbonImmutable::parse('2026-07-14T11:30:00Z'));
+    $this->put($endpoint, $payload)->assertSessionHasNoErrors();
+    $this->get(route('groups.dashboard.availability', $group))->assertInertia(fn (Assert $page) => $page
+        ->has('schedule.exceptions', 1)->where('schedule.exceptions.0.ends_at', '05:00'));
+    $this->travelTo(CarbonImmutable::parse('2026-07-14T12:00:00Z'));
+    $this->get(route('groups.dashboard.availability', $group))->assertInertia(fn (Assert $page) => $page
+        ->has('schedule.exceptions', 0));
+    $this->put($endpoint, $payload)->assertSessionHasErrors('exceptions.0.date');
 });
 
 it('uses the leaderboard feature toggle to gate the legacy leaderboard', function () {

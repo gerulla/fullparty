@@ -39,7 +39,7 @@ async function submit() {
 <template>
     <UButton icon="i-lucide-upload" color="neutral" :label="l('upload_image')" :disabled="loading" @click="fileInput?.click()" />
     <input ref="fileInput" type="file" accept="image/png,image/jpeg,image/webp,image/gif" class="hidden" @change="choose" />
-    <UModal v-model:open="open" :title="l('upload_image')" :description="file?.name" :dismissible="!loading" :close="!loading" :ui="{ content: 'rounded-none' }">
+    <UModal v-model:open="open" :title="l('upload_image')" :description="file?.name" :dismissible="!loading" :close="!loading">
         <template #body>
             <form class="space-y-4" @submit.prevent="submit">
                 <UAlert v-if="error" :title="error" color="error" variant="soft" />

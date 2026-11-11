@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { resourceWorkspaceInputUi, resourceWorkspaceMenuUi } from './resourceWorkspaceTheme'
 import { computed, nextTick, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import type { WorkspaceDocument, WorkspaceEmbed } from '@/Types/ResourceWorkspace'
@@ -45,7 +46,7 @@ function moveField(index: number, offset: number) {
         </header>
         <section class="embed-editor-section">
             <UFormField name="command" :data-resource-field="`commands.${embedIndex ?? 0}.name`" :label="l('command')" :description="help('command')" :error="commandError" required>
-                <UInput v-model="embed.command" :maxlength="64" class="w-full" :ui="{ leading: 'h-full border-r border-default px-3 font-mono text-muted', base: 'ps-20 font-mono' }"><template #leading>/info</template></UInput>
+                <UInput v-model="embed.command" :maxlength="64" class="w-full" :ui="{ leading: 'h-full border-r border-default px-3 font-mono text-muted', base: `${resourceWorkspaceInputUi.base} ps-20 font-mono` }"><template #leading>/info</template></UInput>
             </UFormField>
         </section>
         <section class="embed-editor-section" :data-resource-field="path()" :class="{ 'ring-1 ring-error p-2': error() }">
@@ -57,11 +58,11 @@ function moveField(index: number, offset: number) {
                 <UFormField :name="path('url')" :data-resource-field="path('url')" :error="error('url')" :label="l('title_url')" :description="help('title_url')"><UInput v-model="embed.url" type="url" :maxlength="2048" placeholder="https://" class="w-full" /></UFormField>
                 <UFormField :name="path('color')" :data-resource-field="path('color')" :error="error('color')" :label="l('color')" :description="help('color')">
                     <div class="flex items-center gap-2">
-                        <UPopover :content="{ align: 'start' }" :ui="{ content: 'rounded-none bg-elevated p-3' }">
-                            <UButton color="neutral" variant="outline" :aria-label="l('color')" class="h-9 w-10 justify-center"><span class="size-5 ring ring-default" :style="{ backgroundColor: /^#[a-f0-9]{6}$/i.test(embed.color) ? embed.color : '#8457b0' }" /></UButton>
+                        <UPopover :content="{ align: 'start' }" :ui="{ content: `${resourceWorkspaceMenuUi.content} p-3` }">
+                            <UButton color="neutral" variant="outline" :aria-label="l('color')" class="h-9 w-10 justify-center"><span class="size-5 rounded-md ring ring-default" :style="{ backgroundColor: /^#[a-f0-9]{6}$/i.test(embed.color) ? embed.color : '#8457b0' }" /></UButton>
                             <template #content><UColorPicker v-model="embed.color" format="hex" :aria-label="l('color')" /></template>
                         </UPopover>
-                        <UInput v-model="embed.color" :maxlength="7" placeholder="#8457B0" :aria-label="l('color')" class="min-w-0 flex-1" :ui="{ base: 'font-mono' }" />
+                        <UInput v-model="embed.color" :maxlength="7" placeholder="#8457B0" :aria-label="l('color')" class="min-w-0 flex-1" :ui="{ base: `${resourceWorkspaceInputUi.base} font-mono` }" />
                     </div>
                 </UFormField>
             </div>
@@ -129,10 +130,10 @@ function moveField(index: number, offset: number) {
 .embed-metadata dt { color: var(--ui-text-muted); }
 .embed-metadata dd { min-width: 0; overflow-wrap: anywhere; }
 .embed-field-row { display: flex; flex-direction: column; gap: 12px; border-left: 2px solid var(--ui-border-accented); padding-left: 14px; }
-.embed-message-preview { display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 12px; padding: 16px; background: #313338; }
+.embed-message-preview { display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 12px; padding: 16px; border-radius: 12px; background: #313338; }
 .embed-message-avatar { width: 36px; height: 36px; object-fit: contain; }
 .embed-preview-section :deep(.discord-embed-preview) { width: 100%; }
-.embed-editor :deep(button), .embed-editor :deep(input), .embed-editor :deep(textarea) { border-radius: 0; }
+
 @container (min-width: 560px) { .embed-editor-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }.embed-editor-wide { grid-column: 1 / -1; } }
 @container (max-width: 360px) { .embed-message-preview { grid-template-columns: minmax(0, 1fr); }.embed-message-avatar { display: none; } }
 </style>

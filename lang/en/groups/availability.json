@@ -2,6 +2,9 @@
   "title": "Availability",
   "subtitle": "View and coordinate your group members' availability.",
   "schedule": {
+    "editing_timezone": "Editing times in {timezone}",
+    "preview_hint": "Week dates show this cycle. Previews use {mode} ({timezone}); equivalents can change with daylight saving. Changing LT/ST does not change your saved schedule.",
+    "dst_preview": "This occurrence crosses a skipped or repeated clock time. Check the dated availability overview for its LT/ST times.",
     "button": "My Schedule",
     "title": "My Availability Schedule",
     "cadence": {
@@ -126,6 +129,9 @@
     }
   },
   "validation": {
+    "ambiguous_time": "This clock time is skipped or repeated by daylight saving. Switch to ST to choose an unambiguous time.",
+    "range_order": "The end must be after the start.",
+    "exception_past": "This exception has already ended in the schedule’s timezone.",
     "cycle_week": "The selected week is outside this schedule's cycle.",
     "end_time": "The end time must be different from the start time.",
     "overlap": "Availability blocks on the same day cannot overlap.",

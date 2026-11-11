@@ -2,6 +2,9 @@
   "title": "Verfügbarkeit",
   "subtitle": "Sieh dir die Verfügbarkeit deiner Gruppenmitglieder an und stimme sie ab.",
   "schedule": {
+    "editing_timezone": "Zeiten in {timezone} bearbeiten",
+    "preview_hint": "Die Wochendaten zeigen diesen Zyklus. Vorschauen verwenden {mode} ({timezone}); die Umrechnung kann sich durch die Zeitumstellung ändern. LT/ST ändert deinen gespeicherten Zeitplan nicht.",
+    "dst_preview": "Dieser Zeitraum enthält eine übersprungene oder doppelte Uhrzeit. Prüfe die LT/ST-Zeiten in der datierten Verfügbarkeitsübersicht.",
     "button": "Mein Zeitplan",
     "title": "Mein Verfügbarkeitsplan",
     "cadence": {
@@ -126,6 +129,9 @@
     }
   },
   "validation": {
+    "ambiguous_time": "Diese Uhrzeit wird bei der Zeitumstellung übersprungen oder wiederholt. Wechsle zu ST, um eine eindeutige Zeit auszuwählen.",
+    "range_order": "Das Ende muss nach dem Beginn liegen.",
+    "exception_past": "Diese Ausnahme ist in der Zeitzone des Zeitplans bereits beendet.",
     "cycle_week": "Die ausgewählte Woche liegt außerhalb des Zeitplanzyklus.",
     "end_time": "Die Endzeit muss sich von der Startzeit unterscheiden.",
     "overlap": "Verfügbarkeitsblöcke am selben Tag dürfen sich nicht überschneiden.",

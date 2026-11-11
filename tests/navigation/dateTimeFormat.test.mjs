@@ -2,7 +2,8 @@ import assert from 'node:assert/strict'
 import test from 'node:test'
 import { readFileSync } from 'node:fs'
 import ts from 'typescript'
-import { computed, effectScope, nextTick, reactive, ref, watch } from 'vue'
+import { computed, effectScope, nextTick, reactive, ref, toValue, watch } from 'vue'
+import * as calendar from '@internationalized/date'
 
 const navigationMessages = Object.fromEntries(['en', 'de', 'fr', 'ja'].map(locale => [locale,
     JSON.parse(readFileSync(new URL(`../../lang/${locale}/navigation.json`, import.meta.url), 'utf8')),
@@ -19,6 +20,11 @@ function load(file, modules = {}) {
     }, exports)
     return exports
 }
+
+const dateTime = load('../../resources/js/utils/dateTimeFormat.ts', { '@internationalized/date': calendar })
+const scheduleTime = load('../../resources/js/utils/availabilityScheduleTime.ts', {
+    '@internationalized/date': calendar, './dateTimeFormat': dateTime,
+})
 
 function setup(t, { zone = 'Europe/London', mode = 'local' } = {}) {
     const previousZone = process.env.TZ
@@ -40,13 +46,23 @@ function setup(t, { zone = 'Europe/London', mode = 'local' } = {}) {
         vue: { computed },
         'vue-i18n': { useI18n: () => ({ locale }) },
         '@/composables/useTimeDisplayMode': preference,
-        '@/utils/dateTimeFormat': load('../../resources/js/utils/dateTimeFormat.ts'),
+        '@/utils/dateTimeFormat': dateTime,
     })
+    const schedule = now => load('../../resources/js/composables/useAvailabilityScheduleTime.ts', {
+        vue: { computed, toValue },
+        '@vueuse/core': { useNow: () => now },
+        '@internationalized/date': calendar,
+        'vue-i18n': { useI18n: () => ({ t: key => key }) },
+        '@/composables/useDateTimeFormat': { useDateTimeFormat },
+        '@/utils/dateTimeFormat': dateTime,
+        '@/utils/availabilityScheduleTime': scheduleTime,
+    }).useAvailabilityScheduleTime
     return {
         page, locale, preference,
         formatter: () => scope.run(useDateTimeFormat),
         mode: () => scope.run(preference.useTimeDisplayMode),
         render: fn => scope.run(() => computed(fn)),
+        schedule: (options, now) => scope.run(() => schedule(now)(options)),
     }
 }
 
@@ -141,4 +157,91 @@ test('missing and invalid timestamps have safe fallbacks without dropping the Un
         assert.deepEqual(api.formatDateTimeParts(value), [])
     }
     assert.equal(api.formatDateTime(0, date), '01/01/1970, 00:00')
+})
+
+test('availability inputs round-trip instants across LT/ST, fractional offsets and midnight', t => {
+    const state = setup(t, { zone: 'Asia/Kathmandu' })
+    const api = state.formatter()
+    const instant = '2026-10-21T20:00:00.000Z'
+    assert.equal(api.toDateTimeInput(instant), '2026-10-22T01:45')
+    assert.equal(api.fromDateTimeInput('2026-10-22T01:45').toISOString(), instant)
+    state.preference.setSharedTimeDisplayMode('server')
+    assert.equal(api.toDateTimeInput(instant), '2026-10-21T20:00')
+    assert.equal(api.fromDateTimeInput('2026-10-21T20:00').toISOString(), instant)
+    assert.equal(api.fromDateTimeInput('2026-02-30T20:00'), null)
+    assert.equal(api.toDateTimeInput('bad'), '')
+})
+
+test('DST input gaps and repeats are rejected but existing repeated-hour endpoints keep their offsets', t => {
+    const state = setup(t)
+    const api = state.formatter()
+    assert.equal(api.fromDateTimeInput('2026-03-29T01:30'), null)
+    assert.equal(api.fromDateTimeInput('2026-10-25T01:30'), null)
+    const first = '2026-10-25T00:30:00.000Z'
+    const second = '2026-10-25T01:30:00.000Z'
+    assert.equal(api.fromDateTimeInput('2026-10-25T01:30', first).toISOString(), first)
+    assert.equal(api.fromDateTimeInput('2026-10-25T01:30', second).toISOString(), second)
+    state.preference.setSharedTimeDisplayMode('server')
+    assert.equal(api.fromDateTimeInput('2026-03-29T01:30').toISOString(), '2026-03-29T01:30:00.000Z')
+})
+
+test('recurring calendar dates and clock labels do not shift with the display timezone', t => {
+    const state = setup(t, { zone: 'America/Los_Angeles' })
+    const api = state.formatter()
+    for (const mode of ['local', 'server']) {
+        state.preference.setSharedTimeDisplayMode(mode)
+        assert.equal(api.formatDateOnly('2026-10-21', { dateStyle: 'short' }), '21/10/2026')
+        assert.equal(api.formatWallTime('18:30'), '18:30')
+        assert.equal(api.formatWallTime('24:00'), '00:00')
+    }
+})
+
+test('schedule previews use the actual cycle and occurrence timezone, including overnight and DST', t => {
+    const state = setup(t, { zone: 'Asia/Tokyo', mode: 'server' })
+    const startsOn = ref('2026-03-25') // Wednesday: Monday belongs near the end of week A.
+    const timeZone = ref('Europe/London')
+    const options = { startsOn, timeZone, weeks: ref(2), repeats: ref(true) }
+    const schedule = state.schedule(options, ref(new Date('2026-03-28T23:30:00Z')))
+    assert.equal(schedule.dayDate(0, 1), '2026-03-30')
+    assert.equal(schedule.minimumExceptionDate.value.toString(), '2026-03-28')
+    const preview = state.render(() => schedule.blockPreview(0, 6, '22:00', '05:00'))
+    assert.match(preview.value, /ST: Sat.*22:00.*Sun.*04:00/)
+    state.preference.setSharedTimeDisplayMode('local')
+    assert.match(preview.value, /LT: Sun.*07:00.*Sun.*13:00/)
+    assert.equal(startsOn.value, '2026-03-25')
+    assert.equal(timeZone.value, 'Europe/London')
+    timeZone.value = 'Asia/Tokyo'
+    assert.equal(schedule.minimumExceptionDate.value.toString(), '2026-03-29')
+    for (const weeks of [1, 2, 4]) {
+        const period = weeks * 7
+        const later = calendar.parseDate(startsOn.value).add({ days: period * 3 + 2 }).toString()
+        assert.equal(scheduleTime.availabilityCycleStart(startsOn.value, weeks, true, later), calendar.parseDate(startsOn.value).add({ days: period * 3 }).toString())
+        assert.equal(scheduleTime.availabilityCycleStart(startsOn.value, weeks, false, later), startsOn.value)
+    }
+    assert.equal(scheduleTime.availabilityWindowInstants('2026-03-29', '01:30', '03:00', 'Europe/London'), null)
+})
+
+test('overnight exceptions remain editable until they end in the schedule timezone', () => {
+    assert.equal(scheduleTime.isPendingAvailabilityException('2026-11-10', '22:00', '05:00', '2026-11-11T04:59'), true)
+    assert.equal(scheduleTime.isPendingAvailabilityException('2026-11-10', '22:00', '05:00', '2026-11-11T05:00'), false)
+    assert.equal(scheduleTime.isPendingAvailabilityException('2026-11-10', null, null, '2026-11-11T00:01'), false)
+})
+
+test('overnight timeline blocks continue onto the next day and wrap only repeating cycles', () => {
+    for (const count of [1, 2, 4]) {
+        const weeks = Array.from({ length: count }, () => Object.fromEntries(scheduleTime.availabilityDays.map(day => [day, { enabled: false, blocks: [] }])))
+        const block = { id: 1, starts_at: '22:00', ends_at: '05:00', status: 'available' }
+        weeks.at(-1).sunday = { enabled: true, blocks: [block] }
+        const start = '2026-07-13'
+        const sunday = calendar.parseDate(start).add({ days: count * 7 - 1 }).toString()
+        const monday = calendar.parseDate(sunday).add({ days: 1 }).toString()
+        const firstHalf = scheduleTime.availabilityTimelineDay(weeks, start, sunday, true)
+        assert.deepEqual(firstHalf.map(entry => [entry.startMinute, entry.endMinute]), [[1320, 1440]])
+        const carry = scheduleTime.availabilityTimelineDay(weeks, start, monday, true)
+        assert.equal(carry[0].block, block) // Editing the continuation still edits the original rule.
+        assert.equal(carry[0].sourceWeek, count - 1)
+        assert.deepEqual([carry[0].startMinute, carry[0].endMinute, carry[0].sourceDate], [0, 300, sunday])
+        assert.deepEqual(scheduleTime.availabilityTimelineDay(weeks, start, start, true), [])
+        assert.deepEqual(scheduleTime.availabilityTimelineDay(weeks, start, calendar.parseDate(monday).add({ days: 7 }).toString(), false), [])
+    }
 })

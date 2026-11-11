@@ -47,9 +47,9 @@ async function upload(file: File, alt?: string, caption?: string) {
 </script>
 
 <template>
-    <UModal v-model:open="open" :title="t('groups.resources.workspace.choose_image')" :dismissible="!uploading" :close="!uploading" :ui="{ content: 'max-w-3xl rounded-none', body: 'flex min-h-0 flex-col p-0 sm:p-0' }">
+    <UModal v-model:open="open" :title="t('groups.resources.workspace.choose_image')" :dismissible="!uploading" :close="!uploading" :ui="{ content: 'max-w-3xl rounded-xl', body: 'flex min-h-0 flex-col p-0 sm:p-0' }">
         <template #body>
-            <UTabs v-if="allowGameIcons" v-model="source" :items="sources" :content="false" variant="link" class="shrink-0 border-b border-default" :ui="{ list: 'w-full rounded-none px-3', trigger: 'flex-1 rounded-none py-3' }" />
+            <UTabs v-if="allowGameIcons" v-model="source" :items="sources" :content="false" variant="link" class="shrink-0 border-b border-default" :ui="{ list: 'w-full rounded-none px-3', trigger: 'flex-1 rounded-t-lg py-3' }" />
             <div class="flex h-[min(65dvh,640px)] min-h-0 flex-col">
                 <GameIconGrid v-if="allowGameIcons && source === 'game-icons'" :selected="selectedIcon" @select="chooseIcon" />
                 <ResourceImageGrid v-else :images="images" :selected="selected?.split('/').pop()" @select="choose">

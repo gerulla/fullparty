@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\GroupAvailabilityException;
 use App\Models\GroupAvailabilityWindow;
+use Carbon\CarbonImmutable;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Validator;
@@ -27,7 +29,7 @@ class UpdateGroupAvailabilityScheduleRequest extends FormRequest
             'windows.*.ends_at' => ['required', 'date_format:H:i'],
             'exceptions' => ['present', 'array', 'max:366'],
             'exceptions.*' => ['required', 'array'],
-            'exceptions.*.date' => ['required', 'date_format:Y-m-d', 'after_or_equal:today', 'distinct'],
+            'exceptions.*.date' => ['required', 'date_format:Y-m-d', 'distinct'],
             'exceptions.*.starts_at' => ['nullable', 'date_format:H:i', 'required_with:exceptions.*.ends_at'],
             'exceptions.*.ends_at' => ['nullable', 'date_format:H:i', 'required_with:exceptions.*.starts_at'],
         ];
@@ -80,7 +82,22 @@ class UpdateGroupAvailabilityScheduleRequest extends FormRequest
                     }
                 }
 
+                $localNow = CarbonImmutable::now($this->input('timezone'));
+
                 foreach ($this->input('exceptions', []) as $index => $exception) {
+                    $hasTimeRange = filled($exception['starts_at'] ?? null) && filled($exception['ends_at'] ?? null);
+                    $start = $hasTimeRange ? $this->minuteOfDay($exception['starts_at']) : null;
+                    $end = $hasTimeRange ? $this->minuteOfDay($exception['ends_at']) : null;
+                    $candidate = new GroupAvailabilityException([
+                        'date' => $exception['date'],
+                        'starts_minute' => $start,
+                        'ends_minute' => $hasTimeRange && $end <= $start ? $end + 1440 : $end,
+                    ]);
+
+                    if (! $candidate->isPendingAt($localNow)) {
+                        $validator->errors()->add("exceptions.{$index}.date", __('groups.availability.validation.exception_past'));
+                    }
+
                     if (filled($exception['starts_at'] ?? null)
                         && ($exception['starts_at'] ?? null) === ($exception['ends_at'] ?? null)) {
                         $validator->errors()->add(

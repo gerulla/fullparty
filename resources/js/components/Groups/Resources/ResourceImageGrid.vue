@@ -32,5 +32,5 @@ const l = (key: string) => t(`groups.resources.uploads.${key}`)
 
 <style scoped>
 .image-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(150px, 100%), 1fr)); gap: 12px; }
-.image-tile { min-width: 0; overflow: hidden; border-radius: 0; }
+.image-tile { min-width: 0; overflow: hidden; border-radius: 8px; }
 </style>

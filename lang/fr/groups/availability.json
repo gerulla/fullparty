@@ -2,6 +2,9 @@
   "title": "Disponibilités",
   "subtitle": "Consultez et coordonnez les disponibilités des membres de votre groupe.",
   "schedule": {
+    "editing_timezone": "Modification des horaires en {timezone}",
+    "preview_hint": "Les dates des semaines représentent ce cycle. Les aperçus utilisent {mode} ({timezone}) ; les conversions peuvent varier avec le changement d’heure. Changer LT/ST ne modifie pas votre planning enregistré.",
+    "dst_preview": "Cette occurrence contient une heure sautée ou répétée. Consultez ses horaires LT/ST dans l’aperçu daté des disponibilités.",
     "button": "Mon planning",
     "title": "Mon planning de disponibilités",
     "cadence": {
@@ -126,6 +129,9 @@
     }
   },
   "validation": {
+    "ambiguous_time": "Cette heure est sautée ou répétée lors du changement d’heure. Passez en ST pour choisir une heure sans ambiguïté.",
+    "range_order": "La fin doit être postérieure au début.",
+    "exception_past": "Cette exception est déjà terminée dans le fuseau horaire du planning.",
     "cycle_week": "La semaine sélectionnée ne fait pas partie du cycle de ce planning.",
     "end_time": "L'heure de fin doit être différente de l'heure de début.",
     "overlap": "Les plages de disponibilité d'une même journée ne peuvent pas se chevaucher.",

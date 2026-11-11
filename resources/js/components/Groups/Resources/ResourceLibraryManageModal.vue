@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { resourceWorkspaceUi, resourceWorkspaceProps } from './resourceWorkspaceTheme'
 import { computed, nextTick, provide, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import type { ResourceLibrary, ResourceLibrarySettings, ResourceLibrarySettingsErrors } from '@/Types/GroupResources'
@@ -47,13 +48,14 @@ const options = computed(() => [
 </script>
 
 <template>
+    <UTheme :ui="resourceWorkspaceUi" :props="resourceWorkspaceProps">
     <UModal
         :open="open"
         :title="t('groups.resources.library.title')"
         :description="t('groups.resources.library.description')"
         :dismissible="!blocked"
         :close="!blocked"
-        :ui="{ content: visibility === 'public' ? 'max-w-2xl rounded-none' : 'max-w-lg rounded-none' }"
+        :ui="{ content: visibility === 'public' ? 'max-w-2xl rounded-xl' : 'max-w-lg rounded-xl' }"
         @update:open="value => { if (!value && !blocked) emit('close', false) }"
     >
         <template #body>
@@ -89,4 +91,5 @@ const options = computed(() => [
             </div>
         </template>
     </UModal>
+    </UTheme>
 </template>

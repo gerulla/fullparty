@@ -20,7 +20,7 @@ const draft = computed(() => props.workspace.state.draft)
         </div>
         <section v-for="(embed, index) in draft.embeds" :key="index" class="space-y-3 border-b border-default pb-5 last:border-b-0" :class="{ 'border-l-2 border-l-primary pl-3': workspace.state.editorPane === 'embed' && workspace.state.embedIndex === index }">
             <div class="flex items-start gap-1">
-                <pre class="min-w-0 flex-1 whitespace-pre-wrap break-words border border-default bg-elevated px-3 py-2 font-mono text-xs"><code>/info {{ embed.command || '...' }}</code></pre>
+                <pre class="min-w-0 flex-1 whitespace-pre-wrap break-words rounded-lg border border-default bg-elevated px-3 py-2 font-mono text-xs"><code>/info {{ embed.command || '...' }}</code></pre>
                 <UTooltip :text="l('edit_embed')"><UButton icon="i-lucide-pencil" color="neutral" variant="outline" :aria-label="l('edit_embed')" :disabled="workspace.busy" @click="workspace.state.selectedId && workspace.openEmbed(workspace.state.selectedId, index)" /></UTooltip>
                 <UTooltip :text="l('delete_embed')"><UButton icon="i-lucide-trash-2" color="error" variant="outline" :aria-label="l('delete_embed')" :disabled="workspace.busy" @click="workspace.removeEmbed(index)" /></UTooltip>
             </div>

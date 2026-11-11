@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { resourceWorkspaceUi, resourceWorkspaceProps } from './resourceWorkspaceTheme'
 import { computed, defineAsyncComponent, provide, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useResourceWorkspace } from '@/composables/useResourceWorkspace'
@@ -45,15 +46,16 @@ const iconCollection = computed(() => state.collections.find(item => item.id ===
 </script>
 
 <template>
-    <div class="resource-workspace-shell">
+    <UTheme :ui="resourceWorkspaceUi" :props="resourceWorkspaceProps">
+    <div class="resource-workspace-shell resource-workspace-theme">
         <UButton class="workspace-mobile-toggle mb-3" icon="i-lucide-panel-left" color="neutral" variant="outline" :label="l('collections')" :aria-expanded="showCollections" @click="showCollections = !showCollections" />
         <UAlert v-if="state.error && !state.createResourceDialog && !state.saveDialog && !state.confirmation.open" color="error" variant="soft" icon="i-lucide-circle-alert" :title="state.error" class="mb-3" close @update:open="state.error = ''" />
-        <div v-if="state.mode === 'editor' && (state.autosaveError || state.conflict)" class="mb-3 flex flex-wrap items-center gap-3 border border-error p-3" role="status">
+        <div v-if="state.mode === 'editor' && (state.autosaveError || state.conflict)" class="mb-3 flex flex-wrap items-center gap-3 rounded-lg border border-error bg-error/5 p-3" role="status">
             <p class="min-w-0 flex-1 text-sm text-error">{{ l(state.conflict ? 'autosave_conflict' : 'autosave_failed') }}</p>
             <UButton icon="i-lucide-refresh-cw" color="neutral" variant="outline" :label="l('retry_save')" :loading="workspace.autosaving" :disabled="!workspace.canRetrySave" @click="workspace.retrySave()" />
             <UButton icon="i-lucide-file-clock" color="neutral" variant="outline" :label="l('reload_latest')" @click="workspace.reloadEditor()" />
         </div>
-        <div class="resource-workspace-grid min-h-[760px] overflow-hidden bg-transparent" :class="{ 'is-library': state.mode !== 'editor', 'is-editor': state.mode === 'editor' }">
+        <div class="resource-workspace-grid min-h-[760px] overflow-hidden rounded-xl border border-default bg-elevation-1 shadow-sm dark:shadow-none" :class="{ 'is-library': state.mode !== 'editor', 'is-editor': state.mode === 'editor' }">
             <ResourceCollectionSidebar :workspace="workspace" :holsters="holsterSettings" :inert="workspace.busy || images.state.busy" class="workspace-folders border-b border-default" :class="{ 'is-open': showCollections }" @configure-holsters="openHolsters">
                 <template #library-actions><slot name="library-actions" /></template>
             </ResourceCollectionSidebar>
@@ -93,6 +95,7 @@ const iconCollection = computed(() => state.collections.find(item => item.id ===
             <template #body><div class="space-y-5"><div v-for="revision in workspace.selected?.history" :key="revision.id" class="space-y-1 border-l-2 border-primary pl-4"><p class="text-xs text-muted">{{ new Date(revision.at).toLocaleString(locale) }}</p><p class="text-sm">{{ revision.summary }}</p><p class="text-xs text-muted">{{ revision.author }}</p></div><p v-if="!workspace.selected?.history.length" class="text-sm text-muted">{{ l('no_history') }}</p></div></template>
         </UModal>
     </div>
+    </UTheme>
 </template>
 
 <style scoped>
@@ -100,8 +103,8 @@ const iconCollection = computed(() => state.collections.find(item => item.id ===
 .resource-workspace-grid { display: grid; grid-template-columns: minmax(0, 1fr); }
 .workspace-folders { display: none; }
 .workspace-folders.is-open { display: flex; }
-.is-library, .is-editor { --ui-bg: #1a171d; --ui-bg-elevated: #242027; --ui-border: #37313d; --ui-border-accented: #49404f; --ui-text: #e9e2f0; --ui-text-muted: #b4a8c5; }
-.resource-workspace-shell :deep(button:not([role="switch"])), .resource-workspace-shell :deep(input), .resource-workspace-shell :deep(textarea), .resource-workspace-shell :deep(select), .resource-workspace-shell :deep(a[data-slot=base]) { border-radius: 0; }
+.resource-workspace-grid > .workspace-folders,
+.resource-workspace-grid > .workspace-inspector { background: var(--ui-bg-muted); }
 @container (min-width: 740px) {
     .resource-workspace-grid { grid-template-columns: 200px minmax(0, 1fr); }
     .workspace-folders { display: flex; grid-row: span 2; border-bottom: 0; border-right: 1px solid var(--ui-border); }

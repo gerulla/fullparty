@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
-import { useTimeDisplayMode } from "@/composables/useTimeDisplayMode";
+import { useDateTimeFormat } from "@/composables/useDateTimeFormat";
 import type { GroupAvailabilityOverviewPayload } from "@/Types/Groups";
 
 const props = defineProps<{
@@ -13,8 +13,8 @@ const emit = defineEmits<{
 	'update:selectedRange': [range: { starts_at: string, ends_at: string }]
 }>();
 
-const { locale, t } = useI18n();
-const { withDisplayTimeZone } = useTimeDisplayMode();
+const { t } = useI18n();
+const { formatDateTime, toDateTimeInput, timeDisplayLabel, displayTimeZoneLabel } = useDateTimeFormat();
 const selectionAnchor = ref(0);
 const selectionEnd = ref(0);
 const selecting = ref(false);
@@ -32,18 +32,9 @@ const syncSelectionFromProps = () => {
 };
 
 syncSelectionFromProps();
-watch(() => [props.selectedStartsAt, props.selectedEndsAt], syncSelectionFromProps);
+watch(() => [props.selectedStartsAt, props.selectedEndsAt, props.overview.starts_at, props.overview.buckets.length], syncSelectionFromProps);
 
-const dateKey = (date: Date) => {
-	const parts = new Intl.DateTimeFormat("en", withDisplayTimeZone({
-		year: "numeric",
-		month: "2-digit",
-		day: "2-digit",
-	})).formatToParts(date);
-	const part = (type: "year" | "month" | "day") => parts.find(candidate => candidate.type === type)?.value ?? "";
-
-	return `${part("year")}-${part("month")}-${part("day")}`;
-};
+const dateKey = (date: Date) => toDateTimeInput(date).slice(0, 10);
 
 const daySegments = computed(() => {
 	const segments: Array<{
@@ -78,41 +69,29 @@ const maximumAvailable = computed(() => Math.max(
 ));
 const firstSelectedIndex = computed(() => Math.min(selectionAnchor.value, selectionEnd.value));
 const lastSelectedIndex = computed(() => Math.max(selectionAnchor.value, selectionEnd.value));
-const selectedBuckets = computed(() => props.overview.buckets.slice(
-	firstSelectedIndex.value,
-	lastSelectedIndex.value + 1,
-));
+const selectedRange = computed(() => selecting.value ? {
+	start: new Date(props.overview.buckets[firstSelectedIndex.value]?.starts_at ?? props.selectedStartsAt).getTime(),
+	end: new Date(props.overview.buckets[lastSelectedIndex.value]?.starts_at ?? props.selectedEndsAt).getTime() + 3_600_000,
+} : { start: new Date(props.selectedStartsAt).getTime(), end: new Date(props.selectedEndsAt).getTime() });
+const selectedBuckets = computed(() => props.overview.buckets.filter(bucket => {
+	const start = new Date(bucket.starts_at).getTime();
+	return start < selectedRange.value.end && start + 3_600_000 > selectedRange.value.start;
+}));
 const selectedPeak = computed(() => Math.max(
 	0,
 	...selectedBuckets.value.map(bucket => bucket.available_count + bucket.tentative_count),
 ));
 const selectedRangeLabel = computed(() => {
-	const first = selectedBuckets.value[0];
-	const last = selectedBuckets.value.at(-1);
-
-	if (!first || !last) return "";
-
-	const startsAt = new Date(first.starts_at);
-	const endsAt = new Date(new Date(last.starts_at).getTime() + 60 * 60 * 1000);
-	const dateFormatter = new Intl.DateTimeFormat(locale.value, withDisplayTimeZone({ weekday: "short", day: "numeric", month: "short" }));
-	const timeFormatter = new Intl.DateTimeFormat(locale.value, withDisplayTimeZone({ hour: "2-digit", minute: "2-digit" }));
-
-	if (dateKey(startsAt) === dateKey(endsAt)) {
-		return `${dateFormatter.format(startsAt)} · ${timeFormatter.format(startsAt)} – ${timeFormatter.format(endsAt)}`;
-	}
-
-	return `${dateFormatter.format(startsAt)} ${timeFormatter.format(startsAt)} – ${dateFormatter.format(endsAt)} ${timeFormatter.format(endsAt)}`;
+	const startsAt = new Date(selectedRange.value.start);
+	const endsAt = new Date(selectedRange.value.end);
+	return `${rangeDateTime(startsAt)} – ${rangeDateTime(endsAt)}`;
 });
 
-const dayLabel = (date: Date) => new Intl.DateTimeFormat(locale.value, withDisplayTimeZone({
-	weekday: "short",
-	day: "numeric",
-	month: "short",
-})).format(date);
-
-const timeLabel = (date: Date) => new Intl.DateTimeFormat(locale.value, withDisplayTimeZone({
-	hour: "numeric",
-})).format(date);
+const rangeDateTime = (date: Date) => formatDateTime(date, {
+	weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit", timeZoneName: "short",
+});
+const dayLabel = (date: Date) => formatDateTime(date, { weekday: "short", day: "numeric", month: "short" });
+const timeLabel = (date: Date) => formatDateTime(date, { hour: "2-digit", minute: "2-digit" });
 
 const bucketTotal = (bucket: GroupAvailabilityOverviewPayload["buckets"][number]) => (
 	bucket.available_count + bucket.tentative_count
@@ -127,10 +106,14 @@ const barStyle = (bucket: GroupAvailabilityOverviewPayload["buckets"][number]) =
 	};
 };
 
-const selectionStyle = computed(() => ({
-	left: `${(firstSelectedIndex.value / props.overview.buckets.length) * 100}%`,
-	width: `${((lastSelectedIndex.value - firstSelectedIndex.value + 1) / props.overview.buckets.length) * 100}%`,
-}));
+const selectionStyle = computed(() => {
+	const start = new Date(props.overview.starts_at).getTime();
+	const duration = props.overview.buckets.length * 3_600_000;
+	const offset = (time: number) => Math.max(0, Math.min(100, ((time - start) / duration) * 100));
+	const left = offset(selectedRange.value.start);
+	const right = offset(selectedRange.value.end);
+	return { left: `${left}%`, width: `${right - left}%`, display: right > left ? undefined : 'none' };
+});
 
 const daySegmentStyle = (start: number, length: number) => ({
 	gridColumn: `${start + 1} / span ${length}`,
@@ -201,14 +184,14 @@ onBeforeUnmount(() => {
 					{{ t('groups.availability.overview.title') }}
 				</p>
 				<p class="mt-0.5 text-xs text-muted">
-					{{ t('groups.availability.overview.subtitle', { count: overview.member_count }) }}
+					{{ t('groups.availability.overview.subtitle', { count: overview.member_count }) }} · {{ timeDisplayLabel }} ({{ displayTimeZoneLabel }})
 				</p>
 			</div>
 
 			<div class="flex items-center gap-2 text-xs">
-				<span class="size-2 bg-brand-500" />
+				<span class="size-2 rounded-full bg-primary" />
 				<span class="font-medium text-highlighted">{{ selectedRangeLabel }}</span>
-				<UBadge color="primary" variant="soft" size="md">
+				<UBadge v-if="selectedBuckets.length" color="primary" variant="soft" size="md">
 					{{ t('groups.availability.overview.peak', { count: selectedPeak }) }}
 				</UBadge>
 			</div>
@@ -254,15 +237,15 @@ onBeforeUnmount(() => {
 						<UTooltip
 							v-for="(bucket, index) in overview.buckets"
 							:key="bucket.starts_at"
-								:text="t('groups.availability.overview.bucket', {
+								:text="`${rangeDateTime(new Date(bucket.starts_at))} · ${t('groups.availability.overview.bucket', {
 									count: bucketTotal(bucket),
 									available: bucket.available_count,
 									tentative: bucket.tentative_count,
-								})"
+								})}`"
 							>
 								<button
 									type="button"
-									class="relative flex h-full min-w-0 items-end justify-center hover:bg-muted/15"
+									class="relative flex h-full min-w-0 items-end justify-center rounded-t-sm hover:bg-primary/10 focus-visible:outline-2 focus-visible:outline-primary"
 									:data-availability-index="index"
 									:aria-label="t('groups.availability.overview.bucket', {
 										count: bucketTotal(bucket),
@@ -271,7 +254,7 @@ onBeforeUnmount(() => {
 									})"
 									@pointerdown="beginSelection(index, $event)"
 								>
-									<span class="w-full bg-brand-500" :style="barStyle(bucket)" />
+									<span class="w-full rounded-t-sm bg-primary" :style="barStyle(bucket)" />
 								</button>
 							</UTooltip>
 						</div>
@@ -284,7 +267,7 @@ onBeforeUnmount(() => {
 						/>
 
 						<div
-							class="pointer-events-none absolute inset-y-0 z-20 border-2 border-brand-400 bg-brand-500/8"
+							class="pointer-events-none absolute inset-y-0 z-20 rounded-sm border-2 border-primary bg-primary/8"
 							:style="selectionStyle"
 						/>
 					</div>
@@ -293,10 +276,10 @@ onBeforeUnmount(() => {
 
 		<div class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 border-t border-default px-4 py-2.5 text-xs text-muted">
 			<span>{{ t('groups.availability.overview.fewer') }}</span>
-			<span class="h-2 w-24 bg-gradient-to-r from-brand-500/15 to-brand-500" />
+			<span class="h-2 w-24 rounded-full bg-gradient-to-r from-primary/15 to-primary" />
 			<span>{{ t('groups.availability.overview.more') }}</span>
 			<span class="flex items-center gap-1.5">
-				<span class="size-2 bg-brand-500" />
+				<span class="size-2 rounded-full bg-primary" />
 				{{ t('groups.availability.overview.selected') }}
 			</span>
 		</div>

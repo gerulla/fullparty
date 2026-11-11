@@ -5,7 +5,7 @@ import type { DateValue } from "@internationalized/date";
 import { computed, onBeforeUnmount, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
 import { route } from "ziggy-js";
-import { useTimeDisplayMode } from "@/composables/useTimeDisplayMode";
+import { useDateTimeFormat } from "@/composables/useDateTimeFormat";
 import type {
 	GroupAvailabilitySelectionPayload,
 	GroupAvailabilitySelectionStatus,
@@ -20,8 +20,9 @@ const emit = defineEmits<{
 	'update:range': [range: { starts_at: string, ends_at: string }]
 }>();
 
-const { locale, t } = useI18n();
-const { displayTimeZone, withDisplayTimeZone } = useTimeDisplayMode();
+const { t } = useI18n();
+const { formatDateTime, formatDateOnly, toDateTimeInput, fromDateTimeInput, displayTimeZone, timeDisplayLabel, displayTimeZoneLabel } = useDateTimeFormat();
+const draftRangeError = ref("");
 const details = ref<GroupAvailabilitySelectionPayload | null>(null);
 const loading = ref(true);
 const failed = ref(false);
@@ -34,44 +35,22 @@ const endCalendarOpen = ref(false);
 let requestTimer: ReturnType<typeof setTimeout> | null = null;
 let requestSequence = 0;
 
-const toLocalInput = (iso: string) => {
-	const date = new Date(iso);
-
-	if (displayTimeZone.value === "UTC") return date.toISOString().slice(0, 16);
-
-	const localDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60_000));
-	return localDate.toISOString().slice(0, 16);
-};
-
 const syncDraftRange = () => {
-	const [startDate, startTime] = toLocalInput(props.startsAt).split("T");
-	const [endDate, endTime] = toLocalInput(props.endsAt).split("T");
+	draftRangeError.value = "";
+	const [startDate, startTime] = toDateTimeInput(props.startsAt).split("T");
+	const [endDate, endTime] = toDateTimeInput(props.endsAt).split("T");
 	draftStartDate.value = parseDate(startDate);
 	draftEndDate.value = parseDate(endDate);
 	draftStartTime.value = startTime;
 	draftEndTime.value = endTime;
 };
 
-const formatDateTime = (iso: string) => new Intl.DateTimeFormat(locale.value, withDisplayTimeZone({
-	weekday: "short",
-	day: "numeric",
-	month: "short",
-	hour: "2-digit",
-	minute: "2-digit",
-})).format(new Date(iso));
-
-const formatTime = (iso: string) => new Intl.DateTimeFormat(locale.value, withDisplayTimeZone({
-	hour: "2-digit",
-	minute: "2-digit",
-})).format(new Date(iso));
-
+const formatRangeDateTime = (iso: string) => formatDateTime(iso, {
+	weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit", timeZoneName: "short",
+});
+const formatTime = (iso: string) => formatDateTime(iso, { hour: "2-digit", minute: "2-digit" });
 const formatCalendarDate = (date: DateValue | undefined) => date
-	? new Intl.DateTimeFormat(locale.value, {
-		weekday: "short",
-		day: "numeric",
-		month: "short",
-	}).format(new Date(`${date.toString()}T00:00:00`))
-	: "";
+	? formatDateOnly(date.toString(), { weekday: "short", day: "numeric", month: "short" }) : "";
 
 const durationMinutes = computed(() => Math.max(
 	0,
@@ -85,7 +64,7 @@ const durationLabel = computed(() => {
 	if (hours) return t("groups.availability.selection.duration_hours", { count: hours });
 	return t("groups.availability.selection.duration_minutes", { count: minutes });
 });
-const selectedRangeLabel = computed(() => `${formatDateTime(props.startsAt)} – ${formatDateTime(props.endsAt)}`);
+const selectedRangeLabel = computed(() => `${formatRangeDateTime(props.startsAt)} – ${formatRangeDateTime(props.endsAt)}`);
 const attendeeCount = computed(() => (
 	(details.value?.available_count ?? 0) + (details.value?.tentative_count ?? 0)
 ));
@@ -111,8 +90,8 @@ const initials = (name: string) => name
 
 const statusClass = (status: GroupAvailabilitySelectionStatus | null) => ({
 	available: "bg-success/55",
-	tentative: "bg-brand-500/55",
-	unavailable: "bg-muted/15",
+	tentative: "bg-primary/55",
+	unavailable: "bg-elevation-3 dark:bg-elevation-5",
 })[status ?? "unavailable"];
 
 const distributionStyle = (count: number) => ({
@@ -122,11 +101,21 @@ const distributionStyle = (count: number) => ({
 const applyDraftRange = () => {
 	if (!draftStartDate.value || !draftEndDate.value || !draftStartTime.value || !draftEndTime.value) return;
 
-	const timezoneSuffix = displayTimeZone.value === "UTC" ? "Z" : "";
-	const startsAt = new Date(`${draftStartDate.value.toString()}T${draftStartTime.value}:00${timezoneSuffix}`);
-	const endsAt = new Date(`${draftEndDate.value.toString()}T${draftEndTime.value}:00${timezoneSuffix}`);
-
-	if (endsAt <= startsAt) return;
+	draftRangeError.value = "";
+	const startsAt = fromDateTimeInput(`${draftStartDate.value}T${draftStartTime.value}`, props.startsAt);
+	const endsAt = fromDateTimeInput(`${draftEndDate.value}T${draftEndTime.value}`, props.endsAt);
+	if (!startsAt || !endsAt) {
+		draftRangeError.value = "groups.availability.validation.ambiguous_time";
+		return;
+	}
+	if (endsAt <= startsAt) {
+		draftRangeError.value = "groups.availability.validation.range_order";
+		return;
+	}
+	if (endsAt.getTime() - startsAt.getTime() > 7 * 86_400_000) {
+		draftRangeError.value = "groups.availability.validation.selection_too_long";
+		return;
+	}
 
 	emit("update:range", {
 		starts_at: startsAt.toISOString(),
@@ -176,10 +165,11 @@ const queueFetch = () => {
 	requestTimer = setTimeout(fetchDetails, 250);
 };
 
-watch(() => [props.startsAt, props.endsAt, displayTimeZone.value], () => {
+watch(() => [props.startsAt, props.endsAt], () => {
 	syncDraftRange();
 	queueFetch();
 }, { immediate: true });
+watch(displayTimeZone, syncDraftRange);
 
 onBeforeUnmount(() => {
 	if (requestTimer) clearTimeout(requestTimer);
@@ -193,7 +183,7 @@ onBeforeUnmount(() => {
 			<div class="flex flex-col gap-4 border-b border-default px-4 py-3 lg:flex-row lg:items-end lg:justify-between">
 				<div class="min-w-0">
 					<p class="text-xs font-semibold uppercase text-muted">
-						{{ t('groups.availability.selection.title') }}
+						{{ t('groups.availability.selection.title') }} · {{ timeDisplayLabel }} ({{ displayTimeZoneLabel }})
 					</p>
 					<div class="mt-1 flex flex-wrap items-center gap-2">
 						<p class="font-semibold text-highlighted">{{ selectedRangeLabel }}</p>
@@ -213,7 +203,7 @@ onBeforeUnmount(() => {
 								/>
 
 								<template #content>
-									<div class="border border-default bg-neutral-950 p-3">
+									<div class="p-3">
 										<UCalendar
 											:model-value="draftStartDate"
 											:week-starts-on="1"
@@ -226,7 +216,7 @@ onBeforeUnmount(() => {
 									</div>
 								</template>
 							</UPopover>
-							<UInput v-model="draftStartTime" type="time" step="1800" class="w-28" @change="applyDraftRange" />
+							<UInput v-model="draftStartTime" type="time" step="60" class="w-28" @change="applyDraftRange" />
 						</div>
 					</UFormField>
 					<UFormField :label="t('groups.availability.selection.ends_at')">
@@ -240,7 +230,7 @@ onBeforeUnmount(() => {
 								/>
 
 								<template #content>
-									<div class="border border-default bg-neutral-950 p-3">
+									<div class="p-3">
 										<UCalendar
 											:model-value="draftEndDate"
 											:week-starts-on="1"
@@ -253,11 +243,13 @@ onBeforeUnmount(() => {
 									</div>
 								</template>
 							</UPopover>
-							<UInput v-model="draftEndTime" type="time" step="1800" class="w-28" @change="applyDraftRange" />
+							<UInput v-model="draftEndTime" type="time" step="60" class="w-28" @change="applyDraftRange" />
 						</div>
 					</UFormField>
 				</div>
 			</div>
+
+			<p v-if="draftRangeError" role="alert" class="px-4 pt-3 text-sm text-error">{{ t(draftRangeError) }}</p>
 
 			<div v-if="loading" class="space-y-3 p-4">
 				<USkeleton class="h-5 w-36" />
@@ -280,11 +272,12 @@ onBeforeUnmount(() => {
 					<p class="text-xs text-muted">{{ durationLabel }}</p>
 				</div>
 
-				<div v-if="details.members.length" class="max-h-[34rem] overflow-auto border border-default">
+				<div v-if="details.members.length" class="max-h-[34rem] overflow-auto rounded-lg border border-default bg-elevation-1 dark:bg-elevation-3">
 					<div class="sticky top-0 z-10 ml-44 h-7 border-b border-default bg-default sm:ml-52">
 						<span
 							v-for="marker in timelineMarkers"
 							:key="marker.index"
+							:title="formatRangeDateTime(marker.slot.starts_at)"
 							class="absolute top-1 -translate-x-1/2 text-[10px] text-muted"
 							:style="{ left: `${((marker.index + 0.5) / details.slots.length) * 100}%` }"
 						>
@@ -321,14 +314,14 @@ onBeforeUnmount(() => {
 					</div>
 				</div>
 
-				<div v-else class="border border-default px-4 py-10 text-center text-sm text-muted">
+				<div v-else class="rounded-lg border border-default bg-muted px-4 py-10 text-center text-sm text-muted">
 					{{ t('groups.availability.selection.no_members') }}
 				</div>
 
 				<div class="mt-3 flex flex-wrap items-center gap-4 text-xs text-muted">
-					<span class="flex items-center gap-1.5"><span class="size-2.5 bg-success/55" />{{ t('groups.availability.schedule.legend.available') }}</span>
-					<span class="flex items-center gap-1.5"><span class="size-2.5 bg-brand-500/55" />{{ t('groups.availability.schedule.legend.tentative') }}</span>
-					<span class="flex items-center gap-1.5"><span class="size-2.5 border border-default bg-muted/15" />{{ t('groups.availability.schedule.legend.unavailable') }}</span>
+					<span class="flex items-center gap-1.5"><span class="size-2.5 rounded-sm bg-success/55" />{{ t('groups.availability.schedule.legend.available') }}</span>
+					<span class="flex items-center gap-1.5"><span class="size-2.5 rounded-sm bg-primary/55" />{{ t('groups.availability.schedule.legend.tentative') }}</span>
+					<span class="flex items-center gap-1.5"><span class="size-2.5 rounded-sm border border-default bg-elevation-3 dark:bg-elevation-5" />{{ t('groups.availability.schedule.legend.unavailable') }}</span>
 				</div>
 			</div>
 		</UCard>
@@ -358,18 +351,18 @@ onBeforeUnmount(() => {
 				<div class="grid grid-cols-3 divide-x divide-default">
 					<div class="p-3">
 						<p class="text-[10px] uppercase text-muted">{{ t('groups.availability.selection.total_available') }}</p>
-						<p class="mt-1 text-lg font-semibold text-brand-300">{{ attendeeCount }} / {{ details.total_members }}</p>
+						<p class="mt-1 text-lg font-semibold text-primary">{{ attendeeCount }} / {{ details.total_members }}</p>
 						<p class="text-[10px] text-muted">{{ availablePercent }}%</p>
 					</div>
 					<div class="p-3">
 						<p class="text-[10px] uppercase text-muted">{{ t('groups.availability.selection.highest_overlap') }}</p>
-						<p class="mt-1 text-lg font-semibold text-brand-300">{{ details.highest_overlap }}</p>
+						<p class="mt-1 text-lg font-semibold text-primary">{{ details.highest_overlap }}</p>
 						<p class="text-[10px] text-muted">{{ t('groups.availability.selection.people_short') }}</p>
 					</div>
 					<div class="p-3">
 						<p class="text-[10px] uppercase text-muted">{{ t('groups.availability.selection.best_time') }}</p>
 						<p class="mt-1 text-sm font-semibold text-highlighted">
-							{{ details.best_time ? `${formatTime(details.best_time.starts_at)} – ${formatTime(details.best_time.ends_at)}` : '—' }}
+							{{ details.best_time ? `${formatRangeDateTime(details.best_time.starts_at)} – ${formatRangeDateTime(details.best_time.ends_at)}` : '—' }}
 						</p>
 						<p class="text-[10px] text-muted">{{ t('groups.availability.selection.best_overlap') }}</p>
 					</div>
@@ -377,10 +370,10 @@ onBeforeUnmount(() => {
 
 				<div class="p-4">
 					<p class="mb-3 text-xs font-semibold text-highlighted">{{ t('groups.availability.selection.distribution') }}</p>
-					<div class="flex h-3 overflow-hidden bg-muted/10">
+					<div class="flex h-3 overflow-hidden rounded-full bg-muted">
 						<span class="bg-success/65" :style="distributionStyle(details.available_count)" />
-						<span class="bg-brand-500/65" :style="distributionStyle(details.tentative_count)" />
-						<span class="bg-muted/35" :style="distributionStyle(details.unavailable_count)" />
+						<span class="bg-primary/65" :style="distributionStyle(details.tentative_count)" />
+						<span class="bg-elevation-3 dark:bg-elevation-5" :style="distributionStyle(details.unavailable_count)" />
 					</div>
 					<div class="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-[10px] text-muted">
 						<span>{{ details.available_count }} {{ t('groups.availability.schedule.legend.available') }}</span>
@@ -397,7 +390,7 @@ onBeforeUnmount(() => {
 							:key="overlap.starts_at"
 							class="flex items-center justify-between gap-3 py-1 text-xs"
 						>
-							<span class="font-medium text-highlighted">{{ formatTime(overlap.starts_at) }} – {{ formatTime(overlap.ends_at) }}</span>
+							<span class="font-medium text-highlighted">{{ formatRangeDateTime(overlap.starts_at) }} – {{ formatRangeDateTime(overlap.ends_at) }}</span>
 							<div class="flex items-center gap-2">
 								<UBadge v-if="index === 0" color="primary" variant="soft" size="sm">{{ t('groups.availability.selection.best') }}</UBadge>
 								<span class="text-muted">{{ overlap.available_count + overlap.tentative_count }} / {{ details.total_members }}</span>

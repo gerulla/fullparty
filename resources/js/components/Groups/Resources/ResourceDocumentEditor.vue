@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { resourceWorkspaceInputUi, resourceWorkspaceMenuUi } from './resourceWorkspaceTheme'
 import { computed, provide, ref } from 'vue'
 import { resourceContentKey } from '@/Types/ResourceContent'
 import type { ResourceReaderSummary } from '@/Types/GroupResources'
@@ -50,13 +51,13 @@ const activityOptions = computed(() => [...props.workspace.activityOptions, ...a
         </UAlert>
         <div class="studio-metadata">
             <UFormField name="access_level" data-resource-field="access_level" :error="workspace.fieldError('access_level')"><USelect v-model="draft.access" :items="access" :disabled="workspace.selected?.isHome" icon="i-lucide-users" size="sm" :aria-label="l('access')" class="studio-access" /></UFormField>
-            <UFormField name="activity_type_ids" data-resource-field="activity_type_ids" :error="workspace.fieldError('activity_type_ids')" class="w-96 max-w-full min-w-0 shrink-0"><USelectMenu v-model="activityIds" :disabled="!!workspace.selected?.holsterId" multiple :items="activityOptions" value-key="value" icon="i-lucide-gamepad-2" size="sm" :aria-label="l('activities')" :placeholder="l('activities')" class="w-full" :ui="{ content: 'rounded-none max-w-[calc(100vw-2rem)]', item: 'rounded-none', itemLabel: 'whitespace-normal wrap-anywhere' }">
+            <UFormField name="activity_type_ids" data-resource-field="activity_type_ids" :error="workspace.fieldError('activity_type_ids')" class="w-96 max-w-full min-w-0 shrink-0"><USelectMenu v-model="activityIds" :disabled="!!workspace.selected?.holsterId" multiple :items="activityOptions" value-key="value" icon="i-lucide-gamepad-2" size="sm" :aria-label="l('activities')" :placeholder="l('activities')" class="w-full" :ui="{ ...resourceWorkspaceMenuUi, content: `${resourceWorkspaceMenuUi.content} max-w-[calc(100vw-2rem)]`, itemLabel: 'whitespace-normal wrap-anywhere' }">
                 <template #default><span class="studio-activity-values"><span v-for="activity in draft.activities" :key="activity">{{ activity }}</span><span v-if="!draft.activities.length">{{ l('activities') }}</span></span></template>
             </USelectMenu></UFormField>
-            <UFormField name="tags" data-resource-field="tags" :error="workspace.fieldError('tags')" class="studio-tags"><UInputTags v-model="draft.tags" icon="i-lucide-tag" size="sm" :aria-label="l('tags')" :placeholder="l('add_tag')" :add-on-blur="true" class="w-full" :ui="{ base: 'rounded-none bg-transparent', item: 'rounded-none', input: 'min-w-12' }" /></UFormField>
+            <UFormField name="tags" data-resource-field="tags" :error="workspace.fieldError('tags')" class="studio-tags"><UInputTags v-model="draft.tags" icon="i-lucide-tag" size="sm" :aria-label="l('tags')" :placeholder="l('add_tag')" :add-on-blur="true" class="w-full" :ui="{ input: 'min-w-12' }" /></UFormField>
         </div>
-        <UFormField name="title" data-resource-field="title" :error="workspace.fieldError('title')"><UInput v-model="draft.title" :readonly="!!workspace.selected?.holsterId" :placeholder="l('title')" :aria-label="l('title')" class="studio-title w-full" :ui="{ base: 'rounded-none px-3 py-2 text-3xl font-semibold bg-transparent' }" /></UFormField>
-        <UFormField name="description" data-resource-field="description" :error="workspace.fieldError('description')"><UTextarea v-model="draft.description" :readonly="!!workspace.selected?.holsterId" :placeholder="l('description')" :aria-label="l('description')" :rows="1" autoresize class="studio-description w-full" :ui="{ base: 'rounded-none px-3 py-2 text-sm bg-transparent resize-none' }" /></UFormField>
+        <UFormField name="title" data-resource-field="title" :error="workspace.fieldError('title')"><UInput v-model="draft.title" :readonly="!!workspace.selected?.holsterId" :placeholder="l('title')" :aria-label="l('title')" class="studio-title w-full" :ui="{ base: `${resourceWorkspaceInputUi.base} px-3 py-2 text-3xl font-semibold` }" /></UFormField>
+        <UFormField name="description" data-resource-field="description" :error="workspace.fieldError('description')"><UTextarea v-model="draft.description" :readonly="!!workspace.selected?.holsterId" :placeholder="l('description')" :aria-label="l('description')" :rows="1" autoresize class="studio-description w-full" :ui="{ base: `${resourceWorkspaceInputUi.base} px-3 py-2 text-sm resize-none` }" /></UFormField>
         <div class="studio-editor-surface" data-resource-field="body" :class="{ 'ring-2 ring-error': workspace.fieldError('body') }">
             <div v-if="workspace.selected?.holsterId" class="min-w-0 flex-1 p-4">
                 <div v-if="workspace.selected.inheritedBodyHtml" class="rich-text-content" v-html="workspace.selected.inheritedBodyHtml" />
@@ -76,11 +77,11 @@ const activityOptions = computed(() => [...props.workspace.activityOptions, ...a
 .studio-metadata { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; flex: none; min-width: 0; }
 .studio-access { width: 134px; }
 .studio-activity-values { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; min-width: 0; }
-.studio-activity-values > span { max-width: 100%; padding: 1px 5px; background: var(--ui-bg-elevated); font-size: 12px; white-space: normal; overflow-wrap: anywhere; }
+.studio-activity-values > span { max-width: 100%; border-radius: 4px; padding: 1px 5px; background: var(--ui-bg-elevated); font-size: 12px; white-space: normal; overflow-wrap: anywhere; }
 .studio-tags { flex: 1; min-width: 180px; }
 .studio-title, .studio-description { flex: none; }
 .studio-title :deep(input) { font-size: 32px; font-weight: 600; line-height: 40px; padding: 4px 12px; }
 .studio-description :deep(textarea) { font-size: 14px; font-weight: 400; }
-.studio-editor-surface { flex: 1; min-height: 240px; display: flex; border: 1px solid var(--ui-border); background: color-mix(in srgb, var(--ui-bg-elevated) 50%, transparent); }
+.studio-editor-surface { flex: 1; min-height: 240px; display: flex; overflow: hidden; border: 1px solid var(--ui-border); border-radius: 12px; background: var(--ui-bg); }
 @media (max-width: 767px) { .studio-editor-surface { flex: none; height: 620px; } }
 </style>

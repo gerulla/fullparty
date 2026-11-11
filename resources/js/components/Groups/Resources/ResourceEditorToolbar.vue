@@ -17,10 +17,10 @@ const savedTime = computed(() => props.workspace.selected ? new Date(props.works
     <header class="studio-toolbar">
         <div class="studio-breadcrumb">
             <UTooltip :text="l('back_to_library')"><UButton icon="i-lucide-arrow-left" :aria-label="l('back_to_library')" color="neutral" variant="ghost" size="xs" :disabled="workspace.busy" @click="workspace.back()" /></UTooltip>
-            <UIcon name="i-lucide-folder" class="size-4 shrink-0 text-[#d5b168]" /><UIcon v-if="collection && collection.icon !== 'i-lucide-folder'" :name="collection.icon" class="size-4 shrink-0" /><span class="studio-path" :title="path">{{ path }}</span><span class="text-dimmed">/</span><strong :title="workspace.state.draft?.title">{{ workspace.state.draft?.title || l('untitled') }}</strong>
+            <UIcon name="i-lucide-folder" class="size-4 shrink-0 text-amber-700 dark:text-amber-300" /><UIcon v-if="collection && collection.icon !== 'i-lucide-folder'" :name="collection.icon" class="size-4 shrink-0" /><span class="studio-path" :title="path">{{ path }}</span><span class="text-dimmed">/</span><strong :title="workspace.state.draft?.title">{{ workspace.state.draft?.title || l('untitled') }}</strong>
         </div>
         <div class="studio-save-state">
-            <UBadge color="neutral" variant="soft" class="rounded-none" size="sm"><span class="size-1.5 bg-primary" />{{ l('editing_draft') }}</UBadge>
+            <UBadge color="neutral" variant="soft" class="rounded-md" size="sm"><span class="size-1.5 rounded-full bg-primary" />{{ l('editing_draft') }}</UBadge>
             <span role="status" :class="workspace.state.autosaveError || workspace.state.conflict ? 'text-error' : workspace.dirty ? 'text-warning' : 'text-muted'"><UIcon :name="workspace.autosaving ? 'i-lucide-loader-circle' : workspace.dirty ? 'i-lucide-circle' : 'i-lucide-check'" :class="{ 'animate-spin': workspace.autosaving }" />{{ workspace.autosaving ? l('autosaving') : workspace.dirty ? l('unsaved_changes') : t('groups.resources.workspace.saved_at', { time: savedTime }) }}</span>
         </div>
         <div class="studio-save-actions">

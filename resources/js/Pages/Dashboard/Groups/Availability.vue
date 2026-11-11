@@ -8,6 +8,7 @@ import PageHeader from "@/components/PageHeader.vue";
 import GroupAvailabilityOverview from "@/components/Groups/Availability/GroupAvailabilityOverview.vue";
 import GroupAvailabilitySelectionDetails from "@/components/Groups/Availability/GroupAvailabilitySelectionDetails.vue";
 import MyAvailabilityScheduleModal from "@/components/Groups/Availability/MyAvailabilityScheduleModal.vue";
+import { availabilityUi, availabilityThemeProps } from "@/components/Groups/Availability/availabilityTheme";
 import type {
 	GroupAvailabilityMinimumRole,
 	GroupAvailabilityOverviewPayload,
@@ -69,83 +70,81 @@ const applyConfiguration = () => {
 </script>
 
 <template>
-	<div class="w-full">
-		<PageHeader
-			:title="t('groups.availability.title')"
-			:subtitle="t('groups.availability.subtitle')"
-		>
-			<div class="flex flex-wrap items-center justify-center gap-2 xl:justify-end">
-				<MyAvailabilityScheduleModal
-					v-if="group.permissions.can_use_availability"
-					:group-slug="group.slug"
-					:schedule="schedule"
-				/>
-				<UButton
-					v-if="canConfigure"
-					color="neutral"
-					variant="soft"
-					icon="i-lucide-settings-2"
-					:label="t('groups.availability.configuration.button')"
-					@click="openConfiguration"
-				/>
-			</div>
-		</PageHeader>
-
-		<GroupAvailabilityOverview
-			v-if="overview"
-			:overview="overview"
-			:selected-starts-at="selectedRange.starts_at"
-			:selected-ends-at="selectedRange.ends_at"
-			class="mt-4"
-			@update:selected-range="selectedRange = $event"
-		/>
-
-		<GroupAvailabilitySelectionDetails
-			v-if="overview"
-			:group-slug="group.slug"
-			:starts-at="selectedRange.starts_at"
-			:ends-at="selectedRange.ends_at"
-			class="mt-4"
-			@update:range="selectedRange = $event"
-		/>
-
-		<UModal v-model:open="configurationOpen">
-			<template #header>
-				<p class="font-semibold">{{ t('groups.availability.configuration.title') }}</p>
-			</template>
-
-			<template #body>
-				<div class="space-y-5">
-					<UFormField
-						:label="t('groups.availability.configuration.access.label')"
-						:description="t('groups.availability.configuration.access.description')"
-					>
-						<USelect
-							v-model="draftAccessLevel"
-							:items="accessLevelOptions"
-							value-key="value"
-							class="w-full"
-						/>
-					</UFormField>
-
-					<div class="flex justify-end gap-2">
-						<UButton
-							type="button"
-							color="neutral"
-							variant="ghost"
-							:label="t('general.cancel')"
-							@click="configurationOpen = false"
-						/>
-						<UButton
-							type="button"
-							color="neutral"
-							:label="t('general.save')"
-							:loading="configurationSaving"
-							@click="applyConfiguration"
-						/>
-					</div>
+	<UTheme :ui="availabilityUi" :props="availabilityThemeProps">
+		<div class="availability-theme w-full">
+			<PageHeader
+				:title="t('groups.availability.title')"
+				:subtitle="t('groups.availability.subtitle')"
+			>
+				<div class="flex flex-wrap items-center justify-center gap-2 xl:justify-end">
+					<MyAvailabilityScheduleModal
+						v-if="group.permissions.can_use_availability"
+						:group-slug="group.slug"
+						:schedule="schedule"
+					/>
+					<UButton
+						v-if="canConfigure"
+						color="neutral"
+						variant="outline"
+						icon="i-lucide-settings-2"
+						:label="t('groups.availability.configuration.button')"
+						@click="openConfiguration"
+					/>
 				</div>
-			</template>
-		</UModal>
-	</div>
+			</PageHeader>
+
+			<GroupAvailabilityOverview
+				v-if="overview"
+				:overview="overview"
+				:selected-starts-at="selectedRange.starts_at"
+				:selected-ends-at="selectedRange.ends_at"
+				class="mt-4"
+				@update:selected-range="selectedRange = $event"
+			/>
+
+			<GroupAvailabilitySelectionDetails
+				v-if="overview"
+				:group-slug="group.slug"
+				:starts-at="selectedRange.starts_at"
+				:ends-at="selectedRange.ends_at"
+				class="mt-4"
+				@update:range="selectedRange = $event"
+			/>
+
+			<UModal v-model:open="configurationOpen" :title="t('groups.availability.configuration.title')">
+				<template #body>
+					<div class="space-y-5">
+						<UFormField
+							:label="t('groups.availability.configuration.access.label')"
+							:description="t('groups.availability.configuration.access.description')"
+						>
+							<USelect
+								v-model="draftAccessLevel"
+								:items="accessLevelOptions"
+								value-key="value"
+								class="w-full"
+							/>
+						</UFormField>
+
+						<div class="flex justify-end gap-2">
+							<UButton
+								type="button"
+								color="neutral"
+								variant="ghost"
+								:label="t('general.cancel')"
+								@click="configurationOpen = false"
+							/>
+							<UButton
+								type="button"
+								color="primary"
+								:label="t('general.save')"
+								:loading="configurationSaving"
+								@click="applyConfiguration"
+							/>
+						</div>
+					</div>
+				</template>
+			</UModal>
+		</div>
+	</UTheme>
 </template>

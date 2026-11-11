@@ -35,5 +35,5 @@ function keydown(event: KeyboardEvent) {
 </script>
 
 <template>
-    <UInput v-if="actions.state.editing" ref="input" v-model="actions.state.editing.name" size="xs" :maxlength="160" :aria-label="t('groups.resources.workspace.name')" :aria-invalid="!!actions.state.error" :disabled="actions.state.busy" class="min-w-0 flex-1" :ui="{ base: 'rounded-none' }" @keydown="keydown" @blur="blur" @contextmenu.stop />
+    <UInput v-if="actions.state.editing" ref="input" v-model="actions.state.editing.name" size="xs" :maxlength="160" :aria-label="t('groups.resources.workspace.name')" :aria-invalid="!!actions.state.error" :disabled="actions.state.busy" class="min-w-0 flex-1" @keydown="keydown" @blur="blur" @contextmenu.stop />
 </template>

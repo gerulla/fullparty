@@ -1,0 +1,21 @@
+.resource-workspace-theme {
+    --ui-bg: var(--ui-bg-elevation-1);
+    --ui-bg-muted: var(--ui-bg-elevation-2);
+    --ui-bg-elevated: var(--ui-bg-elevation-3);
+    --ui-bg-accented: var(--ui-bg-elevation-4);
+    --ui-border: var(--ui-bg-elevation-4);
+    --ui-border-muted: var(--ui-bg-elevation-3);
+    --ui-border-accented: var(--ui-bg-elevation-5);
+}
+.dark .resource-workspace-theme {
+    --ui-primary: var(--color-brand-400);
+    --ui-brand: var(--color-brand-400);
+    --ui-border: var(--ui-bg-elevation-6);
+    --ui-border-muted: var(--ui-bg-elevation-4);
+    --ui-border-accented: var(--ui-bg-elevation-7);
+}
+.resource-workspace-dialog {
+    border-radius: 0.75rem;
+    background: var(--ui-bg);
+}
+.dark .resource-workspace-dialog { background: var(--ui-bg-muted); }

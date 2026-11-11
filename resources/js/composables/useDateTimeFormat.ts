@@ -1,19 +1,13 @@
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useTimeDisplayMode } from '@/composables/useTimeDisplayMode'
-import { createDateTimeFormatter } from '@/utils/dateTimeFormat'
+import { createDateTimeFormatter, parseTimestamp, dateTimeInputInZone, dateTimeInputToInstant, formatCalendarDate, formatWallClock } from '@/utils/dateTimeFormat'
 import type { DateTimeValue, DisplayDateTimeOptions } from '@/Types/DateTime'
 
 export function useDateTimeFormat() {
     const { locale } = useI18n({ useScope: 'global' })
     const { timeDisplayMode, displayTimeZone, displayTimeZoneLabel, withDisplayTimeZone } = useTimeDisplayMode()
     const timeDisplayLabel = computed(() => timeDisplayMode.value === 'server' ? 'ST' : 'LT')
-
-    function parseTimestamp(value: DateTimeValue): Date | null {
-        if (value === null || value === undefined || value === '') return null
-        const date = value instanceof Date ? value : new Date(value)
-        return Number.isNaN(date.getTime()) ? null : date
-    }
 
     // Read locale and timezone on every call so templates and computed labels
     // track preference changes, including formatters used in deferred content.
@@ -33,5 +27,10 @@ export function useDateTimeFormat() {
         return createDateTimeFormatter(locale.value, withDisplayTimeZone(options)).formatToParts(date)
     }
 
-    return { formatDateTime, formatDateTimeParts, displayTimeZone, displayTimeZoneLabel, timeDisplayLabel }
+    const toDateTimeInput = (value: DateTimeValue) => dateTimeInputInZone(value, displayTimeZone.value)
+    const fromDateTimeInput = (value: string, reference?: DateTimeValue) => dateTimeInputToInstant(value, displayTimeZone.value, reference)
+    const formatDateOnly = (value: string, options?: DisplayDateTimeOptions) => formatCalendarDate(locale.value, value, options)
+    const formatWallTime = (value: string) => formatWallClock(locale.value, value)
+
+    return { formatDateTime, formatDateTimeParts, toDateTimeInput, fromDateTimeInput, formatDateOnly, formatWallTime, displayTimeZone, displayTimeZoneLabel, timeDisplayLabel }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -26,5 +27,15 @@ class GroupAvailabilityException extends Model
     public function schedule(): BelongsTo
     {
         return $this->belongsTo(GroupAvailabilitySchedule::class, 'schedule_id');
+    }
+
+    public function isPendingAt(CarbonImmutable $localNow): bool
+    {
+        $date = $this->date?->toDateString();
+
+        return $date >= $localNow->toDateString()
+            || ($date === $localNow->subDay()->toDateString()
+                && $this->ends_minute > 1440
+                && ($localNow->hour * 60) + $localNow->minute < $this->ends_minute - 1440);
     }
 }

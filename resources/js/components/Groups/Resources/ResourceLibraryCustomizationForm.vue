@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { resourceWorkspaceMenuUi } from './resourceWorkspaceTheme'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import type { ResourceLibraryCustomization, ResourceLibrarySettingsErrors } from '@/Types/GroupResources'
@@ -24,7 +25,7 @@ const color = computed(() => /^#[a-f0-9]{6}$/i.test(model.value.accent_color) ? 
         </UFormField>
         <ResourceImagePicker :model-value="model.banner_image_id ?? ''" value-type="uuid" :label="l('banner')" name="customization.banner_image_id" data-library-field="customization.banner_image_id" :error="error('banner_image_id')" @update:model-value="model.banner_image_id = $event || null" />
         <div v-if="model.banner_image_id" class="space-y-4">
-            <div class="aspect-[3/1] overflow-hidden border border-default bg-muted">
+            <div class="aspect-[3/1] overflow-hidden rounded-lg border border-default bg-muted">
                 <img :src="`/resource-assets/${model.banner_image_id}`" alt="" class="h-full w-full object-cover" :style="{ objectPosition: `${model.banner_focal_x}% ${model.banner_focal_y}%` }" />
             </div>
             <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
@@ -41,7 +42,7 @@ const color = computed(() => /^#[a-f0-9]{6}$/i.test(model.value.accent_color) ? 
             <ResourceImagePicker :model-value="model.sharing_image_id ?? ''" value-type="uuid" :label="l('sharing_image')" name="customization.sharing_image_id" data-library-field="customization.sharing_image_id" :error="error('sharing_image_id')" @update:model-value="model.sharing_image_id = $event || null" />
             <UFormField name="customization.accent_color" data-library-field="customization.accent_color" :label="l('accent_color')" :error="error('accent_color')">
                 <div class="flex gap-2">
-                    <UPopover :ui="{ content: 'rounded-none bg-elevated p-3 ring ring-default' }">
+                    <UPopover :ui="{ content: `${resourceWorkspaceMenuUi.content} p-3 ring ring-default` }">
                         <UButton color="neutral" variant="outline" class="size-8 shrink-0 justify-center p-1" :aria-label="l('accent_color')"><span class="size-5 border border-default" :style="{ backgroundColor: color }" /></UButton>
                         <template #content><UColorPicker :model-value="color" format="hex" :aria-label="l('accent_color')" @update:model-value="model.accent_color = $event ?? '#8457b0'" /></template>
                     </UPopover>

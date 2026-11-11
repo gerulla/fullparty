@@ -1,33 +1,25 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, ref } from "vue";
 import { useI18n } from "vue-i18n";
-import { getLocalTimeZone, parseDate, today } from "@internationalized/date";
+import { parseDate } from "@internationalized/date";
 import type { DateValue } from "@internationalized/date";
 import { router } from "@inertiajs/vue3";
 import { route } from "ziggy-js";
 import { useToast } from "@nuxt/ui/composables";
+import { useDateTimeFormat } from "@/composables/useDateTimeFormat";
+import { useAvailabilityScheduleTime } from "@/composables/useAvailabilityScheduleTime";
+import { dateTimeInputInZone } from "@/utils/dateTimeFormat";
+import { availabilityDays, availabilityTimelineDay, isPendingAvailabilityException } from "@/utils/availabilityScheduleTime";
 import type { GroupAvailabilitySchedulePayload } from "@/Types/Groups";
-
-type Cadence = "weekly" | "biweekly" | "monthly";
-type DayKey = "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "saturday" | "sunday";
-type AvailabilityStatus = "available" | "tentative";
-type TimeBlock = { id: number, starts_at: string, ends_at: string, status: AvailabilityStatus };
-type DaySchedule = { enabled: boolean, blocks: TimeBlock[] };
-type WeekSchedule = Record<DayKey, DaySchedule>;
-type AvailabilityException = {
-	id: number
-	date: string
-	has_time_range: boolean
-	starts_at: string
-	ends_at: string
-};
+import type { Cadence, DayKey, AvailabilityStatus, TimeBlock, DaySchedule, WeekSchedule, AvailabilityException, AvailabilityTimelineEntry } from "@/Types/Availability";
 
 const props = defineProps<{
 	groupSlug: string
 	schedule: GroupAvailabilitySchedulePayload | null
 }>();
 
-const { t, locale } = useI18n();
+const { t } = useI18n();
+const { formatDateOnly, formatWallTime, displayTimeZone } = useDateTimeFormat();
 const toast = useToast();
 const isOpen = ref(false);
 const isSaving = ref(false);
@@ -35,29 +27,20 @@ const cadence = ref<Cadence>(({ 1: "weekly", 2: "biweekly", 4: "monthly" } as co
 const repeatable = ref(props.schedule?.repeats ?? true);
 const lockWeekends = ref(props.schedule?.lock_weekends ?? true);
 const onHiatus = ref(props.schedule?.on_hiatus ?? false);
-const startsOn = ref(props.schedule?.starts_on ?? new Date().toISOString().slice(0, 10));
+const browserTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
+const scheduleTimeZone = ref(props.schedule?.timezone ?? displayTimeZone.value ?? browserTimeZone);
+const startsOn = ref(props.schedule?.starts_on ?? dateTimeInputInZone(new Date(), scheduleTimeZone.value).slice(0, 10));
 const startsOnCalendarOpen = ref(false);
 const startsOnDate = ref<DateValue>(parseDate(startsOn.value));
-const browserTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
-const scheduleTimeZone = ref(props.schedule?.timezone ?? browserTimeZone);
 const addBlockDays = ref<DayKey[]>(Array.from({ length: 4 }, () => "monday"));
 const addBlockPopoverOpen = ref<boolean[]>(Array.from({ length: 4 }, () => false));
 const exceptionCalendarOpen = ref(false);
 const exceptionDate = ref<DateValue | undefined>(undefined);
-const minimumExceptionDate = today(getLocalTimeZone());
 const copiedDaySchedule = ref<DaySchedule | null>(null);
 let nextBlockId = 1;
 let nextExceptionId = 1;
 
-const dayKeys: DayKey[] = [
-	"monday",
-	"tuesday",
-	"wednesday",
-	"thursday",
-	"friday",
-	"saturday",
-	"sunday",
-];
+const dayKeys = availabilityDays;
 const timeTicks = [0, 6, 12, 18, 24];
 const statusKeys: AvailabilityStatus[] = ["available", "tentative"];
 const dragDraft = ref<{
@@ -169,7 +152,7 @@ const timeZoneOptions = computed(() => {
 		supportedValuesOf?: (key: "timeZone") => string[]
 	}).supportedValuesOf;
 	const supportedZones = supportedValuesOf ? supportedValuesOf("timeZone") : [browserTimeZone, "UTC"];
-	const zones = Array.from(new Set([browserTimeZone, "UTC", ...supportedZones]));
+	const zones = Array.from(new Set([scheduleTimeZone.value, browserTimeZone, "UTC", ...supportedZones]));
 
 	return zones.map(zone => ({
 		label: zone.replaceAll("_", " "),
@@ -178,11 +161,12 @@ const timeZoneOptions = computed(() => {
 });
 const visibleWeekCount = computed(() => ({ weekly: 1, biweekly: 2, monthly: 4 })[cadence.value]);
 const visibleWeeks = computed(() => draftWeeks.value.slice(0, visibleWeekCount.value));
+const { nowInScheduleZone, minimumExceptionDate, weekRange, dayDate, minutePreview, windowPreview, timeDisplayLabel, displayTimeZoneLabel } = useAvailabilityScheduleTime({
+	startsOn, timeZone: scheduleTimeZone, weeks: visibleWeekCount, repeats: repeatable,
+});
 const futureExceptions = computed(() => {
-	const todayKey = minimumExceptionDate.toString();
-
 	return draftExceptions.value
-		.filter(exception => exception.date >= todayKey)
+		.filter(exception => isPendingAvailabilityException(exception.date, exception.has_time_range ? exception.starts_at : null, exception.has_time_range ? exception.ends_at : null, nowInScheduleZone.value))
 		.sort((left, right) => left.date.localeCompare(right.date));
 });
 
@@ -199,23 +183,20 @@ const formatMinute = (minute: number) => {
 
 const quantizeMinute = (minute: number) => Math.min(1440, Math.max(0, Math.round(minute / 15) * 15));
 
-const formatTimeTick = (hour: number) => {
-	if (hour === 0 || hour === 24) return "12 AM";
-	if (hour === 12) return "12 PM";
-	return hour > 12 ? `${hour - 12} PM` : `${hour} AM`;
+const formatTimeTick = (hour: number) => formatWallTime(`${String(hour).padStart(2, "0")}:00`);
+
+const timelineEntries = computed(() => visibleWeeks.value.map((_, weekIndex) => Object.fromEntries(dayKeys.map((day, dayIndex) => [
+	day, availabilityTimelineDay(visibleWeeks.value, startsOn.value, dayDate(weekIndex, dayIndex + 1), repeatable.value),
+])) as Record<DayKey, AvailabilityTimelineEntry[]>));
+const blockStyle = (entry: AvailabilityTimelineEntry) => ({
+	left: `${(entry.startMinute / 1440) * 100}%`,
+	width: `${(Math.max(0, entry.endMinute - entry.startMinute) / 1440) * 100}%`,
+});
+
+const blockEndMinute = (block: TimeBlock) => {
+	const end = parseTime(block.ends_at);
+	return end <= parseTime(block.starts_at) ? end + 1440 : end;
 };
-
-const blockStyle = (block: TimeBlock) => {
-	const start = parseTime(block.starts_at);
-	const end = block.ends_at === "00:00" ? 1440 : Math.max(start + 15, parseTime(block.ends_at));
-
-	return {
-		left: `${(start / 1440) * 100}%`,
-		width: `${((Math.min(1440, end) - start) / 1440) * 100}%`,
-	};
-};
-
-const blockEndMinute = (block: TimeBlock) => (block.ends_at === "00:00" ? 1440 : parseTime(block.ends_at));
 
 const hoverTimeStyle = computed(() => {
 	if (!hoverTime.value) {
@@ -256,45 +237,17 @@ const dragPreviewStyle = computed(() => {
 
 const blockTone = (status: AvailabilityStatus) => ({
 	available: "border-success/70 bg-success/45 hover:bg-success/60",
-	tentative: "border-brand-400/70 bg-brand-500/45 hover:bg-brand-500/60",
+	tentative: "border-primary/70 bg-primary/35 hover:bg-primary/50 dark:bg-primary/45 dark:hover:bg-primary/60",
 })[status];
 
 const legendTone = (status: AvailabilityStatus | "unavailable") => ({
 	available: "border-success/70 bg-success/45",
-	tentative: "border-brand-400/70 bg-brand-500/45",
-	unavailable: "border-default bg-muted/20",
+	tentative: "border-primary/70 bg-primary/35 dark:bg-primary/45",
+	unavailable: "border-default bg-elevation-2 dark:bg-elevation-3",
 })[status];
 
-const formatDate = (date: Date) => new Intl.DateTimeFormat(locale.value, {
-	day: "numeric",
-	month: "short",
-}).format(date);
-
-const weekRange = (index: number) => {
-	const start = new Date(`${startsOn.value}T00:00:00`);
-	start.setDate(start.getDate() + (index * 7));
-	const end = new Date(start);
-	end.setDate(end.getDate() + 6);
-
-	return `${formatDate(start)} – ${formatDate(end)}`;
-};
-
-const formattedStartDate = computed(() => {
-	const date = new Date(`${startsOn.value}T00:00:00`);
-
-	return new Intl.DateTimeFormat(locale.value, {
-		day: "numeric",
-		month: "short",
-		year: "numeric",
-	}).format(date);
-});
-
-const formatExceptionDate = (date: string) => new Intl.DateTimeFormat(locale.value, {
-	weekday: "long",
-	day: "numeric",
-	month: "long",
-	year: "numeric",
-}).format(new Date(`${date}T00:00:00`));
+const formattedStartDate = computed(() => formatDateOnly(startsOn.value, { day: "numeric", month: "short", year: "numeric" }));
+const formatExceptionDate = (date: string) => formatDateOnly(date, { weekday: "long", day: "numeric", month: "long", year: "numeric" });
 
 const weekLabel = (index: number) => {
 	if (cadence.value === "weekly") {
@@ -313,9 +266,9 @@ const open = () => {
 	repeatable.value = savedRepeatable.value;
 	lockWeekends.value = savedLockWeekends.value;
 	onHiatus.value = savedOnHiatus.value;
-	startsOn.value = savedStartsOn.value;
-	startsOnDate.value = parseDate(savedStartsOn.value);
-	scheduleTimeZone.value = savedTimeZone.value;
+	scheduleTimeZone.value = props.schedule ? savedTimeZone.value : displayTimeZone.value ?? browserTimeZone;
+	startsOn.value = props.schedule ? savedStartsOn.value : dateTimeInputInZone(new Date(), scheduleTimeZone.value).slice(0, 10);
+	startsOnDate.value = parseDate(startsOn.value);
 	draftWeeks.value = cloneWeeks(savedWeeks.value);
 	draftExceptions.value = savedExceptions.value.map(exception => ({ ...exception }));
 	exceptionDate.value = undefined;
@@ -725,8 +678,7 @@ onBeforeUnmount(cancelTimelineInteraction);
 
 <template>
 	<UButton
-		color="neutral"
-		variant="soft"
+		color="primary"
 		icon="i-lucide-calendar-days"
 		:label="t('groups.availability.schedule.button')"
 		@click="open"
@@ -734,15 +686,12 @@ onBeforeUnmount(cancelTimelineInteraction);
 
 	<UModal
 		v-model:open="isOpen"
+		:title="t('groups.availability.schedule.title')"
 		:ui="{
 			content: 'max-w-[calc(100vw-1rem)] sm:max-w-7xl',
 			body: 'max-h-[calc(100dvh-9rem)] overflow-y-auto p-0 sm:p-0',
 		}"
 	>
-		<template #header>
-			<p class="font-semibold">{{ t('groups.availability.schedule.title') }}</p>
-		</template>
-
 		<template #body>
 			<div class="grid min-h-0 xl:grid-cols-[minmax(0,1fr)_17rem]">
 				<div class="min-w-0 p-4 sm:p-6">
@@ -767,7 +716,7 @@ onBeforeUnmount(cancelTimelineInteraction);
 									/>
 
 									<template #content>
-										<div class="border border-default bg-neutral-950 p-3">
+										<div class="p-3">
 											<UCalendar
 												:model-value="startsOnDate"
 												:week-starts-on="1"
@@ -783,21 +732,24 @@ onBeforeUnmount(cancelTimelineInteraction);
 							</div>
 						</div>
 
-						<div class="flex items-center justify-between gap-4 border border-default px-3 py-2 lg:min-w-48">
+						<div class="flex items-center justify-between gap-4 rounded-lg border border-default bg-elevation-1 px-3 py-2 shadow-xs lg:min-w-48 dark:bg-elevation-3 dark:shadow-none">
 							<span class="text-sm font-medium text-toned">{{ t('groups.availability.schedule.repeatable') }}</span>
 							<USwitch v-model="repeatable" />
 						</div>
 					</div>
 
+					<p class="mt-4 text-sm font-medium text-highlighted">{{ t('groups.availability.schedule.editing_timezone', { timezone: scheduleTimeZone }) }}</p>
+					<p class="mt-1 text-xs text-muted">{{ t('groups.availability.schedule.preview_hint', { mode: timeDisplayLabel, timezone: displayTimeZoneLabel }) }}</p>
+
 					<div class="mt-5 grid items-start gap-4" :class="visibleWeekCount === 1 ? 'grid-cols-1' : '2xl:grid-cols-2'">
 						<section
 							v-for="(week, weekIndex) in visibleWeeks"
 							:key="weekIndex"
-							class="border border-default bg-default/15"
+							class="rounded-xl border border-default bg-elevation-1 shadow-xs dark:bg-elevation-2 dark:shadow-none"
 						>
-							<header class="flex items-center justify-between border-b border-default px-4 py-3">
+							<header class="flex items-center justify-between rounded-t-xl border-b border-default bg-muted px-4 py-3">
 								<div class="flex min-w-0 items-center gap-2">
-									<span class="size-2 shrink-0" :class="weekIndex % 2 === 0 ? 'bg-brand' : 'bg-brand-300'" />
+									<span class="size-2 shrink-0 rounded-full" :class="weekIndex % 2 === 0 ? 'bg-primary' : 'bg-primary/60'" />
 									<p class="truncate font-semibold text-toned">{{ weekLabel(weekIndex) }}</p>
 									<span class="truncate text-xs text-muted">{{ weekRange(weekIndex) }}</span>
 								</div>
@@ -837,7 +789,7 @@ onBeforeUnmount(cancelTimelineInteraction);
 											size="sm"
 											@update:model-value="toggleDay(week, day)"
 										/>
-										<span class="truncate text-xs font-medium" :class="week[day].enabled ? 'text-toned' : 'text-muted'">
+										<span :title="formatDateOnly(dayDate(weekIndex, dayKeys.indexOf(day) + 1))" class="truncate text-xs font-medium" :class="week[day].enabled ? 'text-toned' : 'text-muted'">
 											{{ t(`groups.availability.schedule.days_short.${day}`) }}
 										</span>
 										<div class="ml-auto flex items-center gap-0.5">
@@ -866,7 +818,7 @@ onBeforeUnmount(cancelTimelineInteraction);
 									</div>
 
 									<div
-										class="relative h-7 touch-pan-y border border-default bg-muted/10"
+										class="relative h-7 touch-pan-y rounded-md border border-default bg-elevation-2 dark:bg-elevation-3"
 										:class="isWeekendLocked(day) ? 'cursor-not-allowed opacity-60' : 'cursor-crosshair'"
 										@pointerdown="beginBlockDrag(weekIndex, day, $event)"
 										@pointermove="moveTimelinePointer(weekIndex, day, $event)"
@@ -883,54 +835,59 @@ onBeforeUnmount(cancelTimelineInteraction);
 
 										<span
 											v-if="dragDraft?.weekIndex === weekIndex && dragDraft.day === day"
-											class="pointer-events-none absolute inset-y-1 z-20 min-w-1 border border-brand-300/80 bg-brand-500/30"
+											class="pointer-events-none absolute inset-y-1 z-20 min-w-1 rounded-sm border border-primary/80 bg-primary/30"
 											:style="dragPreviewStyle"
 										/>
 
 										<span
 											v-if="hoverTime?.weekIndex === weekIndex && hoverTime.day === day"
-											class="pointer-events-none absolute -top-8 z-30 -translate-x-1/2 border border-brand-400/50 bg-neutral-950 px-2 py-1 text-[10px] font-semibold text-highlighted shadow-lg"
+											class="pointer-events-none absolute -top-8 z-30 -translate-x-1/2 rounded-md border border-primary/50 bg-elevation-1 dark:bg-elevation-3 px-2 py-1 text-[10px] font-semibold text-highlighted shadow-lg"
 											:style="hoverTimeStyle"
 										>
-											{{ formatMinute(hoverTime.minute) }}
+											{{ formatWallTime(formatMinute(hoverTime.minute)) }} · {{ scheduleTimeZone }}
+												<span class="block">{{ minutePreview(weekIndex, dayKeys.indexOf(day) + 1, hoverTime.minute) }}</span>
 										</span>
 
-										<template v-if="week[day].enabled">
-											<UPopover v-for="block in week[day].blocks" :key="block.id">
+										<template v-for="entry in timelineEntries[weekIndex][day]" :key="`${entry.sourceDate}:${entry.block.id}`">
+											<UPopover>
 												<button
 													type="button"
-													class="group absolute inset-y-1 z-10 min-w-2 border transition-colors"
-													:class="blockTone(block.status)"
-													:style="blockStyle(block)"
-													:title="`${block.starts_at} – ${block.ends_at}`"
+													class="group absolute inset-y-1 z-10 min-w-2 rounded-sm border transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+													:class="blockTone(entry.block.status)"
+													:style="blockStyle(entry)"
+													:title="`${formatWallTime(entry.block.starts_at)} – ${formatWallTime(entry.block.ends_at)} · ${scheduleTimeZone}\n${windowPreview(entry.sourceDate, entry.block.starts_at, entry.block.ends_at)}`"
 													@pointerdown.stop
 												>
 													<span
-														class="absolute inset-y-0 left-0 w-2 cursor-ew-resize border-r border-white/30 bg-white/10 opacity-0 transition-opacity group-hover:opacity-100"
-														@pointerdown="beginBlockResize(weekIndex, day, block, 'start', $event)"
+														v-if="!entry.continuation && blockEndMinute(entry.block) <= 1440"
+														class="absolute inset-y-0 left-0 w-2 cursor-ew-resize border-r border-black/20 bg-black/10 dark:border-white/30 dark:bg-white/10 opacity-0 transition-opacity group-hover:opacity-100"
+														@pointerdown="beginBlockResize(entry.sourceWeek, entry.sourceDay, entry.block, 'start', $event)"
 													/>
 													<span
-														class="absolute inset-y-0 right-0 w-2 cursor-ew-resize border-l border-white/30 bg-white/10 opacity-0 transition-opacity group-hover:opacity-100"
-														@pointerdown="beginBlockResize(weekIndex, day, block, 'end', $event)"
+														v-if="!entry.continuation && blockEndMinute(entry.block) <= 1440"
+														class="absolute inset-y-0 right-0 w-2 cursor-ew-resize border-l border-black/20 bg-black/10 dark:border-white/30 dark:bg-white/10 opacity-0 transition-opacity group-hover:opacity-100"
+														@pointerdown="beginBlockResize(entry.sourceWeek, entry.sourceDay, entry.block, 'end', $event)"
 													/>
 												</button>
 
 												<template #content>
 													<div class="w-64 space-y-3 p-3">
+														<p class="text-xs text-muted">{{ t('groups.availability.schedule.editing_timezone', { timezone: scheduleTimeZone }) }}</p>
 														<UFormField :label="t('groups.availability.schedule.block_type')">
-															<USelect v-model="block.status" :items="statusOptions" value-key="value" class="w-full" />
+															<USelect v-model="entry.block.status" :items="statusOptions" value-key="value" class="w-full" />
 														</UFormField>
 														<div class="grid grid-cols-2 gap-2">
-															<UInput v-model="block.starts_at" type="time" size="sm" />
-															<UInput v-model="block.ends_at" type="time" size="sm" />
+															<UInput v-model="entry.block.starts_at" type="time" size="sm" />
+															<UInput v-model="entry.block.ends_at" type="time" size="sm" />
 														</div>
+														<p class="text-xs text-primary">{{ windowPreview(entry.sourceDate, entry.block.starts_at, entry.block.ends_at) }}</p>
 														<UButton
 															color="error"
 															variant="ghost"
 															icon="i-lucide-trash-2"
 															:label="t('groups.availability.schedule.remove_block')"
 															class="w-full justify-center"
-															@click="removeBlock(week[day], block.id)"
+															@click="removeBlock(draftWeeks[entry.sourceWeek][entry.sourceDay], entry.block.id)"
 														/>
 													</div>
 												</template>
@@ -943,7 +900,7 @@ onBeforeUnmount(cancelTimelineInteraction);
 							<div class="border-t border-default px-3 py-2 text-center">
 								<UPopover v-model:open="addBlockPopoverOpen[weekIndex]">
 									<UButton
-										color="neutral"
+										color="primary"
 										variant="link"
 										icon="i-lucide-plus"
 										size="xs"
@@ -961,7 +918,7 @@ onBeforeUnmount(cancelTimelineInteraction);
 												/>
 											</UFormField>
 											<UButton
-												color="brand"
+												color="primary"
 												icon="i-lucide-plus"
 												:label="t('groups.availability.schedule.add')"
 												class="w-full justify-center"
@@ -974,14 +931,14 @@ onBeforeUnmount(cancelTimelineInteraction);
 						</section>
 					</div>
 
-					<div class="mt-5 flex items-center gap-2 border border-brand-400/20 bg-brand-500/5 px-3 py-3 text-sm text-muted">
-						<UIcon name="i-lucide-info" class="size-4 shrink-0 text-brand" />
+					<div class="mt-5 flex items-center gap-2 rounded-lg border border-primary/20 bg-primary/5 px-3 py-3 text-sm text-muted">
+						<UIcon name="i-lucide-info" class="size-4 shrink-0 text-primary" />
 						<span>{{ t('groups.availability.schedule.visibility_hint') }}</span>
 					</div>
 
-					<section v-if="futureExceptions.length > 0" class="mt-5 border border-default bg-default/15">
-						<header class="flex items-center gap-2 border-b border-default px-4 py-3">
-							<UIcon name="i-lucide-calendar-x" class="size-4 text-brand" />
+					<section v-if="futureExceptions.length > 0" class="mt-5 rounded-xl border border-default bg-elevation-1 shadow-xs dark:bg-elevation-2 dark:shadow-none">
+						<header class="flex items-center gap-2 rounded-t-xl border-b border-default bg-muted px-4 py-3">
+							<UIcon name="i-lucide-calendar-x" class="size-4 text-primary" />
 							<p class="font-semibold text-toned">{{ t('groups.availability.schedule.exceptions_title') }}</p>
 						</header>
 						<div class="divide-y divide-default">
@@ -993,6 +950,7 @@ onBeforeUnmount(cancelTimelineInteraction);
 								<div class="min-w-0 flex-1">
 									<p class="font-medium text-toned">{{ formatExceptionDate(exception.date) }}</p>
 									<p class="text-xs text-muted">{{ t('groups.availability.schedule.legend.unavailable') }}</p>
+									<p class="mt-1 text-xs text-primary">{{ windowPreview(exception.date, exception.has_time_range ? exception.starts_at : '00:00', exception.has_time_range ? exception.ends_at : '00:00') }}</p>
 								</div>
 								<div class="flex flex-wrap items-center gap-3">
 									<div class="flex items-center gap-2">
@@ -1020,7 +978,7 @@ onBeforeUnmount(cancelTimelineInteraction);
 					<div class="mt-5 flex justify-between gap-3">
 						<UButton color="neutral" variant="ghost" :label="t('general.cancel')" @click="isOpen = false" />
 						<UButton
-							color="brand"
+							color="primary"
 							icon="i-lucide-check"
 							:label="t('groups.availability.schedule.save')"
 							:loading="isSaving"
@@ -1029,9 +987,10 @@ onBeforeUnmount(cancelTimelineInteraction);
 					</div>
 				</div>
 
-				<aside class="border-t border-default bg-elevated/30 xl:border-t-0 xl:border-l">
+				<aside class="border-t border-default bg-elevation-2 dark:bg-elevation-3 xl:border-t-0 xl:border-l">
 					<section class="space-y-4 border-b border-default p-5">
 						<p class="text-sm font-semibold text-toned">{{ t('groups.availability.schedule.summary_title') }}</p>
+						<p class="text-xs text-muted">{{ t('groups.availability.schedule.editing_timezone', { timezone: scheduleTimeZone }) }}<br>{{ timeDisplayLabel }}: {{ displayTimeZoneLabel }}</p>
 						<div class="flex gap-3 text-sm text-muted">
 							<UIcon name="i-lucide-calendar-range" class="mt-0.5 size-4 shrink-0 text-toned" />
 							<p>
@@ -1040,7 +999,7 @@ onBeforeUnmount(cancelTimelineInteraction);
 							</p>
 						</div>
 						<div v-for="(_, weekIndex) in visibleWeeks" :key="weekIndex" class="flex gap-3 text-sm">
-							<span class="mt-1 size-2.5 shrink-0" :class="weekIndex % 2 === 0 ? 'bg-brand' : 'bg-brand-300'" />
+							<span class="mt-1 size-2.5 shrink-0 rounded-full" :class="weekIndex % 2 === 0 ? 'bg-primary' : 'bg-primary/60'" />
 							<div>
 								<p class="font-medium text-toned">{{ weekLabel(weekIndex) }}</p>
 								<p class="text-xs text-muted">{{ weekRange(weekIndex) }}</p>
@@ -1053,7 +1012,7 @@ onBeforeUnmount(cancelTimelineInteraction);
 						<button
 							v-if="visibleWeekCount > 1"
 							type="button"
-							class="flex w-full items-start gap-3 text-left"
+							class="-mx-2 flex w-[calc(100%+1rem)] items-start gap-3 rounded-lg p-2 text-left transition-colors hover:bg-primary/8 focus-visible:outline-2 focus-visible:outline-primary"
 							@click="copyFirstWeek"
 						>
 							<UIcon name="i-lucide-copy" class="mt-0.5 size-4 shrink-0 text-toned" />
@@ -1104,18 +1063,18 @@ onBeforeUnmount(cancelTimelineInteraction);
 						>
 							<button
 								type="button"
-								class="group -mx-2 flex w-[calc(100%+1rem)] items-start gap-3 px-2 py-2 text-left transition-colors hover:bg-brand-500/8"
+								class="group -mx-2 flex w-[calc(100%+1rem)] items-start gap-3 rounded-lg px-2 py-2 text-left transition-colors hover:bg-primary/8 focus-visible:outline-2 focus-visible:outline-primary"
 							>
-								<UIcon name="i-lucide-calendar-plus" class="mt-0.5 size-4 shrink-0 text-toned transition-colors group-hover:text-brand" />
+								<UIcon name="i-lucide-calendar-plus" class="mt-0.5 size-4 shrink-0 text-toned transition-colors group-hover:text-primary" />
 								<span class="min-w-0 flex-1">
 									<span class="block text-sm font-medium text-toned transition-colors group-hover:text-highlighted">{{ t('groups.availability.schedule.add_exception') }}</span>
 									<span class="block text-xs text-muted">{{ t('groups.availability.schedule.add_exception_hint') }}</span>
 								</span>
-								<UIcon name="i-lucide-calendar" class="mt-0.5 size-4 shrink-0 text-muted transition-colors group-hover:text-brand" />
+								<UIcon name="i-lucide-calendar" class="mt-0.5 size-4 shrink-0 text-muted transition-colors group-hover:text-primary" />
 							</button>
 
 							<template #content>
-								<div class="border border-default bg-neutral-950 p-3">
+								<div class="p-3">
 									<UCalendar
 										:model-value="exceptionDate"
 										:min-value="minimumExceptionDate"
@@ -1138,7 +1097,7 @@ onBeforeUnmount(cancelTimelineInteraction);
 							:key="status"
 							class="flex items-center gap-3 text-sm text-muted"
 						>
-							<span class="size-3.5 border" :class="legendTone(status as AvailabilityStatus | 'unavailable')" />
+							<span class="size-3.5 rounded-sm border" :class="legendTone(status as AvailabilityStatus | 'unavailable')" />
 							<span>{{ t(`groups.availability.schedule.legend.${status}`) }}</span>
 						</div>
 					</section>

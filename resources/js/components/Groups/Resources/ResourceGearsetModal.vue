@@ -28,7 +28,7 @@ const l = (key: string) => t(`xivgear.${key}`)
             <fieldset class="mt-5">
                 <legend class="mb-2 text-sm font-medium">{{ l('display') }}</legend>
                 <div class="grid grid-cols-2 gap-3">
-                    <label v-for="mode in (['expanded', 'compact'] as const)" :key="mode" class="flex cursor-pointer items-start gap-3 border p-3" :class="display === mode ? 'border-primary bg-primary/5' : 'border-default'">
+                    <label v-for="mode in (['expanded', 'compact'] as const)" :key="mode" class="flex cursor-pointer items-start gap-3 rounded-lg border p-3" :class="display === mode ? 'border-primary bg-primary/5' : 'border-default'">
                         <input type="radio" name="gearset-display" :value="mode" :checked="display === mode" class="mt-1 accent-primary" @change="$emit('update:display', mode)">
                         <span><b class="block text-sm">{{ l(mode) }}</b><span class="mt-1 block text-xs text-muted">{{ l(`${mode}_help`) }}</span></span>
                     </label>

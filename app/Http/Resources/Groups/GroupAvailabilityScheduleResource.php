@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Groups;
 
+use Carbon\CarbonImmutable;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -9,6 +10,8 @@ class GroupAvailabilityScheduleResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
+        $localNow = CarbonImmutable::now($this->timezone);
+
         return [
             'id' => $this->id,
             'cycle_weeks' => $this->cycle_weeks,
@@ -34,7 +37,7 @@ class GroupAvailabilityScheduleResource extends JsonResource
                 ])
                 ->all(),
             'exceptions' => $this->exceptions
-                ->where('date', '>=', today())
+                ->filter(fn ($exception) => $exception->isPendingAt($localNow))
                 ->sortBy('date')
                 ->values()
                 ->map(fn ($exception) => [

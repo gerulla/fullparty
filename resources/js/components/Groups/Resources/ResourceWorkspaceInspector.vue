@@ -48,7 +48,7 @@ const historyItems = computed(() => resource.value?.history.map(item => ({ id: i
 <template>
     <aside class="studio-inspector">
         <template v-if="workspace.state.mode === 'editor' && draft">
-            <UTabs v-model="activeTab" :items="tabs" :content="false" variant="link" size="sm" class="studio-inspector-tabs" :ui="{ list: 'w-full justify-start rounded-none px-3', trigger: 'flex-none rounded-none px-4 py-3', indicator: 'rounded-none' }" />
+            <UTabs v-model="activeTab" :items="tabs" :content="false" variant="link" size="sm" class="studio-inspector-tabs" :ui="{ list: 'w-full justify-start rounded-none px-3', trigger: 'flex-none rounded-t-lg px-4 py-3', indicator: 'rounded-none' }" />
             <div class="studio-inspector-content">
                 <div v-if="workspace.state.inspectorTab === 'resource'" class="space-y-5">
                     <h2 class="text-sm font-semibold">{{ l('resource_details') }}</h2>
@@ -64,8 +64,8 @@ const historyItems = computed(() => resource.value?.history.map(item => ({ id: i
                     </dl>
                     <UFormField name="collection_id" data-resource-field="collection_id" :error="workspace.fieldError('collection_id')" :label="l('collection')" class="studio-form-row">
                         <USelect v-model="folder" :items="folders" :disabled="resource?.isHome" size="sm" class="w-full">
-                            <template #default><span class="flex min-w-0 items-center gap-2"><UIcon name="i-lucide-folder" class="size-4 shrink-0 text-[#d5b168]" /><UIcon v-if="selectedFolder && selectedFolder.icon !== 'i-lucide-folder'" :name="selectedFolder.icon" class="size-4 shrink-0" /><span class="truncate">{{ selectedFolder?.label }}</span></span></template>
-                            <template #item-leading="{ item }"><UIcon name="i-lucide-folder" class="size-4 shrink-0 text-[#d5b168]" /><UIcon v-if="item.icon !== 'i-lucide-folder'" :name="item.icon" class="size-4 shrink-0" /></template>
+                            <template #default><span class="flex min-w-0 items-center gap-2"><UIcon name="i-lucide-folder" class="size-4 shrink-0 text-amber-700 dark:text-amber-300" /><UIcon v-if="selectedFolder && selectedFolder.icon !== 'i-lucide-folder'" :name="selectedFolder.icon" class="size-4 shrink-0" /><span class="truncate">{{ selectedFolder?.label }}</span></span></template>
+                            <template #item-leading="{ item }"><UIcon name="i-lucide-folder" class="size-4 shrink-0 text-amber-700 dark:text-amber-300" /><UIcon v-if="item.icon !== 'i-lucide-folder'" :name="item.icon" class="size-4 shrink-0" /></template>
                         </USelect>
                     </UFormField>
                     <ResourceImagePicker v-model="draft.cover" name="metadata_image_id" data-resource-field="metadata_image_id" :error="workspace.fieldError('metadata_image_id')" :label="l('cover_image')" compact />
@@ -81,7 +81,7 @@ const historyItems = computed(() => resource.value?.history.map(item => ({ id: i
                     <UTimeline v-if="historyItems.length" :items="historyItems" size="sm" :ui="{ date: 'text-xs text-muted', title: 'text-sm font-medium', description: 'text-xs text-muted' }">
                         <template #description="{ item }">
                             <p>{{ item.description }}</p>
-                            <UButton v-if="item.kind !== 'publication'" class="mt-2 rounded-none" icon="i-lucide-history" color="neutral" variant="outline" size="xs" :label="l('use_version')" :disabled="workspace.busy" @click="workspace.useRevision(item.id)" />
+                            <UButton v-if="item.kind !== 'publication'" class="mt-2" icon="i-lucide-history" color="neutral" variant="outline" size="xs" :label="l('use_version')" :disabled="workspace.busy" @click="workspace.useRevision(item.id)" />
                             <p v-if="workspace.state.sourceRevisionId === item.id" class="mt-2 text-primary">{{ l('version_loaded') }}</p>
                         </template>
                     </UTimeline>
@@ -93,7 +93,7 @@ const historyItems = computed(() => resource.value?.history.map(item => ({ id: i
             <header class="flex items-center justify-between gap-2 border-b border-default px-4 py-4"><h2 class="text-sm font-semibold">{{ l('resource_details') }}</h2><UBadge :color="resource.status === 'published' ? 'success' : 'neutral'" variant="subtle" size="sm">{{ l(resource.status) }}</UBadge></header>
             <div class="space-y-5 p-4">
                 <div class="flex items-start gap-3">
-                    <img v-if="resource.cover" :src="resource.cover" alt="" class="size-14 shrink-0 border border-default bg-muted object-contain" />
+                    <img v-if="resource.cover" :src="resource.cover" alt="" class="size-14 shrink-0 rounded-lg border border-default bg-muted object-contain" />
                     <div class="min-w-0"><h3 class="break-words text-lg font-semibold">{{ resource.title }}</h3><p class="mt-2 text-xs leading-relaxed text-muted">{{ resource.description }}</p></div>
                 </div>
                 <div class="flex gap-2">
@@ -129,5 +129,5 @@ const historyItems = computed(() => resource.value?.history.map(item => ({ id: i
 .studio-inspector :deep(.studio-form-row > div:last-child) { margin-top: 0; min-width: 0; }
 .studio-inspector :deep(.studio-form-row label) { display: block; padding-top: 6px; font-size: 12px; line-height: 1.4; font-weight: 400; color: var(--ui-text-muted); }
 .studio-inspector :deep(.studio-form-row input), .studio-inspector :deep(.studio-form-row textarea), .studio-inspector :deep(.studio-form-row button) { font-size: 12px; }
-.studio-resource-cover { width: 100%; max-height: 220px; object-fit: contain; border: 1px solid var(--ui-border); background: var(--ui-bg-elevated); }
+.studio-resource-cover { border-radius: 8px; width: 100%; max-height: 220px; object-fit: contain; border: 1px solid var(--ui-border); background: var(--ui-bg-elevated); }
 </style>

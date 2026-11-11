@@ -90,6 +90,16 @@ const sections = computed(() => [
                         <a href="https://www.fflogs.com/" target="_blank" rel="noopener noreferrer" class="footer-link underline decoration-current/40 underline-offset-4">FF Logs</a>
                     </template>
                 </i18n-t>
+                <i18n-t keypath="navigation.footer.gpose_credit" tag="p">
+                    <template #creator>
+                        <a href="https://bsky.app/profile/bloodshadexiv.bsky.social" target="_blank" rel="noopener noreferrer"
+                            :aria-label="t('navigation.footer.creator_bluesky', { creator: 'bloodshadexiv.bsky.social' })"
+                            class="footer-link gap-1 align-baseline underline decoration-current/40 underline-offset-4">
+                            bloodshadexiv.bsky.social
+                            <img :src="'/logos/providers/bluesky.svg'" alt="" aria-hidden="true" width="14" height="14" class="size-3.5 shrink-0 self-center object-contain grayscale">
+                        </a>
+                    </template>
+                </i18n-t>
             </div>
         </div>
     </footer>

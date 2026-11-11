@@ -604,7 +604,6 @@ Route::prefix('{locale?}')
                 Route::get('/content/resources/{resource}/edit', [GroupResourceController::class, 'edit'])->name('groups.dashboard.resources.edit');
                 require __DIR__.'/resource-management.php';
                 Route::get('/content', [GroupContentController::class, 'index'])->name('groups.dashboard.content.index');
-                Route::get('/content/delubrum-reginae-savage', [GroupContentController::class, 'delubrumReginaeSavage'])->name('groups.dashboard.content.delubrum-reginae-savage');
                 Route::post('/content/delubrum-reginae-savage/holsters', [GroupBozjaHolsterController::class, 'store'])->middleware('throttle:group.content.write')->name('groups.dashboard.content.delubrum-reginae-savage.holsters.store');
                 Route::post('/content/delubrum-reginae-savage/holsters/{bozjaHolster}/clone', [GroupBozjaHolsterController::class, 'duplicate'])->middleware('throttle:group.content.write')->name('groups.dashboard.content.delubrum-reginae-savage.holsters.clone');
                 Route::put('/content/delubrum-reginae-savage/holsters/{bozjaHolster}', [GroupBozjaHolsterController::class, 'update'])->name('groups.dashboard.content.delubrum-reginae-savage.holsters.update');

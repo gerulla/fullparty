@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict'
 import { existsSync, readFileSync } from 'node:fs'
+import { fileURLToPath } from 'node:url'
 import test from 'node:test'
 import { JSDOM } from 'jsdom'
 import { compileScript, parse } from '@vue/compiler-sfc'
@@ -82,7 +83,7 @@ function context() {
     function load(path) {
         const id = `@/${path.replace(/\.ts$/, '')}`
         if (id in modules) return modules[id]
-        const filename = new URL(`../../resources/js/${path}`, import.meta.url).pathname
+        const filename = fileURLToPath(new URL(`../../resources/js/${path}`, import.meta.url))
         let source = readFileSync(filename, 'utf8')
         if (path.endsWith('.vue')) {
             const { descriptor } = parse(source, { filename })
@@ -143,13 +144,17 @@ function mount(t, data = group(), cardProps = null, componentPath = null) {
     const props = vue.reactive(cardProps ?? { group: data })
     const root = document.body.appendChild(document.createElement('div'))
     const Page = ctx.load(componentPath ?? (cardProps ? 'components/Runs/RunCard.vue' : 'components/Groups/Dashboard/GroupHomeDashboard.vue')).default
-    const app = vue.createApp({ render: () => vue.h(Page, props) })
+    const Header = !componentPath && !cardProps ? ctx.load('components/Groups/Dashboard/GroupDashboardHeader.vue').default : null
+    const app = vue.createApp({ render: () => Header
+        ? [vue.h(Header, { group: props.group }), vue.h(Page, props)]
+        : vue.h(Page, props) })
     app.component('UButton', { props: ['label', 'icon', 'color', 'variant', 'disabled', 'href', 'target', 'rel', 'trailingIcon'],
         setup: (props, { slots, attrs }) => () => vue.h(props.href ? 'a' : 'button', {
             ...attrs, href: props.href, target: props.target, rel: props.rel, disabled: props.disabled,
         }, props.label ?? slots.default?.()),
     })
     app.component('UTooltip', { props: ['text'], setup: (_, { slots }) => () => vue.h('span', slots.default?.()) })
+    app.component('UDropdownMenu', { props: ['items', 'modal', 'content', 'ui'], setup: (_, { slots }) => () => vue.h('div', slots.default?.()) })
     app.component('UCard', { props: ['ui'], setup: (_, { slots }) => () => vue.h('div', slots.default?.()) })
     app.component('UBadge', { props: ['label', 'color', 'icon', 'variant'], setup: props => () => vue.h('span', { 'data-badge-color': props.color, 'data-badge-icon': props.icon }, props.label) })
     app.component('UIcon', { props: ['name'], setup: props => () => vue.h('i', { 'data-icon': props.name }) })

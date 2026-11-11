@@ -3,9 +3,9 @@ import { router } from '@inertiajs/vue3'
 import { useI18n } from 'vue-i18n'
 import { route } from 'ziggy-js'
 import { useConfirmationModal } from '@/composables/useConfirmationModal'
-import type { GroupDashboardGroup } from '@/Types/Groups'
+import type { GroupMembershipActionsGroup } from '@/Types/Groups'
 
-export function useGroupMembershipActions(group: MaybeRefOrGetter<GroupDashboardGroup>) {
+export function useGroupMembershipActions(group: MaybeRefOrGetter<GroupMembershipActionsGroup>) {
     const { t } = useI18n()
     const confirmationModal = useConfirmationModal()
     const notificationPreferencesOpen = ref(false)

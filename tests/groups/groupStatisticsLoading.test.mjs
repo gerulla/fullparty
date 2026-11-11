@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
+import { fileURLToPath } from 'node:url'
 import test from 'node:test'
 import { JSDOM } from 'jsdom'
 import { compileScript, parse } from '@vue/compiler-sfc'
@@ -16,7 +17,7 @@ const translate = (key, values = {}) => Object.entries(values).reduce(
 )
 
 function component(path, dependencies = {}) {
-    const filename = new URL(`../../resources/js/${path}.vue`, import.meta.url).pathname
+    const filename = fileURLToPath(new URL(`../../resources/js/${path}.vue`, import.meta.url))
     const { descriptor } = parse(readFileSync(filename, 'utf8'), { filename })
     const script = compileScript(descriptor, { id: path, inlineTemplate: true })
     const code = ts.transpileModule(script.content, {

@@ -49,7 +49,7 @@ watch(() => navigation.activeSection === 'discord' && (navigation.sectionOpen ||
 </script>
 
 <template>
-    <div class="mt-4 grid w-full items-start gap-6 xl:grid-cols-[20rem_minmax(0,1fr)] xl:gap-8">
+    <div class="grid w-full items-start gap-6 xl:grid-cols-[20rem_minmax(0,1fr)] xl:gap-8">
         <GroupDiscordPreviewControls v-if="group.permissions.can_manage_group" />
         <aside class="min-w-0 xl:sticky xl:top-[calc(var(--ui-header-height)+1rem)] xl:max-h-[calc(100dvh-var(--ui-header-height)-2rem)] xl:overflow-y-auto xl:p-1"
             :class="navigation.sectionOpen ? 'hidden xl:block' : 'block'">

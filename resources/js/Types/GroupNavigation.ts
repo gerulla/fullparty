@@ -22,6 +22,14 @@ export type GroupNavigationContext = Pick<GroupDashboardGroup, 'slug'> &
         features?: Partial<GroupFeatureSettings>
     }
 
+export type GroupDashboardHeaderGroup = Pick<GroupDashboardGroup,
+    'id' | 'name' | 'slug' | 'group_type' | 'profile_picture_url' | 'banner_image_url' |
+    'discord_invite_url' | 'is_visible' | 'current_user_role' | 'notifications'
+> & {
+    features: GroupFeatureSettings
+    permissions: Omit<GroupDashboardGroup['permissions'], 'can_join' | 'can_apply'>
+}
+
 export type GroupNavigationLink = {
     key: string
     label: string

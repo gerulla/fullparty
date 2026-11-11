@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
+import { fileURLToPath } from 'node:url'
 import test from 'node:test'
 import { JSDOM } from 'jsdom'
 import { compileScript, parse } from '@vue/compiler-sfc'
@@ -8,7 +9,7 @@ import ts from 'typescript'
 const dom = new JSDOM('<html><body></body></html>', { url: 'https://fullparty.test/en/dashboard/runs' })
 for (const key of ['window', 'document', 'Element', 'HTMLElement', 'SVGElement', 'Node']) globalThis[key] = dom.window[key]
 const vue = await import('vue')
-const filename = new URL('../../resources/js/components/Runs/RunDiscoveryFilterPanel.vue', import.meta.url).pathname
+const filename = fileURLToPath(new URL('../../resources/js/components/Runs/RunDiscoveryFilterPanel.vue', import.meta.url))
 const { descriptor } = parse(readFileSync(filename, 'utf8'), { filename })
 const code = ts.transpileModule(compileScript(descriptor, { id: filename }).content, {
     compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },

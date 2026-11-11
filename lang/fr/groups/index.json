@@ -38,6 +38,8 @@
         "discover": "Groupes visibles classés par activité la plus récente"
     },
     "navigation": {
+    "edit_run": "Modifier la sortie",
+    "manage_run": "Gérer la sortie",
     "switch_group": "Changer de groupe : {group}",
     "create_group": "Créer un groupe",
     "find_groups": "Trouver des groupes",
@@ -69,10 +71,46 @@
         "settings": "Paramètres"
     },
     "content": {
+        "overview": {
+            "drs_description": "Préparez les holsters de précombat et de recharge de votre groupe, avec des instructions claires pour chaque rôle.",
+            "forked_tower_title": "La Tour fourchue",
+            "forked_tower_description": "Créez des exigences de jobs fantômes réutilisables pour vos équipes et vos côtés, communes aux tours de la Force et de la Magie.",
+            "open_holsters": "Ouvrir les holsters",
+            "open_compositions": "Ouvrir les compositions",
+            "holster_count": "0 holster | 1 holster | {count} holsters",
+            "composition_count": "0 composition | 1 composition | {count} compositions",
+            "active_count": "En activité : {count}"
+        },
         "delubrum_reginae_savage": {
             "title": "Delubrum Reginae (sadique)",
             "subtitle": "Planifiez et gérez le contenu Delubrum Reginae (sadique) de votre groupe.",
             "holsters": {
+                "workspace": {
+                    "action_picker": "Sélection des actions",
+                    "back_to_details": "Retour aux détails",
+                    "library": "Bibliothèque de holsters",
+                    "count": "{total} holsters · {active} actifs",
+                    "filter": "Filtrer les holsters",
+                    "default": "Holster par défaut",
+                    "no_matches": "Aucun holster correspondant",
+                    "details": "Détails du holster",
+                    "locale_hint": "Choisissez la langue du nom à modifier.",
+                    "unsaved": "Modifications non enregistrées",
+                    "save": "Enregistrer les modifications",
+                    "loadout": "Équipement",
+                    "inventory": "Inventaire",
+                    "add_action": "Ajouter une action",
+                    "decrease": "Réduire la quantité",
+                    "increase": "Augmenter la quantité",
+                    "change_content": "Changer de contenu",
+                    "linked_refills": "Recharges liées",
+                    "refills_hint": "Holsters de recharge liés à ce holster de préparation.",
+                    "add_refill": "Ajouter une recharge",
+                    "no_refills": "Aucune recharge liée.",
+                    "unsaved_title": "Abandonner les modifications ?",
+                    "unsaved_description": "Vos modifications ne sont pas enregistrées. Quitter et les abandonner ?",
+                    "discard": "Abandonner les modifications"
+                },
                 "title": "Holsters",
                 "create": "Créer un nouveau holster",
                 "editor": "Éditeur de holster",
@@ -168,6 +206,13 @@
             "title": "La Tour fourchue de la Force",
             "subtitle": "Planifiez et gérez le contenu de votre groupe pour la Tour fourchue de la Force.",
             "compositions": {
+        "workspace": {
+          "library": "Bibliothèque de compositions",
+          "metadata_tab": "Métadonnées",
+          "count": "{total} compositions · {active} actives",
+          "filter": "Filtrer les compositions",
+          "details": "Détails de la composition"
+        },
                 "title": "Compositions",
                 "create": "Nouvelle composition",
                 "loading": "Chargement des compositions...",
@@ -192,7 +237,26 @@
                 "reorder_hint": "Glisser pour réordonner",
                 "empty_title": "Aucune composition trouvée",
                 "empty_description": "Ajustez la recherche ou créez une nouvelle composition.",
-                "editor": {
+        "editor": {
+          "inbox": {
+            "job_importance": "Job et importance",
+            "count_requirement": "Nombre requis",
+            "where_applies": "Champ d’application",
+            "edit_scope": "Modifier le côté ou les équipes",
+            "edit_job": "Changer de job fantôme",
+            "all_rules": "Toutes les règles",
+            "search": "Rechercher des règles...",
+            "filter": "Filtrer les règles",
+            "no_results": "Aucune règle ne correspond à ces filtres.",
+            "select_rule": "Sélectionnez une règle pour modifier ses critères.",
+            "edit_rule": "Modifier {name}",
+            "move_up": "Monter",
+            "move_down": "Descendre",
+            "previous": "Règle précédente",
+            "next": "Règle suivante",
+            "actions": "Actions de la règle",
+            "position": "{current} sur {total}"
+          },
                     "title": "Éditeur de composition",
                     "new_title": "Nouvelle composition",
                     "untitled": "Composition sans nom",

@@ -15,7 +15,7 @@ import AccountFlags from '@/components/Navigation/AccountFlags.vue'
 import GroupSwitcher from '@/components/Groups/GroupSwitcher.vue'
 import GroupMobileNavigation from '@/components/Groups/GroupMobileNavigation.vue'
 import SystemBanner from '@/components/SystemBanner.vue'
-import type { GroupNavigationContext } from '@/Types/GroupNavigation'
+import type { GroupDashboardHeaderGroup } from '@/Types/GroupNavigation'
 import DevelopmentPreviewHost from '@/components/Shared/DevelopmentPreviewHost.vue'
 import { useAppearance } from '@/composables/useAppearance'
 import { usePersistentLocale } from '@/composables/usePersistentLocale'
@@ -40,11 +40,12 @@ const hasCompactSearch = breakpoints.smaller('2xl')
 const searchOpen = ref(false)
 const searchRegion = ref<HTMLElement | null>(null)
 const searchId = useId()
-const dashboardGroup = computed<GroupNavigationContext | null>(() =>
-    page.component.startsWith('Dashboard/Groups/') && page.props.group
-        ? page.props.group as GroupNavigationContext
+const dashboardGroup = computed<GroupDashboardHeaderGroup | null>(() =>
+    page.component.startsWith('Dashboard/Groups/') && page.props.group_dashboard
+        ? page.props.group_dashboard as GroupDashboardHeaderGroup
         : null,
 )
+const isMobileGroup = computed(() => Boolean(dashboardGroup.value) && isMobile.value)
 const isResourceWorkspace = computed(() => page.component === 'Dashboard/Groups/Resources/Manage')
 const isGroupHomepage = computed(() => page.component === 'Dashboard/Groups/CommunityDashboard')
 
@@ -78,15 +79,26 @@ watch([isMobileOrTablet, hasCompactSearch, () => page.url], () => { void closeSe
                 :toggle="false"
                 class="h-auto min-h-(--ui-header-height) bg-elevation-1 dark:bg-elevation-2"
                 :ui="{
-                    container: 'max-w-none min-h-(--ui-header-height) flex-nowrap px-4 py-2 sm:px-6 lg:px-8 xl:py-0',
-                    left: isMobileOrTablet && searchOpen ? 'hidden' : 'min-w-0 flex-1 xl:flex-none 2xl:flex-1',
-                    center: 'hidden min-w-0 justify-center 2xl:flex 2xl:flex-1',
-                    right: 'min-w-0 flex-1 gap-1 sm:gap-1.5',
+                    container: isMobileGroup && !searchOpen
+                        ? 'grid grid-cols-[minmax(6.75rem,1fr)_minmax(0,8rem)_minmax(6.75rem,1fr)] gap-1 max-w-none min-h-(--ui-header-height) px-2 py-2'
+                        : 'max-w-none min-h-(--ui-header-height) flex-nowrap px-4 py-2 sm:px-6 lg:px-8 xl:py-0',
+                    left: isMobileOrTablet && searchOpen ? 'hidden' : isMobileGroup ? 'min-w-0 gap-0' : 'min-w-0 flex-1 xl:flex-none 2xl:flex-1',
+                    center: isMobileGroup && !searchOpen ? 'flex min-w-0 justify-center' : 'hidden min-w-0 justify-center 2xl:flex 2xl:flex-1',
+                    right: isMobileGroup && !searchOpen ? 'min-w-0 justify-end gap-0' : 'min-w-0 flex-1 gap-1 sm:gap-1.5',
                 }"
             >
-                <GlobalSearchBox v-if="user && !hasCompactSearch" align="center" class="w-full max-w-lg" />
+                <Link v-if="isMobileGroup && !searchOpen" :href="route('dashboard', { locale: currentLocale })"
+                    aria-label="FullParty" class="flex min-w-0 w-full items-center justify-center">
+                    <span class="inline-flex min-w-0"
+                        :class="{ 'bg-brand-950 mask-contain mask-center mask-no-repeat': !isDark }"
+                        :style="isDark ? undefined : { maskImage: `url(${fullLogo})` }">
+                        <img :src="fullLogo" alt="FullParty" class="h-auto w-32 max-w-full object-contain" :class="{ 'opacity-0': !isDark }">
+                    </span>
+                </Link>
+                <GlobalSearchBox v-else-if="user && !hasCompactSearch" align="center" class="w-full max-w-lg" />
                 <template #left>
-                    <Link :href="route('dashboard', { locale: currentLocale })" aria-label="FullParty" class="min-w-0 shrink-0">
+                    <GroupMobileNavigation v-if="isMobileGroup && dashboardGroup" :group="dashboardGroup" />
+                    <Link v-if="!isMobileGroup" :href="route('dashboard', { locale: currentLocale })" aria-label="FullParty" class="min-w-0 shrink-0">
                         <span class="flex min-w-0 items-center gap-3">
                             <span
                                 class="inline-flex sm:hidden"
@@ -104,8 +116,7 @@ watch([isMobileOrTablet, hasCompactSearch, () => page.url], () => { void closeSe
                             </span>
                         </span>
                     </Link>
-                    <GroupMobileNavigation v-if="dashboardGroup && isMobile" :group="dashboardGroup" />
-                    <GroupSwitcher v-else-if="dashboardGroup" :group="dashboardGroup" />
+                    <GroupSwitcher v-if="dashboardGroup && !isMobile" :group="dashboardGroup" />
                     <DevelopmentPreviewHost v-if="page.props.theme_preview_enabled === true" />
                 </template>
 
@@ -120,7 +131,8 @@ watch([isMobileOrTablet, hasCompactSearch, () => page.url], () => { void closeSe
                                     class="shrink-0 rounded-md hover:bg-elevated max-xl:size-11 max-xl:justify-center" :aria-label="t('general.close')" @click="closeSearch()" />
                             </div>
                         </Transition>
-                        <div v-show="!searchOpen" class="flex items-center gap-1 sm:gap-1.5">
+                        <div v-show="!searchOpen" class="flex items-center"
+                            :class="isMobileGroup ? 'gap-0 [&>button]:w-9 [&>button]:px-0.5' : 'gap-1 sm:gap-1.5'">
                             <UButton v-if="user && hasCompactSearch" data-compact-search-trigger type="button" color="neutral" variant="ghost"
                                 icon="i-lucide-search" class="rounded-md hover:bg-elevated max-xl:size-11 max-xl:justify-center" :aria-label="t('navigation.topbar.search')"
                                 :aria-expanded="searchOpen" :aria-controls="searchId" @click="searchOpen = true" />
@@ -138,8 +150,13 @@ watch([isMobileOrTablet, hasCompactSearch, () => page.url], () => { void closeSe
             <AccountFlags v-if="user" />
 
             <main id="main-content" class="min-w-0 flex-1 bg-elevation-2 dark:bg-elevation-1"
-                :class="isResourceWorkspace ? 'p-0 lg:flex lg:h-[calc(100dvh-var(--ui-header-height))] lg:flex-none lg:flex-col lg:overflow-hidden' : isGroupHomepage ? 'p-0' : 'p-4 sm:p-6 lg:p-8'">
-                <slot />
+                :class="dashboardGroup ? 'p-0' : 'p-4 sm:p-6 lg:p-8'">
+                <slot v-if="dashboardGroup" name="group-header" />
+                <div v-if="dashboardGroup" class="[&_[data-page-header]:first-child]:pt-0"
+                    :class="isResourceWorkspace ? 'lg:flex lg:h-[calc(100dvh-var(--ui-header-height))] lg:flex-col lg:overflow-hidden' : isGroupHomepage ? '' : 'p-4 sm:p-6 lg:p-8'">
+                    <slot />
+                </div>
+                <slot v-else />
             </main>
             <V2Footer />
         </div>

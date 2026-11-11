@@ -9566,6 +9566,9 @@
       "DiscoveryActivityType": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer"
+          },
           "value": {
             "type": "string"
           },
@@ -9592,6 +9595,7 @@
           }
         },
         "required": [
+          "id",
           "value",
           "label",
           "small_image_url",
@@ -9654,6 +9658,30 @@
         ],
         "additionalProperties": false
       },
+      "DiscoveryGroup": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "group_type": {
+            "type": "string",
+            "enum": [
+              "community",
+              "static"
+            ]
+          }
+        },
+        "required": [
+          "label",
+          "value",
+          "group_type"
+        ],
+        "additionalProperties": false
+      },
       "DiscoveryLookups": {
         "type": "object",
         "properties": {
@@ -9684,7 +9712,7 @@
           "groups": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/DiscoveryOption"
+              "$ref": "#/components/schemas/DiscoveryGroup"
             }
           },
           "languages": {

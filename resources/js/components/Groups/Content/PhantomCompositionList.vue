@@ -12,11 +12,13 @@ const props = defineProps<{
 
 const emit = defineEmits<{
 	select: [compositionId: number]
+	create: []
 	toggleActive: [payload: { compositionId: number, isActive: boolean }]
 	reorder: [compositionIds: number[]]
 }>()
 
 const { t } = useI18n()
+const k = 'groups.index.content.forked_tower_blood.compositions.'
 const search = ref('')
 const statusFilter = ref<'all' | 'active' | 'inactive'>('all')
 const draggedCompositionId = ref<number | null>(null)
@@ -111,112 +113,51 @@ const clearDragState = () => {
 </script>
 
 <template>
-	<section class="border border-default bg-muted/20">
-		<header class="border-b border-default px-4 py-3">
-			<h2 class="font-semibold">
-				{{ t('groups.index.content.forked_tower_blood.compositions.title') }}
-			</h2>
-		</header>
-
-		<div class="space-y-3 p-4">
-			<div class="grid grid-cols-[minmax(0,1fr)_7.5rem] gap-2">
-				<UInput
-					v-model="search"
-					icon="i-lucide-search"
-					:placeholder="t('groups.index.content.forked_tower_blood.compositions.search_placeholder')"
-					class="min-w-0"
-					:ui="{ base: 'rounded-none' }"
-				/>
-
-				<USelect
-					v-model="statusFilter"
-					:items="filterOptions"
-					value-key="value"
-					class="min-w-0"
-					:ui="{ base: 'rounded-none' }"
-				/>
-			</div>
-
-			<div v-if="filteredCompositions.length" class="space-y-2">
-				<article
-					v-for="composition in filteredCompositions"
-					:key="composition.id"
-					:draggable="!isBusy"
-					class="cursor-grab border bg-background/50 transition active:cursor-grabbing"
-					:class="selectedCompositionId === composition.id && !isCreating
-						? 'border-primary bg-primary/10 shadow-[inset_2px_0_0_var(--ui-primary)]'
-						: dragOverCompositionId === composition.id
-							? 'border-primary bg-primary/5'
-							: 'border-default hover:border-muted hover:bg-white/[0.03]'"
-					@dragstart="dragComposition(composition.id, $event)"
-					@dragover="dragOverComposition(composition.id, $event)"
-					@drop.prevent="dropComposition(composition.id, $event)"
-					@dragend="clearDragState"
-				>
-					<div class="flex items-center gap-3 p-3">
-						<button
-							type="button"
-							class="min-w-0 flex-1 text-left"
-							@click="emit('select', composition.id)"
-						>
-							<span class="block truncate text-sm font-semibold">
-								{{ composition.name }}
-							</span>
-
-							<span class="mt-2 flex flex-wrap items-center gap-2">
-								<UBadge
-									:color="composition.is_active ? 'success' : 'neutral'"
-									variant="soft"
-									size="sm"
-									:label="composition.is_active
-										? t('groups.index.content.forked_tower_blood.compositions.active')
-										: t('groups.index.content.forked_tower_blood.compositions.inactive')"
-									:ui="{ base: 'rounded-none' }"
-								/>
-
-								<UBadge
-									v-if="composition.is_default"
-									color="primary"
-									variant="soft"
-									size="sm"
-									:label="t('groups.index.content.forked_tower_blood.compositions.default')"
-									:ui="{ base: 'rounded-none' }"
-								/>
-
-								<span class="text-xs text-muted">
-									{{ t('groups.index.content.forked_tower_blood.compositions.updated', { time: composition.updated_label }) }}
-								</span>
-							</span>
-						</button>
-
-						<USwitch
-							:model-value="composition.is_active"
-							:aria-label="composition.name"
-							:disabled="isBusy"
-							@update:model-value="(value) => emit('toggleActive', {
-								compositionId: composition.id,
-								isActive: Boolean(value),
-							})"
-						/>
-					</div>
-				</article>
-			</div>
-
-			<div v-else class="border border-dashed border-default px-4 py-8 text-center">
-				<p class="text-sm font-medium">
-					{{ t('groups.index.content.forked_tower_blood.compositions.empty_title') }}
-				</p>
-				<p class="mt-1 text-xs text-muted">
-					{{ t('groups.index.content.forked_tower_blood.compositions.empty_description') }}
-				</p>
-			</div>
-
-			<footer class="flex items-center justify-between gap-3 pt-1 text-xs text-muted">
-				<span>
-					{{ t('groups.index.content.forked_tower_blood.compositions.count', { count: compositions.length }) }}
-				</span>
-				<span>{{ t('groups.index.content.forked_tower_blood.compositions.reorder_hint') }}</span>
-			</footer>
-		</div>
-	</section>
+    <aside class="min-w-0 rounded-lg border border-default bg-elevation-1 p-4 shadow-sm dark:bg-elevation-2 dark:shadow-none 2xl:sticky 2xl:top-20">
+        <header class="flex flex-wrap items-center justify-between gap-2">
+            <h2 class="text-lg font-semibold">{{ t(k + 'workspace.library') }}</h2>
+            <UButton size="xs" color="neutral" variant="outline" icon="i-lucide-plus" :label="t(k + 'create')" :disabled="isBusy" class="shrink-0 rounded-md" @click="emit('create')" />
+        </header>
+        <p class="mt-1 text-xs text-muted">{{ t(k + 'workspace.count', { total: compositions.length, active: compositions.filter(composition => composition.is_active).length }) }}</p>
+        <div class="my-4 flex gap-2">
+            <UInput v-model="search" icon="i-lucide-search" :placeholder="t(k + 'search_placeholder')" :aria-label="t(k + 'search_placeholder')" class="min-w-0 flex-1" :ui="{ base: 'rounded-md' }" />
+            <UPopover>
+                <UButton icon="i-lucide-sliders-horizontal" color="neutral" variant="outline" :aria-label="t(k + 'workspace.filter')" class="rounded-md" :class="statusFilter !== 'all' ? 'text-primary' : ''" />
+                <template #content>
+                    <USelect v-model="statusFilter" :items="filterOptions" :aria-label="t(k + 'workspace.filter')" class="m-3 w-40" :ui="{ base: 'rounded-md' }" />
+                </template>
+            </UPopover>
+        </div>
+        <div class="border-t border-default pt-3">
+            <div v-if="filteredCompositions.length" class="space-y-1 overflow-y-auto 2xl:max-h-[calc(100dvh-22rem)]">
+                <article v-for="composition in filteredCompositions" :key="composition.id" :draggable="!isBusy"
+                    class="flex items-center gap-2 rounded-md border-l-4 pr-2 transition-colors"
+                    :class="selectedCompositionId === composition.id && !isCreating
+                        ? 'border-brand-400 bg-brand-500/15'
+                        : dragOverCompositionId === composition.id
+                            ? 'border-brand-400 bg-brand-500/10'
+                            : 'border-transparent hover:bg-elevation-3'"
+                    @dragstart="dragComposition(composition.id, $event)" @dragover="dragOverComposition(composition.id, $event)"
+                    @drop.prevent="dropComposition(composition.id, $event)" @dragend="clearDragState">
+                    <button type="button" class="flex min-w-0 flex-1 items-center gap-3 px-2 py-3 text-left focus-visible:outline-primary"
+                        :disabled="isBusy" :aria-current="selectedCompositionId === composition.id && !isCreating ? 'true' : undefined"
+                        @click="emit('select', composition.id)">
+                        <UIcon name="i-lucide-layers" class="size-6 shrink-0 text-muted" />
+                        <span class="min-w-0">
+                            <span class="block truncate text-sm font-semibold">{{ composition.name }}</span>
+                            <span class="mt-0.5 block truncate text-xs text-muted">{{ t(k + 'updated', { time: composition.updated_label }) }}</span>
+                        </span>
+                    </button>
+                    <UIcon v-if="composition.is_default" name="i-lucide-star" class="size-4 shrink-0 text-amber-500" :aria-label="t(k + 'default')" />
+                    <USwitch size="xs" :model-value="composition.is_active" :aria-label="t(k + 'active') + ': ' + composition.name" :disabled="isBusy"
+                        @update:model-value="value => emit('toggleActive', { compositionId: composition.id, isActive: Boolean(value) })" />
+                </article>
+            </div>
+            <div v-else class="py-8 text-center">
+                <p class="text-sm font-medium">{{ t(k + 'empty_title') }}</p>
+                <p class="mt-1 text-xs text-muted">{{ t(k + 'empty_description') }}</p>
+            </div>
+        </div>
+        <p class="mt-3 text-xs text-muted">{{ t(k + 'reorder_hint') }}</p>
+    </aside>
 </template>

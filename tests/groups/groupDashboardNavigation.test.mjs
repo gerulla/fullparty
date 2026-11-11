@@ -111,6 +111,13 @@ test('active links follow query strings, nested runs, group switches and locale 
     assert.deepEqual(nav.active(), ['activities'])
     nav.page.url = '/en/groups/ftel/dashboard/content/resources?resource=123'
     assert.deepEqual(nav.active(), ['manage_resources'])
+    assert.deepEqual(nav.homeLinks().filter(link => link.active).map(link => link.key), ['manage_resources'])
+    nav.page.url = '/en/groups/ftel/dashboard/content/resources/123/edit'
+    assert.deepEqual(nav.homeLinks().filter(link => link.active).map(link => link.key), ['manage_resources'])
+    nav.page.url = '/en/groups/ftel/dashboard/content'
+    assert.deepEqual(nav.homeLinks().filter(link => link.active).map(link => link.key), ['content_customization'])
+    nav.page.url = '/en/groups/ftel/dashboard/content?type=drs'
+    assert.deepEqual(nav.homeLinks().filter(link => link.active).map(link => link.key), ['content_customization'])
     nav.page.url = '/en/groups/ftel/dashboard/settings?section=audit_log'
     assert.ok(nav.homeLinks().find(link => link.key === 'audit_log').active)
     assert.ok(nav.navigation.value.find(item => item.key === 'manage').active)

@@ -107,6 +107,8 @@
         "game_assets": "FINAL FANTASY XIVのゲーム素材 © SQUARE ENIX.",
         "independence": "FullPartyは独立したコミュニティプロジェクトであり、スクウェア・エニックスとの提携関係はなく、同社の公認を受けたものではありません。",
         "fflogs_credit": "追加の進行状況データは{provider}より提供されています。",
+        "gpose_credit": "FullPartyで使用しているすべてのGPose写真は、{creator}さんが撮影したものです。",
+        "creator_bluesky": "Blueskyで{creator}のプロフィールを見る",
         "cookies": "Cookie",
         "privacy": "プライバシーポリシー",
         "github": "GitHub",

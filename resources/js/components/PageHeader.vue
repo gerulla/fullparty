@@ -24,7 +24,7 @@ const desktopClasses = {
 </script>
 
 <template>
-	<div class="flex max-w-full flex-col items-center gap-4 overflow-x-hidden py-4 text-center" :class="desktopClasses[desktopBreakpoint].root">
+	<div data-page-header class="flex max-w-full flex-col items-center gap-4 overflow-x-hidden py-4 text-center" :class="desktopClasses[desktopBreakpoint].root">
 		<div class="flex w-full min-w-0 flex-1 flex-col items-center gap-2" :class="desktopClasses[desktopBreakpoint].content">
 			<h1 class="break-words wrap-anywhere text-3xl font-black">{{title}}</h1>
 			<p class="break-words wrap-anywhere text-muted text-md">{{subtitle}}</p>

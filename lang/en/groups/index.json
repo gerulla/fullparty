@@ -66,13 +66,51 @@
     "discovery_settings": "Discovery Settings",
     "discord_integration": "Discord",
     "shortcuts": "Shortcuts",
-    "settings": "Settings"
+    "settings": "Settings",
+    "edit_run": "Edit Run",
+    "manage_run": "Manage Run"
   },
   "content": {
+    "overview": {
+      "drs_description": "Prepare your group's prepop and refill loadouts, with clear instructions for each role.",
+      "forked_tower_title": "Forked Tower",
+      "forked_tower_description": "Build reusable Phantom Job requirements for your parties and sides, shared across Blood and Magic.",
+      "open_holsters": "Open holsters",
+      "open_compositions": "Open compositions",
+      "holster_count": "0 holsters | 1 holster | {count} holsters",
+      "composition_count": "0 compositions | 1 composition | {count} compositions",
+      "active_count": "{count} active"
+    },
     "delubrum_reginae_savage": {
       "title": "Delubrum Reginae (Savage)",
       "subtitle": "Plan and manage your group's Delubrum Reginae (Savage) content.",
       "holsters": {
+          "workspace": {
+              "action_picker": "Action picker",
+              "back_to_details": "Back to details",
+              "library": "Holster library",
+              "count": "{total} holsters · {active} active",
+              "filter": "Filter holsters",
+              "default": "Default holster",
+              "no_matches": "No matching holsters",
+              "details": "Holster details",
+              "locale_hint": "Choose the language of the name you are editing.",
+              "unsaved": "Unsaved changes",
+              "save": "Save changes",
+              "loadout": "Loadout",
+              "inventory": "Inventory tray",
+              "add_action": "Add action",
+              "decrease": "Decrease quantity",
+              "increase": "Increase quantity",
+              "change_content": "Change content",
+              "linked_refills": "Linked refills",
+              "refills_hint": "Refill loadouts linked to this prepop holster.",
+              "add_refill": "Add refill",
+              "no_refills": "No refills linked yet.",
+              "unsaved_title": "Discard unsaved changes?",
+              "unsaved_description": "Your changes have not been saved. Leave and discard them?",
+              "discard": "Discard changes"
+          },
         "title": "Holsters",
         "create": "Create New Holster",
         "editor": "Holster Editor",
@@ -168,6 +206,13 @@
       "title": "The Forked Tower: Blood",
       "subtitle": "Plan and manage your group’s content for The Forked Tower: Blood.",
       "compositions": {
+        "workspace": {
+          "library": "Composition library",
+          "metadata_tab": "Metadata",
+          "count": "{total} compositions · {active} active",
+          "filter": "Filter compositions",
+          "details": "Composition details"
+        },
         "title": "Compositions",
         "create": "New Composition",
         "loading": "Loading compositions...",
@@ -193,6 +238,25 @@
         "empty_title": "No compositions found",
         "empty_description": "Adjust the search or create a new composition.",
         "editor": {
+          "inbox": {
+            "job_importance": "Job & importance",
+            "count_requirement": "Count requirement",
+            "where_applies": "Where it applies",
+            "edit_scope": "Edit side or party selection",
+            "edit_job": "Change Phantom Job",
+            "all_rules": "All rules",
+            "search": "Search rules...",
+            "filter": "Filter rules",
+            "no_results": "No rules match these filters.",
+            "select_rule": "Select a rule to edit its requirements.",
+            "edit_rule": "Edit {name}",
+            "move_up": "Move up",
+            "move_down": "Move down",
+            "previous": "Previous rule",
+            "next": "Next rule",
+            "actions": "Rule actions",
+            "position": "{current} of {total}"
+          },
           "title": "Composition Editor",
           "new_title": "New Composition",
           "untitled": "Untitled Composition",

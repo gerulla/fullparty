@@ -97,6 +97,7 @@ const handleConfirm = async () => {
 		<template #body>
 			<div class="flex flex-col gap-4">
 				<UAlert
+					v-if="warningText.trim()"
 					:color="severity"
 					variant="subtle"
 					:icon="alertIcon"

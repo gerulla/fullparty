@@ -28,7 +28,7 @@ const { state } = workspace
 const holsters = useResourceHolsters(() => props.groupSlug, () => props.data.holsters, () => router.reload({ only: ['workspace', 'collections'], onSuccess: () => workspace.refresh() }))
 const holsterSettings = computed(() => state.collections.some(item => item.id === String(holsters.state.data.collection_id))
     ? holsters.state.data : { ...holsters.state.data, collection_id: null, resources: [] })
-const holsterEditUrl = computed(() => route('groups.dashboard.content.delubrum-reginae-savage', { group: props.groupSlug }))
+const holsterEditUrl = computed(() => route('groups.dashboard.content.index', { group: props.groupSlug, type: 'drs' }))
 function openHolsters() { holsters.state.data = holsterSettings.value; holsters.open() }
 const editingEmbed = computed(() => state.editorPane === 'embed' ? state.draft?.embeds[state.embedIndex] : null)
 const imageLibrary = { groupSlug: () => props.groupSlug, changed: () => emit('libraryChanged') }

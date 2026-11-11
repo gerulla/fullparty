@@ -38,6 +38,8 @@
         "discover": "Sichtbare Gruppen, sortiert nach ihrer letzten Aktivität"
     },
     "navigation": {
+    "edit_run": "Run bearbeiten",
+    "manage_run": "Run verwalten",
     "switch_group": "Gruppe wechseln: {group}",
     "create_group": "Gruppe erstellen",
     "find_groups": "Gruppen finden",
@@ -69,10 +71,46 @@
         "settings": "Einstellungen"
     },
     "content": {
+        "overview": {
+            "drs_description": "Bereitet die Prepop- und Nachfüll-Holster eurer Gruppe vor, mit klaren Anweisungen für jede Rolle.",
+            "forked_tower_title": "Fork-Turm",
+            "forked_tower_description": "Erstellt wiederverwendbare Phantomjob-Anforderungen für eure Gruppen und Seiten, gemeinsam für Blut und Magie.",
+            "open_holsters": "Holster öffnen",
+            "open_compositions": "Zusammenstellungen öffnen",
+            "holster_count": "0 Holster | 1 Holster | {count} Holster",
+            "composition_count": "0 Zusammenstellungen | 1 Zusammenstellung | {count} Zusammenstellungen",
+            "active_count": "{count} aktiv"
+        },
         "delubrum_reginae_savage": {
             "title": "Delubrum Reginae (episch)",
             "subtitle": "Plant und verwaltet die Delubrum-Reginae-Inhalte (episch) eurer Gruppe.",
             "holsters": {
+                "workspace": {
+                    "action_picker": "Aktionen auswählen",
+                    "back_to_details": "Zurück zu den Details",
+                    "library": "Holster-Bibliothek",
+                    "count": "{total} Holster · {active} aktiv",
+                    "filter": "Holster filtern",
+                    "default": "Standard-Holster",
+                    "no_matches": "Keine passenden Holster",
+                    "details": "Holster-Details",
+                    "locale_hint": "Wähle die Sprache des Namens, den du bearbeitest.",
+                    "unsaved": "Ungespeicherte Änderungen",
+                    "save": "Änderungen speichern",
+                    "loadout": "Ausrüstung",
+                    "inventory": "Inventar",
+                    "add_action": "Aktion hinzufügen",
+                    "decrease": "Menge verringern",
+                    "increase": "Menge erhöhen",
+                    "change_content": "Inhalt wechseln",
+                    "linked_refills": "Verknüpfte Nachfüllungen",
+                    "refills_hint": "Nachfüll-Holster, die mit diesem Vorbereitungs-Holster verknüpft sind.",
+                    "add_refill": "Nachfüllung hinzufügen",
+                    "no_refills": "Noch keine Nachfüllungen verknüpft.",
+                    "unsaved_title": "Ungespeicherte Änderungen verwerfen?",
+                    "unsaved_description": "Deine Änderungen wurden nicht gespeichert. Verlassen und verwerfen?",
+                    "discard": "Änderungen verwerfen"
+                },
                 "title": "Holster",
                 "create": "Neuen Holster erstellen",
                 "editor": "Holster-Editor",
@@ -168,6 +206,13 @@
             "title": "Der Fork-Turm: Blut",
             "subtitle": "Plant und verwaltet die Inhalte eurer Gruppe für den Fork-Turm: Blut.",
             "compositions": {
+        "workspace": {
+          "library": "Kompositionsbibliothek",
+          "metadata_tab": "Metadaten",
+          "count": "{total} Kompositionen · {active} aktiv",
+          "filter": "Kompositionen filtern",
+          "details": "Kompositionsdetails"
+        },
                 "title": "Kompositionen",
                 "create": "Neue Komposition",
                 "loading": "Kompositionen werden geladen...",
@@ -192,7 +237,26 @@
                 "reorder_hint": "Zum Sortieren ziehen",
                 "empty_title": "Keine Kompositionen gefunden",
                 "empty_description": "Passt die Suche an oder erstellt eine neue Komposition.",
-                "editor": {
+        "editor": {
+          "inbox": {
+            "job_importance": "Job & Wichtigkeit",
+            "count_requirement": "Anzahlanforderung",
+            "where_applies": "Geltungsbereich",
+            "edit_scope": "Seiten- oder Gruppenauswahl bearbeiten",
+            "edit_job": "Phantomjob ändern",
+            "all_rules": "Alle Regeln",
+            "search": "Regeln suchen...",
+            "filter": "Regeln filtern",
+            "no_results": "Keine Regeln entsprechen diesen Filtern.",
+            "select_rule": "Wähle eine Regel, um ihre Anforderungen zu bearbeiten.",
+            "edit_rule": "{name} bearbeiten",
+            "move_up": "Nach oben",
+            "move_down": "Nach unten",
+            "previous": "Vorherige Regel",
+            "next": "Nächste Regel",
+            "actions": "Regelaktionen",
+            "position": "{current} von {total}"
+          },
                     "title": "Kompositionseditor",
                     "new_title": "Neue Komposition",
                     "untitled": "Unbenannte Komposition",

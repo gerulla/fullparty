@@ -36,8 +36,7 @@ const features = {
     'Dashboard/Groups/Availability': ['groups/availability'],
     'Dashboard/Groups/CommunityDashboard': ['groups/activities', 'groups/common', 'groups/notifications', 'runs'],
     'Dashboard/Groups/GroupProfile': ['groups/activities', 'groups/common', 'groups/notifications'],
-    'Dashboard/Groups/Content/Index': [],
-    'Dashboard/Groups/Content/DelubrumReginaeSavage': ['rich_text'],
+    'Dashboard/Groups/Content/Index': ['rich_text'],
     'Dashboard/Groups/Content/ForkedTowerBlood': [],
     'Dashboard/Groups/DiscordIntegration': ['groups/access', 'groups/discord'],
     'Dashboard/Groups/Index': ['groups/common', 'groups/notifications'],
@@ -94,6 +93,7 @@ export function pageNamespaces(name, application = 'main') {
         const namespaces = Object.hasOwn(standalone, name) ? [...common, ...standalone[name]]
             : Object.hasOwn(features, name) ? [...new Set([...dashboard, ...features[name]])] : null
         if (namespaces) {
+            if (name.startsWith('Dashboard/Groups/') && !namespaces.includes('groups/notifications')) namespaces.push('groups/notifications')
             if (namespaces.includes('groups/activities') || namespaces.includes('groups/resources')) namespaces.push('holsters')
             if (namespaces.includes('groups/resources')) namespaces.push('xivgear')
             return namespaces

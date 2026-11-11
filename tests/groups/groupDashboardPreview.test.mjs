@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict'
 import { existsSync, readFileSync } from 'node:fs'
+import { fileURLToPath } from 'node:url'
 import test from 'node:test'
 import { JSDOM } from 'jsdom'
 import { compileScript, parse } from '@vue/compiler-sfc'
@@ -11,7 +12,7 @@ const vue = await import('vue')
 const messages = JSON.parse(readFileSync(new URL('../../lang/en/groups/index.json', import.meta.url), 'utf8'))
 
 function load(path, dependencies = {}) {
-    const filename = new URL(`../../resources/js/${path}`, import.meta.url).pathname
+    const filename = fileURLToPath(new URL(`../../resources/js/${path}`, import.meta.url))
     let source = readFileSync(filename, 'utf8')
     if (path.endsWith('.vue')) {
         const { descriptor } = parse(source, { filename })

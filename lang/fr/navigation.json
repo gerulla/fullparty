@@ -107,6 +107,8 @@
         "game_assets": "Éléments du jeu FINAL FANTASY XIV © SQUARE ENIX.",
         "independence": "FullParty est un projet communautaire indépendant, sans affiliation avec Square Enix ni approbation de sa part.",
         "fflogs_credit": "Données de progression supplémentaires fournies par {provider}.",
+        "gpose_credit": "Toutes les images GPose présentées sur FullParty sont réalisées par {creator}.",
+        "creator_bluesky": "Voir {creator} sur Bluesky",
         "cookies": "Cookies",
         "privacy": "Politique de confidentialité",
         "github": "GitHub",

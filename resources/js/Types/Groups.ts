@@ -426,6 +426,10 @@ export type GroupDashboardCalendarDay = {
     activities: GroupDashboardActivity[]
 }
 
+export type GroupMembershipActionsGroup = Pick<GroupDashboardGroup, 'name' | 'slug' | 'is_visible'> & {
+    permissions: Pick<GroupDashboardGroup['permissions'], 'can_leave' | 'can_toggle_notifications'>
+}
+
 export type GroupDashboardGroup = {
 	id: number
 	name: string

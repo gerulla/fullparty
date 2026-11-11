@@ -38,6 +38,8 @@
         "discover": "最新の活動順に並んだ表示可能なグループ"
     },
     "navigation": {
+    "edit_run": "募集を編集",
+    "manage_run": "募集を管理",
     "switch_group": "グループを切り替え：{group}",
     "create_group": "グループを作成",
     "find_groups": "グループを探す",
@@ -69,10 +71,46 @@
         "settings": "設定"
     },
     "content": {
+        "overview": {
+            "drs_description": "各ロールの手順を添えて、グループの事前準備用・補充用ホルスターを作成できます。",
+            "forked_tower_title": "フォークタワー",
+            "forked_tower_description": "パーティや担当サイドごとのファントムジョブ条件を作成し、力の塔と魔の塔で共通利用できます。",
+            "open_holsters": "ホルスターを開く",
+            "open_compositions": "構成を開く",
+            "holster_count": "ホルスター {count} 件",
+            "composition_count": "構成 {count} 件",
+            "active_count": "有効 {count} 件"
+        },
         "delubrum_reginae_savage": {
             "title": "グンヒルド・ディルーブラム零式",
             "subtitle": "グループのグンヒルド・ディルーブラム零式コンテンツを計画・管理します。",
             "holsters": {
+                "workspace": {
+                    "action_picker": "アクション選択",
+                    "back_to_details": "詳細に戻る",
+                    "library": "ホルスター一覧",
+                    "count": "{total}個のホルスター · {active}個が有効",
+                    "filter": "ホルスターを絞り込む",
+                    "default": "デフォルトのホルスター",
+                    "no_matches": "一致するホルスターがありません",
+                    "details": "ホルスターの詳細",
+                    "locale_hint": "編集する名前の言語を選択してください。",
+                    "unsaved": "未保存の変更",
+                    "save": "変更を保存",
+                    "loadout": "装備構成",
+                    "inventory": "インベントリ",
+                    "add_action": "アクションを追加",
+                    "decrease": "数量を減らす",
+                    "increase": "数量を増やす",
+                    "change_content": "コンテンツを変更",
+                    "linked_refills": "関連する補充",
+                    "refills_hint": "この準備用ホルスターに関連する補充用ホルスター。",
+                    "add_refill": "補充を追加",
+                    "no_refills": "関連する補充はありません。",
+                    "unsaved_title": "未保存の変更を破棄しますか？",
+                    "unsaved_description": "変更は保存されていません。破棄して移動しますか？",
+                    "discard": "変更を破棄"
+                },
                 "title": "ホルスター",
                 "create": "新しいホルスターを作成",
                 "editor": "ホルスター編集",
@@ -168,6 +206,13 @@
             "title": "フォークタワー：力の塔",
             "subtitle": "グループの「フォークタワー：力の塔」のコンテンツを計画・管理します。",
             "compositions": {
+        "workspace": {
+          "library": "構成ライブラリ",
+          "metadata_tab": "基本情報",
+          "count": "構成 {total} 件 · 有効 {active} 件",
+          "filter": "構成を絞り込む",
+          "details": "構成の詳細"
+        },
                 "title": "構成",
                 "create": "新しい構成",
                 "loading": "構成を読み込んでいます...",
@@ -192,7 +237,26 @@
                 "reorder_hint": "ドラッグで並べ替え",
                 "empty_title": "構成が見つかりません",
                 "empty_description": "検索条件を変更するか、新しい構成を作成してください。",
-                "editor": {
+        "editor": {
+          "inbox": {
+            "job_importance": "ジョブと重要度",
+            "count_requirement": "必要人数",
+            "where_applies": "適用範囲",
+            "edit_scope": "サイド・パーティ選択を編集",
+            "edit_job": "ファントムジョブを変更",
+            "all_rules": "すべてのルール",
+            "search": "ルールを検索...",
+            "filter": "ルールを絞り込む",
+            "no_results": "条件に一致するルールはありません。",
+            "select_rule": "ルールを選択して条件を編集してください。",
+            "edit_rule": "{name}を編集",
+            "move_up": "上へ移動",
+            "move_down": "下へ移動",
+            "previous": "前のルール",
+            "next": "次のルール",
+            "actions": "ルールの操作",
+            "position": "{total}件中{current}件目"
+          },
                     "title": "構成エディター",
                     "new_title": "新しい構成",
                     "untitled": "名称未設定の構成",

@@ -4,35 +4,49 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\BozjaHolsterResource;
 use App\Http\Resources\BozjaItemOptionResource;
+use App\Models\BozjaHolster;
 use App\Models\BozjaItem;
 use App\Models\Group;
+use App\Models\PhantomComposition;
 use App\Models\PhantomJob;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
 
 class GroupContentController extends Controller
 {
-    public function index(Group $group): Response
+    public function index(Request $request, Group $group): Response
     {
-        return $this->renderContentPage($group, 'Dashboard/Groups/Content/Index');
-    }
+        return $this->renderContentPage($group, 'Dashboard/Groups/Content/Index', [
+            'drs' => $request->query('type') === 'drs' ? fn () => [
+                'holsters' => BozjaHolsterResource::collection($group->bozjaHolsters()->with('items')->latest('updated_at')->get())->resolve(),
+                'bozja_items' => BozjaItemOptionResource::collection(BozjaItem::query()->active()->ordered()->get())->resolve(),
+            ] : null,
+            'content_summary' => function () use ($group): array {
+                $holsters = $group->bozjaHolsters()
+                    ->where('type', BozjaHolster::TYPE_PREPOP)
+                    ->selectRaw('is_active, COUNT(*) as total')
+                    ->groupBy('is_active')
+                    ->get();
+                $compositions = PhantomComposition::query()
+                    ->where('group_id', $group->id)
+                    ->where('content_key', PhantomComposition::CONTENT_FORKED_TOWER)
+                    ->selectRaw('is_active, COUNT(*) as total')
+                    ->groupBy('is_active')
+                    ->get();
 
-    public function delubrumReginaeSavage(Group $group): Response
-    {
-        $holsters = $group->bozjaHolsters()
-            ->with('items')
-            ->latest('updated_at')
-            ->get();
-        $bozjaItems = BozjaItem::query()->active()->ordered()->get();
-
-        return $this->renderContentPage(
-            $group,
-            'Dashboard/Groups/Content/DelubrumReginaeSavage',
-            [
-                'holsters' => BozjaHolsterResource::collection($holsters)->resolve(),
-                'bozja_items' => BozjaItemOptionResource::collection($bozjaItems)->resolve(),
-            ],
-        );
+                return [
+                    'holsters' => [
+                        'total' => (int) $holsters->sum('total'),
+                        'active' => (int) ($holsters->firstWhere('is_active', true)?->total ?? 0),
+                    ],
+                    'compositions' => [
+                        'total' => (int) $compositions->sum('total'),
+                        'active' => (int) ($compositions->firstWhere('is_active', true)?->total ?? 0),
+                    ],
+                ];
+            },
+        ]);
     }
 
     public function forkedTowerBlood(Group $group): Response

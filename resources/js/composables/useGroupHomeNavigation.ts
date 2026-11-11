@@ -13,6 +13,8 @@ export function useGroupHomeNavigation(group: () => GroupNavigationContext) {
     const destinations = computed(() => {
         const current = group()
         const permissions = current.permissions ?? {}
+        const path = page.url.split(/[?#]/)[0].replace(/\/$/, '')
+        const activeSection = new URLSearchParams(page.url.split('?')[1]?.split('#')[0] ?? '').get('section')
         const links = new Map<string, GroupHomeNavigationLink>(sections.value.flatMap(section => section.links).map(link => [link.key, {
             ...link,
             description: ['home', 'members', 'delubrum_reginae_savage', 'forked_tower_blood'].includes(link.key)
@@ -24,9 +26,14 @@ export function useGroupHomeNavigation(group: () => GroupNavigationContext) {
                 locale: String(page.props.locale?.current ?? 'en'),
                 ...(section ? { _query: { section } } : {}),
             }, false)
+            const targetPath = href.split('?')[0]
             links.set(key, {
                 key, label, icon, href,
-                active: page.url === href,
+                active: section
+                    ? path === targetPath && activeSection === section
+                    : (path === targetPath || path.startsWith(`${targetPath}/`))
+                        && !(key === 'content_customization' && links.get('manage_resources')?.active)
+                        && !(key === 'settings' && activeSection === 'audit_log'),
                 description: t(`groups.dashboard.navigation.descriptions.${key}`),
             })
         }

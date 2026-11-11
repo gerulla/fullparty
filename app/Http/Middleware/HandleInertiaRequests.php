@@ -10,6 +10,7 @@ use App\Models\UserOnboardingState;
 use App\Services\AccountFlagService;
 use App\Services\Changelog\ChangelogReader;
 use App\Services\DeploymentVersion;
+use App\Services\Groups\GroupDashboardHeaderPresenter;
 use App\Services\Notifications\NotificationInboxService;
 use App\Services\Notifications\NotificationPreferenceSettingsService;
 use App\Services\SystemBannerService;
@@ -29,6 +30,7 @@ class HandleInertiaRequests extends Middleware
         private readonly DeploymentVersion $deploymentVersion,
         private readonly ChangelogReader $changelogReader,
         private readonly AccountFlagService $accountFlagService,
+        private readonly GroupDashboardHeaderPresenter $groupDashboardHeader,
     ) {}
 
     /**
@@ -145,6 +147,10 @@ class HandleInertiaRequests extends Middleware
 
         return array_merge(parent::share($request), [
             'theme_preview_enabled' => app()->environment(['local', 'development']),
+            'group_dashboard' => fn () => $request->routeIs('groups.dashboard', 'groups.dashboard.*')
+                && $request->route('group') instanceof Group
+                    ? $this->groupDashboardHeader->forUser($request->route('group'), $request->user())
+                    : null,
             'account_flags' => Inertia::always(fn () => $request->user()
                 ? $this->accountFlagService->forUser($request->user())
                 : []),

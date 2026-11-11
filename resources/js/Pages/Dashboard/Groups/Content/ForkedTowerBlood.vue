@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import PhantomCompositionEditor from '@/components/Groups/Content/PhantomCompositionEditor.vue'
 import PhantomCompositionList from '@/components/Groups/Content/PhantomCompositionList.vue'
-import PageHeader from '@/components/PageHeader.vue'
+import ContentEditorSwitcher from '@/components/Groups/Content/ContentEditorSwitcher.vue'
+import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
 import type {
 	PhantomCompositionApi,
 	PhantomCompositionApiRule,
@@ -17,7 +18,7 @@ import type {
 import { useToast } from '@nuxt/ui/composables'
 import axios from 'axios'
 import { route } from 'ziggy-js'
-import { computed, onMounted, ref } from 'vue'
+import { computed, nextTick, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const props = defineProps<{
@@ -31,6 +32,24 @@ const props = defineProps<{
 
 const { locale, t } = useI18n()
 const toast = useToast()
+const isBigDesktop = useBreakpoints(breakpointsTailwind).greaterOrEqual('2xl')
+const compactEditorOpen = ref(false)
+const editorVisible = computed(() => isBigDesktop.value || compactEditorOpen.value)
+const workspaceHeading = ref<HTMLElement | null>(null)
+
+async function focusWorkspace() {
+	await nextTick()
+	if (!isBigDesktop.value) {
+		workspaceHeading.value?.focus({ preventScroll: true })
+		workspaceHeading.value?.scrollIntoView({ block: 'start' })
+	}
+}
+
+function showLibrary() {
+	if (isSaving.value) return
+	compactEditorOpen.value = false
+	void focusWorkspace()
+}
 
 const partyIds: PhantomCompositionPartyId[] = ['A', 'B', 'C', 'D', 'E', 'F']
 const sideOneParties: PhantomCompositionPartyId[] = ['A', 'B', 'C']
@@ -308,13 +327,19 @@ const loadCompositions = async () => {
 }
 
 const createComposition = () => {
+	if (isSaving.value || isReordering.value) return
 	selectedCompositionId.value = null
 	isCreating.value = true
+	compactEditorOpen.value = true
+	void focusWorkspace()
 }
 
 const selectComposition = (compositionId: number) => {
+	if (isSaving.value || isReordering.value) return
 	selectedCompositionId.value = compositionId
 	isCreating.value = false
+	compactEditorOpen.value = true
+	void focusWorkspace()
 }
 
 const updateLocalComposition = (composition: PhantomCompositionPlaceholder) => {
@@ -491,64 +516,30 @@ onMounted(loadCompositions)
 </script>
 
 <template>
-	<div class="w-full">
-		<PageHeader
-			:title="t('groups.index.content.forked_tower_blood.title')"
-			:subtitle="t('groups.index.content.forked_tower_blood.subtitle')"
-		>
-			<UButton
-				color="neutral"
-				icon="i-lucide-plus"
-				:label="t('groups.index.content.forked_tower_blood.compositions.create')"
-				:disabled="isLoading || isSaving"
-				:ui="{ base: 'rounded-none' }"
-				@click="createComposition"
-			/>
-		</PageHeader>
-
-		<UAlert
-			v-if="loadError"
-			color="error"
-			variant="soft"
-			icon="i-lucide-alert-triangle"
-			class="mt-4 rounded-none"
-			:title="t('general.error')"
-			:description="loadError"
-		/>
-
-		<section
-			v-if="isLoading"
-			class="mt-4 flex min-h-80 items-center justify-center border border-default bg-muted/20 px-6 text-center"
-		>
-			<div>
-				<UIcon name="i-lucide-loader-circle" class="mx-auto size-6 animate-spin text-muted" />
-				<p class="mt-3 text-sm text-muted">
-					{{ t('groups.index.content.forked_tower_blood.compositions.loading') }}
-				</p>
-			</div>
-		</section>
-
-		<div v-else class="mt-4 grid items-start gap-4 xl:grid-cols-[minmax(18rem,0.36fr)_minmax(0,1fr)]">
-			<PhantomCompositionList
-				:compositions="compositions"
-				:selected-composition-id="selectedCompositionId"
-				:is-creating="isCreating"
-				:is-busy="isSaving || isReordering"
-				@select="selectComposition"
-				@toggle-active="toggleCompositionActive"
-				@reorder="reorderCompositions"
-			/>
-
-			<PhantomCompositionEditor
-				:composition="selectedComposition"
-				:is-creating="isCreating"
-				:next-rule-id="nextRuleId"
-				:phantom-jobs="props.phantom_jobs"
-				:is-saving="isSaving"
-				@save="saveComposition"
-				@delete="deleteComposition"
-				@add-rule="reserveRuleId"
-			/>
-		</div>
-	</div>
+    <div class="w-full dark:[--ui-primary:var(--color-brand-400)]">
+        <header ref="workspaceHeading" tabindex="-1" class="mb-5 flex scroll-mt-20 flex-wrap items-center justify-between gap-3 outline-none">
+            <ContentEditorSwitcher :group-slug="group.slug" content="forked_tower" class="md:hidden" />
+            <h1 class="hidden text-2xl font-bold md:block">{{ t('groups.index.content.overview.forked_tower_title') }}</h1>
+            <UButton v-if="!isBigDesktop && compactEditorOpen" color="neutral" variant="ghost" icon="i-lucide-arrow-left"
+                :label="t('groups.index.content.forked_tower_blood.compositions.workspace.library')" :disabled="isSaving" class="ml-auto rounded-md" @click="showLibrary" />
+            <UButton v-else :href="route('groups.dashboard.content.index', { group: group.slug, locale })" color="neutral" variant="ghost" icon="i-lucide-chevron-left"
+                :label="t('groups.index.content.delubrum_reginae_savage.holsters.workspace.change_content')" class="hidden rounded-md md:inline-flex" />
+        </header>
+        <UAlert v-if="loadError" color="error" variant="soft" icon="i-lucide-alert-triangle" class="mb-4 rounded-lg" :title="t('general.error')" :description="loadError" />
+        <section v-if="isLoading" class="flex min-h-80 items-center justify-center rounded-lg border border-default bg-elevation-1 px-6 text-center dark:bg-elevation-2">
+            <div>
+                <UIcon name="i-lucide-loader-circle" class="mx-auto size-6 animate-spin text-muted" />
+                <p class="mt-3 text-sm text-muted">{{ t('groups.index.content.forked_tower_blood.compositions.loading') }}</p>
+            </div>
+        </section>
+        <div v-else class="grid items-start gap-4 2xl:grid-cols-[17rem_minmax(0,1fr)]">
+            <PhantomCompositionList v-show="isBigDesktop || !compactEditorOpen"
+                class="mx-auto w-full max-w-4xl 2xl:max-w-none"
+                :compositions="compositions" :selected-composition-id="selectedCompositionId" :is-creating="isCreating" :is-busy="isSaving || isReordering"
+                @create="createComposition" @select="selectComposition" @toggle-active="toggleCompositionActive" @reorder="reorderCompositions" />
+            <PhantomCompositionEditor v-show="editorVisible"
+                :composition="selectedComposition" :is-creating="isCreating" :next-rule-id="nextRuleId" :phantom-jobs="props.phantom_jobs" :is-saving="isSaving" :separate-metadata="isBigDesktop"
+                @save="saveComposition" @delete="deleteComposition" @add-rule="reserveRuleId" />
+        </div>
+    </div>
 </template>

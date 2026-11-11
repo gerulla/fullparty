@@ -45,3 +45,18 @@ export type BozjaItemOption = Pick<
 export type BozjaHolsterItem = BozjaItemOption & {
 	quantity: number
 }
+
+export type DrsWorkspaceData = {
+    holsters: BozjaHolsterSummary[]
+    bozja_items: BozjaItemOption[]
+}
+
+export type BozjaHolsterDraft = {
+    name: Record<string, string>
+    role: BozjaHolsterSummary['role']
+    type: BozjaHolsterType
+    parent_holster_id: number | null
+    notes: string
+    guide: RichTextDocument
+    items: BozjaHolsterItem[]
+}

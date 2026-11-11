@@ -1,12 +1,13 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 import { readFileSync } from 'node:fs'
+import { fileURLToPath } from 'node:url'
 import { compileScript, parse } from '@vue/compiler-sfc'
 import ts from 'typescript'
 import * as vue from 'vue'
 
 function load(path, modules) {
-    const filename = new URL(`../../resources/js/${path}`, import.meta.url).pathname
+    const filename = fileURLToPath(new URL(`../../resources/js/${path}`, import.meta.url))
     let source = readFileSync(filename, 'utf8')
     if (path.endsWith('.vue')) source = compileScript(parse(source, { filename }).descriptor, { id: path }).content
     const code = ts.transpileModule(source, {

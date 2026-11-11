@@ -35,6 +35,11 @@ it('renders a single generated group embed image on the dashboard page', functio
 
     $response
         ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->where('group_dashboard.id', $group->id)
+            ->where('group_dashboard.banner_image_url', '/storage/groups/storm-banner.webp')
+            ->where('group_dashboard.permissions.can_manage_activities', true)
+            ->where('group_dashboard.permissions.can_leave', false))
         ->assertSee('<meta property="og:title" content="Storm Keepers - FullParty.gg">', false)
         ->assertSee('<meta property="og:image" content="http://fullparty.test/storage/groups/embeds/stormkee-', false)
         ->assertDontSee('<meta property="og:image" content="http://fullparty.test/storage/groups/storm-banner.webp">', false)

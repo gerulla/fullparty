@@ -11,7 +11,7 @@ createLocalizedApp({
     pages: import.meta.glob('./Pages/**/*.vue'),
     translations,
     loadDefaultLayout: name => name.startsWith('Dashboard/Groups/')
-        ? import('./Layouts/V2Layout.vue')
+        ? import('./Layouts/GroupDashboardLayout.vue')
         : import('./Layouts/DefaultLayout.vue'),
     plugins: [ZiggyVue, {
         install(app) {

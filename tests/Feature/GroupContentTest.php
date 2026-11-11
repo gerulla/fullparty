@@ -4,6 +4,7 @@ use App\Models\BozjaHolster;
 use App\Models\BozjaItem;
 use App\Models\Group;
 use App\Models\GroupMembership;
+use App\Models\PhantomComposition;
 use App\Models\PhantomJob;
 use App\Models\User;
 use App\Services\RichText\MarkdownGuideConverter;
@@ -30,6 +31,9 @@ it('allows moderators to open content customization and Delubrum Reginae content
             ->component('Dashboard/Groups/Content/Index')
             ->where('group.slug', $group->slug)
             ->where('group.permissions.can_manage_members', true)
+            ->where('content_summary.holsters', ['total' => 0, 'active' => 0])
+            ->where('content_summary.compositions', ['total' => 0, 'active' => 0])
+            ->where('drs', null)
             ->missing('holsters')
             ->missing('phantom_jobs')
         );
@@ -51,21 +55,50 @@ it('allows moderators to open content customization and Delubrum Reginae content
     ]);
 
     $this->actingAs($moderator)
-        ->get(route('groups.dashboard.content.delubrum-reginae-savage', $group))
+        ->get(route('groups.dashboard.content.index', ['group' => $group, 'type' => 'drs']))
         ->assertOk()
         ->assertInertia(fn (Assert $page) => $page
-            ->component('Dashboard/Groups/Content/DelubrumReginaeSavage')
+            ->component('Dashboard/Groups/Content/Index')
             ->where('group.slug', $group->slug)
             ->where('group.permissions.can_manage_members', true)
-            ->has('holsters', 1)
-            ->where('holsters.0.id', $holster->id)
-            ->where('holsters.0.display_name', 'Progression Holster')
-            ->where('holsters.0.name.en', 'Progression Holster')
-            ->where('holsters.0.type', BozjaHolster::TYPE_PREPOP)
-            ->where('holsters.0.parent_holster_id', null)
-            ->has('bozja_items', 1)
-            ->where('bozja_items.0.id', $item->id)
-            ->where('bozja_items.0.display_name', 'Lost Cure')
+            ->has('drs.holsters', 1)
+            ->where('drs.holsters.0.id', $holster->id)
+            ->where('drs.holsters.0.display_name', 'Progression Holster')
+            ->where('drs.holsters.0.name.en', 'Progression Holster')
+            ->where('drs.holsters.0.type', BozjaHolster::TYPE_PREPOP)
+            ->where('drs.holsters.0.parent_holster_id', null)
+            ->has('drs.bozja_items', 1)
+            ->where('drs.bozja_items.0.id', $item->id)
+            ->where('drs.bozja_items.0.display_name', 'Lost Cure')
+        );
+
+    $group->bozjaHolsters()->create(['is_active' => false]);
+    $group->bozjaHolsters()->create([
+        'type' => BozjaHolster::TYPE_REFILL,
+        'parent_holster_id' => $holster->id,
+    ]);
+    foreach ([true, false] as $active) {
+        PhantomComposition::query()->create([
+            'group_id' => $group->id,
+            'content_key' => PhantomComposition::CONTENT_FORKED_TOWER,
+            'name' => 'Shared Blood and Magic composition',
+            'is_active' => $active,
+            'rules' => [],
+        ]);
+    }
+    PhantomComposition::query()->create([
+        'group_id' => Group::factory()->create()->id,
+        'content_key' => PhantomComposition::CONTENT_FORKED_TOWER,
+        'name' => 'Another group composition',
+        'is_active' => true,
+        'rules' => [],
+    ]);
+
+    $this->get(route('groups.dashboard.content.index', $group))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->where('content_summary.holsters', ['total' => 2, 'active' => 1])
+            ->where('content_summary.compositions', ['total' => 2, 'active' => 1])
         );
 });
 
@@ -455,7 +488,7 @@ it('prevents regular members from opening content customization and Delubrum Reg
         ->assertForbidden();
 
     $this->actingAs($member)
-        ->get(route('groups.dashboard.content.delubrum-reginae-savage', $group))
+        ->get(route('groups.dashboard.content.index', ['group' => $group, 'type' => 'drs']))
         ->assertForbidden();
 });
 

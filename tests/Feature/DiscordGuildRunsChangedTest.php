@@ -58,16 +58,21 @@ it('queues visible run creation but excludes drafts for public and members-only 
     Http::assertNothingSent();
 })->with([Activity::STATUS_DRAFT, Activity::STATUS_SCHEDULED])->with([true, false]);
 
-it('queues edits only for visible runs including members-only visibility changes', function (string $status) {
-    $activity = ($this->makeActivity)(['status' => $status]);
+it('queues edits only for visible runs without changing their audience', function (string $status, bool $public) {
+    $activity = ($this->makeActivity)(['status' => $status, 'is_public' => $public]);
     $this->put(route('groups.dashboard.activities.update', [$this->group, $activity]), [
-        'title' => 'Changed run', 'is_public' => false,
+        'title' => 'Changed run', 'is_public' => $public,
         'starts_at' => now()->addDays(3)->format('Y-m-d\TH:i'),
     ])->assertSessionHasNoErrors()->assertRedirect();
 
-    expect($activity->fresh()->title)->toBe('Changed run');
+    expect($activity->fresh()->title)->toBe('Changed run')
+        ->and($activity->fresh()->is_public)->toBe($public);
     Queue::assertPushed(SendDiscordGuildRunsChangedJob::class, $status === Activity::STATUS_DRAFT ? 0 : 1);
-})->with([Activity::STATUS_DRAFT, Activity::STATUS_SCHEDULED, Activity::STATUS_ASSIGNED]);
+})->with([
+    [Activity::STATUS_DRAFT, false],
+    [Activity::STATUS_SCHEDULED, true],
+    [Activity::STATUS_ASSIGNED, false],
+]);
 
 it('does not send refreshes for unchanged saves or failed validation', function () {
     $activity = ($this->makeActivity)(['is_public' => true]);

@@ -26,6 +26,11 @@ export type PhantomCompositionScopePreset =
 
 export type PhantomCompositionPartyId = 'A' | 'B' | 'C' | 'D' | 'E' | 'F'
 
+export type PhantomRuleScopeSelection = {
+    scope: PhantomCompositionScopePreset
+    parties: PhantomCompositionPartyId[]
+}
+
 export type PhantomCompositionBackendScopeType =
 	| 'all_slots'
 	| 'slot_group'

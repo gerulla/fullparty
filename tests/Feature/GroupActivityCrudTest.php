@@ -529,6 +529,11 @@ it('hides draft activities from non moderators on the dashboard runs page', func
         ->get(route('groups.dashboard.activities.index', $group))
         ->assertOk()
         ->assertInertia(fn (Assert $page) => $page
+            ->where('group_dashboard.id', $group->id)
+            ->where('group_dashboard.current_user_role', GroupMembership::ROLE_MEMBER)
+            ->where('group_dashboard.permissions.can_manage_activities', false)
+            ->where('group_dashboard.permissions.can_leave', true)
+            ->where('group_dashboard.permissions.can_toggle_notifications', true)
             ->has('activities', 1)
             ->where('activities.0.id', $scheduledActivity->id)
             ->where('activities.0.status', Activity::STATUS_SCHEDULED));
@@ -583,6 +588,12 @@ it('shows guests public runs and excludes members-only runs', function () {
         ->assertOk()
         ->assertInertia(fn (Assert $page) => $page
             ->component('Dashboard/Groups/Activities/Index')
+            ->where('group_dashboard.id', $group->id)
+            ->where('group_dashboard.current_user_role', null)
+            ->where('group_dashboard.permissions.can_view_members', false)
+            ->where('group_dashboard.permissions.can_manage_activities', false)
+            ->where('group_dashboard.permissions.can_toggle_notifications', false)
+            ->where('group_dashboard.notifications.preferences', [])
             ->where('group.current_user_role', null)
             ->where('group.permissions.can_view_members', false)
             ->where('group.permissions.can_manage_activities', false)

@@ -19,12 +19,14 @@ export function useGroupDashboardNavigation(group: () => GroupNavigationContext)
                 || ['owner', 'admin', 'moderator'].includes(current.current_user_role ?? '')
                 || permissions.can_manage_members)
         const path = page.url.split(/[?#]/)[0].replace(/\/$/, '')
-        const link = (key: string, name: string, icon: string, exact = false): GroupNavigationLink => {
+        const link = (key: string, name: string, icon: string, exact = false, contentType?: string): GroupNavigationLink => {
             const params = { group: current.slug, locale: String(page.props.locale?.current ?? 'en') }
-            const href = route(name, params, false)
+            const href = route(name, { ...params, ...(contentType ? { type: contentType } : {}) }, false)
+            const targetPath = href.split('?')[0]
             return {
                 key, label: t(`groups.index.navigation.${key}`), icon, href,
-                active: path === href || (!exact && path.startsWith(`${href}/`)),
+                active: (path === targetPath || (!exact && path.startsWith(`${targetPath}/`)))
+                    && (!contentType || new URLSearchParams(page.url.split('?')[1]).get('type') === contentType),
             }
         }
 
@@ -35,7 +37,7 @@ export function useGroupDashboardNavigation(group: () => GroupNavigationContext)
                     link('home', 'groups.dashboard', 'i-lucide-layout-dashboard', true),
                     link('activities', 'groups.dashboard.activities.index', 'i-lucide-calendar-range'),
                     ...(permissions.can_view_members ? [link('members', 'groups.dashboard.members', 'i-lucide-users')] : []),
-                    ...(resources ? [link('resources', 'groups.dashboard.resources.index', 'i-lucide-book-open-text', true)] : []),
+                    ...(resources ? [link('resources', 'groups.dashboard.resources.index', 'i-lucide-book-open-text')] : []),
                     ...(availability ? [link('availability', 'groups.dashboard.availability', 'i-lucide-calendar-clock')] : []),
                 ],
             },
@@ -53,7 +55,7 @@ export function useGroupDashboardNavigation(group: () => GroupNavigationContext)
                 key: 'content', label: t('groups.index.navigation.content'),
                 links: permissions.can_manage_members ? [
                     ...(resources ? [link('manage_resources', 'groups.dashboard.resources.manage', 'i-lucide-folder-open')] : []),
-                    link('delubrum_reginae_savage', 'groups.dashboard.content.delubrum-reginae-savage', 'i-lucide-castle'),
+                    link('delubrum_reginae_savage', 'groups.dashboard.content.index', 'i-lucide-castle', true, 'drs'),
                     link('forked_tower_blood', 'groups.dashboard.content.forked-tower-blood', 'i-lucide-droplets'),
                 ] : [],
             },

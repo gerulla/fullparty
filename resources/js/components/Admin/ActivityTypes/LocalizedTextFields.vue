@@ -12,6 +12,10 @@ const props = defineProps<{
 	rows?: number
 	placeholderPrefix?: string
 	allLocalesLabel?: string
+	rounded?: boolean
+	disabled?: boolean
+	maxlength?: number
+	error?: string
 }>();
 
 const emit = defineEmits<{
@@ -20,6 +24,7 @@ const emit = defineEmits<{
 
 const isModalOpen = ref(false);
 const primaryLocale = computed(() => props.locales[0] ?? 'en');
+const localesLabel = computed(() => props.allLocalesLabel ?? t('general.all_locales'));
 
 const localeStatuses = computed(() => props.locales.map((locale) => {
 	const value = props.modelValue?.[locale];
@@ -67,37 +72,56 @@ defineExpose({ openLocales });
 					</div>
 				</div>
 
-				<UButton
-					color="neutral"
-					variant="soft"
-					icon="i-lucide-languages"
-					:label="allLocalesLabel ?? t('general.all_locales')"
-					@click="openLocales"
-				/>
 			</div>
 
 			<UTextarea
 				v-if="multiline"
 				:model-value="modelValue?.[primaryLocale] ?? ''"
+				:disabled="disabled"
+				:maxlength="maxlength"
+				:ui="{ base: ['pe-12', rounded ? 'rounded-md' : ''].join(' '), trailing: 'items-start p-0' }"
+				:aria-label="`${label} (${primaryLocale})`"
+				:aria-invalid="Boolean(error)"
 				:rows="rows ?? 3"
 				class="w-full"
 				:placeholder="placeholderPrefix ? `${placeholderPrefix} (${primaryLocale})` : primaryLocale"
 				@update:model-value="(value) => updateLocale(primaryLocale, value)"
-			/>
+			>
+				<template #trailing>
+					<UButton type="button" color="neutral" variant="soft" icon="i-lucide-languages"
+						:aria-label="localesLabel" :title="localesLabel" :disabled="disabled"
+						class="size-9 justify-center rounded-none border-s border-b border-default"
+						:class="rounded ? 'rounded-se-md' : undefined" @click="openLocales" />
+				</template>
+			</UTextarea>
 			<UInput
 				v-else
 				:model-value="modelValue?.[primaryLocale] ?? ''"
+				:disabled="disabled"
+				:maxlength="maxlength"
+				:ui="{ base: ['pe-12', rounded ? 'rounded-md' : ''].join(' '), trailing: 'p-0' }"
+				:aria-label="`${label} (${primaryLocale})`"
+				:aria-invalid="Boolean(error)"
 				class="w-full"
 				:placeholder="placeholderPrefix ? `${placeholderPrefix} (${primaryLocale})` : primaryLocale"
 				@update:model-value="(value) => updateLocale(primaryLocale, value)"
-			/>
+			>
+				<template #trailing>
+					<UButton type="button" color="neutral" variant="soft" icon="i-lucide-languages"
+						:aria-label="localesLabel" :title="localesLabel" :disabled="disabled"
+						class="h-full w-10 justify-center rounded-none border-s border-default"
+						:class="rounded ? 'rounded-e-md' : undefined" @click="openLocales" />
+				</template>
+			</UInput>
 		</div>
+
+		<p v-if="error" class="text-sm text-error" role="alert">{{ error }}</p>
 
 		<UModal
 			v-model:open="isModalOpen"
 			:title="label"
 			:description="description"
-			:ui="{ content: 'rounded-sm' }"
+			:ui="{ content: rounded ? 'rounded-lg' : 'rounded-sm' }"
 		>
 			<template #body>
 				<div class="grid gap-3 md:grid-cols-2">
@@ -114,6 +138,11 @@ defineExpose({ openLocales });
 						<UTextarea
 							v-if="multiline"
 							:model-value="modelValue?.[locale] ?? ''"
+							:disabled="disabled"
+							:maxlength="maxlength"
+							:ui="rounded ? { base: 'rounded-md' } : undefined"
+							:aria-label="`${label} (${locale})`"
+							:aria-invalid="Boolean(error)"
 							:rows="rows ?? 3"
 							class="w-full"
 							:placeholder="placeholderPrefix ? `${placeholderPrefix} (${locale})` : locale"
@@ -122,6 +151,11 @@ defineExpose({ openLocales });
 						<UInput
 							v-else
 							:model-value="modelValue?.[locale] ?? ''"
+							:disabled="disabled"
+							:maxlength="maxlength"
+							:ui="rounded ? { base: 'rounded-md' } : undefined"
+							:aria-label="`${label} (${locale})`"
+							:aria-invalid="Boolean(error)"
 							class="w-full"
 							:placeholder="placeholderPrefix ? `${placeholderPrefix} (${locale})` : locale"
 							@update:model-value="(value) => updateLocale(locale, value)"

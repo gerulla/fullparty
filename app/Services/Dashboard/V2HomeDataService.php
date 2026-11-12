@@ -4,6 +4,7 @@ namespace App\Services\Dashboard;
 
 use App\Models\Activity;
 use App\Models\ActivityApplication;
+use App\Models\ActivitySlot;
 use App\Models\Character;
 use App\Models\CharacterTransferRun;
 use App\Models\Group;
@@ -203,14 +204,55 @@ final class V2HomeDataService
     }
 
     /** @return array<int, array<string, mixed>> */
-    public function recommendedRuns(User $user): array
+    public function upcomingRuns(User $user): array
     {
         $activities = $this->runCardQuery($user)
             ->where('starts_at', '>=', now())
             ->whereIn('status', self::UPCOMING_STATUSES)
             ->where('is_completed', false)
-            ->where('is_public', true)
-            ->inRandomOrder()
+            ->where(fn (Builder $query) => $query
+                ->whereHas('applications', fn (Builder $applications) => $applications
+                    ->where('user_id', $user->id)
+                    ->whereIn('status', ActivityApplication::ACTIVE_STATUSES))
+                ->orWhereHas('slots.assignedCharacter', fn (Builder $characters) => $characters
+                    ->where('user_id', $user->id)))
+            ->with(['slots' => fn ($slots) => $slots
+                ->whereHas('assignedCharacter', fn (Builder $characters) => $characters->where('user_id', $user->id))
+                ->select('id', 'activity_id', 'assigned_character_id', 'slot_kind')])
+            ->orderBy('starts_at')
+            ->orderBy('id')
+            ->limit(10)
+            ->get();
+        $statuses = $this->participation->statusesFor($activities, $user->id);
+
+        return $activities->map(function (Activity $activity) use ($user, $statuses): array {
+            $status = $statuses[$activity->id] ?? null;
+            // Manual roster placements can exist without an application.
+            if ($status === null && ($slot = $activity->slots->first())) {
+                $status = match ($slot->slot_kind) {
+                    ActivitySlot::SLOT_KIND_BENCH => ActivityApplication::STATUS_ON_BENCH,
+                    ActivitySlot::SLOT_KIND_FILL_IN => 'filled_in',
+                    default => 'assigned',
+                };
+            }
+
+            return $this->serializeRunCard($activity, $user, $status);
+        })->all();
+    }
+
+    /** @return array<int, array<string, mixed>> */
+    public function hostedRuns(User $user): array
+    {
+        $activities = $this->runCardQuery($user)
+            ->where('organized_by_user_id', $user->id)
+            ->whereNotIn('status', Activity::ARCHIVED_STATUSES)
+            ->where('is_completed', false)
+            ->where(fn (Builder $query) => $query->where('starts_at', '>=', now())
+                ->orWhere('status', Activity::STATUS_ONGOING)
+                ->orWhere(fn (Builder $drafts) => $drafts->where('status', Activity::STATUS_DRAFT)->whereNull('starts_at')))
+            ->orderByRaw('CASE WHEN starts_at IS NULL THEN 1 ELSE 0 END')
+            ->orderBy('starts_at')
+            ->orderBy('id')
             ->limit(10)
             ->get();
         $statuses = $this->participation->statusesFor($activities, $user->id);

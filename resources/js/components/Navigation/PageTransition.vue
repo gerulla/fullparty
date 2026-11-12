@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { usePage } from '@inertiajs/vue3'
 import { usePageTransition } from '@/composables/usePageTransition'
+import type { SettingsUser } from '@/Types/Settings'
 
+const page = usePage<{ auth: { user: SettingsUser | null } }>()
 const canvas = ref<HTMLCanvasElement | null>(null)
-usePageTransition(canvas)
+usePageTransition(canvas, () => page.props.auth?.user?.page_transition_enabled !== false)
 </script>
 
 <template>

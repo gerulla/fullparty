@@ -12,7 +12,7 @@ const props = defineProps<{ group: Pick<GroupSettingsGroup, 'id' | 'name' | 'slu
 const { t, locale } = useI18n()
 const { active: preview } = useGroupDiscordPreview()
 const { data, loading, failed, reload } = useGroupDiscordSettingsData(() =>
-    route('groups.dashboard.discord-integration', { group: props.group.slug, locale: locale.value }), () => !preview.value)
+    route('groups.dashboard.discord-integration.data', { group: props.group.slug, locale: locale.value }), () => !preview.value)
 const displayedData = computed(() => preview.value ? groupDiscordPreview(props.group) : data.value)
 </script>
 

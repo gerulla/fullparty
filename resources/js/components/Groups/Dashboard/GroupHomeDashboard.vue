@@ -2,21 +2,17 @@
 import { useNow } from '@vueuse/core'
 import type { GroupDashboardGroup, GroupDashboardView } from '@/Types/Groups'
 import GroupInfoSection from '@/components/Groups/Dashboard/GroupInfoSection.vue'
-import GroupHomeQuickLinks from '@/components/Groups/Dashboard/GroupHomeQuickLinks.vue'
 import GroupAppliedRunsSection from '@/components/Groups/Dashboard/GroupAppliedRunsSection.vue'
 import GroupHostedRunsSection from '@/components/Groups/Dashboard/GroupHostedRunsSection.vue'
 import GroupUpcomingRunsSection from '@/components/Groups/Dashboard/GroupUpcomingRunsSection.vue'
 import GroupActivityTypesSection from '@/components/Groups/Dashboard/GroupActivityTypesSection.vue'
-import { useGroupHomeNavigation } from '@/composables/useGroupHomeNavigation'
 
-const props = withDefaults(defineProps<{ group: GroupDashboardGroup; view?: GroupDashboardView }>(), { view: 'user' })
+withDefaults(defineProps<{ group: GroupDashboardGroup; view?: GroupDashboardView }>(), { view: 'user' })
 const now = useNow({ interval: 60_000 })
-const { quickLinkSections } = useGroupHomeNavigation(() => props.group)
 </script>
 
 <template>
     <div class="space-y-6 p-4 sm:space-y-8 sm:p-6 lg:p-8">
-        <GroupHomeQuickLinks :sections="quickLinkSections" />
         <GroupInfoSection :group="group" />
         <GroupHostedRunsSection v-if="view === 'staff'" :group="group" />
         <GroupAppliedRunsSection v-else :group="group" :now="now" />

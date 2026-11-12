@@ -6,13 +6,14 @@
         "refresh_help": "Recharger les données de l'accueil et afficher les squelettes sans recharger la page du navigateur.",
         "empty": "Simuler un compte vide",
         "restore": "Rétablir les données du compte",
-        "empty_help": "Afficher un compte vide sans enregistrer de modifications. La connexion et les runs recommandés restent inchangés."
+        "empty_help": "Prévisualisez un compte vide sans enregistrer de modifications. Votre connexion reste inchangée."
     },
     "empty_states": {
         "find_runs": "Trouver des sorties",
         "explore_groups": "Explorer les groupes",
         "upcoming": {
-            "title": "Votre agenda est libre"
+            "title": "Votre agenda est libre",
+            "description": "Aucune sortie prévue pour le moment. Trouvez votre prochaine aventure."
         },
         "history": {
             "title": "Vos aventures commencent ici",
@@ -39,10 +40,16 @@
         "upcoming": "À venir",
         "history": "Historique"
     },
+    "find_more_runs": "Trouver plus de runs",
+    "upcoming_runs": {
+        "title": "Vos prochains runs",
+        "loading": "Chargement de vos prochains runs…",
+        "empty": "Vous n’avez pas encore de run à venir."
+    },
+    "hosted_runs": {
+        "title": "Les runs que vous organisez"
+    },
     "recommended_runs": {
-        "title": "Des runs qui pourraient vous plaire",
-        "loading": "Chargement des runs recommandés…",
-        "empty": "Aucun run public à venir à recommander pour le moment.",
         "hosted_by": "Organisé par {name}",
         "applicants": "{count} candidatures | {count} candidature | {count} candidatures"
     },
@@ -62,7 +69,7 @@
         "open_settings": "Ouvrir les paramètres de {name}"
     },
     "character_applications": {
-        "view_all": "Tout voir",
+        "view_all": "Voir toutes les candidatures",
         "loading": "Chargement des sorties…",
         "empty_upcoming": "Aucune sortie à venir pour ce personnage.",
         "empty_history": "Aucune sortie passée pour ce personnage.",

@@ -314,6 +314,7 @@ it('shows only non-bench slot counts on the group runs page', function () {
         ->assertInertia(fn (Assert $page) => $page
             ->where('activities.0.id', $activity->id)
             ->where('activities.0.slot_count', 2)
+            ->where('activities.0.difficulty', ActivityType::DIFFICULTY_SAVAGE)
             ->where('activities.0.assigned_slot_count', 1));
 });
 

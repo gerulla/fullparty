@@ -1,5 +1,5 @@
-import { nextTick, onBeforeUnmount, onMounted } from 'vue'
-import type { Ref } from 'vue'
+import { nextTick, onBeforeUnmount, onMounted, toValue, watch } from 'vue'
+import type { MaybeRefOrGetter, Ref } from 'vue'
 import { router } from '@inertiajs/vue3'
 import { createPageRippleRenderer } from '@/utils/pageRippleCanvas'
 import type { PageRippleOrigin } from '@/Types/NavigationTransition'
@@ -11,7 +11,7 @@ export async function waitForPageTransition() {
     await covered
 }
 
-export function usePageTransition(canvas: Ref<HTMLCanvasElement | null>) {
+export function usePageTransition(canvas: Ref<HTMLCanvasElement | null>, enabled: MaybeRefOrGetter<boolean> = true) {
     let dispose: (() => void) | undefined
 
     onMounted(() => {
@@ -75,7 +75,7 @@ export function usePageTransition(canvas: Ref<HTMLCanvasElement | null>) {
         function begin(url?: URL) {
             navigationSequence++
             reset()
-            if (motion.matches || document.visibilityState === 'hidden') return
+            if (!toValue(enabled) || motion.matches || document.visibilityState === 'hidden') return
             active = true
             visitUrl = url
             try {
@@ -136,7 +136,7 @@ export function usePageTransition(canvas: Ref<HTMLCanvasElement | null>) {
         const onVisibility = () => { if (document.visibilityState === 'hidden') reset() }
         const onNativeClick = async (event: MouseEvent) => {
             if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey
-                || event.altKey || motion.matches || !(event.target instanceof Element)) return
+                || event.altKey || !toValue(enabled) || motion.matches || !(event.target instanceof Element)) return
             const link = event.target.closest<HTMLAnchorElement>('a[href]')
             if (!link || link.hasAttribute('download') || link.hasAttribute('data-no-transition')
                 || link.getAttribute('aria-disabled') === 'true' || (link.target && link.target !== '_self')) return
@@ -150,11 +150,13 @@ export function usePageTransition(canvas: Ref<HTMLCanvasElement | null>) {
             const navigation = navigationSequence
             await covered
             if (navigation !== navigationSequence) return
-            try {
-                sessionStorage.setItem('fullparty-page-ripple', JSON.stringify({
-                    ...origin, color: renderer!.color(), href: url.href, at: Date.now(),
-                }))
-            } catch { /* Navigation must still work when browser storage is unavailable. */ }
+            if (toValue(enabled) && !motion.matches) {
+                try {
+                    sessionStorage.setItem('fullparty-page-ripple', JSON.stringify({
+                        ...origin, color: renderer!.color(), href: url.href, at: Date.now(),
+                    }))
+                } catch { /* Navigation must still work when browser storage is unavailable. */ }
+            }
             window.location.assign(url.href)
             clearTimeout(watchdog)
             watchdog = setTimeout(reset, 1500)
@@ -165,11 +167,16 @@ export function usePageTransition(canvas: Ref<HTMLCanvasElement | null>) {
         document.addEventListener('visibilitychange', onVisibility)
         document.addEventListener('click', onNativeClick)
         motion.addEventListener('change', onMotion)
+        const stopPreference = watch(() => toValue(enabled), value => {
+            if (value) return
+            reset()
+            try { sessionStorage.removeItem('fullparty-page-ripple') } catch {}
+        }, { flush: 'sync' })
 
         // app.blade.php paints the arrival curtain before the JS bundle is ready.
         const arrival = document.documentElement.dataset.pageRipple
         if (arrival) {
-            if (!motion.matches) {
+            if (toValue(enabled) && !motion.matches) {
                 try {
                     renderer.start(JSON.parse(arrival))
                     renderer.draw(1, false)
@@ -189,6 +196,7 @@ export function usePageTransition(canvas: Ref<HTMLCanvasElement | null>) {
             stopSuccess()
             stopInvalid()
             stopException()
+            stopPreference()
             window.removeEventListener('popstate', onHistory)
             window.removeEventListener('resize', reset)
             window.removeEventListener('pagehide', reset)

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { getRunParticipationColor } from "@/utils/runParticipationMeta"
+import { getRunParticipationColor, getRunParticipationMeta } from "@/utils/runParticipationMeta"
 import type { AccountApplication } from "@/Types/ActivityCore";
 import axios from "axios";
 import { computed, ref, watch } from "vue";
@@ -370,6 +370,7 @@ const withdrawApplication = () => {
 								<div class="flex flex-wrap items-center gap-2">
 									<UBadge
 										:color="applicationStatusMeta(featuredApplication.status).color"
+										:icon="getRunParticipationMeta(featuredApplication.status)?.icon"
 										variant="soft"
 										:label="applicationStatusMeta(featuredApplication.status).label"
 									/>
@@ -553,6 +554,7 @@ const withdrawApplication = () => {
 									<div class="flex flex-wrap items-center gap-2">
 										<UBadge
 											:color="applicationStatusMeta(application.status).color"
+											:icon="getRunParticipationMeta(application.status)?.icon"
 											variant="soft"
 											:label="applicationStatusMeta(application.status).label"
 										/>
@@ -680,6 +682,7 @@ const withdrawApplication = () => {
 							<div class="flex flex-wrap items-center gap-2">
 								<UBadge
 									:color="applicationStatusMeta(application.status).color"
+									:icon="getRunParticipationMeta(application.status)?.icon"
 									variant="soft"
 									:label="applicationStatusMeta(application.status).label"
 								/>
@@ -763,6 +766,7 @@ const withdrawApplication = () => {
 									<div class="flex flex-wrap items-center gap-2">
 										<UBadge
 											:color="applicationStatusMeta(application.status).color"
+											:icon="getRunParticipationMeta(application.status)?.icon"
 											variant="soft"
 											:label="applicationStatusMeta(application.status).label"
 										/>

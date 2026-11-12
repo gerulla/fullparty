@@ -57,6 +57,7 @@
         "empty": "この日に予定されているランはありません。"
     },
     "calendar": {
+        "search_placeholder": "ランを検索...",
         "title": "月間カレンダー",
         "subtitle": "グループのラン予定を月表示で確認できます。",
         "month_count": "今月{count}件",
@@ -65,6 +66,11 @@
         "day_count": "{count}件",
         "more": "+{count}件追加",
         "member_count": "メンバー {assigned}/{total}",
+        "assigned_count": "{assigned} / {total}人",
+        "applied_count": "応募 {count}人",
+        "preview": {
+            "applicants": "応募者 {count}人"
+        },
         "context_menu": {
             "create_run_18": "18 STにランを作成",
             "create_run_20": "20 STにランを作成",

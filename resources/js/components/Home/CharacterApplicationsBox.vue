@@ -7,7 +7,7 @@ import { route } from 'ziggy-js'
 import HomeEmptyState from '@/components/Home/HomeEmptyState.vue'
 import { useAppearance } from '@/composables/useAppearance'
 import { formatRelativeTime } from '@/utils/formatRelativeTime'
-import { getRunParticipationColor } from '@/utils/runParticipationMeta'
+import { getRunParticipationColor, getRunParticipationMeta } from '@/utils/runParticipationMeta'
 import { localizedValue } from '@/utils/localizedValue'
 import type { V2HomeApplication, V2HomeCharacter } from '../../Types/V2Home'
 import { useDateTimeFormat } from '@/composables/useDateTimeFormat'
@@ -45,7 +45,7 @@ const relativeStart = (application: V2HomeApplication) => formatRelativeTime(
 	application.run.starts_at, locale.value, t('dashboard.character_applications.now'),
 	t('dashboard.labels.not_available'), now.value.getTime(),
 )
-const fullStart = (application: V2HomeApplication) => formatDateTime(new Date(application.run.starts_at), {
+const fullStart = (application: V2HomeApplication) => formatDateTime(application.run.starts_at, {
 	dateStyle: 'full', timeStyle: 'short',
 })
 </script>
@@ -59,13 +59,13 @@ const fullStart = (application: V2HomeApplication) => formatDateTime(new Date(ap
 		class="panel-shape panel-style"
 		:ui="{
 			root: 'items-stretch gap-4',
-			list: 'items-center gap-4 border-0 bg-transparent p-0 mb-0',
+			list: 'flex-wrap items-center gap-4 border-0 bg-transparent p-0 mb-0',
 			trigger: 'item',
 			indicator: 'hidden',
 		}"
 	>
 		<template #list-trailing>
-			<Link :href="route('account.runs.index')" class="link ml-auto shrink-0">
+			<Link :href="route('account.applications')" class="link ml-auto">
 				{{ t('dashboard.character_applications.view_all') }}
 			</Link>
 		</template>
@@ -91,6 +91,9 @@ const fullStart = (application: V2HomeApplication) => formatDateTime(new Date(ap
 						</div>
 					</div>
 				</template>
+                <p v-else-if="!tab.applications.length && tab.value === 'upcoming'" class="py-6 text-center text-sm text-muted">
+                    {{ t('dashboard.empty_states.upcoming.title') }}
+                </p>
 				<HomeEmptyState v-else-if="!tab.applications.length"
 					:title="t(`dashboard.empty_states.${tab.value}.title`)"
 					:description="tab.value === 'history' ? t('dashboard.empty_states.history.description') : undefined"
@@ -108,7 +111,7 @@ const fullStart = (application: V2HomeApplication) => formatDateTime(new Date(ap
 						<div class="flex min-w-0 flex-1 flex-col items-center justify-stretch gap-2">
 							<div class="w-full flex flex-row items-start justify-between gap-4">
 								<p class="text-sm min-w-0 break-words">{{ runTitle(application) }}</p>
-								<UBadge :variant="badgeVariant" :color="getRunParticipationColor(application.display_status)" class="shrink-0">{{ t(`dashboard.character_applications.statuses.${application.display_status}`) }}</UBadge>
+								<UBadge :variant="badgeVariant" :color="getRunParticipationColor(application.display_status)" :icon="getRunParticipationMeta(application.display_status)?.icon" class="shrink-0">{{ t(`dashboard.character_applications.statuses.${application.display_status}`) }}</UBadge>
 							</div>
 							<div class="w-full flex flex-row flex-wrap items-start justify-between gap-x-4 gap-y-1">
 								<p class="text-muted text-xs">{{ t('dashboard.character_applications.host', { name: application.run.group.name }) }}</p>
@@ -118,6 +121,9 @@ const fullStart = (application: V2HomeApplication) => formatDateTime(new Date(ap
 					</div>
 				</component>
 			</div>
+            <UButton v-if="tab.value === 'upcoming'" :to="route('dashboard.runs.index')" icon="i-lucide-search"
+                color="primary" variant="ghost" size="xs" class="mt-3 rounded-md"
+                :label="t('dashboard.find_more_runs')" />
 		</template>
 	</UTabs>
 </template>

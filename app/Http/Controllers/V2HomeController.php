@@ -18,7 +18,8 @@ class V2HomeController extends Controller
             'applications' => Inertia::defer(fn () => $this->data->applications($request->user()), 'v2-applications'),
             'applicationHistory' => Inertia::defer(fn () => $this->data->applicationHistory($request->user()), 'v2-application-history'),
             'groups' => Inertia::defer(fn () => $this->data->groups($request->user()), 'v2-groups'),
-            'recommendedRuns' => Inertia::defer(fn () => $this->data->recommendedRuns($request->user()), 'v2-recommended-runs'),
+            'upcomingRuns' => Inertia::defer(fn () => $this->data->upcomingRuns($request->user()), 'v2-upcoming-runs'),
+            'hostedRuns' => Inertia::defer(fn () => $this->data->hostedRuns($request->user()), 'v2-hosted-runs'),
             'groupRuns' => Inertia::defer(fn () => $this->data->groupRuns($request->user()), 'v2-group-runs'),
         ]);
     }

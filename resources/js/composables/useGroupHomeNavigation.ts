@@ -17,7 +17,7 @@ export function useGroupHomeNavigation(group: () => GroupNavigationContext) {
         const activeSection = new URLSearchParams(page.url.split('?')[1]?.split('#')[0] ?? '').get('section')
         const links = new Map<string, GroupHomeNavigationLink>(sections.value.flatMap(section => section.links).map(link => [link.key, {
             ...link,
-            description: ['home', 'members', 'delubrum_reginae_savage', 'forked_tower_blood'].includes(link.key)
+            description: ['home', 'delubrum_reginae_savage', 'forked_tower_blood'].includes(link.key)
                 ? '' : t(`groups.dashboard.navigation.descriptions.${link.key}`),
         }]))
         const add = (key: string, name: string, icon: string, label: string, section?: string) => {
@@ -63,16 +63,15 @@ export function useGroupHomeNavigation(group: () => GroupNavigationContext) {
 
     const navigation = computed<GroupHomeNavigationItem[]>(() => {
         const direct = (key: string) => pick(key).map(link => ({ ...link }))
-        const menu = (key: string, icon: string, links: GroupHomeNavigationLink[]) => links.length ? [{
-            key, icon, label: t(`groups.dashboard.navigation.${key}`), links,
+        const menu = (key: string, icon: string, links: GroupHomeNavigationLink[], label = t(`groups.dashboard.navigation.${key}`)) => links.length ? [{
+            key, icon, label, links,
             active: links.some(link => link.active),
         }] : []
         return [
-            ...direct('home').map(link => ({ ...link, label: t('groups.dashboard.navigation.overview'), icon: 'i-lucide-house' })),
-            ...menu('planning', 'i-lucide-calendar-days', pick('activities', 'availability').map(link => link.key === 'activities'
-                ? { ...link, label: t('groups.dashboard.navigation.run_calendar') } : link)),
-            ...direct('members'),
+            ...direct('home').map(link => ({ ...link, icon: 'i-lucide-house' })),
+            ...direct('activities').map(link => ({ ...link, label: t('groups.dashboard.navigation.run_calendar'), icon: 'i-lucide-calendar-days' })),
             ...direct('resources'),
+            ...menu('members', 'i-lucide-users', pick('members', 'availability'), t('groups.dashboard.navigation.community')),
             ...menu('insights', 'i-lucide-chart-no-axes-combined', pick('statistics', 'leaderboard', 'legacy_leaderboard')),
             ...menu('manage', 'i-lucide-settings', pick('manage_resources', 'content_customization', 'membership_applications', 'application_form', 'audit_log', 'settings')),
         ]

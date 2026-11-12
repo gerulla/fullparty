@@ -30,24 +30,14 @@ beforeEach(function () {
         'needs_application' => true,
         'allow_guest_applications' => true,
         'target_prog_point_key' => 'start',
+        'organized_by_user_id' => $this->user->id,
     ]);
+    $this->group->memberships()->where('user_id', $this->user->id)->delete();
 });
 
-it('recommends public runs independently of group visibility and never recommends banned or members-only runs', function () {
-    $service = app(V2HomeDataService::class);
-    $this->group->update(['join_mode' => Group::JOIN_MODE_INVITE_ONLY, 'is_visible' => false]);
-    expect(array_column($service->recommendedRuns($this->user), 'id'))->toBe([$this->run->id]);
-
-    $this->run->update(['is_public' => false]);
-    expect($service->recommendedRuns($this->user))->toBe([]);
-    $this->run->update(['is_public' => true]);
-    $this->group->bans()->create(['user_id' => $this->user->id, 'banned_by_user_id' => $this->group->owner_id]);
-    expect($service->recommendedRuns($this->user))->toBe([]);
-});
-
-it('provides the published progress label and localized attendee links for a recommended card', function () {
+it('provides the published progress label and localized attendee links for a home run card', function () {
     app()->setLocale('de');
-    $run = app(V2HomeDataService::class)->recommendedRuns($this->user)[0];
+    $run = app(V2HomeDataService::class)->hostedRuns($this->user)[0];
     $parameters = ['locale' => 'de', 'group' => $this->group->slug, 'activity' => $this->run->id];
 
     expect($run['target_prog_point_key'])->toBe('start')
@@ -62,7 +52,7 @@ it('provides the published progress label and localized attendee links for a rec
         ->and($run)->not->toHaveKey('secret_key');
 });
 
-it('only links a recommended cards group when the viewer can access its dashboard', function (bool $visible, string $joinMode, ?string $role, bool $allowed) {
+it('only links a home run cards group when the viewer can access its dashboard', function (bool $visible, string $joinMode, ?string $role, bool $allowed) {
     app()->setLocale('de');
     $this->group->update(['is_visible' => $visible, 'join_mode' => $joinMode]);
     if ($role === 'owner') {
@@ -73,7 +63,7 @@ it('only links a recommended cards group when the viewer can access its dashboar
         ]);
     }
     $href = route('groups.dashboard', ['locale' => 'de', 'group' => $this->group->slug], false);
-    $card = app(V2HomeDataService::class)->recommendedRuns($this->user)[0];
+    $card = app(V2HomeDataService::class)->hostedRuns($this->user)[0];
 
     expect($card['group']['dashboard_href'])->toBe($allowed ? $href : null);
     $this->actingAs($this->user)->get($href)->assertStatus($allowed ? 200 : 404);
@@ -95,7 +85,7 @@ it('offers view application only for the viewers non-withdrawn application', fun
         'user_id' => $this->user->id,
         'status' => $status,
     ]);
-    $run = app(V2HomeDataService::class)->recommendedRuns($this->user)[0];
+    $run = app(V2HomeDataService::class)->hostedRuns($this->user)[0];
 
     expect($run['has_existing_application'])->toBe($status !== ActivityApplication::STATUS_WITHDRAWN)
         ->and($run['can_apply'])->toBe($status === ActivityApplication::STATUS_WITHDRAWN)
@@ -106,7 +96,7 @@ it('offers view application only for the viewers non-withdrawn application', fun
 
 it('does not confuse another users application with the viewers application', function () {
     ActivityApplication::factory()->create(['activity_id' => $this->run->id]);
-    $run = app(V2HomeDataService::class)->recommendedRuns($this->user)[0];
+    $run = app(V2HomeDataService::class)->hostedRuns($this->user)[0];
 
     expect($run['participation_status'])->toBeNull()
         ->and($run['has_existing_application'])->toBeFalse()
@@ -116,7 +106,7 @@ it('does not confuse another users application with the viewers application', fu
 
 it('omits the apply action for runs that do not use applications or have reached their start', function (array $attributes) {
     $this->run->update($attributes);
-    $run = app(V2HomeDataService::class)->recommendedRuns($this->user)[0];
+    $run = app(V2HomeDataService::class)->hostedRuns($this->user)[0];
 
     expect($run['can_apply'])->toBeFalse()->and($run['application_href'])->toBeNull();
 })->with([
@@ -124,14 +114,14 @@ it('omits the apply action for runs that do not use applications or have reached
     'starts now' => fn () => ['starts_at' => now()],
 ]);
 
-it('allows a recommendation without a configured progress target', function () {
+it('allows a home run card without a configured progress target', function () {
     $this->run->update(['target_prog_point_key' => null]);
-    $run = app(V2HomeDataService::class)->recommendedRuns($this->user)[0];
+    $run = app(V2HomeDataService::class)->hostedRuns($this->user)[0];
 
     expect($run['target_prog_point_key'])->toBeNull()->and($run['target_prog_point_label'])->toBeNull();
 });
 
-it('counts active applicants and limits avatar previews to three per recommended run', function () {
+it('counts active applicants and limits avatar previews to three per home run', function () {
     $secondRun = $this->run->replicate();
     $secondRun->save();
     $expectedAvatars = [];
@@ -152,7 +142,7 @@ it('counts active applicants and limits avatar previews to three per recommended
         }
     }
 
-    $runs = app(V2HomeDataService::class)->recommendedRuns($this->user);
+    $runs = app(V2HomeDataService::class)->hostedRuns($this->user);
     expect($runs)->toHaveCount(2);
     foreach ($runs as $run) {
         expect($run['application_count'])->toBe(5)
@@ -169,7 +159,7 @@ it('keeps private profiles and guests anonymous in the applicant preview', funct
     ]);
     $application->update(['applicant_avatar_url' => 'https://example.test/private-character.png']);
 
-    $run = app(V2HomeDataService::class)->recommendedRuns($this->user)[0];
+    $run = app(V2HomeDataService::class)->hostedRuns($this->user)[0];
     expect($run['application_count'])->toBe(1)
         ->and($run['applicant_avatars'])->toBe([null]);
 })->with([
@@ -179,6 +169,6 @@ it('keeps private profiles and guests anonymous in the applicant preview', funct
 ]);
 
 it('returns an empty avatar preview and zero count when nobody has applied', function () {
-    $run = app(V2HomeDataService::class)->recommendedRuns($this->user)[0];
+    $run = app(V2HomeDataService::class)->hostedRuns($this->user)[0];
     expect($run['application_count'])->toBe(0)->and($run['applicant_avatars'])->toBe([]);
 });

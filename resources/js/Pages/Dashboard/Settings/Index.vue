@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { SettingsHomepageGroup, SettingsLinkedSession, SettingsNavigationState, SettingsSection, SettingsUser } from "@/Types/Settings";
+import type { SettingsLinkedSession, SettingsNavigationState, SettingsSection, SettingsUser } from "@/Types/Settings";
 import {settingsSections} from "@/Types/Settings";
 import {useI18n} from "vue-i18n";
 import V2Layout from "@/Layouts/V2Layout.vue";
@@ -7,7 +7,7 @@ import AccountSettings from "@/components/Settings/AccountSettings.vue";
 import ActiveLinkedSessions from "@/components/Settings/ActiveLinkedSessions.vue";
 import FfxivPluginSetup from "@/components/Settings/FfxivPluginSetup.vue";
 import ConnectedAccounts from "@/components/Settings/ConnectedAccounts.vue";
-import HomepagePreference from "@/components/Settings/HomepagePreference.vue";
+import PageTransitionPreference from "@/components/Settings/PageTransitionPreference.vue";
 import Notifications from "@/components/Settings/Notifications.vue";
 import PrivacySecurity from "@/components/Settings/PrivacySecurity.vue";
 import PasswordSettings from "@/components/Settings/PasswordSettings.vue";
@@ -31,7 +31,6 @@ const breadcrumbs = computed(() => [
 
 const props = defineProps<{
 	activeLinkedSessions: SettingsLinkedSession[]
-	homepageGroups: SettingsHomepageGroup[]
 }>()
 
 const page = usePage()
@@ -239,7 +238,7 @@ watch(
                 <!-- Keep forms mounted so switching sections preserves unsaved edits and pending saves. -->
                 <div v-show="navigation.activeSection === 'general'" class="space-y-6">
                     <AccountSettings :user="user" />
-                    <HomepagePreference :user="user" :groups="props.homepageGroups" />
+                    <PageTransitionPreference :user="user" />
                 </div>
                 <ConnectedAccounts v-show="navigation.activeSection === 'socials'" :user="user" />
                 <Notifications v-show="navigation.activeSection === 'notifications'" :user="user" />

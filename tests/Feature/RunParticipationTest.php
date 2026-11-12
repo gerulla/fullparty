@@ -58,10 +58,10 @@ beforeEach(function () {
         ->statusesFor(Activity::whereKey($this->run->id)->get(), $this->viewer->id);
 });
 
-it('uses the same placement badge on home recommendations, home group runs and the group dashboard', function (string $kind, string $expected) {
+it('uses the same placement badge on upcoming home runs, home group runs and the group dashboard', function (string $kind, string $expected) {
     ($this->assign)($kind);
     $home = app(V2HomeDataService::class);
-    expect($home->recommendedRuns($this->viewer)[0]['participation_status'])->toBe($expected)
+    expect($home->upcomingRuns($this->viewer)[0]['participation_status'])->toBe($expected)
         ->and($home->groupRuns($this->viewer)[0]['runs'][0]['participation_status'])->toBe($expected)
         ->and($home->applications($this->viewer)[0]['display_status'])->toBe($expected);
 

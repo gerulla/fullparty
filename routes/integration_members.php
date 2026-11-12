@@ -61,7 +61,6 @@ Route::prefix('integrations/v1')->name('api.members.')->middleware(IntegrationAp
         Route::put('me/privacy', [UserController::class, 'changePrivacySettings'])->name('me.privacy');
         Route::put('me/notification-preferences', [UserController::class, 'changeNotificationSettings'])->name('me.notifications');
         Route::put('me/time-display', [UserController::class, 'changeTimeDisplayPreference'])->name('me.time');
-        Route::put('me/homepage', [UserController::class, 'changeHomepagePreference'])->name('me.homepage');
         Route::post('characters/claim', [CharacterController::class, 'exists'])->middleware('throttle:external.lookup')->name('characters.claim');
         Route::post('characters/verify', [CharacterController::class, 'verify'])->middleware('throttle:external.lookup')->name('characters.verify');
         Route::post('characters/{character}/refresh', [CharacterController::class, 'refreshCharacterData'])->middleware('throttle:external.lookup')->name('characters.refresh');

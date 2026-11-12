@@ -15,17 +15,6 @@ const localizedRoute = (...args) => {
 	return route(...args)
 }
 const loginHref = computed(() => localizedRoute('login'));
-const homepageHref = () => {
-	const homepageGroupId = Number(page.props.auth?.user?.homepage_group_id)
-	const quickLinks = page.props.navigation?.group_quick_links ?? {}
-	const links = [
-		...(Array.isArray(quickLinks.my) ? quickLinks.my : []),
-		...(Array.isArray(quickLinks.joined) ? quickLinks.joined : []),
-	]
-	const preferredGroup = links.find((group) => Number(group.id) === homepageGroupId)
-
-	return preferredGroup?.href ?? localizedRoute('dashboard')
-}
 const authLink = (href, icon, label, activePatterns) => ({
 	label,
 	icon,
@@ -40,7 +29,7 @@ const isRouteActive = (patterns) => {
 }
 
 const top = computed(() => [
-	authLink(homepageHref(), 'i-lucide-house', t('navigation.sidebar.dashboard'), ['dashboard']),
+	authLink(localizedRoute('dashboard'), 'i-lucide-house', t('navigation.sidebar.dashboard'), ['dashboard']),
 ])
 
 const runs = computed(() => [

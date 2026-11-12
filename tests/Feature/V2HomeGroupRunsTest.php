@@ -152,7 +152,7 @@ it('defers group runs with localized links and protects private applicant previe
             ->missing('groupRuns.0.runs.0.applications')
             ->missing('groupRuns.0.runs.0.secret_key')
             ->missing('groupRuns.0.group.discord_link_token_hash')
-            ->missing('recommendedRuns')));
+            ->missing('upcomingRuns')->missing('hostedRuns')));
 });
 
 it('omits empty groups instead of rendering empty carousel rows', function () {

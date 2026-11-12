@@ -52,11 +52,12 @@
         "title": "Jour sélectionné",
         "subtitle": "Runs planifiés pour le {date}.",
         "mobile_title": "Runs le {date}",
-        "mobile_count": "Il y a {count} runs ce jour-là.",
+        "mobile_count": "Aucun run ce jour-là. | 1 run ce jour-là. | {count} runs ce jour-là.",
         "count": "{count} ce jour-là",
         "empty": "Aucun run n'est planifié pour ce jour."
     },
     "calendar": {
+        "search_placeholder": "Rechercher des runs...",
         "title": "Calendrier mensuel",
         "subtitle": "Une vue mensuelle du planning des runs du groupe.",
         "month_count": "{count} ce mois-ci",
@@ -65,6 +66,11 @@
         "day_count": "{count} éléments",
         "more": "+{count} de plus",
         "member_count": "Membres {assigned}/{total}",
+        "assigned_count": "{assigned} sur {total}",
+        "applied_count": "{count} candidatures",
+        "preview": {
+            "applicants": "{count} candidats"
+        },
         "context_menu": {
             "create_run_18": "Créer un run à 18 h HS",
             "create_run_20": "Créer un run à 20 h HS",

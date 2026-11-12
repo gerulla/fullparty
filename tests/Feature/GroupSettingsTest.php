@@ -767,37 +767,20 @@ it('uses the leaderboard feature toggle to gate the legacy leaderboard', functio
         ->assertNotFound();
 });
 
-it('allows owners and admins to view the discovery settings page', function () {
+it('returns not found for retired standalone settings pages', function () {
     $owner = User::factory()->create();
-    $admin = User::factory()->create();
-    $moderator = User::factory()->create();
-    $group = Group::factory()->create([
-        'owner_id' => $owner->id,
-        'group_type' => Group::TYPE_COMMUNITY,
-    ]);
+    $group = Group::factory()->create(['owner_id' => $owner->id]);
+    $dashboard = route('groups.dashboard', ['locale' => 'en', 'group' => $group]);
 
-    $group->memberships()->create([
-        'user_id' => $admin->id,
-        'role' => GroupMembership::ROLE_ADMIN,
-        'joined_at' => now(),
-    ]);
-    $group->memberships()->create([
-        'user_id' => $moderator->id,
-        'role' => GroupMembership::ROLE_MODERATOR,
-        'joined_at' => now(),
-    ]);
+    $this->actingAs($owner);
+    foreach (['discovery-settings', 'shortcuts', 'audit-log', 'discord-integration'] as $path) {
+        $this->get($dashboard.'/'.$path)->assertNotFound();
+        $this->getJson($dashboard.'/'.$path)->assertNotFound();
+    }
 
-    $this->actingAs($owner)
-        ->get(route('groups.dashboard.discovery-settings', $group))
-        ->assertOk();
-
-    $this->actingAs($admin)
-        ->get(route('groups.dashboard.discovery-settings', $group))
-        ->assertOk();
-
-    $this->actingAs($moderator)
-        ->get(route('groups.dashboard.discovery-settings', $group))
-        ->assertForbidden();
+    $this->get(route('groups.dashboard.settings', ['group' => $group, 'section' => 'discovery']))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page->component('Dashboard/Groups/Settings/Index'));
 });
 
 it('stores discovery metadata when updating discovery settings', function () {
@@ -838,7 +821,7 @@ it('stores discovery metadata when updating discovery settings', function () {
         ->and($group->active_end_time)->toBe('23:00');
 
     $this->actingAs($owner)
-        ->get(route('groups.dashboard.discovery-settings', $group))
+        ->get(route('groups.dashboard.settings', ['group' => $group, 'section' => 'discovery']))
         ->assertOk()
         ->assertInertia(fn (Assert $page) => $page
             ->where('group.region', 'NA')

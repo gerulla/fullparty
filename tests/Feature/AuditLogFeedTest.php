@@ -26,19 +26,28 @@ function createFeedAuditLog(Group $group, array $attributes = []): AuditLog
     ], $attributes));
 }
 
-it('loads forty rows at a time with stable cursors on both audit pages', function (bool $admin) {
+it('loads forty rows at a time with stable cursors on both audit feeds', function (bool $admin) {
     $user = User::factory()->create(['is_admin' => $admin]);
     $group = Group::factory()->create(['owner_id' => $user->id]);
     $ids = collect(range(1, 85))->map(fn () => createFeedAuditLog($group)->id)->reverse()->values();
     $url = $admin
         ? route('admin.audit-log', ['locale' => 'en'])
-        : route('groups.dashboard.audit-log', ['locale' => 'en', 'group' => $group]);
+        : route('groups.dashboard.audit-log.data', ['locale' => 'en', 'group' => $group]);
 
-    $response = $this->actingAs($user)->get($url)->assertOk();
-    $response->assertInertia(fn (Assert $page) => $page
-        ->has('auditLogs', 40)->where('auditLogs.0.id', $ids[0])
-        ->where('auditLogs.39.id', $ids[39])->where('nextCursor', fn ($cursor) => is_string($cursor)));
-    $cursor = $response->viewData('page')['props']['nextCursor'];
+    $this->actingAs($user);
+    if ($admin) {
+        $response = $this->get($url)->assertOk();
+        $response->assertInertia(fn (Assert $page) => $page
+            ->has('auditLogs', 40)->where('auditLogs.0.id', $ids[0])
+            ->where('auditLogs.39.id', $ids[39])->where('nextCursor', fn ($cursor) => is_string($cursor)));
+        $cursor = $response->viewData('page')['props']['nextCursor'];
+    } else {
+        $response = $this->getJson($url)->assertOk()
+            ->assertJsonCount(40, 'auditLogs')->assertJsonPath('auditLogs.0.id', $ids[0])
+            ->assertJsonPath('auditLogs.39.id', $ids[39]);
+        $cursor = $response->json('nextCursor');
+        expect($cursor)->toBeString();
+    }
 
     // A new event must not shift the next page or duplicate existing rows.
     createFeedAuditLog($group, ['created_at' => '2026-08-04 18:00:00']);
@@ -65,9 +74,16 @@ it('filters the full history rather than just the loaded page', function (bool $
     }
     $url = $admin
         ? route('admin.audit-log', ['locale' => 'en'])
-        : route('groups.dashboard.audit-log', ['locale' => 'en', 'group' => $group]);
-    $this->actingAs($actor)->get($url)->assertInertia(fn (Assert $page) => $page
-        ->has('filters.actions', 2)->has('filters.severities', 2)->has('filters.users', 2));
+        : route('groups.dashboard.audit-log.data', ['locale' => 'en', 'group' => $group]);
+    $this->actingAs($actor);
+    if ($admin) {
+        $this->get($url)->assertInertia(fn (Assert $page) => $page
+            ->has('filters.actions', 2)->has('filters.severities', 2)->has('filters.users', 2));
+    } else {
+        $this->getJson($url.'?include_options=1')->assertOk()
+            ->assertJsonCount(2, 'filters.actions')->assertJsonCount(2, 'filters.severities')
+            ->assertJsonCount(2, 'filters.users');
+    }
     $this->getJson($url.'?'.http_build_query([
         'search' => 'SPECIFIC OLDER', 'action' => $match->action, 'severity' => $match->severity,
         'user' => $actor->id, 'afterDate' => '2026-08-03', 'beforeDate' => '2026-08-03',
@@ -112,12 +128,9 @@ it('filters exact runs and keeps run options and records inside their group', fu
     createFeedAuditLog($group, ['metadata' => ['activity_id' => $otherRun->id, 'activity_title' => $run->title]]);
     createFeedAuditLog($group, ['metadata' => ['activity_title' => $run->title]]);
     createFeedAuditLog($otherGroup, ['metadata' => ['activity_id' => $run->id]]);
-    $url = route('groups.dashboard.audit-log', ['locale' => 'en', 'group' => $group]);
+    $url = route('groups.dashboard.audit-log.data', ['locale' => 'en', 'group' => $group]);
 
-    $this->actingAs($group->owner)->get($url)->assertInertia(fn (Assert $page) => $page
-        ->has('filters.activities', 2)->where('filters.activities', fn ($options) => collect($options)
-        ->pluck('value')->sort()->values()->all() === collect([(string) $run->id, (string) $otherRun->id])->sort()->values()->all()));
-    $result = $this->getJson($url.'?activity='.$run->id.'&include_options=1')
+    $result = $this->actingAs($group->owner)->getJson($url.'?activity='.$run->id.'&include_options=1')
         ->assertOk()->assertJsonCount(3, 'auditLogs')->assertJsonCount(2, 'filters.activities');
     expect(collect($result->json('filters.activities'))->pluck('value')->sort()->values()->all())
         ->toBe(collect([(string) $run->id, (string) $otherRun->id])->sort()->values()->all());
@@ -138,7 +151,7 @@ it('records the exact run for application audit events even when the subject is 
 it('protects both html and incremental audit requests', function () {
     $member = User::factory()->create();
     $group = Group::factory()->withMember($member, GroupMembership::ROLE_MEMBER)->create();
-    $groupUrl = route('groups.dashboard.audit-log', ['locale' => 'en', 'group' => $group]);
+    $groupUrl = route('groups.dashboard.audit-log.data', ['locale' => 'en', 'group' => $group]);
     $adminUrl = route('admin.audit-log', ['locale' => 'en']);
     foreach ([$groupUrl, $adminUrl] as $url) {
         $this->actingAs($member)->get($url)->assertForbidden();
@@ -165,7 +178,7 @@ it('keeps list entries light and presents recorded run changes only when their d
             'assignment' => ['role' => 'moderator', 'enabled' => true],
         ],
     ]);
-    $listUrl = route('groups.dashboard.audit-log', ['locale' => 'en', 'group' => $group]);
+    $listUrl = route('groups.dashboard.audit-log.data', ['locale' => 'en', 'group' => $group]);
     $detailUrl = route('groups.dashboard.audit-log.show', ['locale' => 'en', 'group' => $group, 'auditLog' => $log]);
     $this->actingAs($group->owner)->getJson($listUrl)->assertOk()
         ->assertJsonPath('auditLogs.0.changes', [])->assertJsonPath('auditLogs.0.change_count', 3)
@@ -220,7 +233,7 @@ it('scopes event details to moderators of the requested group and preserves reso
         ->assertJsonPath('event.resource', null)->assertJsonPath('event.category', 'resources')->assertJsonPath('event.facts', [])
         ->assertJsonPath('event.formatted_changes', [])->assertJsonPath('event.change_count', 0);
     expect($response->getContent())->not->toContain('Restricted resource title', 'Private resource body');
-    $this->getJson(route('groups.dashboard.audit-log', ['locale' => 'en', 'group' => $group, 'search' => 'Restricted resource title']))
+    $this->getJson(route('groups.dashboard.audit-log.data', ['locale' => 'en', 'group' => $group, 'search' => 'Restricted resource title']))
         ->assertOk()->assertJsonCount(0, 'auditLogs');
     $allowed = $this->actingAs($group->owner)->getJson($url($log))->assertOk()
         ->assertJsonPath('event.resource.id', $resource->id)
@@ -237,7 +250,7 @@ it('combines category filtering with complete local-day boundaries across a dayl
     createFeedAuditLog($group, ['created_at' => '2026-03-28 23:59:59']);
     $member = createFeedAuditLog($group, ['created_at' => '2026-03-29 12:00:00', 'action' => 'group.member.joined']);
     $settings = createFeedAuditLog($group, ['created_at' => '2026-03-29 12:00:00', 'action' => 'group.updated']);
-    $url = route('groups.dashboard.audit-log', ['locale' => 'en', 'group' => $group]);
+    $url = route('groups.dashboard.audit-log.data', ['locale' => 'en', 'group' => $group]);
     $params = ['afterDate' => '2026-03-29', 'beforeDate' => '2026-03-29', 'timezone' => 'Europe/London'];
     $this->actingAs($group->owner)->getJson($url.'?'.http_build_query([...$params, 'category' => 'runs']))
         ->assertOk()->assertJsonCount(2, 'auditLogs')->assertJsonPath('auditLogs.0.id', $last->id)->assertJsonPath('auditLogs.1.id', $first->id);

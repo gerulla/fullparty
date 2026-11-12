@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { getRunParticipationColor } from "@/utils/runParticipationMeta"
+import { getRunParticipationColor, getRunParticipationMeta } from "@/utils/runParticipationMeta"
 import type { ActivityApplicationRecord, ApplicationQuestion } from "@/Types/ActivityApplications";
 import { computed, ref } from "vue";
 import { router, usePage } from "@inertiajs/vue3";
@@ -560,6 +560,7 @@ const copyStatusLink = async () => {
 							<div class="mt-3 flex flex-col gap-3">
 								<UBadge
 									:color="applicationStatusMeta.color"
+									:icon="getRunParticipationMeta(application?.status)?.icon"
 									variant="soft"
 									class="w-fit"
 									:label="applicationStatusMeta.label"

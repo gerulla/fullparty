@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { Link } from '@inertiajs/vue3'
-import { computed, ref, watch } from 'vue'
+import { computed, nextTick, onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useAppearance } from '@/composables/useAppearance'
 import { getActivityStatusMeta } from '@/utils/activityStatusMeta'
@@ -14,7 +14,9 @@ const props = withDefaults(defineProps<{
     run: RunCardData
     type?: RunCardType
     carousel?: boolean
-}>(), { type: 'default', carousel: false })
+    eagerImage?: boolean
+}>(), { type: 'default', carousel: false, eagerImage: false })
+const emit = defineEmits<{ ready: [] }>()
 const { t, locale } = useI18n()
 const { isDark } = useAppearance()
 const { formatDateTime, formatDateTimeParts, displayTimeZoneLabel } = useDateTimeFormat()
@@ -26,7 +28,16 @@ const activityName = computed(() => localizedValue(props.run.activity_type.name,
 const title = computed(() => props.run.title || activityName.value)
 const imageUrl = computed(() => props.run.activity_type.banner_image_url || props.run.activity_type.small_image_url)
 const imageFailed = ref(false)
-watch(imageUrl, () => { imageFailed.value = false })
+const heroImage = ref<HTMLImageElement | null>(null)
+const notifyIfReady = () => {
+    if (!imageUrl.value || heroImage.value?.complete) emit('ready')
+}
+watch(imageUrl, async () => {
+    imageFailed.value = false
+    await nextTick()
+    notifyIfReady()
+})
+onMounted(notifyIfReady)
 const startsAtLabel = computed(() => formatDateTime(props.run.starts_at, {
     dateStyle: 'full', timeStyle: 'short',
 }))
@@ -49,8 +60,8 @@ const applicantAvatars = computed(() => (props.run.applicant_avatars ?? []).slic
         <Link :href="run.href" :draggable="false"
             class="flex min-w-0 flex-col gap-1 rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand">
 		<div class="relative w-full h-36 overflow-hidden rounded-2xl bg-elevation-3 dark:bg-elevation-5 ">
-			<img v-if="imageUrl && !imageFailed" :src="imageUrl" alt="" loading="lazy" decoding="async"
-                class="w-full h-full object-cover" @error="imageFailed = true">
+			<img v-if="imageUrl && !imageFailed" ref="heroImage" :src="imageUrl" alt="" :loading="eagerImage ? 'eager' : 'lazy'" decoding="async"
+                class="w-full h-full object-cover" @load="emit('ready')" @error="imageFailed = true; emit('ready')">
             <div class="absolute inset-x-0 top-0 flex items-start justify-between gap-2 p-2">
                 <time v-if="type === 'date'" :datetime="run.starts_at ?? undefined" :aria-label="`${startsAtLabel} (${displayTimeZoneLabel})`" :title="displayTimeZoneLabel"
                     class="flex h-14 min-w-12 shrink-0 flex-col items-center justify-center rounded-md bg-elevation-1/95 px-2 text-highlighted ring-1 ring-default dark:bg-elevation-3/95">

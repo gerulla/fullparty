@@ -633,18 +633,16 @@ Route::prefix('{locale?}')
                 Route::post('/membership-applications/{application}/decline', [GroupMembershipApplicationReviewController::class, 'decline'])->name('groups.dashboard.membership-applications.decline');
                 Route::get('/membership-application-form', [GroupMembershipApplicationFormController::class, 'edit'])->name('groups.dashboard.membership-application-form.edit');
                 Route::put('/membership-application-form', [GroupMembershipApplicationFormController::class, 'update'])->name('groups.dashboard.membership-application-form.update');
-                Route::get('/audit-log', [GroupAuditLogController::class, 'index'])->name('groups.dashboard.audit-log');
-                Route::get('/audit-log/{auditLog}', [GroupAuditLogController::class, 'show'])->whereNumber('auditLog')->name('groups.dashboard.audit-log.show');
-                Route::get('/discovery-settings', [GroupSettingsController::class, 'showDiscovery'])->name('groups.dashboard.discovery-settings');
-                Route::put('/discovery-settings', [GroupSettingsController::class, 'updateDiscovery'])->name('groups.dashboard.discovery-settings.update');
                 Route::get('/settings', [GroupSettingsController::class, 'show'])->name('groups.dashboard.settings');
                 Route::put('/settings', [GroupSettingsController::class, 'update'])->name('groups.dashboard.settings.update');
-                Route::get('/shortcuts', [GroupShortcutController::class, 'index'])->name('groups.dashboard.shortcuts.index');
-                Route::put('/shortcuts', [GroupShortcutController::class, 'update'])->name('groups.dashboard.shortcuts.update');
-                Route::get('/discord-integration', [GroupDiscordIntegrationController::class, 'show'])->name('groups.dashboard.discord-integration');
-                Route::post('/discord-integration/link-token', [GroupDiscordIntegrationController::class, 'generateToken'])->name('groups.dashboard.discord-integration.link-token');
-                Route::put('/discord-integration/settings', [GroupDiscordIntegrationController::class, 'updateSettings'])->name('groups.dashboard.discord-integration.settings.update');
-                Route::delete('/discord-integration', [GroupDiscordIntegrationController::class, 'destroy'])->name('groups.dashboard.discord-integration.destroy');
+                Route::get('/settings/audit-log', [GroupAuditLogController::class, 'index'])->name('groups.dashboard.audit-log.data');
+                Route::get('/settings/audit-log/{auditLog}', [GroupAuditLogController::class, 'show'])->whereNumber('auditLog')->name('groups.dashboard.audit-log.show');
+                Route::put('/settings/discovery', [GroupSettingsController::class, 'updateDiscovery'])->name('groups.dashboard.discovery-settings.update');
+                Route::put('/settings/shortcuts', [GroupShortcutController::class, 'update'])->name('groups.dashboard.shortcuts.update');
+                Route::get('/settings/discord', [GroupDiscordIntegrationController::class, 'show'])->name('groups.dashboard.discord-integration.data');
+                Route::post('/settings/discord/link-token', [GroupDiscordIntegrationController::class, 'generateToken'])->name('groups.dashboard.discord-integration.link-token');
+                Route::put('/settings/discord', [GroupDiscordIntegrationController::class, 'updateSettings'])->name('groups.dashboard.discord-integration.settings.update');
+                Route::delete('/settings/discord', [GroupDiscordIntegrationController::class, 'destroy'])->name('groups.dashboard.discord-integration.destroy');
 
                 /*
                 |--------------------------------------------------------------------------
@@ -770,7 +768,7 @@ Route::prefix('{locale?}')
             Route::post('/settings/password', [UserController::class, 'changePassword'])->name('settings.password');
             Route::post('/settings/notifications', [UserController::class, 'changeNotificationSettings'])->name('settings.notifications');
             Route::patch('/settings/time-display', [UserController::class, 'changeTimeDisplayPreference'])->name('settings.time-display');
-            Route::patch('/settings/homepage', [UserController::class, 'changeHomepagePreference'])->name('settings.homepage');
+            Route::patch('/settings/page-transition', [UserController::class, 'changePageTransitionPreference'])->name('settings.page-transition');
             Route::post('/settings/discord-integration/link-token', [UserController::class, 'generateDiscordLinkToken'])->name('settings.discord-integration.link-token');
             Route::delete('/settings/discord-integration', [UserController::class, 'disconnectDiscordIntegration'])->name('settings.discord-integration.destroy');
             Route::delete('/settings/linked-sessions/{token}', [SettingsLinkedSessionController::class, 'destroy'])->name('settings.linked-sessions.destroy');

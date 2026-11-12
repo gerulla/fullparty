@@ -26,7 +26,7 @@ const initialTimezone = props.auditLogs !== undefined && hasInitialDateFilter()
     ? (props.selectedFilters?.timezone || 'UTC')
     : timezone.value
 const { filters, filterOptions, rows, hasMore, loading, failed, loadMore, retry } = useAuditLogFeed(
-    () => route('groups.dashboard.audit-log', { group: props.group.slug, locale: locale.value }),
+    () => route('groups.dashboard.audit-log.data', { group: props.group.slug, locale: locale.value }),
     () => props.auditLogs === undefined ? undefined : {
         auditLogs: props.auditLogs,
         nextCursor: props.nextCursor ?? null,

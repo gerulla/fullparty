@@ -301,7 +301,7 @@ class HandleInertiaRequests extends Middleware
             'discord_notifications' => (bool) $user->discord_notifications,
             'notification_preferences' => $this->notificationPreferenceSettingsService->serializeUserPreferences($user),
             'time_display_mode' => $user->time_display_mode ?: User::TIME_DISPLAY_LOCAL,
-            'homepage_group_id' => $user->homepage_group_id,
+            'page_transition_enabled' => $user->page_transition_enabled ?? true,
             'discord_link_token_expires_at' => $user->discord_link_token_expires_at?->toIso8601String(),
             'discord_user_integration' => $user->discordUserIntegration ? [
                 'id' => $user->discordUserIntegration->id,

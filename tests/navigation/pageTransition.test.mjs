@@ -2,10 +2,12 @@ import assert from 'node:assert/strict'
 import test from 'node:test'
 import { readFileSync } from 'node:fs'
 import ts from 'typescript'
+import { ref, toValue, watch } from 'vue'
 
 const flush = () => new Promise(resolve => setImmediate(resolve))
 
-function harness() {
+function harness(initiallyEnabled = true) {
+    const enabled = ref(initiallyEnabled)
     const listeners = new Map()
     const windowListeners = new Map()
     const documentListeners = new Map()
@@ -34,7 +36,7 @@ function harness() {
         removeEventListener: name => documentListeners.delete(name),
     }
     const modules = {
-        vue: { nextTick: async () => {}, onMounted: fn => fn(), onBeforeUnmount: fn => { unmount = fn } },
+        vue: { nextTick: async () => {}, toValue, watch, onMounted: fn => fn(), onBeforeUnmount: fn => { unmount = fn } },
         '@inertiajs/vue3': { router: { on: (name, fn) => { listeners.set(name, fn); return () => listeners.delete(name) } } },
         '@/utils/pageRippleCanvas': { createPageRippleRenderer: () => ({
             start: () => { calls.push('start'); return { x: 0, y: 0.5, seed: 1 } },
@@ -45,7 +47,7 @@ function harness() {
     }
     const globals = {
         window, document, Element, performance: { now: () => now },
-        sessionStorage: { setItem: (key, value) => stored.set(key, value) },
+        sessionStorage: { setItem: (key, value) => stored.set(key, value), removeItem: key => stored.delete(key) },
         requestAnimationFrame: fn => { frames.set(++id, fn); return id },
         cancelAnimationFrame: id => frames.delete(id),
         setTimeout: fn => { timers.set(++id, fn); return id },
@@ -55,7 +57,7 @@ function harness() {
     const code = ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } }).outputText
     const exports = {}
     new Function('require', 'exports', ...Object.keys(globals), code)(name => modules[name], exports, ...Object.values(globals))
-    exports.usePageTransition({ value: {} })
+    exports.usePageTransition({ value: {} }, enabled)
     return {
         calls, window, document, frames, timers, assigned, stored,
         wait: exports.waitForPageTransition,
@@ -72,6 +74,7 @@ function harness() {
             pending.forEach(fn => fn(now))
         },
         reduce(value) { motion.matches = value; onMotion?.() },
+        enable(value) { enabled.value = value },
         history(path) { window.location.pathname = path; windowListeners.get('popstate')() },
         timeout() { [...timers.values()].forEach(fn => fn()) },
         native(extra = {}, linkExtra = {}) {
@@ -162,6 +165,36 @@ test('cancellation and the timeout release the page gate and cannot leave an ove
     h.unmount()
 })
 
+test('opting out skips all navigation effects and safely releases a transition already in progress', async () => {
+    const h = harness(false)
+    h.before(h.visit())
+    await flush()
+    await h.wait()
+    const skipped = h.native()
+    await skipped.done
+    h.history('/en/groups')
+    assert.equal(skipped.event.defaultPrevented, false)
+    assert.equal(h.calls.includes('start'), false)
+    assert.equal(h.frames.size, 0)
+
+    h.enable(true)
+    h.before(h.visit())
+    await flush()
+    assert.ok(h.calls.includes('start'))
+    const pending = h.wait()
+    h.enable(false)
+    await pending
+    assert.equal(h.frames.size, 0)
+
+    h.enable(true)
+    const click = h.native()
+    h.enable(false)
+    await click.done
+    assert.equal(h.assigned.length, 1)
+    assert.equal(h.stored.has('fullparty-page-ripple'), false)
+    h.unmount()
+})
+
 test('rapid navigation ignores completion of a superseded request', async () => {
     const h = harness()
     const first = h.visit()
@@ -247,9 +280,9 @@ test('the pre-paint arrival script consumes only a fresh matching handoff and ha
     const script = [...blade.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(match => match[1])
         .find(source => source.includes('fullparty-page-ripple'))
     assert.ok(script)
-    for (const scenario of ['valid', 'expired', 'wrong page', 'reduced', 'bad coordinates']) {
+    for (const scenario of ['valid', 'expired', 'wrong page', 'reduced', 'opted out', 'bad coordinates']) {
         const classes = new Set()
-        const root = { dataset: {}, style: { setProperty() {} }, classList: {
+        const root = { dataset: { pageTransitions: scenario === 'opted out' ? 'off' : 'on' }, style: { setProperty() {} }, classList: {
             add: name => classes.add(name), remove: name => classes.delete(name),
         } }
         const data = { href: 'https://fullparty.test/en/groups', at: Date.now(), x: 0, y: 0.5, seed: 1, color: '#27043a' }

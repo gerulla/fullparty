@@ -14,7 +14,7 @@ final class AccountController extends Controller
         $user = $request->user();
 
         return response()->json(['data' => [
-            ...$user->only(['id', 'name', 'avatar_url', 'public_profile', 'public_characters', 'time_display_mode', 'homepage_group_id',
+            ...$user->only(['id', 'name', 'avatar_url', 'public_profile', 'public_characters', 'time_display_mode',
                 'application_notifications', 'run_and_reminder_notifications', 'group_update_notifications', 'assignment_notifications',
                 'account_character_notifications', 'system_notice_notifications', 'email_notifications', 'discord_notifications']),
             'notification_preferences' => $preferences->serializeUserPreferences($user),

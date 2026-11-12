@@ -10,7 +10,7 @@
       "danger": "Danger Zone"
     },
     "sections": {
-      "general": { "title": "General", "description": "Your picture, username and homepage." },
+      "general": { "title": "General", "description": "Your picture, username and page transitions." },
       "socials": { "title": "Socials", "description": "Manage the accounts you use to sign in." },
       "notifications": { "title": "Notifications", "description": "Choose what you hear about and where." },
       "privacy": { "title": "Privacy & Security", "description": "Control visibility and change your password." },
@@ -36,14 +36,12 @@
     "profile_picture_too_large": "Profile pictures must be 5 MB or smaller.",
     "update_profile_picture": "Update Profile Picture"
   },
-  "homepage": {
-    "title": "Override Homepage",
-    "label": "Choose your Home destination",
-    "description": "Choose where the Home button in the sidebar takes you. If you leave the selected group, it returns to your profile page.",
-    "destination": "Homepage",
-    "profile_page": "Profile Page",
-    "saved": "Homepage updated successfully.",
-    "save_failed": "We could not update your homepage. Please try again."
+  "page_transition": {
+    "title": "Page transitions",
+    "label": "Enable page transition animation",
+    "description": "Show the purple ripple when moving between pages. Your device’s reduced-motion setting is still respected.",
+    "saved": "Page transition preference saved.",
+    "save_failed": "We could not save your preference. Please try again."
   },
   "connect": "Connect",
   "unlink": "Unlink",

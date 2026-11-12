@@ -12,7 +12,8 @@ import { useI18n } from "vue-i18n"
 import { route } from "ziggy-js"
 import { createRelativeTimeFormatter } from "@/utils/dateTimeFormat"
 import { localizedValue } from "@/utils/localizedValue"
-import { getRunParticipationColor } from "@/utils/runParticipationMeta"
+import { getRunParticipationColor, getRunParticipationMeta, RUN_PARTICIPATION_META } from "@/utils/runParticipationMeta"
+import { getActivityStatusMeta } from "@/utils/activityStatusMeta"
 import {
 	formatNotificationTime,
 	resolveNotificationMeta,
@@ -38,12 +39,15 @@ const recentGroupActivities = computed(() => props.overview?.notifications.slice
 const skeletonRows = [1, 2, 3]
 const skeletonTimelineRows = [1, 2, 3, 4, 5]
 
-const runStatusColor = (run: DashboardActivityOverviewRun) => {
+const runStatusMeta = (run: DashboardActivityOverviewRun) => {
 	// The classic homepage uses legacy labels for roster placement.
-	if (run.status_key === 'confirmed') return getRunParticipationColor('assigned')
-	if (run.status_key === 'benched') return getRunParticipationColor('on_bench')
-	if (run.status_key === 'pending' || run.status_key === 'cancelled') return getRunParticipationColor(run.status_key)
-	return run.status_color
+	if (run.status_key === 'confirmed') return RUN_PARTICIPATION_META.assigned
+	if (run.status_key === 'benched') return RUN_PARTICIPATION_META.on_bench
+	if (run.status_key === 'pending' || run.status_key === 'cancelled') return RUN_PARTICIPATION_META[run.status_key]
+	return {
+		...getActivityStatusMeta(run.status_key === 'completed' ? 'complete' : run.status_key),
+		color: run.status_color,
+	}
 }
 
 const groupAccentClasses = [
@@ -298,7 +302,8 @@ const notificationCategoryLabel = (notification: NotificationRecord) => {
 
 							<div class="shrink-0 text-right">
 								<UBadge
-									:color="runStatusColor(run)"
+									:color="runStatusMeta(run).color"
+									:icon="runStatusMeta(run).icon"
 									variant="soft"
 									:label="t(`dashboard.home_sections.runs.statuses.${run.status_key}`)"
 								/>
@@ -385,6 +390,7 @@ const notificationCategoryLabel = (notification: NotificationRecord) => {
 
 							<UBadge
 								:color="getRunParticipationColor(application.status_key === 'assigned' ? 'assigned' : application.status)"
+								:icon="getRunParticipationMeta(application.status_key === 'assigned' ? 'assigned' : application.status)?.icon"
 								variant="soft"
 								:label="t(`dashboard.home_sections.applications.statuses.${application.status_key}`)"
 								class="shrink-0"

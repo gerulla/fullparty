@@ -46,20 +46,6 @@ class GroupSettingsController extends Controller
         ]);
     }
 
-    public function showDiscovery(Group $group): Response
-    {
-        $group->load([
-            'owner',
-            'memberships.user',
-        ]);
-
-        $this->authorizeAdminAccess($group);
-
-        return Inertia::render('Dashboard/Groups/Settings/Discovery', [
-            'group' => $this->serializeSettingsGroup($group),
-        ]);
-    }
-
     public function update(UpdateGroupSettingsRequest $request, Group $group): RedirectResponse
     {
         $group->loadMissing('memberships', 'invites', 'features');

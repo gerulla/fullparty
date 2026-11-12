@@ -2,14 +2,16 @@
   "navigation": {
     "overview": "Overview",
     "planning": "Planning",
+    "community": "Community",
     "insights": "Insights",
     "manage": "Manage",
-    "run_calendar": "Run calendar",
+    "run_calendar": "Calendar",
     "create_run": "Create Run",
     "content_customization": "Content Customization",
     "staff_only": "Staff only",
     "descriptions": {
       "activities": "View scheduled runs and the group calendar",
+      "members": "Browse group members and their roles",
       "availability": "See when members are available to play",
       "statistics": "Explore the group’s run history and activity",
       "leaderboard": "See member rankings and contributions",

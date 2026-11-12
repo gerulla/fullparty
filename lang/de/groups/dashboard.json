@@ -2,14 +2,16 @@
   "navigation": {
     "overview": "Übersicht",
     "planning": "Planung",
+    "community": "Community",
     "insights": "Auswertung",
     "manage": "Verwaltung",
-    "run_calendar": "Run-Kalender",
+    "run_calendar": "Kalender",
     "create_run": "Run erstellen",
     "content_customization": "Inhalte anpassen",
     "staff_only": "Nur Gruppenleitung",
     "descriptions": {
       "activities": "Geplante Runs und den Gruppenkalender ansehen",
+      "members": "Gruppenmitglieder und ihre Rollen ansehen",
       "availability": "Sehen, wann Mitglieder Zeit zum Spielen haben",
       "statistics": "Run-Verlauf und Gruppenaktivität auswerten",
       "leaderboard": "Ranglisten und Beiträge der Mitglieder ansehen",

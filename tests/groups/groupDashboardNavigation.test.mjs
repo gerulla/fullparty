@@ -53,6 +53,7 @@ test('visitors only see the public group destinations, even when optional featur
     const nav = setup({ features: { resource_hub_enabled: true, availability_scheduler_enabled: true } })
     assert.deepEqual(nav.labels(), ['home', 'activities'])
     assert.deepEqual(nav.homeLinks().map(link => link.key), ['home', 'activities'])
+    assert.equal(nav.navigation.value.find(item => item.key === 'activities').href, '/en/groups/ftel/dashboard/activities')
     assert.deepEqual(nav.quickLinks().map(link => link.key), ['activities'])
 })
 
@@ -61,17 +62,22 @@ test('members retain enabled features without management controls or moderator-o
         resource_hub_enabled: true, availability_scheduler_enabled: true, availability_minimum_role: 'moderator',
     } })
     assert.deepEqual(nav.labels(), ['home', 'activities', 'members', 'resources', 'statistics', 'leaderboard', 'legacy_leaderboard'])
+    assert.deepEqual(nav.navigation.value.map(item => item.key), ['home', 'activities', 'resources', 'members', 'insights'])
     assert.ok(!nav.navigation.value.some(item => item.key === 'manage'))
     assert.ok(!nav.quickLinkSections.value.some(section => section.key === 'staff_workspace'))
     assert.ok(!nav.quickLinks().some(link => link.key === 'create_run'))
     nav.group.features.availability_minimum_role = 'member'
     assert.ok(nav.labels().includes('availability'))
     assert.equal(nav.homeLinks().find(link => link.key === 'availability').badge, undefined)
+    assert.deepEqual(nav.navigation.value.find(item => item.key === 'members').links.map(link => link.key), ['members', 'availability'])
+    nav.page.url = '/en/groups/ftel/dashboard/availability'
+    assert.ok(nav.navigation.value.find(item => item.key === 'members').active)
+    assert.ok(!nav.navigation.value.find(item => item.key === 'activities').active)
     nav.group.features.statistics_enabled = false
     nav.group.features.leaderboard_enabled = false
     nav.group.features.resource_hub_enabled = false
     assert.deepEqual(nav.labels(), ['home', 'activities', 'members', 'availability'])
-    assert.deepEqual(nav.navigation.value.map(item => item.key), ['home', 'planning', 'members'])
+    assert.deepEqual(nav.navigation.value.map(item => item.key), ['home', 'activities', 'members'])
     assert.deepEqual(nav.quickLinks().map(link => link.key), ['activities'])
 })
 
@@ -132,7 +138,7 @@ test('active links follow query strings, nested runs, group switches and locale 
     assert.deepEqual(nav.active(), ['activities'])
     assert.ok(!nav.labels().includes('legacy_leaderboard'))
     assert.ok(nav.sections.value.flatMap(section => section.links).every(link => link.href.startsWith('/de/groups/another/')))
-    assert.ok(nav.navigation.value.find(item => item.key === 'planning').active)
+    assert.ok(nav.navigation.value.find(item => item.key === 'activities').active)
     assert.ok([...nav.homeLinks(), ...nav.quickLinks()].every(link => link.href.startsWith('/de/groups/another/')))
     assert.equal(nav.quickLinks().find(link => link.key === 'audit_log').href, '/de/groups/another/dashboard/settings?section=audit_log')
 })

@@ -37,7 +37,7 @@ export type V2HomeRun = {
     title: string | null
     description: string | null
     status: ActivityStatus
-    starts_at: string
+    starts_at: string | null
     duration_hours: number | null
     datacenter: string | null
     run_style: string | null
@@ -98,6 +98,7 @@ export type V2HomeProps = {
     applications?: V2HomeApplication[]
     applicationHistory?: V2HomeApplication[]
     groups?: V2HomeGroup[]
-    recommendedRuns?: V2HomeRunCard[]
+    upcomingRuns?: V2HomeRunCard[]
+    hostedRuns?: V2HomeRunCard[]
     groupRuns?: V2HomeGroupRuns[]
 }

@@ -6,13 +6,14 @@
     "refresh_help": "Reload homepage data and replay skeletons without reloading the browser page.",
     "empty": "Simulate empty account",
     "restore": "Restore account data",
-    "empty_help": "Preview an empty account without saving changes. Your login and recommended runs stay unchanged."
+    "empty_help": "Preview an empty account without saving changes. Your login stays unchanged."
   },
   "empty_states": {
     "find_runs": "Find runs",
     "explore_groups": "Explore groups",
     "upcoming": {
-      "title": "Looks like you're free"
+      "title": "Looks like you're free",
+      "description": "No runs lined up yet. Find your next adventure."
     },
     "history": {
       "title": "Your adventures start here",
@@ -39,10 +40,16 @@
     "upcoming": "Upcoming",
     "history": "History"
   },
+  "find_more_runs": "Find More Runs",
+  "upcoming_runs": {
+    "title": "Your Upcoming Runs",
+    "loading": "Loading your upcoming runs…",
+    "empty": "You have no upcoming runs yet."
+  },
+  "hosted_runs": {
+    "title": "Runs You Host"
+  },
   "recommended_runs": {
-    "title": "Runs You May Like",
-    "loading": "Loading recommended runs…",
-    "empty": "No upcoming public runs to recommend right now.",
     "hosted_by": "Hosted by {name}",
     "applicants": "{count} Applicants | {count} Applicant | {count} Applicants"
   },
@@ -62,7 +69,7 @@
     "open_settings": "Open {name}'s settings"
   },
   "character_applications": {
-    "view_all": "View All",
+    "view_all": "View All Applications",
     "loading": "Loading runs…",
     "empty_upcoming": "No upcoming runs for this character.",
     "empty_history": "No past runs for this character.",

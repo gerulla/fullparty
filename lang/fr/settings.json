@@ -10,7 +10,7 @@
             "danger": "Zone de danger"
         },
         "sections": {
-            "general": { "title": "Général", "description": "Votre photo, nom d’utilisateur et page d’accueil." },
+            "general": { "title": "Général", "description": "Votre photo, nom d’utilisateur et transitions entre les pages." },
             "socials": { "title": "Comptes liés", "description": "Gérez les comptes utilisés pour vous connecter." },
             "notifications": { "title": "Notifications", "description": "Choisissez vos notifications et leurs canaux." },
             "privacy": { "title": "Confidentialité et sécurité", "description": "Gérez votre visibilité et votre mot de passe." },
@@ -36,14 +36,12 @@
         "profile_picture_too_large": "Les photos de profil doivent faire 5 Mo ou moins.",
         "update_profile_picture": "Mettre à jour la photo de profil"
     },
-    "homepage": {
-        "title": "Remplacer la page d’accueil",
-        "label": "Choisissez la destination de l’accueil",
-        "description": "Choisissez où le bouton Accueil de la barre latérale vous mène. Si vous quittez le groupe sélectionné, votre page de profil sera de nouveau utilisée.",
-        "destination": "Page d’accueil",
-        "profile_page": "Page de profil",
-        "saved": "La page d’accueil a été mise à jour.",
-        "save_failed": "Impossible de mettre à jour votre page d’accueil. Veuillez réessayer."
+    "page_transition": {
+        "title": "Transitions entre les pages",
+        "label": "Activer l’animation de transition",
+        "description": "Affiche une ondulation violette lors des changements de page. Le réglage de réduction des animations de votre appareil reste respecté.",
+        "saved": "Préférence de transition enregistrée.",
+        "save_failed": "Impossible d’enregistrer votre préférence. Veuillez réessayer."
     },
     "connect": "Connecter",
     "unlink": "Dissocier",

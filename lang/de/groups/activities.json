@@ -52,11 +52,12 @@
         "title": "Ausgewaehlter Tag",
         "subtitle": "Runs geplant für {date}.",
         "mobile_title": "Runs am {date}",
-        "mobile_count": "An diesem Tag gibt es {count} Runs.",
+        "mobile_count": "Keine Runs an diesem Tag. | 1 Run an diesem Tag. | {count} Runs an diesem Tag.",
         "count": "{count} an diesem Tag",
         "empty": "Für diesen Tag sind keine Runs geplant."
     },
     "calendar": {
+        "search_placeholder": "Runs suchen...",
         "title": "Monatskalender",
         "subtitle": "Eine Monatsansicht des Run-Plans der Gruppe.",
         "month_count": "{count} diesen Monat",
@@ -65,6 +66,11 @@
         "day_count": "{count} Einträge",
         "more": "+{count} weitere",
         "member_count": "Mitglieder {assigned}/{total}",
+        "assigned_count": "{assigned} von {total}",
+        "applied_count": "{count} Bewerbungen",
+        "preview": {
+            "applicants": "{count} Bewerber"
+        },
         "context_menu": {
             "create_run_18": "Run um 18 ST erstellen",
             "create_run_20": "Run um 20 ST erstellen",

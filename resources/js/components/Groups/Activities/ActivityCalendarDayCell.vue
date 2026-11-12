@@ -3,12 +3,11 @@ import type { ContextMenuItem } from "@nuxt/ui";
 import type { ActivityCalendarDay, ActivityIndexItem, GroupQuickCreateShortcut } from "@/Types/ActivityCore";
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
-import { router, usePage } from "@inertiajs/vue3";
+import { Link, router, usePage } from "@inertiajs/vue3";
 import { route } from "ziggy-js";
 import ActivityContextMenu from "@/components/Groups/Activities/ActivityContextMenu.vue";
-import ActivityHostGroupBadge from "@/components/Groups/Activities/ActivityHostGroupBadge.vue";
 import { localizedValue } from "@/utils/localizedValue";
-import { getActivityStatusBorderClass } from "@/utils/activityStatusMeta";
+import { getActivityStatusMeta } from "@/utils/activityStatusMeta";
 import { quickCreateTimeModeLabel, resolveQuickCreateStartsAt } from "@/utils/groupQuickCreateShortcuts";
 import { useDateTimeFormat } from "@/composables/useDateTimeFormat";
 
@@ -18,21 +17,25 @@ const props = defineProps<{
 	isSelected?: boolean
 	canManageActivities?: boolean
 	quickCreateShortcuts: GroupQuickCreateShortcut[]
-	opensUpward?: boolean
-	showGroupBadge?: boolean
 	groupColors?: Record<number, string>
+	expandSelected?: boolean
 }>();
 
 const emit = defineEmits<{
 	select: [dayKey: string]
+	preview: [activity: ActivityIndexItem, anchor: HTMLElement, focusContent?: boolean]
+	leavePreview: []
+	closePreview: []
 }>();
 
 const { t, locale } = useI18n();
 const page = usePage();
 const fallbackLocale = computed(() => String(page.props.locale?.fallback ?? 'en'));
-const { formatDateTime } = useDateTimeFormat();
+const { formatTimeWithMode } = useDateTimeFormat();
 
-const visibleActivities = computed(() => props.day.activities.slice(0, 3));
+const visibleActivities = computed(() => props.expandSelected && props.isSelected
+	? props.day.activities
+	: props.day.activities.slice(0, 3));
 const hiddenCount = computed(() => Math.max(0, props.day.activities.length - visibleActivities.value.length));
 
 const activityTypeName = (activity: ActivityIndexItem) => {
@@ -43,32 +46,42 @@ const activityTypeName = (activity: ActivityIndexItem) => {
 
 const activityLabel = (activity: ActivityIndexItem) => activity.title || activityTypeName(activity);
 
-const activityTargetProgPointLabel = (activity: ActivityIndexItem) => (
-	activity.target_prog_point_key
-		? localizedValue(activity.target_prog_point_label, locale.value, fallbackLocale.value) || activity.target_prog_point_key
-		: null
+const activityMemberCount = (activity: ActivityIndexItem) => activity.assigned_slot_count > 0
+	? t('groups.activities.calendar.assigned_count', {
+		assigned: activity.assigned_slot_count,
+		total: activity.slot_count,
+	})
+	: t('groups.activities.calendar.applied_count', { count: activity.application_count });
+
+const activityTime = (activity: ActivityIndexItem) => formatTimeWithMode(
+	activity.starts_at,
+	t('groups.activities.cards.no_time'),
 );
 
-const activityMemberCount = (activity: ActivityIndexItem) => t("groups.activities.calendar.member_count", {
-	assigned: activity.assigned_slot_count,
-	total: activity.slot_count,
+const activityAvatar = (activity: ActivityIndexItem) => ({
+	src: activity.organized_by_character?.avatar_url || activity.organized_by?.avatar_url || undefined,
+	alt: activity.organized_by_character?.name || activity.organized_by?.name || t('groups.activities.cards.no_organizer'),
+	icon: 'i-lucide-user-round',
 });
 
-const activityTime = (activity: ActivityIndexItem) => {
-	if (!activity.starts_at) {
-		return '';
-	}
-
-	return formatDateTime(new Date(activity.starts_at), {
-		hour: '2-digit',
-		minute: '2-digit',
-	});
+const activityBorderColor = (activity: ActivityIndexItem) => {
+	const groupColor = activity.group ? props.groupColors?.[activity.group.id] : undefined;
+	const { color } = getActivityStatusMeta(activity.status);
+	return groupColor || (color === 'neutral' ? 'var(--ui-text-highlighted)' : `var(--ui-${color})`);
 };
 
-const activityStatusBorderClass = (activity: ActivityIndexItem) => getActivityStatusBorderClass(activity.status);
-const activityGroupColor = (activity: ActivityIndexItem) => activity.group ? props.groupColors?.[activity.group.id] : undefined;
 const activityGroupSlug = (activity: ActivityIndexItem) => activity.group?.slug ?? props.groupSlug ?? '';
 const canManageActivity = (activity: ActivityIndexItem) => activity.group?.can_manage_activities ?? Boolean(props.canManageActivities);
+const activityHref = (activity: ActivityIndexItem) => canManageActivity(activity)
+	? route('groups.dashboard.activities.show', { group: activityGroupSlug(activity), activity: activity.id })
+	: activity.links.view;
+
+const previewActivity = (activity: ActivityIndexItem, event: Event, focusContent = false) => {
+	if ('pointerType' in event && event.pointerType === 'touch') return;
+	if (event.currentTarget instanceof HTMLElement) {
+		emit('preview', activity, event.currentTarget, focusContent);
+	}
+};
 
 const selectDay = () => {
 	emit('select', props.day.key);
@@ -102,14 +115,9 @@ const dayContextMenuItems = computed<ContextMenuItem[][]>(() => (
 <template>
 	<UContextMenu :items="dayContextMenuItems" :disabled="!canManageActivities">
 		<div
-			class="flex min-h-[9rem] cursor-pointer flex-col gap-2 border border-default/70 p-2 transition hover:border-primary/30 hover:bg-primary/5"
+			class="flex min-w-0 cursor-pointer flex-col gap-3 border-b border-default/70 px-1 py-3 outline-offset-[-2px] focus-visible:outline-2 focus-visible:outline-primary sm:px-2"
 			role="button"
 			tabindex="0"
-			:class="[
-				day.isCurrentMonth ? 'bg-background' : 'bg-muted/10',
-				day.isToday ? 'bg-primary/6 ring-1 ring-primary/20' : '',
-				isSelected ? 'border-primary/40 bg-primary/10 ring-1 ring-primary/35' : '',
-			]"
 			@click="selectDay"
 			@keydown.enter.prevent="selectDay"
 			@keydown.space.prevent="selectDay"
@@ -129,7 +137,7 @@ const dayContextMenuItems = computed<ContextMenuItem[][]>(() => (
 				</div>
 			</div>
 
-			<div class="flex flex-1 flex-col gap-1.5">
+			<div class="flex min-w-0 flex-1 flex-col gap-3">
 				<ActivityContextMenu
 					v-for="activity in visibleActivities"
 					:key="activity.id"
@@ -137,10 +145,23 @@ const dayContextMenuItems = computed<ContextMenuItem[][]>(() => (
 					:can-manage-activities="canManageActivity(activity)"
 					:activity="activity"
 				>
-					<div
-						class="group relative z-0 origin-top-left overflow-visible rounded-sm border-t-2 bg-primary/15 px-2 py-1.5 text-xs shadow-sm transition duration-150 ease-out hover:z-50 hover:scale-125 hover:bg-elevated hover:shadow-xl"
-						:class="activityGroupColor(activity) ? undefined : activityStatusBorderClass(activity)"
-						:style="{ borderTopColor: activityGroupColor(activity) }"
+					<Link
+						:href="activityHref(activity)"
+						class="relative grid min-w-0 grid-cols-[minmax(0,1fr)_auto] items-center gap-x-3 gap-y-1 rounded-sm border-l-3 bg-elevation-1 py-2 pl-2 text-xs shadow-md outline-offset-2 transition duration-150 hover:z-10 hover:scale-105 hover:bg-elevation-1 focus-visible:outline-2 focus-visible:outline-primary dark:bg-elevation-4 dark:shadow-none dark:hover:bg-elevation-5 motion-reduce:transition-none motion-reduce:hover:scale-100"
+						:style="{ borderLeftColor: activityBorderColor(activity) }"
+						tabindex="0"
+						aria-haspopup="dialog"
+						:aria-label="activityLabel(activity)"
+						@pointerenter="previewActivity(activity, $event)"
+						@pointerleave="emit('leavePreview')"
+						@focus="previewActivity(activity, $event)"
+						@blur="emit('leavePreview')"
+						@click.stop="emit('closePreview')"
+						@keydown.enter.stop
+						@keydown.down.stop.prevent="previewActivity(activity, $event, true)"
+						@keydown.space.stop.prevent="previewActivity(activity, $event, true)"
+						@keydown.esc.stop="emit('closePreview')"
+						@contextmenu="emit('closePreview')"
 					>
 						<div
 							v-if="activity.has_existing_application"
@@ -154,41 +175,36 @@ const dayContextMenuItems = computed<ContextMenuItem[][]>(() => (
 							/>
 						</div>
 
-						<p class="font-medium text-toned">
-							{{ activityTime(activity) }}
-						</p>
-						<p class="mt-0.5 line-clamp-2 text-muted">
-							{{ activityLabel(activity) }}
-						</p>
-
-						<div
-							class="pointer-events-none absolute inset-x-0 z-50 rounded-sm border border-default bg-elevated px-2 py-1.5 opacity-0 shadow-xl transition-opacity duration-150 group-hover:opacity-100"
-							:class="opensUpward ? 'bottom-full mb-1' : 'top-full mt-1'"
+						<UUser
+							:name="activityLabel(activity)"
+							:description="activityTime(activity)"
+							:avatar="activityAvatar(activity)"
+							size="sm"
+							class="min-w-0 flex-nowrap items-center gap-2 xl:col-span-2"
+							:ui="{
+								avatar: 'size-10 shrink-0 xl:hidden',
+								wrapper: 'min-w-0 flex-1',
+								name: 'whitespace-normal break-words text-sm font-semibold leading-5',
+								description: 'whitespace-nowrap text-xs leading-5 text-muted xl:hidden',
+							}"
 						>
-							<div class="flex items-start gap-1.5 text-[0.68rem] font-medium text-toned">
-								<UIcon name="i-lucide-layers-3" class="size-3 shrink-0 text-primary" />
-								<span class="min-w-0 flex-1 whitespace-normal break-words leading-snug">{{ activityTypeName(activity) }}</span>
-							</div>
-							<div class="mt-1 flex items-center gap-1.5 text-[0.68rem] font-medium text-muted">
-								<UIcon name="i-lucide-users" class="size-3 shrink-0 text-primary" />
-								<span>{{ activityMemberCount(activity) }}</span>
-							</div>
+							<template #name><span :title="activityLabel(activity)">{{ activityLabel(activity) }}</span></template>
+						</UUser>
+
+						<span class="hidden whitespace-nowrap text-xs leading-5 text-muted xl:block">{{ activityTime(activity) }}</span>
+
+						<div class="flex shrink-0 flex-col items-end gap-1 whitespace-nowrap text-right">
 							<UBadge
-								v-if="activityTargetProgPointLabel(activity)"
-								class="mt-2"
-								:label="activityTargetProgPointLabel(activity)"
-								color="neutral"
+								:label="t(`groups.activities.statuses.${activity.status}`)"
+								:icon="getActivityStatusMeta(activity.status).icon"
+								:color="getActivityStatusMeta(activity.status).color"
 								variant="soft"
-								size="md"
+								size="xs"
+								class="rounded-md"
 							/>
-							<ActivityHostGroupBadge
-								v-if="showGroupBadge"
-								class="mt-2"
-								:group="activity.group"
-								:text-color="activityGroupColor(activity)"
-							/>
+							<span class="text-xs leading-5 text-muted xl:hidden">{{ activityMemberCount(activity) }}</span>
 						</div>
-					</div>
+					</Link>
 				</ActivityContextMenu>
 
 				<p v-if="hiddenCount > 0" class="mt-auto text-xs font-medium text-muted">

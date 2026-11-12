@@ -1,45 +1,46 @@
 import type { ActivityStatus, ActivityStatusMeta } from "@/Types/ActivityCore"
+import { getRunStatusIcon } from '@/utils/runStatusIcons'
 
 const STATUS_META: Record<ActivityStatus, ActivityStatusMeta> = {
 	draft: {
 		color: 'neutral',
-		icon: 'i-lucide-clipboard-list',
+		icon: getRunStatusIcon('draft'),
 		borderClass: 'border-t-zinc-950 dark:border-t-white',
 		dotClass: 'bg-zinc-950 dark:bg-white',
 	},
 	scheduled: {
 		color: 'warning',
-		icon: 'i-lucide-calendar-check-2',
+		icon: getRunStatusIcon('scheduled'),
 		borderClass: 'border-t-warning',
 		dotClass: 'bg-warning',
 	},
 	assigned: {
 		color: 'brand',
-		icon: 'i-lucide-user-round-check',
+		icon: getRunStatusIcon('assigned'),
 		borderClass: 'border-t-brand',
 		dotClass: 'bg-brand',
 	},
 	upcoming: {
 		color: 'brand',
-		icon: 'i-lucide-sparkles',
+		icon: getRunStatusIcon('upcoming'),
 		borderClass: 'border-t-brand',
 		dotClass: 'bg-brand',
 	},
 	ongoing: {
 		color: 'secondary',
-		icon: 'i-lucide-activity',
+		icon: getRunStatusIcon('ongoing'),
 		borderClass: 'border-t-secondary',
 		dotClass: 'bg-secondary',
 	},
 	complete: {
 		color: 'success',
-		icon: 'i-lucide-flag',
+		icon: getRunStatusIcon('complete'),
 		borderClass: 'border-t-success',
 		dotClass: 'bg-success',
 	},
 	cancelled: {
 		color: 'error',
-		icon: 'i-lucide-ban',
+		icon: getRunStatusIcon('cancelled'),
 		borderClass: 'border-t-error',
 		dotClass: 'bg-error',
 	},
@@ -47,7 +48,7 @@ const STATUS_META: Record<ActivityStatus, ActivityStatusMeta> = {
 
 const FALLBACK_META: ActivityStatusMeta = {
 	color: 'neutral',
-	icon: 'i-lucide-calendar-range',
+	icon: getRunStatusIcon(null),
 	borderClass: 'border-t-default',
 	dotClass: 'bg-default',
 }

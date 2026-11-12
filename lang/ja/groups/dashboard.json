@@ -2,14 +2,16 @@
   "navigation": {
     "overview": "概要",
     "planning": "予定",
+    "community": "コミュニティ",
     "insights": "活動データ",
     "manage": "管理",
-    "run_calendar": "ランカレンダー",
+    "run_calendar": "カレンダー",
     "create_run": "ランを作成",
     "content_customization": "コンテンツのカスタマイズ",
     "staff_only": "運営メンバー専用",
     "descriptions": {
       "activities": "予定されたランとグループのカレンダーを確認",
+      "members": "グループメンバーとその役割を確認",
       "availability": "メンバーがプレイできる時間を確認",
       "statistics": "グループのラン履歴と活動状況を確認",
       "leaderboard": "メンバーのランキングと貢献を確認",

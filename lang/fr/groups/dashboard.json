@@ -2,14 +2,16 @@
   "navigation": {
     "overview": "Vue d’ensemble",
     "planning": "Planning",
+    "community": "Communauté",
     "insights": "Statistiques",
     "manage": "Gestion",
-    "run_calendar": "Calendrier des sorties",
+    "run_calendar": "Calendrier",
     "create_run": "Créer une sortie",
     "content_customization": "Personnalisation du contenu",
     "staff_only": "Équipe uniquement",
     "descriptions": {
       "activities": "Voir les sorties prévues et le calendrier du groupe",
+      "members": "Parcourir les membres du groupe et leurs rôles",
       "availability": "Voir quand les membres sont disponibles pour jouer",
       "statistics": "Explorer l’historique des sorties et l’activité du groupe",
       "leaderboard": "Voir les classements et les contributions des membres",

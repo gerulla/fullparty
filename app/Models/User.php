@@ -33,7 +33,7 @@ use Laravel\Passport\HasApiTokens;
     'discord_link_token_hash',
     'discord_link_token_expires_at',
     'time_display_mode',
-    'homepage_group_id',
+    'page_transition_enabled',
     'notification_preferences_reviewed_at',
     'account_completion_celebrated_at',
 ])]
@@ -66,6 +66,7 @@ class User extends Authenticatable implements MustVerifyEmail, OAuthenticatable
             'banned_at' => 'datetime',
             'public_profile' => 'boolean',
             'public_characters' => 'boolean',
+            'page_transition_enabled' => 'boolean',
             'application_notifications' => 'boolean',
             'run_and_reminder_notifications' => 'boolean',
             'group_update_notifications' => 'boolean',

@@ -10,7 +10,7 @@
             "danger": "重要な操作"
         },
         "sections": {
-            "general": { "title": "一般", "description": "画像、ユーザー名、ホームページを設定します。" },
+            "general": { "title": "一般", "description": "画像、ユーザー名、ページ切り替えのアニメーションを設定します。" },
             "socials": { "title": "連携アカウント", "description": "ログインに使うアカウントを管理します。" },
             "notifications": { "title": "通知", "description": "通知の内容と受信方法を選択します。" },
             "privacy": { "title": "プライバシーとセキュリティ", "description": "公開範囲とパスワードを変更します。" },
@@ -36,14 +36,12 @@
         "profile_picture_too_large": "プロフィール画像は5 MB以下にしてください。",
         "update_profile_picture": "プロフィール画像を更新"
     },
-    "homepage": {
-        "title": "ホーム画面の変更",
-        "label": "ホームの移動先を選択",
-        "description": "サイドバーのホームボタンから移動するページを選べます。選択したグループを脱退した場合は、プロフィールページに戻ります。",
-        "destination": "ホームページ",
-        "profile_page": "プロフィールページ",
-        "saved": "ホームページを更新しました。",
-        "save_failed": "ホームページを更新できませんでした。もう一度お試しください。"
+    "page_transition": {
+        "title": "ページ切り替え",
+        "label": "ページ切り替えのアニメーションを有効にする",
+        "description": "ページを移動するときに紫色の波紋を表示します。端末の「視差効果を減らす」などの設定が優先されます。",
+        "saved": "ページ切り替えの設定を保存しました。",
+        "save_failed": "設定を保存できませんでした。もう一度お試しください。"
     },
     "connect": "連携",
     "unlink": "連携解除",

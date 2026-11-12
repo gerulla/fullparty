@@ -388,23 +388,15 @@ class UserController extends Controller
         ]);
     }
 
-    public function changeHomepagePreference(Request $request): JsonResponse
+    public function changePageTransitionPreference(Request $request): RedirectResponse
     {
         $validated = $request->validate([
-            'homepage_group_id' => [
-                'nullable',
-                'integer',
-                Rule::exists('group_memberships', 'group_id')
-                    ->where('user_id', $request->user()->id),
-            ],
+            'page_transition_enabled' => ['required', 'boolean'],
         ]);
 
         $request->user()->update($validated);
 
-        return response()->json([
-            'success' => true,
-            'homepage_group_id' => $request->user()->homepage_group_id,
-        ]);
+        return redirect()->back();
     }
 
     public function changePassword(ChangePasswordRequest $request): RedirectResponse

@@ -16,15 +16,15 @@ it('shows the existing calendar quick-create times as the default shortcuts', fu
     expect($group->quickCreateShortcuts()->exists())->toBeFalse();
 
     $this->actingAs($owner)
-        ->get(route('groups.dashboard.shortcuts.index', $group))
+        ->get(route('groups.dashboard.settings', ['group' => $group, 'section' => 'shortcuts']))
         ->assertOk()
         ->assertInertia(fn (Assert $page) => $page
-            ->component('Dashboard/Groups/Settings/Shortcuts')
-            ->has('shortcuts', 3)
-            ->where('shortcuts.0.time', '18:00')
-            ->where('shortcuts.0.time_mode', GroupQuickCreateShortcut::TIME_MODE_SERVER)
-            ->where('shortcuts.1.time', '20:00')
-            ->where('shortcuts.2.time', '22:00'));
+            ->component('Dashboard/Groups/Settings/Index')
+            ->has('group.quick_create_shortcuts', 3)
+            ->where('group.quick_create_shortcuts.0.time', '18:00')
+            ->where('group.quick_create_shortcuts.0.time_mode', GroupQuickCreateShortcut::TIME_MODE_SERVER)
+            ->where('group.quick_create_shortcuts.1.time', '20:00')
+            ->where('group.quick_create_shortcuts.2.time', '22:00'));
 
     $this->get(route('groups.dashboard.activities.index', $group))
         ->assertOk()
@@ -84,11 +84,7 @@ it('forbids moderators from changing group shortcuts', function () {
         'joined_at' => now(),
     ]);
 
-    $this->actingAs($moderator)
-        ->get(route('groups.dashboard.shortcuts.index', $group))
-        ->assertForbidden();
-
-    $this->put(route('groups.dashboard.shortcuts.update', $group), [
+    $this->actingAs($moderator)->put(route('groups.dashboard.shortcuts.update', $group), [
         'shortcuts' => [
             ['time' => '19:00', 'time_mode' => GroupQuickCreateShortcut::TIME_MODE_SERVER],
         ],
@@ -98,7 +94,7 @@ it('forbids moderators from changing group shortcuts', function () {
 it('validates the shortcut limit and rejects exact duplicates', function () {
     $owner = User::factory()->create();
     $group = Group::factory()->create(['owner_id' => $owner->id]);
-    $shortcutsPage = route('groups.dashboard.shortcuts.index', $group);
+    $shortcutsPage = route('groups.dashboard.settings', ['group' => $group, 'section' => 'shortcuts']);
     $updateRoute = route('groups.dashboard.shortcuts.update', $group);
 
     $this->actingAs($owner)

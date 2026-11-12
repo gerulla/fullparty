@@ -1,10 +1,31 @@
 import type { NotificationDisplayMeta, NotificationRecord, NotificationTranslator } from "@/Types/Notifications"
 import { createRelativeTimeFormatter } from "@/utils/dateTimeFormat"
 import { translateCharacterClassName, translatePhantomJobName, translateRaidPositionName } from "@/utils/characterJobTranslations"
+import { getActivityStatusMeta } from "@/utils/activityStatusMeta"
+import { RUN_PARTICIPATION_META } from "@/utils/runParticipationMeta"
+
+// Status notifications use the same symbols as run cards and the calendar legend.
+const STATUS_ICONS: Record<string, string> = {
+	'applications.submitted': RUN_PARTICIPATION_META.pending.icon,
+	'applications.withdrawal_confirmed': RUN_PARTICIPATION_META.withdrawn.icon,
+	'applications.declined': RUN_PARTICIPATION_META.declined.icon,
+	'applications.cancelled': RUN_PARTICIPATION_META.cancelled.icon,
+	'assignments.roster_published_assigned': RUN_PARTICIPATION_META.assigned.icon,
+	'assignments.assigned': RUN_PARTICIPATION_META.assigned.icon,
+	'assignments.roster_published_bench': RUN_PARTICIPATION_META.on_bench.icon,
+	'assignments.on_bench': RUN_PARTICIPATION_META.on_bench.icon,
+	'assignments.marked_missing': RUN_PARTICIPATION_META.missing.icon,
+	'runs.starting_soon': getActivityStatusMeta('upcoming').icon,
+	'runs.starting_now': getActivityStatusMeta('ongoing').icon,
+	'runs.cancelled': getActivityStatusMeta('cancelled').icon,
+	'runs.completed': getActivityStatusMeta('complete').icon,
+	'groups.run_draft': getActivityStatusMeta('draft').icon,
+	'groups.run_scheduled': getActivityStatusMeta('scheduled').icon,
+}
 
 const TYPE_META: Record<string, NotificationDisplayMeta> = {
 	'applications.new_for_review': {
-		icon: 'i-lucide-user-round-plus',
+		icon: RUN_PARTICIPATION_META.pending.icon,
 		iconColor: 'text-success',
 		surfaceClass: 'border-l-success bg-success/5',
 	},
@@ -14,7 +35,7 @@ const TYPE_META: Record<string, NotificationDisplayMeta> = {
 		surfaceClass: 'border-l-warning bg-warning/5',
 	},
 	'applications.withdrawn_for_review': {
-		icon: 'i-lucide-user-round-minus',
+		icon: RUN_PARTICIPATION_META.withdrawn.icon,
 		iconColor: 'text-error',
 		surfaceClass: 'border-l-error bg-error/5',
 	},
@@ -119,18 +140,15 @@ const formatLabelKeyList = (keys: unknown, t: NotificationTranslator) => {
 }
 
 export const resolveNotificationMeta = (notification: NotificationRecord): NotificationDisplayMeta => {
-	if (notification.type && TYPE_META[notification.type]) {
-		return TYPE_META[notification.type]
-	}
+	const meta = (notification.type && TYPE_META[notification.type])
+		|| (notification.category && CATEGORY_META[notification.category])
+		|| {
+			icon: 'i-lucide-bell',
+			iconColor: 'text-neutral-500',
+		}
+	const statusIcon = notification.type ? STATUS_ICONS[notification.type] : undefined
 
-	if (notification.category && CATEGORY_META[notification.category]) {
-		return CATEGORY_META[notification.category]
-	}
-
-	return {
-		icon: 'i-lucide-bell',
-		iconColor: 'text-neutral-500',
-	}
+	return statusIcon ? { ...meta, icon: statusIcon } : meta
 }
 
 const notificationParams = (notification: NotificationRecord, t: NotificationTranslator) => {

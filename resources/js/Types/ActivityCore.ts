@@ -48,6 +48,7 @@ export interface ActivityIndexItem {
 	status: string
 	small_image_url: string | null
 	banner_image_url: string | null
+	difficulty?: ActivityDifficulty | string | null
 	starts_at: string | null
 	duration_hours: number | null
 	target_prog_point_key: string | null

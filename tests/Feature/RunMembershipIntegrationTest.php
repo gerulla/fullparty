@@ -143,7 +143,7 @@ it('makes personal invitation audit actions translatable and searchable in every
     $label = __($key, [], $locale);
     expect($label)->not->toBe($key)
         ->and(__('audit_log.activity.group.personal_invite.sent', [], $locale))->not->toBe('audit_log.activity.group.personal_invite.sent');
-    $this->actingAs($this->group->owner)->getJson(route('groups.dashboard.audit-log', [
+    $this->actingAs($this->group->owner)->getJson(route('groups.dashboard.audit-log.data', [
         'locale' => $locale, 'group' => $this->group, 'search' => $label,
     ]))->assertOk()->assertJsonCount(1, 'auditLogs')->assertJsonPath('auditLogs.0.action', 'group.personal_invite.sent');
 })->with(['en', 'de', 'fr', 'ja']);

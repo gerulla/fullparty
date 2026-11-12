@@ -42,6 +42,9 @@ const isRouteActive = (href: string) => (
 )
 
 const routePath = (name: string) => route(name, props.group.slug, false)
+const settingsSectionUrl = (section: string, absolute = true) => route('groups.dashboard.settings', {
+    group: props.group.slug, section,
+}, absolute)
 
 const dashboardHref = computed(() => route('groups.dashboard', props.group.slug))
 const dashboardPath = computed(() => routePath('groups.dashboard'))
@@ -69,16 +72,16 @@ const forkedTowerBloodPath = computed(() => route('groups.dashboard.content.inde
 const membershipApplicationsHref = computed(() => route('groups.dashboard.membership-applications.index', props.group.slug))
 const membershipApplicationsPath = computed(() => routePath('groups.dashboard.membership-applications.index'))
 const membershipApplicationFormPath = computed(() => routePath('groups.dashboard.membership-application-form.edit'))
-const auditLogHref = computed(() => route('groups.dashboard.audit-log', props.group.slug))
-const auditLogPath = computed(() => routePath('groups.dashboard.audit-log'))
-const discoverySettingsHref = computed(() => route('groups.dashboard.discovery-settings', props.group.slug))
-const discoverySettingsPath = computed(() => routePath('groups.dashboard.discovery-settings'))
+const auditLogHref = computed(() => settingsSectionUrl('audit_log'))
+const auditLogPath = computed(() => settingsSectionUrl('audit_log', false))
+const discoverySettingsHref = computed(() => settingsSectionUrl('discovery'))
+const discoverySettingsPath = computed(() => settingsSectionUrl('discovery', false))
 const settingsHref = computed(() => route('groups.dashboard.settings', props.group.slug))
 const settingsPath = computed(() => routePath('groups.dashboard.settings'))
-const shortcutsHref = computed(() => route('groups.dashboard.shortcuts.index', props.group.slug))
-const shortcutsPath = computed(() => routePath('groups.dashboard.shortcuts.index'))
-const discordIntegrationHref = computed(() => route('groups.dashboard.discord-integration', props.group.slug))
-const discordIntegrationPath = computed(() => routePath('groups.dashboard.discord-integration'))
+const shortcutsHref = computed(() => settingsSectionUrl('shortcuts'))
+const shortcutsPath = computed(() => settingsSectionUrl('shortcuts', false))
+const discordIntegrationHref = computed(() => settingsSectionUrl('discord'))
+const discordIntegrationPath = computed(() => settingsSectionUrl('discord', false))
 const isPublicActivityRoute = computed(() => page.url.startsWith(publicActivitiesPath.value))
 const isGroupMember = computed(() => Boolean(
 	props.group.current_user_role

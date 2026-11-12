@@ -533,85 +533,6 @@
         }
       }
     },
-    "/api/integrations/v1/me/homepage": {
-      "put": {
-        "operationId": "members.me.homepage",
-        "tags": [
-          "Account"
-        ],
-        "summary": "Set homepage group",
-        "description": "Required scope: `members:write`.",
-        "security": [
-          {
-            "IntegrationToken": [],
-            "LinkedDiscordUser": []
-          }
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/Locale"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": {
-                      "type": "boolean"
-                    },
-                    "homepage_group_id": {
-                      "type": [
-                        "integer",
-                        "null"
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/Error401"
-          },
-          "403": {
-            "$ref": "#/components/responses/Error403"
-          },
-          "404": {
-            "$ref": "#/components/responses/Error404"
-          },
-          "422": {
-            "$ref": "#/components/responses/Error422"
-          },
-          "429": {
-            "$ref": "#/components/responses/Error429"
-          }
-        },
-        "x-required-scope": "members:write",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "homepage_group_id": {
-                    "type": [
-                      "integer",
-                      "null"
-                    ],
-                    "description": "A group the member belongs to, or null for the default homepage."
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/integrations/v1/characters": {
       "get": {
         "operationId": "members.characters.index",
@@ -5962,17 +5883,6 @@
           },
           "time_display_mode": {
             "type": "string"
-          },
-          "homepage_group_id": {
-            "anyOf": [
-              {
-                "type": "integer",
-                "minimum": 1
-              },
-              {
-                "type": "null"
-              }
-            ]
           },
           "application_notifications": {
             "type": "boolean"

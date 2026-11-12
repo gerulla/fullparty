@@ -27,10 +27,17 @@ export function useDateTimeFormat() {
         return createDateTimeFormatter(locale.value, withDisplayTimeZone(options)).formatToParts(date)
     }
 
+    function formatTimeWithMode(value: DateTimeValue, fallback = '—'): string {
+        const date = parseTimestamp(value)
+        if (!date) return fallback
+        const time = formatDateTime(date, { hour: '2-digit', minute: '2-digit', hourCycle: 'h23' })
+        return `${time} ${timeDisplayLabel.value}`
+    }
+
     const toDateTimeInput = (value: DateTimeValue) => dateTimeInputInZone(value, displayTimeZone.value)
     const fromDateTimeInput = (value: string, reference?: DateTimeValue) => dateTimeInputToInstant(value, displayTimeZone.value, reference)
     const formatDateOnly = (value: string, options?: DisplayDateTimeOptions) => formatCalendarDate(locale.value, value, options)
     const formatWallTime = (value: string) => formatWallClock(locale.value, value)
 
-    return { formatDateTime, formatDateTimeParts, toDateTimeInput, fromDateTimeInput, formatDateOnly, formatWallTime, displayTimeZone, displayTimeZoneLabel, timeDisplayLabel }
+    return { formatDateTime, formatDateTimeParts, formatTimeWithMode, toDateTimeInput, fromDateTimeInput, formatDateOnly, formatWallTime, displayTimeZone, displayTimeZoneLabel, timeDisplayLabel }
 }

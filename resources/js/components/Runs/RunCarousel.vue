@@ -8,7 +8,8 @@ const props = withDefaults(defineProps<{
     label: string
     rows?: 1 | 2
     type?: RunCardType
-}>(), { rows: 1, type: 'default' })
+    bleedEnd?: boolean
+}>(), { rows: 1, type: 'default', bleedEnd: false })
 
 const columns = computed(() => Array.from(
     { length: Math.ceil(props.runs.length / props.rows) },
@@ -22,7 +23,7 @@ const columns = computed(() => Array.from(
         :prev="{ color: 'neutral', variant: 'soft' }" :next="{ color: 'neutral', variant: 'soft' }"
         :ui="{
             item: 'basis-[19rem] max-w-full',
-            viewport: 'p-1 -m-1 select-none touch-pan-y cursor-grab active:cursor-grabbing',
+            viewport: ['p-1 -m-1 select-none touch-pan-y cursor-grab active:cursor-grabbing', bleedEnd && '-me-4 sm:-me-6 lg:-me-8'],
             controls: 'absolute right-0 -top-12',
             arrows: 'flex items-center gap-2',
             prev: 'static translate-y-0 rounded-md bg-elevation-1 hover:bg-elevation-2 dark:bg-elevation-3 dark:hover:bg-elevation-5',

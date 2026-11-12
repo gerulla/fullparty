@@ -6,13 +6,14 @@
         "refresh_help": "Startseitendaten neu laden und Ladeplatzhalter anzeigen, ohne die Browserseite neu zu laden.",
         "empty": "Leeres Konto simulieren",
         "restore": "Kontodaten wieder anzeigen",
-        "empty_help": "Ein leeres Konto anzeigen, ohne Änderungen zu speichern. Anmeldung und empfohlene Runs bleiben unverändert."
+        "empty_help": "Ein leeres Konto anzeigen, ohne Änderungen zu speichern. Deine Anmeldung bleibt unverändert."
     },
     "empty_states": {
         "find_runs": "Runs finden",
         "explore_groups": "Gruppen entdecken",
         "upcoming": {
-            "title": "Du hast noch nichts vor"
+            "title": "Du hast noch nichts vor",
+            "description": "Noch keine Runs geplant. Finde dein nächstes Abenteuer."
         },
         "history": {
             "title": "Hier beginnen deine Abenteuer",
@@ -39,10 +40,16 @@
         "upcoming": "Bevorstehend",
         "history": "Verlauf"
     },
+    "find_more_runs": "Weitere Runs finden",
+    "upcoming_runs": {
+        "title": "Deine bevorstehenden Runs",
+        "loading": "Deine bevorstehenden Runs werden geladen…",
+        "empty": "Du hast noch keine bevorstehenden Runs."
+    },
+    "hosted_runs": {
+        "title": "Von dir veranstaltete Runs"
+    },
     "recommended_runs": {
-        "title": "Runs, die dir gefallen könnten",
-        "loading": "Empfohlene Runs werden geladen…",
-        "empty": "Zurzeit gibt es keine bevorstehenden öffentlichen Runs zu empfehlen.",
         "hosted_by": "Veranstaltet von {name}",
         "applicants": "{count} Anmeldungen | {count} Anmeldung | {count} Anmeldungen"
     },
@@ -62,7 +69,7 @@
         "open_settings": "Einstellungen von {name} öffnen"
     },
     "character_applications": {
-        "view_all": "Alle anzeigen",
+        "view_all": "Alle Anmeldungen ansehen",
         "loading": "Runs werden geladen…",
         "empty_upcoming": "Keine bevorstehenden Runs für diesen Charakter.",
         "empty_history": "Keine vergangenen Runs für diesen Charakter.",

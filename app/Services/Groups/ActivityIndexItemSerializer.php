@@ -53,6 +53,7 @@ final class ActivityIndexItemSerializer
             'duration_hours' => $activity->duration_hours,
             'small_image_url' => $activity->activityTypeVersion?->small_image_url,
             'banner_image_url' => $activity->activityTypeVersion?->banner_image_url,
+            'difficulty' => $activity->activityTypeVersion?->difficulty,
             'target_prog_point_key' => $activity->target_prog_point_key,
             'target_prog_point_label' => $this->resolveTargetProgPointLabel($activity),
             'notes' => $activity->notes,

@@ -4,7 +4,8 @@
         || (str_starts_with($pageComponent, 'auth/') && $pageComponent !== 'auth/Banned');
 @endphp
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}" class="dark" data-ui-theme="{{ $usesMedasTheme ? 'medas' : 'classic' }}">
+<html lang="{{ app()->getLocale() }}" class="dark" data-ui-theme="{{ $usesMedasTheme ? 'medas' : 'classic' }}"
+    data-page-transitions="{{ auth()->user()?->page_transition_enabled === false ? 'off' : 'on' }}">
     <head>
         @php
             $serverMeta = $serverMeta ?? app(\App\Support\Seo\ServerMeta::class)->defaults();
@@ -59,7 +60,8 @@
                 try {
                     const saved = sessionStorage.getItem('fullparty-page-ripple');
                     sessionStorage.removeItem('fullparty-page-ripple');
-                    if (!saved || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+                    if (!saved || document.documentElement.dataset.pageTransitions === 'off'
+                        || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
                     const ripple = JSON.parse(saved);
                     if (ripple.href !== location.href || !Number.isFinite(ripple.at) || Date.now() - ripple.at > 10000
                         || Date.now() < ripple.at || ![ripple.x, ripple.y, ripple.seed].every(Number.isFinite)

@@ -30,7 +30,7 @@ const quietGroupsIllustration = '/images/empty-states/groups-quiet.png'
                     <USkeleton class="size-6 shrink-0 rounded-full bg-elevation-3 dark:bg-elevation-5 motion-reduce:animate-none" />
                     <USkeleton class="h-3.5 max-w-full rounded bg-elevation-3 dark:bg-elevation-5 motion-reduce:animate-none xl:h-4" :class="group === 1 ? 'w-44' : 'w-36'" />
                 </div>
-                <RunCarouselSkeleton />
+                <RunCarouselSkeleton bleed-end />
             </div>
         </div>
         <HomeEmptyState v-else-if="!groups?.length" spacious
@@ -54,7 +54,7 @@ const quietGroupsIllustration = '/images/empty-states/groups-quiet.png'
                         <span class="truncate">{{ row.group.name }}</span>
                     </Link>
                 </h3>
-                <RunCarousel :runs="row.runs" :label="t('dashboard.group_panel.open_runs', { name: row.group.name })" />
+                <RunCarousel :runs="row.runs" :label="t('dashboard.group_panel.open_runs', { name: row.group.name })" bleed-end />
             </section>
         </div>
     </div>

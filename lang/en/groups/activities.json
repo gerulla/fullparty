@@ -52,11 +52,12 @@
         "title": "Selected Day",
         "subtitle": "Runs scheduled for {date}.",
         "mobile_title": "Runs on {date}",
-        "mobile_count": "There are {count} runs on this day.",
+        "mobile_count": "No runs on this day. | 1 run on this day. | {count} runs on this day.",
         "count": "{count} on this day",
         "empty": "No runs are scheduled for this day."
     },
     "calendar": {
+        "search_placeholder": "Search runs...",
         "title": "Monthly Calendar",
         "subtitle": "A month view of the group's run schedule.",
         "month_count": "{count} this month",
@@ -65,6 +66,11 @@
         "day_count": "{count} items",
         "more": "+{count} more",
         "member_count": "Members {assigned}/{total}",
+        "assigned_count": "{assigned} of {total}",
+        "applied_count": "{count} Applied",
+        "preview": {
+            "applicants": "{count} applicants"
+        },
         "context_menu": {
             "create_run_18": "Create Run at 18 ST",
             "create_run_20": "Create Run at 20 ST",

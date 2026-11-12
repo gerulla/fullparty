@@ -1,20 +1,22 @@
 <script setup lang="ts">
-import {Head, Link, router, usePage} from '@inertiajs/vue3'
+import {Head, router, usePage} from '@inertiajs/vue3'
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { route } from 'ziggy-js'
 import V2Layout from '@/Layouts/V2Layout.vue'
 import type { V2HomeCharacter, V2HomeProps } from '../../Types/V2Home'
 import CharacterSelector from "@/components/Home/CharacterSelector.vue";
-import {TabsItem} from "@nuxt/ui/components/Tabs.vue";
 import CharacterApplicationsBox from "@/components/Home/CharacterApplicationsBox.vue";
 import UserGroupsBox from "@/components/Home/UserGroupsBox.vue";
-import RecommendedRuns from "@/components/Home/RecommendedRuns.vue";
+import HomeRunSection from "@/components/Home/HomeRunSection.vue";
 import FromYourGroups from "@/components/Home/FromYourGroups.vue";
 import HomePreviewControls from '@/components/Home/HomePreviewControls.vue'
+import HomeEmptyState from '@/components/Home/HomeEmptyState.vue'
 
 defineOptions({ layout: V2Layout })
 
 const { t } = useI18n()
+const upcomingRunsIllustration = '/images/empty-states/upcoming-runs.png'
 const props = defineProps<V2HomeProps>()
 const page = usePage()
 const canPreview = computed(() => page.props.theme_preview_enabled === true)
@@ -30,14 +32,15 @@ const characters = computed(() => user.value?.characters ?? [])
 const applications = computed(() => emptyAccount.value ? [] : props.applications ?? [])
 const applicationHistory = computed(() => emptyAccount.value ? [] : props.applicationHistory ?? [])
 const groups = computed(() => emptyAccount.value ? [] : props.groups ?? [])
-const recommendedRuns = computed(() => props.recommendedRuns ?? [])
+const upcomingRuns = computed(() => emptyAccount.value ? [] : props.upcomingRuns ?? [])
+const hostedRuns = computed(() => emptyAccount.value ? [] : props.hostedRuns ?? [])
 const groupRuns = computed(() => emptyAccount.value ? [] : props.groupRuns ?? [])
 const loading = computed(() => ({
     user: refreshing.value || (!emptyAccount.value && props.user === undefined),
     applications: refreshing.value || (!emptyAccount.value && props.applications === undefined),
     applicationHistory: refreshing.value || (!emptyAccount.value && props.applicationHistory === undefined),
     groups: refreshing.value || (!emptyAccount.value && props.groups === undefined),
-    recommendedRuns: refreshing.value || props.recommendedRuns === undefined,
+    upcomingRuns: refreshing.value || (!emptyAccount.value && props.upcomingRuns === undefined),
     groupRuns: refreshing.value || (!emptyAccount.value && props.groupRuns === undefined),
 }))
 
@@ -66,18 +69,6 @@ const selected_character = computed({
 	},
 })
 
-const items = [
-	{
-		label: 'Account',
-		description: 'Make changes to your account here. Click save when you\'re done.',
-		slot: 'account' as const
-	},
-	{
-		label: 'Password',
-		description: 'Change your password here. After saving, you\'ll be logged out.',
-		slot: 'password' as const
-	}
-] satisfies TabsItem[]
 </script>
 
 <template>
@@ -86,7 +77,7 @@ const items = [
     <HomePreviewControls v-if="canPreview" :refreshing="refreshing" :empty-account="emptyAccount"
         @refresh="refreshHomepage" @toggle-empty="simulateEmptyAccount = !simulateEmptyAccount" />
 
-    <div class="flex w-full flex-col gap-8 xl:flex-row xl:gap-0">
+    <div class="home-theme flex w-full flex-col gap-8 xl:flex-row xl:gap-0">
 		<div class="flex w-full min-w-0 flex-col items-stretch gap-6 self-start xl:sticky xl:top-[calc(var(--ui-header-height)+2rem)] xl:w-[30%] xl:pr-8">
 			<CharacterSelector v-model="selected_character" :user="user" :loading="loading.user" />
 			<CharacterApplicationsBox :applications="applications" :history="applicationHistory" :loading="loading.user || loading.applications" :history-loading="loading.user || loading.applicationHistory" :character="selected_character" />
@@ -95,8 +86,24 @@ const items = [
 			</div>
 		</div>
 		<div class="flex w-full min-w-0 flex-col items-stretch gap-8 xl:w-[70%]">
-			<FromYourGroups :groups="groupRuns" :loading="loading.groupRuns" class="xl:order-2" />
-			<RecommendedRuns :runs="recommendedRuns" :loading="loading.recommendedRuns" class="xl:order-1" />
+			<HomeRunSection :runs="upcomingRuns" :loading="loading.upcomingRuns" find-more
+                :title="t('dashboard.upcoming_runs.title')" :loading-label="t('dashboard.upcoming_runs.loading')">
+                <template #empty>
+                    <HomeEmptyState spacious
+                        :title="t('dashboard.empty_states.upcoming.title')"
+                        :description="t('dashboard.empty_states.upcoming.description')"
+                        :action-label="t('dashboard.empty_states.find_runs')"
+                        :action-to="route('dashboard.runs.index')">
+                        <template #illustration>
+                            <img :src="upcomingRunsIllustration" alt="" aria-hidden="true"
+                                class="h-40 w-48 object-contain" width="192" height="160" loading="lazy" decoding="async">
+                        </template>
+                    </HomeEmptyState>
+                </template>
+            </HomeRunSection>
+            <HomeRunSection v-if="hostedRuns.length" :runs="hostedRuns"
+                :title="t('dashboard.hosted_runs.title')" />
+			<FromYourGroups :groups="groupRuns" :loading="loading.groupRuns" />
 		</div>
 	</div>
 </template>
@@ -104,4 +111,14 @@ const items = [
 <style scoped>
 @reference '../../../css/app.css';
 
+.home-theme {
+    --ui-primary: var(--color-brand-700);
+    --ui-brand: var(--color-brand-700);
+}
+
+/* All homepage brand controls, including their hover/focus states, share this contrast. */
+.dark .home-theme {
+    --ui-primary: var(--color-brand-400);
+    --ui-brand: var(--color-brand-400);
+}
 </style>

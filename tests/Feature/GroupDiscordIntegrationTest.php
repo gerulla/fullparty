@@ -16,7 +16,7 @@ use Inertia\Testing\AssertableInertia as Assert;
 
 uses(RefreshDatabase::class);
 
-it('shows the discord integration page to group owners only', function () {
+it('loads discord integration settings for group owners only', function () {
     $owner = User::factory()->create();
     $moderator = User::factory()->create();
     $group = Group::factory()->create([
@@ -30,26 +30,19 @@ it('shows the discord integration page to group owners only', function () {
     ]);
 
     $this->actingAs($moderator)
-        ->get(route('groups.dashboard.discord-integration', $group))
-        ->assertForbidden();
-
-    $this->actingAs($moderator)
-        ->getJson(route('groups.dashboard.discord-integration', $group))
+        ->getJson(route('groups.dashboard.discord-integration.data', $group))
         ->assertForbidden();
     $this->actingAs($moderator)
-        ->getJson(route('groups.dashboard.discord-integration', [$group, 'section' => 'coverage']))
+        ->getJson(route('groups.dashboard.discord-integration.data', [$group, 'section' => 'coverage']))
         ->assertForbidden();
 
     $this->actingAs($owner)
-        ->get(route('groups.dashboard.discord-integration', $group))
+        ->getJson(route('groups.dashboard.discord-integration.data', $group))
         ->assertOk()
-        ->assertInertia(fn (Assert $page) => $page
-            ->component('Dashboard/Groups/DiscordIntegration')
-            ->where('group.name', 'Discord Group')
-            ->where('group.permissions.can_manage_group', true)
-            ->where('integration', null)
-            ->where('inviteUrl', route('discord-app.guild.redirect'))
-        );
+        ->assertJsonPath('group.name', 'Discord Group')
+        ->assertJsonPath('group.permissions.can_manage_group', true)
+        ->assertJsonPath('integration', null)
+        ->assertJsonPath('inviteUrl', route('discord-app.guild.redirect'));
 });
 
 it('lets group owners generate a short lived discord link token', function () {
@@ -299,51 +292,35 @@ it('loads a discord guild snapshot for linked group settings', function () {
     Http::assertNothingSent();
 
     $this->actingAs($owner)
-        ->getJson(route('groups.dashboard.discord-integration', $group))
+        ->getJson(route('groups.dashboard.discord-integration.data', $group))
         ->assertOk()
         ->assertJsonPath('integration.discord_guild_id', '123456789012345678')
+        ->assertJsonPath('snapshot.guild_name', 'Raid Server')
+        ->assertJsonPath('snapshot.member_count', 128)
+        ->assertJsonPath('snapshot.settings.bot_log_channel_id', '111')
         ->assertJsonPath('snapshot.settings.member_facing_channel_id', '222')
+        ->assertJsonPath('snapshot.settings.template_role_id', '333')
+        ->assertJsonPath('snapshot.settings.moderation_role_id', '444')
+        ->assertJsonPath('snapshot.settings.name_sync_enabled', true)
+        ->assertJsonPath('snapshot.available_options.bot_log_channels.1.usable', false)
+        ->assertJsonPath('snapshot.available_options.bot_log_channels.1.disabled_reason', 'Bot cannot send messages in this channel.')
         ->assertJsonMissingPath('membershipCoverage');
     expect($sentEvents)->toBe([IntegrationClient::EVENT_DISCORD_GUILD_SNAPSHOT_REQUESTED]);
 
     $this->actingAs($owner)
-        ->getJson(route('groups.dashboard.discord-integration', [$group, 'section' => 'coverage']))
+        ->getJson(route('groups.dashboard.discord-integration.data', [$group, 'section' => 'coverage']))
         ->assertOk()
         ->assertJsonPath('membershipCoverage.app_linked_member_count', 2)
+        ->assertJsonPath('membershipCoverage.unlinked_member_count', 126)
+        ->assertJsonPath('membershipCoverage.member_count', 128)
         ->assertJsonPath('membershipCoverage.stats_available', true)
+        ->assertJsonPath('membershipCoverage.membership_cache.refresh_status', 'fresh')
+        ->assertJsonPath('membershipCoverage.membership_cache.refresh_queued', false)
         ->assertJsonMissingPath('snapshot');
     expect($sentEvents)->toBe([
         IntegrationClient::EVENT_DISCORD_GUILD_SNAPSHOT_REQUESTED,
         IntegrationClient::EVENT_DISCORD_GUILD_MEMBERSHIP_SNAPSHOT_REQUESTED,
     ]);
-
-    $this->actingAs($owner)
-        ->get(route('groups.dashboard.discord-integration', $group))
-        ->assertOk()
-        ->assertInertia(fn (Assert $page) => $page
-            ->component('Dashboard/Groups/DiscordIntegration')
-            ->where('snapshot.guild_name', 'Raid Server')
-            ->where('snapshot.member_count', 128)
-            ->where('snapshot.settings.bot_log_channel_id', '111')
-            ->where('snapshot.settings.member_facing_channel_id', '222')
-            ->where('snapshot.settings.template_role_id', '333')
-            ->where('snapshot.settings.moderation_role_id', '444')
-            ->where('snapshot.settings.name_sync_enabled', true)
-            ->where('snapshot.available_options.bot_log_channels.1.usable', false)
-            ->where('snapshot.available_options.bot_log_channels.1.disabled_reason', 'Bot cannot send messages in this channel.')
-            ->missing('membershipCoverage')
-            ->loadDeferredProps('discord-membership-coverage', fn (Assert $page) => $page
-                ->where('membershipCoverage.app_linked_member_count', 2)
-                ->where('membershipCoverage.unlinked_member_count', 126)
-                ->where('membershipCoverage.member_count', 128)
-                ->where('membershipCoverage.stats_available', true)
-                ->where('membershipCoverage.membership_cache.refresh_status', 'fresh')
-                ->where('membershipCoverage.membership_cache.refresh_queued', false)
-            )
-        );
-
-    expect($sentEvents)->toContain(IntegrationClient::EVENT_DISCORD_GUILD_SNAPSHOT_REQUESTED)
-        ->and($sentEvents)->toContain(IntegrationClient::EVENT_DISCORD_GUILD_MEMBERSHIP_SNAPSHOT_REQUESTED);
 
     Http::assertSent(function (HttpRequest $request): bool {
         $payload = json_decode($request->body(), true);

@@ -162,7 +162,7 @@ class IntegrationUserController extends Controller
         $activities = Activity::query()
             ->with([
                 'group:id,name,slug',
-                'activityTypeVersion:id,name,small_image_url,banner_image_url,difficulty',
+                'activityTypeVersion:id,name,small_image_url,banner_image_url,difficulty,prog_points',
                 'organizer:id,name',
                 'organizerCharacter:id,name,world,datacenter',
                 'slots.assignedCharacter:id,user_id,name,world,datacenter',
@@ -222,7 +222,7 @@ class IntegrationUserController extends Controller
         $applications = ActivityApplication::query()
             ->with([
                 'activity.group:id,name,slug',
-                'activity.activityTypeVersion:id,name,small_image_url,banner_image_url,difficulty',
+                'activity.activityTypeVersion:id,name,small_image_url,banner_image_url,difficulty,prog_points',
                 'selectedCharacter:id,name,world,datacenter,avatar_url',
             ])
             ->where('user_id', $user->id)
@@ -284,7 +284,7 @@ class IntegrationUserController extends Controller
                 'name' => $activity->activityTypeVersion?->name,
                 'difficulty' => $activity->activityTypeVersion?->difficulty,
                 'small_image_url' => $activity->activityTypeVersion?->small_image_url,
-                'banner_image_url' => $activity->activityTypeVersion?->banner_image_url,
+                'banner_image_url' => $activity->bannerImageUrl(),
             ],
             'organizer' => [
                 'id' => $activity->organizer?->id,
@@ -364,7 +364,7 @@ class IntegrationUserController extends Controller
                     'name' => $activity?->activityTypeVersion?->name,
                     'difficulty' => $activity?->activityTypeVersion?->difficulty,
                     'small_image_url' => $activity?->activityTypeVersion?->small_image_url,
-                    'banner_image_url' => $activity?->activityTypeVersion?->banner_image_url,
+                    'banner_image_url' => $activity?->bannerImageUrl(),
                 ],
             ],
             'urls' => [

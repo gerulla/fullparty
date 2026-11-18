@@ -68,6 +68,18 @@ final class RunAccessService
             && $this->canParticipate($group, $activity, $userId);
     }
 
+    /** Whether a signed-in viewer of this run has an application or can still join. */
+    public static function hasDiscoveryAction(Activity $activity, bool $hasApplication, bool $hasOpenMainSlot, bool $hasOwnMainSlot): bool
+    {
+        if ($hasApplication || ! $hasOpenMainSlot) {
+            return $hasApplication;
+        }
+
+        return $activity->needs_application
+            ? $activity->acceptsApplications()
+            : ! $activity->isArchived() && ! $hasOwnMainSlot;
+    }
+
     /**
      * Available participant actions shared by overview and application responses.
      *

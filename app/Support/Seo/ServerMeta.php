@@ -146,7 +146,7 @@ final class ServerMeta
             'description' => filled($activity->description)
                 ? Str::limit((string) $activity->description, 180)
                 : $this->activityDescription($title, $activityName, $group, $activity),
-            'image' => $activity->activityTypeVersion?->banner_image_url
+            'image' => $activity->bannerImageUrl()
                 ?: $activity->activityTypeVersion?->small_image_url
                 ?: self::DEFAULT_IMAGE,
             'type' => 'event',

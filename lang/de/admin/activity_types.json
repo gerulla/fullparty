@@ -214,6 +214,9 @@
         "label": "Lokalisierter Prog-Punkt-Name",
         "label_help": "Dieser Name wird überall angezeigt, wo die Aktivität später diese Prog-Punkte nutzt.",
         "label_placeholder": "Bridges",
+        "banner_help": "Optional. Runs mit diesem Prog-Punkt als Ziel verwenden dieses Bild. Ohne eigenes Bild wird das Aktivitätsbanner angezeigt.",
+        "banner_preview": "Vorschau des Prog-Punkt-Banners",
+        "remove_banner": "Banner entfernen",
         "empty_title": "Noch keine Prog-Punkte",
         "empty_description": "Füge Prog-Punkte hinzu, wenn dieser Aktivitätstyp benannte Checkpoints zusätzlich zur FF-Logs-Meilensteinzuordnung braucht."
     },

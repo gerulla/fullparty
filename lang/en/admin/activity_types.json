@@ -214,6 +214,9 @@
     "label": "Localized Prog Point Label",
     "label_help": "This label is shown anywhere the activity references these prog points later.",
     "label_placeholder": "Bridges",
+    "banner_help": "Optional. Runs targeting this prog point use this image. Leave it empty to use the activity banner.",
+    "banner_preview": "Prog point banner preview",
+    "remove_banner": "Remove banner",
     "empty_title": "No prog points yet",
     "empty_description": "Add prog points if this activity type needs named checkpoints beyond FF Logs milestone mapping."
   },

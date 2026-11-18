@@ -204,6 +204,38 @@ class Activity extends Model
         return $this->belongsTo(ActivityTypeVersion::class);
     }
 
+    public function targetProgPoint(): ?array
+    {
+        if (blank($this->target_prog_point_key)) {
+            return null;
+        }
+
+        return collect($this->activityTypeVersion?->prog_points)
+            ->firstWhere('key', '===', $this->target_prog_point_key);
+    }
+
+    public function targetProgPointBannerUrl(): ?string
+    {
+        $url = $this->targetProgPoint()['banner_image_url'] ?? null;
+
+        return is_string($url) && filled($url) ? $url : null;
+    }
+
+    public function bannerImageUrl(): ?string
+    {
+        return $this->targetProgPointBannerUrl() ?? $this->activityTypeVersion?->banner_image_url;
+    }
+
+    /** @return list<string> */
+    public function cardImageUrls(): array
+    {
+        return array_values(array_unique(array_filter([
+            $this->targetProgPointBannerUrl(),
+            $this->activityTypeVersion?->banner_image_url,
+            $this->activityTypeVersion?->small_image_url,
+        ], filled(...))));
+    }
+
     public function organizer(): BelongsTo
     {
         return $this->belongsTo(User::class, 'organized_by_user_id');

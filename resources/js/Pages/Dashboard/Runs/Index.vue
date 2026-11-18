@@ -1,182 +1,70 @@
 <script setup lang="ts">
-import type { RunDiscoveryDiscoverResponse, RunDiscoveryFilterState, RunDiscoveryPageProps, RunDiscoverySort } from "../../../Types/RunDiscovery";
-import axios from "axios";
-import { onBeforeUnmount, ref } from "vue";
-import { Head } from "@inertiajs/vue3";
-import { route } from "ziggy-js";
-import { useI18n } from "vue-i18n";
-import RunDiscoveryFilterPanel from "@/components/Runs/RunDiscoveryFilterPanel.vue";
-import RunDiscoveryResultsPanel from "@/components/Runs/RunDiscoveryResultsPanel.vue";
+import { computed } from 'vue'
+import { Head } from '@inertiajs/vue3'
+import { useBreakpoints, useMediaQuery } from '@vueuse/core'
+import { useI18n } from 'vue-i18n'
+import V2Layout from '@/Layouts/V2Layout.vue'
+import RunBrowseSection from '@/components/Runs/RunBrowseSection.vue'
+import TrendingActivitiesSection from '@/components/Runs/TrendingActivitiesSection.vue'
+import RunSearchResults from '@/components/Runs/RunSearchResults.vue'
+import RunSearchFilters from '@/components/Runs/RunSearchFilters.vue'
+import { useRunBrowseSearch } from '@/composables/useRunBrowseSearch'
+import type { RunBrowseSection as BrowseSection, RunDiscoveryPageProps } from '../../../Types/RunDiscovery'
+import { localizedValue } from '@/utils/localizedValue'
 
-const props = defineProps<RunDiscoveryPageProps>();
+defineOptions({ layout: V2Layout })
 
-const { t } = useI18n();
+const props = defineProps<RunDiscoveryPageProps>()
+const { t, locale } = useI18n()
+const gridBreakpoints = useBreakpoints({ sm: '40rem', lg: '64rem', xl: '80rem', '2xl': '96rem' }).current()
+const resultColumns = computed(() => 1 + gridBreakpoints.value.length)
+const wideDesktop = useMediaQuery('(min-width: 120rem)')
+const resultsPerPage = computed(() => wideDesktop.value ? 20 : resultColumns.value * Math.round(10 / resultColumns.value))
+const { active: searching, applied, searchTimezone, applyFilters, setSort, loading: searchLoading, failed, result, selectActivity, goToPage, bookmarkChanged, clear, retry } = useRunBrowseSearch(() => props.lookups, () => resultsPerPage.value)
+const loading = computed(() => props.browseSections === undefined)
+const sections = computed<BrowseSection[]>(() => props.browseSections ?? [
+    { id: 'recommended', title_key: 'recommended', runs: [] },
+    { id: 'recently-posted', title_key: 'recently_posted', runs: [] },
+    { id: 'almost-full', title_key: 'almost_full', runs: [] },
+    { id: 'latest-content', title_key: 'latest_content', runs: [] },
+])
 
-const discoveredRunIds = ref<number[]>([]);
-const discoveredRunItems = ref<RunDiscoveryDiscoverResponse["items"]>([]);
-const paginationMeta = ref<RunDiscoveryDiscoverResponse["meta"]>({
-	current_page: 1,
-	last_page: 1,
-	per_page: 10,
-	total: 0,
-});
-const activeFilters = ref<RunDiscoveryFilterState | null>(null);
-const isLoading = ref(true);
-const currentPage = ref(1);
-const currentSort = ref<RunDiscoverySort>("starting_soonest");
-const pendingSavedItemIds = ref<number[]>([]);
-let discoveryRequestCounter = 0;
-let scheduledDiscoveryTimeout: ReturnType<typeof setTimeout> | null = null;
-
-function syncSavedStateLocally(itemId: number, isSaved: boolean) {
-	const savedOnly = activeFilters.value?.saved_only ?? false;
-
-	if (!isSaved && savedOnly) {
-		discoveredRunItems.value = discoveredRunItems.value.filter((item) => item.id !== itemId);
-		discoveredRunIds.value = discoveredRunIds.value.filter((id) => id !== itemId);
-
-		const nextTotal = Math.max(0, paginationMeta.value.total - 1);
-		const nextLastPage = Math.max(1, Math.ceil(nextTotal / paginationMeta.value.per_page));
-
-		paginationMeta.value = {
-			...paginationMeta.value,
-			total: nextTotal,
-			last_page: nextLastPage,
-			current_page: Math.min(paginationMeta.value.current_page, nextLastPage),
-		};
-		currentPage.value = paginationMeta.value.current_page;
-
-		return;
-	}
-
-	discoveredRunItems.value = discoveredRunItems.value.map((item) => (
-		item.id === itemId
-			? { ...item, is_saved: isSaved }
-			: item
-	));
+function sectionTitle(section: BrowseSection): string {
+    return t(`runs.browse.sections.${section.title_key}`, {
+        activity: localizedValue(section.activity_name, locale.value),
+    })
 }
-
-async function fetchRunIds() {
-	if (activeFilters.value === null) {
-		return;
-	}
-
-	const requestId = ++discoveryRequestCounter;
-	isLoading.value = true;
-
-	try {
-		const response = await axios.get<RunDiscoveryDiscoverResponse>(route("dashboard.runs.discover"), {
-			params: {
-				...activeFilters.value,
-				sort: currentSort.value,
-				page: currentPage.value,
-			},
-		});
-
-		if (requestId !== discoveryRequestCounter) {
-			return;
-		}
-
-		discoveredRunIds.value = response.data.ids;
-		discoveredRunItems.value = response.data.items;
-		paginationMeta.value = response.data.meta;
-		currentPage.value = response.data.meta.current_page;
-	} catch {
-		// Keep the last successful discovery payload in place when the request fails.
-	} finally {
-		if (requestId === discoveryRequestCounter) {
-			isLoading.value = false;
-		}
-	}
-}
-
-function scheduleDiscoveryFetch() {
-	if (scheduledDiscoveryTimeout !== null) {
-		clearTimeout(scheduledDiscoveryTimeout);
-	}
-
-	scheduledDiscoveryTimeout = setTimeout(() => {
-		scheduledDiscoveryTimeout = null;
-		void fetchRunIds();
-	}, 250);
-}
-
-function handleFiltersChange(filters: RunDiscoveryFilterState) {
-	activeFilters.value = filters;
-	currentPage.value = 1;
-	scheduleDiscoveryFetch();
-}
-
-function handlePageChange(page: number) {
-	if (page === currentPage.value) {
-		return;
-	}
-
-	currentPage.value = page;
-	void fetchRunIds();
-}
-
-function handleSortChange(sort: RunDiscoverySort) {
-	if (sort === currentSort.value) {
-		return;
-	}
-
-	currentSort.value = sort;
-	currentPage.value = 1;
-	scheduleDiscoveryFetch();
-}
-
-async function handleToggleSaved(item: RunDiscoveryDiscoverResponse["items"][number]) {
-	if (pendingSavedItemIds.value.includes(item.id)) {
-		return;
-	}
-
-	pendingSavedItemIds.value = [...pendingSavedItemIds.value, item.id];
-
-	try {
-		if (item.is_saved) {
-			await axios.delete(route("dashboard.runs.unsave", {
-				activity: item.id,
-			}));
-
-			syncSavedStateLocally(item.id, false);
-		} else {
-			await axios.post(route("dashboard.runs.save", {
-				activity: item.id,
-			}));
-
-			syncSavedStateLocally(item.id, true);
-		}
-	} finally {
-		pendingSavedItemIds.value = pendingSavedItemIds.value.filter((pendingId) => pendingId !== item.id);
-	}
-}
-
-onBeforeUnmount(() => {
-	if (scheduledDiscoveryTimeout !== null) {
-		clearTimeout(scheduledDiscoveryTimeout);
-	}
-});
 </script>
 
 <template>
-	<Head :title="`${t('runs.discovery.title')} -`" />
+    <Head :title="`${t('runs.browse.title')} -`" />
 
-	<div class="flex min-h-0 flex-col gap-6 lg:h-[calc(100dvh-10rem)] lg:flex-row lg:overflow-hidden">
-		<RunDiscoveryFilterPanel
-			:lookups="props.lookups"
-			@filters-change="handleFiltersChange"
-		/>
-		<RunDiscoveryResultsPanel
-			:items="discoveredRunItems"
-			:result-count="paginationMeta.total"
-			:current-page="paginationMeta.current_page"
-			:total-pages="paginationMeta.last_page"
-			:loading="isLoading"
-			:pending-saved-item-ids="pendingSavedItemIds"
-			@page-change="handlePageChange"
-			@sort-change="handleSortChange"
-			@toggle-saved="handleToggleSaved"
-		/>
-	</div>
+    <div class="run-browse mx-auto w-full min-w-0 max-w-[116rem] space-y-10 pb-6 sm:space-y-12">
+        <h1 class="sr-only">{{ t('runs.browse.title') }}</h1>
+
+        <template v-if="searching">
+            <RunSearchFilters :search="applied" :timezone="searchTimezone" :lookups="lookups" @apply="applyFilters" />
+            <RunSearchResults :result="result" :loading="searchLoading" :failed="failed"
+                :columns="resultColumns" :per-page="resultsPerPage" :sort="applied.sort"
+                @sort="setSort" @page="goToPage" @clear="clear" @retry="retry" @bookmark-changed="bookmarkChanged" />
+        </template>
+        <template v-else>
+            <template v-for="section in sections" :key="section.id">
+                <RunBrowseSection :title="sectionTitle(section)" :runs="section.runs" :loading="loading" />
+                <TrendingActivitiesSection v-if="section.id === 'recommended'" :activities="trendingActivities" @select="selectActivity" />
+            </template>
+        </template>
+    </div>
 </template>
+
+<style scoped>
+.run-browse {
+    --ui-primary: var(--color-brand-700);
+    --ui-brand: var(--color-brand-700);
+}
+
+.dark .run-browse {
+    --ui-primary: var(--color-brand-400);
+    --ui-brand: var(--color-brand-400);
+}
+</style>

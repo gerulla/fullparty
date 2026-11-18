@@ -1,4 +1,18 @@
 {
+  "browse": {
+    "bookmark_error": "Impossible de modifier ce favori. Réessayez.",
+    "title": "Trouver des runs",
+    "search_placeholder": "Rechercher des runs, groupes ou activités",
+    "loading": "Chargement des runs…",
+    "empty": "Aucun run à venir dans cette section pour le moment.",
+    "sections": {
+      "recommended": "Des runs pour vous",
+      "recently_posted": "Récemment publiés",
+      "almost_full": "Presque complets",
+      "more_activity": "Plus de {activity}",
+      "latest_content": "Contenu récent"
+    }
+  },
   "participation": {
     "statuses": {
       "pending": "Candidature envoyée",
@@ -191,7 +205,9 @@
             },
             "sort_options": {
                 "starting_soonest": "Début le plus proche",
-                "newest_posted": "Plus récents",
+                "newest_posted": "Publiés récemment",
+                "most_full": "Les plus remplis",
+                "least_full": "Les moins remplis",
                 "recently_updated": "Mis à jour récemment",
                 "open_slots": "Le plus de places libres"
             }

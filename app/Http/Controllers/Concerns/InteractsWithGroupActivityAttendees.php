@@ -75,7 +75,7 @@ trait InteractsWithGroupActivityAttendees
             'title' => $activity->title,
             'description' => $activity->description,
             'small_image_url' => $activity->activityTypeVersion?->small_image_url,
-            'banner_image_url' => $activity->activityTypeVersion?->banner_image_url,
+            'banner_image_url' => $activity->bannerImageUrl(),
             'notes' => $activity->notes,
             'status' => $activity->status,
             'cancellation_reason' => $activity->resolvedCancellationReason(),

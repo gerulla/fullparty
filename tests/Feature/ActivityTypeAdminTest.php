@@ -339,6 +339,10 @@ it('stores activity type images and snapshots copies into published versions', f
     $payload = activityTypeAdminPayload($characterClass, $phantomBard, $phantomZerker);
     $payload['draft_small_image'] = UploadedFile::fake()->image('small-card.png', 1000, 1700);
     $payload['draft_banner_image'] = UploadedFile::fake()->image('banner.png', 1500, 500);
+    $payload['draft_prog_points'] = [
+        ['key' => 'entry', 'label' => ['en' => 'Entry']],
+        ['key' => 'boss', 'label' => ['en' => 'Boss'], 'banner_image' => UploadedFile::fake()->image('boss.png', 900, 300)],
+    ];
 
     $this->actingAs($admin)
         ->post(route('admin.activity-types.store'), $payload)
@@ -360,12 +364,28 @@ it('stores activity type images and snapshots copies into published versions', f
 
     $publishedSmallImagePath = activityTypePublicStoragePath($publishedVersion?->small_image_url);
     $publishedBannerImagePath = activityTypePublicStoragePath($publishedVersion?->banner_image_url);
+    $draftPointPath = activityTypePublicStoragePath($activityType->draft_prog_points[1]['banner_image_url']);
+    $publishedPointPath = activityTypePublicStoragePath($publishedVersion->prog_points[1]['banner_image_url']);
 
     expect($publishedSmallImagePath)->not->toBe($draftSmallImagePath)
-        ->and($publishedBannerImagePath)->not->toBe($draftBannerImagePath);
+        ->and($publishedBannerImagePath)->not->toBe($draftBannerImagePath)
+        ->and($publishedPointPath)->not->toBe($draftPointPath)
+        ->and($publishedVersion->prog_points[0]['banner_image_url'] ?? null)->toBeNull();
 
     Storage::disk('public')->assertExists($publishedSmallImagePath);
     Storage::disk('public')->assertExists($publishedBannerImagePath);
+    Storage::disk('public')->assertExists($draftPointPath);
+
+    unset($payload['draft_small_image'], $payload['draft_banner_image']);
+    $payload['draft_prog_points'] = array_reverse($activityType->draft_prog_points);
+    $payload['draft_prog_points'][0]['banner_image_url'] = null;
+    $this->put(route('admin.activity-types.update', $activityType), $payload)->assertSessionHasNoErrors();
+
+    $points = $activityType->fresh()->draft_prog_points;
+    expect($points[0]['key'])->toBe('boss')
+        ->and($points[0]['banner_image_url'] ?? null)->toBeNull();
+    Storage::disk('public')->assertMissing($draftPointPath);
+    Storage::disk('public')->assertExists($publishedPointPath);
 });
 
 it('allows admins to clone activity types into independent editable drafts', function () {
@@ -393,6 +413,9 @@ it('allows admins to clone activity types into independent editable drafts', fun
 
     $payload = activityTypeAdminPayload($characterClass, $phantomBard, $phantomZerker);
     $payload['tags'] = ['forked-tower', 'chaos'];
+    $payload['draft_prog_points'] = [
+        ['key' => 'boss', 'label' => ['en' => 'Boss'], 'banner_image' => UploadedFile::fake()->image('boss.png', 900, 300)],
+    ];
     $payload['draft_small_image'] = UploadedFile::fake()->image('small-card.png', 1000, 1700);
     $payload['draft_banner_image'] = UploadedFile::fake()->image('banner.png', 1500, 500);
 
@@ -420,6 +443,7 @@ it('allows admins to clone activity types into independent editable drafts', fun
 
     $cloneSmallImagePath = activityTypePublicStoragePath($clone->draft_small_image_url);
     $cloneBannerImagePath = activityTypePublicStoragePath($clone->draft_banner_image_url);
+    $clonePointPath = activityTypePublicStoragePath($clone->draft_prog_points[0]['banner_image_url']);
 
     expect($clone->draft_name['en'])->toBe('Forked Tower (Copy)')
         ->and($clone->draft_description)->toBe($source->draft_description)
@@ -427,7 +451,8 @@ it('allows admins to clone activity types into independent editable drafts', fun
         ->and($clone->draft_slot_schema)->toBe($source->draft_slot_schema)
         ->and($clone->draft_application_schema)->toBe($source->draft_application_schema)
         ->and($clone->draft_progress_schema)->toBe($source->draft_progress_schema)
-        ->and($clone->draft_prog_points)->toBe($source->draft_prog_points)
+        ->and($clone->draft_prog_points[0]['key'])->toBe('boss')
+        ->and($clonePointPath)->not->toBe(activityTypePublicStoragePath($source->draft_prog_points[0]['banner_image_url']))
         ->and($clone->draft_difficulty)->toBe($source->draft_difficulty)
         ->and($clone->current_published_version_id)->toBeNull()
         ->and($clone->versions()->count())->toBe(0)
@@ -440,6 +465,7 @@ it('allows admins to clone activity types into independent editable drafts', fun
     Storage::disk('public')->assertExists($sourceBannerImagePath);
     Storage::disk('public')->assertExists($cloneSmallImagePath);
     Storage::disk('public')->assertExists($cloneBannerImagePath);
+    Storage::disk('public')->assertExists($clonePointPath);
 });
 
 it('stores uploaded admin images with a server-detected image extension instead of the client filename extension', function () {
@@ -489,13 +515,16 @@ it('rejects svg uploads for activity type images', function () {
         'payload.svg',
         '<svg xmlns="http://www.w3.org/2000/svg"><script>alert(1)</script></svg>',
     );
+    $payload['draft_prog_points'] = [
+        ['key' => 'boss', 'label' => ['en' => 'Boss'], 'banner_image' => $payload['draft_small_image']],
+    ];
 
     $this
         ->actingAs($admin)
         ->from(route('admin.activity-types.create'))
         ->post(route('admin.activity-types.store'), $payload)
         ->assertRedirect(route('admin.activity-types.create'))
-        ->assertSessionHasErrors('draft_small_image');
+        ->assertSessionHasErrors(['draft_small_image', 'draft_prog_points.0.banner_image']);
 
     expect(ActivityType::query()->where('slug', 'forked-tower')->doesntExist())->toBeTrue();
 });

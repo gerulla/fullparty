@@ -378,6 +378,7 @@ const addCreatedTag = (rawTag: string) => {
 				<ActivityProgPointsEditor
 					v-model="form.draft_prog_points"
 					:locales="locales"
+					:errors="form.errors"
 				/>
 			</div>
 

@@ -441,6 +441,10 @@ it('renders server-side embed meta for public activity overviews', function () {
         'published_by_user_id' => $owner->id,
         'name' => ['en' => 'AAC Light-heavyweight M4 Savage'],
         'banner_image_url' => '/storage/activity-banners/m4s.webp',
+        'prog_points' => [
+            ['key' => 'opening', 'label' => ['en' => 'Opening']],
+            ['key' => 'midnight', 'label' => ['en' => 'Midnight'], 'banner_image_url' => '/storage/activity-banners/midnight.webp'],
+        ],
         'layout_schema' => ['groups' => []],
         'slot_schema' => [],
         'application_schema' => [],
@@ -458,6 +462,7 @@ it('renders server-side embed meta for public activity overviews', function () {
         'organized_by_user_id' => $owner->id,
         'status' => Activity::STATUS_SCHEDULED,
         'title' => 'Storm Raid',
+        'target_prog_point_key' => 'opening',
         'description' => 'Push to clear.',
         'is_public' => true,
     ]);
@@ -471,6 +476,16 @@ it('renders server-side embed meta for public activity overviews', function () {
         ->assertSee('<meta property="og:type" content="event">', false)
         ->assertSee('<meta property="og:description" content="Push to clear.">', false)
         ->assertSee('<meta property="og:image" content="http://fullparty.test/storage/activity-banners/m4s.webp">', false);
+
+    $activity->update(['target_prog_point_key' => 'midnight']);
+    $newVersion = ActivityTypeVersion::factory()->for($type)->create(['version' => 2, 'prog_points' => []]);
+    $type->update(['current_published_version_id' => $newVersion->id]);
+
+    $this->get(route('groups.activities.overview', [$group, $activity]))
+        ->assertInertia(fn (Assert $page) => $page->where('activity.banner_image_url', '/storage/activity-banners/midnight.webp'))
+        ->assertSee('<meta property="og:image" content="http://fullparty.test/storage/activity-banners/midnight.webp">', false);
+    $this->actingAs($owner)->get(route('groups.dashboard.activities.edit', [$group, $activity]))
+        ->assertInertia(fn (Assert $page) => $page->where('activityTypes.0.prog_points.1.banner_image_url', '/storage/activity-banners/midnight.webp'));
 });
 
 it('falls back to cancelled application review reasons on the attendee overview payload', function () {

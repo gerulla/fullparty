@@ -35,7 +35,11 @@ class RunDiscoveryFilterRequest extends FormRequest
             'datacenter' => ['nullable', 'string', Rule::in(config('datacenters.values', []))],
             'group' => ['nullable', 'string', Rule::in($this->availableGroupSlugs())],
             'timezone' => ['required', 'string', 'timezone'],
-            'date_range' => ['nullable', 'string', Rule::in(['upcoming', 'next_7_days', 'next_30_days', 'this_week', 'next_week', 'custom_range', 'custom_day'])],
+            'date_range' => ['nullable', 'string', Rule::in(['upcoming', 'next_7_days', 'next_30_days', 'this_week', 'next_week', 'custom_range', 'custom_day', 'flexible'])],
+            'date_flex_days' => ['nullable', 'integer', Rule::in([0, 1, 2, 3, 7, 14])],
+            'flexible_days' => ['nullable', 'string', Rule::in(['any', 'weekday', 'weekend'])],
+            'date_months' => ['nullable', 'array', 'max:12'],
+            'date_months.*' => ['required', 'string', 'date_format:Y-m', 'distinct'],
             'date_from' => ['nullable', 'date_format:Y-m-d'],
             'date_to' => ['nullable', 'date_format:Y-m-d', 'after_or_equal:date_from'],
             'time_of_day' => ['nullable', 'string', Rule::in(['any', 'morning', 'afternoon', 'evening', 'night'])],
@@ -49,8 +53,9 @@ class RunDiscoveryFilterRequest extends FormRequest
             'application_status' => ['nullable', 'string', Rule::in(['applications_open', 'direct_join'])],
             'intensity' => ['nullable', 'string', Rule::in(Activity::INTENSITIES)],
             'voice_expectation' => ['nullable', 'string', Rule::in(config('group_discovery.voice_expectations', []))],
-            'sort' => ['nullable', 'string', Rule::in(['starting_soonest', 'newest_posted', 'recently_updated', 'open_slots'])],
+            'sort' => ['nullable', 'string', Rule::in(['starting_soonest', 'newest_posted', 'most_full', 'least_full', 'recently_updated', 'open_slots'])],
             'page' => ['nullable', 'integer', 'min:1'],
+            'per_page' => ['nullable', 'integer', Rule::in([9, 10, 12, 20])],
         ];
     }
 

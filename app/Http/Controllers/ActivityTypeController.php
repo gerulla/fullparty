@@ -8,9 +8,9 @@ use App\Models\ActivityTypeVersion;
 use App\Models\CharacterClass;
 use App\Models\PhantomJob;
 use App\Services\ActivityTypes\ActivityTypeDraftValidator;
+use App\Services\ActivityTypes\ActivityTypeImages;
 use App\Services\ActivityTypes\ActivityTypePublishingService;
 use App\Services\AuditLogger;
-use App\Services\ManagedImageStorage;
 use App\Support\ActivityCompositionPresets;
 use App\Support\Audit\AuditScope;
 use App\Support\Audit\AuditSeverity;
@@ -18,6 +18,7 @@ use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
@@ -26,13 +27,11 @@ use Inertia\Response;
 
 class ActivityTypeController extends Controller
 {
-    private const IMAGE_DIRECTORY = 'activity-types';
-
     private const INDEX_PER_PAGE = 12;
 
     public function __construct(
         private readonly AuditLogger $auditLogger,
-        private readonly ManagedImageStorage $managedImageStorage,
+        private readonly ActivityTypeImages $images,
         private readonly ActivityTypeDraftValidator $draftValidator,
         private readonly ActivityTypePublishingService $publishingService,
     ) {}
@@ -112,23 +111,12 @@ class ActivityTypeController extends Controller
         $this->normalizeNullableDraftMetadata($request);
         $validated = $request->validate($this->rules());
         $this->draftValidator->validate($validated);
-        $tagNames = $this->extractTagNames($validated);
-        $smallImageUrl = $this->managedImageStorage->uploadImageIfPresent(
-            file: $request->file('draft_small_image'),
-            directory: self::IMAGE_DIRECTORY,
-        );
-        $bannerImageUrl = $this->managedImageStorage->uploadImageIfPresent(
-            file: $request->file('draft_banner_image'),
-            directory: self::IMAGE_DIRECTORY,
-        );
+        $activityType = DB::transaction(function () use ($validated): ActivityType {
+            $type = new ActivityType(['created_by_user_id' => auth()->id()]);
+            $this->saveDraft($type, $validated);
 
-        $activityType = ActivityType::create([
-            ...collect($validated)->except('tags', 'draft_small_image', 'draft_banner_image')->all(),
-            'draft_small_image_url' => $smallImageUrl,
-            'draft_banner_image_url' => $bannerImageUrl,
-            'created_by_user_id' => auth()->id(),
-        ]);
-        $this->syncTags($activityType, $tagNames);
+            return $type;
+        });
 
         $this->auditLogger->log(
             action: 'admin.activity_type.created',
@@ -153,31 +141,16 @@ class ActivityTypeController extends Controller
     {
         $this->authorizeAdminAccess();
 
-        $originalValues = $this->activityTypeSnapshot($activityType);
         $this->normalizeNullableDraftMetadata($request);
         $validated = $request->validate($this->rules($activityType->id));
         $this->draftValidator->validate($validated);
-        $tagNames = $this->extractTagNames($validated);
-        $smallImageUrl = $this->managedImageStorage->replaceUploadedImageIfPresent(
-            currentUrl: $activityType->draft_small_image_url,
-            file: $request->file('draft_small_image'),
-            directory: self::IMAGE_DIRECTORY,
-        );
-        $bannerImageUrl = $this->managedImageStorage->replaceUploadedImageIfPresent(
-            currentUrl: $activityType->draft_banner_image_url,
-            file: $request->file('draft_banner_image'),
-            directory: self::IMAGE_DIRECTORY,
-        );
+        $changes = DB::transaction(function () use ($activityType, $validated): array {
+            $type = ActivityType::query()->lockForUpdate()->findOrFail($activityType->id);
+            $originalValues = $this->activityTypeSnapshot($type);
+            $this->saveDraft($type, $validated);
 
-        $activityType->update([
-            ...collect($validated)->except('tags', 'draft_small_image', 'draft_banner_image')->all(),
-            'draft_small_image_url' => $smallImageUrl,
-            'draft_banner_image_url' => $bannerImageUrl,
-        ]);
-        $this->syncTags($activityType, $tagNames);
-
-        $updatedValues = $this->activityTypeSnapshot($activityType->fresh()->load('tags:id,name'));
-        $changes = $this->buildChanges($originalValues, $updatedValues);
+            return $this->buildChanges($originalValues, $this->activityTypeSnapshot($type->load('tags:id,name')));
+        });
 
         if ($changes !== []) {
             $this->auditLogger->log(
@@ -205,14 +178,14 @@ class ActivityTypeController extends Controller
     {
         $this->authorizeAdminAccess();
 
-        $activityType->loadMissing('tags:id,name');
         $clone = DB::transaction(function () use ($activityType): ActivityType {
+            $activityType = ActivityType::query()->with('tags:id,name')->lockForUpdate()->findOrFail($activityType->id);
             $clone = ActivityType::create([
                 'slug' => $this->uniqueCloneSlug($activityType->slug),
                 'draft_name' => $this->cloneLocalizedName($activityType->draft_name),
                 'draft_description' => $activityType->draft_description,
-                'draft_small_image_url' => $this->managedImageStorage->copyManagedImage($activityType->draft_small_image_url, self::IMAGE_DIRECTORY),
-                'draft_banner_image_url' => $this->managedImageStorage->copyManagedImage($activityType->draft_banner_image_url, self::IMAGE_DIRECTORY),
+                'draft_small_image_url' => $this->images->copy($activityType->draft_small_image_url),
+                'draft_banner_image_url' => $this->images->copy($activityType->draft_banner_image_url),
                 'draft_difficulty' => $activityType->draft_difficulty,
                 'draft_default_min_item_level' => $activityType->draft_default_min_item_level,
                 'draft_layout_schema' => $activityType->draft_layout_schema,
@@ -221,7 +194,7 @@ class ActivityTypeController extends Controller
                 'draft_roster_summary_presets' => $activityType->draft_roster_summary_presets ?? [],
                 'draft_progress_schema' => $activityType->draft_progress_schema,
                 'draft_bench_size' => $activityType->draft_bench_size,
-                'draft_prog_points' => $activityType->draft_prog_points,
+                'draft_prog_points' => $this->images->copyProgPoints($activityType->draft_prog_points),
                 'draft_fflogs_zone_id' => $activityType->draft_fflogs_zone_id,
                 'is_active' => true,
                 'created_by_user_id' => auth()->id(),
@@ -360,6 +333,8 @@ class ActivityTypeController extends Controller
      */
     private function rules(?int $activityTypeId = null): array
     {
+        $imageRules = ['sometimes', 'nullable', 'image', 'mimes:jpg,jpeg,png,gif,webp', 'max:5120'];
+
         return [
             'slug' => [
                 'required',
@@ -372,8 +347,8 @@ class ActivityTypeController extends Controller
             'draft_name.*' => ['required', 'string', 'max:255'],
             'draft_description' => ['nullable', 'array'],
             'draft_description.*' => ['nullable', 'string'],
-            'draft_small_image' => ['sometimes', 'nullable', 'image', 'mimes:jpg,jpeg,png,gif,webp', 'max:5120'],
-            'draft_banner_image' => ['sometimes', 'nullable', 'image', 'mimes:jpg,jpeg,png,gif,webp', 'max:5120'],
+            'draft_small_image' => $imageRules,
+            'draft_banner_image' => $imageRules,
             'draft_difficulty' => ['sometimes', 'string', Rule::in(ActivityType::DIFFICULTIES)],
             'draft_default_min_item_level' => ['sometimes', 'nullable', 'integer', 'min:1', 'max:9999'],
             'tags' => ['nullable', 'array'],
@@ -385,9 +360,21 @@ class ActivityTypeController extends Controller
             'draft_progress_schema' => ['required', 'array'],
             'draft_bench_size' => ['sometimes', 'integer', 'min:0', 'max:24'],
             'draft_prog_points' => ['nullable', 'array'],
+            'draft_prog_points.*' => ['array'],
+            'draft_prog_points.*.key' => ['required', 'string'],
+            'draft_prog_points.*.label' => ['required', 'array'],
+            'draft_prog_points.*.order' => ['sometimes', 'nullable', 'integer'],
+            'draft_prog_points.*.banner_image' => $imageRules,
+            'draft_prog_points.*.banner_image_url' => ['sometimes', 'nullable', 'string'],
             'draft_fflogs_zone_id' => ['nullable', 'integer', 'min:1'],
             'is_active' => ['sometimes', 'boolean'],
         ];
+    }
+
+    private function saveDraft(ActivityType $type, array $validated): void
+    {
+        $type->fill($this->images->draftAttributes($type, Arr::except($validated, 'tags')))->save();
+        $this->syncTags($type, $this->extractTagNames($validated));
     }
 
     private function normalizeNullableDraftMetadata(Request $request): void

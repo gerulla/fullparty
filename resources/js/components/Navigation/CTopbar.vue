@@ -1,72 +1,39 @@
 <script setup lang="ts">
-import NotificationBell from "@/components/Navigation/NotificationBell.vue";
-import UserMenu from "@/components/Navigation/UserMenu.vue";
-import AppLocaleSelect from "@/components/Navigation/AppLocaleSelect.vue";
-import GlobalSearchBox from "@/components/Navigation/GlobalSearchBox.vue";
-import TimeDisplayModeToggle from "@/components/Navigation/TimeDisplayModeToggle.vue";
-import { usePage } from "@inertiajs/vue3";
-import { computed, ref } from "vue";
-import { useI18n } from "vue-i18n";
+import { computed } from 'vue'
+import { usePage } from '@inertiajs/vue3'
+import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
+import { useI18n } from 'vue-i18n'
+import AppLocaleSelect from '@/components/Navigation/AppLocaleSelect.vue'
+import NotificationBell from '@/components/Navigation/NotificationBell.vue'
+import SearchableTopbar from '@/components/Navigation/SearchableTopbar.vue'
+import TimeDisplayModeToggle from '@/components/Navigation/TimeDisplayModeToggle.vue'
+import UserMenu from '@/components/Navigation/UserMenu.vue'
+import UserMenuV2 from '@/components/Navigation/UserMenuV2.vue'
 
-const { t } = useI18n({ useScope: 'global' })
-const page = usePage();
-const user = computed(() => page.props.auth?.user ?? null);
-const isSearchModalOpen = ref(false);
-
-defineProps({
-	title: {
-		type: String,
-		default: "Title"
-	}
-});
+defineProps<{ title?: string }>()
+const page = usePage()
+const { t } = useI18n()
+const user = computed(() => page.props.auth?.user ?? null)
+const compactActions = useBreakpoints(breakpointsTailwind).smaller('xl')
 </script>
 
 <template>
-	<UDashboardNavbar data-account-flags-header :title="page.component === 'Profile/Show' ? t('navigation.topbar.menu.profile') : undefined">
-		<template #leading>
-			<UDashboardSidebarCollapse />
-			<div class="min-w-0">
-				<UButton
-					color="neutral"
-					variant="ghost"
-					icon="i-lucide-search"
-					size="lg"
-					class="sm:hidden"
-					:aria-label="t('navigation.topbar.search_bar')"
-					@click="isSearchModalOpen = true"
-				/>
-				<GlobalSearchBox class="hidden w-48 sm:block md:w-56 lg:w-72 xl:w-96" />
-			</div>
-		</template>
-
-		<template #trailing>
-<!--			<UBadge label="4" variant="subtle" />-->
-		</template>
-
-		<template #right>
-			<TimeDisplayModeToggle v-if="user" />
-			<NotificationBell v-if="user" />
-			<div class="hidden sm:inline-flex">
-				<AppLocaleSelect variant="ghost" />
-			</div>
-			<div class="inline-flex sm:hidden">
-				<AppLocaleSelect variant="ghost" compact />
-			</div>
-			<UserMenu />
-		</template>
-	</UDashboardNavbar>
-
-	<UModal
-		v-model:open="isSearchModalOpen"
-		:title="t('navigation.topbar.search')"
-		:ui="{ content: 'max-w-lg', body: 'p-4 sm:p-4' }"
-	>
-		<template #body>
-			<GlobalSearchBox
-				autofocus
-				dropdown-mode="static"
-				@selected="isSearchModalOpen = false"
-			/>
-		</template>
-	</UModal>
+    <SearchableTopbar :desktop-logo="false">
+        <template #leading>
+            <UDashboardSidebarToggle />
+            <UDashboardSidebarCollapse />
+        </template>
+        <template #context>
+            <h1 v-if="page.component === 'Profile/Show'" class="sr-only md:not-sr-only md:truncate md:font-semibold">
+                {{ t('navigation.topbar.menu.profile') }}
+            </h1>
+        </template>
+        <template #actions>
+            <TimeDisplayModeToggle v-if="user && !compactActions" compact />
+            <NotificationBell v-if="user" :touch-target="compactActions" />
+            <AppLocaleSelect v-if="!compactActions" variant="ghost" flag-only />
+            <UserMenuV2 v-if="compactActions" compact mobile />
+            <UserMenu v-else />
+        </template>
+    </SearchableTopbar>
 </template>

@@ -25,8 +25,10 @@ function referencedNamespaces(file, seen = new Set()) {
     const source = fs.readFileSync(file, 'utf8');
     const found = new Set();
     // Include literal keys, template prefixes and keys stored in helper objects.
-    // Only actual dictionary paths count, so named Laravel routes are excluded.
-    const translationSource = source.replace(/\broute\(\s*['"][^'"]+['"]/g, 'route(');
+    // Routes and object property names (e.g. notification event IDs) can also look like message keys.
+    const translationSource = source
+        .replace(/\broute\(\s*['"][^'"]+['"]/g, 'route(')
+        .replace(/([,{]\s*)['"][\w.-]+['"]\s*:/g, '$1:');
     for (const match of translationSource.matchAll(/['"`]([a-z][\w]*(?:\.[\w-]+)+(?:\.)?)(?:['"`]|\$\{)/g)) {
         const key = match[1];
         for (const ns of namespaces) if (key.startsWith(ns.replaceAll('/', '.') + '.')) {

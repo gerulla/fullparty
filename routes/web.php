@@ -222,7 +222,7 @@ Route::middleware(['auth', 'verified'])->prefix('auth/discord-app')->group(funct
 Route::get('/forms/{surveyForm:slug}', [\App\Http\Controllers\SurveyFormController::class, 'show'])->middleware('cache.headers:private;no_store')->where('surveyForm', '[a-z0-9]+(?:-[a-z0-9]+)*')->name('forms.show');
 Route::post('/forms/{surveyForm:slug}', [\App\Http\Controllers\SurveyFormController::class, 'store'])->middleware('throttle:forms.submit')->where('surveyForm', '[a-z0-9]+(?:-[a-z0-9]+)*')->name('forms.submit');
 
-foreach (['auth', 'dashboard', 'groups', 'invite', 'settings', 'account', 'characters', 'profile', 'admin'] as $prefix) {
+foreach (['auth', 'dashboard', 'runs', 'groups', 'invite', 'settings', 'account', 'characters', 'profile', 'admin'] as $prefix) {
     Route::get("/{$prefix}/{path?}", fn (Request $request, ?string $path = null) => $redirectToLocalizedPath($request, trim($prefix.'/'.($path ?? ''), '/')))
         ->where('path', '.*');
 }
@@ -482,10 +482,17 @@ Route::prefix('{locale?}')
             Route::post('/onboarding/complete', [UserOnboardingController::class, 'complete'])->name('onboarding.complete');
             Route::get('/dashboard', fn () => redirect()->route('dashboard'));
             Route::get('/dashboard/search', GlobalSearchController::class)->name('dashboard.search');
-            Route::get('/dashboard/runs', [RunDiscoveryController::class, 'index'])->name('dashboard.runs.index');
-            Route::get('/dashboard/runs/discovery', [RunDiscoveryController::class, 'discover'])->name('dashboard.runs.discover');
-            Route::post('/dashboard/runs/{activity}/save', [RunDiscoveryController::class, 'save'])->name('dashboard.runs.save');
-            Route::delete('/dashboard/runs/{activity}/save', [RunDiscoveryController::class, 'unsave'])->name('dashboard.runs.unsave');
+            Route::get('/dashboard/runs', fn (Request $request) => redirect()->to(
+                url()->query(route('dashboard.runs.index'), $request->query()), 301
+            ));
+            Route::prefix('runs')->name('dashboard.runs.')->controller(RunDiscoveryController::class)->group(function () {
+                Route::get('/', 'index')->name('index');
+                Route::get('/search-options', 'searchOptions')->name('search-options');
+                Route::get('/discovery', 'discover')->name('discover');
+                Route::get('/discovery/count', 'count')->name('discover-count');
+                Route::post('/{activity}/save', 'save')->name('save');
+                Route::delete('/{activity}/save', 'unsave')->name('unsave');
+            });
 
             /*
             |--------------------------------------------------------------------------

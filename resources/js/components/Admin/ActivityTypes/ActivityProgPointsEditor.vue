@@ -2,6 +2,7 @@
 import type { ActivityTypeProgPoint } from "@/Types/AdminActivityTypes";
 import ActivityTypeSectionCard from "@/components/Admin/ActivityTypes/ActivityTypeSectionCard.vue";
 import LocalizedTextFields from "@/components/Admin/ActivityTypes/LocalizedTextFields.vue";
+import ProgPointBannerField from "@/components/Admin/ActivityTypes/ProgPointBannerField.vue";
 import { slugify } from "@/utils/slugify";
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
@@ -9,6 +10,7 @@ import { useI18n } from "vue-i18n";
 const props = defineProps<{
 	modelValue: ActivityTypeProgPoint[]
 	locales: string[]
+	errors: Record<string, string>
 }>();
 
 const emit = defineEmits<{
@@ -145,6 +147,14 @@ const updateProgPointLabel = (index: number, label: Record<string, string>) => {
 						:description="t('admin.activity_types.prog_points.label_help')"
 						:placeholder-prefix="t('admin.activity_types.prog_points.label_placeholder')"
 						@update:model-value="(value) => updateProgPointLabel(index, value)"
+					/>
+
+					<ProgPointBannerField
+						:file="progPoint.banner_image"
+						:image-url="progPoint.banner_image_url"
+						:error="errors[`draft_prog_points.${index}.banner_image`] || errors[`draft_prog_points.${index}.banner_image_url`]"
+						@select="file => updateProgPoint(index, { banner_image: file })"
+						@remove="updateProgPoint(index, { banner_image: null, banner_image_url: null })"
 					/>
 				</div>
 			</UCard>

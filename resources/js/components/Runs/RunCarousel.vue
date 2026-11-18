@@ -9,6 +9,7 @@ const props = withDefaults(defineProps<{
     rows?: 1 | 2
     type?: RunCardType
     bleedEnd?: boolean
+    desktopColumns?: number
 }>(), { rows: 1, type: 'default', bleedEnd: false })
 
 const columns = computed(() => Array.from(
@@ -20,10 +21,11 @@ const columns = computed(() => Array.from(
 <template>
     <UCarousel :key="rows" v-slot="{ item }" :items="columns" align="start" arrows drag-free
         :watch-drag="true" :aria-label="label"
+        :style="desktopColumns ? { '--run-carousel-columns': desktopColumns } : undefined"
         :prev="{ color: 'neutral', variant: 'soft' }" :next="{ color: 'neutral', variant: 'soft' }"
         :ui="{
-            item: 'basis-[19rem] max-w-full',
-            viewport: ['p-1 -m-1 select-none touch-pan-y cursor-grab active:cursor-grabbing', bleedEnd && '-me-4 sm:-me-6 lg:-me-8'],
+            item: ['basis-[19rem] max-w-full', desktopColumns && '2xl:basis-[max(19rem,calc(100%/var(--run-carousel-columns)))]'],
+            viewport: ['p-1 -m-1 select-none touch-pan-y cursor-grab active:cursor-grabbing', bleedEnd && '-me-4 sm:-me-6 lg:-me-8', desktopColumns && '2xl:-me-1'],
             controls: 'absolute right-0 -top-12',
             arrows: 'flex items-center gap-2',
             prev: 'static translate-y-0 rounded-md bg-elevation-1 hover:bg-elevation-2 dark:bg-elevation-3 dark:hover:bg-elevation-5',

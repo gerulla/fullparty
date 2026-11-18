@@ -547,7 +547,8 @@ final class HomeActivityOverviewDataService
 
     private function activityImageUrl(Activity $activity): ?string
     {
-        return $activity->activityTypeVersion?->small_image_url
+        return $activity->targetProgPointBannerUrl()
+            ?: $activity->activityTypeVersion?->small_image_url
             ?: $activity->activityTypeVersion?->banner_image_url;
     }
 

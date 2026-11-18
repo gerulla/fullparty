@@ -1,4 +1,18 @@
 {
+  "browse": {
+    "bookmark_error": "Das Lesezeichen konnte nicht aktualisiert werden. Versuche es erneut.",
+    "title": "Runs finden",
+    "search_placeholder": "Runs, Gruppen oder Aktivitäten suchen",
+    "loading": "Runs werden geladen…",
+    "empty": "Derzeit gibt es hier keine bevorstehenden Runs.",
+    "sections": {
+      "recommended": "Runs für dich",
+      "recently_posted": "Kürzlich veröffentlicht",
+      "almost_full": "Fast voll",
+      "more_activity": "Mehr {activity}",
+      "latest_content": "Neueste Inhalte"
+    }
+  },
   "participation": {
     "statuses": {
       "pending": "Beworben",
@@ -191,7 +205,9 @@
             },
             "sort_options": {
                 "starting_soonest": "Startet am frühesten",
-                "newest_posted": "Neueste zuerst",
+                "newest_posted": "Zuletzt veröffentlicht",
+                "most_full": "Höchste Auslastung",
+                "least_full": "Geringste Auslastung",
                 "recently_updated": "Kürzlich aktualisiert",
                 "open_slots": "Meiste freie Slots"
             }

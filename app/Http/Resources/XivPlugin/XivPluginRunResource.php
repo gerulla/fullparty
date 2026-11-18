@@ -55,7 +55,7 @@ class XivPluginRunResource extends JsonResource
                 'display_name' => $this->localized($activity->activityTypeVersion?->name) ?? 'Activity',
                 'difficulty' => $activity->activityTypeVersion?->difficulty,
                 'small_image_url' => $activity->activityTypeVersion?->small_image_url,
-                'banner_image_url' => $activity->activityTypeVersion?->banner_image_url,
+                'banner_image_url' => $activity->bannerImageUrl(),
             ],
         ];
 

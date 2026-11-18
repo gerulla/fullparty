@@ -12,7 +12,7 @@ class IntegrationRunController extends Controller
     {
         $activity->loadMissing([
             'group:id,name,slug',
-            'activityTypeVersion:id,name,small_image_url,banner_image_url,difficulty',
+            'activityTypeVersion:id,name,small_image_url,banner_image_url,difficulty,prog_points',
             'organizer:id,name',
             'organizerCharacter:id,name,world,datacenter',
         ]);
@@ -39,7 +39,7 @@ class IntegrationRunController extends Controller
                     'name' => $activity->activityTypeVersion?->name,
                     'difficulty' => $activity->activityTypeVersion?->difficulty,
                     'small_image_url' => $activity->activityTypeVersion?->small_image_url,
-                    'banner_image_url' => $activity->activityTypeVersion?->banner_image_url,
+                    'banner_image_url' => $activity->bannerImageUrl(),
                 ],
                 'organizer' => [
                     'id' => $activity->organizer?->id,

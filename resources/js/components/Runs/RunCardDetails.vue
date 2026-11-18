@@ -5,6 +5,7 @@ import { useI18n } from 'vue-i18n'
 
 const props = defineProps<{
     hostName: string
+    groupHost: boolean
     targetProgress?: string | null
     durationHours?: number | null
 }>()
@@ -48,7 +49,8 @@ onMounted(() => {
     <div ref="row" class="relative flex min-w-0 items-center gap-3 overflow-hidden text-xs text-muted">
         <div class="flex min-w-0 items-center gap-1.5" :title="hostName"
             :class="showDuration || !targetProgress ? 'flex-1' : 'max-w-[60%] shrink-0'">
-            <UIcon name="i-lucide-user-round" class="size-3.5 shrink-0" aria-hidden="true" />
+            <UIcon :name="groupHost ? 'i-lucide-users' : 'i-lucide-user-round'" class="size-3.5 shrink-0" aria-hidden="true" />
+            <span class="sr-only">{{ groupHost ? t('groups.activities.management.overview.group') : t('groups.activities.context_menu.summary_labels.host') }} </span>
             <span ref="hostLabel" class="truncate">{{ hostName }}</span>
         </div>
         <!-- Keep hidden duration measurable so it can return when the card grows. -->

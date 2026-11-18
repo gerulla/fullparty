@@ -64,6 +64,7 @@ class HomePreviewSeeder extends Seeder
                     'group_id' => $group->id,
                     'activity_type_id' => $type->id,
                     'activity_type_version_id' => $type->current_published_version_id,
+                    'target_prog_point_key' => PreviewRunProgPointSeeder::targetKey($type->currentPublishedVersion, $marker),
                     'organized_by_user_id' => $group->owner_id,
                     'organized_by_character_id' => $group->owner_id === $user->id ? $character->id : null,
                     'status' => Activity::STATUS_SCHEDULED,

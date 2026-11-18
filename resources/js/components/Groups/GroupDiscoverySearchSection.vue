@@ -340,9 +340,9 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-	<section class="mt-10 flex flex-col gap-5">
+	<section id="group-search" aria-labelledby="group-search-heading" class="mt-10 flex scroll-mt-[calc(var(--ui-header-height)+4.5rem)] flex-col gap-5 md:scroll-mt-[calc(var(--ui-header-height)+1rem)]">
 		<div class="flex flex-col gap-2">
-			<h2 class="text-xl font-semibold text-highlighted">{{ t('groups.index.discovery.title') }}</h2>
+			<h2 id="group-search-heading" class="text-xl font-semibold text-highlighted">{{ t('groups.index.discovery.title') }}</h2>
 			<p class="text-sm text-muted">{{ t('groups.index.discovery.subtitle') }}</p>
 		</div>
 

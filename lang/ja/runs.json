@@ -1,4 +1,18 @@
 {
+  "browse": {
+    "bookmark_error": "ブックマークを更新できませんでした。もう一度お試しください。",
+    "title": "募集を探す",
+    "search_placeholder": "募集、グループ、コンテンツを検索",
+    "loading": "募集を読み込み中…",
+    "empty": "現在、このセクションに開催予定の募集はありません。",
+    "sections": {
+      "recommended": "おすすめの募集",
+      "recently_posted": "新着の募集",
+      "almost_full": "まもなく満員",
+      "more_activity": "{activity}の募集をもっと見る",
+      "latest_content": "最新コンテンツ"
+    }
+  },
   "participation": {
     "statuses": {
       "pending": "応募済み",
@@ -192,6 +206,8 @@
             "sort_options": {
                 "starting_soonest": "開始が近い順",
                 "newest_posted": "新着順",
+                "most_full": "定員に近い順",
+                "least_full": "空き枠の割合が多い順",
                 "recently_updated": "最近更新順",
                 "open_slots": "空き枠が多い順"
             }

@@ -30,7 +30,7 @@ onMounted(() => { if (!isSupported.value) void load() })
 </script>
 
 <template>
-    <div ref="container" class="relative max-w-full" :class="type === 'date' ? 'w-full min-w-0 max-w-md' : 'w-72'"
+    <div ref="container" class="relative max-w-full" :class="type === 'default' ? 'w-72' : 'w-full min-w-0 max-w-md'"
         :aria-busy="!ready && !failed">
         <component :is="card" v-if="card" :run="run" :type="type" eager-image
             class="transition-opacity duration-200 motion-reduce:transition-none"

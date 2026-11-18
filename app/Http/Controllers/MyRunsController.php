@@ -7,6 +7,7 @@ use App\Models\Group;
 use App\Services\Groups\ActivityIndexItemSerializer;
 use App\Services\Groups\MyRunsCommitmentService;
 use App\Services\Runs\RunAccessService;
+use App\Services\Runs\RunBookmarkState;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -21,7 +22,8 @@ class MyRunsController extends Controller
             ->with([
                 'memberships',
                 'bans',
-                'activities' => fn ($query) => $query->tap(fn ($query) => $access->scopeVisibleTo($query, $user->id)),
+                'activities' => fn ($query) => $query->tap(fn ($query) => $access->scopeVisibleTo($query, $user->id))
+                    ->withExists(RunBookmarkState::existsRelations($user->id)),
                 'activities.group.memberships',
                 'activities.group.bans',
                 'activities.organizer',

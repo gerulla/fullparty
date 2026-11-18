@@ -5,10 +5,12 @@ import {route} from "ziggy-js";
 import {useI18n} from "vue-i18n";
 import {computed} from 'vue';
 import { usePage } from '@inertiajs/vue3'
+import { useAdminMenuItems } from '@/composables/useAdminMenuItems'
 
 const page = usePage()
 
 const user = computed(() => page.props.auth?.user)
+const adminMenuItems = useAdminMenuItems()
 const { t } = useI18n();
 const logoutRedirect = () => {
 	router.post(route('logout'))
@@ -40,6 +42,7 @@ const items = computed<DropdownMenuItem[][]>(() => [
 		},
 	],
 	[
+		...adminMenuItems.value,
 		{
 			label: t('navigation.topbar.menu.logout'),
 			icon: 'i-lucide-log-out',

@@ -36,7 +36,7 @@ export function useDateTimeFormat() {
 
     const toDateTimeInput = (value: DateTimeValue) => dateTimeInputInZone(value, displayTimeZone.value)
     const fromDateTimeInput = (value: string, reference?: DateTimeValue) => dateTimeInputToInstant(value, displayTimeZone.value, reference)
-    const formatDateOnly = (value: string, options?: DisplayDateTimeOptions) => formatCalendarDate(locale.value, value, options)
+    const formatDateOnly = (value: string, options?: DisplayDateTimeOptions, end?: string) => formatCalendarDate(locale.value, value, options, end)
     const formatWallTime = (value: string) => formatWallClock(locale.value, value)
 
     return { formatDateTime, formatDateTimeParts, formatTimeWithMode, toDateTimeInput, fromDateTimeInput, formatDateOnly, formatWallTime, displayTimeZone, displayTimeZoneLabel, timeDisplayLabel }

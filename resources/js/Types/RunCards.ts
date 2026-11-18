@@ -1,7 +1,7 @@
 import type { LocalizedText } from './Common'
 import type { RunParticipationStatus } from './RunParticipation'
 
-export type RunCardType = 'default' | 'date'
+export type RunCardType = 'default' | 'date' | 'finder'
 
 export type RunCardData = {
     id: number
@@ -11,8 +11,11 @@ export type RunCardData = {
     duration_hours?: number | null
     href: string
     is_public: boolean
+    is_saved: boolean
+    can_bookmark: boolean
     participation_status: RunParticipationStatus | null
     host_name?: string | null
+    image_urls: string[]
     target_prog_point_key?: string | null
     target_prog_point_label?: LocalizedText
     application_count: number

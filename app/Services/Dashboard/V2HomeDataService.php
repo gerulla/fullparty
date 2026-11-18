@@ -11,6 +11,7 @@ use App\Models\Group;
 use App\Models\GroupMembership;
 use App\Models\User;
 use App\Services\Runs\RunAccessService;
+use App\Services\Runs\RunBookmarkState;
 use App\Services\Runs\RunParticipationService;
 use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Builder;
@@ -311,9 +312,7 @@ final class V2HomeDataService
             ])
             ->withCount(['applications' => fn (Builder $query) => $query
                 ->whereIn('status', ActivityApplication::ACTIVE_STATUSES)])
-            ->withExists(['applications as has_existing_application' => fn (Builder $query) => $query
-                ->where('user_id', $user->id)
-                ->where('status', '!=', ActivityApplication::STATUS_WITHDRAWN)]);
+            ->withExists(RunBookmarkState::existsRelations($user->id));
     }
 
     /** @return array<string, mixed> */
@@ -323,11 +322,11 @@ final class V2HomeDataService
         $canViewGroupDashboard = $group->hasMember($user->id) || $group->allowsPublicDashboardAccess();
         $hasApplication = (bool) $activity->has_existing_application;
         $canApply = ! $hasApplication && $this->runAccess->canApply($activity->group, $activity, $user->id);
-        $progPoint = collect($activity->activityTypeVersion?->prog_points ?? [])
-            ->firstWhere('key', $activity->target_prog_point_key);
+        $progPoint = $activity->targetProgPoint();
 
         return [
             ...$this->serializeRun($activity),
+            'image_urls' => $activity->cardImageUrls(),
             'group' => [
                 ...$this->serializeGroup($group),
                 'dashboard_href' => $canViewGroupDashboard
@@ -341,6 +340,7 @@ final class V2HomeDataService
                     && $application->user?->public_characters ? $application->applicant_avatar_url : null)
                 ->all(),
             'is_public' => (bool) $activity->is_public,
+            ...RunBookmarkState::forVisibleRun($activity, $user->id),
             'allow_guest_applications' => (bool) $activity->allow_guest_applications,
             'target_prog_point_key' => $activity->target_prog_point_key,
             'target_prog_point_label' => is_array($progPoint['label'] ?? null) ? $progPoint['label'] : null,
@@ -397,8 +397,8 @@ final class V2HomeDataService
                 'version_id' => $activity->activity_type_version_id,
                 'name' => $version?->name,
                 'difficulty' => $version?->difficulty,
-                'small_image_url' => $version?->small_image_url,
-                'banner_image_url' => $version?->banner_image_url,
+                'small_image_url' => $activity->targetProgPointBannerUrl() ?? $version?->small_image_url,
+                'banner_image_url' => $activity->bannerImageUrl(),
             ],
             'href' => route('groups.activities.overview', [
                 'locale' => app()->getLocale(),

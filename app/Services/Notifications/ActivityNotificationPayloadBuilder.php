@@ -28,7 +28,7 @@ class ActivityNotificationPayloadBuilder
                 new ImageTransformOptions(width: 256, height: 256),
             ),
             'banner_image_url' => $this->imageVariants->url(
-                $activity?->activityTypeVersion?->banner_image_url,
+                $activity?->bannerImageUrl(),
                 new ImageTransformOptions(width: 1200, height: 400, fit: 'crop', upscale: true),
             ),
             'run_url' => $this->runUrl($activity),

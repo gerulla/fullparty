@@ -1,8 +1,13 @@
+import type { LocalizedText } from './Common'
+import type { RunCardData } from './RunCards'
+
 export type RunDiscoveryDateRange = "upcoming" | "next_7_days" | "next_30_days" | "this_week" | "next_week" | "custom_range" | "custom_day"
 export type RunDiscoveryTimeOfDay = "any" | "morning" | "afternoon" | "evening" | "night"
 export type RunDiscoveryRoleCategory = "any" | "tank" | "healer" | "dps" | null
 export type RunDiscoveryClassRoleGroup = "tank" | "healer" | "melee" | "phys" | "magic"
-export type RunDiscoverySort = "starting_soonest" | "newest_posted" | "recently_updated" | "open_slots"
+export const runSearchResultSorts = ['starting_soonest', 'newest_posted', 'most_full', 'least_full'] as const
+export type RunSearchResultSort = typeof runSearchResultSorts[number]
+export type RunDiscoverySort = RunSearchResultSort | 'recently_updated' | 'open_slots'
 
 export type RunDiscoveryFilterState = {
 	query: string
@@ -35,6 +40,8 @@ export type RunDiscoveryLookupOption = {
 	label: string
 	value: string
 }
+
+export type RunSearchOption = RunDiscoveryLookupOption & { image?: string | null }
 
 export type RunDiscoveryDatacenterOption = RunDiscoveryLookupOption & {
 	region: string | null
@@ -77,6 +84,46 @@ export type RunDiscoveryLookups = {
 
 export type RunDiscoveryPageProps = {
 	lookups: RunDiscoveryLookups
+    browseSections?: RunBrowseSection[]
+    trendingActivities?: TrendingRunActivity[]
+}
+
+export type RunSearchLookups = Pick<RunDiscoveryLookups, 'activity_types' | 'groups'>
+
+export type TrendingRunActivity = {
+    id: number
+    value: string
+    name: LocalizedText
+    image_url: string | null
+    run_count: number
+}
+
+export type RunSearchDates = {
+    mode: 'dates' | 'flexible'
+    from: string | null
+    to: string | null
+    tolerance: number
+    days: 'any' | 'weekday' | 'weekend'
+}
+
+export type RunSearchFilters = Pick<RunDiscoveryFilterState,
+    'saved_only' | 'beginner_friendly' | 'application_status' | 'role_category' | 'time_of_day'
+    | 'region' | 'datacenter' | 'language' | 'run_style' | 'intensity'
+>
+
+export type RunSearchState = {
+    activity: string
+    group: string
+    sort: RunSearchResultSort
+    dates: RunSearchDates
+    filters: RunSearchFilters
+}
+
+export type RunBrowseSection = {
+    id: string
+    title_key: 'recommended' | 'recently_posted' | 'almost_full' | 'more_activity' | 'latest_content'
+    activity_name?: LocalizedText
+    runs: RunCardData[]
 }
 
 export type RunDiscoveryResultRoleSlot = {
@@ -128,6 +175,7 @@ export type RunDiscoveryResultItemData = {
 export type RunDiscoveryDiscoverResponse = {
 	ids: number[]
 	items: RunDiscoveryResultItemData[]
+    cards: RunCardData[]
 	meta: {
 		current_page: number
 		last_page: number

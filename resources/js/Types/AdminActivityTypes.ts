@@ -3,6 +3,8 @@ import type { LocalizedStringRecord } from "@/Types/Common"
 export type ActivityTypeProgPoint = {
 	key: string
 	label: LocalizedStringRecord
+	banner_image_url?: string | null
+	banner_image?: File | null
 }
 
 export type ActivityTypeLayoutGroup = {

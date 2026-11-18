@@ -62,9 +62,11 @@ export function dateTimeInputToInstant(value: string, timeZone?: string, referen
 }
 
 /** Calendar dates and recurring clock values are not instants and must not shift with LT/ST. */
-export function formatCalendarDate(locale: DateTimeLocale, value: string, options: DisplayDateTimeOptions = { dateStyle: 'medium' }): string {
+export function formatCalendarDate(locale: DateTimeLocale, value: string, options: DisplayDateTimeOptions = { dateStyle: 'medium' }, end?: string): string {
 	try {
-		return createDateTimeFormatter(locale, { ...options, timeZone: 'UTC' }).format(parseDate(value).toDate('UTC'));
+		const formatter = createDateTimeFormatter(locale, { ...options, timeZone: 'UTC' });
+		const start = parseDate(value).toDate('UTC');
+		return end ? formatter.formatRange(start, parseDate(end).toDate('UTC')) : formatter.format(start);
 	} catch {
 		return '—';
 	}

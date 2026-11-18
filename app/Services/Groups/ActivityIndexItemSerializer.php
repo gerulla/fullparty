@@ -6,6 +6,7 @@ use App\Models\Activity;
 use App\Models\ActivityApplication;
 use App\Models\ActivitySlot;
 use App\Services\Runs\RunAccessService;
+use App\Services\Runs\RunBookmarkState;
 
 final class ActivityIndexItemSerializer
 {
@@ -51,8 +52,9 @@ final class ActivityIndexItemSerializer
             'status' => $activity->status,
             'starts_at' => $activity->starts_at?->toIso8601String(),
             'duration_hours' => $activity->duration_hours,
-            'small_image_url' => $activity->activityTypeVersion?->small_image_url,
-            'banner_image_url' => $activity->activityTypeVersion?->banner_image_url,
+            'small_image_url' => $activity->targetProgPointBannerUrl() ?? $activity->activityTypeVersion?->small_image_url,
+            'banner_image_url' => $activity->bannerImageUrl(),
+            'image_urls' => $activity->cardImageUrls(),
             'difficulty' => $activity->activityTypeVersion?->difficulty,
             'target_prog_point_key' => $activity->target_prog_point_key,
             'target_prog_point_label' => $this->resolveTargetProgPointLabel($activity),
@@ -88,6 +90,7 @@ final class ActivityIndexItemSerializer
                 ->whereIn('status', ActivityApplication::ACTIVE_STATUSES)
                 ->count(),
             'has_existing_application' => $hasExistingApplication,
+            ...RunBookmarkState::forVisibleRun($activity, $viewerUserId),
             'links' => [
                 'view' => route('groups.activities.overview', [
                     'locale' => app()->getLocale(),
@@ -108,13 +111,7 @@ final class ActivityIndexItemSerializer
 
     private function resolveTargetProgPointLabel(Activity $activity): ?array
     {
-        if (blank($activity->target_prog_point_key)) {
-            return null;
-        }
-
-        $progPoint = collect($activity->activityTypeVersion?->prog_points ?? [])
-            ->firstWhere('key', $activity->target_prog_point_key);
-        $label = is_array($progPoint) ? ($progPoint['label'] ?? null) : null;
+        $label = $activity->targetProgPoint()['label'] ?? null;
 
         return is_array($label) ? $label : null;
     }

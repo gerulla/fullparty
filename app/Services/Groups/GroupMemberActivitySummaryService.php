@@ -88,7 +88,7 @@ final class GroupMemberActivitySummaryService
             ->join('activity_slots', 'activity_slots.id', '=', 'activity_slot_assignments.activity_slot_id')
             ->with([
                 'activity.group:id,name,slug,is_visible',
-                'activity.activityTypeVersion:id,name,small_image_url,banner_image_url',
+                'activity.activityTypeVersion:id,name,small_image_url,banner_image_url,prog_points',
                 'character:id,user_id,name,world,datacenter,avatar_url',
                 'slot.fieldValues',
             ])
@@ -141,7 +141,7 @@ final class GroupMemberActivitySummaryService
             ->join('activities', 'activities.id', '=', 'activity_slots.activity_id')
             ->with([
                 'activity.group:id,name,slug,is_visible',
-                'activity.activityTypeVersion:id,name,small_image_url,banner_image_url',
+                'activity.activityTypeVersion:id,name,small_image_url,banner_image_url,prog_points',
                 'assignedCharacter:id,user_id,name,world,datacenter,avatar_url',
                 'fieldValues',
             ])
@@ -214,7 +214,8 @@ final class GroupMemberActivitySummaryService
             'id' => $activity->id,
             'title' => $activity->title,
             'activity_type_name' => $this->resolveLocalizedText($activity->activityTypeVersion?->name),
-            'activity_icon_url' => $activity->activityTypeVersion?->small_image_url
+            'activity_icon_url' => $activity->targetProgPointBannerUrl()
+                ?: $activity->activityTypeVersion?->small_image_url
                 ?: $activity->activityTypeVersion?->banner_image_url,
             'starts_at' => $activity->starts_at?->toIso8601String(),
             'completed_at' => $activity->completed_at?->toIso8601String(),

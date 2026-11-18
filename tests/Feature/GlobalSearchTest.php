@@ -65,7 +65,7 @@ it('returns sectioned global search results with the correct destination urls', 
     expect($response->json('runs.0.url'))->toContain("/groups/{$memberGroup->slug}/activities/{$run->id}")
         ->and($response->json('groups.0.url'))->toContain("/groups/{$memberGroup->slug}/dashboard")
         ->and($response->json('groups.1.url'))->toContain('/groups?group=tower-seekers')
-        ->and($response->json('activities.0.url'))->toContain('/dashboard/runs?activity_type=forked-tower');
+        ->and($response->json('activities.0.url'))->toContain('/runs?activity_type=forked-tower');
 });
 
 it('only matches runs by their actual title', function () {

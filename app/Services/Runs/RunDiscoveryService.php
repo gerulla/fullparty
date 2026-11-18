@@ -14,16 +14,20 @@ use App\Services\Groups\ActivitySlotKind;
 use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Illuminate\Support\LazyCollection;
 
 final class RunDiscoveryService
 {
-    private const RESULTS_PER_PAGE = 10;
+    private const DEFAULT_RESULTS_PER_PAGE = 10;
 
     public function __construct(
         private readonly GeneratedRunImageService $generatedRunImageService,
         private readonly ActivitySlotKind $slotKind,
         private readonly RunAccessService $access,
+        private readonly RunCardPresenter $cards,
+        private readonly RunSearchActivityRanking $activityRanking,
     ) {}
 
     private const SUPPORTED_LOCALES = ['en', 'de', 'fr', 'ja'];
@@ -41,15 +45,23 @@ final class RunDiscoveryService
     public function buildLookups(?User $user = null): array
     {
         return [
-            'activity_types' => $this->activityTypeOptions(),
+            ...$this->searchOptions($user),
             'class_options' => $this->classOptions(),
             'regions' => $this->regionOptions(),
             'datacenters' => $this->datacenterOptions(),
-            'groups' => $this->groupOptions($user?->id),
             'languages' => $this->languageOptions(),
             'run_styles' => Activity::RUN_STYLES,
             'intensities' => Activity::INTENSITIES,
             'voice_expectations' => config('group_discovery.voice_expectations', []),
+        ];
+    }
+
+    /** @return array{activity_types: array, groups: array} */
+    public function searchOptions(?User $user): array
+    {
+        return [
+            'activity_types' => $this->activityTypeOptions(),
+            'groups' => $this->groupOptions($user?->id),
         ];
     }
 
@@ -80,6 +92,12 @@ final class RunDiscoveryService
             ->all();
     }
 
+    /** @param  array<string, mixed>  $filters */
+    public function countMatchesForUser(User $user, array $filters): int
+    {
+        return $this->matchingActivitiesForUser($user, $filters)->count();
+    }
+
     /**
      * @param  array<string, mixed>  $filters
      * @return array<string, mixed>
@@ -89,16 +107,19 @@ final class RunDiscoveryService
         $activities = $this->discoverActivitiesForUser($user, $filters);
         $filterTimezone = $this->resolveFilterTimezone($filters);
         $paginator = $this->paginateActivities($activities, $filters);
+        $pageActivities = new \Illuminate\Database\Eloquent\Collection($paginator->items());
+        $pageActivities->loadMissing($this->discoveryRelationsForUser($user->id));
 
         return [
-            'ids' => collect($paginator->items())
+            'ids' => $pageActivities
                 ->pluck('id')
                 ->values()
                 ->all(),
-            'items' => collect($paginator->items())
+            'items' => $pageActivities
                 ->map(fn (Activity $activity): array => $this->serializeDiscoveryResultItem($activity, $user, $filterTimezone))
                 ->values()
                 ->all(),
+            'cards' => $this->cards->cards($pageActivities, $user->id)->values()->all(),
             'meta' => [
                 'current_page' => $paginator->currentPage(),
                 'last_page' => $paginator->lastPage(),
@@ -121,11 +142,10 @@ final class RunDiscoveryService
      */
     private function activityTypeOptions(): array
     {
-        return ActivityType::query()
+        $options = ActivityType::query()
             ->with('currentPublishedVersion')
             ->where('is_active', true)
             ->whereNotNull('current_published_version_id')
-            ->orderBy('slug')
             ->get()
             ->map(function (ActivityType $activityType): array {
                 $version = $activityType->currentPublishedVersion;
@@ -145,9 +165,9 @@ final class RunDiscoveryService
                         ->values()
                         ->all(),
                 ];
-            })
-            ->values()
-            ->all();
+            });
+
+        return $this->activityRanking->orderOptions($options)->all();
     }
 
     /**
@@ -156,21 +176,55 @@ final class RunDiscoveryService
      */
     private function discoverActivitiesForUser(User $user, array $filters): Collection
     {
-        $activities = Activity::query()
-            ->with($this->discoveryRelationsForUser($user->id))
+        return $this->sortActivities($this->matchingActivitiesForUser($user, $filters)->collect(), $filters['sort'] ?? null);
+    }
+
+    /**
+     * @param  array<string, mixed>  $filters
+     * @return LazyCollection<int, Activity>
+     */
+    private function matchingActivitiesForUser(User $user, array $filters): LazyCollection
+    {
+        // Only eager-load relations used to determine access or match this search.
+        // Card details are loaded separately for the returned page.
+        $relations = ['group', 'group.memberships', 'group.bans', 'applications', 'slots', 'slots.assignedCharacter'];
+        if (filled($filters['query'] ?? null) || filled($filters['activity_category'] ?? null)) {
+            array_push($relations, 'activityType', 'activityTypeVersion', 'activityType.currentPublishedVersion');
+        }
+        if (filled($filters['query'] ?? null)) {
+            $relations[] = 'activityType.tags';
+        }
+        if (filled($filters['role_category'] ?? null) || ! empty($filters['class_keys'])) {
+            array_push($relations, 'slots.compositionHints', 'slots.compositionHints.characterClass');
+        }
+
+        $query = Activity::query()
+            ->with(Arr::only($this->discoveryRelationsForUser($user->id), $relations))
             ->tap(fn (Builder $query) => $this->access->scopeVisibleTo($query, $user->id))
             ->whereNotNull('starts_at')
-            ->whereNotIn('status', Activity::ARCHIVED_STATUSES)
-            ->orderBy('starts_at')
-            ->orderBy('id')
-            ->get();
+            ->whereNotIn('status', Activity::ARCHIVED_STATUSES);
+        if (filled($filters['activity_type'] ?? null)) {
+            $query->whereHas('activityType', fn (Builder $types) => $types->where('slug', $filters['activity_type']));
+        }
+        if (filled($filters['group'] ?? null)) {
+            $query->whereHas('group', fn (Builder $groups) => $groups->where('slug', $filters['group']));
+        }
+        if ($filters['saved_only'] ?? false) {
+            $query->whereHas('savedByUsers', fn (Builder $users) => $users->whereKey($user->id));
+        }
+        if ($filters['beginner_friendly'] ?? false) {
+            $query->where('beginner_friendly', true);
+        }
+        foreach (['run_style', 'intensity'] as $column) {
+            if (filled($filters[$column] ?? null)) {
+                $query->where($column, $filters[$column]);
+            }
+        }
 
-        $filteredActivities = $activities
+        return $query->lazyById(200)
             ->filter(fn (Activity $activity) => $this->canUserDiscoverActivity($activity, $user->id))
             ->filter(fn (Activity $activity) => $this->matchesFilters($activity, $filters))
             ->filter(fn (Activity $activity) => $this->canUserTakeDiscoveryAction($activity, $user));
-
-        return $this->sortActivities($filteredActivities, $filters['sort'] ?? null);
     }
 
     /**
@@ -265,17 +319,18 @@ final class RunDiscoveryService
     private function paginateActivities(Collection $activities, array $filters): LengthAwarePaginator
     {
         $total = $activities->count();
-        $lastPage = max(1, (int) ceil($total / self::RESULTS_PER_PAGE));
+        $perPage = (int) ($filters['per_page'] ?? self::DEFAULT_RESULTS_PER_PAGE);
+        $lastPage = max(1, (int) ceil($total / $perPage));
         $requestedPage = (int) ($filters['page'] ?? 1);
         $currentPage = min(max($requestedPage, 1), $lastPage);
         $pageItems = $activities
-            ->slice(($currentPage - 1) * self::RESULTS_PER_PAGE, self::RESULTS_PER_PAGE)
+            ->forPage($currentPage, $perPage)
             ->values();
 
         return new LengthAwarePaginator(
             $pageItems,
             $total,
-            self::RESULTS_PER_PAGE,
+            $perPage,
             $currentPage,
         );
     }
@@ -287,6 +342,20 @@ final class RunDiscoveryService
     private function sortActivities(Collection $activities, mixed $sort): Collection
     {
         $normalizedSort = is_string($sort) && $sort !== '' ? $sort : 'starting_soonest';
+
+        if (in_array($normalizedSort, ['most_full', 'least_full'], true)) {
+            return $activities->sortBy(function (Activity $activity) use ($normalizedSort): array {
+                $slots = $this->mainSlots($activity);
+                // A run with no main roster has no fill percentage and sorts last in either direction.
+                $rank = INF;
+                if ($slots->isNotEmpty()) {
+                    $fill = $slots->whereNotNull('assigned_character_id')->count() / $slots->count();
+                    $rank = $normalizedSort === 'most_full' ? -$fill : $fill;
+                }
+
+                return [$rank, $this->dateTimestamp($activity->starts_at, PHP_INT_MAX), $activity->id];
+            })->values();
+        }
 
         return $activities
             ->sort(function (Activity $left, Activity $right) use ($normalizedSort): int {
@@ -433,14 +502,6 @@ final class RunDiscoveryService
             return false;
         }
 
-        if (($filters['saved_only'] ?? false) && ! $this->userHasSavedActivity($activity)) {
-            return false;
-        }
-
-        if (! $this->matchesActivityType($activity, $filters['activity_type'] ?? null)) {
-            return false;
-        }
-
         if (! $this->matchesActivityCategory($activity, $filters['activity_category'] ?? null)) {
             return false;
         }
@@ -453,23 +514,11 @@ final class RunDiscoveryService
             return false;
         }
 
-        if (! $this->matchesGroup($activity, $filters['group'] ?? null)) {
-            return false;
-        }
-
-        if (! $this->matchesDateRange($activity, $filters['date_range'] ?? null, $filterTimezone, $filters['date_from'] ?? null, $filters['date_to'] ?? null)) {
+        if (! $this->matchesDateRange($activity, $filters['date_range'] ?? null, $filterTimezone, $filters['date_from'] ?? null, $filters['date_to'] ?? null, $filters)) {
             return false;
         }
 
         if (! $this->matchesTimeOfDay($activity, $filters['time_of_day'] ?? null, $filterTimezone)) {
-            return false;
-        }
-
-        if (! $this->matchesRunStyle($activity, $filters['run_style'] ?? null)) {
-            return false;
-        }
-
-        if (($filters['beginner_friendly'] ?? false) && ! $activity->beginner_friendly) {
             return false;
         }
 
@@ -489,10 +538,6 @@ final class RunDiscoveryService
             return false;
         }
 
-        if (! $this->matchesIntensity($activity, $filters['intensity'] ?? null)) {
-            return false;
-        }
-
         if (! $this->matchesVoiceExpectation($activity, $filters['voice_expectation'] ?? null)) {
             return false;
         }
@@ -508,9 +553,14 @@ final class RunDiscoveryService
 
     private function canUserTakeDiscoveryAction(Activity $activity, User $user): bool
     {
-        return $this->userHasExistingApplication($activity)
-            || $this->canUserApplyToActivity($activity, $user)
-            || $this->canUserSelfAssignToActivity($activity, $user);
+        $mainSlots = $this->mainSlots($activity);
+
+        return RunAccessService::hasDiscoveryAction(
+            $activity,
+            $this->userHasExistingApplication($activity),
+            $mainSlots->contains(fn (ActivitySlot $slot) => $slot->assigned_character_id === null),
+            $mainSlots->contains(fn (ActivitySlot $slot) => (int) ($slot->assignedCharacter?->user_id ?? 0) === $user->id),
+        );
     }
 
     private function userHasExistingApplication(Activity $activity): bool
@@ -534,21 +584,6 @@ final class RunDiscoveryService
         }
 
         return $activity->applications->isEmpty();
-    }
-
-    private function canUserSelfAssignToActivity(Activity $activity, User $user): bool
-    {
-        if (! $this->access->canSelfAssign($activity->group, $activity, $user->id)) {
-            return false;
-        }
-
-        if (! $this->hasOpenMainSlot($activity)) {
-            return false;
-        }
-
-        return ! $this->mainSlots($activity)->contains(
-            fn (ActivitySlot $slot) => (int) ($slot->assignedCharacter?->user_id ?? 0) === $user->id
-        );
     }
 
     private function hasOpenMainSlot(Activity $activity): bool
@@ -589,7 +624,8 @@ final class RunDiscoveryService
 
         return [
             'id' => $activity->id,
-            'image_url' => $activity->activityTypeVersion?->small_image_url
+            'image_url' => $activity->targetProgPointBannerUrl()
+                ?? $activity->activityTypeVersion?->small_image_url
                 ?? $activity->activityTypeVersion?->banner_image_url
                 ?? $activity->activityType?->currentPublishedVersion?->small_image_url
                 ?? $activity->activityType?->currentPublishedVersion?->banner_image_url
@@ -706,15 +742,6 @@ final class RunDiscoveryService
             ->all();
     }
 
-    private function matchesActivityType(Activity $activity, mixed $activityType): bool
-    {
-        if (! is_string($activityType) || $activityType === '') {
-            return true;
-        }
-
-        return $activity->activityType?->slug === $activityType;
-    }
-
     private function matchesActivityCategory(Activity $activity, mixed $activityCategory): bool
     {
         if (! is_string($activityCategory) || $activityCategory === '') {
@@ -755,7 +782,7 @@ final class RunDiscoveryService
         return true;
     }
 
-    private function matchesDateRange(Activity $activity, mixed $dateRange, string $timezone, mixed $dateFrom = null, mixed $dateTo = null): bool
+    private function matchesDateRange(Activity $activity, mixed $dateRange, string $timezone, mixed $dateFrom = null, mixed $dateTo = null, array $filters = []): bool
     {
         if (! $activity->starts_at) {
             return false;
@@ -764,6 +791,16 @@ final class RunDiscoveryService
         $normalizedDateRange = is_string($dateRange) && $dateRange !== '' ? $dateRange : 'upcoming';
         $startsAt = $activity->starts_at->copy()->setTimezone($timezone);
         $now = now()->setTimezone($timezone);
+
+        if ($normalizedDateRange === 'flexible') {
+            $months = $filters['date_months'] ?? [];
+            $days = $filters['flexible_days'] ?? 'any';
+
+            return $startsAt->greaterThanOrEqualTo($now)
+                && ($months === [] || in_array($startsAt->format('Y-m'), $months, true))
+                && ($days !== 'weekend' || $startsAt->isWeekend())
+                && ($days !== 'weekday' || $startsAt->isWeekday());
+        }
 
         [$rangeStart, $rangeEnd] = match ($normalizedDateRange) {
             'next_7_days' => [$now->copy(), $now->copy()->addDays(7)],
@@ -785,20 +822,17 @@ final class RunDiscoveryService
             default => [$now->copy(), null],
         };
 
+        if (in_array($normalizedDateRange, ['custom_day', 'custom_range'], true) && array_key_exists('date_flex_days', $filters)) {
+            $tolerance = (int) ($filters['date_flex_days'] ?? 0);
+            $rangeStart = $rangeStart->subDays($tolerance)->max($now);
+            $rangeEnd = $rangeEnd?->addDays($tolerance);
+        }
+
         if ($rangeEnd === null) {
             return $startsAt->greaterThanOrEqualTo($rangeStart);
         }
 
-        return $startsAt->betweenIncluded($rangeStart, $rangeEnd);
-    }
-
-    private function matchesGroup(Activity $activity, mixed $group): bool
-    {
-        if (! is_string($group) || $group === '') {
-            return true;
-        }
-
-        return $activity->group?->slug === $group;
+        return $rangeEnd->greaterThanOrEqualTo($rangeStart) && $startsAt->betweenIncluded($rangeStart, $rangeEnd);
     }
 
     private function matchesTimeOfDay(Activity $activity, mixed $timeOfDay, string $timezone): bool
@@ -830,15 +864,6 @@ final class RunDiscoveryService
         }
 
         return config('app.timezone', 'UTC');
-    }
-
-    private function matchesRunStyle(Activity $activity, mixed $runStyle): bool
-    {
-        if (! is_string($runStyle) || $runStyle === '') {
-            return true;
-        }
-
-        return $activity->run_style === $runStyle;
     }
 
     private function matchesLanguage(Activity $activity, mixed $language): bool
@@ -958,15 +983,6 @@ final class RunDiscoveryService
         };
     }
 
-    private function matchesIntensity(Activity $activity, mixed $intensity): bool
-    {
-        if (! is_string($intensity) || $intensity === '') {
-            return true;
-        }
-
-        return $activity->intensity === $intensity;
-    }
-
     private function matchesVoiceExpectation(Activity $activity, mixed $voiceExpectation): bool
     {
         if (! is_string($voiceExpectation) || $voiceExpectation === '') {
@@ -1060,10 +1076,7 @@ final class RunDiscoveryService
             return null;
         }
 
-        $progPoint = collect($activity->activityTypeVersion?->prog_points ?? [])
-            ->firstWhere('key', $activity->target_prog_point_key);
-
-        $label = is_array($progPoint) ? ($progPoint['label'] ?? null) : null;
+        $label = $activity->targetProgPoint()['label'] ?? null;
 
         return $this->resolveLocalizedText($label) ?? $activity->target_prog_point_key;
     }

@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Services\Groups\GroupHostedRunUpdatesService;
 use App\Services\Notifications\NotificationPreferenceSettingsService;
 use App\Services\Runs\RunAccessService;
+use App\Services\Runs\RunBookmarkState;
 use App\Services\Runs\RunParticipationService;
 use App\Support\Groups\GroupDiscoveryBadgePalette;
 use App\Support\Seo\ServerMeta;
@@ -52,15 +53,7 @@ class GroupDashboardController extends Controller
                     'activityType',
                     'activityTypeVersion.activityType',
                 ])
-                ->withExists([
-                    'applications as has_existing_application' => fn ($applicationQuery) => $applicationQuery
-                        ->when(
-                            $currentUserId !== null,
-                            fn ($query) => $query->where('user_id', $currentUserId),
-                            fn ($query) => $query->whereRaw('1 = 0'),
-                        )
-                        ->where('status', '!=', ActivityApplication::STATUS_WITHDRAWN),
-                ])
+                ->withExists(RunBookmarkState::existsRelations($currentUserId))
                 ->withCount([
                     'slots' => fn ($query) => $query->where('slot_kind', '!=', ActivitySlot::SLOT_KIND_FILL_IN),
                     'applications' => fn ($query) => $query->whereIn('status', ActivityApplication::ACTIVE_STATUSES),
@@ -95,6 +88,8 @@ class GroupDashboardController extends Controller
         $hostedActivities = $activities
             ->filter(fn (Activity $activity) => $canManageActivities
                 && (int) $activity->organized_by_user_id === $currentUserId
+                && $activity->starts_at !== null
+                && $activity->starts_at->gte($now)
                 && ! $activity->is_completed
                 && ! Activity::isArchivedStatus($activity->status))
             ->sortBy(fn (Activity $activity) => [$activity->starts_at?->getTimestamp() ?? PHP_INT_MAX, $activity->id])
@@ -441,7 +436,7 @@ class GroupDashboardController extends Controller
     private function serializeDashboardActivity(Activity $activity, Group $group, bool $canManageActivities, ?string $participationStatus): array
     {
         $canViewOverview = $this->runAccess->canView($group, $activity, auth()->id());
-        $hasExistingApplication = (bool) $activity->has_existing_application;
+        $hasExistingApplication = auth()->check() && (bool) $activity->has_existing_application;
         $viewLink = $canManageActivities
             ? route('groups.dashboard.activities.show', [
                 'group' => $group,
@@ -462,8 +457,9 @@ class GroupDashboardController extends Controller
                 'slug' => $activity->activityType?->slug,
                 'draft_name' => $activity->activityType?->draft_name,
             ],
-            'small_image_url' => $activity->activityTypeVersion?->small_image_url,
-            'banner_image_url' => $activity->activityTypeVersion?->banner_image_url,
+            'small_image_url' => $activity->targetProgPointBannerUrl() ?? $activity->activityTypeVersion?->small_image_url,
+            'banner_image_url' => $activity->bannerImageUrl(),
+            'image_urls' => $activity->cardImageUrls(),
             'title' => $activity->title,
             'status' => $activity->status,
             'starts_at' => $activity->starts_at?->toIso8601String(),
@@ -474,6 +470,7 @@ class GroupDashboardController extends Controller
             'secret_key' => null,
             'can_view_overview' => $canViewOverview,
             'has_existing_application' => $hasExistingApplication,
+            ...RunBookmarkState::forVisibleRun($activity, auth()->id()),
             'participation_status' => $participationStatus,
             'can_apply' => $canApply,
             'needs_application' => $activity->needs_application,
@@ -509,14 +506,7 @@ class GroupDashboardController extends Controller
 
     private function resolveTargetProgPointLabel(Activity $activity): ?array
     {
-        if (blank($activity->target_prog_point_key)) {
-            return null;
-        }
-
-        $progPoint = collect($activity->activityTypeVersion?->prog_points ?? [])
-            ->firstWhere('key', $activity->target_prog_point_key);
-
-        $label = is_array($progPoint) ? ($progPoint['label'] ?? null) : null;
+        $label = $activity->targetProgPoint()['label'] ?? null;
 
         return is_array($label) ? $label : null;
     }

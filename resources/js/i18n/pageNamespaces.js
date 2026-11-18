@@ -1,5 +1,5 @@
 const common = ['general', 'meta', 'reports']
-const dashboard = [...common, 'applications', 'auth', 'characters', 'changelog', 'dashboard', 'forms', 'groups/common', 'groups/dashboard', 'groups/index', 'navigation', 'notifications', 'settings']
+const dashboard = [...common, 'applications', 'auth', 'characters', 'changelog', 'dashboard', 'forms', 'groups/common', 'groups/dashboard', 'groups/index', 'navigation', 'notifications', 'runs/search', 'settings']
 
 // Include modal and shared-component dictionaries, not just the page's visible labels.
 const features = {
@@ -61,9 +61,9 @@ const features = {
 }
 
 const standalone = {
-    'V2/Characters/Claim': ['auth', 'characters', 'changelog', 'dashboard', 'groups/activities', 'groups/common', 'groups/dashboard', 'groups/index', 'navigation', 'notifications', 'settings'],
-    'V2/Characters/Create': ['auth', 'characters', 'changelog', 'dashboard', 'groups/activities', 'groups/common', 'groups/dashboard', 'groups/index', 'navigation', 'notifications', 'settings'],
-    'V2/Home': ['auth', 'characters', 'changelog', 'dashboard', 'groups/activities', 'groups/common', 'groups/dashboard', 'groups/index', 'navigation', 'notifications', 'runs', 'settings'],
+    'V2/Characters/Claim': ['auth', 'characters', 'changelog', 'dashboard', 'groups/activities', 'groups/common', 'groups/dashboard', 'groups/index', 'navigation', 'notifications', 'runs/search', 'settings'],
+    'V2/Characters/Create': ['auth', 'characters', 'changelog', 'dashboard', 'groups/activities', 'groups/common', 'groups/dashboard', 'groups/index', 'navigation', 'notifications', 'runs/search', 'settings'],
+    'V2/Home': ['auth', 'characters', 'changelog', 'dashboard', 'groups/activities', 'groups/common', 'groups/dashboard', 'groups/index', 'navigation', 'notifications', 'runs', 'runs/search', 'settings'],
     'Forms/Show': ['forms'],
     'auth/Banned': [],
     'Resources/Show': ['groups/resources'],

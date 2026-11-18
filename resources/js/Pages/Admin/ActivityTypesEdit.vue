@@ -62,6 +62,7 @@ const submit = () => {
 	form
 		.transform((data) => ({
 			...data,
+			draft_prog_points: data.draft_prog_points.length ? data.draft_prog_points : null,
 			_method: 'put',
 		}))
 		.post(route('admin.activity-types.update', props.activityType.id), {

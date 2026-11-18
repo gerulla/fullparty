@@ -6,21 +6,17 @@ use App\Models\ActivityType;
 use App\Models\ActivityTypeVersion;
 use App\Models\User;
 use App\Services\AuditLogger;
-use App\Services\ManagedImageStorage;
 use App\Support\Audit\AuditScope;
 use App\Support\Audit\AuditSeverity;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
-use Throwable;
 
 final class ActivityTypePublishingService
 {
-    private const IMAGE_DIRECTORY = 'activity-types';
-
     public function __construct(
         private readonly ActivityTypeDraftValidator $draftValidator,
-        private readonly ManagedImageStorage $imageStorage,
+        private readonly ActivityTypeImages $images,
         private readonly AuditLogger $auditLogger,
     ) {}
 
@@ -37,56 +33,43 @@ final class ActivityTypePublishingService
     /** @return Collection<int, ActivityTypeVersion> */
     private function publishVersions(User $publisher, ?int $activityTypeId = null): Collection
     {
-        $copiedImages = [];
+        return DB::transaction(function () use ($publisher, $activityTypeId): Collection {
+            // Single and bulk publishing share these locks and version numbering.
+            $query = ActivityType::query()->orderBy('id')->lockForUpdate();
+            $types = $activityTypeId === null
+                ? $query->get()
+                : collect([$query->findOrFail($activityTypeId)]);
 
-        try {
-            return DB::transaction(function () use ($publisher, $activityTypeId, &$copiedImages): Collection {
-                // Single and bulk publishing share these locks and version numbering.
-                $query = ActivityType::query()->orderBy('id')->lockForUpdate();
-                $types = $activityTypeId === null
-                    ? $query->get()
-                    : collect([$query->findOrFail($activityTypeId)]);
-
-                // Validate the entire batch before creating versions or copying images.
-                foreach ($types as $type) {
-                    try {
-                        $this->draftValidator->validate($type->attributesToArray());
-                    } catch (ValidationException $exception) {
-                        if ($activityTypeId !== null) {
-                            throw $exception;
-                        }
-
-                        throw ValidationException::withMessages([
-                            'publish_all' => __('admin.activity_types.publish_all_invalid', [
-                                'activity' => $type->draft_name['en'] ?? $type->slug,
-                                'reason' => collect($exception->errors())->flatten()->first(),
-                            ]),
-                        ]);
+            // Validate the entire batch before creating versions or copying images.
+            foreach ($types as $type) {
+                try {
+                    $this->draftValidator->validate($type->attributesToArray());
+                } catch (ValidationException $exception) {
+                    if ($activityTypeId !== null) {
+                        throw $exception;
                     }
-                }
 
-                return $types->map(function (ActivityType $type) use ($publisher, &$copiedImages): ActivityTypeVersion {
-                    return $this->createVersion($type, $publisher, $copiedImages);
-                });
-            });
-        } catch (Throwable $exception) {
-            // Files are outside the database transaction; remove only new snapshot copies.
-            foreach ($copiedImages as $url) {
-                $this->imageStorage->deleteManagedImage($url, self::IMAGE_DIRECTORY);
+                    throw ValidationException::withMessages([
+                        'publish_all' => __('admin.activity_types.publish_all_invalid', [
+                            'activity' => $type->draft_name['en'] ?? $type->slug,
+                            'reason' => collect($exception->errors())->flatten()->first(),
+                        ]),
+                    ]);
+                }
             }
 
-            throw $exception;
-        }
+            return $types->map(fn (ActivityType $type): ActivityTypeVersion => $this->createVersion($type, $publisher));
+        });
     }
 
-    private function createVersion(ActivityType $type, User $publisher, array &$copiedImages): ActivityTypeVersion
+    private function createVersion(ActivityType $type, User $publisher): ActivityTypeVersion
     {
         $version = $type->versions()->create([
             'version' => ((int) $type->versions()->max('version')) + 1,
             'name' => $type->draft_name,
             'description' => $type->draft_description,
-            'small_image_url' => $this->copyImage($type->draft_small_image_url, $copiedImages),
-            'banner_image_url' => $this->copyImage($type->draft_banner_image_url, $copiedImages),
+            'small_image_url' => $this->images->copy($type->draft_small_image_url),
+            'banner_image_url' => $this->images->copy($type->draft_banner_image_url),
             'difficulty' => $type->draft_difficulty ?? ActivityType::DIFFICULTY_NORMAL,
             'default_min_item_level' => $type->draft_default_min_item_level,
             'layout_schema' => $type->draft_layout_schema,
@@ -95,7 +78,7 @@ final class ActivityTypePublishingService
             'roster_summary_presets' => $type->draft_roster_summary_presets,
             'progress_schema' => $type->draft_progress_schema,
             'bench_size' => $type->draft_bench_size,
-            'prog_points' => $type->draft_prog_points,
+            'prog_points' => $this->images->copyProgPoints($type->draft_prog_points),
             'fflogs_zone_id' => $type->draft_fflogs_zone_id,
             'published_by_user_id' => $publisher->id,
             'published_at' => now(),
@@ -121,16 +104,5 @@ final class ActivityTypePublishingService
         );
 
         return $version;
-    }
-
-    private function copyImage(?string $url, array &$copiedImages): ?string
-    {
-        $copy = $this->imageStorage->copyManagedImage($url, self::IMAGE_DIRECTORY);
-
-        if ($copy !== null && $copy !== $url) {
-            $copiedImages[] = $copy;
-        }
-
-        return $copy;
     }
 }

@@ -67,7 +67,7 @@ final class GlobalSearchService
                 'activityType:id,slug,current_published_version_id',
                 'activityType.currentPublishedVersion:id,activity_type_id,name,small_image_url,banner_image_url,difficulty',
                 'activityType.tags' => fn ($relation) => $relation->select(['activity_tags.id', 'activity_tags.name']),
-                'activityTypeVersion:id,activity_type_id,name,small_image_url,banner_image_url,difficulty',
+                'activityTypeVersion:id,activity_type_id,name,small_image_url,banner_image_url,difficulty,prog_points',
                 'group' => fn ($relation) => $relation->select([
                     'id',
                     'owner_id',
@@ -188,7 +188,8 @@ final class GlobalSearchService
                 ->filter(fn (?string $value): bool => filled($value))
                 ->implode(' · '),
             'meta' => $activity->starts_at?->toIso8601String(),
-            'image_url' => $activity->activityTypeVersion?->small_image_url
+            'image_url' => $activity->targetProgPointBannerUrl()
+                ?? $activity->activityTypeVersion?->small_image_url
                 ?? $activity->activityTypeVersion?->banner_image_url
                 ?? $activity->activityType?->currentPublishedVersion?->small_image_url
                 ?? $activity->activityType?->currentPublishedVersion?->banner_image_url,

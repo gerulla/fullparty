@@ -367,6 +367,7 @@ export type GroupDiscoveryBadgeMeta = {
 
 export type GroupDashboardActivity = {
 	id: number
+	image_urls: string[]
 	activity_type: {
 		id: number | null
 		slug: string | null
@@ -381,6 +382,8 @@ export type GroupDashboardActivity = {
 	target_prog_point_key: string | null
 	target_prog_point_label: LocalizedText | null
 	is_public: boolean
+	is_saved: boolean
+	can_bookmark: boolean
 	secret_key: string | null
 	can_view_overview: boolean
 	has_existing_application: boolean

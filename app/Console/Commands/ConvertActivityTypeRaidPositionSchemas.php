@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\ActivityType;
 use App\Models\RaidPosition;
+use App\Services\ActivityTypes\ActivityTypeImages;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 
@@ -121,7 +122,8 @@ class ConvertActivityTypeRaidPositionSchemas extends Command
                         'roster_summary_presets' => $publishedVersion?->roster_summary_presets ?? $activityType->draft_roster_summary_presets ?? [],
                         'progress_schema' => $publishedVersion?->progress_schema ?? $activityType->draft_progress_schema,
                         'bench_size' => $publishedVersion?->bench_size ?? $activityType->draft_bench_size ?? 0,
-                        'prog_points' => $publishedVersion?->prog_points ?? $activityType->draft_prog_points ?? [],
+                        'prog_points' => $publishedVersion?->prog_points
+                            ?? app(ActivityTypeImages::class)->copyProgPoints($activityType->draft_prog_points ?? []),
                         'fflogs_zone_id' => $publishedVersion?->fflogs_zone_id ?? $activityType->draft_fflogs_zone_id,
                         'published_by_user_id' => null,
                         'published_at' => now(),

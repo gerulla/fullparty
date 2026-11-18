@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url'
 import test from 'node:test'
 import { JSDOM } from 'jsdom'
 import { compileScript, parse } from '@vue/compiler-sfc'
+import * as internationalizedDate from '@internationalized/date'
 import ts from 'typescript'
 
 process.env.TZ = 'America/Los_Angeles'
@@ -43,6 +44,9 @@ function context() {
     let postResult = 'success'
     const modules = {
         vue,
+        axios: { default: {} },
+        '@internationalized/date': internationalizedDate,
+        '@nuxt/ui/composables': { useToast: () => ({ add: () => {} }) },
         'vue-i18n': { useI18n: () => ({ t: translate, locale }) },
         '@vueuse/core': {
             useNow: () => now,
@@ -54,7 +58,7 @@ function context() {
             },
         },
         'ziggy-js': { route: (name, params) => name === 'dashboard.runs.index'
-            ? `/${params.locale}/dashboard/runs?activity_type_id=${params.activity_type_id}&group=${params.group}`
+            ? `/${params.locale}/runs?activity_type_id=${params.activity_type_id}&group=${params.group}`
             : name === 'groups.dashboard.settings' ? `/${params.locale}/groups/${params.group}/dashboard/settings` : `${name}:${params}` },
         '@inertiajs/vue3': {
             usePage: () => page,
@@ -427,11 +431,11 @@ test('activity type banners show completed counts and link to type-filtered disc
     assert.equal(cards[1].querySelector('img').getAttribute('src'), '/ba-small.webp')
     assert.equal(cards[2].querySelector('img'), null)
     assert.equal(cards[2].querySelector('a'), null)
-    assert.equal(cards[0].querySelector('a').getAttribute('href'), '/en/dashboard/runs?activity_type_id=10&group=storm')
+    assert.equal(cards[0].querySelector('a').getAttribute('href'), '/en/runs?activity_type_id=10&group=storm')
     assert.equal(cards[0].querySelector('a').getAttribute('aria-label'), 'Find runs for The Forked Tower')
     ui.locale.value = 'fr'
     await vue.nextTick()
-    assert.equal(cards[1].querySelector('a').getAttribute('href'), '/fr/dashboard/runs?activity_type_id=20&group=storm')
+    assert.equal(cards[1].querySelector('a').getAttribute('href'), '/fr/runs?activity_type_id=20&group=storm')
     ui.props.group.content_items = []
     await vue.nextTick()
     assert.match(section.textContent, /No visible run history yet/)

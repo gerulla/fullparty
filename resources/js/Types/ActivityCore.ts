@@ -24,6 +24,7 @@ export type ActivityStatusMeta = {
 export type ActivityProgressPoint = {
 	key: string
 	label: LocalizedText
+	banner_image_url?: string | null
 }
 
 export interface ActivityIndexItem {
@@ -46,6 +47,7 @@ export interface ActivityIndexItem {
 	activity_type_version_id: number
 	title: string | null
 	status: string
+	image_urls: string[]
 	small_image_url: string | null
 	banner_image_url: string | null
 	difficulty?: ActivityDifficulty | string | null
@@ -82,6 +84,8 @@ export interface ActivityIndexItem {
 		apply: string | null
 	}
 	is_public: boolean
+	is_saved: boolean
+	can_bookmark: boolean
 	needs_application?: boolean
 	secret_key: string | null
 	progress_milestone_count: number

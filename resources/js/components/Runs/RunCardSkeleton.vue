@@ -6,15 +6,19 @@ withDefaults(defineProps<{ type?: RunCardType }>(), { type: 'default' })
 
 <template>
     <div aria-hidden="true" class="flex max-w-full flex-col gap-1 rounded-2xl p-2"
-        :class="type === 'date' ? 'w-full min-w-0 max-w-md' : 'w-72'">
+        :class="type === 'default' ? 'w-72' : 'w-full min-w-0 max-w-md'">
         <div class="relative h-36 w-full overflow-hidden rounded-2xl">
             <USkeleton class="h-full w-full rounded-2xl bg-elevation-3 dark:bg-elevation-5 motion-reduce:animate-none" />
             <div class="absolute inset-x-0 top-0 flex items-start justify-between gap-2 p-2">
                 <USkeleton class="rounded-md bg-elevation-5 dark:bg-elevation-7 motion-reduce:animate-none"
-                    :class="type === 'date' ? 'h-14 w-12' : 'h-6 w-24'" />
+                    :class="type === 'default' ? 'h-6 w-24' : 'h-14 w-12'" />
                 <USkeleton class="h-6 w-16 rounded-md bg-elevation-5 dark:bg-elevation-7 motion-reduce:animate-none" />
             </div>
-            <USkeleton class="absolute bottom-3 left-1/2 h-3 w-2/3 -translate-x-1/2 rounded bg-elevation-5 dark:bg-elevation-7 motion-reduce:animate-none" />
+            <div class="absolute inset-x-0 bottom-0 flex items-end gap-2 px-3 pb-2.5"
+                :class="type === 'finder' ? 'justify-between' : 'justify-center'">
+                <USkeleton v-if="type === 'finder'" class="size-12 shrink-0 rounded-full bg-elevation-5 dark:bg-elevation-7 motion-reduce:animate-none" />
+                <USkeleton class="h-3 w-2/3 min-w-0 rounded bg-elevation-5 dark:bg-elevation-7 motion-reduce:animate-none" />
+            </div>
         </div>
         <div class="flex h-6 items-center">
             <USkeleton class="h-4 w-4/5 rounded bg-elevation-3 dark:bg-elevation-5 motion-reduce:animate-none" />
@@ -23,7 +27,7 @@ withDefaults(defineProps<{ type?: RunCardType }>(), { type: 'default' })
             <USkeleton class="h-3.5 w-11/12 rounded bg-elevation-3 dark:bg-elevation-5 motion-reduce:animate-none" />
             <USkeleton class="h-3.5 w-1/3 rounded bg-elevation-3 dark:bg-elevation-5 motion-reduce:animate-none" />
         </div>
-        <div v-if="type === 'date'" class="flex h-5 items-center justify-between gap-3">
+        <div v-if="type !== 'default'" class="flex h-5 items-center justify-between gap-3">
             <USkeleton class="h-3 w-1/3 rounded bg-elevation-3 dark:bg-elevation-5 motion-reduce:animate-none" />
             <USkeleton class="h-3 w-1/4 rounded bg-elevation-3 dark:bg-elevation-5 motion-reduce:animate-none" />
         </div>

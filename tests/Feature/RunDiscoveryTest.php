@@ -9,6 +9,7 @@ use App\Models\Character;
 use App\Models\CharacterClass;
 use App\Models\Group;
 use App\Models\User;
+use App\Services\Runs\RunBrowseService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Storage;
@@ -51,8 +52,11 @@ it('renders the run discovery scaffold with lookup data', function () {
         ],
     ]);
 
-    $this->actingAs(User::factory()->create())
-        ->get(route('dashboard.runs.index'))
+    $this->actingAs(User::factory()->create())->withSession(['locale' => 'en']);
+    $this->get('/runs?activity_type=forked-tower')->assertRedirect('/en/runs?activity_type=forked-tower');
+    $this->get('/en/dashboard/runs?activity_type=forked-tower')->assertMovedPermanently()
+        ->assertRedirect('/en/runs?activity_type=forked-tower');
+    $this->get('/en/runs?activity_type=forked-tower')
         ->assertOk()
         ->assertInertia(fn (Assert $page) => $page
             ->component('Dashboard/Runs/Index')
@@ -69,6 +73,44 @@ it('renders the run discovery scaffold with lookup data', function () {
             ->where('lookups.regions.0.label', 'North America')
             ->where('lookups.datacenters.0.value', 'Aether')
             ->where('lookups.groups.0.value', 'testgrup'));
+});
+
+it('ranks current activity suggestions first and refreshes popularity only on the scheduled command', function () {
+    $this->actingAs(User::factory()->create());
+    $group = Group::factory()->open()->create();
+    $savage = createRunDiscoveryActivityType(['slug' => 'aac-heavyweight-m1-savage', 'draft_name' => ['en' => 'AAC Heavyweight M1']]);
+    $tower = createRunDiscoveryActivityType(['slug' => 'forked-tower', 'draft_name' => ['en' => 'Forked Tower']]);
+    $older = createRunDiscoveryActivityType(['slug' => 'a-legacy-raid', 'draft_name' => ['en' => 'A legacy raid']]);
+    $addRun = fn (ActivityType $type, array $overrides = []) => Activity::factory()->create([
+        'group_id' => $group->id,
+        'activity_type_id' => $type->id,
+        'activity_type_version_id' => $type->current_published_version_id,
+        'status' => Activity::STATUS_COMPLETE,
+        'starts_at' => now()->subDay(),
+        'is_public' => true,
+        ...$overrides,
+    ]);
+    $suggestions = fn () => array_column(
+        $this->getJson(route('dashboard.runs.search-options'))->assertOk()->json('activity_types'), 'value'
+    );
+
+    $addRun($tower);
+    $addRun($older);
+    $addRun($older);
+    $addRun($savage, ['is_public' => false]);
+    $addRun($savage, ['status' => Activity::STATUS_CANCELLED]);
+    $addRun($savage, ['status' => Activity::STATUS_DRAFT]);
+    $addRun($savage, ['starts_at' => now()->subDays(31)]);
+
+    expect($suggestions())->toBe([$savage->slug, $tower->slug, $older->slug]);
+    $this->artisan('runs:refresh-activity-popularity')->assertSuccessful();
+    expect($suggestions())->toBe([$tower->slug, $savage->slug, $older->slug]);
+
+    $addRun($savage);
+    $addRun($savage);
+    expect($suggestions())->toBe([$tower->slug, $savage->slug, $older->slug]);
+    $this->artisan('runs:refresh-activity-popularity')->assertSuccessful();
+    expect($suggestions())->toBe([$savage->slug, $tower->slug, $older->slug]);
 });
 
 it('allows group filters for hidden memberships and ownership while preserving access boundaries', function (string $role) {
@@ -98,6 +140,11 @@ it('allows group filters for hidden memberships and ownership while preserving a
         'needs_application' => true,
     ]));
     $allowed = in_array($role, ['owner', 'member'], true);
+
+    $this->actingAs($viewer)->getJson(route('dashboard.runs.search-options'))
+        ->assertOk()
+        ->assertJsonCount($allowed ? 2 : 1, 'groups')
+        ->assertJsonFragment(['value' => $visible->slug]);
 
     $this->actingAs($viewer)->get(route('dashboard.runs.index'))
         ->assertOk()->assertInertia(fn (Assert $page) => $page
@@ -255,6 +302,9 @@ it('matches discoverable runs by activity tags', function () {
     $activityType = createRunDiscoveryActivityType([
         'slug' => 'aac-light-heavyweight-m4-savage',
         'draft_name' => ['en' => 'AAC Light-heavyweight M4 (Savage)'],
+        'draft_small_image_url' => '/type-icon.webp',
+        'draft_banner_image_url' => '/type-banner.webp',
+        'draft_prog_points' => [['key' => 'sunrise', 'label' => ['en' => 'Sunrise'], 'banner_image_url' => '/sunrise.webp']],
     ]);
     $activityType->tags()->attach(ActivityTag::query()->create(['name' => 'M4S']));
 
@@ -272,6 +322,7 @@ it('matches discoverable runs by activity tags', function () {
         'activity_type_version_id' => $activityType->current_published_version_id,
         'status' => Activity::STATUS_SCHEDULED,
         'title' => 'Late Night Prog',
+        'target_prog_point_key' => 'sunrise',
         'starts_at' => now()->addWeek()->startOfWeek()->addDays(2)->setTime(20, 0),
         'datacenter' => 'Light',
         'is_public' => true,
@@ -288,7 +339,10 @@ it('matches discoverable runs by activity tags', function () {
         ->assertOk()
         ->assertJsonPath('ids', [$activity->id])
         ->assertJsonPath('items.0.title', 'Late Night Prog')
-        ->assertJsonPath('items.0.activity_type_name', 'AAC Light-heavyweight M4 (Savage)');
+        ->assertJsonPath('items.0.activity_type_name', 'AAC Light-heavyweight M4 (Savage)')
+        ->assertJsonPath('items.0.image_url', '/sunrise.webp')
+        ->assertJsonPath('cards.0.image_urls', ['/sunrise.webp', '/type-banner.webp', '/type-icon.webp'])
+        ->assertJsonPath('cards.0.activity_type.banner_image_url', '/sunrise.webp');
 });
 
 it('defaults date filtering to upcoming runs from now', function () {
@@ -521,6 +575,9 @@ it('only exposes private moderator-visible runs to moderators of that group', fu
         ->assertOk()
         ->assertJsonPath('ids', [])
         ->assertJsonPath('items', []);
+
+    $this->getJson(route('dashboard.runs.discover-count', $params))
+        ->assertOk()->assertExactJson(['total' => 0]);
 
     $this->actingAs($moderator)
         ->getJson(route('dashboard.runs.discover', $params))
@@ -831,7 +888,7 @@ it('sorts discovery results by the selected sort option before pagination', func
             'preferred_languages' => ['en'],
         ]);
 
-    $makeRun = function (string $title, int $startDay, int $createdDaysAgo, int $updatedDaysAgo, int $openSlots) use ($activityType, $group): Activity {
+    $makeRun = function (string $title, int $startDay, int $createdDaysAgo, int $updatedDaysAgo, int $openSlots, int $filledSlots) use ($activityType, $group): Activity {
         $activity = Activity::factory()->create([
             'group_id' => $group->id,
             'activity_type_id' => $activityType->id,
@@ -846,10 +903,11 @@ it('sorts discovery results by the selected sort option before pagination', func
             'needs_application' => true,
         ]);
 
-        foreach (range(1, $openSlots) as $slotIndex) {
+        for ($slotIndex = 1; $slotIndex <= $openSlots + $filledSlots; $slotIndex++) {
             ActivitySlot::factory()->create([
                 'activity_id' => $activity->id,
                 'slot_key' => sprintf('%s-slot-%d', str($title)->slug(), $slotIndex),
+                'assigned_character_id' => $slotIndex > $openSlots ? Character::factory() : null,
                 'position_in_group' => $slotIndex,
                 'sort_order' => $slotIndex,
             ]);
@@ -858,10 +916,15 @@ it('sorts discovery results by the selected sort option before pagination', func
         return $activity;
     };
 
-    $soonest = $makeRun('Soonest', 1, 4, 4, 1);
-    $newestPosted = $makeRun('Newest Posted', 3, 1, 3, 2);
-    $recentlyUpdated = $makeRun('Recently Updated', 2, 2, 0, 3);
-    $mostOpenSlots = $makeRun('Most Open Slots', 4, 0, 1, 5);
+    $soonest = $makeRun('Soonest', 1, 4, 4, 1, 1);
+    $newestPosted = $makeRun('Newest Posted', 3, 1, 3, 2, 2);
+    $recentlyUpdated = $makeRun('Recently Updated', 2, 2, 0, 3, 1);
+    $mostOpenSlots = $makeRun('Most Open Slots', 4, 0, 1, 5, 3);
+    ActivitySlot::factory()->create([
+        'activity_id' => $recentlyUpdated->id,
+        'slot_kind' => ActivitySlot::SLOT_KIND_BENCH,
+        'assigned_character_id' => Character::factory(),
+    ]);
 
     $params = [
         'timezone' => 'Europe/London',
@@ -896,6 +959,17 @@ it('sorts discovery results by the selected sort option before pagination', func
         ])))
         ->assertOk()
         ->assertJsonPath('ids', [$mostOpenSlots->id, $recentlyUpdated->id, $newestPosted->id, $soonest->id]);
+
+    $noRoster = $makeRun('No roster yet', 0, 5, 5, 0, 0);
+    ActivityApplication::factory()->create(['activity_id' => $noRoster->id, 'user_id' => $viewer->id]);
+
+    $this->getJson(route('dashboard.runs.discover', [...$params, 'sort' => 'most_full']))
+        ->assertOk()
+        ->assertJsonPath('ids', [$soonest->id, $newestPosted->id, $mostOpenSlots->id, $recentlyUpdated->id, $noRoster->id]);
+
+    $this->getJson(route('dashboard.runs.discover', [...$params, 'sort' => 'least_full']))
+        ->assertOk()
+        ->assertJsonPath('ids', [$recentlyUpdated->id, $mostOpenSlots->id, $soonest->id, $newestPosted->id, $noRoster->id]);
 });
 
 it('matches time-of-day filters in the user timezone instead of the app timezone', function () {
@@ -1079,6 +1153,7 @@ it('lets users save and unsave discoverable runs and filter to saved runs only',
         'is_public' => true,
         'needs_application' => true,
     ]);
+    User::factory()->create()->savedActivities()->attach($otherRun);
 
     $params = [
         'timezone' => 'Europe/London',
@@ -1113,7 +1188,10 @@ it('lets users save and unsave discoverable runs and filter to saved runs only',
         ->assertJsonPath('items.0.id', $savedRun->id)
         ->assertJsonPath('items.0.is_saved', true)
         ->assertJsonPath('items.1.id', $otherRun->id)
-        ->assertJsonPath('items.1.is_saved', false);
+        ->assertJsonPath('items.1.is_saved', false)
+        ->assertJsonPath('cards.0.is_saved', true)
+        ->assertJsonPath('cards.1.is_saved', false)
+        ->assertJsonPath('cards.1.can_bookmark', true);
 
     $this->actingAs($viewer)
         ->deleteJson(route('dashboard.runs.unsave', [
@@ -1136,7 +1214,7 @@ it('lets users save and unsave discoverable runs and filter to saved runs only',
         ->assertJsonPath('items', []);
 });
 
-it('paginates discovery results at ten runs per page', function () {
+it('paginates discovery results using the requested grid size and defaults to ten', function () {
     $viewer = User::factory()->create();
 
     $activityType = createRunDiscoveryActivityType([
@@ -1152,8 +1230,9 @@ it('paginates discovery results at ten runs per page', function () {
             'preferred_languages' => ['en'],
         ]);
 
-    foreach (range(1, 11) as $index) {
-        Activity::factory()->create([
+    $runIds = [];
+    foreach (range(1, 20) as $index) {
+        $runIds[] = Activity::factory()->create([
             'group_id' => $group->id,
             'activity_type_id' => $activityType->id,
             'activity_type_version_id' => $activityType->current_published_version_id,
@@ -1162,7 +1241,7 @@ it('paginates discovery results at ten runs per page', function () {
             'starts_at' => now()->addWeek()->startOfWeek()->addDays(2)->setTime(18, 0)->addMinutes($index),
             'datacenter' => 'Light',
             'is_public' => true,
-        ]);
+        ])->id;
     }
 
     $params = [
@@ -1180,17 +1259,166 @@ it('paginates discovery results at ten runs per page', function () {
         ->assertJsonPath('meta.current_page', 1)
         ->assertJsonPath('meta.last_page', 2)
         ->assertJsonPath('meta.per_page', 10)
-        ->assertJsonPath('meta.total', 11);
+        ->assertJsonPath('meta.total', 20);
 
-    $this->actingAs($viewer)
-        ->getJson(route('dashboard.runs.discover', array_merge($params, ['page' => 2])))
+    $this->getJson(route('dashboard.runs.discover-count', $params))
+        ->assertOk()->assertExactJson(['total' => 20]);
+
+    $this->getJson(route('dashboard.runs.discover', [...$params, 'per_page' => 20]))
         ->assertOk()
-        ->assertJsonCount(1, 'ids')
-        ->assertJsonCount(1, 'items')
+        ->assertJsonPath('ids', $runIds)
+        ->assertJsonPath('meta.last_page', 1)
+        ->assertJsonPath('meta.per_page', 20);
+
+    $this->getJson(route('dashboard.runs.discover', [...$params, 'page' => 2, 'per_page' => 9]))
+        ->assertOk()
+        ->assertJsonPath('ids', array_slice($runIds, 9, 9))
+        ->assertJsonCount(9, 'cards')
+        ->assertJsonPath('meta.current_page', 2)
+        ->assertJsonPath('meta.last_page', 3)
+        ->assertJsonPath('meta.per_page', 9);
+
+    $this->getJson(route('dashboard.runs.discover', [...$params, 'page' => 3, 'per_page' => 12]))
+        ->assertOk()
+        ->assertJsonPath('ids', array_slice($runIds, 12))
         ->assertJsonPath('meta.current_page', 2)
         ->assertJsonPath('meta.last_page', 2)
-        ->assertJsonPath('meta.per_page', 10)
-        ->assertJsonPath('meta.total', 11);
+        ->assertJsonPath('meta.per_page', 12);
+
+    $this->getJson(route('dashboard.runs.discover', [...$params, 'per_page' => 500]))
+        ->assertUnprocessable()->assertJsonValidationErrors('per_page');
+});
+
+it('builds browse rows from accessible future runs with real capacity and participation', function () {
+    $viewer = User::factory()->create();
+    $type = createRunDiscoveryActivityType(['slug' => 'forked-tower']);
+    $magic = createRunDiscoveryActivityType(['slug' => 'forked-tower-magic']);
+    $other = createRunDiscoveryActivityType(['slug' => 'other-content']);
+    $group = Group::factory()->open()->create();
+    $createRun = function (ActivityType $activityType, array $attributes = []) use ($group): Activity {
+        $run = Activity::factory()->create(array_merge([
+            'group_id' => $group->id,
+            'activity_type_id' => $activityType->id,
+            'activity_type_version_id' => $activityType->current_published_version_id,
+            'status' => Activity::STATUS_SCHEDULED,
+            'starts_at' => now()->addDays(2),
+            'created_at' => now()->subDay(),
+            'is_public' => true,
+        ], $attributes));
+        $run->slots()->delete();
+        foreach (range(1, 4) as $index) {
+            ActivitySlot::factory()->create(['activity_id' => $run->id, 'slot_key' => 'slot-'.$index]);
+        }
+
+        return $run;
+    };
+
+    $almostFull = $createRun($type);
+    foreach ($almostFull->slots()->limit(3)->get() as $slot) {
+        $slot->update(['assigned_character_id' => Character::factory()->create()->id]);
+    }
+    // Empty bench places must not dilute main roster occupancy.
+    ActivitySlot::factory()->create(['activity_id' => $almostFull->id, 'slot_key' => 'bench',
+        'slot_kind' => ActivitySlot::SLOT_KIND_BENCH]);
+    $magicRun = $createRun($magic);
+    $newest = $createRun($other, ['created_at' => now(), 'starts_at' => now()->addDay()]);
+    ActivityApplication::factory()->create(['activity_id' => $almostFull->id, 'user_id' => $viewer->id,
+        'status' => ActivityApplication::STATUS_PENDING]);
+    $privateApplicant = User::factory()->create(['public_profile' => false, 'public_characters' => false]);
+    ActivityApplication::factory()->create(['activity_id' => $almostFull->id, 'user_id' => $privateApplicant->id,
+        'status' => ActivityApplication::STATUS_PENDING, 'applicant_avatar_url' => '/private-avatar.png']);
+    // The factory adds membership; public-run applicants do not need it in the product.
+    $group->memberships()->where('user_id', $viewer->id)->delete();
+
+    $hiddenGroup = Group::factory()->hidden()->create();
+    $memberRun = $createRun($other, ['group_id' => $hiddenGroup->id, 'is_public' => false]);
+    $hiddenGroup->memberships()->create(['user_id' => $viewer->id, 'role' => 'member', 'joined_at' => now()]);
+    $bannedGroup = Group::factory()->open()->create();
+    $bannedGroup->bans()->create(['user_id' => $viewer->id, 'banned_by_user_id' => $bannedGroup->owner_id]);
+    $excluded = collect([
+        $createRun($type, ['starts_at' => now()->subHour()]),
+        $createRun($type, ['status' => Activity::STATUS_DRAFT]),
+        $createRun($type, ['status' => Activity::STATUS_CANCELLED]),
+        $createRun($type, ['status' => Activity::STATUS_COMPLETE]),
+        $createRun($type, ['is_public' => false]),
+        $createRun($type, ['group_id' => $bannedGroup->id]),
+    ]);
+    $full = $createRun($type);
+    foreach ($full->slots as $slot) {
+        $slot->update(['assigned_character_id' => Character::factory()->create()->id]);
+    }
+    $excluded->push($full);
+
+    $historical = createRunDiscoveryActivityType(['slug' => 'delubrum-reginae-savage']);
+    $played = ['status' => Activity::STATUS_COMPLETE, 'starts_at' => now()->subDay()];
+    $createRun($historical, $played);
+    $this->artisan('runs:refresh-activity-popularity')->assertSuccessful();
+    $createRun($magic, $played); // This run will count after the next daily refresh.
+    createRunDiscoveryActivityType(['slug' => 'futures-rewritten-ultimate']);
+    foreach (range(1, 6) as $index) {
+        createRunDiscoveryActivityType(['slug' => 'archive-'.$index]);
+    }
+    createRunDiscoveryActivityType(['slug' => 'a-retired', 'is_active' => false]);
+    ActivityType::factory()->create(['slug' => 'a-draft', 'is_active' => true]);
+
+    $this->actingAs($viewer)->get(route('dashboard.runs.index'))
+        ->assertOk()->assertInertia(fn (Assert $page) => $page->loadDeferredProps(fn (Assert $deferred) => $deferred
+        ->has('browseSections', 5)
+        ->where('browseSections.0.runs.0.id', $almostFull->id)));
+
+    $rows = collect(app(RunBrowseService::class)->sections($viewer))->keyBy('id');
+    $trending = collect(app(RunBrowseService::class)->trendingActivities($viewer));
+    expect($trending->pluck('run_count', 'value')->all())->toBe([
+        'delubrum-reginae-savage' => 0, 'other-content' => 2, 'forked-tower' => 1, 'forked-tower-magic' => 1,
+        'futures-rewritten-ultimate' => 0, 'archive-1' => 0, 'archive-2' => 0, 'archive-3' => 0,
+        'archive-4' => 0, 'archive-5' => 0,
+    ]);
+    $allCards = $rows->pluck('runs')->flatten(1);
+    expect($allCards->pluck('id')->intersect($excluded->pluck('id'))->values()->all())->toBe([])
+        ->and($allCards->pluck('id'))->toContain($memberRun->id)
+        ->and(collect($rows['almost-full']['runs'])->pluck('id')->all())->toBe([$almostFull->id])
+        ->and($rows['recently-posted']['runs'][0]['id'])->toBe($newest->id)
+        ->and(collect($rows['latest-content']['runs'])->pluck('id')->all())->toBe([$almostFull->id, $magicRun->id])
+        ->and(collect($rows['more-forked-tower']['runs'])->pluck('id')->all())->toBe([$almostFull->id])
+        ->and($rows['recommended']['runs'][0]['participation_status'])->toBe('pending')
+        ->and($rows['recommended']['runs'][0]['applicant_avatars'][1])->toBeNull()
+        ->and($rows['recommended']['runs'][0]['href'])->toBe(route('groups.activities.overview', [
+            'locale' => app()->getLocale(), 'group' => $group->slug, 'activity' => $almostFull->id,
+        ], false));
+});
+
+it('searches flexible days and months and expands date ranges in the selected timezone', function () {
+    $viewer = User::factory()->create();
+    $type = createRunDiscoveryActivityType(['slug' => 'flexible-content']);
+    $group = Group::factory()->open()->create();
+    $runs = collect(['2026-05-30 00:30:00', '2026-05-31 23:30:00', '2026-06-01 08:30:00'])
+        ->map(fn (string $start) => Activity::factory()->create([
+            'group_id' => $group->id,
+            'activity_type_id' => $type->id,
+            'activity_type_version_id' => $type->current_published_version_id,
+            'starts_at' => $start,
+            'status' => Activity::STATUS_SCHEDULED,
+            'is_public' => true,
+        ]));
+    $filters = ['activity_type' => $type->slug, 'group' => $group->slug, 'timezone' => 'America/Los_Angeles'];
+    $this->actingAs($viewer);
+    $this->getJson(route('dashboard.runs.discover', [...$filters, 'date_range' => 'flexible',
+        'flexible_days' => 'weekend', 'date_months' => ['2026-05']]))
+        ->assertOk()->assertJsonPath('ids', [$runs[1]->id])->assertJsonPath('cards.0.id', $runs[1]->id);
+    $this->getJson(route('dashboard.runs.discover', [...$filters, 'timezone' => 'Asia/Tokyo',
+        'date_range' => 'flexible', 'flexible_days' => 'weekday', 'date_months' => ['2026-06']]))
+        ->assertOk()->assertJsonPath('ids', [$runs[1]->id, $runs[2]->id]);
+    $this->getJson(route('dashboard.runs.discover', [...$filters, 'date_range' => 'custom_range',
+        'date_from' => '2026-05-30', 'date_to' => '2026-05-30', 'date_flex_days' => 0]))
+        ->assertOk()->assertJsonPath('ids', []);
+    $this->getJson(route('dashboard.runs.discover', [...$filters, 'date_range' => 'custom_range',
+        'date_from' => '2026-05-30', 'date_to' => '2026-05-30', 'date_flex_days' => 1]))
+        ->assertOk()->assertJsonPath('ids', [$runs[0]->id, $runs[1]->id]);
+    $this->getJson(route('dashboard.runs.discover', [...$filters, 'date_range' => 'custom_day',
+        'date_from' => '2026-05-01', 'date_flex_days' => 1]))->assertOk()->assertJsonPath('ids', []);
+    $this->getJson(route('dashboard.runs.discover', [...$filters, 'date_range' => 'flexible',
+        'date_months' => ['2026-13'], 'flexible_days' => 'holiday', 'date_flex_days' => 50]))
+        ->assertUnprocessable()->assertJsonValidationErrors(['date_months.0', 'flexible_days', 'date_flex_days']);
 });
 
 function createRunDiscoveryActivityType(array $attributes = []): ActivityType

@@ -64,7 +64,7 @@ const activityTypeName = computed(() => {
 const displayTitle = computed(() => props.form.title.trim() || activityTypeName.value);
 const statusMeta = computed(() => getActivityStatusMeta(props.form.status));
 const statusLabel = computed(() => props.form.status ? t(`groups.activities.statuses.${props.form.status}`) : '—');
-const activityArtworkUrl = computed(() => selectedActivityType.value?.banner_image_url || selectedActivityType.value?.small_image_url || null);
+const activityArtworkUrl = computed(() => selectedTargetProgPoint.value?.banner_image_url || selectedActivityType.value?.banner_image_url || selectedActivityType.value?.small_image_url || null);
 const activityThumbnailUrl = computed(() => selectedActivityType.value?.small_image_url || selectedActivityType.value?.banner_image_url || null);
 const organizerName = computed(() => selectedOrganizerCharacter.value?.name || t('groups.activities.create.summary.no_organizer'));
 const organizerUserName = computed(() => selectedOrganizerCharacter.value?.user_name ?? null);

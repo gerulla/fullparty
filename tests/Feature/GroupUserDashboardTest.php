@@ -20,7 +20,7 @@ beforeEach(function () {
     Http::preventStrayRequests();
 });
 
-it('scopes hosted runs and existing application alerts to the current staff member and group', function () {
+it('scopes upcoming hosted runs and existing application alerts to the current staff member and group', function () {
     $this->travelTo(now()->setDate(2026, 11, 3)->setTime(12, 0));
     $host = User::factory()->create();
     $group = Group::factory()->open()->create();
@@ -39,7 +39,8 @@ it('scopes hosted runs and existing application alerts to the current staff memb
     $ongoing = $factory->create(['status' => Activity::STATUS_ONGOING, 'starts_at' => now()->subHour()]);
     $othersRun = $factory->create(['organized_by_user_id' => $group->owner_id]);
     $otherGroupRun = $factory->create(['group_id' => Group::factory()->create()->id]);
-    $draft = $factory->create(['status' => Activity::STATUS_DRAFT, 'starts_at' => null]);
+    $draft = $factory->create(['status' => Activity::STATUS_DRAFT, 'starts_at' => now()->addDay()]);
+    $factory->create(['status' => Activity::STATUS_DRAFT, 'starts_at' => null]);
     foreach ([Activity::STATUS_COMPLETE, Activity::STATUS_CANCELLED] as $status) {
         $factory->create(['status' => $status]);
     }
@@ -66,7 +67,8 @@ it('scopes hosted runs and existing application alerts to the current staff memb
     };
     $submitted = $createUpdate($future, $host, 'applications.new_for_review');
     $submitted->forceFill(['aggregate_count' => 10, 'aggregate_key' => "applications.new_for_review.activity.{$future->id}"])->save();
-    $updated = $createUpdate($ongoing, $host, 'applications.updated');
+    $createUpdate($ongoing, $host, 'applications.updated');
+    $createUpdate($unfinished, $host, 'applications.updated');
     $withdrawn = $createUpdate($future, $host, 'applications.withdrawn_for_review');
     $createUpdate($othersRun, $host, 'applications.updated');
     $createUpdate($otherGroupRun, $host, 'applications.updated');
@@ -78,18 +80,15 @@ it('scopes hosted runs and existing application alerts to the current staff memb
         ->assertOk()
         ->assertInertia(fn (Assert $page) => $page
             ->has('group.applied_activities', 0)
-            ->has('group.hosted_activities', 4)
-            ->where('group.hosted_activities.0.id', $unfinished->id)
-            ->where('group.hosted_activities.1.id', $ongoing->id)
-            ->where('group.hosted_activities.2.id', $future->id)
-            ->where('group.hosted_activities.3.id', $draft->id)
-            ->where('group.hosted_activities.2.links.view', route('groups.dashboard.activities.show', [$group, $future], false))
-            ->has('group.hosted_run_notifications', 3)
+            ->has('group.hosted_activities', 2)
+            ->where('group.hosted_activities.0.id', $draft->id)
+            ->where('group.hosted_activities.1.id', $future->id)
+            ->where('group.hosted_activities.1.links.view', route('groups.dashboard.activities.show', [$group, $future], false))
+            ->has('group.hosted_run_notifications', 2)
             ->where('group.hosted_run_notifications.0.id', $withdrawn->id)
-            ->where('group.hosted_run_notifications.1.id', $updated->id)
-            ->where('group.hosted_run_notifications.2.id', $submitted->id)
-            ->where('group.hosted_run_notifications.2.aggregate_count', 10)
-            ->where('group.hosted_run_notifications.2.is_unread', true)
+            ->where('group.hosted_run_notifications.1.id', $submitted->id)
+            ->where('group.hosted_run_notifications.1.aggregate_count', 10)
+            ->where('group.hosted_run_notifications.1.is_unread', true)
         );
 
     expect(UserNotification::query()->count())->toBe($totalNotifications)
@@ -117,7 +116,8 @@ it('provides the full calendar window across timezone boundaries while preservin
         'group_id' => $group->id,
         'status' => Activity::STATUS_SCHEDULED,
     ]);
-    $previousDay = $activityFactory->create(['starts_at' => '2026-11-01 23:30:00']);
+    $previousDay = $activityFactory->complete()->create(['starts_at' => '2026-11-01 23:30:00']);
+    $member->savedActivities()->attach($previousDay);
     $today = $activityFactory->create(['starts_at' => '2026-11-02 12:00:00']);
     $lastDay = $activityFactory->private()->create(['starts_at' => '2026-11-09 06:00:00']);
     $activityFactory->create(['starts_at' => '2026-10-31 23:59:00']);
@@ -133,6 +133,8 @@ it('provides the full calendar window across timezone boundaries while preservin
             ->where('group.permissions.can_toggle_notifications', true)
             ->has('group.calendar_activities', 3)
             ->where('group.calendar_activities.0.id', $previousDay->id)
+            ->where('group.calendar_activities.0.is_saved', true)
+            ->where('group.calendar_activities.0.can_bookmark', false)
             ->where('group.calendar_activities.1.id', $today->id)
             ->where('group.calendar_activities.2.id', $lastDay->id)
             ->has('group.current_week_activities', 1)
@@ -148,6 +150,8 @@ it('provides the full calendar window across timezone boundaries while preservin
             ->where('group.permissions.can_toggle_notifications', false)
             ->has('group.calendar_activities', 2)
             ->where('group.calendar_activities.0.id', $previousDay->id)
+            ->where('group.calendar_activities.0.is_saved', false)
+            ->where('group.calendar_activities.0.can_bookmark', false)
             ->where('group.calendar_activities.1.id', $today->id)
         );
 });
@@ -218,6 +222,7 @@ it('keeps private profiles and guests anonymous in group run card previews', fun
             ->has('group.applied_activities', 0)
             ->where('group.calendar_activities.0.application_count', 1)
             ->where('group.calendar_activities.0.applicant_avatars', [null])
+            ->where('group.calendar_activities.0.can_bookmark', false)
             ->where('group.calendar_activities.0.has_existing_application', false)
             ->where('group.calendar_activities.0.participation_status', null)
             ->missing('group.calendar_activities.0.applications')

@@ -214,6 +214,9 @@
         "label": "Libellé de point de progression localisé",
         "label_help": "Ce libellé est affiché partout où l'activité référence ces points de progression par la suite.",
         "label_placeholder": "Bridges",
+        "banner_help": "Facultatif. Les sorties qui ciblent ce point de progression utilisent cette image. Laissez ce champ vide pour utiliser la bannière de l’activité.",
+        "banner_preview": "Aperçu de la bannière du point de progression",
+        "remove_banner": "Retirer la bannière",
         "empty_title": "Aucun point de progression pour le moment",
         "empty_description": "Ajoutez des points de progression si ce type d'activité nécessite des points de contrôle nommés au-delà de la correspondance des jalons FF Logs."
     },

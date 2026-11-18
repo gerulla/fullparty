@@ -76,7 +76,7 @@ class GroupActivityManagementDataController extends Controller
                 'title' => $activity->title,
                 'description' => $activity->description,
                 'small_image_url' => $activity->activityTypeVersion?->small_image_url,
-                'banner_image_url' => $activity->activityTypeVersion?->banner_image_url,
+                'banner_image_url' => $activity->bannerImageUrl(),
                 'notes' => $activity->notes,
                 'status' => $activity->status,
                 'discord_participant_sync_available_from' => $discordParticipantSync->availableFrom($group, $activity)?->toIso8601String(),

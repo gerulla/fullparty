@@ -6,6 +6,7 @@ import {useI18n} from "vue-i18n";
 import {computed} from 'vue';
 import { usePage } from '@inertiajs/vue3'
 import { useAppearance } from '@/composables/useAppearance'
+import { useAdminMenuItems } from '@/composables/useAdminMenuItems'
 import { usePersistentLocale } from '@/composables/usePersistentLocale'
 import { useTimeDisplayPreference } from '@/composables/useTimeDisplayPreference'
 import { flagByLocaleCode } from '@/utils/localeFlags'
@@ -14,6 +15,7 @@ const page = usePage()
 const props = defineProps<{ compact?: boolean; mobile?: boolean }>()
 
 const user = computed(() => page.props.auth?.user)
+const adminMenuItems = useAdminMenuItems()
 const { t } = useI18n();
 const { isDark, toggleAppearance } = useAppearance()
 const { currentLocale, localeOptions, updateLocale } = usePersistentLocale()
@@ -98,6 +100,7 @@ const items = computed<DropdownMenuItem[][]>(() => user.value ? [
 	],
     ...(props.mobile ? [preferences.value] : []),
 	[
+		...adminMenuItems.value,
 		{
 			label: t('navigation.topbar.menu.logout'),
 			icon: 'i-lucide-log-out',

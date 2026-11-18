@@ -166,7 +166,8 @@ final class HomeBannerDataService
         return [
             'activity_title' => $activity->title,
             'activity_type_name' => $activity->activityTypeVersion?->name,
-            'activity_icon_url' => $activity->activityTypeVersion?->small_image_url
+            'activity_icon_url' => $activity->targetProgPointBannerUrl()
+                ?: $activity->activityTypeVersion?->small_image_url
                 ?: $activity->activityTypeVersion?->banner_image_url,
             'activity_icon' => 'i-lucide-swords',
             'progress' => $this->resolveProgressPercent($activity),

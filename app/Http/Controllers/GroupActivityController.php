@@ -27,6 +27,7 @@ use App\Services\Notifications\AssignmentNotificationService;
 use App\Services\Notifications\GroupUpdateNotificationService;
 use App\Services\Quotas\QuotaService;
 use App\Services\Runs\RunAccessService;
+use App\Services\Runs\RunBookmarkState;
 use App\Support\ActivityCompositionPresets;
 use App\Support\Input\RequestTextInputSanitizer;
 use App\Support\Quotas\QuotaKey;
@@ -149,7 +150,8 @@ class GroupActivityController extends Controller
         $this->ensureActivityIsMutable($activity);
 
         $activity->load([
-            'activityType.currentPublishedVersion',
+            'activityType',
+            'activityTypeVersion',
             'organizerCharacter.user',
         ]);
 
@@ -177,7 +179,7 @@ class GroupActivityController extends Controller
                 'organized_by_user_id' => $activity->organized_by_user_id,
                 'organized_by_character_id' => $activity->organized_by_character_id,
             ],
-            'activityTypes' => $activityType ? collect([$activityType])->map(fn (ActivityType $type) => $this->serializeActivityTypeForForm($type))->values() : [],
+            'activityTypes' => $activityType ? [$this->serializeActivityTypeForForm($activityType, $activity->activityTypeVersion)] : [],
             'organizerCharacters' => $this->organizerCharactersForUserIds($this->moderatorUserIds($group)),
             'activityOptions' => $this->activityOptionsForForm(),
         ]);
@@ -189,7 +191,8 @@ class GroupActivityController extends Controller
         $group->load([
             'memberships',
             'bans',
-            'activities' => fn ($query) => $query->tap(fn ($query) => $this->runAccess->scopeVisibleTo($query, $currentUserId)),
+            'activities' => fn ($query) => $query->tap(fn ($query) => $this->runAccess->scopeVisibleTo($query, $currentUserId))
+                ->withExists(RunBookmarkState::existsRelations($currentUserId)),
             'activities.group.memberships',
             'activities.group.bans',
             'activities.organizer',
@@ -1058,28 +1061,28 @@ class GroupActivityController extends Controller
             ->whereNotNull('current_published_version_id')
             ->orderBy('slug')
             ->get()
-            ->map(fn (ActivityType $activityType) => $this->serializeActivityTypeForForm($activityType, $includeProgPoints))
+            ->map(fn (ActivityType $type) => $this->serializeActivityTypeForForm($type, $type->currentPublishedVersion, $includeProgPoints))
             ->values();
     }
 
     /**
      * @return array<string, mixed>
      */
-    private function serializeActivityTypeForForm(ActivityType $activityType, bool $includeProgPoints = true): array
+    private function serializeActivityTypeForForm(ActivityType $activityType, ?ActivityTypeVersion $version, bool $includeProgPoints = true): array
     {
         return [
             'id' => $activityType->id,
             'slug' => $activityType->slug,
             'draft_name' => $activityType->draft_name,
             'current_published_version_id' => $activityType->current_published_version_id,
-            'small_image_url' => $activityType->currentPublishedVersion?->small_image_url,
-            'banner_image_url' => $activityType->currentPublishedVersion?->banner_image_url,
-            'difficulty' => $activityType->currentPublishedVersion?->difficulty,
-            'default_min_item_level' => $activityType->currentPublishedVersion?->default_min_item_level,
-            'slot_count' => collect($activityType->currentPublishedVersion?->layout_schema['groups'] ?? [])
+            'small_image_url' => $version?->small_image_url,
+            'banner_image_url' => $version?->banner_image_url,
+            'difficulty' => $version?->difficulty,
+            'default_min_item_level' => $version?->default_min_item_level,
+            'slot_count' => collect($version?->layout_schema['groups'] ?? [])
                 ->sum(fn (array $groupDefinition) => (int) ($groupDefinition['size'] ?? 0)),
             'prog_points' => $includeProgPoints
-                ? ($activityType->currentPublishedVersion?->prog_points ?? [])
+                ? ($version?->prog_points ?? [])
                 : [],
         ];
     }

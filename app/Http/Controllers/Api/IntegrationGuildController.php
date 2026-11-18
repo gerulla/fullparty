@@ -315,7 +315,7 @@ class IntegrationGuildController extends Controller
                 'name' => $activity->activityTypeVersion?->name,
                 'difficulty' => $activity->activityTypeVersion?->difficulty,
                 'small_image_url' => $activity->activityTypeVersion?->small_image_url,
-                'banner_image_url' => $activity->activityTypeVersion?->banner_image_url,
+                'banner_image_url' => $activity->bannerImageUrl(),
             ],
             'organizer' => [
                 'id' => $activity->organizer?->id,
@@ -374,9 +374,7 @@ class IntegrationGuildController extends Controller
         }
 
         $key = (string) $activity->target_prog_point_key;
-        $progPoint = collect($activity->activityTypeVersion?->prog_points ?? [])
-            ->filter(fn (mixed $point): bool => is_array($point))
-            ->first(fn (array $point): bool => ($point['key'] ?? null) === $key);
+        $progPoint = $activity->targetProgPoint();
 
         if (! is_array($progPoint)) {
             return [

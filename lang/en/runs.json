@@ -1,4 +1,18 @@
 {
+  "browse": {
+    "bookmark_error": "Couldn’t update this bookmark. Try again.",
+    "title": "Find Runs",
+    "search_placeholder": "Search runs, groups or activities",
+    "loading": "Loading runs…",
+    "empty": "No upcoming runs in this section right now.",
+    "sections": {
+      "recommended": "Runs You May Like",
+      "recently_posted": "Recently Posted",
+      "almost_full": "Almost Full",
+      "more_activity": "More {activity}",
+      "latest_content": "Latest Content"
+    }
+  },
   "participation": {
     "statuses": {
       "pending": "Applied",
@@ -190,8 +204,10 @@
         }
       },
       "sort_options": {
-        "starting_soonest": "Starting Soonest",
-        "newest_posted": "Newest Posted",
+        "starting_soonest": "Starting soonest",
+        "newest_posted": "Recently posted",
+        "most_full": "Closest to full",
+        "least_full": "Most room available",
         "recently_updated": "Recently Updated",
         "open_slots": "Most Open Slots"
       }

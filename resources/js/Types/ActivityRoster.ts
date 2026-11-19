@@ -162,6 +162,8 @@ export type ActivityRosterSummaryPreset = {
 	requirements: ActivityRosterSummaryRequirement[]
 }
 
+export type RosterCompositionTone = 'neutral' | 'matched' | 'extra'
+
 export type ActivityRosterSummaryRequirementRow = {
 	key: string
 	scopeKey: string

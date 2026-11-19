@@ -230,17 +230,17 @@ const getDisplayContextLabels = (displayContexts: string[] = []) => {
 </script>
 
 <template>
-	<UCard class="w-full dark:bg-elevated/25">
+	<UCard class="w-full min-w-0">
 		<template #header>
-			<div class="flex flex-row items-center justify-between">
-				<div class="flex flex-row items-center font-semibold text-md">
-					<UIcon name="i-lucide-database" class="mr-2" size="22"/>
-					<p>{{ t('admin.character_definitions.table_header') }}</p>
+			<div class="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+				<div class="flex min-w-0 items-center gap-2 font-semibold text-highlighted">
+					<UIcon name="i-lucide-database" class="size-5 shrink-0 text-primary"/>
+					<h2>{{ t('admin.character_definitions.table_header') }}</h2>
 				</div>
-				<div class="flex items-center gap-3">
+				<div class="flex flex-wrap items-center gap-2">
 					<UInput
 						v-model="globalFilter"
-						class="w-72"
+						class="w-full sm:w-64"
 						icon="i-lucide-search"
 						:placeholder="t('admin.character_definitions.search_placeholder')"
 					/>
@@ -257,7 +257,7 @@ const getDisplayContextLabels = (displayContexts: string[] = []) => {
 		</template>
 
 		<div class="flex flex-col gap-4">
-			<div :class="shouldFixTableHeight() ? 'h-[28rem] overflow-auto' : 'overflow-auto'">
+			<div :class="shouldFixTableHeight() ? 'max-h-[28rem] overflow-auto' : 'overflow-auto'">
 				<UTable
 					ref="table"
 					v-model:pagination="pagination"
@@ -270,7 +270,7 @@ const getDisplayContextLabels = (displayContexts: string[] = []) => {
 					<template #name-cell="{ row }">
 						<div class="flex flex-col">
 							<span class="font-semibold">{{ row.original.name }}</span>
-							<span class="text-xs text-gray-500">{{ row.original.slug }}</span>
+							<span class="text-xs text-muted">{{ row.original.slug }}</span>
 						</div>
 					</template>
 
@@ -281,7 +281,7 @@ const getDisplayContextLabels = (displayContexts: string[] = []) => {
 					<template #group-cell="{ row }">
 						<div class="flex flex-col gap-1">
 							<UBadge :label="getGroupLabel(row.original.group)" color="neutral" variant="subtle" />
-							<span class="text-xs text-gray-500">
+							<span class="text-xs text-muted">
 								{{ getDisplayContextLabels(row.original.display_contexts).join(', ') || '-' }}
 							</span>
 						</div>
@@ -290,7 +290,7 @@ const getDisplayContextLabels = (displayContexts: string[] = []) => {
 					<template #source_type-cell="{ row }">
 						<div class="flex flex-col gap-1">
 							<UBadge :label="getSourceTypeLabel(row.original.source_type)" color="neutral" variant="subtle" />
-							<span class="text-xs text-gray-500">
+							<span class="text-xs text-muted">
 								{{ row.original.is_editable ? t('admin.character_definitions.table.editable_badge') : t('admin.character_definitions.table.readonly_badge') }}
 							</span>
 						</div>
@@ -317,12 +317,14 @@ const getDisplayContextLabels = (displayContexts: string[] = []) => {
 							<UButton
 								@click="openEditModal(row)"
 								icon="i-lucide-pencil"
+								:aria-label="t('general.edit')"
 								color="neutral"
 								variant="ghost"
 							/>
 							<UButton
 								@click="openDeleteModal(row)"
 								icon="i-lucide-trash-2"
+								:aria-label="t('general.delete')"
 								color="error"
 								variant="ghost"
 							/>
@@ -331,8 +333,9 @@ const getDisplayContextLabels = (displayContexts: string[] = []) => {
 				</UTable>
 			</div>
 
-			<div class="flex justify-end border-t border-default pt-4 px-4">
+			<div class="flex justify-center border-t border-default pt-4 sm:justify-end">
 				<UPagination
+					:sibling-count="1"
 					:page="(table?.tableApi?.getState().pagination.pageIndex || 0) + 1"
 					:items-per-page="table?.tableApi?.getState().pagination.pageSize"
 					:total="table?.tableApi?.getFilteredRowModel().rows.length"
@@ -346,12 +349,11 @@ const getDisplayContextLabels = (displayContexts: string[] = []) => {
 		v-model:open="isCreateModalOpen"
 		:title="t('admin.character_definitions.create_modal.title')"
 		:description="t('admin.character_definitions.create_modal.subtitle')"
-		:ui="{ content: 'rounded-sm', header: 'border-0'}"
 	>
 		<template #body>
 			<form @submit.prevent="submitCreate" class="w-full flex flex-col gap-4">
-				<div class="w-full flex flex-row items-start justify-evenly gap-4">
-					<UFormField :label="t('admin.character_definitions.fields.name.label')" class="w-3/5" required>
+				<div class="grid min-w-0 gap-4 sm:grid-cols-2">
+					<UFormField :label="t('admin.character_definitions.fields.name.label')" class="min-w-0" required>
 						<UInput
 							v-model="createForm.name"
 							:placeholder="t('admin.character_definitions.fields.name.placeholder')"
@@ -360,7 +362,7 @@ const getDisplayContextLabels = (displayContexts: string[] = []) => {
 						/>
 					</UFormField>
 
-					<UFormField :label="t('admin.character_definitions.fields.type.label')" class="w-2/5" required>
+					<UFormField :label="t('admin.character_definitions.fields.type.label')" class="min-w-0" required>
 						<USelect
 							v-model="createForm.type"
 							:items="fieldTypes"
@@ -370,8 +372,8 @@ const getDisplayContextLabels = (displayContexts: string[] = []) => {
 					</UFormField>
 				</div>
 
-				<div class="w-full flex flex-row items-start justify-evenly gap-4">
-					<UFormField :label="t('admin.character_definitions.fields.group.label')" class="w-1/2" required>
+				<div class="grid min-w-0 gap-4 sm:grid-cols-2">
+					<UFormField :label="t('admin.character_definitions.fields.group.label')" class="min-w-0" required>
 						<USelect
 							v-model="createForm.group"
 							:items="groupOptions"
@@ -380,7 +382,7 @@ const getDisplayContextLabels = (displayContexts: string[] = []) => {
 						/>
 					</UFormField>
 
-					<UFormField :label="t('admin.character_definitions.fields.source_type.label')" class="w-1/2" required>
+					<UFormField :label="t('admin.character_definitions.fields.source_type.label')" class="min-w-0" required>
 						<USelect
 							v-model="createForm.source_type"
 							:items="sourceTypeOptions"
@@ -408,31 +410,31 @@ const getDisplayContextLabels = (displayContexts: string[] = []) => {
 				<UFormField
 					:label="t('admin.character_definitions.fields.active.label')"
 					:description="t('admin.character_definitions.fields.active.description')"
-					class="w-full flex flex-row items-center"
+					class="admin-inset flex items-center justify-between gap-4 p-3"
 					orientation="horizontal"
 					required
 				>
-					<USwitch class="w-full" v-model="createForm.is_active" size="xl"/>
+					<USwitch class="shrink-0" v-model="createForm.is_active" size="xl"/>
 				</UFormField>
 
 				<UFormField
 					:label="t('admin.character_definitions.fields.editable.label')"
 					:description="t('admin.character_definitions.fields.editable.description')"
-					class="w-full flex flex-row items-center"
+					class="admin-inset flex items-center justify-between gap-4 p-3"
 					orientation="horizontal"
 					required
 				>
-					<USwitch class="w-full" v-model="createForm.is_editable" size="xl"/>
+					<USwitch class="shrink-0" v-model="createForm.is_editable" size="xl"/>
 				</UFormField>
 
 				<UFormField
 					:label="t('admin.character_definitions.fields.visible.label')"
 					:description="t('admin.character_definitions.fields.visible.description')"
-					class="w-full flex flex-row items-center"
+					class="admin-inset flex items-center justify-between gap-4 p-3"
 					orientation="horizontal"
 					required
 				>
-					<USwitch class="w-full" v-model="createForm.is_visible" size="xl"/>
+					<USwitch class="shrink-0" v-model="createForm.is_visible" size="xl"/>
 				</UFormField>
 
 				<UFormField :label="t('general.description')" class="w-full">
@@ -475,12 +477,11 @@ const getDisplayContextLabels = (displayContexts: string[] = []) => {
 		v-model:open="isEditModalOpen"
 		:title="t('admin.character_definitions.edit_modal.title')"
 		:description="t('admin.character_definitions.edit_modal.subtitle',{field: editForm.name})"
-		:ui="{ content: 'rounded-sm', header: 'border-0'}"
 	>
 		<template #body>
 			<form @submit.prevent="submitEdit" class="w-full flex flex-col gap-4">
-				<div class="w-full flex flex-row items-start justify-evenly gap-4">
-					<UFormField :label="t('admin.character_definitions.fields.name.label')" class="w-3/5" required>
+				<div class="grid min-w-0 gap-4 sm:grid-cols-2">
+					<UFormField :label="t('admin.character_definitions.fields.name.label')" class="min-w-0" required>
 						<UInput
 							v-model="editForm.name"
 							:placeholder="t('admin.character_definitions.fields.name.placeholder')"
@@ -489,7 +490,7 @@ const getDisplayContextLabels = (displayContexts: string[] = []) => {
 						/>
 					</UFormField>
 
-					<UFormField :label="t('admin.character_definitions.fields.type.label')" class="w-2/5" required>
+					<UFormField :label="t('admin.character_definitions.fields.type.label')" class="min-w-0" required>
 						<USelect
 							v-model="editForm.type"
 							:items="fieldTypes"
@@ -499,8 +500,8 @@ const getDisplayContextLabels = (displayContexts: string[] = []) => {
 					</UFormField>
 				</div>
 
-				<div class="w-full flex flex-row items-start justify-evenly gap-4">
-					<UFormField :label="t('admin.character_definitions.fields.group.label')" class="w-1/2" required>
+				<div class="grid min-w-0 gap-4 sm:grid-cols-2">
+					<UFormField :label="t('admin.character_definitions.fields.group.label')" class="min-w-0" required>
 						<USelect
 							v-model="editForm.group"
 							:items="groupOptions"
@@ -509,7 +510,7 @@ const getDisplayContextLabels = (displayContexts: string[] = []) => {
 						/>
 					</UFormField>
 
-					<UFormField :label="t('admin.character_definitions.fields.source_type.label')" class="w-1/2" required>
+					<UFormField :label="t('admin.character_definitions.fields.source_type.label')" class="min-w-0" required>
 						<USelect
 							v-model="editForm.source_type"
 							:items="sourceTypeOptions"
@@ -537,31 +538,31 @@ const getDisplayContextLabels = (displayContexts: string[] = []) => {
 				<UFormField
 					:label="t('admin.character_definitions.fields.active.label')"
 					:description="t('admin.character_definitions.fields.active.description')"
-					class="w-full flex flex-row items-center"
+					class="admin-inset flex items-center justify-between gap-4 p-3"
 					orientation="horizontal"
 					required
 				>
-					<USwitch class="w-full" v-model="editForm.is_active" size="xl"/>
+					<USwitch class="shrink-0" v-model="editForm.is_active" size="xl"/>
 				</UFormField>
 
 				<UFormField
 					:label="t('admin.character_definitions.fields.editable.label')"
 					:description="t('admin.character_definitions.fields.editable.description')"
-					class="w-full flex flex-row items-center"
+					class="admin-inset flex items-center justify-between gap-4 p-3"
 					orientation="horizontal"
 					required
 				>
-					<USwitch class="w-full" v-model="editForm.is_editable" size="xl"/>
+					<USwitch class="shrink-0" v-model="editForm.is_editable" size="xl"/>
 				</UFormField>
 
 				<UFormField
 					:label="t('admin.character_definitions.fields.visible.label')"
 					:description="t('admin.character_definitions.fields.visible.description')"
-					class="w-full flex flex-row items-center"
+					class="admin-inset flex items-center justify-between gap-4 p-3"
 					orientation="horizontal"
 					required
 				>
-					<USwitch class="w-full" v-model="editForm.is_visible" size="xl"/>
+					<USwitch class="shrink-0" v-model="editForm.is_visible" size="xl"/>
 				</UFormField>
 
 				<UFormField :label="t('general.description')" class="w-full">
@@ -605,11 +606,10 @@ const getDisplayContextLabels = (displayContexts: string[] = []) => {
 		v-if="deletingDefinition"
 		:title="t('admin.character_definitions.delete_modal.title', {field: deletingDefinition.original.name ?? ''})"
 		:description="t('admin.character_definitions.delete_modal.subtitle', {field: deletingDefinition.original.name ?? ''})"
-		:ui="{ content: 'rounded-sm', header: 'border-0'}"
 	>
 		<template #body>
 			<div class="flex flex-col gap-4">
-				<p class="text-sm text-red-600 dark:text-red-400">
+				<p class="text-sm text-error">
 					{{ t('admin.character_definitions.delete_modal.warning') }}
 				</p>
 				<div class="flex gap-2 justify-end mt-4">

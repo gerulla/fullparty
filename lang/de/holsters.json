@@ -1,4 +1,6 @@
 {
+    "read_guide": "Leitfaden lesen",
+    "load_failed": "Diese Holsterzusammenstellung konnte nicht geladen werden.",
     "any": "Beliebig",
     "any_description": "Ich kann jede Holster-Zusammenstellung verwenden. Moderatoren können eine für mich auswählen.",
     "prepop": "Vorbereitung",

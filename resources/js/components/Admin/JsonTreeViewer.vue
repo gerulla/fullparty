@@ -54,10 +54,10 @@ const collapseAll = () => {
 </script>
 
 <template>
-	<div class="overflow-hidden border border-default bg-neutral-950/70">
-		<div class="flex flex-wrap items-center justify-between gap-2 border-b border-default bg-elevated/30 px-3 py-2">
+	<div class="admin-inset min-w-0 overflow-hidden">
+		<div class="flex flex-wrap items-center justify-between gap-2 border-b border-default/60 px-3 py-2">
 			<div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted">
-				<UIcon name="i-lucide-braces" class="size-4 text-brand-200" />
+				<UIcon name="i-lucide-braces" class="size-4 text-primary" />
 				<span>{{ t("admin.fflogs_playground.response.viewer_label") }}</span>
 			</div>
 
@@ -81,7 +81,7 @@ const collapseAll = () => {
 			</div>
 		</div>
 
-		<div class="json-tree-scroll max-h-[calc(100vh-18rem)] min-h-[36rem] overflow-auto p-4 font-mono">
+		<div class="max-h-[65vh] min-h-36 overflow-auto p-3 font-mono sm:p-4 xl:min-h-96">
 			<JsonTreeNode
 				:value="normalizedValue"
 				:expand-all-token="expandAllToken"

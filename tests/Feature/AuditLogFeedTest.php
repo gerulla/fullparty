@@ -3,6 +3,7 @@
 use App\Models\Activity;
 use App\Models\ActivityApplication;
 use App\Models\AuditLog;
+use App\Models\BozjaItem;
 use App\Models\Group;
 use App\Models\GroupMembership;
 use App\Models\GroupResource;
@@ -110,6 +111,37 @@ it('keeps the admin group filter available beyond the first page', function () {
         ->has('filters.groups', 2)->where('selectedFilters', []));
     $this->getJson($url.'?group='.$second->id)->assertOk()
         ->assertJsonCount(1, 'auditLogs')->assertJsonPath('auditLogs.0.id', $match->id);
+    $this->getJson($url.'?'.http_build_query(['scope' => 'group', 'search' => $second->name]))->assertOk()
+        ->assertJsonCount(1, 'auditLogs')->assertJsonPath('auditLogs.0.scope.label', $second->name);
+});
+
+it('filters global events by their recorded scope and presents protected catalog details on demand', function () {
+    $group = Group::factory()->create();
+    $item = BozjaItem::create([
+        'key' => 'test-banner', 'category' => 'banners', 'classification' => 'banner',
+        'name' => ['en' => 'Test banner', 'de' => 'Testbanner'],
+    ]);
+    $log = createFeedAuditLog($group, [
+        'scope_type' => 'admin', 'scope_id' => null, 'action' => 'custom.catalog.revised',
+        'message' => 'custom.catalog.revised', 'subject_type' => BozjaItem::class, 'subject_id' => $item->id,
+        'metadata' => [
+            'changes' => ['access_key' => ['old' => 'hidden-example', 'new' => 'hidden-updated']],
+            'configuration' => ['enabled' => true, 'nested_secret' => 'hidden-nested'],
+        ],
+    ]);
+    createFeedAuditLog($group, ['subject_type' => BozjaItem::class, 'subject_id' => $item->id]);
+    $feed = route('admin.audit-log', ['locale' => 'en']);
+    $detail = route('admin.audit-log.show', ['locale' => 'en', 'auditLog' => $log]);
+    $this->actingAs($group->owner)->getJson($detail)->assertForbidden();
+    $this->actingAs(User::factory()->create(['is_admin' => true]))->getJson($feed.'?scope=admin&search=Test%20banner')
+        ->assertOk()->assertJsonCount(1, 'auditLogs')->assertJsonPath('auditLogs.0.id', $log->id)
+        ->assertJsonPath('auditLogs.0.subject.name', 'Test banner')->assertJsonPath('auditLogs.0.change_count', 0)
+        ->assertJsonMissingPath('auditLogs.0.facts')->assertJsonMissingPath('auditLogs.0.search_text');
+    $response = $this->getJson($detail)->assertOk()->assertJsonPath('event.title', 'Custom Catalog Revised')
+        ->assertJsonCount(0, 'event.formatted_changes')->assertJsonCount(1, 'event.facts.0.value.value')
+        ->assertJsonPath('event.facts.0.value.value.0.value', ['type' => 'boolean', 'value' => true]);
+    expect($response->getContent())->not->toContain('hidden-');
+    $this->getJson($feed.'?search=hidden-nested')->assertOk()->assertJsonCount(0, 'auditLogs');
 });
 
 it('filters exact runs and keeps run options and records inside their group', function () {

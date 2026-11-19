@@ -20,6 +20,7 @@ it('renders serialized roster slots on the attendee overview page', function () 
     $owner = User::factory()->create();
     $group = Group::factory()->open()->create([
         'owner_id' => $owner->id,
+        'profile_picture_url' => '/storage/groups/community.png',
     ]);
 
     Character::factory()->primary()->create([
@@ -238,6 +239,8 @@ it('renders serialized roster slots on the attendee overview page', function () 
         ->assertOk()
         ->assertInertia(fn (Assert $page) => $page
             ->component('Groups/Activities/Overview')
+            ->where('group.profile_picture_url', '/storage/groups/community.png')
+            ->where('group.href', route('groups.dashboard', $group, false))
             ->where('activity.slot_count', 5)
             ->where('activity.assigned_slot_count', 2)
             ->where('activity.pending_application_count', 1)
@@ -255,6 +258,20 @@ it('renders serialized roster slots on the attendee overview page', function () 
             ->where('activity.slots.4.application_field_groups.1.items.0.label', 'Phantom Samurai')
             ->where('activity.slots.4.application_field_groups.1.items.1.label', 'Phantom Bard')
         );
+});
+
+it('links public runs to the hosting group according to its visibility and viewer membership', function () {
+    $group = Group::factory()->inviteOnly()->create(['is_visible' => true]);
+    $run = Activity::factory()->for($group)->create(['is_public' => true, 'status' => Activity::STATUS_SCHEDULED]);
+    $overview = route('groups.activities.overview', [$group, $run]);
+
+    $this->actingAs(User::factory()->create())->get($overview)->assertInertia(fn (Assert $page) => $page
+        ->where('group.href', route('groups.index', ['group' => $group->slug], false)));
+
+    $group->update(['is_visible' => false]);
+    $this->get($overview)->assertInertia(fn (Assert $page) => $page->where('group.href', null));
+    $this->actingAs($group->owner)->get($overview)->assertInertia(fn (Assert $page) => $page
+        ->where('group.href', route('groups.dashboard', $group, false)));
 });
 
 it('uses shared group phantom compositions on Forked Tower attendee overviews', function (string $activityTypeSlug) {

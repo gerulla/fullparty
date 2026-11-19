@@ -237,11 +237,15 @@ it('shows the previous and new account names and IDs in the admin audit feed', f
     $this->postJson(route('characters.onboarding.store'), ['method' => 'xivauth', 'lodestone_id' => '12345678'])->assertOk();
     $url = route('admin.audit-log', ['locale' => 'en', 'action' => 'character.transferred']);
     $this->getJson($url)->assertForbidden();
-    $this->actingAs(User::factory()->create(['is_admin' => true]))->getJson($url)
-        ->assertOk()->assertJsonCount(1, 'auditLogs')->assertJsonPath('auditLogs.0.details', fn ($details) => in_array('Previous account ID: '.$this->owner->id, $details, true)
-            && in_array('Previous account name: Original Account', $details, true)
-            && in_array('New account ID: '.$this->user->id, $details, true)
-            && in_array('New account name: Receiving Account', $details, true));
+    $logId = $this->actingAs(User::factory()->create(['is_admin' => true]))->getJson($url)
+        ->assertOk()->assertJsonCount(1, 'auditLogs')->json('auditLogs.0.id');
+    $response = $this->getJson(route('admin.audit-log.show', ['locale' => 'en', 'auditLog' => $logId]))
+        ->assertOk()->assertJsonPath('event.scope.type', 'character');
+    $facts = collect($response->json('event.facts'))->pluck('value.value', 'key');
+    expect($facts['from_user_id'])->toBe('#'.$this->owner->id)
+        ->and($facts['from_user_name'])->toBe('Original Account')
+        ->and($facts['to_user_id'])->toBe('#'.$this->user->id)
+        ->and($facts['to_user_name'])->toBe('Receiving Account');
 });
 
 it('does not overwrite a claim made while XIVAuth ownership proof is loading', function () {

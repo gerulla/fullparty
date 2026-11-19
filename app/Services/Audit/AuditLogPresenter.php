@@ -6,38 +6,44 @@ use App\Models\Activity;
 use App\Models\ActivityApplication;
 use App\Models\ActivitySlot;
 use App\Models\AuditLog;
+use App\Models\Character;
 use App\Models\Group;
 use App\Models\User;
 use App\Services\Groups\Resources\ResourceAuditContext;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Str;
 
-final class GroupAuditLogPresenter
+final class AuditLogPresenter
 {
     public function __construct(
         private readonly AuditValuePresenter $values,
         private readonly ResourceAuditContext $resourceContext,
     ) {}
 
-    public function rows(Collection $logs, Group $group): array
+    /** Group dashboards apply resource visibility. Site admins can read the recorded audit data. */
+    public function rows(Collection $logs, ?Group $group = null): array
     {
         $activities = $this->activities($logs, $group);
         $owners = $this->owners($logs);
-        $resources = $this->resourceContext->forLogs($logs, $group, auth()->user());
+        $resources = $group ? $this->resourceContext->forLogs($logs, $group, auth()->user()) : collect();
+        $scopes = $group ? [] : $this->scopeLabels($logs);
 
-        return $logs->map(fn (AuditLog $log) => $this->row($log, $group, $activities, $owners, $resources))->all();
+        return $logs->map(fn (AuditLog $log) => $this->row($log, $group, $activities, $owners, $resources, $scopes))->all();
     }
 
-    public function detail(AuditLog $log, Group $group): array
+    public function detail(AuditLog $log, ?Group $group = null): array
     {
         $log->loadMissing(['actor', 'subject']);
-        $resources = $this->resourceContext->forLogs(collect([$log]), $group, auth()->user());
-        $metadata = $this->metadata($log, $resources->get($log->id));
-        $owners = $this->owners(collect([$log]));
+        $logs = collect([$log]);
+        $resources = $group ? $this->resourceContext->forLogs($logs, $group, auth()->user()) : collect();
+        $metadata = $this->metadata($log, $group, $resources->get($log->id));
+        $owners = $this->owners($logs);
         $changes = $this->changes($metadata, $owners);
         $facts = [];
         foreach ($metadata as $key => $value) {
-            if (in_array($key, ['changes', 'activity_id', 'activity_title', 'resource_id', 'resource_title', 'resource_uuid', 'resource_slug', 'resource_access_level', 'resource_management_access_level'])
+            if ($key === 'changes'
+                || ($group && in_array($key, ['activity_id', 'activity_title', 'resource_id', 'resource_title', 'resource_uuid', 'resource_slug', 'resource_access_level', 'resource_management_access_level']))
                 || ($key === 'changed_fields' && $changes !== [])
                 || $this->values->isSensitive((string) $key)) {
                 continue;
@@ -52,16 +58,16 @@ final class GroupAuditLogPresenter
         }
 
         return [
-            ...$this->row($log, $group, $this->activities(collect([$log]), $group), $owners, $resources),
+            ...$this->row($log, $group, $this->activities($logs, $group), $owners, $resources, $group ? [] : $this->scopeLabels($logs)),
             'formatted_changes' => $changes,
             'facts' => $facts,
         ];
     }
 
-    private function row(AuditLog $log, Group $group, Collection $activities, Collection $owners, Collection $resources): array
+    private function row(AuditLog $log, ?Group $group, Collection $activities, Collection $owners, Collection $resources, array $scopes): array
     {
         $resourceContext = $resources->get($log->id);
-        $metadata = $this->metadata($log, $resourceContext);
+        $metadata = $this->metadata($log, $group, $resourceContext);
         $actor = [
             'id' => $log->actor_user_id,
             'name' => $log->actor?->name ?? ($log->actor_user_id ? __('audit_log.presentation.deleted_actor') : __('audit_log.defaults.system')),
@@ -71,24 +77,33 @@ final class GroupAuditLogPresenter
         $activityId = $this->activityId($log);
         $activity = $activities->get($activityId);
         $activityTitle = $metadata['activity_title'] ?? $activity?->title;
-        $subjectName = null;
-        // Resource names come only from the access-checked context, never the raw subject.
-        if (! str_starts_with($log->action, 'group.resources.')) {
-            $subjectName = $log->subject instanceof Activity ? ($metadata['activity_title'] ?? $activity?->title) : ($log->subject?->name ?? $metadata['applicant_name'] ?? $metadata['subject_name'] ?? null);
+        if ($group && str_starts_with($log->action, 'group.resources.')) {
+            // Group resource names come only from the access-checked context.
+            $subjectName = $resourceContext['resource']['title'] ?? __('audit_log.categories.resources');
+        } elseif ($log->subject instanceof Activity) {
+            $subjectName = $activityTitle;
+        } elseif ($group) {
+            $subjectName = $log->subject?->name ?? $metadata['applicant_name'] ?? $metadata['subject_name'] ?? null;
+        } else {
+            $subjectName = $this->subjectName($log, $metadata);
         }
         $subject = [
             'type' => $log->subject_type,
             'id' => $log->subject_id,
-            'name' => str_starts_with($log->action, 'group.resources.') ? ($resourceContext['resource']['title'] ?? __('audit_log.categories.resources')) : ($subjectName ?: ($log->subject_id && ! $log->subject ? __('audit_log.presentation.deleted_subject') : __('audit_log.presentation.unknown_subject'))),
+            'name' => $subjectName ?: ($log->subject_id && ! $log->subject ? __('audit_log.presentation.deleted_subject') : __('audit_log.presentation.unknown_subject')),
             'avatar_url' => $log->subject instanceof User ? $log->subject->avatar_url : null,
             'is_system' => false,
         ];
         $run = ($activityId || filled($activityTitle)) ? [
             'id' => $activityId,
             'title' => $activityTitle ?: __('audit_log.presentation.run').' #'.$activityId,
-            'url' => $activity ? route('groups.dashboard.activities.show', ['group' => $group, 'activity' => $activity]) : null,
+            'url' => $activity && $group ? route('groups.dashboard.activities.show', ['group' => $group, 'activity' => $activity]) : null,
         ] : null;
         $parts = $this->summary($log, $metadata, $actor, $subject, $run, $owners);
+        if (! $group && ! str_starts_with($log->action, 'group.') && $subjectName && $log->subject_type !== User::class && ! $run) {
+            $parts[] = ['kind' => 'text', 'text' => ' · '];
+            $parts[] = ['kind' => 'subject', 'text' => $subjectName];
+        }
         if ($resourceContext) {
             $parts[] = ['kind' => 'text', 'text' => ' '];
             $parts[] = ['kind' => 'resource', 'text' => $resourceContext['resource']['title']];
@@ -98,16 +113,21 @@ final class GroupAuditLogPresenter
             'id' => $log->id,
             'action' => $log->action,
             'severity' => $log->severity,
-            'category' => GroupAuditCategory::forAction($log->action),
+            ...($log->scope_type === 'group' ? ['category' => GroupAuditCategory::forAction($log->action)] : []),
+            ...($group ? [] : ['scope' => [
+                'type' => $log->scope_type,
+                'id' => $log->scope_id,
+                'label' => $scopes[$log->scope_type][$log->scope_id] ?? null,
+            ]]),
             'icon' => $this->icon($log->action, $metadata),
             'actor' => $actor,
             'subject' => $subject,
             'activity' => $run,
             'resource' => $resourceContext['resource'] ?? null,
-            'title' => __($log->message),
+            'title' => $this->title($log),
             'summary' => implode('', array_column($parts, 'text')),
             'summary_parts' => $parts,
-            'change_count' => count($this->changes($metadata)),
+            'change_count' => count($this->recordedChanges($metadata)),
             'changes' => [],
             'details' => [],
             'created_at' => $log->created_at?->toIso8601String(),
@@ -168,27 +188,26 @@ final class GroupAuditLogPresenter
             'actor' => ['kind' => 'actor', 'text' => $actor['name']],
             'subject' => ['kind' => 'subject', 'text' => $subjectName],
             'activity' => ['kind' => 'activity', 'text' => $run['title'] ?? __('audit_log.presentation.run')],
-            'position' => ['kind' => 'value', 'text' => $position],
-            'designation' => ['kind' => 'value', 'text' => isset($designation[1]) ? __('audit_log.presentation.designations.'.$designation[1]) : ''],
-            'old_time' => ['kind' => 'value', 'text' => $this->values->text('starts_at', $timeChange['old'] ?? null), 'display_value' => $this->values->value('starts_at', $timeChange['old'] ?? null)],
-            'new_time' => ['kind' => 'value', 'text' => $this->values->text('starts_at', $timeChange['new'] ?? null), 'display_value' => $this->values->value('starts_at', $timeChange['new'] ?? null)],
-            'old_status' => ['kind' => 'value', 'text' => $this->values->text('status', $statusChange['old'] ?? null)],
-            'new_status' => ['kind' => 'value', 'text' => $this->values->text('status', $statusChange['new'] ?? null)],
-            'old_role' => ['kind' => 'value', 'text' => $this->values->text('role', $roleChange['old'] ?? null)],
-            'new_role' => ['kind' => 'value', 'text' => $this->values->text('role', $roleChange['new'] ?? null)],
         ];
         if ($template) {
+            $tokens += [
+                'position' => ['kind' => 'value', 'text' => $position],
+                'designation' => ['kind' => 'value', 'text' => isset($designation[1]) ? __('audit_log.presentation.designations.'.$designation[1]) : ''],
+                'old_time' => ['kind' => 'value', 'text' => $this->values->text('starts_at', $timeChange['old'] ?? null), 'display_value' => $this->values->value('starts_at', $timeChange['old'] ?? null)],
+                'new_time' => ['kind' => 'value', 'text' => $this->values->text('starts_at', $timeChange['new'] ?? null), 'display_value' => $this->values->value('starts_at', $timeChange['new'] ?? null)],
+                'old_status' => ['kind' => 'value', 'text' => $this->values->text('status', $statusChange['old'] ?? null)],
+                'new_status' => ['kind' => 'value', 'text' => $this->values->text('status', $statusChange['new'] ?? null)],
+                'old_role' => ['kind' => 'value', 'text' => $this->values->text('role', $roleChange['old'] ?? null)],
+                'new_role' => ['kind' => 'value', 'text' => $this->values->text('role', $roleChange['new'] ?? null)],
+            ];
             $text = __('audit_log.presentation.templates.'.$template);
             $parts = array_map(fn (string $part) => $tokens[trim($part, '{}:')] ?? ['kind' => 'text', 'text' => $part],
                 preg_split('/(:[a-z_]+|\{[a-z_]+\})/', $text, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY));
         } else {
             $key = 'audit_log.activity.'.$action;
             $description = __($key);
-            if ($description === $key) {
-                $description = __($log->message);
-                if ($description === $log->message) {
-                    $description = Str::headline(str_replace('.', ' ', $action));
-                }
+            if ($description === $key || ! is_string($description)) {
+                $description = $this->title($log);
             }
             $parts = [$tokens['actor'], ['kind' => 'text', 'text' => ' '.$description]];
             if ($run) {
@@ -206,13 +225,70 @@ final class GroupAuditLogPresenter
         return $parts;
     }
 
+    private function scopeLabels(Collection $logs): array
+    {
+        $labels = [];
+        foreach (['group' => Group::class, 'user' => User::class, 'character' => Character::class] as $scope => $model) {
+            $ids = $logs->where('scope_type', $scope)->pluck('scope_id')->filter()->unique();
+            if ($ids->isNotEmpty()) {
+                $labels[$scope] = $model::whereKey($ids)->pluck('name', 'id');
+            }
+        }
+
+        return $labels;
+    }
+
+    private function title(AuditLog $log): string
+    {
+        $key = 'audit_log.events.'.$log->action;
+        $label = Lang::get($key);
+        if (is_string($label) && $label !== $key) {
+            return $label;
+        }
+
+        $message = __($log->message);
+
+        return is_string($message) && ($message !== $log->message || str_contains($message, ' '))
+            ? $message
+            : Str::headline(str_replace('.', ' ', $log->action));
+    }
+
+    private function subjectName(AuditLog $log, array $metadata): ?string
+    {
+        $model = $log->subject;
+        $candidates = [
+            $metadata['activity_type_name'] ?? null, $metadata['subject_name'] ?? null,
+            $metadata['applicant_name'] ?? null, $metadata['name'] ?? null,
+            $metadata['resource_title'] ?? null, $metadata['collection_name'] ?? null,
+            $metadata['image_name'] ?? null, $metadata['library_title'] ?? null,
+            $model?->name, $model?->draft_name, $model?->title,
+            $model?->slug, $metadata['slug'] ?? null,
+        ];
+        foreach ($candidates as $name) {
+            if (is_array($name)) {
+                $name = $name[app()->getLocale()] ?? $name['en'] ?? null;
+            }
+            if (is_string($name) && filled($name)) {
+                return $name;
+            }
+        }
+
+        return $model && $log->subject_id ? Str::headline(class_basename($model)).' #'.$log->subject_id : null;
+    }
+
+    private function recordedChanges(array $metadata): array
+    {
+        $changes = $metadata['changes'] ?? null;
+
+        return is_array($changes) ? array_filter($changes, fn ($change, $key) => is_array($change)
+            && array_key_exists('old', $change) && array_key_exists('new', $change)
+            && ! $this->values->isSensitive((string) $key), ARRAY_FILTER_USE_BOTH) : [];
+    }
+
     private function changes(array $metadata, ?Collection $owners = null): array
     {
         $changes = [];
-        foreach (is_array($metadata['changes'] ?? null) ? $metadata['changes'] : [] as $key => $change) {
-            if (! is_array($change) || ! array_key_exists('old', $change) || ! array_key_exists('new', $change) || $this->values->isSensitive((string) $key)) {
-                continue;
-            }
+        foreach ($this->recordedChanges($metadata) as $key => $change) {
             $changes[] = ['key' => (string) $key, 'label' => $this->values->label((string) $key),
                 'old_value' => $this->changeValue((string) $key, $change['old'], $owners),
                 'new_value' => $this->changeValue((string) $key, $change['new'], $owners)];
@@ -242,9 +318,11 @@ final class GroupAuditLogPresenter
         return $ids->isEmpty() ? collect() : User::query()->whereIn('id', $ids)->pluck('name', 'id');
     }
 
-    private function metadata(AuditLog $log, ?array $resourceContext = null): array
+    private function metadata(AuditLog $log, ?Group $group, ?array $resourceContext): array
     {
-        return str_starts_with($log->action, 'group.resources.') ? ($resourceContext['metadata'] ?? []) : ($log->metadata ?? []);
+        return $group && str_starts_with($log->action, 'group.resources.')
+            ? ($resourceContext['metadata'] ?? [])
+            : ($log->metadata ?? []);
     }
 
     private function activityId(AuditLog $log): ?int
@@ -261,17 +339,31 @@ final class GroupAuditLogPresenter
         return is_numeric($id) && (int) $id > 0 ? (int) $id : null;
     }
 
-    private function activities(Collection $logs, Group $group): Collection
+    private function activities(Collection $logs, ?Group $group): Collection
     {
         $ids = $logs->map(fn (AuditLog $log) => $this->activityId($log))->filter()->unique();
 
-        return Activity::query()->where('group_id', $group->id)->whereIn('id', $ids)
+        return Activity::query()->when($group, fn ($query) => $query->where('group_id', $group->id))->whereIn('id', $ids)
             ->get(['id', 'group_id', 'title'])->keyBy('id');
     }
 
     private function icon(string $action, array $metadata): string
     {
+        $family = Str::beforeLast($action, '.');
+
         return 'i-lucide-'.match (true) {
+            $family === 'moderation' => 'flag',
+            $family === 'admin.activity_type' => 'file-pen',
+            in_array($family, ['admin.field_definition', 'admin.character_class', 'admin.phantom_job'], true) => 'user-pen',
+            in_array($family, ['admin.raid_position', 'admin.bozja_item'], true) => 'database',
+            in_array($family, ['admin.system_notification', 'admin.system_banner'], true) => 'megaphone',
+            $family === 'admin.quota_override' => 'gauge',
+            $family === 'admin.integration_client' => 'plug-zap',
+            $family === 'admin.form' => 'clipboard-list',
+            $family === 'admin.changelog' => 'scroll-text',
+            $family === 'character' => 'contact-round',
+            str_starts_with($action, 'user.') => 'user-round',
+            str_starts_with($action, 'system.') => 'cpu',
             isset($metadata['changes']['starts_at']) => 'calendar-clock',
             str_contains($action, '.note.') => 'message-square-text',
             str_contains($action, '.invite.') || str_contains($action, '.personal_invite.') => str_ends_with($action, 'revoked') ? 'link-2-off' : 'link',

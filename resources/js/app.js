@@ -4,21 +4,26 @@ import { createLocalizedApp } from './bootstrap/createLocalizedApp.js'
 import { translations } from './lang.js'
 import ReportFeedbackHost from './components/Shared/Reports/ReportFeedbackHost.vue'
 import { initializeAppearance } from './composables/useAppearance'
+import { initializeRunOriginTracking } from './bootstrap/runOverviewHistory'
 import PageTransition from './components/Navigation/PageTransition.vue'
+import ViewportBreakpointIndicator from './components/Navigation/ViewportBreakpointIndicator.vue'
 import { waitForPageTransition } from './composables/usePageTransition'
 
 createLocalizedApp({
     pages: import.meta.glob('./Pages/**/*.vue'),
     translations,
-    loadDefaultLayout: name => name.startsWith('Dashboard/Groups/')
-        ? import('./Layouts/GroupDashboardLayout.vue')
-        : import('./Layouts/DefaultLayout.vue'),
+    loadDefaultLayout: name => {
+        if (name.startsWith('Admin/')) return import('./Layouts/AdminLayout.vue')
+        if (name.startsWith('Dashboard/Groups/')) return import('./Layouts/GroupDashboardLayout.vue')
+        return import('./Layouts/DefaultLayout.vue')
+    },
     plugins: [ZiggyVue, {
         install(app) {
             app.onUnmount(initializeAppearance())
+            app.onUnmount(initializeRunOriginTracking())
         },
     }],
-    rootComponents: [ReportFeedbackHost, PageTransition],
+    rootComponents: [ReportFeedbackHost, PageTransition, ViewportBreakpointIndicator],
     beforePageSwap: waitForPageTransition,
     title: title => `${title} FullParty`,
     progress: { color: '#70439b', includeCSS: true, showSpinner: true },

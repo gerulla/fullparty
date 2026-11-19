@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from "vue";
+import { useMediaQuery } from "@vueuse/core";
 import { useI18n } from "vue-i18n";
 import { localizedValue } from "@/utils/localizedValue";
 
@@ -23,28 +24,44 @@ const props = defineProps<{
 }>();
 
 const { t, locale } = useI18n();
+const desktop = useMediaQuery('(min-width: 1280px)');
 
 const totalSlots = computed(() => (props.form.draft_layout_schema?.groups ?? []).reduce((total, group) => total + Number(group.size || 0), 0));
 const difficultyLabel = computed(() => props.form.draft_difficulty
 	? t(`admin.activity_types.difficulties.${props.form.draft_difficulty}`)
 	: '—');
+
+const summary = computed(() => ({
+	groups: props.form.draft_layout_schema?.groups?.length ?? 0,
+	slots: totalSlots.value,
+	slot_fields: props.form.draft_slot_schema?.length ?? 0,
+	application_questions: props.form.draft_application_schema?.length ?? 0,
+	roster_summary_presets: props.form.draft_roster_summary_presets?.length ?? 0,
+	progress_milestones: props.form.draft_progress_schema?.milestones?.length ?? 0,
+	prog_points: props.form.draft_prog_points?.length ?? 0,
+	difficulty: difficultyLabel.value,
+	default_min_item_level: props.form.draft_default_min_item_level ?? '—',
+	fflogs_zone_id: props.form.draft_fflogs_zone_id ?? '—',
+	bench: props.form.draft_bench_size ?? 0,
+}));
 </script>
 
 <template>
-	<UCard class=" dark:bg-elevated/25">
-		<template #header>
-			<div>
+	<details :open="desktop" class="admin-panel group">
+		<summary class="flex cursor-pointer list-none items-center justify-between gap-3 rounded-xl p-4 focus-visible:outline-primary sm:p-5 [&::-webkit-details-marker]:hidden">
+			<div class="min-w-0">
 				<h2 class="text-lg font-semibold">{{ t('admin.activity_types.summary.title') }}</h2>
 				<p class="text-sm text-muted">{{ t('admin.activity_types.summary.subtitle') }}</p>
 			</div>
-		</template>
+			<UIcon name="i-lucide-chevron-down" class="size-4 shrink-0 text-muted group-open:rotate-180" />
+		</summary>
 
-		<div class="flex flex-col gap-4">
+		<div class="flex flex-col gap-4 border-t border-default p-4 sm:p-5">
 			<div
 				v-if="form.draft_banner_image_url || form.draft_small_image_url"
 				class="grid gap-3"
 			>
-				<div v-if="form.draft_banner_image_url" class="aspect-[3/1] overflow-hidden rounded-sm border border-default bg-muted/30">
+				<div v-if="form.draft_banner_image_url" class="aspect-[3/1] overflow-hidden rounded-lg bg-elevation-2 dark:bg-elevation-3">
 					<img
 						:src="form.draft_banner_image_url"
 						:alt="t('admin.activity_types.general.banner_image.preview_alt')"
@@ -52,7 +69,7 @@ const difficultyLabel = computed(() => props.form.draft_difficulty
 					>
 				</div>
 
-				<div v-if="form.draft_small_image_url" class="aspect-[10/17] w-full max-w-28 overflow-hidden rounded-sm border border-default bg-muted/30">
+				<div v-if="form.draft_small_image_url" class="aspect-[10/17] w-full max-w-28 overflow-hidden rounded-lg bg-elevation-2 dark:bg-elevation-3">
 					<img
 						:src="form.draft_small_image_url"
 						:alt="t('admin.activity_types.general.small_image.preview_alt')"
@@ -61,7 +78,7 @@ const difficultyLabel = computed(() => props.form.draft_difficulty
 				</div>
 			</div>
 
-			<div class="rounded-lg bg-neutral-100 p-4 dark:bg-neutral-800">
+			<div class="admin-inset min-w-0 break-words p-3">
 				<p class="text-sm text-muted">{{ t('admin.activity_types.summary.draft_name') }}</p>
 				<p class="mt-1 font-semibold text-highlighted">
 					{{ localizedValue(form.draft_name, locale) || t('admin.activity_types.summary.untitled') }}
@@ -71,62 +88,12 @@ const difficultyLabel = computed(() => props.form.draft_difficulty
 				</p>
 			</div>
 
-			<div class="grid grid-cols-2 gap-3">
-				<div class="rounded-lg border border-default p-4">
-					<p class="text-xs uppercase tracking-wide text-muted">{{ t('admin.activity_types.summary.groups') }}</p>
-					<p class="mt-2 text-2xl font-semibold">{{ form.draft_layout_schema?.groups?.length ?? 0 }}</p>
+			<dl class="divide-y divide-default">
+				<div v-for="(value, key) in summary" :key="key" class="flex items-baseline justify-between gap-3 py-2 first:pt-0 last:pb-0">
+					<dt class="min-w-0 text-sm text-muted">{{ t(`admin.activity_types.summary.${key}`) }}</dt>
+					<dd class="text-end text-sm font-semibold text-highlighted tabular-nums">{{ value }}</dd>
 				</div>
-
-				<div class="rounded-lg border border-default p-4">
-					<p class="text-xs uppercase tracking-wide text-muted">{{ t('admin.activity_types.summary.slots') }}</p>
-					<p class="mt-2 text-2xl font-semibold">{{ totalSlots }}</p>
-				</div>
-
-				<div class="rounded-lg border border-default p-4">
-					<p class="text-xs uppercase tracking-wide text-muted">{{ t('admin.activity_types.summary.slot_fields') }}</p>
-					<p class="mt-2 text-2xl font-semibold">{{ form.draft_slot_schema?.length ?? 0 }}</p>
-				</div>
-
-				<div class="rounded-lg border border-default p-4">
-					<p class="text-xs uppercase tracking-wide text-muted">{{ t('admin.activity_types.summary.application_questions') }}</p>
-					<p class="mt-2 text-2xl font-semibold">{{ form.draft_application_schema?.length ?? 0 }}</p>
-				</div>
-
-				<div class="rounded-lg border border-default p-4">
-					<p class="text-xs uppercase tracking-wide text-muted">{{ t('admin.activity_types.summary.roster_summary_presets') }}</p>
-					<p class="mt-2 text-2xl font-semibold">{{ form.draft_roster_summary_presets?.length ?? 0 }}</p>
-				</div>
-
-				<div class="rounded-lg border border-default p-4">
-					<p class="text-xs uppercase tracking-wide text-muted">{{ t('admin.activity_types.summary.progress_milestones') }}</p>
-					<p class="mt-2 text-2xl font-semibold">{{ form.draft_progress_schema?.milestones?.length ?? 0 }}</p>
-				</div>
-
-				<div class="rounded-lg border border-default p-4">
-					<p class="text-xs uppercase tracking-wide text-muted">{{ t('admin.activity_types.summary.prog_points') }}</p>
-					<p class="mt-2 text-2xl font-semibold">{{ form.draft_prog_points?.length ?? 0 }}</p>
-				</div>
-
-				<div class="rounded-lg border border-default p-4">
-					<p class="text-xs uppercase tracking-wide text-muted">{{ t('admin.activity_types.summary.difficulty') }}</p>
-					<p class="mt-2 text-lg font-semibold">{{ difficultyLabel }}</p>
-				</div>
-
-				<div class="rounded-lg border border-default p-4">
-					<p class="text-xs uppercase tracking-wide text-muted">{{ t('admin.activity_types.summary.default_min_item_level') }}</p>
-					<p class="mt-2 text-2xl font-semibold">{{ form.draft_default_min_item_level ?? '—' }}</p>
-				</div>
-
-				<div class="rounded-lg border border-default p-4">
-					<p class="text-xs uppercase tracking-wide text-muted">{{ t('admin.activity_types.summary.fflogs_zone_id') }}</p>
-					<p class="mt-2 text-2xl font-semibold">{{ form.draft_fflogs_zone_id ?? '—' }}</p>
-				</div>
-
-				<div class="rounded-lg border border-default p-4">
-					<p class="text-xs uppercase tracking-wide text-muted">{{ t('admin.activity_types.summary.bench') }}</p>
-					<p class="mt-2 text-2xl font-semibold">{{ form.draft_bench_size ?? 0 }}</p>
-				</div>
-			</div>
+			</dl>
 		</div>
-	</UCard>
+	</details>
 </template>

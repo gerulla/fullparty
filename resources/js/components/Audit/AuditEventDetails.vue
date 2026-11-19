@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { AuditLogEventRecord, AuditLogRowRecord } from '@/Types/Audit'
 import AuditEventSummary from './AuditEventSummary.vue'
+import AuditEventScope from './AuditEventScope.vue'
 import AuditEventValue from './AuditEventValue.vue'
 import { auditSeverityStyle } from '@/utils/auditPresentation'
 import { useTimeDisplayMode } from '@/composables/useTimeDisplayMode'
@@ -15,6 +16,7 @@ const props = defineProps<{
     loading?: boolean
     failed?: boolean
     copied?: boolean
+    showScope?: boolean
 }>()
 const emit = defineEmits<{ close: []; retry: []; 'copy-link': [] }>()
 const { t, te, locale } = useI18n()
@@ -51,6 +53,16 @@ const resourceActionLabel = computed(() => t(display.value?.resource?.kind === '
                         :icon="display.actor.is_system ? 'i-lucide-cpu' : 'i-lucide-user-round'" size="2xs" class="shrink-0" />
                     <span class="min-w-0 break-words [overflow-wrap:anywhere]">{{ display.actor.name }}</span>
                 </dd>
+                <template v-if="showScope && display.scope">
+                    <dt class="text-muted">{{ t('audit_log.details.scope') }}</dt>
+                    <dd class="min-w-0"><AuditEventScope :scope="display.scope" show-id /></dd>
+                </template>
+                <template v-if="showScope && display.subject.type && display.subject.id != null">
+                    <dt class="text-muted">{{ t('audit_log.details.subject') }}</dt>
+                    <dd class="min-w-0 break-words font-medium text-highlighted [overflow-wrap:anywhere]">
+                        {{ display.subject.name }} <span class="font-normal tabular-nums text-muted">#{{ display.subject.id }}</span>
+                    </dd>
+                </template>
                 <template v-if="display.activity">
                     <dt class="text-muted">{{ t('audit_log.details.run') }}</dt>
                     <dd class="min-w-0 break-words font-medium text-highlighted [overflow-wrap:anywhere]">{{ display.activity.title }}</dd>

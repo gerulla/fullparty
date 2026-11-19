@@ -4,20 +4,17 @@ import { useI18n } from "vue-i18n";
 import { usePage } from "@inertiajs/vue3";
 import { localizedValue } from "@/utils/localizedValue";
 import { displayActivityPartyLabel } from "@/utils/activityPartyLabels";
-import { useRunOverviewPreferences } from "@/composables/useRunOverviewPreferences";
-import { useAllianceProgress } from "@/composables/useAllianceProgress";
-import AllianceProgressLegend from "@/components/Groups/Activities/AllianceProgressLegend.vue";
-import RosterDesignationLegend from "@/components/Groups/Activities/RosterDesignationLegend.vue";
+import RunOverviewRosterCard from "@/components/Groups/Activities/RunOverviewRosterCard.vue";
+import type { AttendeeActivity } from "@/Types/ActivityAttendee";
 import ActivitySelfAssignRosterSlot from "@/components/Groups/Activities/ActivitySelfAssignRosterSlot.vue";
 import type { ActivitySlot } from "@/Types/ActivityRoster";
 import type { LocalizedText } from "@/Types/Common";
 
 const props = defineProps<{
-	slots: ActivitySlot[]
+	activity: AttendeeActivity
 	groupSlug: string
-	activityId: number
-	targetProgPointKey?: string | null
 	canSelfAssign: boolean
+	previewOnly: boolean
 	hasVerifiedCharacters: boolean
 	viewerAssignedSlotId: number | null
 	pendingSlotId: number | null
@@ -33,17 +30,6 @@ const page = usePage();
 const fallbackLocale = computed(() => String(page.props.locale?.fallback ?? "en"));
 const scrollContainer = ref<HTMLElement | null>(null);
 const groupElementRefs = new Map<string, HTMLElement>();
-const { plainDpsEnabled, numberedSecondaryPartiesEnabled, allianceProgressEnabled } = useRunOverviewPreferences();
-const progression = useAllianceProgress({
-    get enabled() { return allianceProgressEnabled.value },
-    get groupSlug() { return props.groupSlug },
-    get activityId() { return props.activityId },
-    get targetProgPointKey() { return props.targetProgPointKey },
-    get slots() { return props.slots },
-});
-const progressStatus = (slot: ActivitySlot) => allianceProgressEnabled.value && slot.assigned_character_id !== null
-    ? progression.records.value[slot.assigned_character_id]?.status ?? null
-    : null;
 
 type SlotGroup = {
 	key: string
@@ -58,7 +44,7 @@ const localizedTextValue = (value: LocalizedText, fallback: string) => (
 const mainSlotGroups = computed<SlotGroup[]>(() => {
 	const groups = new Map<string, SlotGroup>();
 
-	for (const slot of [...props.slots]
+	for (const slot of [...props.activity.slots]
 		.filter((currentSlot) => !currentSlot.is_bench && !currentSlot.is_fill_in)
 		.sort((left, right) => left.sort_order - right.sort_order)) {
 		const existingGroup = groups.get(slot.group_key);
@@ -78,22 +64,8 @@ const mainSlotGroups = computed<SlotGroup[]>(() => {
 	return Array.from(groups.values());
 });
 
-const benchSlots = computed(() => (
-	[...props.slots]
-		.filter((slot) => slot.is_bench)
-		.sort((left, right) => left.sort_order - right.sort_order)
-));
-
 const maxGroupSize = computed(() => (
 	mainSlotGroups.value.reduce((largest, group) => Math.max(largest, group.slots.length), 0)
-));
-
-const assignedMainSlotCount = computed(() => (
-	mainSlotGroups.value.flatMap((group) => group.slots).filter((slot) => slot.assigned_character_id !== null).length
-));
-
-const openMainSlotCount = computed(() => (
-	mainSlotGroups.value.flatMap((group) => group.slots).filter((slot) => slot.assigned_character_id === null).length
 ));
 
 const focusedGroupKey = computed(() => {
@@ -111,11 +83,11 @@ const boardGridStyle = computed(() => ({
 	minWidth: `calc(${Math.max(mainSlotGroups.value.length, 1)} * 13rem + ${Math.max(mainSlotGroups.value.length - 1, 0)} * 0.25rem)`,
 }));
 
-const displayedGroupLabel = (group: SlotGroup): string => {
+const displayedGroupLabel = (group: SlotGroup, numberedSecondaryParties: boolean): string => {
 	return displayActivityPartyLabel(
 		group.key,
 		group.label,
-		numberedSecondaryPartiesEnabled.value,
+		numberedSecondaryParties,
 		t("groups.activities.overview.board.party_label"),
 	);
 };
@@ -171,203 +143,160 @@ const focusAssignedParty = async () => {
 onMounted(focusAssignedParty);
 
 watch(
-	() => `${focusedGroupKey.value ?? ""}:${props.viewerAssignedSlotId ?? ""}:${props.slots.map((slot) => `${slot.id}:${slot.group_key}`).join("|")}`,
+	() => `${focusedGroupKey.value ?? ""}:${props.viewerAssignedSlotId ?? ""}:${props.activity.slots.map((slot) => `${slot.id}:${slot.group_key}`).join("|")}`,
 	focusAssignedParty,
 );
 </script>
 
 <template>
-	<section class="border border-default bg-muted/20">
-		<div class="flex flex-col gap-3 border-b border-default px-4 py-3 lg:flex-row lg:items-end lg:justify-between">
-			<div class="flex min-w-0 items-start gap-x-4 gap-y-2">
-				<p class="shrink-0 font-semibold text-base text-toned">{{ t("groups.activities.overview.board.title") }}</p>
-				<AllianceProgressLegend v-if="allianceProgressEnabled" :loading="progression.loading.value" :failed="progression.failed.value" :fflogs-unavailable="progression.fflogsUnavailable.value" @retry="progression.reload()" />
-			</div>
+	<RunOverviewRosterCard
+		:activity="activity"
+		:group-slug="groupSlug"
+		:party-count="mainSlotGroups.length"
+		:show-self="viewerAssignedSlotId !== null"
+	>
+		<template #default="{ plainDpsEnabled, numberedSecondaryPartiesEnabled, progressStatus, compositionTone }">
+			<div v-if="mainSlotGroups.length > 0">
+				<div class="relative xl:hidden">
+					<UButton
+						class="absolute top-1/2 left-2 z-10 inline-flex -translate-y-1/2 border border-white/10 bg-neutral-950/85 shadow-xl shadow-neutral-950/40 backdrop-blur-sm xl:hidden"
+						color="neutral"
+						variant="soft"
+						icon="i-lucide-chevron-left"
+						:aria-label="t('groups.activities.calendar.previous')"
+						@click="scrollByDirection('left')"
+					/>
+					<UButton
+						class="absolute top-1/2 right-2 z-10 inline-flex -translate-y-1/2 border border-white/10 bg-neutral-950/85 shadow-xl shadow-neutral-950/40 backdrop-blur-sm xl:hidden"
+						color="neutral"
+						variant="soft"
+						icon="i-lucide-chevron-right"
+						:aria-label="t('groups.activities.calendar.next')"
+						@click="scrollByDirection('right')"
+					/>
 
-			<div class="flex flex-wrap items-center gap-2">
-				<UBadge
-					size="sm"
-					color="neutral"
-					variant="subtle"
-					:label="t('groups.activities.overview.board.party_count', { count: mainSlotGroups.length })"
-				/>
-				<UBadge
-					size="sm"
-					color="primary"
-					variant="subtle"
-					:label="t('groups.activities.overview.board.filled_count', { count: assignedMainSlotCount })"
-				/>
-				<UBadge
-					size="sm"
-					color="neutral"
-					variant="outline"
-					:label="t('groups.activities.overview.board.open_count', { count: openMainSlotCount })"
-				/>
-
-				<div class="hidden h-5 w-px bg-default sm:block"></div>
-
-				<USwitch v-model="allianceProgressEnabled" size="sm" :label="t('groups.activities.overview.board.progression.toggle')" />
-
-				<label class="inline-flex cursor-pointer items-center gap-2 text-xs font-medium text-muted">
-					<span>{{ t("groups.activities.overview.board.plain_dps") }}</span>
-					<USwitch v-model="plainDpsEnabled" size="sm" />
-				</label>
-
-				<label class="inline-flex cursor-pointer items-center gap-2 text-xs font-medium text-muted">
-					<span>{{ t("groups.activities.overview.board.party_label_mode") }}</span>
-					<USwitch v-model="numberedSecondaryPartiesEnabled" size="sm" />
-				</label>
-			</div>
-		</div>
-
-        <RosterDesignationLegend :slots="slots" :show-self="viewerAssignedSlotId !== null" />
-
-		<div v-if="mainSlotGroups.length > 0">
-			<div class="relative xl:hidden">
-				<UButton
-					class="absolute top-1/2 left-2 z-10 inline-flex -translate-y-1/2 border border-white/10 bg-neutral-950/85 shadow-xl shadow-neutral-950/40 backdrop-blur-sm xl:hidden"
-					color="neutral"
-					variant="soft"
-					icon="i-lucide-chevron-left"
-					:aria-label="t('groups.activities.calendar.previous')"
-					@click="scrollByDirection('left')"
-				/>
-				<UButton
-					class="absolute top-1/2 right-2 z-10 inline-flex -translate-y-1/2 border border-white/10 bg-neutral-950/85 shadow-xl shadow-neutral-950/40 backdrop-blur-sm xl:hidden"
-					color="neutral"
-					variant="soft"
-					icon="i-lucide-chevron-right"
-					:aria-label="t('groups.activities.calendar.next')"
-					@click="scrollByDirection('right')"
-				/>
-
-				<div
-					ref="scrollContainer"
-					class="flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-smooth px-4 py-4 [scroll-padding-inline:1rem] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-				>
 					<div
-						v-for="group in mainSlotGroups"
-						:key="group.key"
-						:ref="(element) => setGroupElementRef(group.key, element)"
-						class="flex min-w-0 flex-none basis-full snap-start sm:basis-[48%] lg:basis-[31%]"
+						ref="scrollContainer"
+						class="mx-3 grid auto-cols-[100%] grid-flow-col snap-x snap-mandatory gap-x-3 gap-y-2 overflow-x-auto scroll-smooth [scrollbar-width:none] sm:auto-cols-[48%] lg:auto-cols-[31%] [&::-webkit-scrollbar]:hidden"
+						:style="{ gridTemplateRows: `auto repeat(${maxGroupSize}, 1fr)` }"
 					>
-						<div class="flex w-full flex-col gap-2">
-							<div class="border border-default bg-muted/20 px-3 py-2.5">
-								<div class="flex items-center justify-between gap-2">
-									<div class="min-w-0">
-										<p class="text-[10px] uppercase tracking-[0.22em] text-muted">{{ t("groups.activities.overview.board.party_label") }}</p>
-										<h3 class="break-words [overflow-wrap:anywhere] font-semibold text-sm text-toned">{{ displayedGroupLabel(group) }}</h3>
-									</div>
-
-									<UBadge
-										size="sm"
-										color="neutral"
-										variant="outline"
-										:label="`${group.slots.filter((slot) => slot.assigned_character_id !== null).length}/${group.slots.length}`"
-									/>
-								</div>
-							</div>
-
-							<ActivitySelfAssignRosterSlot
-								v-for="slot in group.slots"
-								:key="slot.id"
-								:slot="slot"
-								:progress-status="progressStatus(slot)"
-								:role-highlights="!plainDpsEnabled"
-								:can-self-assign="canSelfAssign"
-								:has-verified-characters="hasVerifiedCharacters"
-								:viewer-assigned-slot-id="viewerAssignedSlotId"
-								:is-pending="pendingSlotId === slot.id"
-								@assign="emit('assign', $event)"
-								@remove="emit('remove', $event)"
-							/>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="hidden overflow-x-auto px-4 py-4 xl:block">
-				<div class="grid justify-evenly gap-4" :style="boardGridStyle">
-					<div
-						v-for="group in mainSlotGroups"
-						:key="`${group.key}-header`"
-						class="border border-default bg-background px-3 py-2.5"
-					>
-						<div class="flex items-center justify-between gap-2">
-							<div class="min-w-0">
-								<p class="text-[10px] uppercase tracking-[0.22em] text-muted">{{ t("groups.activities.overview.board.party_label") }}</p>
-								<h3 class="break-words [overflow-wrap:anywhere] font-semibold text-sm text-toned">{{ displayedGroupLabel(group) }}</h3>
-							</div>
-
-							<UBadge
-								size="sm"
-								color="neutral"
-								variant="outline"
-								:label="`${group.slots.filter((slot) => slot.assigned_character_id !== null).length}/${group.slots.length}`"
-							/>
-						</div>
-					</div>
-
-					<template v-for="rowIndex in maxGroupSize" :key="`row-${rowIndex}`">
 						<div
 							v-for="group in mainSlotGroups"
-							:key="`${group.key}-${rowIndex}`"
+							:key="group.key"
+							:ref="(element) => setGroupElementRef(group.key, element)"
+							class="row-span-full grid min-w-0 snap-start grid-rows-subgrid"
 						>
-							<ActivitySelfAssignRosterSlot
-								v-if="group.slots[rowIndex - 1]"
-								:slot="group.slots[rowIndex - 1]"
-								:progress-status="progressStatus(group.slots[rowIndex - 1])"
-								:role-highlights="!plainDpsEnabled"
-								:can-self-assign="canSelfAssign"
-								:has-verified-characters="hasVerifiedCharacters"
-								:viewer-assigned-slot-id="viewerAssignedSlotId"
-								:is-pending="pendingSlotId === group.slots[rowIndex - 1].id"
-								@assign="emit('assign', $event)"
-								@remove="emit('remove', $event)"
-							/>
+							<div class="contents">
+								<div class="px-3 py-2.5">
+									<div class="flex items-center justify-between gap-2">
+										<div class="min-w-0">
+											<p class="text-[10px] uppercase tracking-[0.22em] text-muted">{{ t("groups.activities.overview.board.party_label") }}</p>
+											<h3 class="break-words [overflow-wrap:anywhere] font-semibold text-sm text-toned">{{ displayedGroupLabel(group, numberedSecondaryPartiesEnabled) }}</h3>
+										</div>
 
-							<div
-								v-else
-								class="flex h-24 items-center justify-center border border-dashed border-default/70 bg-background/60 px-3 py-2"
-							>
-								<p class="text-xs text-muted">{{ t("groups.activities.overview.board.no_slot") }}</p>
+										<UBadge
+											size="sm"
+											color="neutral"
+											variant="outline"
+											:label="`${group.slots.filter((slot) => slot.assigned_character_id !== null).length}/${group.slots.length}`"
+										/>
+									</div>
+								</div>
+
+								<ActivitySelfAssignRosterSlot
+									v-for="slot in group.slots"
+									:key="slot.id"
+									:slot="slot"
+									:progress-status="progressStatus(slot)"
+									:composition-tone="compositionTone(slot)"
+									:role-highlights="!plainDpsEnabled"
+									:can-self-assign="canSelfAssign"
+									:preview-only="previewOnly"
+									:has-verified-characters="hasVerifiedCharacters"
+									:viewer-assigned-slot-id="viewerAssignedSlotId"
+									:is-pending="pendingSlotId === slot.id"
+									@assign="emit('assign', $event)"
+									@remove="emit('remove', $event)"
+								/>
 							</div>
 						</div>
-					</template>
+					</div>
+				</div>
+
+				<div class="mx-4 hidden overflow-x-auto xl:block">
+					<div class="grid auto-rows-fr grid-rows-[auto] justify-evenly gap-4" :style="boardGridStyle">
+						<div
+							v-for="group in mainSlotGroups"
+							:key="`${group.key}-header`"
+							class="px-3 py-2.5"
+						>
+							<div class="flex items-center justify-between gap-2">
+								<div class="min-w-0">
+									<p class="text-[10px] uppercase tracking-[0.22em] text-muted">{{ t("groups.activities.overview.board.party_label") }}</p>
+									<h3 class="break-words [overflow-wrap:anywhere] font-semibold text-sm text-toned">{{ displayedGroupLabel(group, numberedSecondaryPartiesEnabled) }}</h3>
+								</div>
+
+								<UBadge
+									size="sm"
+									color="neutral"
+									variant="outline"
+									:label="`${group.slots.filter((slot) => slot.assigned_character_id !== null).length}/${group.slots.length}`"
+								/>
+							</div>
+						</div>
+
+						<template v-for="rowIndex in maxGroupSize" :key="`row-${rowIndex}`">
+							<div
+								v-for="group in mainSlotGroups"
+								:key="`${group.key}-${rowIndex}`"
+								class="grid min-w-0"
+							>
+								<ActivitySelfAssignRosterSlot
+									v-if="group.slots[rowIndex - 1]"
+									:slot="group.slots[rowIndex - 1]"
+									:progress-status="progressStatus(group.slots[rowIndex - 1])"
+									:composition-tone="compositionTone(group.slots[rowIndex - 1])"
+									:role-highlights="!plainDpsEnabled"
+									:can-self-assign="canSelfAssign"
+									:preview-only="previewOnly"
+									:has-verified-characters="hasVerifiedCharacters"
+									:viewer-assigned-slot-id="viewerAssignedSlotId"
+									:is-pending="pendingSlotId === group.slots[rowIndex - 1].id"
+									@assign="emit('assign', $event)"
+									@remove="emit('remove', $event)"
+								/>
+
+								<div
+									v-else
+									class="flex items-center justify-center rounded-md border border-dashed border-default/70 bg-background/60 px-3 py-2"
+								>
+									<p class="text-xs text-muted">{{ t("groups.activities.overview.board.no_slot") }}</p>
+								</div>
+							</div>
+						</template>
+					</div>
 				</div>
 			</div>
-		</div>
 
-		<div v-else class="px-4 py-6">
-			<p class="text-sm text-muted">{{ t("groups.activities.management.roster.empty") }}</p>
-		</div>
-
-		<div v-if="benchSlots.length > 0" class="border-t border-default px-4 py-4">
-			<div class="mb-3 flex items-center justify-between gap-3">
-				<p class="font-semibold text-sm text-toned">{{ t("groups.activities.overview.board.bench_title") }}</p>
-				<UBadge
-					size="sm"
-					color="neutral"
-					variant="outline"
-					:label="t('groups.activities.overview.board.bench_count', { count: benchSlots.length })"
-				/>
+			<div v-else class="px-4 py-6">
+				<p class="text-sm text-muted">{{ t("groups.activities.management.roster.empty") }}</p>
 			</div>
+		</template>
 
-			<div class="grid gap-2.5 md:grid-cols-2 xl:grid-cols-4">
-				<ActivitySelfAssignRosterSlot
-					v-for="slot in benchSlots"
-					:key="slot.id"
-					:slot="slot"
-					:progress-status="progressStatus(slot)"
-					:role-highlights="!plainDpsEnabled"
-					:can-self-assign="canSelfAssign"
-					:has-verified-characters="hasVerifiedCharacters"
-					:viewer-assigned-slot-id="viewerAssignedSlotId"
-					:is-pending="pendingSlotId === slot.id"
-					@assign="emit('assign', $event)"
-					@remove="emit('remove', $event)"
-				/>
-			</div>
-		</div>
-	</section>
+		<template #bench="{ slot, progressStatus, roleHighlights, compositionTone }">
+			<ActivitySelfAssignRosterSlot
+				:slot="slot"
+				:progress-status="progressStatus"
+				:composition-tone="compositionTone"
+				:role-highlights="roleHighlights"
+				:can-self-assign="canSelfAssign"
+				:preview-only="previewOnly"
+				:has-verified-characters="hasVerifiedCharacters"
+				:viewer-assigned-slot-id="viewerAssignedSlotId"
+				:is-pending="pendingSlotId === slot.id"
+				@assign="emit('assign', $event)"
+				@remove="emit('remove', $event)"
+			/>
+		</template>
+	</RunOverviewRosterCard>
 </template>

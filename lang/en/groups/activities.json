@@ -10,8 +10,8 @@
     "statuses": {
         "draft": "Draft",
         "scheduled": "Scheduled",
-        "assigned": "Assigned",
-        "upcoming": "Upcoming",
+        "assigned": "Roster published",
+        "upcoming": "Starting soon",
         "ongoing": "Ongoing",
         "complete": "Complete",
         "cancelled": "Cancelled"
@@ -347,7 +347,7 @@
                 }
             },
             "progression": {
-                "title": "Recorded Progression",
+                "title": "Run results",
                 "subtitle": "The final progression result stored for this completed run.",
                 "completed_at": "Completed At",
                 "source": "Recorded Via",
@@ -627,12 +627,30 @@
         }
     },
     "overview": {
+        "host_note": "Host’s note",
+        "roster_capacity": "{assigned} / {total} filled",
+        "hide_roster": "Hide roster",
+        "participation": {
+            "your_application": "Your application",
+            "your_slot": "Your roster slot",
+            "no_placement": "No current slot",
+            "pending_count": "{count} pending application | {count} pending applications",
+            "guest_welcome": "Guest applications welcome",
+            "choose_slot": "Choose a slot",
+            "view_application": "View application"
+        },
         "title": "Run Overview",
         "subtitle": "{group} shared this {type} run.",
         "description": "This is the attendee-facing overview for the run and its application flow.",
         "cancelled_alert": {
             "title": "This run has been cancelled",
             "description": "This run is archived and no longer accepting applications."
+        },
+        "complete_alert": {
+            "title": "This run is complete",
+            "description": "You can find the run summary below.",
+            "no_results": "No results were recorded for this run.",
+            "preview_note": "Keep the same markers next run. They made the last few pulls much cleaner."
         },
         "open_application": "Apply Here",
         "go_to_management": "Go To Management",
@@ -660,6 +678,21 @@
             "no_min_item_level": "No minimum"
         },
         "board": {
+            "view_options": "View options",
+            "view_hints": {
+                "progress": "Color slots by each player’s progress.",
+                "dps": "Simplify melee and ranged DPS colors.",
+                "parties": "Label parties D, E and F as 1, 2 and 3.",
+                "composition": "Highlight required jobs and see what’s missing."
+            },
+            "composition": {
+                "label": "Composition",
+                "none": "None",
+                "matched": "Needed match",
+                "extra": "Extra match",
+                "neutral": "Outside composition",
+                "missing": "Missing requirements"
+            },
             "designation_legend": "Roster icons",
             "title": "Roster Board",
             "subtitle": "Parties are laid out side by side so members can scan the current lineup quickly.",
@@ -686,7 +719,9 @@
             "no_slot": "No slot in this row",
             "bench_title": "Bench",
             "bench_subtitle": "Overflow, standby, and reserve positions stay visible here.",
-            "bench_count": "{count} bench slots"
+            "bench_count": "{count} bench slots",
+            "no_bench_slots": "This run has no bench slots.",
+            "no_fill_in_slots": "No fill-in slots yet."
         },
         "self_signup": {
             "alerts": {

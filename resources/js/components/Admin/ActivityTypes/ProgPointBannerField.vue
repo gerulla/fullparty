@@ -30,7 +30,7 @@ const preview = computed(() => fileUrl.value || props.imageUrl)
                 v-if="preview"
                 :src="preview"
                 :alt="t('admin.activity_types.prog_points.banner_preview')"
-                class="aspect-[3/1] w-full max-w-md rounded-md bg-elevated object-contain"
+                class="aspect-[3/1] w-full max-w-md rounded-lg bg-elevation-2 dark:bg-elevation-3 object-contain"
             >
             <div class="flex flex-wrap items-center gap-2">
                 <UFileUpload

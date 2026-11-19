@@ -3,19 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AuditLogIndexRequest;
-use App\Models\ActivityType;
 use App\Models\AuditLog;
 use App\Models\BozjaItem;
-use App\Models\Character;
 use App\Models\CharacterClass;
 use App\Models\CharacterFieldDefinition;
-use App\Models\Group;
 use App\Models\PhantomJob;
 use App\Models\RaidPosition;
-use App\Models\User;
 use App\Services\Audit\AuditLogFeedService;
+use App\Services\Audit\AuditLogPresenter;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Collection;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -47,49 +43,22 @@ class AdminController extends Controller
         ]);
     }
 
-    public function auditLog(AuditLogIndexRequest $request, AuditLogFeedService $feed): Response|JsonResponse
+    public function auditLog(AuditLogIndexRequest $request, AuditLogFeedService $feed, AuditLogPresenter $presenter): Response|JsonResponse
     {
         $this->authorizeAdminAccess();
 
         $query = AuditLog::query();
-        $page = $feed->paginate($query, $request->filters(), $request->validated('cursor'));
-        $auditLogs = $page->getCollection();
-        $scopeEntities = $this->resolveScopeEntities($auditLogs);
-
+        $page = $feed->paginate($query, $request->filters(), $request->validated('cursor'), siteWide: true);
         $payload = [
             'nextCursor' => $page->nextCursor()?->encode(),
-            'auditLogs' => $auditLogs
-                ->map(fn (AuditLog $auditLog) => [
-                    'id' => $auditLog->id,
-                    'action' => $auditLog->action,
-                    'severity' => $auditLog->severity,
-                    'scope' => [
-                        'type' => $auditLog->scope_type,
-                        'id' => $auditLog->scope_id,
-                        'label' => $scopeEntities[$auditLog->scope_type][$auditLog->scope_id] ?? null,
-                    ],
-                    'actor' => [
-                        'id' => $auditLog->actor?->id,
-                        'name' => $auditLog->actor?->name ?? 'System',
-                        'avatar_url' => $auditLog->actor?->avatar_url,
-                        'is_system' => $auditLog->actor === null,
-                    ],
-                    'subject' => [
-                        'type' => $auditLog->subject_type,
-                        'id' => $auditLog->subject?->id,
-                        'name' => $this->resolveSubjectName($auditLog),
-                        'avatar_url' => $auditLog->subject?->avatar_url,
-                        'is_system' => $auditLog->subject === null,
-                    ],
-                    'title' => $auditLog->message,
-                    'changes' => $this->resolveChanges($auditLog->metadata['changes'] ?? null),
-                    'details' => $this->resolveMetadataDetails($auditLog->metadata ?? []),
-                    'search_text' => $this->buildSearchText($auditLog),
-                    'created_at' => $auditLog->created_at?->toIso8601String(),
-                ]),
+            'auditLogs' => $presenter->rows($page->getCollection()),
         ];
 
         if ($request->wantsJson()) {
+            if ($request->boolean('include_options')) {
+                $payload['filters'] = $feed->options($query);
+            }
+
             return response()->json($payload);
         }
 
@@ -98,6 +67,13 @@ class AdminController extends Controller
             'selectedFilters' => $request->filters(),
             'filters' => $feed->options($query),
         ]);
+    }
+
+    public function auditEvent(AuditLog $auditLog, AuditLogPresenter $presenter): JsonResponse
+    {
+        $this->authorizeAdminAccess();
+
+        return response()->json(['event' => $presenter->detail($auditLog)]);
     }
 
     public function systemData(): Response
@@ -141,179 +117,10 @@ class AdminController extends Controller
         ]);
     }
 
-    /**
-     * @param  Collection<int, AuditLog>  $auditLogs
-     * @return array<string, array<int, string>>
-     */
-    private function resolveScopeEntities($auditLogs): array
-    {
-        $groupIds = $auditLogs
-            ->where('scope_type', 'group')
-            ->pluck('scope_id')
-            ->filter()
-            ->unique()
-            ->all();
-
-        $userIds = $auditLogs
-            ->where('scope_type', 'user')
-            ->pluck('scope_id')
-            ->filter()
-            ->unique()
-            ->all();
-
-        $characterIds = $auditLogs
-            ->where('scope_type', 'character')
-            ->pluck('scope_id')
-            ->filter()
-            ->unique()
-            ->all();
-
-        return [
-            'group' => Group::query()
-                ->whereIn('id', $groupIds)
-                ->get(['id', 'name'])
-                ->pluck('name', 'id')
-                ->all(),
-            'user' => User::query()
-                ->whereIn('id', $userIds)
-                ->get(['id', 'name'])
-                ->pluck('name', 'id')
-                ->all(),
-            'character' => Character::query()
-                ->whereIn('id', $characterIds)
-                ->get(['id', 'name'])
-                ->pluck('name', 'id')
-                ->all(),
-        ];
-    }
-
     private function authorizeAdminAccess(): void
     {
         if (! auth()->user()?->is_admin) {
             abort(403);
         }
-    }
-
-    /**
-     * @return array<int, array{label: string, old: string, new: string}>
-     */
-    private function resolveChanges(mixed $changes): array
-    {
-        if (! is_array($changes) || $changes === []) {
-            return [];
-        }
-
-        return collect($changes)
-            ->map(function ($change, $field) {
-                if (! is_array($change) || ! array_key_exists('old', $change) || ! array_key_exists('new', $change)) {
-                    return null;
-                }
-
-                return [
-                    'label' => $this->resolveMetadataLabel((string) $field),
-                    'old' => $this->stringifyMetadataValue($change['old']),
-                    'new' => $this->stringifyMetadataValue($change['new']),
-                ];
-            })
-            ->filter()
-            ->values()
-            ->all();
-    }
-
-    /**
-     * @param  array<string, mixed>  $metadata
-     * @return array<int, string>
-     */
-    private function resolveMetadataDetails(array $metadata): array
-    {
-        $remainingMetadata = $metadata;
-        unset($remainingMetadata['changes'], $remainingMetadata['activity_id']);
-
-        return collect($remainingMetadata)
-            ->map(function ($value, $key) {
-                if (is_array($value)) {
-                    $value = implode(', ', array_map(fn ($item) => $this->stringifyMetadataValue($item), $value));
-                }
-
-                if ($value === null || $value === '') {
-                    return null;
-                }
-
-                return $this->resolveMetadataLabel((string) $key).': '.$this->stringifyMetadataValue($value);
-            })
-            ->filter()
-            ->values()
-            ->all();
-    }
-
-    private function buildSearchText(AuditLog $auditLog): string
-    {
-        $metadata = is_array($auditLog->metadata) ? $auditLog->metadata : [];
-        $details = implode(' ', $this->resolveMetadataDetails($metadata));
-        $changes = implode(' ', collect($this->resolveChanges($metadata['changes'] ?? null))
-            ->flatMap(fn (array $change) => [$change['label'], $change['old'], $change['new']])
-            ->all());
-
-        return implode(' ', array_filter([
-            $auditLog->message,
-            $auditLog->action,
-            $auditLog->severity,
-            $auditLog->scope_type,
-            $auditLog->actor?->name,
-            $auditLog->subject?->name,
-            $details,
-            $changes,
-        ]));
-    }
-
-    private function resolveMetadataLabel(string $key): string
-    {
-        $translationKey = 'audit_log.fields.'.$key;
-        $translated = __($translationKey);
-
-        return $translated !== $translationKey
-            ? $translated
-            : str_replace('_', ' ', $key);
-    }
-
-    private function stringifyMetadataValue(mixed $value): string
-    {
-        if ($value === null) {
-            return __('audit_log.defaults.empty');
-        }
-
-        if (is_bool($value)) {
-            return $value
-                ? __('audit_log.defaults.true')
-                : __('audit_log.defaults.false');
-        }
-
-        if (is_array($value)) {
-            return implode(', ', array_map(fn ($item) => $this->stringifyMetadataValue($item), $value));
-        }
-
-        $stringValue = trim((string) $value);
-
-        return $stringValue !== '' ? $stringValue : __('audit_log.defaults.empty');
-    }
-
-    private function resolveSubjectName(AuditLog $auditLog): string
-    {
-        $subjectName = $auditLog->subject?->name;
-
-        if (filled($subjectName)) {
-            return $subjectName;
-        }
-
-        $metadata = is_array($auditLog->metadata) ? $auditLog->metadata : [];
-
-        if (
-            $auditLog->subject_type === ActivityType::class
-            && filled($metadata['activity_type_name'] ?? null)
-        ) {
-            return (string) $metadata['activity_type_name'];
-        }
-
-        return 'System';
     }
 }

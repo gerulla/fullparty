@@ -10,7 +10,7 @@ export function useAuditLogFeed(
     const defaultFilters: AuditLogFilters = {
         search: '', action: '__all__', severity: '__all__', user: '__all__',
         group: '__all__', activity: '__all__', beforeDate: '', afterDate: '',
-        category: '__all__', timezone: '', ...defaults,
+        category: '__all__', scope: '__all__', timezone: '', ...defaults,
     };
     const lazy = initial() === undefined;
     const filterOptions = ref<AuditLogFilterOptions | undefined>(initial()?.filters);

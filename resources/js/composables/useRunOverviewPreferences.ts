@@ -1,4 +1,5 @@
 import { ref, watch } from 'vue';
+import { createSharedComposable } from '@vueuse/core';
 
 const COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
 
@@ -26,10 +27,10 @@ function useBooleanPreferenceCookie(name: string) {
     return enabled;
 }
 
-export function useRunOverviewPreferences() {
+export const useRunOverviewPreferences = createSharedComposable(() => {
     return {
         plainDpsEnabled: useBooleanPreferenceCookie('fullparty_overview_plain_dps'),
         numberedSecondaryPartiesEnabled: useBooleanPreferenceCookie('fullparty_overview_numbered_parties'),
         allianceProgressEnabled: useBooleanPreferenceCookie('fullparty_overview_alliance_progress'),
     };
-}
+});

@@ -10,8 +10,8 @@
     "statuses": {
         "draft": "Brouillon",
         "scheduled": "Planifiés",
-        "assigned": "Assigné",
-        "upcoming": "À venir",
+        "assigned": "Roster publié",
+        "upcoming": "Commence bientôt",
         "ongoing": "En cours",
         "complete": "Terminé",
         "cancelled": "Annulés"
@@ -347,7 +347,7 @@
                 }
             },
             "progression": {
-                "title": "Progression enregistrée",
+                "title": "Résultats du run",
                 "subtitle": "Le résultat de progression final enregistré pour ce run terminé.",
                 "completed_at": "Terminé le",
                 "source": "Enregistré via",
@@ -627,12 +627,30 @@
         }
     },
     "overview": {
+        "host_note": "Note de l’organisateur",
+        "roster_capacity": "{assigned} / {total} pourvus",
+        "hide_roster": "Masquer la composition",
+        "participation": {
+            "your_application": "Votre candidature",
+            "your_slot": "Votre place dans la composition",
+            "no_placement": "Aucune place attribuée",
+            "pending_count": "{count} candidature en attente | {count} candidatures en attente",
+            "guest_welcome": "Candidatures invitées acceptées",
+            "choose_slot": "Choisir une place",
+            "view_application": "Voir la candidature"
+        },
         "title": "Aperçu du run",
         "subtitle": "{group} a partagé ce run {type}.",
         "description": "Voici l'aperçu destiné aux participants pour le run et son processus de candidature.",
         "cancelled_alert": {
             "title": "Ce run a été annulé",
             "description": "Ce run est archivé et n'accepte plus de candidatures."
+        },
+        "complete_alert": {
+            "title": "Ce run est terminé",
+            "description": "Le bilan du run se trouve ci-dessous.",
+            "no_results": "Aucun résultat n’a été enregistré pour ce run.",
+            "preview_note": "Gardons les mêmes marqueurs pour le prochain run. Les derniers essais se sont bien mieux passés avec eux."
         },
         "open_application": "Postuler ici",
         "go_to_management": "Aller à la gestion",
@@ -660,6 +678,21 @@
             "no_min_item_level": "Aucun minimum"
         },
         "board": {
+            "view_options": "Options d’affichage",
+            "view_hints": {
+                "progress": "Colorer les places selon la progression de chaque joueur.",
+                "dps": "Simplifier les couleurs des DPS de mêlée et à distance.",
+                "parties": "Numéroter les équipes D, E et F de 1 à 3.",
+                "composition": "Mettre en évidence les jobs requis et voir ceux qui manquent."
+            },
+            "composition": {
+                "label": "Composition",
+                "none": "Aucune",
+                "matched": "Place requise pourvue",
+                "extra": "En surnombre",
+                "neutral": "Hors composition",
+                "missing": "Prérequis manquants"
+            },
             "designation_legend": "Icônes de la formation",
             "title": "Tableau de composition",
             "subtitle": "Les parties sont présentées côte à côte pour que les membres puissent parcourir rapidement l'alignement actuel.",
@@ -686,7 +719,9 @@
             "no_slot": "Aucun emplacement sur cette ligne",
             "bench_title": "Remplaçants",
             "bench_subtitle": "Les positions de surplus, d'attente et de réserve restent visibles ici.",
-            "bench_count": "{count} emplacements de remplaçants"
+            "bench_count": "{count} emplacements de remplaçants",
+            "no_bench_slots": "Cette sortie ne prévoit aucune place de remplaçant.",
+            "no_fill_in_slots": "Aucune place de renfort pour le moment."
         },
         "self_signup": {
             "alerts": {

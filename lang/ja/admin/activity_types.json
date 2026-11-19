@@ -20,6 +20,12 @@
     "pagination_empty": "表示できるアクティビティタイプはありません",
     "delete_confirm": "このアクティビティタイプを削除しますか？アーカイブされます。",
     "back": "アクティビティタイプに戻る",
+    "tabs": {
+        "roster": "編成レイアウト",
+        "presets": "編成プリセット",
+        "applications": "応募",
+        "milestones": "進行マイルストーン"
+    },
     "form": {
         "error_title": "この下書きには修正が必要な項目があります。"
     },

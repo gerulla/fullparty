@@ -54,8 +54,8 @@ const features = {
     'Dashboard/Settings/Index': [],
     'Groups/Activities/Application': ['groups/activities'],
     'Groups/Activities/ApplicationConfirmation': ['calendar', 'groups/activities'],
-    'Groups/Activities/NonApplicationOverview': ['calendar', 'groups/activities'],
-    'Groups/Activities/Overview': ['calendar', 'groups/activities'],
+    'Groups/Activities/NonApplicationOverview': ['calendar', 'groups/activities', 'runs'],
+    'Groups/Activities/Overview': ['calendar', 'groups/activities', 'runs'],
     'Groups/MembershipApplications/Create': ['groups/membership_applications'],
     'V2/Groups/Create': ['groups/common'],
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Models\Group;
+use App\Support\Audit\AuditScope;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -26,6 +27,7 @@ class AuditLogIndexRequest extends FormRequest
             'action' => ['nullable', 'string', 'max:255'],
             'severity' => ['nullable', 'string', 'max:50'],
             'user' => ['nullable', 'regex:/^(?:[1-9][0-9]*|__system__)$/'],
+            'scope' => $group instanceof Group ? ['prohibited'] : ['nullable', Rule::in(AuditScope::VALUES)],
             'group' => ['nullable', 'integer', 'min:1'],
             'activity' => $group instanceof Group
                 ? ['nullable', 'integer', Rule::exists('activities', 'id')->where('group_id', $group->id)]

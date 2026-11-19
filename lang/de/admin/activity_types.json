@@ -20,6 +20,12 @@
     "pagination_empty": "Keine Aktivitätstypen zum Anzeigen",
     "delete_confirm": "Diesen Aktivitätstyp löschen? Er wird archiviert.",
     "back": "Zurück zu Aktivitätstypen",
+    "tabs": {
+        "roster": "Aufstellung",
+        "presets": "Kader-Vorlagen",
+        "applications": "Bewerbungen",
+        "milestones": "Meilensteine"
+    },
     "form": {
         "error_title": "Dieser Entwurf hat noch ein paar Probleme, die behoben werden müssen."
     },
@@ -85,8 +91,8 @@
     "layout": {
         "title": "Layout",
         "subtitle": "Lege fest, welche Slot-Gruppen diese Aktivität erzeugt.",
-        "groups_count": "{count} Gruppen",
-        "total_slots": "{count} Slots insgesamt",
+        "groups_count": "{count} Gruppe | {count} Gruppen",
+        "total_slots": "{count} Slot insgesamt | {count} Slots insgesamt",
         "add_group": "Gruppe hinzufügen",
         "group_title": "Gruppe {index}",
         "group_hint": "Eine Gruppe kann eine Party, Allianz, Truppe oder jede andere Slot-Sammlung darstellen, die du brauchst.",
@@ -101,7 +107,7 @@
         "composition_preset": "Standard-Hinweis zur Zusammenstellung",
         "composition_preset_help": "Wähle den empfohlenen Slot-Hinweis, der auf jede erzeugte Party kopiert wird.",
         "party_label": "Party",
-        "slots_per_party": "{count} Slots",
+        "slots_per_party": "{count} Slot | {count} Slots",
         "presets": {
             "light_party_4": "4-Man",
             "full_party_8": "8-Man",
@@ -133,7 +139,7 @@
     "roster_summary": {
         "title": "Roster-Zusammenfassungen",
         "subtitle": "Definiere wiederverwendbare Zusammenstellungsziele, die Moderatoren später bei der Roster-Prüfung wählen können.",
-        "presets_count": "{count} Vorlagen",
+        "presets_count": "{count} Vorlage | {count} Vorlagen",
         "add_preset": "Vorlage hinzufügen",
         "preset_title": "Vorlage {index}",
         "preset_hint": "Nutze Vorlagen für verschiedene Blickwinkel auf die Zusammenstellung, etwa Minimum, entspannt oder optimiert.",
@@ -178,7 +184,7 @@
     "progress": {
         "title": "Fortschrittsverfolgung",
         "subtitle": "Lege Meilensteine fest, die Gruppen beim Abschluss einer Aktivität melden können.",
-        "milestones_count": "{count} Meilensteine",
+        "milestones_count": "{count} Meilenstein | {count} Meilensteine",
         "add_milestone": "Meilenstein hinzufügen",
         "milestone_title": "Meilenstein {index}",
         "milestone_hint": "Nutze einen Meilenstein pro Boss, Phase oder Kontrollpunkt, den du später verfolgen möchtest.",
@@ -205,7 +211,7 @@
     "prog_points": {
         "title": "Prog-Punkte",
         "subtitle": "Definiere einfachere Fortschritts-Checkpoints, die Aktivitäten und spätere Statistiken referenzieren können.",
-        "count": "{count} Prog-Punkte",
+        "count": "{count} Prog-Punkt | {count} Prog-Punkte",
         "add": "Prog-Punkt hinzufügen",
         "item_title": "Prog-Punkt {index}",
         "item_hint": "Nutze diese für benannte Fortschrittspunkte wie Brücken, Rätsel oder Cleanup-Abschnitte.",
@@ -221,7 +227,7 @@
         "empty_description": "Füge Prog-Punkte hinzu, wenn dieser Aktivitätstyp benannte Checkpoints zusätzlich zur FF-Logs-Meilensteinzuordnung braucht."
     },
     "schema": {
-        "fields_count": "{count} Felder",
+        "fields_count": "{count} Feld | {count} Felder",
         "add_field": "Feld hinzufügen",
         "field_title": "Feld {index}",
         "field_hint": "Nutze stabile Schlüssel und übersetzte Labels, damit dieses Schema mehrere Oberflächen versorgen kann.",

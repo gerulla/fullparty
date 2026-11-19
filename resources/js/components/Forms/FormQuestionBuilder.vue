@@ -23,7 +23,7 @@ function move(index: number, direction: number) { const questions = [...props.mo
 
 <template>
     <div class="space-y-4">
-        <section v-for="(question, index) in modelValue" :key="question.id" class="space-y-4 border border-default bg-default p-4">
+        <section v-for="(question, index) in modelValue" :key="question.id" class="admin-panel min-w-0 space-y-4 p-4 sm:p-6">
             <div class="flex flex-wrap items-center justify-between gap-2">
                 <h3 class="font-semibold">{{ t('forms.question_number', { number: startIndex + index + 1 }) }}</h3>
                 <div class="flex gap-1">
@@ -32,14 +32,14 @@ function move(index: number, direction: number) { const questions = [...props.mo
                     <UButton icon="i-lucide-trash-2" color="error" variant="ghost" :aria-label="t('forms.remove_question')" @click="emit('update:modelValue', modelValue.filter((_, i) => i !== index))" />
                 </div>
             </div>
-            <div class="grid gap-4 md:grid-cols-[1fr_14rem]">
+            <div class="grid gap-4 md:grid-cols-[minmax(0,1fr)_14rem]">
                 <UFormField :label="t('forms.question_label')" :required="language === 'en'"><UInput :model-value="question.label[language] ?? ''" class="w-full" :maxlength="300" @update:model-value="update(index, { label: { ...question.label, [language]: $event } })" /></UFormField>
                 <UFormField :label="t('forms.question_type')"><USelect :model-value="question.type" :items="items" class="w-full" @update:model-value="changeType(index, $event as FormQuestionType)" /></UFormField>
             </div>
             <UFormField :label="t('forms.question_help')"><UInput :model-value="question.description[language] ?? ''" class="w-full" :maxlength="1000" @update:model-value="update(index, { description: { ...question.description, [language]: $event } })" /></UFormField>
-            <div v-if="choices.includes(question.type)" class="space-y-2 border-l-2 border-primary/40 pl-4">
+            <div v-if="choices.includes(question.type)" class="admin-inset space-y-2 p-3 sm:p-4">
                 <div v-for="(entry, optionIndex) in question.options" :key="entry.id" class="flex items-center gap-2">
-                    <UInput :model-value="entry.label[language] ?? ''" :aria-label="t('forms.option_number', { number: optionIndex + 1 })" :placeholder="t('forms.option_number', { number: optionIndex + 1 })" class="flex-1" :maxlength="200" @update:model-value="update(index, { options: question.options.map((opt, j) => j === optionIndex ? { ...opt, label: { ...opt.label, [language]: $event } } : opt) })" />
+                    <UInput :model-value="entry.label[language] ?? ''" :aria-label="t('forms.option_number', { number: optionIndex + 1 })" :placeholder="t('forms.option_number', { number: optionIndex + 1 })" class="min-w-0 flex-1" :maxlength="200" @update:model-value="update(index, { options: question.options.map((opt, j) => j === optionIndex ? { ...opt, label: { ...opt.label, [language]: $event } } : opt) })" />
                     <UButton icon="i-lucide-x" color="neutral" variant="ghost" :aria-label="t('forms.remove_option')" :disabled="question.options.length <= 2" @click="update(index, { options: question.options.filter((_, j) => j !== optionIndex) })" />
                 </div>
                 <UButton icon="i-lucide-plus" color="neutral" variant="outline" :label="t('forms.add_option')" :disabled="question.options.length >= 25" @click="update(index, { options: [...question.options, option()] })" />
@@ -51,7 +51,7 @@ function move(index: number, direction: number) { const questions = [...props.mo
             <div class="flex flex-wrap items-end justify-between gap-4">
                 <USwitch :model-value="question.required" :label="t('forms.required')" @update:model-value="update(index, { required: $event })" />
                 <UFormField v-if="pages.length > 1" :label="t('forms.move_to_page')">
-                    <USelect :model-value="question.page_id ?? pageId" :items="pageItems" class="w-64 max-w-full" @update:model-value="update(index, { page_id: $event as string })" />
+                    <USelect :model-value="question.page_id ?? pageId" :items="pageItems" class="w-full sm:w-64" @update:model-value="update(index, { page_id: $event as string })" />
                 </UFormField>
             </div>
         </section>

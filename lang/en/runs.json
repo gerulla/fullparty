@@ -14,6 +14,14 @@
     }
   },
   "participation": {
+    "preview": {
+      "run_state": "Run state",
+      "actual_run": "Actual run ({status})",
+      "label": "Application state",
+      "live": "Actual application",
+      "not_applied": "Not applied",
+      "help": "Preview the application card for this run. Application links are inactive during preview."
+    },
     "statuses": {
       "pending": "Applied",
       "approved": "Approved",

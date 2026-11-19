@@ -3,8 +3,11 @@ import { getRunParticipationColor } from "@/utils/runParticipationMeta"
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { usePage } from "@inertiajs/vue3";
-import { useRosterSlotTextExpansion } from "@/composables/useRosterSlotTextExpansion";
+import RosterSlotFrame from "./RosterSlotFrame.vue";
 import RosterSlotShine from "@/components/Groups/Activities/RosterSlotShine.vue";
+import AssignedHolsterTrigger from "./AssignedHolsterTrigger.vue";
+import { compositionSlotColors } from "@/utils/rosterComposition";
+import type { RosterCompositionTone } from "@/Types/ActivityRoster";
 import { localizedValue } from "@/utils/localizedValue";
 import { emptyCompositionSlotToneClass } from "@/utils/activityCompositionHints";
 import { specialistDesignationMarkers } from "@/utils/specialistDesignations";
@@ -25,11 +28,11 @@ type SlotMarker = {
 const props = defineProps<{
 	slot: ActivitySlot
 	roleHighlights: boolean
+	compositionTone?: RosterCompositionTone
 	progressStatus?: AllianceProgressStatus | null
 }>();
 
 const { t, locale } = useI18n();
-const { isTextExpanded, handleSlotTap } = useRosterSlotTextExpansion();
 const page = usePage();
 const fallbackLocale = computed(() => String(page.props.locale?.fallback ?? "en"));
 const viewerUserId = computed<number | null>(() => {
@@ -101,6 +104,7 @@ const attendanceBadge = computed(() => {
 });
 
 const slotToneClass = computed(() => {
+	if (props.compositionTone) return compositionSlotColors[props.compositionTone];
 	if (props.progressStatus && props.slot.assigned_character_id !== null) {
 		return allianceProgressTones[props.progressStatus].slot;
 	}
@@ -256,10 +260,10 @@ const showsInlineSlotIcons = computed(() => (
 ));
 
 const slotFrameClass = computed(() => (
-	showsBenchApplicationRows.value
+	props.slot.is_fill_in || showsBenchApplicationRows.value
 	|| (props.slot.assigned_character !== null && visibleFieldEntries.value.length > 0)
 		? "min-h-18 py-2.5"
-		: "h-18 py-2"
+		: "min-h-18 py-2"
 ));
 
 const designationMarkers = computed(() => {
@@ -302,12 +306,10 @@ const designationMarkers = computed(() => {
 </script>
 
 <template>
-	<div
-		class="group/roster-slot relative min-w-0 border px-3 transition-colors"
+	<RosterSlotFrame
+		class="px-3"
 		:class="[slotToneClass, slotFrameClass]"
-		:data-text-expanded="isTextExpanded || undefined"
-		:title="progressStatus ? t(`groups.activities.overview.board.progression.${progressStatus}`) : undefined"
-		@click="handleSlotTap"
+		:title="compositionTone ? t(`groups.activities.overview.board.composition.${compositionTone}`) : progressStatus ? t(`groups.activities.overview.board.progression.${progressStatus}`) : undefined"
 	>
 		<RosterSlotShine v-if="isViewerAssignedCharacter" />
 		<UTooltip
@@ -316,7 +318,7 @@ const designationMarkers = computed(() => {
 			:text="marker.label"
 		>
 			<div
-				class="pointer-events-auto absolute z-20 flex h-8 w-8 items-center justify-center bg-transparent shadow-lg"
+				class="pointer-events-auto absolute z-20 mx-2 flex h-8 w-8 items-center justify-center bg-transparent shadow-lg"
 				:class="marker.wrapperClass"
 				:aria-label="marker.label"
 				:title="marker.label"
@@ -330,6 +332,7 @@ const designationMarkers = computed(() => {
 		</UTooltip>
 
 		<div class="flex h-full min-h-0 justify-center flex-col gap-1.5 overflow-hidden">
+			<p v-if="slot.is_fill_in" class="text-xs text-muted">{{ slotLabel }}</p>
 <!--			<div class="flex items-start justify-between gap-2">-->
 <!--				<div class="min-w-0">-->
 <!--					<p class="truncate text-[10px] uppercase tracking-[0.2em] text-muted">-->
@@ -448,10 +451,12 @@ const designationMarkers = computed(() => {
 						<span
 							v-for="field in visibleFieldEntries"
 							:key="field.id"
-							class="inline-flex min-w-0 max-w-full items-center gap-1 group-hover/roster-slot:items-start group-focus-within/roster-slot:items-start group-data-[text-expanded]/roster-slot:items-start"
+							class="inline-flex min-w-0 max-w-full items-center gap-1 group-data-[text-expanded]/roster-slot:items-start"
 						>
 							<span class="shrink-0 text-muted xl:max-2xl:hidden">{{ field.label }}</span>
-							<span class="min-w-0 truncate font-medium text-toned group-hover/roster-slot:whitespace-normal group-hover/roster-slot:wrap-anywhere group-focus-within/roster-slot:whitespace-normal group-focus-within/roster-slot:wrap-anywhere group-data-[text-expanded]/roster-slot:whitespace-normal group-data-[text-expanded]/roster-slot:wrap-anywhere">{{ field.value }}</span>
+							<AssignedHolsterTrigger v-if="field.source === 'bozja_holsters'" data-slot-detail :field-id="field.id" :label="field.value"
+								class="truncate font-medium group-data-[text-expanded]/roster-slot:whitespace-normal group-data-[text-expanded]/roster-slot:wrap-anywhere" />
+							<span v-else data-slot-detail class="min-w-0 truncate font-medium text-toned group-data-[text-expanded]/roster-slot:whitespace-normal group-data-[text-expanded]/roster-slot:wrap-anywhere">{{ field.value }}</span>
 						</span>
 					</div>
 				</div>
@@ -460,5 +465,5 @@ const designationMarkers = computed(() => {
 				<p class="text-sm text-muted">{{ t("groups.activities.management.roster.empty_slot") }}</p>
 			</div>
 		</div>
-	</div>
+	</RosterSlotFrame>
 </template>

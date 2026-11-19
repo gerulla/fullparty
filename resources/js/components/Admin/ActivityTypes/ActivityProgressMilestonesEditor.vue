@@ -113,23 +113,24 @@ const updateMilestoneLabel = (index: number, label: Record<string, string>) => {
 		</template>
 
 		<div class="flex flex-col gap-4">
-			<UCard
+			<section
 				v-for="(milestone, index) in milestones"
 				:key="`progress-milestone-${index}`"
-				class="border border-default"
+				class="admin-inset min-w-0 p-3 sm:p-4"
 			>
 				<div class="flex flex-col gap-4">
-					<div class="flex items-center justify-between gap-3">
+					<div class="flex flex-wrap items-start justify-between gap-3">
 						<div>
 							<h3 class="font-semibold">{{ t('admin.activity_types.progress.milestone_title', { index: index + 1 }) }}</h3>
 							<p class="text-sm text-muted">{{ t('admin.activity_types.progress.milestone_hint') }}</p>
 						</div>
 
-						<div class="flex items-center gap-2">
+						<div class="flex flex-wrap items-center gap-2">
 							<UButton
 								color="neutral"
 								variant="ghost"
 								icon="i-lucide-arrow-up"
+								:aria-label="t('forms.move_up')"
 								:disabled="index === 0"
 								@click="moveMilestone(index, -1)"
 							/>
@@ -137,6 +138,7 @@ const updateMilestoneLabel = (index: number, label: Record<string, string>) => {
 								color="neutral"
 								variant="ghost"
 								icon="i-lucide-arrow-down"
+								:aria-label="t('forms.move_down')"
 								:disabled="index === milestones.length - 1"
 								@click="moveMilestone(index, 1)"
 							/>
@@ -165,7 +167,7 @@ const updateMilestoneLabel = (index: number, label: Record<string, string>) => {
 						</UFormField>
 					</div>
 
-					<div class="rounded-lg border border-default p-4">
+					<div class="rounded-xl border border-default p-3 sm:p-4">
 						<div class="mb-4">
 							<h4 class="font-semibold">{{ t('admin.activity_types.progress.fflogs_title') }}</h4>
 							<p class="text-sm text-muted">{{ t('admin.activity_types.progress.fflogs_subtitle') }}</p>
@@ -229,6 +231,7 @@ const updateMilestoneLabel = (index: number, label: Record<string, string>) => {
 					</div>
 
 					<LocalizedTextFields
+						rounded
 						:model-value="milestone.label"
 						:locales="locales"
 						:label="t('admin.activity_types.progress.label')"
@@ -237,7 +240,7 @@ const updateMilestoneLabel = (index: number, label: Record<string, string>) => {
 						@update:model-value="(value) => updateMilestoneLabel(index, value)"
 					/>
 				</div>
-			</UCard>
+			</section>
 
 			<UAlert
 				v-if="milestones.length === 0"

@@ -1,6 +1,8 @@
 @php
     $pageComponent = $page['component'] ?? '';
     $usesMedasTheme = str_starts_with($pageComponent, 'V2/')
+        || str_starts_with($pageComponent, 'Admin/')
+        || in_array($pageComponent, ['Groups/Activities/Overview', 'Groups/Activities/NonApplicationOverview'], true)
         || (str_starts_with($pageComponent, 'auth/') && $pageComponent !== 'auth/Banned');
 @endphp
 <!DOCTYPE html>

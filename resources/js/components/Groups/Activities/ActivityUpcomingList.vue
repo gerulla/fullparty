@@ -5,7 +5,7 @@ import ActivityDiscoveryResultItem from "@/components/Groups/Activities/Activity
 import ActivityUpcomingListItem from "@/components/Groups/Activities/ActivityUpcomingListItem.vue";
 import type { ActivityIndexItem } from "@/Types/ActivityCore";
 import { isArchivedActivityStatus } from "@/utils/activityLifecycle";
-import { getActivityStatusDotClass } from "@/utils/activityStatusMeta";
+import { activityStatuses, getActivityStatusDotClass } from "@/utils/activityStatusMeta";
 import { createDateTimeFormatter } from "@/utils/dateTimeFormat";
 import { useTimeDisplayMode } from "@/composables/useTimeDisplayMode";
 import { toDisplayDateKey } from "@/utils/activityCalendar";
@@ -75,14 +75,7 @@ const selectedDateLabel = computed(() => {
 	}).format(new Date(year, month - 1, day));
 });
 
-const statusLegendItems = computed(() => [
-	{ key: 'draft', colorClass: getActivityStatusDotClass('draft') },
-	{ key: 'scheduled', colorClass: getActivityStatusDotClass('scheduled') },
-	{ key: 'assigned', colorClass: getActivityStatusDotClass('assigned') },
-	{ key: 'ongoing', colorClass: getActivityStatusDotClass('ongoing') },
-	{ key: 'complete', colorClass: getActivityStatusDotClass('complete') },
-	{ key: 'cancelled', colorClass: getActivityStatusDotClass('cancelled') },
-]);
+const statusLegendItems = activityStatuses.map(key => ({ key, colorClass: getActivityStatusDotClass(key) }));
 </script>
 
 <template>

@@ -130,7 +130,7 @@ class ResourceHolsterService
         ];
     }
 
-    private function loadout(BozjaHolster $holster): array
+    public function loadout(BozjaHolster $holster): array
     {
         return [
             'id' => $holster->id,

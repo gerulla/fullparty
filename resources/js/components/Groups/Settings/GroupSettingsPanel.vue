@@ -8,7 +8,7 @@ import GroupInviteSettings from '@/components/Groups/GroupInviteSettings.vue'
 import GroupFeatureSettings from '@/components/Groups/GroupFeatureSettings.vue'
 import GroupDiscoverySettings from '@/components/Groups/GroupDiscoverySettings.vue'
 import GroupShortcutSettings from '@/components/Groups/Settings/GroupShortcutSettings.vue'
-import GroupAuditLogPanel from '@/components/Groups/Settings/GroupAuditLogPanel.vue'
+import AuditLogPanel from '@/components/Audit/AuditLogPanel.vue'
 import GroupDiscordSettingsPanel from '@/components/Groups/Settings/GroupDiscordSettingsPanel.vue'
 import GroupDiscordPreviewControls from '@/components/Groups/Discord/GroupDiscordPreviewControls.vue'
 import GroupOwnershipSettings from '@/components/Groups/GroupOwnershipSettings.vue'
@@ -23,7 +23,7 @@ const categories = computed(() => ([
     { key: 'features', group: 'general', icon: 'i-lucide-blocks', component: GroupFeatureSettings },
     { key: 'discovery', group: 'management', icon: 'i-lucide-compass', component: GroupDiscoverySettings },
     { key: 'shortcuts', group: 'management', icon: 'i-lucide-mouse-pointer-click', component: GroupShortcutSettings },
-    { key: 'audit_log', group: 'management', icon: 'i-lucide-scroll-text', component: GroupAuditLogPanel },
+    { key: 'audit_log', group: 'management', icon: 'i-lucide-scroll-text', component: AuditLogPanel },
     { key: 'discord', group: 'integrations', icon: 'ic:baseline-discord', component: GroupDiscordSettingsPanel },
     { key: 'ownership', group: 'danger_zone', icon: 'i-lucide-arrow-right-left', component: GroupOwnershipSettings },
     { key: 'danger_zone', group: 'danger_zone', icon: 'i-lucide-trash-2', component: GroupDangerZoneSettings },

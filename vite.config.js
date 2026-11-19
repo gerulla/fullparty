@@ -22,12 +22,13 @@ export default defineConfig({
         ui({
             router: 'inertia',
             theme: {
-                colors: ['primary', 'secondary', 'success', 'info', 'warning', 'error', 'neutral', 'brand']
+                colors: ['primary', 'secondary', 'success', 'info', 'warning', 'error', 'neutral', 'brand', 'imminent']
             },
             ui: {
                 colors: {
                     primary: 'brand',
                     brand: 'brand',
+                    imminent: 'orange',
                     neutral: 'neutral'
                 },
                 card: {

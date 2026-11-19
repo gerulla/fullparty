@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
-import { usePage } from '@inertiajs/vue3';
+import { computed, unref } from 'vue';
+import { usePage, useRemember } from '@inertiajs/vue3';
 import { useI18n } from 'vue-i18n';
 import ActivityMonthCalendar from '@/components/Groups/Activities/ActivityMonthCalendar.vue';
 import type { ActivityIndexItem, GroupQuickCreateShortcut } from '@/Types/ActivityCore';
@@ -17,11 +17,10 @@ const props = defineProps<{
 
 const { t, locale } = useI18n();
 const page = usePage();
-const search = ref('');
-const selectedDateKey = ref<string | null>(null);
+const filters = unref(useRemember({ search: '', selectedDateKey: null as string | null }, `group-calendar.${props.group.slug}.filters`));
 const fallbackLocale = computed(() => String(page.props.locale?.fallback ?? 'en'));
 const filteredActivities = computed(() => {
-    const query = search.value.trim().toLocaleLowerCase(locale.value);
+    const query = filters.search.trim().toLocaleLowerCase(locale.value);
     if (!query) return props.activities;
 
     return props.activities.filter((activity) => [
@@ -42,14 +41,14 @@ const searchUi = {
         class="w-full"
         :group-slug="group.slug"
         :activities="filteredActivities"
-        :selected-date-key="selectedDateKey"
+        :selected-date-key="filters.selectedDateKey"
         :can-manage-activities="group.permissions.can_manage_activities"
         :quick-create-shortcuts="quickCreateShortcuts"
-        @update-selected-date-key="selectedDateKey = $event"
+        @update-selected-date-key="filters.selectedDateKey = $event"
     >
         <template #header-actions>
             <UInput
-                v-model="search"
+                v-model="filters.search"
                 icon="i-lucide-search"
                 :placeholder="t('groups.activities.calendar.search_placeholder')"
                 :aria-label="t('groups.activities.calendar.search_placeholder')"
@@ -59,7 +58,7 @@ const searchUi = {
             <UPopover class="sm:hidden">
                 <UButton
                     icon="i-lucide-search"
-                    :color="search ? 'brand' : 'neutral'"
+                    :color="filters.search ? 'brand' : 'neutral'"
                     variant="ghost"
                     class="shrink-0 rounded-lg"
                     :aria-label="t('groups.activities.calendar.search_placeholder')"
@@ -67,7 +66,7 @@ const searchUi = {
                 <template #content>
                     <div class="p-3">
                         <UInput
-                            v-model="search"
+                            v-model="filters.search"
                             autofocus
                             icon="i-lucide-search"
                             :placeholder="t('groups.activities.calendar.search_placeholder')"

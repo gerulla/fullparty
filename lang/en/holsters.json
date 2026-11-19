@@ -1,4 +1,6 @@
 {
+    "read_guide": "Read guide",
+    "load_failed": "This holster loadout could not be loaded.",
     "any": "Any",
     "any_description": "I can use any holster loadout. Moderators can choose one for me.",
     "prepop": "Pre-pop",

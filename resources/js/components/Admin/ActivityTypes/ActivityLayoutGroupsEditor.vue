@@ -215,7 +215,7 @@ onMounted(() => {
 			</UFormField>
 		</div>
 
-		<div class="border border-default">
+		<div class="admin-inset min-w-0">
 			<div
 				v-for="group in modelValue"
 				:key="group.key"
@@ -228,7 +228,7 @@ onMounted(() => {
 					</p>
 				</div>
 
-				<div class="flex items-center gap-2">
+				<div class="flex flex-wrap items-center gap-2">
 					<UBadge color="neutral" variant="subtle" :label="shorthandForGroup(group)" />
 				</div>
 			</div>

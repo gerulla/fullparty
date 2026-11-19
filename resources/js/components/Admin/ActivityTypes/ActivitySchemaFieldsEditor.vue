@@ -158,13 +158,13 @@ const updateFieldLabel = (index: number, label: Record<string, string>) => {
 		</template>
 
 		<div class="flex flex-col gap-4">
-			<UCard
+			<section
 				v-for="(field, index) in modelValue"
 				:key="`${fieldKind}-field-${index}`"
-				class="border border-default"
+				class="admin-inset min-w-0 p-3 sm:p-4"
 			>
 				<div class="flex flex-col gap-4">
-					<div class="flex items-center justify-between">
+					<div class="flex flex-wrap items-start justify-between gap-3">
 						<div>
 							<h3 class="font-semibold">{{ t('admin.activity_types.schema.field_title', { index: index + 1 }) }}</h3>
 							<p class="text-sm text-muted">{{ t('admin.activity_types.schema.field_hint') }}</p>
@@ -238,6 +238,7 @@ const updateFieldLabel = (index: number, label: Record<string, string>) => {
 						</UFormField>
 
 						<LocalizedTextFields
+							rounded
 							v-if="field.accepts_any"
 							:model-value="field.any_label ?? createAnyLabelRecord()"
 							:locales="locales"
@@ -249,6 +250,7 @@ const updateFieldLabel = (index: number, label: Record<string, string>) => {
 					</div>
 
 					<LocalizedTextFields
+						rounded
 						:model-value="field.label"
 						:locales="locales"
 						:label="t('admin.activity_types.schema.label')"
@@ -258,6 +260,7 @@ const updateFieldLabel = (index: number, label: Record<string, string>) => {
 					/>
 
 					<LocalizedTextFields
+						rounded
 						:model-value="field.help_text ?? createLocalizedRecord()"
 						:locales="locales"
 						:label="t('admin.activity_types.schema.help_text')"
@@ -269,9 +272,9 @@ const updateFieldLabel = (index: number, label: Record<string, string>) => {
 
 					<div
 						v-if="field.source === 'static_options'"
-						class="rounded-lg border border-default p-4"
+						class="rounded-xl border border-default p-3 sm:p-4"
 					>
-						<div class="mb-4 flex items-center justify-between">
+						<div class="mb-4 flex flex-wrap items-start justify-between gap-3">
 							<div>
 								<h4 class="font-semibold">{{ t('admin.activity_types.schema.options_title') }}</h4>
 								<p class="text-sm text-muted">{{ t('admin.activity_types.schema.options_subtitle') }}</p>
@@ -281,13 +284,13 @@ const updateFieldLabel = (index: number, label: Record<string, string>) => {
 						</div>
 
 						<div class="flex flex-col gap-4">
-							<UCard
+							<section
 								v-for="(option, optionIndex) in field.options ?? []"
 								:key="`option-${index}-${optionIndex}`"
-								class="border border-default"
+								class="admin-inset min-w-0 p-3 sm:p-4"
 							>
 								<div class="flex flex-col gap-4">
-									<div class="flex items-center justify-between">
+									<div class="flex flex-wrap items-start justify-between gap-3">
 										<h5 class="font-medium">{{ t('admin.activity_types.schema.option_title', { index: optionIndex + 1 }) }}</h5>
 										<UButton
 											color="error"
@@ -308,6 +311,7 @@ const updateFieldLabel = (index: number, label: Record<string, string>) => {
 									</UFormField>
 
 									<LocalizedTextFields
+										rounded
 										:model-value="option.label"
 										:locales="locales"
 										:label="t('admin.activity_types.schema.option_label')"
@@ -315,11 +319,11 @@ const updateFieldLabel = (index: number, label: Record<string, string>) => {
 										@update:model-value="(value) => updateOption(index, optionIndex, { label: value })"
 									/>
 								</div>
-							</UCard>
+							</section>
 						</div>
 					</div>
 				</div>
-			</UCard>
+			</section>
 		</div>
 	</ActivityTypeSectionCard>
 </template>

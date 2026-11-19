@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import JsonTreeViewer from "@/components/Admin/JsonTreeViewer.vue";
-import PageHeader from "@/components/PageHeader.vue";
+import AdminPageHeader from "@/components/Admin/AdminPageHeader.vue";
 import axios from "axios";
 import { computed, ref } from "vue";
 import { useI18n } from "vue-i18n";
@@ -225,24 +225,24 @@ const executeRequest = async () => {
 </script>
 
 <template>
-	<div class="w-full">
-		<PageHeader
+	<div class="min-w-0">
+		<AdminPageHeader
 			:title="t('admin.fflogs_playground.title')"
 			:subtitle="t('admin.fflogs_playground.subtitle')"
 		>
 			<UBadge
-				color="warning"
+				color="primary"
 				variant="subtle"
-				icon="i-lucide-shield"
+				icon="i-lucide-shield-check"
 				:label="t('admin.fflogs_playground.admin_only')"
 			/>
-		</PageHeader>
+		</AdminPageHeader>
 
-		<div class="mt-6 grid grid-cols-1 gap-6 xl:grid-cols-2">
-			<UCard class="dark:bg-elevated/25">
+		<div class="mt-6 grid grid-cols-1 items-start gap-4 xl:grid-cols-2">
+			<UCard class="min-w-0">
 				<template #header>
-					<div class="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
-						<div class="space-y-1">
+					<div class="flex flex-wrap items-start justify-between gap-3">
+						<div class="min-w-48 flex-1 space-y-1">
 							<h2 class="text-base font-semibold text-highlighted">
 								{{ t("admin.fflogs_playground.request.title") }}
 							</h2>
@@ -284,18 +284,19 @@ const executeRequest = async () => {
 					<UFormField :label="t('admin.fflogs_playground.request.field_label')">
 						<UTextarea
 							v-model="requestInput"
-							class="w-full font-mono text-sm"
-							:rows="24"
+							class="w-full"
+							:rows="12"
+							:ui="{ base: 'resize-y font-mono text-sm leading-6 xl:min-h-96' }"
 							:placeholder="t('admin.fflogs_playground.request.placeholder')"
 						/>
 					</UFormField>
 				</div>
 			</UCard>
 
-			<UCard class="dark:bg-elevated/25">
+			<UCard class="min-w-0">
 				<template #header>
-					<div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-						<div class="space-y-1">
+					<div class="flex flex-wrap items-start justify-between gap-3">
+						<div class="min-w-48 flex-1 space-y-1">
 							<h2 class="text-base font-semibold text-highlighted">
 								{{ t("admin.fflogs_playground.response.title") }}
 							</h2>
@@ -313,8 +314,9 @@ const executeRequest = async () => {
 
 				<div
 					v-if="!responsePayload"
-					class="flex min-h-[36rem] items-center justify-center border border-dashed border-default bg-muted/20 p-8 text-center text-sm text-muted"
+					class="admin-inset flex min-h-36 flex-col items-center justify-center gap-3 p-6 text-center text-sm text-muted xl:min-h-[30rem]"
 				>
+					<UIcon name="i-lucide-braces" class="size-6" aria-hidden="true" />
 					{{ t("admin.fflogs_playground.response.empty") }}
 				</div>
 				<JsonTreeViewer

@@ -45,13 +45,13 @@ watch(() => [props.detail.case.id, props.detail.case.version], () => {
         <h2 class="font-semibold">{{ t('reports.admin.action') }}</h2>
         <p class="text-sm text-muted">{{ t('reports.admin.assigned') }}: {{ detail.case.assignee?.name ?? t('reports.admin.unassigned') }}</p>
         <UButton v-if="!owned" :disabled="busy" icon="i-lucide-user-check" @click="emit('action', 'claim', '')">{{ t('reports.admin.claim') }}</UButton>
-        <div v-if="owned && options.length" class="border border-default p-4 space-y-4">
+        <div v-if="owned && options.length" class="admin-inset space-y-4 p-3 sm:p-4">
             <UFormField :label="t('reports.admin.action')"><USelect v-model="action" :items="options" class="w-full" :disabled="busy" /></UFormField>
             <p v-if="['ban', 'unban'].includes(action)" class="font-semibold">{{ t('reports.admin.account') }}: {{ detail.subject_user?.name }} (#{{ detail.subject_user?.id }})</p>
             <UFormField :label="t('reports.admin.internal_reason')" required><UTextarea v-model="reason" :maxlength="2000" class="w-full" :disabled="busy" /></UFormField>
             <UButton color="warning" :disabled="busy || !reason.trim()" @click="emit('action', action, reason)">{{ t('reports.admin.apply') }}</UButton>
         </div>
-        <div v-if="owned && detail.case.status === 'awaiting_feedback'" class="border border-default p-4 space-y-4">
+        <div v-if="owned && detail.case.status === 'awaiting_feedback'" class="admin-inset space-y-4 p-3 sm:p-4">
             <h3 class="font-semibold">{{ t(hasRecipients ? 'reports.admin.send_feedback' : 'reports.admin.record_outcome') }}</h3>
             <p v-if="detail.case.reports.some(report => report.guest_reference)" class="text-xs text-muted">{{ t('reports.admin.guest_feedback_notice') }}</p>
             <USelect v-model="template" :items="feedbackOptions" :placeholder="t('reports.admin.choose_feedback')" class="w-full" :disabled="busy" />

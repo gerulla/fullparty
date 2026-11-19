@@ -71,9 +71,7 @@ class GroupActivityApplicationController extends Controller
         $group->loadMissing('memberships');
         $this->ensureApplicationPageAccessible($request, $group, $activity, $secretKey, allowParticipationBlocked: true);
 
-        $activity->load(array_merge($this->attendeeActivityRelations(), [
-            'applications.answers',
-        ]));
+        $activity->load($this->attendeeActivityRelations());
         $activity->loadCount([
             'slots' => fn ($query) => $query->where('slot_kind', '!=', ActivitySlot::SLOT_KIND_FILL_IN),
             'applications as pending_application_count' => fn ($query) => $query->where('status', ActivityApplication::STATUS_PENDING),
@@ -84,10 +82,18 @@ class GroupActivityApplicationController extends Controller
             ->count());
 
         $existingApplication = $request->user()
-            ? $activity->applications
+            ? $activity->applications()
                 ->where('user_id', $request->user()->id)
-                ->first(fn (ActivityApplication $application) => $application->status !== ActivityApplication::STATUS_WITHDRAWN)
+                ->where('status', '!=', ActivityApplication::STATUS_WITHDRAWN)
+                ->with('answers')
+                ->first()
             : null;
+
+        if (! MemberApi::active($request) && $request->query('view') === 'status') {
+            abort_unless($existingApplication, 404);
+
+            return $this->renderApplicationStatus($group, $activity, $existingApplication);
+        }
 
         return $this->renderApplicationPage(
             request: $request,
@@ -117,7 +123,7 @@ class GroupActivityApplicationController extends Controller
 
         $application = $this->findGuestApplicationByAccessToken($activity, $accessToken);
 
-        if (! $this->applicationIsEditable($activity, $application)) {
+        if (! $application->isEditableFor($activity)) {
             return redirect()->route('groups.activities.application.status', [
                 ...$this->activityAttendeeRouteParameters($group, $activity, $secretKey),
                 'accessToken' => $accessToken,
@@ -179,7 +185,7 @@ class GroupActivityApplicationController extends Controller
                 'mode' => ($confirmation['mode'] ?? 'submitted') === 'updated' ? 'updated' : 'submitted',
                 'can_edit' => $application->user_id !== null
                     && $application->user_id === $request->user()?->id
-                    && $this->applicationIsEditable($activity, $application),
+                    && $application->isEditableFor($activity),
                 'can_withdraw' => $application->user_id !== null
                     && $application->user_id === $request->user()?->id
                     && $this->applicationWithdrawalService->applicationCanBeWithdrawn($activity, $application),
@@ -209,17 +215,26 @@ class GroupActivityApplicationController extends Controller
             ->whereIn('status', ActivityApplication::ACTIVE_STATUSES)
             ->firstOrFail();
 
+        return $this->renderApplicationStatus($group, $activity, $application, $accessToken);
+    }
+
+    private function renderApplicationStatus(
+        Group $group,
+        Activity $activity,
+        ActivityApplication $application,
+        ?string $guestAccessToken = null,
+    ): Response {
         return Inertia::render('Groups/Activities/ApplicationConfirmation', [
             'group' => $this->serializePublicGroup($group),
             'activity' => $this->serializeAttendeeActivity($activity),
             'applicationSchema' => $this->serializeApplicationSchema($activity->activityTypeVersion, $group->id),
             'application' => $this->serializeExistingApplication($application),
             'secretKey' => null,
-            'guestAccessToken' => $accessToken,
+            'guestAccessToken' => $guestAccessToken,
             'confirmation' => [
                 'view' => 'status',
                 'mode' => 'submitted',
-                'can_edit' => $this->applicationIsEditable($activity, $application),
+                'can_edit' => $application->isEditableFor($activity),
                 'can_withdraw' => $this->applicationWithdrawalService->applicationCanBeWithdrawn($activity, $application),
             ],
         ]);
@@ -430,7 +445,7 @@ class GroupActivityApplicationController extends Controller
             abort(404);
         }
 
-        if (! $this->applicationIsEditable($activity, $application)) {
+        if (! $application->isEditableFor($activity)) {
             abort(403);
         }
 
@@ -568,7 +583,7 @@ class GroupActivityApplicationController extends Controller
         $this->ensureActivityAcceptsApplications($activity);
         $application = $this->findGuestApplicationByAccessToken($activity, $accessToken);
 
-        if (! $this->applicationIsEditable($activity, $application)) {
+        if (! $application->isEditableFor($activity)) {
             abort(403);
         }
 
@@ -707,7 +722,7 @@ class GroupActivityApplicationController extends Controller
             'guestAccessToken' => $guestAccessToken,
             'permissions' => [
                 ...$participationPermissions,
-                'can_edit_application' => $application ? $this->applicationIsEditable($activity, $application) : $acceptsApplications,
+                'can_edit_application' => $application ? $application->isEditableFor($activity) : $acceptsApplications,
                 'can_withdraw_application' => $application ? $this->applicationWithdrawalService->applicationCanBeWithdrawn($activity, $application) : false,
                 'can_manage' => $group->hasModeratorAccess($request->user()?->id),
                 'has_existing_application' => $application !== null,
@@ -1146,12 +1161,6 @@ class GroupActivityApplicationController extends Controller
     private function confirmationSessionKey(int $activityId): string
     {
         return sprintf('activities.%d.application_confirmation', $activityId);
-    }
-
-    private function applicationIsEditable(Activity $activity, ActivityApplication $application): bool
-    {
-        return $activity->acceptsApplications()
-            && in_array($application->status, ActivityApplication::ACTIVE_STATUSES, true);
     }
 
     private function ensureSelectedCharacterIsNotAlreadyAssigned(

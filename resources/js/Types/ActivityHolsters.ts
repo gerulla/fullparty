@@ -1,4 +1,11 @@
 import type { LocalizedText } from '@/Types/Common'
+import type { HolsterLoadout } from '@/Types/HolsterPlanner'
+
+export type AssignedHolsterLoadout = {
+    prepop: HolsterLoadout
+    refills: HolsterLoadout[]
+    guide_url: string | null
+}
 
 export type HolsterPairValue = {
 	prepop_id: string

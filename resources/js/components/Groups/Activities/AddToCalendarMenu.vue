@@ -14,6 +14,7 @@ const props = defineProps<{
 	notes?: string | null
 	progressPoint?: string | null
 	size?: "xs" | "sm" | "md" | "lg" | "xl"
+	variant?: "outline" | "ghost"
 }>()
 
 const { t } = useI18n()
@@ -114,7 +115,7 @@ const items = computed(() => [[
 			:to="icsUrl"
 			external
 			color="neutral"
-			variant="outline"
+			:variant="variant ?? 'outline'"
 			icon="i-lucide-calendar-plus"
 			:label="t('calendar.add')"
 			:size="size"

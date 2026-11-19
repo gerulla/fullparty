@@ -20,6 +20,12 @@
   "pagination_empty": "No activity types to show",
   "delete_confirm": "Delete this activity type? This will archive it.",
   "back": "Back to Activity Types",
+  "tabs": {
+    "roster": "Roster layout",
+    "presets": "Roster presets",
+    "applications": "Applications",
+    "milestones": "Milestones"
+  },
   "form": {
     "error_title": "This draft still has a few issues to fix."
   },
@@ -85,8 +91,8 @@
   "layout": {
     "title": "Layout",
     "subtitle": "Define the slot groups this activity will generate.",
-    "groups_count": "{count} groups",
-    "total_slots": "{count} total slots",
+    "groups_count": "{count} group | {count} groups",
+    "total_slots": "{count} total slot | {count} total slots",
     "add_group": "Add Group",
     "group_title": "Group {index}",
     "group_hint": "A group can represent a party, alliance, squad, or any slot bucket you need.",
@@ -101,7 +107,7 @@
     "composition_preset": "Default Composition Hint",
     "composition_preset_help": "Choose the advisory per-slot hint copied onto each generated party.",
     "party_label": "Party",
-    "slots_per_party": "{count} slots",
+    "slots_per_party": "{count} slot | {count} slots",
     "presets": {
       "light_party_4": "4-Man",
       "full_party_8": "8-Man",
@@ -133,7 +139,7 @@
   "roster_summary": {
     "title": "Roster Summary Presets",
     "subtitle": "Define reusable composition targets that moderators can later choose from while reviewing a roster.",
-    "presets_count": "{count} presets",
+    "presets_count": "{count} preset | {count} presets",
     "add_preset": "Add Preset",
     "preset_title": "Preset {index}",
     "preset_hint": "Use presets for different composition lenses like minimum, relaxed, or optimized group setups.",
@@ -178,7 +184,7 @@
   "progress": {
     "title": "Progress Tracking",
     "subtitle": "Define the milestones groups can report when they finish an activity.",
-    "milestones_count": "{count} milestones",
+    "milestones_count": "{count} milestone | {count} milestones",
     "add_milestone": "Add Milestone",
     "milestone_title": "Milestone {index}",
     "milestone_hint": "Use one milestone per boss, phase, or checkpoint you want to track later.",
@@ -205,7 +211,7 @@
   "prog_points": {
     "title": "Prog Points",
     "subtitle": "Define simpler progress checkpoints that can be referenced by activity instances and future statistics.",
-    "count": "{count} prog points",
+    "count": "{count} prog point | {count} prog points",
     "add": "Add Prog Point",
     "item_title": "Prog Point {index}",
     "item_hint": "Use these for named progression checkpoints like bridges, puzzle, or cleanup stages.",
@@ -221,7 +227,7 @@
     "empty_description": "Add prog points if this activity type needs named checkpoints beyond FF Logs milestone mapping."
   },
   "schema": {
-    "fields_count": "{count} fields",
+    "fields_count": "{count} field | {count} fields",
     "add_field": "Add Field",
     "field_title": "Field {index}",
     "field_hint": "Use stable keys and translated labels so this schema can power multiple UIs.",

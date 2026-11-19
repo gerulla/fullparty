@@ -18,7 +18,7 @@ export type ActivityCompletionSummaryMilestone = {
 
 export type ActivityCompletionSummary = {
 	completedAt: string | null
-	sourceLabel: string
+	sourceLabel: string | null
 	furthestPointLabel: string | null
 	bestProgressPercent: number | null
 	progressLinkUrl: string | null

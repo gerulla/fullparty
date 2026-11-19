@@ -10,8 +10,8 @@
     "statuses": {
         "draft": "下書き",
         "scheduled": "予定済み",
-        "assigned": "割り当て済み",
-        "upcoming": "予定",
+        "assigned": "編成公開済み",
+        "upcoming": "まもなく開始",
         "ongoing": "進行中",
         "complete": "完了",
         "cancelled": "キャンセル"
@@ -347,7 +347,7 @@
                 }
             },
             "progression": {
-                "title": "記録済み進行度",
+                "title": "ランの結果",
                 "subtitle": "この完了済みランに保存された最終進捗結果です。",
                 "completed_at": "完了日時",
                 "source": "記録方法",
@@ -627,12 +627,30 @@
         }
     },
     "overview": {
+        "host_note": "主催者からのメモ",
+        "roster_capacity": "{assigned} / {total} 枠確定",
+        "hide_roster": "編成を閉じる",
+        "participation": {
+            "your_application": "あなたの応募",
+            "your_slot": "あなたの編成枠",
+            "no_placement": "現在の割り当てなし",
+            "pending_count": "承認待ちの応募 {count} 件",
+            "guest_welcome": "ゲスト応募可",
+            "choose_slot": "参加枠を選ぶ",
+            "view_application": "応募内容を見る"
+        },
         "title": "ラン概要",
         "subtitle": "{group} がこの {type} ランを共有しました。",
         "description": "これは参加者向けのラン概要と応募フローです。",
         "cancelled_alert": {
             "title": "このランはキャンセルされました",
             "description": "このランはアーカイブ済みで、応募は受け付けていません。"
+        },
+        "complete_alert": {
+            "title": "このランは終了しました",
+            "description": "今回のランの記録は以下で確認できます。",
+            "no_results": "このランの結果は記録されていません。",
+            "preview_note": "終盤はマーカーのおかげで安定して動けました。次回も同じ配置でいきましょう。"
         },
         "open_application": "ここから応募",
         "go_to_management": "管理画面へ",
@@ -660,6 +678,21 @@
             "no_min_item_level": "最低なし"
         },
         "board": {
+            "view_options": "表示オプション",
+            "view_hints": {
+                "progress": "各プレイヤーの進行度で枠を色分けします。",
+                "dps": "近接・遠隔DPSの色分けを簡略化します。",
+                "parties": "パーティD・E・Fを1・2・3と表示します。",
+                "composition": "必要なジョブを強調し、不足しているジョブを表示します。"
+            },
+            "composition": {
+                "label": "編成",
+                "none": "なし",
+                "matched": "必要数に含まれる枠",
+                "extra": "必要数を超える枠",
+                "neutral": "編成条件の対象外",
+                "missing": "不足している条件"
+            },
             "designation_legend": "編成アイコン",
             "title": "ロスターボード",
             "subtitle": "メンバーが現在の編成をすばやく確認できるよう、パーティを横並びで表示します。",
@@ -686,7 +719,9 @@
             "no_slot": "この行にスロットはありません",
             "bench_title": "ベンチ",
             "bench_subtitle": "補欠、待機、予備枠はここに表示されます。",
-            "bench_count": "ベンチ枠 {count}"
+            "bench_count": "ベンチ枠 {count}",
+            "no_bench_slots": "この募集にはベンチ枠がありません。",
+            "no_fill_in_slots": "補充枠はまだありません。"
         },
         "self_signup": {
             "alerts": {

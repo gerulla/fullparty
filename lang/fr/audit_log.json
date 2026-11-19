@@ -16,6 +16,8 @@
     "false": "Faux"
   },
   "filters": {
+    "search_group": "Rechercher un groupe…",
+    "group_chip": "Groupe : {name}",
     "search_logs": "Rechercher dans le journal…",
     "all_runs": "Toutes les sorties",
     "more": "Plus de filtres",
@@ -100,6 +102,8 @@
     "new_value": "Nouveau"
   },
   "details": {
+    "scope": "Périmètre",
+    "subject": "Élément concerné",
     "resource": "Ressource",
     "view_resource": "Voir la ressource",
     "view_collection": "Voir la collection",
@@ -179,6 +183,16 @@
     }
   },
   "activity": {
+    "moderation": {
+      "claim": "a pris en charge un dossier de modération",
+      "hide": "a masqué un contenu signalé",
+      "restore": "a rétabli un contenu signalé",
+      "ban": "a banni un compte signalé",
+      "unban": "a levé le bannissement d’un compte",
+      "dismiss": "a classé un signalement sans suite",
+      "reopen": "a rouvert un dossier de modération",
+      "feedback_sent": "a envoyé une réponse aux auteurs du signalement"
+    },
     "user": {
       "registered": "a enregistré un compte.",
       "logged_in": "s'est connecté.",
@@ -544,6 +558,16 @@
     "previous_status": "Statut de vérification précédent"
   },
   "events": {
+    "moderation": {
+      "claim": "Dossier de modération pris en charge",
+      "hide": "Contenu signalé masqué",
+      "restore": "Contenu signalé rétabli",
+      "ban": "Compte signalé banni",
+      "unban": "Bannissement de compte levé",
+      "dismiss": "Signalement classé sans suite",
+      "reopen": "Dossier de modération rouvert",
+      "feedback_sent": "Réponse envoyée aux auteurs du signalement"
+    },
     "user": {
       "registered": "Utilisateur inscrit",
       "logged_in": "Utilisateur connecté",

@@ -7,6 +7,8 @@ use Illuminate\Support\Str;
 
 final class AuditValuePresenter
 {
+    public const SENSITIVE_FRAGMENTS = ['token', 'secret', 'password', 'access_key', 'credential'];
+
     public function label(string $key): string
     {
         $translation = 'audit_log.fields.'.$key;
@@ -89,6 +91,6 @@ final class AuditValuePresenter
 
     public function isSensitive(string $key): bool
     {
-        return (bool) preg_match('/(?:token|secret|password|access_key|credential)/i', $key);
+        return Str::contains(strtolower($key), self::SENSITIVE_FRAGMENTS);
     }
 }

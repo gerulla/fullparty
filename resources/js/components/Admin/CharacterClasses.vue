@@ -146,18 +146,18 @@ const getRoleLabel = (role: string) => {
 </script>
 
 <template>
-	<UCard class="w-full dark:bg-elevated/25">
+	<UCard class="w-full min-w-0">
 		<template #header>
-			<div class="flex flex-row items-center justify-between">
-				<div class="flex flex-row items-center font-semibold text-md gap-2">
-					<UIcon name="i-lucide-swords" size="22" />
-					<p>{{ t('admin.character_classes.section_title') }}</p>
+			<div class="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+				<div class="flex min-w-0 items-center gap-2 font-semibold text-highlighted">
+					<UIcon name="i-lucide-swords" class="size-5 shrink-0 text-primary" />
+					<h2>{{ t('admin.character_classes.section_title') }}</h2>
 					<UBadge :label="t('admin.character_classes.section_badge', { count: characterClasses.length })" color="neutral" variant="subtle" />
 				</div>
-				<div class="flex items-center gap-2">
+				<div class="flex flex-wrap items-center gap-2">
 					<UInput
 						v-model="globalFilter"
-						class="w-72"
+						class="w-full sm:w-64"
 						icon="i-lucide-search"
 						:placeholder="t('admin.character_classes.search_placeholder')"
 					/>
@@ -174,7 +174,7 @@ const getRoleLabel = (role: string) => {
 		</template>
 
 		<div class="flex flex-col gap-4">
-			<div :class="shouldFixTableHeight() ? 'h-[28rem] overflow-auto' : 'overflow-auto'">
+			<div :class="shouldFixTableHeight() ? 'max-h-[28rem] overflow-auto' : 'overflow-auto'">
 				<UTable
 					ref="table"
 					v-model:pagination="pagination"
@@ -202,9 +202,9 @@ const getRoleLabel = (role: string) => {
 								v-if="row.original.icon_url"
 								:src="row.original.icon_url"
 								:alt="t('general.image_alt.icon', { name: row.original.name })"
-								class="h-8 w-8 rounded-sm object-contain"
+								class="h-8 w-8 rounded-md object-contain"
 							>
-							<span v-else class="text-sm text-gray-600 dark:text-gray-400">
+							<span v-else class="text-sm text-muted">
 								{{ t('admin.character_classes.table.missing_icon') }}
 							</span>
 						</div>
@@ -216,9 +216,9 @@ const getRoleLabel = (role: string) => {
 								v-if="row.original.flaticon_url"
 								:src="row.original.flaticon_url"
 								:alt="t('general.image_alt.flat_icon', { name: row.original.name })"
-								class="h-8 w-8 rounded-sm object-contain"
+								class="h-8 w-8 rounded-md object-contain"
 							>
-							<span v-else class="text-sm text-gray-600 dark:text-gray-400">
+							<span v-else class="text-sm text-muted">
 								{{ t('admin.character_classes.table.missing_flaticon') }}
 							</span>
 						</div>
@@ -229,12 +229,14 @@ const getRoleLabel = (role: string) => {
 							<UButton
 								@click="openEditModal(row)"
 								icon="i-lucide-pencil"
+								:aria-label="t('general.edit')"
 								color="neutral"
 								variant="ghost"
 							/>
 							<UButton
 								@click="openDeleteModal(row)"
 								icon="i-lucide-trash-2"
+								:aria-label="t('general.delete')"
 								color="error"
 								variant="ghost"
 							/>
@@ -243,8 +245,9 @@ const getRoleLabel = (role: string) => {
 				</UTable>
 			</div>
 
-			<div class="flex justify-end border-t border-default pt-4 px-4">
+			<div class="flex justify-center border-t border-default pt-4 sm:justify-end">
 				<UPagination
+					:sibling-count="1"
 					:page="(table?.tableApi?.getState().pagination.pageIndex || 0) + 1"
 					:items-per-page="table?.tableApi?.getState().pagination.pageSize"
 					:total="table?.tableApi?.getFilteredRowModel().rows.length"
@@ -258,12 +261,11 @@ const getRoleLabel = (role: string) => {
 		v-model:open="isCreateModalOpen"
 		:title="t('admin.character_classes.create_modal.title')"
 		:description="t('admin.character_classes.create_modal.subtitle')"
-		:ui="{ content: 'rounded-sm', header: 'border-0'}"
 	>
 		<template #body>
 			<form @submit.prevent="submitCreate" class="w-full flex flex-col gap-4">
-				<div class="w-full flex flex-row items-start justify-evenly gap-4">
-					<UFormField :label="t('admin.character_classes.fields.name.label')" class="w-3/5" required>
+				<div class="grid min-w-0 gap-4 sm:grid-cols-2">
+					<UFormField :label="t('admin.character_classes.fields.name.label')" class="min-w-0" required>
 						<UInput
 							v-model="createForm.name"
 							:placeholder="t('admin.character_classes.fields.name.placeholder')"
@@ -272,7 +274,7 @@ const getRoleLabel = (role: string) => {
 						/>
 					</UFormField>
 
-					<UFormField :label="t('admin.character_classes.fields.shorthand.label')" class="w-2/5" required>
+					<UFormField :label="t('admin.character_classes.fields.shorthand.label')" class="min-w-0" required>
 						<UInput
 							v-model="createForm.shorthand"
 							:placeholder="t('admin.character_classes.fields.shorthand.placeholder')"
@@ -292,8 +294,8 @@ const getRoleLabel = (role: string) => {
 					/>
 				</UFormField>
 
-				<div class="w-full flex flex-row items-start justify-evenly gap-4">
-					<UFormField :label="t('admin.character_classes.fields.icon_url.label')" class="w-1/2">
+				<div class="grid min-w-0 gap-4 sm:grid-cols-2">
+					<UFormField :label="t('admin.character_classes.fields.icon_url.label')" class="min-w-0">
 						<UInput
 							v-model="createForm.icon_url"
 							:placeholder="t('admin.character_classes.fields.icon_url.placeholder')"
@@ -302,7 +304,7 @@ const getRoleLabel = (role: string) => {
 						/>
 					</UFormField>
 
-					<UFormField :label="t('admin.character_classes.fields.flaticon_url.label')" class="w-1/2">
+					<UFormField :label="t('admin.character_classes.fields.flaticon_url.label')" class="min-w-0">
 						<UInput
 							v-model="createForm.flaticon_url"
 							:placeholder="t('admin.character_classes.fields.flaticon_url.placeholder')"
@@ -334,12 +336,11 @@ const getRoleLabel = (role: string) => {
 		v-model:open="isEditModalOpen"
 		:title="t('admin.character_classes.edit_modal.title')"
 		:description="t('admin.character_classes.edit_modal.subtitle', { name: editForm.name })"
-		:ui="{ content: 'rounded-sm', header: 'border-0'}"
 	>
 		<template #body>
 			<form @submit.prevent="submitEdit" class="w-full flex flex-col gap-4">
-				<div class="w-full flex flex-row items-start justify-evenly gap-4">
-					<UFormField :label="t('admin.character_classes.fields.name.label')" class="w-3/5" required>
+				<div class="grid min-w-0 gap-4 sm:grid-cols-2">
+					<UFormField :label="t('admin.character_classes.fields.name.label')" class="min-w-0" required>
 						<UInput
 							v-model="editForm.name"
 							:placeholder="t('admin.character_classes.fields.name.placeholder')"
@@ -348,7 +349,7 @@ const getRoleLabel = (role: string) => {
 						/>
 					</UFormField>
 
-					<UFormField :label="t('admin.character_classes.fields.shorthand.label')" class="w-2/5" required>
+					<UFormField :label="t('admin.character_classes.fields.shorthand.label')" class="min-w-0" required>
 						<UInput
 							v-model="editForm.shorthand"
 							:placeholder="t('admin.character_classes.fields.shorthand.placeholder')"
@@ -368,8 +369,8 @@ const getRoleLabel = (role: string) => {
 					/>
 				</UFormField>
 
-				<div class="w-full flex flex-row items-start justify-evenly gap-4">
-					<UFormField :label="t('admin.character_classes.fields.icon_url.label')" class="w-1/2">
+				<div class="grid min-w-0 gap-4 sm:grid-cols-2">
+					<UFormField :label="t('admin.character_classes.fields.icon_url.label')" class="min-w-0">
 						<UInput
 							v-model="editForm.icon_url"
 							:placeholder="t('admin.character_classes.fields.icon_url.placeholder')"
@@ -378,7 +379,7 @@ const getRoleLabel = (role: string) => {
 						/>
 					</UFormField>
 
-					<UFormField :label="t('admin.character_classes.fields.flaticon_url.label')" class="w-1/2">
+					<UFormField :label="t('admin.character_classes.fields.flaticon_url.label')" class="min-w-0">
 						<UInput
 							v-model="editForm.flaticon_url"
 							:placeholder="t('admin.character_classes.fields.flaticon_url.placeholder')"
@@ -411,11 +412,10 @@ const getRoleLabel = (role: string) => {
 		v-if="deletingClass"
 		:title="t('admin.character_classes.delete_modal.title', { name: deletingClass.original.name ?? '' })"
 		:description="t('admin.character_classes.delete_modal.subtitle', { name: deletingClass.original.name ?? '' })"
-		:ui="{ content: 'rounded-sm', header: 'border-0'}"
 	>
 		<template #body>
 			<div class="flex flex-col gap-4">
-				<p class="text-sm text-red-600 dark:text-red-400">
+				<p class="text-sm text-error">
 					{{ t('admin.character_classes.delete_modal.warning') }}
 				</p>
 				<div class="flex gap-2 justify-end mt-4">

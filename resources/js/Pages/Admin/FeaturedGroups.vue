@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import PageHeader from "@/components/PageHeader.vue";
+import AdminPageHeader from "@/components/Admin/AdminPageHeader.vue";
 // @ts-ignore
 import { useConfirmationModal } from "@/composables/useConfirmationModal";
-import { useForm, usePage } from "@inertiajs/vue3";
+import { Head, useForm, usePage } from "@inertiajs/vue3";
 import { useToast } from "@nuxt/ui/composables";
 import { computed, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
@@ -193,29 +193,29 @@ watch(
 </script>
 
 <template>
-	<div class="w-full">
-		<PageHeader
+	<Head :title="t('admin.featured_groups.title')" />
+	<div class="min-w-0 space-y-6">
+		<AdminPageHeader
 			:title="t('admin.featured_groups.title')"
 			:subtitle="t('admin.featured_groups.subtitle')"
 		>
 			<UBadge
-				color="warning"
+				color="primary"
 				variant="subtle"
-				icon="i-lucide-shield"
+				icon="i-lucide-shield-check"
 				:label="t('admin.featured_groups.admin_only')"
 			/>
-		</PageHeader>
+		</AdminPageHeader>
 
 		<UAlert
-			class="mt-6"
 			color="info"
 			variant="soft"
 			icon="i-lucide-info"
 			:description="t('admin.featured_groups.eligibility_hint')"
 		/>
 
-		<div class="mt-6 grid grid-cols-1 gap-6 xl:grid-cols-[25rem_minmax(0,1fr)]">
-			<UCard class="dark:bg-elevated/25">
+		<div class="grid items-start gap-5 xl:grid-cols-[minmax(17rem,1fr)_minmax(0,2fr)]">
+			<UCard>
 				<template #header>
 					<div class="space-y-1">
 						<h2 class="text-base font-semibold text-highlighted">
@@ -287,24 +287,24 @@ watch(
 				</form>
 			</UCard>
 
-			<div class="space-y-4">
+			<div class="min-w-0 space-y-4">
 				<UCard
 					v-for="featuredGroup in featuredGroups"
 					:key="featuredGroup.id"
-					class="overflow-hidden dark:bg-elevated/25"
+					class="min-w-0"
 				>
-					<div class="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+					<div class="flex flex-col gap-4">
 						<div class="min-w-0 flex-1">
 							<div class="flex min-w-0 gap-4">
 								<img
 									v-if="featuredGroup.group?.banner_image_url"
 									:src="featuredGroup.group.banner_image_url"
-									class="hidden h-24 w-36 border border-default object-cover md:block"
+									class="size-12 shrink-0 rounded-xl object-cover sm:h-20 sm:w-24"
 									alt=""
 								>
-								<div class="min-w-0 space-y-3">
+								<div class="min-w-0 flex-1 space-y-3">
 									<div class="flex flex-wrap items-center gap-2">
-										<h2 class="truncate text-lg font-semibold text-highlighted">
+										<h2 class="break-words text-lg font-semibold text-highlighted">
 											{{ featuredGroup.group?.name ?? `#${featuredGroup.group_id}` }}
 										</h2>
 										<UBadge
@@ -323,7 +323,7 @@ watch(
 										{{ featuredGroup.group?.slug }} - {{ featuredGroup.group?.datacenter }}
 									</p>
 
-									<div class="grid grid-cols-1 gap-3 text-sm text-muted md:grid-cols-2">
+									<div class="grid gap-3 text-sm text-muted sm:grid-cols-2">
 										<div>
 											<p class="text-xs uppercase tracking-wide text-muted">
 												{{ t("admin.featured_groups.table.window") }}
@@ -345,7 +345,7 @@ watch(
 							</div>
 						</div>
 
-						<div class="flex shrink-0 flex-wrap gap-2">
+						<div class="flex flex-wrap gap-2 border-t border-default pt-3 sm:justify-end">
 							<UButton
 								color="neutral"
 								variant="soft"
@@ -364,7 +364,7 @@ watch(
 					</div>
 				</UCard>
 
-				<UCard v-if="featuredGroups.length === 0" class="dark:bg-elevated/25">
+				<UCard v-if="featuredGroups.length === 0">
 					<div class="py-12 text-center text-sm text-muted">
 						{{ t("admin.featured_groups.empty") }}
 					</div>

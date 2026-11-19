@@ -75,6 +75,7 @@ export type AuditLogFilters = {
 	beforeDate: string
 	afterDate: string
 	category?: string
+	scope?: string
 	timezone?: string
 }
 

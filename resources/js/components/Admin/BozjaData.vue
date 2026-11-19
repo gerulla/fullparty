@@ -218,12 +218,12 @@ const deleteItem = async (item: BozjaItemRecord) => {
 </script>
 
 <template>
-	<UCard class="w-full dark:bg-elevated/25">
+	<UCard class="w-full min-w-0">
 		<template #header>
 			<div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
 				<div class="flex items-center gap-3">
-					<div class="flex size-10 items-center justify-center border border-default bg-muted/30">
-						<UIcon name="i-lucide-package-open" class="size-5 text-brand-300" />
+					<div class="admin-inset flex size-10 shrink-0 items-center justify-center">
+						<UIcon name="i-lucide-package-open" class="size-5 text-primary" />
 					</div>
 					<div>
 						<div class="flex items-center gap-2">
@@ -241,7 +241,7 @@ const deleteItem = async (item: BozjaItemRecord) => {
 			</div>
 		</template>
 
-		<UTabs v-model="selectedCategory" :items="categoryTabs" :content="false" variant="link" class="mb-4 w-full" />
+		<UTabs v-model="selectedCategory" :items="categoryTabs" :content="false" variant="link" class="mb-4 w-full" :ui="{ list: 'max-w-full justify-start overflow-x-auto', trigger: 'shrink-0 grow-0' }" />
 
 		<UAlert
 			v-if="filteredItems.length === 0"
@@ -252,7 +252,7 @@ const deleteItem = async (item: BozjaItemRecord) => {
 			:description="t('admin.bozja_data.empty.description')"
 		/>
 
-		<div v-else class="overflow-auto">
+		<div v-else class="min-w-0">
 			<UTable
 				v-model:pagination="pagination"
 				:data="filteredItems"
@@ -262,7 +262,7 @@ const deleteItem = async (item: BozjaItemRecord) => {
 			>
 				<template #name-cell="{ row }">
 					<div class="flex min-w-64 items-center gap-3">
-						<div class="flex size-11 shrink-0 items-center justify-center border border-default bg-muted/30">
+						<div class="flex size-11 shrink-0 items-center justify-center rounded-lg bg-elevation-1 dark:bg-elevation-3">
 							<img v-if="row.original.icon_url" :src="row.original.icon_url" :alt="displayName(row.original)" class="size-9 object-contain">
 							<UIcon v-else name="i-lucide-package" class="size-5 text-muted" />
 						</div>
@@ -299,6 +299,7 @@ const deleteItem = async (item: BozjaItemRecord) => {
 
 			<div class="mt-4 flex justify-end border-t border-default pt-4">
 				<UPagination
+					:sibling-count="1"
 					:page="pagination.pageIndex + 1"
 					:items-per-page="pagination.pageSize"
 					:total="filteredItems.length"
@@ -312,7 +313,7 @@ const deleteItem = async (item: BozjaItemRecord) => {
 		v-model:open="isModalOpen"
 		:title="t(editingItem ? 'admin.bozja_data.edit_modal.title' : 'admin.bozja_data.create_modal.title')"
 		:description="t(editingItem ? 'admin.bozja_data.edit_modal.description' : 'admin.bozja_data.create_modal.description')"
-		:ui="{ content: 'max-w-5xl rounded-sm', header: 'border-0' }"
+		:ui="{ content: 'max-w-5xl' }"
 	>
 		<template #body>
 			<form class="flex flex-col gap-5" @submit.prevent="submit">
@@ -327,6 +328,7 @@ const deleteItem = async (item: BozjaItemRecord) => {
 				</div>
 
 				<LocalizedTextFields
+					rounded
 					v-model="form.name"
 					:locales="locales"
 					:label="t('admin.bozja_data.fields.name')"
@@ -334,6 +336,7 @@ const deleteItem = async (item: BozjaItemRecord) => {
 				/>
 
 				<LocalizedTextFields
+					rounded
 					v-model="form.description"
 					:locales="locales"
 					:label="t('admin.bozja_data.fields.description')"
@@ -355,7 +358,7 @@ const deleteItem = async (item: BozjaItemRecord) => {
 
 				<div class="grid gap-4 sm:grid-cols-[minmax(0,1fr)_12rem]">
 					<UFormField :label="t('admin.bozja_data.fields.icon')" :description="t('admin.bozja_data.fields.icon_description')" :error="form.errors.icon">
-						<label class="file-upload-field">
+						<label class="flex min-h-10 min-w-0 cursor-pointer items-center gap-2 rounded-lg border border-dashed border-default px-3 py-2 text-default transition-colors hover:bg-elevation-2 focus-within:ring-2 focus-within:ring-primary dark:hover:bg-elevation-4">
 							<UIcon name="i-lucide-upload" size="16" />
 							<span class="truncate text-sm font-medium">{{ form.icon?.name || t('admin.bozja_data.fields.icon_placeholder') }}</span>
 							<input class="sr-only" type="file" accept="image/*" @change="updateIcon">

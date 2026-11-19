@@ -229,6 +229,26 @@ class ResourceReaderService
         return $this->detail($resource, $request);
     }
 
+    public function holsterGuideUrl(Group $group, BozjaHolster $holster, ?User $user): ?string
+    {
+        $guide = $holster->guide;
+        $hasContent = is_array($guide)
+            ? filled($this->documents->text($guide)) || $this->documents->imageUrls($guide) !== []
+            : filled($guide);
+        if (! $hasContent) {
+            return null;
+        }
+
+        $public = ! $this->policy->library($user, $group);
+        if (($public && ! $this->libraries->isPublic($group)) || ! $this->query($group, $user, $public)->where('holster_id', $holster->id)->exists()) {
+            return null;
+        }
+
+        return route($public ? 'public-resources.holsters.show' : 'groups.dashboard.resources.holsters.show', [
+            'group' => $group, 'holster' => $holster,
+        ], absolute: $public);
+    }
+
     private function related(Group $group, ?int $collectionId, Request $request, bool $public, ?int $resourceId = null): array
     {
         $resources = $this->query($group, $public ? null : $request->user(), $public)->where('collection_id', $collectionId)

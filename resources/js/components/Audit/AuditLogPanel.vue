@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import type { AuditLogFilters, AuditLogFilterOptions, AuditLogRowRecord } from '@/Types/Audit'
-import GroupAuditLogFilters from '@/components/Audit/GroupAuditLogFilters.vue'
-import GroupAuditLogEntry from '@/components/Audit/GroupAuditLogEntry.vue'
+import AuditLogFiltersPanel from './AuditLogFiltersPanel.vue'
+import AuditLogEntry from './AuditLogEntry.vue'
 import AuditEventDetails from '@/components/Audit/AuditEventDetails.vue'
 import { useAuditLogFeed } from '@/composables/useAuditLogFeed'
-import { useGroupAuditEvent } from '@/composables/useGroupAuditEvent'
+import { useAuditEvent } from '@/composables/useAuditEvent'
 import { useTimeDisplayMode } from '@/composables/useTimeDisplayMode'
 import { useElementSize, useMediaQuery } from '@vueuse/core'
 import { computed, ref, watch } from 'vue'
@@ -12,7 +12,7 @@ import { useI18n } from 'vue-i18n'
 import { route } from 'ziggy-js'
 
 const props = defineProps<{
-    group: { slug: string }
+    group?: { slug: string }
     auditLogs?: AuditLogRowRecord[]
     nextCursor?: string | null
     selectedFilters?: Partial<AuditLogFilters>
@@ -25,8 +25,10 @@ const hasInitialDateFilter = () => Boolean(props.selectedFilters?.afterDate || p
 const initialTimezone = props.auditLogs !== undefined && hasInitialDateFilter()
     ? (props.selectedFilters?.timezone || 'UTC')
     : timezone.value
-const { filters, filterOptions, rows, hasMore, loading, failed, loadMore, retry } = useAuditLogFeed(
-    () => route('groups.dashboard.audit-log.data', { group: props.group.slug, locale: locale.value }),
+const { filters, filterOptions, rows, hasMore, loading, failed, sentinel, loadMore, retry } = useAuditLogFeed(
+    () => props.group
+        ? route('groups.dashboard.audit-log.data', { group: props.group.slug, locale: locale.value })
+        : route('admin.audit-log', { locale: locale.value }),
     () => props.auditLogs === undefined ? undefined : {
         auditLogs: props.auditLogs,
         nextCursor: props.nextCursor ?? null,
@@ -45,7 +47,15 @@ watch([timezone, () => props.auditLogs], ([value, logs], previous) => {
     }
 }, { immediate: true, flush: 'post' })
 const { selectedId, selectedRow, event, loading: detailLoading, failed: detailFailed, copied, select, close, reload, copyLink } =
-    useGroupAuditEvent(() => props.group.slug, () => rows.value)
+    useAuditEvent(
+        id => props.group
+            ? route('groups.dashboard.audit-log.show', { group: props.group.slug, auditLog: id, locale: locale.value })
+            : route('admin.audit-log.show', { auditLog: id, locale: locale.value }),
+        () => props.group
+            ? route('groups.dashboard.settings', { group: props.group.slug, locale: locale.value, section: 'audit_log' })
+            : route('admin.audit-log', { locale: locale.value }),
+        () => rows.value,
+    )
 const panel = ref<HTMLElement | null>(null)
 const { width } = useElementSize(panel)
 const desktop = useMediaQuery('(min-width: 1280px)')
@@ -82,7 +92,7 @@ const days = computed(() => {
             <div class="grid gap-3 @xl:grid-cols-3"><USkeleton v-for="index in 3" :key="index" class="h-10 w-full rounded-lg" /></div>
             <USkeleton class="h-9 w-2/3 rounded-lg" />
         </div>
-        <GroupAuditLogFilters v-if="filterOptions" v-model="filters" :options="filterOptions" />
+        <AuditLogFiltersPanel v-if="filterOptions" v-model="filters" :options="filterOptions" :site-wide="!group" />
 
         <div class="grid min-w-0 items-start gap-5" :class="selectedId !== null && dockDetails ? 'grid-cols-[minmax(0,1fr)_24rem]' : 'grid-cols-1'">
             <div class="min-w-0 space-y-4" :aria-busy="loading">
@@ -93,7 +103,7 @@ const days = computed(() => {
                         <span class="text-xs text-muted">{{ t('audit_log.list.day_count', { count: day.rows.length }) }}</span>
                     </h3>
                     <div class="divide-y divide-default">
-                        <GroupAuditLogEntry v-for="row in day.rows" :key="row.id" :row="row" :selected="selectedId === row.id" @select="select($event.id)" />
+                        <AuditLogEntry v-for="row in day.rows" :key="row.id" :row="row" :selected="selectedId === row.id" :show-scope="!group" @select="select($event.id)" />
                     </div>
                 </section>
                 <div v-if="rows.length === 0 && !loading && !failed" class="rounded-lg border border-default bg-elevated/10 px-4 py-12 text-center">
@@ -113,6 +123,7 @@ const days = computed(() => {
                     <UButton icon="i-lucide-refresh-cw" color="neutral" variant="ghost" :label="t('audit_log.list.retry')" @click="retry" />
                 </div>
                 <div v-if="hasMore && !loading && !failed" class="flex justify-center pt-2">
+                    <span v-if="!group" ref="sentinel" class="w-px" aria-hidden="true" />
                     <UButton color="brand" variant="outline" class="rounded-lg" icon="i-lucide-chevron-down" :label="t('audit_log.list.loading_more')" @click="loadMore" />
                 </div>
                 <p v-if="rows.length && !hasMore && !loading && !failed" class="py-2 text-center text-xs text-muted">{{ t('audit_log.list.end') }}</p>
@@ -120,7 +131,7 @@ const days = computed(() => {
 
             <aside v-if="selectedId !== null && dockDetails" class="sticky top-[calc(var(--ui-header-height)+1rem)] min-w-0 max-h-[calc(100dvh-var(--ui-header-height)-2rem)] overflow-y-auto rounded-lg border border-default bg-elevated/25"
                 :aria-label="t('audit_log.details.title')">
-                <AuditEventDetails :row="selectedRow" :event="event" :loading="detailLoading" :failed="detailFailed" :copied="copied"
+                <AuditEventDetails :row="selectedRow" :event="event" :loading="detailLoading" :failed="detailFailed" :copied="copied" :show-scope="!group"
                     @close="close" @retry="reload" @copy-link="copyLink" />
             </aside>
         </div>
@@ -128,7 +139,7 @@ const days = computed(() => {
         <UModal v-if="!dockDetails" v-model:open="modalOpen" :title="t('audit_log.details.title')"
             :ui="{ content: 'w-[calc(100vw-2rem)] max-w-2xl rounded-xl overflow-y-auto' }">
             <template #content>
-                <AuditEventDetails :row="selectedRow" :event="event" :loading="detailLoading" :failed="detailFailed" :copied="copied"
+                <AuditEventDetails :row="selectedRow" :event="event" :loading="detailLoading" :failed="detailFailed" :copied="copied" :show-scope="!group"
                     @close="close" @retry="reload" @copy-link="copyLink" />
             </template>
         </UModal>

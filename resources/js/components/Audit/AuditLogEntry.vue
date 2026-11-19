@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import type { AuditLogRowRecord } from '@/Types/Audit'
 import AuditEventSummary from './AuditEventSummary.vue'
+import AuditEventScope from './AuditEventScope.vue'
 import { auditCategoryIcons, auditSeverityStyle } from '@/utils/auditPresentation'
 import { useTimeDisplayMode } from '@/composables/useTimeDisplayMode'
 import { createDateTimeFormatter } from '@/utils/dateTimeFormat'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-const props = defineProps<{ row: AuditLogRowRecord; selected?: boolean }>()
+const props = defineProps<{ row: AuditLogRowRecord; selected?: boolean; showScope?: boolean }>()
 const emit = defineEmits<{ select: [row: AuditLogRowRecord] }>()
 const { t, te, locale } = useI18n()
 const { withDisplayTimeZone, isServerTime } = useTimeDisplayMode()
@@ -28,7 +29,8 @@ const timestamp = computed(() => createDateTimeFormatter(locale.value, withDispl
                 class="mt-0.5 size-5 shrink-0" :class="selected ? 'text-brand' : 'text-muted'" aria-hidden="true" />
             <span class="min-w-0 text-sm text-toned">
                 <AuditEventSummary :row="row" />
-                <UBadge v-if="row.category && !row.activity" color="neutral" variant="subtle" size="sm"
+                <span v-if="showScope && row.scope" class="mt-1 block"><AuditEventScope :scope="row.scope" /></span>
+                <UBadge v-else-if="row.category && !row.activity" color="neutral" variant="subtle" size="sm"
                     :icon="auditCategoryIcons[row.category]" class="ml-2 max-w-full rounded-full align-baseline whitespace-normal">
                     {{ t(`audit_log.categories.${row.category}`) }}
                 </UBadge>

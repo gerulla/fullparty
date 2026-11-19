@@ -22,6 +22,7 @@ import { provideDevelopmentPreviewMenu } from '@/composables/useDevelopmentPrevi
 useUiTheme('medas')
 provideDevelopmentPreviewMenu()
 
+defineProps<{ showSystemBanner?: boolean; fullBleed?: boolean }>()
 const page = usePage()
 const user = computed(() => page.props.auth?.user ?? null)
 const { currentUiLocale } = usePersistentLocale()
@@ -35,7 +36,6 @@ const dashboardGroup = computed<GroupDashboardHeaderGroup | null>(() =>
         ? page.props.group_dashboard as GroupDashboardHeaderGroup
         : null,
 )
-const isMobileGroup = computed(() => Boolean(dashboardGroup.value) && isMobile.value)
 const isResourceWorkspace = computed(() => page.component === 'Dashboard/Groups/Resources/Manage')
 const isGroupHomepage = computed(() => page.component === 'Dashboard/Groups/CommunityDashboard')
 </script>
@@ -43,10 +43,10 @@ const isGroupHomepage = computed(() => page.component === 'Dashboard/Groups/Comm
 <template>
     <UApp :locale="currentUiLocale" class="font-inter">
         <div class="flex min-h-dvh flex-col text-default font-inter">
-            <SystemBanner v-if="dashboardGroup && page.props.system_banner" :banner="page.props.system_banner" />
+            <SystemBanner v-if="(showSystemBanner || dashboardGroup || page.component.startsWith('Admin/')) && page.props.system_banner" :banner="page.props.system_banner" />
             <SearchableTopbar>
                 <template #leading>
-                    <GroupMobileNavigation v-if="isMobileGroup && dashboardGroup" :group="dashboardGroup" />
+                    <GroupMobileNavigation v-if="isMobile && dashboardGroup" :group="dashboardGroup" />
                 </template>
                 <template #context>
                     <GroupSwitcher v-if="dashboardGroup && !isMobile" :group="dashboardGroup" />
@@ -63,7 +63,7 @@ const isGroupHomepage = computed(() => page.component === 'Dashboard/Groups/Comm
             <AccountFlags v-if="user" />
 
             <main id="main-content" class="min-w-0 flex-1 bg-elevation-2 dark:bg-elevation-1"
-                :class="dashboardGroup ? 'p-0' : 'p-4 sm:p-6 lg:p-8'">
+                :class="dashboardGroup || fullBleed ? 'p-0' : 'p-4 sm:p-6 lg:p-8'">
                 <slot v-if="dashboardGroup" name="group-header" />
                 <div v-if="dashboardGroup" class="[&_[data-page-header]:first-child]:pt-0"
                     :class="isResourceWorkspace ? 'lg:flex lg:h-[calc(100dvh-var(--ui-header-height))] lg:flex-col lg:overflow-hidden' : isGroupHomepage ? '' : 'p-4 sm:p-6 lg:p-8'">

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Activity;
 use App\Models\BozjaHolster;
 use App\Models\BozjaItem;
 use App\Models\Group;
@@ -134,6 +135,37 @@ it('renders the current localized guide and quantified loadout on both reader su
         $this->get($url)->assertSee('<link rel="canonical" href="'.$url.'"', false);
     }
 })->with([true, false]);
+
+it('previews only the assigned run loadout and links to a readable nonempty guide', function () {
+    $run = Activity::factory()->for($this->group)->create(['status' => Activity::STATUS_SCHEDULED]);
+    $slot = $run->slots()->firstOrFail();
+    $slot->update(['assigned_character_id' => $run->organized_by_character_id]);
+    $refill = BozjaHolster::create(['group_id' => $this->group->id, 'parent_holster_id' => $this->holster->id, 'type' => 'refill', 'name' => ['en' => 'Assigned refill']]);
+    BozjaHolster::create(['group_id' => $this->group->id, 'parent_holster_id' => $this->holster->id, 'type' => 'refill', 'name' => ['en' => 'Other refill']]);
+    $field = $slot->fieldValues()->create([
+        'field_key' => 'assigned-holster', 'field_label' => ['en' => 'Holster'], 'field_type' => 'holster_pair',
+        'source' => 'bozja_holsters', 'value' => ['prepop_id' => $this->holster->id, 'refill_id' => $refill->id],
+    ]);
+    $url = fn (Activity $activity) => holster_internal_url('groups.activities.holster-loadout', ['group' => $this->group, 'activity' => $activity, 'field' => $field->id]);
+    $this->getJson($url($run))->assertOk()->assertJsonPath('prepop.name', 'Moonlit tank')
+        ->assertJsonCount(1, 'refills')->assertJsonPath('refills.0.id', $refill->id)
+        ->assertJsonPath('guide_url', $this->articleUrl)->assertJsonMissingPath('prepop.guide');
+
+    $resource = GroupResource::where('holster_id', $this->holster->id)->firstOrFail();
+    $resource->update(['access_level' => 'moderator']);
+    $this->getJson($url($run))->assertOk()->assertJsonPath('guide_url', null);
+    $this->actingAs($this->group->owner)->getJson($url($run))->assertOk()->assertJsonPath('guide_url',
+        route('groups.dashboard.resources.holsters.show', ['group' => $this->group, 'holster' => $this->holster], false));
+
+    $this->holster->update(['guide' => RichTextDocument::empty()]);
+    $field->update(['value' => ['key' => (string) $refill->id]]);
+    $this->getJson($url($run))->assertOk()->assertJsonPath('refills.0.id', $refill->id)->assertJsonPath('guide_url', null);
+
+    $otherRun = Activity::factory()->for($this->group)->create(['status' => Activity::STATUS_SCHEDULED]);
+    $this->getJson($url($otherRun))->assertNotFound();
+    $run->update(['is_public' => false]);
+    $this->actingAs(User::factory()->create())->getJson($url($run))->assertNotFound();
+});
 
 it('filters existing refill resources out of listings without modifying them and keeps old links working', function () {
     $refill = BozjaHolster::create(['group_id' => $this->group->id, 'parent_holster_id' => $this->holster->id, 'type' => 'refill', 'name' => ['en' => 'Legacy refill']]);

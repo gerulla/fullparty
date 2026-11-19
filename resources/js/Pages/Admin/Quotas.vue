@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import PageHeader from "@/components/PageHeader.vue";
+import AdminPageHeader from "@/components/Admin/AdminPageHeader.vue";
 import { useConfirmationModal } from "@/composables/useConfirmationModal";
 import { useForm } from "@inertiajs/vue3";
 import axios from "axios";
-import { computed, onMounted, ref, watch } from "vue";
+import { computed, nextTick, onMounted, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
 
 type QuotaDefinition = {
@@ -50,6 +50,7 @@ const props = defineProps<{
 const { t, locale } = useI18n();
 const toast = useToast();
 const confirmationModal = useConfirmationModal();
+const formHeading = ref<HTMLElement | null>(null);
 const editingId = ref<number | null>(null);
 const subjectSearch = ref("");
 const subjectOptions = ref<SubjectOption[]>([]);
@@ -128,6 +129,7 @@ const editOverride = (override: QuotaOverride) => {
 	form.reason = override.reason;
 	form.clearErrors();
 	subjectOptions.value = [{ id: override.subject_id, label: override.subject_label, description: null }];
+	void nextTick(() => formHeading.value?.focus());
 };
 
 const submit = () => {
@@ -206,15 +208,15 @@ onMounted(() => void loadSubjects());
 </script>
 
 <template>
-	<div class="w-full">
-		<PageHeader
+	<div class="min-w-0">
+		<AdminPageHeader
 			:title="t('admin.quotas.title')"
 			:subtitle="t('admin.quotas.subtitle')"
 		>
 			<UBadge color="primary" variant="subtle" icon="i-lucide-shield-check">
 				{{ t("admin.quotas.admin_only") }}
 			</UBadge>
-		</PageHeader>
+		</AdminPageHeader>
 
 		<UAlert
 			class="mt-4"
@@ -225,14 +227,14 @@ onMounted(() => void loadSubjects());
 			:description="t(`admin.quotas.mode.${modeIsObserve ? 'observe_description' : 'enforce_description'}`)"
 		/>
 
-		<section class="mt-6 border border-default bg-elevated/30">
-			<div class="border-b border-default px-4 py-3">
-				<h2 class="font-semibold text-highlighted">
+		<section class="admin-panel mt-6">
+			<div class="border-b border-default/60 px-4 py-4 sm:px-6">
+				<h2 ref="formHeading" tabindex="-1" class="scroll-mt-20 font-semibold text-highlighted">
 					{{ editingId === null ? t("admin.quotas.form.create_title") : t("admin.quotas.form.edit_title") }}
 				</h2>
 			</div>
 
-			<form class="grid gap-4 p-4 md:grid-cols-2 xl:grid-cols-4" @submit.prevent="submit">
+			<form class="grid min-w-0 gap-4 p-4 sm:p-6 md:grid-cols-2 2xl:grid-cols-4" @submit.prevent="submit">
 				<UFormField :label="t('admin.quotas.fields.scope')" :error="form.errors.subject_type" required>
 					<USelect v-model="form.subject_type" :items="scopeOptions" value-key="value" class="w-full" :disabled="editingId !== null" />
 				</UFormField>
@@ -262,12 +264,12 @@ onMounted(() => void loadSubjects());
 					<USelect v-model="form.quota_key" :items="quotaOptions" value-key="value" class="w-full" :disabled="editingId !== null" />
 				</UFormField>
 
-				<div class="grid grid-cols-[1fr_auto] gap-3">
+				<div class="grid grid-cols-[minmax(0,1fr)_auto] gap-3">
 					<UFormField :label="t('admin.quotas.fields.limit')" :error="form.errors.limit" :required="!form.is_unlimited">
 						<UInput v-model.number="form.limit" type="number" min="1" max="1000000" class="w-full" :disabled="form.is_unlimited" />
 					</UFormField>
 					<UFormField :label="t('admin.quotas.fields.unlimited')" :error="form.errors.is_unlimited">
-						<UToggle v-model="form.is_unlimited" class="mt-2" />
+						<USwitch v-model="form.is_unlimited" class="mt-2" />
 					</UFormField>
 				</div>
 
@@ -283,15 +285,15 @@ onMounted(() => void loadSubjects());
 					<UTextarea v-model="form.reason" :rows="2" class="w-full" :placeholder="t('admin.quotas.reason_placeholder')" />
 				</UFormField>
 
-				<div class="flex items-end justify-end gap-2 md:col-span-2 xl:col-span-4">
+				<div class="flex justify-end gap-2 border-t border-default/60 pt-4 md:col-span-2 2xl:col-span-4">
 					<UButton v-if="editingId !== null" type="button" color="neutral" variant="ghost" :label="t('general.cancel')" @click="resetForm" />
 					<UButton type="submit" icon="i-lucide-save" :label="t('general.save')" :loading="form.processing" />
 				</div>
 			</form>
 		</section>
 
-		<section class="mt-6">
-			<div class="mb-3 flex items-center justify-between border-b border-default pb-3">
+		<section class="admin-panel mt-6">
+			<div class="flex items-center justify-between gap-3 border-b border-default/60 p-4 sm:px-6">
 				<div>
 					<h2 class="font-semibold text-highlighted">{{ t("admin.quotas.overrides_title") }}</h2>
 					<p class="text-sm text-muted">{{ t("admin.quotas.overrides_description") }}</p>
@@ -299,40 +301,40 @@ onMounted(() => void loadSubjects());
 				<UBadge color="neutral" variant="subtle">{{ overrides.data.length }}</UBadge>
 			</div>
 
-			<div v-if="overrides.data.length" class="divide-y divide-default border border-default">
-				<div v-for="override in overrides.data" :key="override.id" class="grid gap-3 p-4 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)_auto] lg:items-center">
+			<div v-if="overrides.data.length" class="divide-y divide-default/60">
+				<div v-for="override in overrides.data" :key="override.id" class="grid gap-4 p-4 sm:px-6 xl:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)_auto] xl:items-center">
 					<div class="min-w-0">
 						<div class="flex flex-wrap items-center gap-2">
-							<p class="truncate font-semibold text-highlighted">{{ override.subject_label }}</p>
+							<p class="break-words font-semibold text-highlighted">{{ override.subject_label }}</p>
 							<UBadge color="neutral" variant="subtle">{{ t(`admin.quotas.scopes.${override.subject_type}`) }}</UBadge>
 						</div>
 						<p class="mt-1 text-sm text-toned">{{ override.quota_label }}</p>
-						<p class="mt-1 text-xs text-muted">{{ override.reason }}</p>
+						<p class="mt-1 break-words text-sm text-muted">{{ override.reason }}</p>
 					</div>
 
 					<div class="grid grid-cols-2 gap-3 text-sm">
 						<div>
-							<p class="text-xs uppercase text-muted">{{ t("admin.quotas.usage") }}</p>
+							<p class="text-xs font-medium text-muted">{{ t("admin.quotas.usage") }}</p>
 							<p class="font-semibold text-highlighted">
 								{{ override.usage ?? t("admin.quotas.contextual") }} / {{ override.is_unlimited ? t("admin.quotas.unlimited") : override.limit }}
 							</p>
 						</div>
 						<div>
-							<p class="text-xs uppercase text-muted">{{ t("admin.quotas.expiry") }}</p>
+							<p class="text-xs font-medium text-muted">{{ t("admin.quotas.expiry") }}</p>
 							<p class="text-toned">{{ formatDate(override.expires_at) }}</p>
 						</div>
 					</div>
 
-					<div class="flex gap-2 lg:justify-end">
+					<div class="flex flex-wrap gap-2 xl:justify-end">
 						<UButton color="neutral" variant="soft" icon="i-lucide-pencil" :label="t('general.edit')" @click="editOverride(override)" />
 						<UButton color="error" variant="soft" icon="i-lucide-trash-2" :label="t('general.delete')" @click="removeOverride(override)" />
 					</div>
 				</div>
 			</div>
 
-			<UAlert v-else color="neutral" variant="soft" icon="i-lucide-gauge" :title="t('admin.quotas.empty_title')" :description="t('admin.quotas.empty_description')" />
+			<UAlert v-else class="m-4" color="neutral" variant="soft" icon="i-lucide-gauge" :title="t('admin.quotas.empty_title')" :description="t('admin.quotas.empty_description')" />
 
-			<div v-if="overrides.links.length > 3" class="mt-4 flex flex-wrap justify-center gap-1">
+			<div v-if="overrides.links.length > 3" class="flex flex-wrap justify-center gap-1 border-t border-default/60 p-3">
 				<UButton
 					v-for="link in overrides.links"
 					:key="link.label"

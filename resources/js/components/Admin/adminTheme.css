@@ -1,0 +1,56 @@
+.admin-theme {
+    --ui-brand: var(--color-brand-700);
+    --ui-primary: var(--ui-brand);
+    --ui-bg: var(--ui-bg-elevation-1);
+    --ui-bg-muted: var(--ui-bg-elevation-2);
+    --ui-bg-elevated: var(--ui-bg-elevation-3);
+    --ui-bg-accented: var(--ui-bg-elevation-4);
+    --ui-border: var(--ui-bg-elevation-4);
+    --ui-border-muted: var(--ui-bg-elevation-3);
+    --ui-border-accented: var(--ui-bg-elevation-7);
+}
+
+.light .admin-theme {
+    --ui-warning: var(--ui-color-warning-700);
+    --ui-success: var(--ui-color-success-700);
+    --ui-info: var(--ui-color-info-700);
+    --ui-error: var(--ui-color-error-700);
+}
+
+.dark .admin-theme {
+    --ui-brand: var(--color-brand-400);
+    --ui-bg-elevated: var(--ui-bg-elevation-5);
+    --ui-bg-accented: var(--ui-bg-elevation-7);
+    --ui-border: var(--ui-bg-elevation-7);
+    --ui-border-muted: var(--ui-bg-elevation-5);
+    --ui-border-accented: var(--ui-bg-elevation-10);
+}
+
+@layer components {
+    .admin-panel, .admin-inset {
+        min-width: 0;
+        border: 1px solid var(--ui-border);
+        border-radius: 0.875rem;
+    }
+
+    .admin-panel {
+        background: var(--ui-bg-elevation-1);
+        box-shadow: 0 2px 6px -3px rgb(24 24 27 / 12%);
+    }
+
+    .admin-inset {
+        background: var(--ui-bg-elevation-2);
+        border-color: var(--ui-border-muted);
+        border-radius: 0.625rem;
+    }
+
+    .dark .admin-panel { background: var(--ui-bg-elevation-3); }
+    .dark .admin-inset { background: var(--ui-bg-elevation-4); }
+}
+
+.admin-dialog {
+    border-radius: 1rem;
+    background: var(--ui-bg-elevation-1);
+}
+
+.dark .admin-dialog { background: var(--ui-bg-elevation-3); }

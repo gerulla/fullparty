@@ -3,6 +3,7 @@ import type { LocalizedText } from "@/Types/Common"
 import type { ActivityProgressPoint } from "@/Types/ActivityCore"
 import type { ActivityProgressionMilestoneRecord } from "@/Types/ActivityProgression"
 import type { RunParticipationPermissions } from "@/Types/RunAccess"
+import type { RunApplicationStatus } from "@/Types/RunParticipation"
 
 export type PublicGroupSummary = {
 	id: number
@@ -12,6 +13,12 @@ export type PublicGroupSummary = {
 	features: {
 		calendar_sync_enabled: boolean
 	}
+}
+
+export type RunOverviewGroup = PublicGroupSummary & {
+	profile_picture_url: string | null
+	href: string | null
+	permissions?: { can_view_members: boolean }
 }
 
 export type AttendeeActivityType = {
@@ -75,4 +82,26 @@ export type AttendeeActivity = {
 
 export type ActivityOverviewPermissions = RunParticipationPermissions & {
 	can_manage: boolean
+}
+
+export type RunOverviewViewerParticipation = {
+	application: {
+		status: RunApplicationStatus
+		marked_missing: boolean
+		character_name: string | null
+		avatar_url: string | null
+		world: string | null
+		datacenter: string | null
+		can_edit: boolean
+		url: string | null
+		view_url: string | null
+	} | null
+	placement: {
+		slot_id: number
+		slot_kind: ActivitySlot['slot_kind']
+		group_label: LocalizedText
+		slot_label: LocalizedText
+		position_in_group: number | null
+		character_name: string | null
+	} | null
 }

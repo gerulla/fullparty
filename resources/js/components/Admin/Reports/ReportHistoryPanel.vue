@@ -17,7 +17,7 @@ const date = (value: string) => new Intl.DateTimeFormat(locale.value, { dateStyl
         </section>
         <section v-if="reviewCase.feedback.length" class="space-y-3">
             <h2 class="font-semibold">{{ t('reports.admin.feedback_sent') }}</h2>
-            <div v-for="entry in reviewCase.feedback" :key="entry.id" class="border border-default p-3 space-y-2 text-sm">
+            <div v-for="entry in reviewCase.feedback" :key="entry.id" class="admin-inset space-y-2 p-3 text-sm">
                 <UBadge color="neutral" variant="subtle">{{ t('reports.admin.audience_' + entry.audience) }}</UBadge>
                 <p class="whitespace-pre-wrap break-words">{{ t((entry.audience === 'owner' ? 'reports.owner_notice.' : 'reports.feedback.') + entry.template, { item: entry.item_title, message: entry.message ?? '' }) }}</p>
                 <p class="text-xs text-muted">{{ entry.recipient_count ? t('reports.admin.acknowledgements', { count: entry.acknowledged_count, total: entry.recipient_count }) : t('reports.admin.no_recipients') }} · {{ date(entry.created_at) }}</p>

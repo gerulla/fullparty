@@ -21,10 +21,10 @@ const STATUS_META: Record<ActivityStatus, ActivityStatusMeta> = {
 		dotClass: 'bg-brand',
 	},
 	upcoming: {
-		color: 'brand',
+		color: 'imminent',
 		icon: getRunStatusIcon('upcoming'),
-		borderClass: 'border-t-brand',
-		dotClass: 'bg-brand',
+		borderClass: 'border-t-imminent',
+		dotClass: 'bg-imminent',
 	},
 	ongoing: {
 		color: 'secondary',
@@ -45,6 +45,8 @@ const STATUS_META: Record<ActivityStatus, ActivityStatusMeta> = {
 		dotClass: 'bg-error',
 	},
 }
+
+export const activityStatuses = Object.keys(STATUS_META) as ActivityStatus[]
 
 const FALLBACK_META: ActivityStatusMeta = {
 	color: 'neutral',

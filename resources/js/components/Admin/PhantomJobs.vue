@@ -129,18 +129,18 @@ const shouldFixTableHeight = () => {
 </script>
 
 <template>
-	<UCard class="w-full dark:bg-elevated/25">
+	<UCard class="w-full min-w-0">
 		<template #header>
-			<div class="flex flex-row items-center justify-between">
-				<div class="flex flex-row items-center font-semibold text-md gap-2">
-					<UIcon name="i-lucide-ghost" size="22" />
-					<p>{{ t('admin.phantom_jobs.section_title') }}</p>
+			<div class="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+				<div class="flex min-w-0 items-center gap-2 font-semibold text-highlighted">
+					<UIcon name="i-lucide-ghost" class="size-5 shrink-0 text-primary" />
+					<h2>{{ t('admin.phantom_jobs.section_title') }}</h2>
 					<UBadge :label="t('admin.phantom_jobs.section_badge', { count: phantomJobs.length })" color="neutral" variant="subtle" />
 				</div>
-				<div class="flex items-center gap-2">
+				<div class="flex flex-wrap items-center gap-2">
 					<UInput
 						v-model="globalFilter"
-						class="w-72"
+						class="w-full sm:w-64"
 						icon="i-lucide-search"
 						:placeholder="t('admin.phantom_jobs.search_placeholder')"
 					/>
@@ -157,7 +157,7 @@ const shouldFixTableHeight = () => {
 		</template>
 
 		<div class="flex flex-col gap-4">
-			<div :class="shouldFixTableHeight() ? 'h-[28rem] overflow-auto' : 'overflow-auto'">
+			<div :class="shouldFixTableHeight() ? 'max-h-[28rem] overflow-auto' : 'overflow-auto'">
 				<UTable
 					ref="table"
 					v-model:pagination="pagination"
@@ -181,9 +181,9 @@ const shouldFixTableHeight = () => {
 								v-if="row.original.icon_url"
 								:src="row.original.icon_url"
 								:alt="t('general.image_alt.icon', { name: row.original.name })"
-								class="h-8 w-8 rounded-sm object-contain"
+								class="h-8 w-8 rounded-md object-contain"
 							>
-							<span v-else class="text-sm text-gray-600 dark:text-gray-400">
+							<span v-else class="text-sm text-muted">
 								{{ t('admin.phantom_jobs.table.missing_icon') }}
 							</span>
 						</div>
@@ -195,9 +195,9 @@ const shouldFixTableHeight = () => {
 								v-if="row.original.black_icon_url"
 								:src="row.original.black_icon_url"
 								:alt="t('general.image_alt.black_icon', { name: row.original.name })"
-								class="h-8 w-8 rounded-sm object-contain"
+								class="h-8 w-8 rounded-md object-contain"
 							>
-							<span v-else class="text-sm text-gray-600 dark:text-gray-400">
+							<span v-else class="text-sm text-muted">
 								{{ t('admin.phantom_jobs.table.missing_black_icon') }}
 							</span>
 						</div>
@@ -209,9 +209,9 @@ const shouldFixTableHeight = () => {
 								v-if="row.original.transparent_icon_url"
 								:src="row.original.transparent_icon_url"
 								:alt="t('general.image_alt.transparent_icon', { name: row.original.name })"
-								class="h-8 w-8 rounded-sm object-contain"
+								class="h-8 w-8 rounded-md object-contain"
 							>
-							<span v-else class="text-sm text-gray-600 dark:text-gray-400">
+							<span v-else class="text-sm text-muted">
 								{{ t('admin.phantom_jobs.table.missing_transparent_icon') }}
 							</span>
 						</div>
@@ -223,9 +223,9 @@ const shouldFixTableHeight = () => {
 								v-if="row.original.sprite_url"
 								:src="row.original.sprite_url"
 								:alt="t('general.image_alt.sprite', { name: row.original.name })"
-								class="h-8 w-8 rounded-sm object-contain"
+								class="h-8 w-8 rounded-md object-contain"
 							>
-							<span v-else class="text-sm text-gray-600 dark:text-gray-400">
+							<span v-else class="text-sm text-muted">
 								{{ t('admin.phantom_jobs.table.missing_sprite') }}
 							</span>
 						</div>
@@ -236,12 +236,14 @@ const shouldFixTableHeight = () => {
 							<UButton
 								@click="openEditModal(row)"
 								icon="i-lucide-pencil"
+								:aria-label="t('general.edit')"
 								color="neutral"
 								variant="ghost"
 							/>
 							<UButton
 								@click="openDeleteModal(row)"
 								icon="i-lucide-trash-2"
+								:aria-label="t('general.delete')"
 								color="error"
 								variant="ghost"
 							/>
@@ -250,8 +252,9 @@ const shouldFixTableHeight = () => {
 				</UTable>
 			</div>
 
-			<div class="flex justify-end border-t border-default pt-4 px-4">
+			<div class="flex justify-center border-t border-default pt-4 sm:justify-end">
 				<UPagination
+					:sibling-count="1"
 					:page="(table?.tableApi?.getState().pagination.pageIndex || 0) + 1"
 					:items-per-page="table?.tableApi?.getState().pagination.pageSize"
 					:total="table?.tableApi?.getFilteredRowModel().rows.length"
@@ -265,12 +268,11 @@ const shouldFixTableHeight = () => {
 		v-model:open="isCreateModalOpen"
 		:title="t('admin.phantom_jobs.create_modal.title')"
 		:description="t('admin.phantom_jobs.create_modal.subtitle')"
-		:ui="{ content: 'rounded-sm', header: 'border-0'}"
 	>
 		<template #body>
 			<form @submit.prevent="submitCreate" class="w-full flex flex-col gap-4">
-				<div class="w-full flex flex-row items-start justify-evenly gap-4">
-					<UFormField :label="t('admin.phantom_jobs.fields.name.label')" class="w-3/5" required>
+				<div class="grid min-w-0 gap-4 sm:grid-cols-2">
+					<UFormField :label="t('admin.phantom_jobs.fields.name.label')" class="min-w-0" required>
 						<UInput
 							v-model="createForm.name"
 							:placeholder="t('admin.phantom_jobs.fields.name.placeholder')"
@@ -279,7 +281,7 @@ const shouldFixTableHeight = () => {
 						/>
 					</UFormField>
 
-					<UFormField :label="t('admin.phantom_jobs.fields.max_level.label')" class="w-2/5" required>
+					<UFormField :label="t('admin.phantom_jobs.fields.max_level.label')" class="min-w-0" required>
 						<UInput
 							v-model="createForm.max_level"
 							type="number"
@@ -351,12 +353,11 @@ const shouldFixTableHeight = () => {
 		v-model:open="isEditModalOpen"
 		:title="t('admin.phantom_jobs.edit_modal.title')"
 		:description="t('admin.phantom_jobs.edit_modal.subtitle', { name: editForm.name })"
-		:ui="{ content: 'rounded-sm', header: 'border-0'}"
 	>
 		<template #body>
 			<form @submit.prevent="submitEdit" class="w-full flex flex-col gap-4">
-				<div class="w-full flex flex-row items-start justify-evenly gap-4">
-					<UFormField :label="t('admin.phantom_jobs.fields.name.label')" class="w-3/5" required>
+				<div class="grid min-w-0 gap-4 sm:grid-cols-2">
+					<UFormField :label="t('admin.phantom_jobs.fields.name.label')" class="min-w-0" required>
 						<UInput
 							v-model="editForm.name"
 							:placeholder="t('admin.phantom_jobs.fields.name.placeholder')"
@@ -365,7 +366,7 @@ const shouldFixTableHeight = () => {
 						/>
 					</UFormField>
 
-					<UFormField :label="t('admin.phantom_jobs.fields.max_level.label')" class="w-2/5" required>
+					<UFormField :label="t('admin.phantom_jobs.fields.max_level.label')" class="min-w-0" required>
 						<UInput
 							v-model="editForm.max_level"
 							type="number"
@@ -438,11 +439,10 @@ const shouldFixTableHeight = () => {
 		v-if="deletingJob"
 		:title="t('admin.phantom_jobs.delete_modal.title', { name: deletingJob.original.name ?? '' })"
 		:description="t('admin.phantom_jobs.delete_modal.subtitle', { name: deletingJob.original.name ?? '' })"
-		:ui="{ content: 'rounded-sm', header: 'border-0'}"
 	>
 		<template #body>
 			<div class="flex flex-col gap-4">
-				<p class="text-sm text-red-600 dark:text-red-400">
+				<p class="text-sm text-error">
 					{{ t('admin.phantom_jobs.delete_modal.warning') }}
 				</p>
 				<div class="flex gap-2 justify-end mt-4">

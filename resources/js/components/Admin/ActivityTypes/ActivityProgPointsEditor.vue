@@ -94,23 +94,24 @@ const updateProgPointLabel = (index: number, label: Record<string, string>) => {
 		</template>
 
 		<div class="flex flex-col gap-4">
-			<UCard
+			<section
 				v-for="(progPoint, index) in progPoints"
 				:key="`prog-point-${index}`"
-				class="border border-default"
+				class="admin-inset min-w-0 p-3 sm:p-4"
 			>
 				<div class="flex flex-col gap-4">
-					<div class="flex items-center justify-between gap-3">
+					<div class="flex flex-wrap items-start justify-between gap-3">
 						<div>
 							<h3 class="font-semibold">{{ t('admin.activity_types.prog_points.item_title', { index: index + 1 }) }}</h3>
 							<p class="text-sm text-muted">{{ t('admin.activity_types.prog_points.item_hint') }}</p>
 						</div>
 
-						<div class="flex items-center gap-2">
+						<div class="flex flex-wrap items-center gap-2">
 							<UButton
 								color="neutral"
 								variant="ghost"
 								icon="i-lucide-arrow-up"
+								:aria-label="t('forms.move_up')"
 								:disabled="index === 0"
 								@click="moveProgPoint(index, -1)"
 							/>
@@ -118,6 +119,7 @@ const updateProgPointLabel = (index: number, label: Record<string, string>) => {
 								color="neutral"
 								variant="ghost"
 								icon="i-lucide-arrow-down"
+								:aria-label="t('forms.move_down')"
 								:disabled="index === progPoints.length - 1"
 								@click="moveProgPoint(index, 1)"
 							/>
@@ -141,6 +143,7 @@ const updateProgPointLabel = (index: number, label: Record<string, string>) => {
 					</UFormField>
 
 					<LocalizedTextFields
+						rounded
 						:model-value="progPoint.label"
 						:locales="locales"
 						:label="t('admin.activity_types.prog_points.label')"
@@ -157,7 +160,7 @@ const updateProgPointLabel = (index: number, label: Record<string, string>) => {
 						@remove="updateProgPoint(index, { banner_image: null, banner_image_url: null })"
 					/>
 				</div>
-			</UCard>
+			</section>
 
 			<UAlert
 				v-if="progPoints.length === 0"

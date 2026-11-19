@@ -74,22 +74,22 @@ const summaryLabel = computed(() => isArray.value
 
 const primitiveClass = computed(() => {
 	if (props.value === null) {
-		return "text-neutral-400";
+		return "text-muted";
 	}
 
 	if (typeof props.value === "string") {
-		return "text-emerald-300";
+		return "text-emerald-700 dark:text-emerald-300";
 	}
 
 	if (typeof props.value === "number") {
-		return "text-sky-300";
+		return "text-sky-700 dark:text-sky-300";
 	}
 
 	if (typeof props.value === "boolean") {
-		return "text-amber-300";
+		return "text-amber-700 dark:text-amber-300";
 	}
 
-	return "text-brand-100";
+	return "text-toned";
 });
 
 const primitiveValue = computed(() => {
@@ -123,7 +123,9 @@ watch(() => props.collapseAllToken, () => {
 			<button
 				v-if="isExpandable"
 				type="button"
-				class="mt-0.5 flex size-4 shrink-0 items-center justify-center text-brand-200/70 hover:text-brand-100"
+				class="mt-0.5 flex size-4 shrink-0 items-center justify-center rounded text-muted hover:bg-elevated hover:text-highlighted"
+				:aria-expanded="isExpanded"
+				:aria-label="name ?? summaryLabel"
 				@click="toggle"
 			>
 				<UIcon
@@ -133,26 +135,26 @@ watch(() => props.collapseAllToken, () => {
 			</button>
 			<span v-else class="size-4 shrink-0" />
 
-			<span v-if="name !== undefined" class="text-violet-300">{{ JSON.stringify(name) }}<span class="text-brand-100/50">:</span></span>
+			<span v-if="name !== undefined" class="text-violet-700 dark:text-violet-300">{{ JSON.stringify(name) }}<span class="text-muted">:</span></span>
 
 			<template v-if="isExpandable">
-				<span class="text-brand-100/70">{{ openingToken }}</span>
-				<span v-if="!isExpanded" class="text-neutral-500">
+				<span class="text-toned">{{ openingToken }}</span>
+				<span v-if="!isExpanded" class="text-muted">
 					{{ summaryLabel }}
 				</span>
-				<span v-if="!isExpanded" class="text-brand-100/70">{{ closingToken }}</span>
-				<span v-if="!isExpanded && trailing" class="text-brand-100/40">,</span>
+				<span v-if="!isExpanded" class="text-toned">{{ closingToken }}</span>
+				<span v-if="!isExpanded && trailing" class="text-muted">,</span>
 			</template>
 
 			<template v-else>
 				<span :class="primitiveClass">{{ primitiveValue }}</span>
-				<span v-if="trailing" class="text-brand-100/40">,</span>
+				<span v-if="trailing" class="text-muted">,</span>
 			</template>
 		</div>
 
 		<div
 			v-if="isExpandable && isExpanded"
-			class="ml-2 border-l border-brand-700/50 pl-4"
+			class="ml-2 border-l border-default/60 pl-3"
 		>
 			<JsonTreeNode
 				v-for="(entry, index) in entries"
@@ -172,8 +174,8 @@ watch(() => props.collapseAllToken, () => {
 			class="flex min-w-max items-start gap-1"
 		>
 			<span class="size-4 shrink-0" />
-			<span class="text-brand-100/70">{{ closingToken }}</span>
-			<span v-if="trailing" class="text-brand-100/40">,</span>
+			<span class="text-toned">{{ closingToken }}</span>
+			<span v-if="trailing" class="text-muted">,</span>
 		</div>
 	</div>
 </template>

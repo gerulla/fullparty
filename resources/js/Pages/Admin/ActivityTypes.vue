@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import PageHeader from "@/components/PageHeader.vue";
+import AdminPageHeader from "@/components/Admin/AdminPageHeader.vue";
 import { useConfirmationModal } from "@/composables/useConfirmationModal";
 import { router, usePage } from "@inertiajs/vue3";
 import { useToast } from "@nuxt/ui/composables";
@@ -150,12 +150,19 @@ onBeforeUnmount(() => {
 	}
 });
 
-const destroyActivityType = (activityTypeId: number) => {
-	if (!window.confirm(t('admin.activity_types.delete_confirm'))) {
-		return;
-	}
+const destroyActivityType = async (activityTypeId: number, name: string) => {
+	const confirmed = await confirmationModal.open({
+		title: name,
+		description: t('admin.activity_types.delete_confirm'),
+		severity: 'error',
+		warningText: '',
+		confirmLabel: t('general.delete'),
+		confirmIcon: 'i-lucide-trash-2',
+	});
 
-	router.delete(route('admin.activity-types.destroy', activityTypeId));
+	if (confirmed) {
+		router.delete(route('admin.activity-types.destroy', activityTypeId));
+	}
 };
 
 const goToCreatePage = () => {
@@ -217,12 +224,12 @@ const clearSearch = () => {
 </script>
 
 <template>
-	<div class="w-full">
-		<PageHeader
+	<div class="min-w-0">
+		<AdminPageHeader
 			:title="t('admin.activity_types.title')"
 			:subtitle="t('admin.activity_types.subtitle')"
 		>
-			<div class="flex w-full flex-col gap-2 sm:flex-row">
+			<div class="flex flex-wrap items-center gap-2">
 				<UButton
 					color="primary"
 					variant="soft"
@@ -233,14 +240,13 @@ const clearSearch = () => {
 					@click="publishAllActivityTypes"
 				/>
 				<UButton
-					color="neutral"
-					class="cursor-pointer rounded-none"
+					color="primary"
 					icon="i-lucide-plus"
 					:label="t('admin.activity_types.create')"
 					@click.stop="goToCreatePage"
 				/>
 			</div>
-		</PageHeader>
+		</AdminPageHeader>
 
 		<UAlert
 			v-if="publishAllError"
@@ -251,9 +257,9 @@ const clearSearch = () => {
 			:description="publishAllError"
 		/>
 
-		<UCard class="mt-6 dark:bg-elevated/25">
-			<div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-				<div class="flex min-w-0 flex-1 flex-col gap-1">
+		<section class="admin-panel mt-6 min-w-0" :aria-label="t('admin.activity_types.title')">
+			<div class="flex flex-col gap-3 border-b border-default p-4 sm:flex-row sm:items-center sm:justify-between sm:p-5">
+				<div class="flex min-w-0 flex-1 flex-col gap-2">
 					<UInput
 						v-model="search"
 						icon="i-lucide-search"
@@ -272,18 +278,22 @@ const clearSearch = () => {
 					@click="clearSearch"
 				/>
 			</div>
-		</UCard>
 
-		<div class="mt-4 flex flex-col gap-4">
-			<UCard
+			<article
 				v-for="activityType in activityTypeItems"
 				:key="activityType.id"
-				class="dark:bg-elevated/25"
+				class="border-b border-default p-4 last:border-b-0 sm:p-5"
 			>
-				<div class="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-					<div class="flex flex-col gap-2">
-						<div class="flex flex-wrap items-center gap-3">
-							<h2 class="text-lg font-semibold text-highlighted">
+				<div class="grid min-w-0 grid-cols-[2.75rem_minmax(0,1fr)] items-start gap-3 sm:grid-cols-[3.5rem_minmax(0,1fr)] xl:grid-cols-[3.5rem_minmax(0,1fr)_auto] xl:items-center">
+					<div class="admin-inset flex aspect-square items-center justify-center overflow-hidden" aria-hidden="true">
+						<img v-if="activityType.draft_small_image_url || activityType.draft_banner_image_url"
+							:src="activityType.draft_small_image_url || activityType.draft_banner_image_url"
+							alt="" loading="lazy" class="size-full object-cover">
+						<UIcon v-else name="i-lucide-swords" class="size-5 text-muted" />
+					</div>
+					<div class="flex min-w-0 flex-1 flex-col gap-1.5">
+						<div class="flex flex-wrap items-center gap-2">
+							<h2 class="break-words text-base font-semibold text-highlighted">
 								{{ localizedValue(activityType.draft_name, locale) || activityType.slug }}
 							</h2>
 							<UBadge
@@ -299,7 +309,7 @@ const clearSearch = () => {
 							/>
 						</div>
 
-						<p class="text-sm text-muted">
+						<p class="break-all text-xs text-muted">
 							{{ activityType.slug }}
 						</p>
 
@@ -308,7 +318,7 @@ const clearSearch = () => {
 						</p>
 					</div>
 
-					<div class="flex items-center gap-2">
+					<div class="col-span-2 flex flex-wrap items-center gap-1.5 xl:col-span-1">
 						<UButton
 							color="primary"
 							variant="soft"
@@ -336,29 +346,30 @@ const clearSearch = () => {
 
 						<UButton
 							color="error"
-							variant="soft"
+							variant="ghost"
 							icon="i-lucide-trash-2"
 							:label="t('general.delete')"
-							@click="destroyActivityType(activityType.id)"
+							@click="destroyActivityType(activityType.id, localizedValue(activityType.draft_name, locale) || activityType.slug)"
 						/>
 					</div>
 				</div>
-			</UCard>
+			</article>
 
-			<UCard v-if="activityTypeItems.length === 0" class="dark:bg-elevated/25">
+			<div v-if="activityTypeItems.length === 0">
 				<div class="py-8 text-center text-sm text-muted">
 					{{ emptyStateText }}
 				</div>
-			</UCard>
+			</div>
 
-			<div v-if="shouldPaginate" class="flex justify-end">
+			<div v-if="shouldPaginate" class="flex justify-center p-4 sm:justify-end">
 				<UPagination
+					:sibling-count="1"
 					:page="activityTypeMeta.current_page"
 					:items-per-page="activityTypeMeta.per_page"
 					:total="activityTypeMeta.total"
 					@update:page="visitIndex"
 				/>
 			</div>
-		</div>
+		</section>
 	</div>
 </template>

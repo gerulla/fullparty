@@ -16,6 +16,8 @@
     "false": "Falsch"
   },
   "filters": {
+    "search_group": "Gruppen suchen…",
+    "group_chip": "Gruppe: {name}",
     "search_logs": "Protokoll durchsuchen…",
     "all_runs": "Alle Runs",
     "more": "Weitere Filter",
@@ -100,6 +102,8 @@
     "new_value": "Neu"
   },
   "details": {
+    "scope": "Geltungsbereich",
+    "subject": "Betroffener Eintrag",
     "resource": "Ressource",
     "view_resource": "Ressource ansehen",
     "view_collection": "Sammlung ansehen",
@@ -179,6 +183,16 @@
     }
   },
   "activity": {
+    "moderation": {
+      "claim": "hat einen Moderationsfall übernommen",
+      "hide": "hat gemeldete Inhalte ausgeblendet",
+      "restore": "hat gemeldete Inhalte wiederhergestellt",
+      "ban": "hat ein gemeldetes Konto gesperrt",
+      "unban": "hat eine Kontosperre aufgehoben",
+      "dismiss": "hat eine Meldung abgewiesen",
+      "reopen": "hat einen Moderationsfall wieder geöffnet",
+      "feedback_sent": "hat den meldenden Personen eine Rückmeldung gesendet"
+    },
     "user": {
       "registered": "hat ein Konto registriert.",
       "logged_in": "hat sich angemeldet.",
@@ -544,6 +558,16 @@
     "previous_status": "Bisheriger Verifizierungsstatus"
   },
   "events": {
+    "moderation": {
+      "claim": "Moderationsfall übernommen",
+      "hide": "Gemeldete Inhalte ausgeblendet",
+      "restore": "Gemeldete Inhalte wiederhergestellt",
+      "ban": "Gemeldetes Konto gesperrt",
+      "unban": "Kontosperre aufgehoben",
+      "dismiss": "Meldung abgewiesen",
+      "reopen": "Moderationsfall wieder geöffnet",
+      "feedback_sent": "Rückmeldung an meldende Personen gesendet"
+    },
     "user": {
       "registered": "Benutzer registriert",
       "logged_in": "Benutzer angemeldet",

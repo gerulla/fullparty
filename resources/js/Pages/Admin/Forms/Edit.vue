@@ -2,7 +2,7 @@
 import { Head, Link, usePage } from '@inertiajs/vue3'
 import { route } from 'ziggy-js'
 import { useI18n } from 'vue-i18n'
-import PageHeader from '@/components/PageHeader.vue'
+import AdminPageHeader from '@/components/Admin/AdminPageHeader.vue'
 import RichTextEditor from '@/components/Shared/RichText/RichTextEditor.vue'
 import RichTextReader from '@/components/Shared/RichText/RichTextReader.vue'
 import FormPageBuilder from '@/components/Forms/FormPageBuilder.vue'
@@ -18,16 +18,16 @@ const { form, language, preview, previewAnswers, busy, errors, save, transition 
 </script>
 <template>
     <Head :title="t(formRecord ? 'forms.edit' : 'forms.create')" />
-    <div class="mx-auto max-w-5xl space-y-5">
-        <Link :href="route('admin.forms.index')" class="inline-flex items-center gap-1 text-sm text-muted"><UIcon name="i-lucide-arrow-left" />{{ t('forms.title') }}</Link>
-        <div class="flex flex-wrap items-center justify-between gap-3">
-            <PageHeader :title="t(formRecord ? 'forms.edit' : 'forms.create')" :subtitle="t('forms.admin_description')" />
-            <div class="flex gap-2"><UButton v-if="formRecord?.published_version_id" :to="route('admin.forms.responses', { surveyForm: formRecord.slug })" color="neutral" variant="outline" icon="i-lucide-chart-column" :label="t('forms.responses')" /><UButton v-if="formRecord?.is_published" :to="route('forms.show', { surveyForm: formRecord.slug })" target="_blank" color="neutral" variant="outline" icon="i-lucide-external-link" :label="t('forms.view_form')" /></div>
-        </div>
+    <div class="space-y-5">
+        <Link :href="route('admin.forms.index')" class="inline-flex items-center gap-1.5 rounded-md text-sm font-medium text-muted hover:text-highlighted focus-visible:outline-primary"><UIcon name="i-lucide-arrow-left" />{{ t('forms.title') }}</Link>
+        <AdminPageHeader :title="t(formRecord ? 'forms.edit' : 'forms.create')" :subtitle="t('forms.admin_description')">
+            <UButton v-if="formRecord?.published_version_id" :to="route('admin.forms.responses', { surveyForm: formRecord.slug })" color="neutral" variant="outline" icon="i-lucide-chart-column" :label="t('forms.responses')" />
+            <UButton v-if="formRecord?.is_published" :to="route('forms.show', { surveyForm: formRecord.slug })" target="_blank" color="neutral" variant="outline" icon="i-lucide-external-link" :label="t('forms.view_form')" />
+        </AdminPageHeader>
         <UAlert v-if="String(page.props.flash?.success ?? '').startsWith('survey_')" color="success" variant="soft" :title="t('forms.saved')" />
         <UAlert v-for="error in errors" :key="error" color="error" variant="soft" :title="error" />
         <form class="space-y-5" @submit.prevent="!preview && save()">
-            <section class="space-y-4 border border-default p-4">
+            <section class="admin-panel min-w-0 space-y-4 p-4 sm:p-6">
                 <div class="grid gap-4 md:grid-cols-2">
                     <UFormField :label="t('forms.slug')" :help="t(formRecord?.published_version_id ? 'forms.slug_locked_help' : 'forms.slug_help')" required><UInput v-model="form.slug" :disabled="Boolean(formRecord?.published_version_id)" class="w-full" :maxlength="80" /></UFormField>
                     <UFormField :label="t('forms.access')"><USelect v-model="form.definition.access" :items="[{ value: 'account', label: t('forms.account_access') }, { value: 'anyone', label: t('forms.anyone_access') }]" class="w-full" /></UFormField>
@@ -36,26 +36,26 @@ const { form, language, preview, previewAnswers, busy, errors, save, transition 
                 <p v-if="form.definition.access === 'anyone'" class="text-xs text-muted">{{ t('forms.guest_limit_help') }}</p>
             </section>
             <div class="flex flex-wrap items-center justify-between gap-3">
-                <div class="flex gap-1"><UButton v-for="key in languages" :key="key" :label="key.toUpperCase()" :color="key === language ? 'primary' : 'neutral'" :variant="key === language ? 'solid' : 'outline'" @click="language = key" /></div>
+                <div class="admin-inset inline-flex flex-wrap gap-1 p-1"><UButton v-for="key in languages" :key="key" :label="key.toUpperCase()" :aria-pressed="key === language" :color="key === language ? 'primary' : 'neutral'" :variant="key === language ? 'solid' : 'ghost'" @click="language = key" /></div>
                 <USwitch v-model="preview" :label="t('forms.preview')" />
             </div>
             <p class="text-sm text-muted">{{ t('forms.translation_help') }}</p>
             <template v-if="!preview">
-                <section class="space-y-4 border border-default p-4">
+                <section class="admin-panel min-w-0 space-y-4 p-4 sm:p-6">
                     <UFormField :label="t('forms.form_title')" :required="language === 'en'"><UInput v-model="form.definition.title[language]" class="w-full" :maxlength="160" /></UFormField>
-                    <UFormField :label="t('forms.intro')"><RichTextEditor :key="language" v-model="form.definition.intro[language]!" :max-length="10000" class="min-h-48 border border-default" /></UFormField>
+                    <UFormField :label="t('forms.intro')"><RichTextEditor :key="language" v-model="form.definition.intro[language]!" :max-length="10000" class="min-h-48 rounded-xl border border-default" /></UFormField>
                     <UFormField :label="t('forms.thank_you_label')"><UTextarea v-model="form.definition.thank_you[language]" class="w-full" :maxlength="1000" :placeholder="t('forms.thank_you')" /></UFormField>
                 </section>
                 <FormPageBuilder v-model:questions="form.definition.questions" :pages="form.definition.pages!" :language="language" @update:pages="form.definition.pages = $event" />
             </template>
-            <section v-else class="space-y-5">
+            <section v-else class="admin-panel min-w-0 space-y-5 p-4 sm:p-6">
                 <UAlert color="info" variant="soft" :title="t('forms.preview_notice')" />
                 <h2 class="text-2xl font-semibold">{{ localizedValue(form.definition.title, language) }}</h2>
                 <RichTextReader :document="form.definition.intro[language]!" />
                 <FormPageQuestions v-model="previewAnswers" :definition="form.definition" :language="language" preview />
             </section>
-            <p class="text-sm text-muted">{{ t('forms.publish_help') }}</p>
-            <div class="flex flex-wrap justify-end gap-2">
+            <div class="admin-panel flex flex-wrap items-center gap-2 p-4">
+                <p class="mr-auto w-full text-sm text-muted lg:w-auto">{{ t('forms.publish_help') }}</p>
                 <UButton type="button" icon="i-lucide-save" :label="t('forms.save')" :loading="form.processing" :disabled="busy" @click="save" />
                 <template v-if="formRecord">
                     <UButton v-if="!formRecord.is_published || formRecord.has_changes" color="success" :label="t('forms.actions.publish')" :disabled="form.isDirty || form.processing || busy" @click="transition('publish')" />

@@ -14,6 +14,14 @@
     }
   },
   "participation": {
+    "preview": {
+      "run_state": "Run-Status",
+      "actual_run": "Aktueller Run ({status})",
+      "label": "Bewerbungsstatus",
+      "live": "Tatsächliche Bewerbung",
+      "not_applied": "Nicht beworben",
+      "help": "Zeigt die Bewerbungskarte für diesen Run. Bewerbungslinks sind in der Vorschau inaktiv."
+    },
     "statuses": {
       "pending": "Beworben",
       "approved": "Genehmigt",

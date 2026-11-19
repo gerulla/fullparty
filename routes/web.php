@@ -25,6 +25,7 @@ use App\Http\Controllers\GameIconController;
 use App\Http\Controllers\GlobalSearchController;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\GroupActivityAllianceProgressController;
+use App\Http\Controllers\GroupActivityHolsterLoadoutController;
 use App\Http\Controllers\GroupActivityApplicantQueueController;
 use App\Http\Controllers\GroupActivityApplicationController;
 use App\Http\Controllers\GroupActivityApplicationDeclineController;
@@ -335,6 +336,9 @@ Route::prefix('{locale?}')
         Route::get('/groups/{group:slug}/activities/{activity}/alliance-progress', GroupActivityAllianceProgressController::class)
             ->middleware('throttle:external.lookup')
             ->name('groups.activities.alliance-progress');
+
+        Route::get('/groups/{group:slug}/activities/{activity}/holster-loadouts/{field}', GroupActivityHolsterLoadoutController::class)
+            ->whereNumber('field')->name('groups.activities.holster-loadout');
 
         // Public activity overview, with optional secret key for private activities.
         Route::get('/groups/{group:slug}/activities/{activity}/{secretKey?}', [GroupActivityController::class, 'overview'])
@@ -882,6 +886,7 @@ Route::prefix('{locale?}')
                 // Admin dashboards and audit surfaces.
                 Route::get('/character-data', [AdminController::class, 'characterData'])->name('admin.character-data');
                 Route::get('/audit-log', [AdminController::class, 'auditLog'])->name('admin.audit-log');
+                Route::get('/audit-log/{auditLog}', [AdminController::class, 'auditEvent'])->whereNumber('auditLog')->name('admin.audit-log.show');
                 Route::get('/system-data', [AdminController::class, 'systemData'])->name('admin.system-data');
                 Route::get('/fflogs-playground', [AdminFflogsPlaygroundController::class, 'index'])->name('admin.fflogs-playground.index');
                 Route::post('/fflogs-playground/execute', [AdminFflogsPlaygroundController::class, 'execute'])->name('admin.fflogs-playground.execute');

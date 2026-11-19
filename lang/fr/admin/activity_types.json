@@ -20,6 +20,12 @@
     "pagination_empty": "Aucun type d'activité à afficher",
     "delete_confirm": "Supprimer ce type d'activité ? Il sera archivé.",
     "back": "Retour aux types d'activité",
+    "tabs": {
+        "roster": "Organisation du roster",
+        "presets": "Modèles de roster",
+        "applications": "Candidatures",
+        "milestones": "Jalons"
+    },
     "form": {
         "error_title": "Ce brouillon comporte encore quelques problèmes à corriger."
     },
@@ -85,8 +91,8 @@
     "layout": {
         "title": "Disposition",
         "subtitle": "Définissez les groupes de emplacements que cette activité va générer.",
-        "groups_count": "{count} groupes",
-        "total_slots": "{count} emplacements au total",
+        "groups_count": "{count} groupe | {count} groupes",
+        "total_slots": "{count} emplacement au total | {count} emplacements au total",
         "add_group": "Ajouter un groupe",
         "group_title": "Groupe {index}",
         "group_hint": "Un groupe peut représenter une équipe, une alliance, une escouade ou tout regroupement de emplacements dont vous avez besoin.",
@@ -101,7 +107,7 @@
         "composition_preset": "Indication de composition par défaut",
         "composition_preset_help": "Choisissez l'indication consultative par emplacement copiée sur chaque équipe générée.",
         "party_label": "Équipe",
-        "slots_per_party": "{count} emplacements",
+        "slots_per_party": "{count} emplacement | {count} emplacements",
         "presets": {
             "light_party_4": "4 joueurs",
             "full_party_8": "8 joueurs",
@@ -133,7 +139,7 @@
     "roster_summary": {
         "title": "Préréglages de récapitulatif de composition",
         "subtitle": "Définissez des objectifs de composition réutilisables que les modérateurs pourront ensuite choisir lors de l'examen d'une composition.",
-        "presets_count": "{count} préréglages",
+        "presets_count": "{count} préréglage | {count} préréglages",
         "add_preset": "Ajouter un préréglage",
         "preset_title": "Préréglage {index}",
         "preset_hint": "Utilisez les préréglages pour différentes approches de composition, comme une configuration de groupe minimale, souple ou optimisée.",
@@ -178,7 +184,7 @@
     "progress": {
         "title": "Suivi de progression",
         "subtitle": "Définissez les jalons que les groupes peuvent signaler lorsqu'ils terminent une activité.",
-        "milestones_count": "{count} jalons",
+        "milestones_count": "{count} jalon | {count} jalons",
         "add_milestone": "Ajouter un jalon",
         "milestone_title": "Jalon {index}",
         "milestone_hint": "Utilisez un jalon par boss, phase ou point de contrôle que vous souhaitez suivre par la suite.",
@@ -205,7 +211,7 @@
     "prog_points": {
         "title": "Points de progression",
         "subtitle": "Définissez des points de contrôle de progression plus simples qui peuvent être référencés par les instances d'activité et les statistiques futures.",
-        "count": "{count} points de progression",
+        "count": "{count} point de progression | {count} points de progression",
         "add": "Ajouter un point de progression",
         "item_title": "Point de progression {index}",
         "item_hint": "Utilisez-les pour des points de contrôle de progression nommés, comme les ponts, l'énigme ou les phases de nettoyage.",
@@ -221,7 +227,7 @@
         "empty_description": "Ajoutez des points de progression si ce type d'activité nécessite des points de contrôle nommés au-delà de la correspondance des jalons FF Logs."
     },
     "schema": {
-        "fields_count": "{count} champs",
+        "fields_count": "{count} champ | {count} champs",
         "add_field": "Ajouter un champ",
         "field_title": "Champ {index}",
         "field_hint": "Utilisez des clés stables et des libellés traduits afin que ce schéma puisse alimenter plusieurs interfaces.",

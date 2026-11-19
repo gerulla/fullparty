@@ -50,13 +50,13 @@ function updateQuestions(questions: FormQuestion[]) {
 
 <template>
     <div class="space-y-5">
-        <section class="space-y-4 border border-default bg-elevated/50 p-4">
+        <section class="admin-panel space-y-4 p-4 sm:p-6">
             <div class="flex flex-wrap items-end gap-3">
-                <UFormField :label="t('forms.pages')" class="min-w-48 flex-1">
+                <UFormField :label="t('forms.pages')" class="w-full sm:w-auto sm:min-w-48 sm:flex-1">
                     <USelect :model-value="current.id" :items="items" class="w-full" @update:model-value="selectedId = $event as string" />
                 </UFormField>
                 <UButton type="button" icon="i-lucide-plus" :label="t('forms.add_page')" :disabled="pages.length >= 20" @click="addPage" />
-                <div class="flex gap-1">
+                <div class="flex flex-wrap gap-1">
                     <UButton type="button" icon="i-lucide-arrow-up" color="neutral" variant="outline" :aria-label="t('forms.move_up')" :disabled="pageIndex === 0" @click="movePage(-1)" />
                     <UButton type="button" icon="i-lucide-arrow-down" color="neutral" variant="outline" :aria-label="t('forms.move_down')" :disabled="pageIndex === pages.length - 1" @click="movePage(1)" />
                     <UButton type="button" icon="i-lucide-trash-2" color="error" variant="outline" :label="t('forms.remove_page')" :disabled="pages.length <= 1" @click="removePage" />

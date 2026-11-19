@@ -52,7 +52,8 @@ test('every page declares the dictionaries used by its components, helpers and l
             const actual = new Set(pageNamespaces(name, application));
             const expected = referencedNamespaces(file);
             if (application === 'main' && !/layout\s*:/.test(fs.readFileSync(file, 'utf8'))) {
-                const layout = name.startsWith('Dashboard/Groups/') ? 'GroupDashboardLayout' : 'DefaultLayout';
+                const layout = name.startsWith('Admin/') ? 'AdminLayout'
+                    : name.startsWith('Dashboard/Groups/') ? 'GroupDashboardLayout' : 'DefaultLayout';
                 for (const ns of referencedNamespaces(path.join(root, `resources/js/Layouts/${layout}.vue`))) expected.add(ns);
             }
             for (const ns of expected) assert.ok(actual.has(ns), `${application}:${name} needs ${ns}`);

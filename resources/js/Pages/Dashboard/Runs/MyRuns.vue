@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
+import { computed, onBeforeUnmount, onMounted, ref, toRef, watch } from "vue";
 import { useNow } from "@vueuse/core";
-import { router } from "@inertiajs/vue3";
+import { router, useRemember } from "@inertiajs/vue3";
 import { route } from "ziggy-js";
 import { useI18n } from "vue-i18n";
 import PageHeader from "@/components/PageHeader.vue";
@@ -34,17 +34,17 @@ const { t } = useI18n();
 const { displayTimeZone } = useTimeDisplayMode();
 const now = useNow({ interval: 60_000 });
 const todayDateKey = computed(() => toDisplayDateKey(now.value, displayTimeZone.value));
-const tools = ref<MyRunsToolState>({
+const tools = toRef(useRemember<MyRunsToolState>({
 	date: todayDateKey.value,
 	search: "",
 	activityTypeId: null,
 	appliedOnly: false,
 	hideOverlapping: false,
 	groupIds: props.groups.map((group) => group.id),
-});
+}, 'my-runs.tools'));
 watch(todayDateKey, (today) => {
 	if (tools.value.date < today) tools.value = { ...tools.value, date: today };
-});
+}, { immediate: true });
 const activityTypes = computed(() => availableActivityTypes(filterMyRuns(props.activities, {
 	date: todayDateKey.value,
 	search: '',

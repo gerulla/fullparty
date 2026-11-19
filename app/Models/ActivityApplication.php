@@ -86,6 +86,11 @@ class ActivityApplication extends Model
         return $this->review_reason;
     }
 
+    public function isEditableFor(Activity $activity): bool
+    {
+        return $activity->acceptsApplications() && in_array($this->status, self::ACTIVE_STATUSES, true);
+    }
+
     public function activity(): BelongsTo
     {
         return $this->belongsTo(Activity::class);

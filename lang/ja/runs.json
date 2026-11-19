@@ -14,6 +14,14 @@
     }
   },
   "participation": {
+    "preview": {
+      "run_state": "ランの状態",
+      "actual_run": "実際のラン（{status}）",
+      "label": "応募状態",
+      "live": "実際の応募状態",
+      "not_applied": "未応募",
+      "help": "この募集の応募カードをプレビューします。プレビュー中は応募関連のリンクが無効になります。"
+    },
     "statuses": {
       "pending": "応募済み",
       "approved": "承認済み",

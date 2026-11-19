@@ -16,6 +16,8 @@
     "false": "False"
   },
   "filters": {
+    "search_group": "Search groups…",
+    "group_chip": "Group: {name}",
     "search_logs": "Search logs…",
     "all_runs": "All runs",
     "more": "More filters",
@@ -100,6 +102,8 @@
     "new_value": "New"
   },
   "details": {
+    "scope": "Scope",
+    "subject": "Affected item",
     "resource": "Resource",
     "view_resource": "View resource",
     "view_collection": "View collection",
@@ -179,6 +183,16 @@
     }
   },
   "activity": {
+    "moderation": {
+      "claim": "claimed a moderation case",
+      "hide": "hid reported content",
+      "restore": "restored reported content",
+      "ban": "banned a reported account",
+      "unban": "lifted an account ban",
+      "dismiss": "dismissed a report",
+      "reopen": "reopened a moderation case",
+      "feedback_sent": "sent feedback to reporters"
+    },
     "user": {
       "registered": "registered an account.",
       "logged_in": "logged in.",
@@ -544,6 +558,16 @@
     "previous_status": "Previous verification status"
   },
   "events": {
+    "moderation": {
+      "claim": "Moderation case claimed",
+      "hide": "Reported content hidden",
+      "restore": "Reported content restored",
+      "ban": "Reported account banned",
+      "unban": "Account ban lifted",
+      "dismiss": "Report dismissed",
+      "reopen": "Moderation case reopened",
+      "feedback_sent": "Feedback sent to reporters"
+    },
     "user": {
       "registered": "User registered",
       "logged_in": "User logged in",

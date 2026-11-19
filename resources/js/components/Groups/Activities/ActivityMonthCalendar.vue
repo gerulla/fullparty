@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue';
+import { computed, toRefs, unref, watch } from 'vue';
+import { useRemember } from '@inertiajs/vue3';
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core';
 import { useI18n } from 'vue-i18n';
 import ActivityCalendarDayCell from '@/components/Groups/Activities/ActivityCalendarDayCell.vue';
@@ -39,12 +40,15 @@ const { t, locale } = useI18n();
 const { displayTimeZone } = useTimeDisplayMode();
 const preview = useActivityCalendarPreview();
 const isCompact = useBreakpoints(breakpointsTailwind).smaller('xl');
-const currentDisplayDate = () => createDateFromLocalKey(toDisplayDateKey(new Date(), displayTimeZone.value));
-const monthCursor = ref(createMonthStart(currentDisplayDate()));
 const todayKey = computed(() => toDisplayDateKey(new Date(), displayTimeZone.value));
-const agendaDateKey = ref(props.selectedDateKey ?? todayKey.value);
+const calendar = unref(useRemember({
+    monthKey: toLocalDateKey(createMonthStart(createDateFromLocalKey(todayKey.value))),
+    agendaDateKey: props.selectedDateKey ?? todayKey.value,
+    monthExpanded: false,
+}, `group-calendar.${props.groupSlug ?? 'all'}.range`));
+const { agendaDateKey, monthExpanded } = toRefs(calendar);
+const monthCursor = computed(() => createDateFromLocalKey(calendar.monthKey));
 const agendaDate = computed(() => createDateFromLocalKey(agendaDateKey.value));
-const monthExpanded = ref(false);
 
 const dayLabels = computed(() => Array.from({ length: 7 }, (_, index) => {
     const date = new Date(2026, 0, 5 + index);
@@ -70,7 +74,7 @@ watch(calendarDays, preview.close);
 
 const selectAgendaDay = (dayKey: string) => {
     agendaDateKey.value = dayKey;
-    monthCursor.value = createMonthStart(createDateFromLocalKey(dayKey));
+    calendar.monthKey = toLocalDateKey(createMonthStart(createDateFromLocalKey(dayKey)));
     emit('updateSelectedDateKey', dayKey);
 };
 
@@ -95,7 +99,7 @@ const changeRange = (offset: number) => {
         selectAgendaDay(toLocalDateKey(new Date(selected.getFullYear(), selected.getMonth(), selected.getDate() + offset * 7)));
         return;
     }
-    monthCursor.value = new Date(monthCursor.value.getFullYear(), monthCursor.value.getMonth() + offset, 1);
+    calendar.monthKey = toLocalDateKey(new Date(monthCursor.value.getFullYear(), monthCursor.value.getMonth() + offset, 1));
     if (isCompact.value) {
         const lastDay = new Date(monthCursor.value.getFullYear(), monthCursor.value.getMonth() + 1, 0).getDate();
         selectAgendaDay(toLocalDateKey(new Date(monthCursor.value.getFullYear(), monthCursor.value.getMonth(), Math.min(agendaDate.value.getDate(), lastDay))));

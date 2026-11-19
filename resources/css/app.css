@@ -80,6 +80,10 @@
 }
 
 @layer theme {
+    :root:not(.dark) {
+        --ui-imminent: var(--color-orange-700);
+    }
+
     :root,
     .light {
         --ui-text-dimmed: var(--color-neutral-500);

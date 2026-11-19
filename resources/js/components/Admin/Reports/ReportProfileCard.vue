@@ -34,7 +34,7 @@ const { t, locale } = useI18n()
         </template>
         <div v-else-if="guestReference" class="space-y-2">
             <p class="font-semibold flex items-center gap-2"><UIcon name="i-lucide-user-round" />{{ t('reports.admin.guest_reporter') }}</p>
-            <code class="text-xs text-muted">{{ guestReference }}</code>
+            <code class="admin-inset inline-block max-w-full break-all px-2 py-1 text-xs text-muted">{{ guestReference }}</code>
             <p class="text-xs text-muted">{{ t('reports.admin.guest_reference_help') }}</p>
         </div>
         <p v-else class="text-sm text-muted">{{ t('reports.admin.deleted_user') }}</p>

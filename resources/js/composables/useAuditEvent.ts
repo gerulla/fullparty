@@ -3,13 +3,16 @@ import { router, usePage } from '@inertiajs/vue3'
 import { useClipboard } from '@vueuse/core'
 import { useI18n } from 'vue-i18n'
 import { useToast } from '@nuxt/ui/composables'
-import { route } from 'ziggy-js'
 import axios from 'axios'
 import type { AuditLogEventRecord, AuditLogRowRecord } from '@/Types/Audit'
 
-export function useGroupAuditEvent(groupSlug: () => string, rows: () => AuditLogRowRecord[]) {
+export function useAuditEvent(
+    eventUrl: (id: number) => string,
+    pageUrl: () => string,
+    rows: () => AuditLogRowRecord[],
+) {
     const page = usePage()
-    const { t, locale } = useI18n()
+    const { t } = useI18n()
     const toast = useToast()
     const { copy, copied } = useClipboard({ legacy: true })
     const event = ref<AuditLogEventRecord | null>(null)
@@ -25,19 +28,20 @@ export function useGroupAuditEvent(groupSlug: () => string, rows: () => AuditLog
         return /^[1-9]\d*$/.test(value) && Number.isSafeInteger(id) ? id : null
     })
     const selectedRow = computed(() => event.value ?? rows().find(row => row.id === selectedId.value))
+    const detailUrl = computed(() => selectedId.value === null ? null : eventUrl(selectedId.value))
 
     async function reload() {
         const id = ++requestId
         controller?.abort()
         event.value = null
         failed.value = false
-        loading.value = selectedId.value !== null
-        if (selectedId.value === null) return
+        loading.value = detailUrl.value !== null
+        if (detailUrl.value === null) return
         controller = new AbortController()
         try {
-            const { data } = await axios.get<{ event: AuditLogEventRecord }>(route('groups.dashboard.audit-log.show', {
-                group: groupSlug(), auditLog: selectedId.value, locale: locale.value,
-            }), { signal: controller.signal, headers: { Accept: 'application/json' } })
+            const { data } = await axios.get<{ event: AuditLogEventRecord }>(detailUrl.value, {
+                signal: controller.signal, headers: { Accept: 'application/json' },
+            })
             if (id === requestId) event.value = data.event
         } catch (error) {
             if (id === requestId && !axios.isCancel(error)) failed.value = true
@@ -55,8 +59,7 @@ export function useGroupAuditEvent(groupSlug: () => string, rows: () => AuditLog
 
     async function copyLink() {
         if (!selectedId.value) return
-        const url = new URL(route('groups.dashboard.settings', { group: groupSlug(), locale: locale.value }), window.location.origin)
-        url.searchParams.set('section', 'audit_log')
+        const url = new URL(pageUrl(), window.location.origin)
         url.searchParams.set('event', String(selectedId.value))
         try {
             await copy(url.href)
@@ -65,7 +68,7 @@ export function useGroupAuditEvent(groupSlug: () => string, rows: () => AuditLog
         }
     }
 
-    watch([selectedId, groupSlug, locale], reload, { immediate: true })
+    watch(detailUrl, reload, { immediate: true })
     onBeforeUnmount(() => { ++requestId; controller?.abort() })
 
     return { selectedId, selectedRow, event, loading, failed, copied, select, close: () => select(null), reload, copyLink }

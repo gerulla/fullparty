@@ -5,7 +5,7 @@ import type {
 	ActivityTypeRosterSummarySourceOption,
 } from "@/Types/AdminActivityTypes";
 import ActivityTypeBuilderForm from "@/components/Admin/ActivityTypes/ActivityTypeBuilderForm.vue";
-import PageHeader from "@/components/PageHeader.vue";
+import AdminPageHeader from "@/components/Admin/AdminPageHeader.vue";
 import { router, useForm, usePage } from "@inertiajs/vue3";
 import { useToast } from "@nuxt/ui/composables";
 import { route } from "ziggy-js";
@@ -93,15 +93,16 @@ watch(
 </script>
 
 <template>
-	<div class="w-full">
+	<div class="min-w-0">
 		<UButton
+			class="mb-3"
 			:label="t('admin.activity_types.back')"
 			icon="i-lucide-arrow-left"
 			variant="ghost"
 			color="neutral"
 			@click.stop="goBack"
 		/>
-		<PageHeader
+		<AdminPageHeader
 			:title="t('admin.activity_types.edit_title')"
 			:subtitle="t('admin.activity_types.edit_subtitle')"
 		>
@@ -111,7 +112,7 @@ watch(
 				:label="t('admin.activity_types.publish')"
 				@click="publish"
 			/>
-		</PageHeader>
+		</AdminPageHeader>
 
 		<div class="mt-6">
 			<ActivityTypeBuilderForm

@@ -10,8 +10,8 @@ const { t } = useI18n()
         <template #body>
             <div v-if="loading" class="flex justify-center p-8"><UIcon name="i-lucide-loader-circle" class="animate-spin" :aria-label="t('forms.loading')" /></div>
             <UAlert v-else-if="error" color="error" :title="error" />
-            <dl v-else-if="detail" class="space-y-5">
-                <div v-for="(answer, index) in detail.answers" :key="index"><dt class="mb-1 font-medium">{{ answer.question }}</dt><dd class="whitespace-pre-wrap break-words text-muted">{{ answer.answer || t('forms.no_answer') }}</dd></div>
+            <dl v-else-if="detail" class="space-y-3">
+                <div v-for="(answer, index) in detail.answers" :key="index" class="admin-inset space-y-1 break-words p-4"><dt class="font-semibold text-highlighted">{{ answer.question }}</dt><dd class="whitespace-pre-wrap break-words text-muted">{{ answer.answer || t('forms.no_answer') }}</dd></div>
             </dl>
         </template>
         <template #footer><UButton color="neutral" variant="outline" :label="t('forms.close_button')" @click="emit('close')" /></template>

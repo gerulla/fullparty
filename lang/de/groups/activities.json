@@ -10,8 +10,8 @@
     "statuses": {
         "draft": "Entwurf",
         "scheduled": "Geplant",
-        "assigned": "Eingeteilt",
-        "upcoming": "Anstehend",
+        "assigned": "Aufstellung veröffentlicht",
+        "upcoming": "Startet bald",
         "ongoing": "Läuft",
         "complete": "Abgeschlossen",
         "cancelled": "Abgebrochen"
@@ -347,7 +347,7 @@
                 }
             },
             "progression": {
-                "title": "Erfasster Fortschritt",
+                "title": "Run-Ergebnisse",
                 "subtitle": "Das endgültige Fortschrittsergebnis, das für diesen abgeschlossenen Run gespeichert wurde.",
                 "completed_at": "Abgeschlossen am",
                 "source": "Erfasst über",
@@ -627,12 +627,30 @@
         }
     },
     "overview": {
+        "host_note": "Hinweis der Leitung",
+        "roster_capacity": "{assigned} / {total} belegt",
+        "hide_roster": "Aufstellung ausblenden",
+        "participation": {
+            "your_application": "Deine Bewerbung",
+            "your_slot": "Dein Platz in der Aufstellung",
+            "no_placement": "Kein aktueller Platz",
+            "pending_count": "{count} offene Bewerbung | {count} offene Bewerbungen",
+            "guest_welcome": "Gastbewerbungen willkommen",
+            "choose_slot": "Platz auswählen",
+            "view_application": "Bewerbung ansehen"
+        },
         "title": "Run-Übersicht",
         "subtitle": "{group} hat diesen {type}-Run geteilt.",
         "description": "Dies ist die Übersicht für Teilnehmende zum Run und seinem Bewerbungsablauf.",
         "cancelled_alert": {
             "title": "Dieser Run wurde abgesagt",
             "description": "Dieser Run ist archiviert und akzeptiert keine Bewerbungen mehr."
+        },
+        "complete_alert": {
+            "title": "Dieser Run ist abgeschlossen",
+            "description": "Die Zusammenfassung des Runs findest du unten.",
+            "no_results": "Für diesen Run wurden keine Ergebnisse erfasst.",
+            "preview_note": "Die Marker beim nächsten Run beibehalten. Damit liefen die letzten Versuche deutlich besser."
         },
         "open_application": "Hier bewerben",
         "go_to_management": "Zur Verwaltung",
@@ -660,6 +678,21 @@
             "no_min_item_level": "Kein Minimum"
         },
         "board": {
+            "view_options": "Ansichtsoptionen",
+            "view_hints": {
+                "progress": "Plätze nach dem Fortschritt der Spieler einfärben.",
+                "dps": "Einfachere Farben für Nah- und Fernkampf-DPS verwenden.",
+                "parties": "Gruppen D, E und F als 1, 2 und 3 anzeigen.",
+                "composition": "Benötigte Jobs hervorheben und fehlende Jobs anzeigen."
+            },
+            "composition": {
+                "label": "Zusammenstellung",
+                "none": "Keine",
+                "matched": "Benötigte Besetzung",
+                "extra": "Zusätzliche Besetzung",
+                "neutral": "Nicht Teil der Zusammenstellung",
+                "missing": "Fehlende Anforderungen"
+            },
             "designation_legend": "Aufstellungssymbole",
             "title": "Roster-Board",
             "subtitle": "Partys werden nebeneinander angezeigt, damit Mitglieder die aktuelle Aufstellung schnell erfassen können.",
@@ -686,7 +719,9 @@
             "no_slot": "Kein Slot in dieser Zeile",
             "bench_title": "Ersatzbank",
             "bench_subtitle": "Überlauf-, Bereitschafts- und Reserveplätze bleiben hier sichtbar.",
-            "bench_count": "{count} Ersatzbank-Slots"
+            "bench_count": "{count} Ersatzbank-Slots",
+            "no_bench_slots": "Für diesen Run gibt es keine Ersatzbankplätze.",
+            "no_fill_in_slots": "Es gibt noch keine Fill-in-Plätze."
         },
         "self_signup": {
             "alerts": {

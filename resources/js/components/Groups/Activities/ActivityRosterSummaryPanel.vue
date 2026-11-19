@@ -1,12 +1,8 @@
 <script setup lang="ts">
-import type { LocalizedText } from "@/Types/Common";
-import type { ActivityRosterSummaryPreset, ActivityRosterSummaryRequirementRow, ActivitySlot } from "@/Types/ActivityRoster";
-import { translateCharacterClassName, translatePhantomJobName } from "@/utils/characterJobTranslations";
-import { localizedValue } from "@/utils/localizedValue";
-import { displayActivityPartyLabel } from "@/utils/activityPartyLabels";
 import { computed, ref, watch } from "vue";
-import { usePage } from "@inertiajs/vue3";
 import { useI18n } from "vue-i18n";
+import type { ActivityRosterSummaryPreset, ActivitySlot } from "@/Types/ActivityRoster";
+import { useRosterSummary } from "@/composables/useRosterSummary";
 
 const props = defineProps<{
 	presets: ActivityRosterSummaryPreset[]
@@ -14,31 +10,9 @@ const props = defineProps<{
 	numberedSecondaryParties?: boolean
 }>();
 
-const { t, locale } = useI18n();
-const page = usePage();
-const fallbackLocale = computed(() => String(page.props.locale?.fallback ?? "en"));
+const { t } = useI18n();
 const selectedPresetKey = ref<string | null>(props.presets[0]?.key ?? null);
 const open = ref(false);
-
-const localizedText = (value: LocalizedText, fallback: string) => (
-	localizedValue(value, locale.value, fallbackLocale.value) || fallback
-);
-
-const displayedScopeGroupLabel = (group: ActivityRosterSummaryPreset["requirements"][number]["scope_groups"][number]) => (
-	displayActivityPartyLabel(
-		group.key,
-		localizedText(group.label, group.key),
-		Boolean(props.numberedSecondaryParties),
-		t("groups.activities.overview.board.party_label"),
-	)
-);
-
-const presetOptions = computed(() => props.presets.map((preset) => ({
-	label: localizedText(preset.label, preset.key),
-	value: preset.key,
-})));
-
-const assignedRosterSlots = computed(() => props.slots.filter((slot) => !slot.is_bench && !slot.is_fill_in && slot.assigned_character_id !== null));
 
 const selectedPreset = computed(() => (
 	props.presets.find((preset) => preset.key === selectedPresetKey.value)
@@ -46,98 +20,20 @@ const selectedPreset = computed(() => (
 		?? null
 ));
 
+const { localizedText, requirementRows, groupedRequirementRows } = useRosterSummary(
+    () => selectedPreset.value, () => props.slots, () => Boolean(props.numberedSecondaryParties),
+);
+const presetOptions = computed(() => props.presets.map((preset) => ({
+	label: localizedText(preset.label, preset.key),
+	value: preset.key,
+})));
+
 const selectedPresetDescription = computed(() => {
 	if (!selectedPreset.value) {
 		return "";
 	}
 
 	return localizedText(selectedPreset.value.description, "");
-});
-
-const requirementItemLabel = (requirement: ActivityRosterSummaryPreset["requirements"][number]): string => {
-	const fallback = localizedText(requirement.item.label, String(requirement.source_id));
-
-	if (requirement.source === "phantom_jobs") {
-		return translatePhantomJobName(t, { name: fallback }, fallback);
-	}
-
-	if (requirement.source === "character_classes") {
-		return translateCharacterClassName(t, {
-			name: fallback,
-			shorthand: requirement.item.meta?.shorthand ?? null,
-		}, fallback);
-	}
-
-	return fallback;
-};
-
-const requirementRows = computed(() => {
-	if (!selectedPreset.value) {
-		return [];
-	}
-
-	return selectedPreset.value.requirements.map((requirement) => {
-		const matchingSlots = assignedRosterSlots.value.filter((slot) => {
-			if (requirement.scope_type !== "all_slots" && !requirement.scope_group_keys.includes(slot.group_key)) {
-				return false;
-			}
-
-			return slot.field_values.some((fieldValue) => {
-				if (fieldValue.source !== requirement.source) {
-					return false;
-				}
-
-				return extractComparableFieldValues(fieldValue.value)
-					.includes(String(requirement.source_id));
-			});
-		});
-
-		const currentCount = matchingSlots.length;
-		const targetCount = requirement.target_count;
-		const state = resolveRequirementState(requirement.comparison, currentCount, targetCount);
-
-		return {
-			key: `${selectedPreset.value?.key}-${requirement.source}-${requirement.source_id}-${requirement.scope_type}-${requirement.scope_group_keys.join("|")}`,
-			scopeKey: `${requirement.scope_type}:${requirement.scope_group_keys.join("|")}`,
-			itemLabel: requirementItemLabel(requirement),
-			itemIconUrl: requirement.item.meta?.transparent_icon_url
-				|| requirement.item.meta?.flaticon_url
-				|| requirement.item.meta?.icon_url
-				|| requirement.item.meta?.sprite_url
-				|| null,
-			currentCount,
-			targetCount,
-			comparisonLabel: t(`groups.activities.management.overview.roster_summary.comparisons.${requirement.comparison}`),
-			comparisonShortLabel: formatComparisonShortLabel(requirement.comparison),
-			scopeLabel: formatScopeLabel(requirement),
-			state,
-		};
-	});
-});
-
-const groupedRequirementRows = computed(() => {
-	const groups = new Map<string, {
-		key: string
-		label: string
-		requirements: ActivityRosterSummaryRequirementRow[]
-	}>();
-
-	for (const requirement of requirementRows.value) {
-		const existingGroup = groups.get(requirement.scopeKey);
-
-		if (existingGroup) {
-			existingGroup.requirements.push(requirement);
-			continue;
-		}
-
-		groups.set(requirement.scopeKey, {
-			key: requirement.scopeKey,
-			label: requirement.scopeLabel,
-			requirements: [requirement],
-		});
-	}
-
-	return Array.from(groups.values());
 });
 
 watch(() => props.presets, (presets) => {
@@ -150,94 +46,6 @@ watch(() => props.presets, (presets) => {
 		selectedPresetKey.value = presets[0]?.key ?? null;
 	}
 }, { immediate: true, deep: true });
-
-function formatScopeLabel(requirement: ActivityRosterSummaryPreset["requirements"][number]) {
-	if (requirement.scope_type === "all_slots") {
-		return t("groups.activities.management.overview.roster_summary.scope_all");
-	}
-
-	if (requirement.scope_type === "slot_group") {
-		const group = requirement.scope_groups[0];
-
-		return group
-			? displayedScopeGroupLabel(group)
-			: t("groups.activities.management.overview.roster_summary.scope_unknown");
-	}
-
-	const labels = requirement.scope_groups
-		.map((group) => displayedScopeGroupLabel(group))
-		.filter((label) => label.length > 0);
-
-	return labels.length > 0
-		? labels.join(" / ")
-		: t("groups.activities.management.overview.roster_summary.scope_unknown");
-}
-
-function resolveRequirementState(
-	comparison: ActivityRosterSummaryPreset["requirements"][number]["comparison"],
-	currentCount: number,
-	targetCount: number,
-) {
-	if (comparison === "at_least") {
-		return currentCount >= targetCount
-			? { color: "success" as const, toneClass: "border-success/30 bg-success/10", badgeVariant: "soft" as const }
-			: { color: "error" as const, toneClass: "border-error/30 bg-error/10", badgeVariant: "soft" as const };
-	}
-
-	if (comparison === "at_most") {
-		return currentCount <= targetCount
-			? { color: "success" as const, toneClass: "border-success/30 bg-success/10", badgeVariant: "soft" as const }
-			: { color: "warning" as const, toneClass: "border-warning/30 bg-warning/10", badgeVariant: "soft" as const };
-	}
-
-	if (currentCount === targetCount) {
-		return { color: "success" as const, toneClass: "border-success/30 bg-success/10", badgeVariant: "soft" as const };
-	}
-
-	return currentCount < targetCount
-		? { color: "error" as const, toneClass: "border-error/30 bg-error/10", badgeVariant: "soft" as const }
-		: { color: "warning" as const, toneClass: "border-warning/30 bg-warning/10", badgeVariant: "soft" as const };
-}
-
-function formatComparisonShortLabel(
-	comparison: ActivityRosterSummaryPreset["requirements"][number]["comparison"],
-) {
-	if (comparison === "at_least") {
-		return ">=";
-	}
-
-	if (comparison === "at_most") {
-		return "<=";
-	}
-
-	return "=";
-}
-
-function extractComparableFieldValues(value: unknown): string[] {
-	if (value === null || value === undefined || value === "") {
-		return [];
-	}
-
-	if (Array.isArray(value)) {
-		return value.flatMap((entry) => extractComparableFieldValues(entry));
-	}
-
-	if (typeof value === "object") {
-		const record = value as Record<string, unknown>;
-
-		if (record.id !== undefined && record.id !== null) {
-			return [String(record.id)];
-		}
-
-		if (record.key !== undefined && record.key !== null) {
-			return [String(record.key)];
-		}
-
-		return [];
-	}
-
-	return [String(value)];
-}
 </script>
 
 <template>

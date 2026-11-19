@@ -1,5 +1,5 @@
 <template>
-    <div aria-hidden="true" class="roster-slot-shine pointer-events-none absolute inset-0 z-10 overflow-hidden" />
+    <div aria-hidden="true" class="roster-slot-shine pointer-events-none absolute inset-0 z-10 overflow-hidden rounded-[inherit]" />
 </template>
 
 <style scoped>

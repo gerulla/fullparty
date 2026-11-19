@@ -28,6 +28,7 @@ use App\Services\Notifications\GroupUpdateNotificationService;
 use App\Services\Quotas\QuotaService;
 use App\Services\Runs\RunAccessService;
 use App\Services\Runs\RunBookmarkState;
+use App\Services\Runs\RunOverviewParticipation;
 use App\Support\ActivityCompositionPresets;
 use App\Support\Input\RequestTextInputSanitizer;
 use App\Support\Quotas\QuotaKey;
@@ -64,6 +65,7 @@ class GroupActivityController extends Controller
         ActivitySlotSerializer $slotSerializer,
         ActivityRosterSummaryPresetBuilder $rosterSummaryPresetBuilder,
         ActivitySlotFieldDefinitionBuilder $fieldDefinitionBuilder,
+        RunOverviewParticipation $participation,
         ?string $secretKey = null,
     ): Response {
         $this->ensureActivityBelongsToGroup($group, $activity);
@@ -100,10 +102,17 @@ class GroupActivityController extends Controller
             ));
         }
 
+        $isMember = $group->hasMember($userId);
+        $groupSummary = $isMember ? $this->buildDashboardGroupPayload($group) : $this->serializePublicGroup($group);
+        $groupSummary['profile_picture_url'] = $group->profile_picture_url;
+        $groupSummary['href'] = match (true) {
+            $isMember, $group->allowsPublicDashboardAccess() => route('groups.dashboard', $group, false),
+            (bool) $group->is_visible => route('groups.index', ['group' => $group->slug], false),
+            default => null,
+        };
+
         $props = [
-            'group' => $group->hasMember($request->user()?->id)
-                ? $this->buildDashboardGroupPayload($group)
-                : $this->serializePublicGroup($group),
+            'group' => $groupSummary,
             'activity' => $this->serializeAttendeeActivity(
                 $activity,
                 $slotSerializer,
@@ -113,7 +122,9 @@ class GroupActivityController extends Controller
             'permissions' => $permissions,
         ];
 
-        if (! $activity->needs_application) {
+        if ($activity->needs_application) {
+            $props['viewer_participation'] = $participation->forViewer($group, $activity, $userId);
+        } else {
             $props['slotFieldDefinitions'] = $fieldDefinitionBuilder->build($activity->activityTypeVersion, $group->id);
             $props['selfAssignmentCharacters'] = $request->user()
                 ? $this->selfAssignmentCharactersForUser($request->user()->id)

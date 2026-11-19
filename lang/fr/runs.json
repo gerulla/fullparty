@@ -14,6 +14,14 @@
     }
   },
   "participation": {
+    "preview": {
+      "run_state": "État de la sortie",
+      "actual_run": "Sortie actuelle ({status})",
+      "label": "État de la candidature",
+      "live": "Candidature réelle",
+      "not_applied": "Aucune candidature",
+      "help": "Aperçu de la carte de candidature pour cette sortie. Les liens de candidature sont inactifs dans cet aperçu."
+    },
     "statuses": {
       "pending": "Candidature envoyée",
       "approved": "Approuvé",

@@ -16,6 +16,8 @@
     "false": "偽"
   },
   "filters": {
+    "search_group": "グループを検索…",
+    "group_chip": "グループ：{name}",
     "search_logs": "ログを検索…",
     "all_runs": "すべての開催回",
     "more": "詳細フィルター",
@@ -100,6 +102,8 @@
     "new_value": "変更後"
   },
   "details": {
+    "scope": "対象範囲",
+    "subject": "対象項目",
     "resource": "リソース",
     "view_resource": "リソースを表示",
     "view_collection": "コレクションを表示",
@@ -179,6 +183,16 @@
     }
   },
   "activity": {
+    "moderation": {
+      "claim": "がモデレーション案件を引き受けました",
+      "hide": "が通報されたコンテンツを非表示にしました",
+      "restore": "が通報されたコンテンツを復元しました",
+      "ban": "が通報されたアカウントを停止しました",
+      "unban": "がアカウントの停止を解除しました",
+      "dismiss": "が通報を却下しました",
+      "reopen": "がモデレーション案件を再開しました",
+      "feedback_sent": "が通報者にフィードバックを送信しました"
+    },
     "user": {
       "registered": "がアカウントを登録しました。",
       "logged_in": "がログインしました。",
@@ -544,6 +558,16 @@
     "previous_status": "移行前の認証状態"
   },
   "events": {
+    "moderation": {
+      "claim": "モデレーション案件の引き受け",
+      "hide": "通報されたコンテンツの非表示",
+      "restore": "通報されたコンテンツの復元",
+      "ban": "通報されたアカウントの停止",
+      "unban": "アカウント停止の解除",
+      "dismiss": "通報の却下",
+      "reopen": "モデレーション案件の再開",
+      "feedback_sent": "通報者へのフィードバック送信"
+    },
     "user": {
       "registered": "ユーザー登録",
       "logged_in": "ユーザーログイン",

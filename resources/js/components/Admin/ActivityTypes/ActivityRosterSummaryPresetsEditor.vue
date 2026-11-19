@@ -198,13 +198,13 @@ const removeRequirement = (presetIndex: number, requirementIndex: number) => {
 		</template>
 
 		<div class="flex flex-col gap-4">
-			<UCard
+			<section
 				v-for="(preset, presetIndex) in modelValue"
 				:key="`roster-summary-preset-${presetIndex}`"
-				class="border border-default"
+				class="admin-inset min-w-0 p-3 sm:p-4"
 			>
 				<div class="flex flex-col gap-4">
-					<div class="flex items-center justify-between">
+					<div class="flex flex-wrap items-start justify-between gap-3">
 						<div>
 							<h3 class="font-semibold">{{ t('admin.activity_types.roster_summary.preset_title', { index: presetIndex + 1 }) }}</h3>
 							<p class="text-sm text-muted">{{ t('admin.activity_types.roster_summary.preset_hint') }}</p>
@@ -229,6 +229,7 @@ const removeRequirement = (presetIndex: number, requirementIndex: number) => {
 					</UFormField>
 
 					<LocalizedTextFields
+						rounded
 						:model-value="preset.label"
 						:locales="locales"
 						:label="t('admin.activity_types.roster_summary.label')"
@@ -238,6 +239,7 @@ const removeRequirement = (presetIndex: number, requirementIndex: number) => {
 					/>
 
 					<LocalizedTextFields
+						rounded
 						:model-value="preset.description ?? createLocalizedRecord()"
 						:locales="locales"
 						:label="t('admin.activity_types.roster_summary.description')"
@@ -247,8 +249,8 @@ const removeRequirement = (presetIndex: number, requirementIndex: number) => {
 						@update:model-value="(value) => updatePreset(presetIndex, { description: value })"
 					/>
 
-					<div class="rounded-lg border border-default p-4">
-						<div class="mb-4 flex items-center justify-between gap-3">
+					<div class="rounded-xl border border-default p-3 sm:p-4">
+						<div class="mb-4 flex flex-wrap items-start justify-between gap-3">
 							<div>
 								<h4 class="font-semibold">{{ t('admin.activity_types.roster_summary.requirements_title') }}</h4>
 								<p class="text-sm text-muted">{{ t('admin.activity_types.roster_summary.requirements_subtitle') }}</p>
@@ -264,13 +266,13 @@ const removeRequirement = (presetIndex: number, requirementIndex: number) => {
 						</div>
 
 						<div class="flex flex-col gap-4">
-							<UCard
+							<section
 								v-for="(requirement, requirementIndex) in preset.requirements"
 								:key="`roster-summary-requirement-${presetIndex}-${requirementIndex}`"
-								class="border border-default"
+								class="admin-inset min-w-0 p-3 sm:p-4"
 							>
 								<div class="flex flex-col gap-4">
-									<div class="flex items-center justify-between">
+									<div class="flex flex-wrap items-start justify-between gap-3">
 										<div>
 											<h5 class="font-medium">{{ t('admin.activity_types.roster_summary.requirement_title', { index: requirementIndex + 1 }) }}</h5>
 											<p class="text-sm text-muted">{{ t('admin.activity_types.roster_summary.requirement_hint') }}</p>
@@ -285,7 +287,7 @@ const removeRequirement = (presetIndex: number, requirementIndex: number) => {
 										/>
 									</div>
 
-									<div class="grid gap-4 lg:grid-cols-4">
+									<div class="grid gap-4 sm:grid-cols-2 2xl:grid-cols-4">
 										<UFormField :label="t('admin.activity_types.roster_summary.requirement_source')" required>
 											<USelect
 												:model-value="requirement.source"
@@ -375,11 +377,11 @@ const removeRequirement = (presetIndex: number, requirementIndex: number) => {
 										</UFormField>
 									</div>
 								</div>
-							</UCard>
+							</section>
 						</div>
 					</div>
 				</div>
-			</UCard>
+			</section>
 		</div>
 	</ActivityTypeSectionCard>
 </template>

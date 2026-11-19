@@ -59,7 +59,7 @@ beforeEach(function () {
 });
 
 it('uses the same placement badge on upcoming home runs, home group runs and the group dashboard', function (string $kind, string $expected) {
-    ($this->assign)($kind);
+    $assignment = ($this->assign)($kind);
     $home = app(V2HomeDataService::class);
     expect($home->upcomingRuns($this->viewer)[0]['participation_status'])->toBe($expected)
         ->and($home->groupRuns($this->viewer)[0]['runs'][0]['participation_status'])->toBe($expected)
@@ -71,7 +71,89 @@ it('uses the same placement badge on upcoming home runs, home group runs and the
         ->where('group.applied_activities.0.participation_status', $expected)
         ->missing('group.calendar_activities.0.slotAssignments')
         ->missing('group.calendar_activities.0.applications'));
+
+    $this->get(route('groups.activities.overview', [$this->group, $this->run]))->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->where('viewer_participation.application.status', 'approved')
+            ->where('viewer_participation.placement.slot_id', $assignment->activity_slot_id)
+            ->where('viewer_participation.placement.slot_kind', $kind)
+            ->where('viewer_participation.placement.character_name', $this->application->selectedCharacter->name));
 })->with(['roster' => ['roster', 'assigned'], 'bench' => ['bench', 'on_bench'], 'fill-in' => ['fill_in', 'filled_in']]);
+
+it('shows only the authenticated viewer’s application and gives it the same editability as the form', function () {
+    $overview = route('groups.activities.overview', [$this->group, $this->run]);
+    $form = route('groups.activities.application', [$this->group, $this->run]);
+    $status = $form.'?view=status';
+    $guestToken = Str::random(40);
+    ActivityApplication::factory()->create(['activity_id' => $this->run->id, 'user_id' => null, 'guest_access_token' => $guestToken]);
+    $this->get($overview)->assertOk()->assertDontSee($guestToken)
+        ->assertInertia(fn (Assert $page) => $page->where('viewer_participation', null));
+    $this->get($status)->assertNotFound();
+    $this->actingAs(User::factory()->create())->get($overview)->assertOk()
+        ->assertInertia(fn (Assert $page) => $page->where('viewer_participation', null));
+    $this->get($status)->assertNotFound();
+
+    ActivityApplication::factory()->create([
+        'activity_id' => $this->run->id, 'user_id' => $this->viewer->id, 'status' => ActivityApplication::STATUS_WITHDRAWN,
+    ]);
+    $this->actingAs($this->viewer)->get($overview)->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->where('viewer_participation.application.status', 'approved')
+            ->where('viewer_participation.application.can_edit', true)
+            ->where('viewer_participation.application.url', $form)
+            ->where('viewer_participation.application.view_url', $status)
+            ->where('viewer_participation.application.character_name', $this->application->applicant_character_name)
+            ->where('viewer_participation.placement', null)
+            ->missing('viewer_participation.application.notes')->missing('viewer_participation.application.guest_access_token'));
+    $this->get($status)->assertOk()->assertInertia(fn (Assert $page) => $page
+        ->component('Groups/Activities/ApplicationConfirmation')->where('application.id', $this->application->id)
+        ->where('confirmation.view', 'status')->where('confirmation.can_edit', true)->where('guestAccessToken', null));
+
+    $this->application->update(['status' => ActivityApplication::STATUS_DECLINED]);
+    $this->get($overview)->assertInertia(fn (Assert $page) => $page
+        ->where('viewer_participation.application.can_edit', false)->where('viewer_participation.application.url', $form));
+    $this->get($form)->assertOk()->assertInertia(fn (Assert $page) => $page
+        ->where('application.status', 'declined')->where('permissions.can_edit_application', false));
+    $this->get($status)->assertOk()->assertInertia(fn (Assert $page) => $page
+        ->where('application.status', 'declined')->where('confirmation.can_edit', false));
+
+    $this->run->update(['status' => Activity::STATUS_COMPLETE]);
+    $this->get($overview)->assertInertia(fn (Assert $page) => $page->where('viewer_participation.application.view_url', null));
+    $this->get($status)->assertNotFound();
+    $this->run->update(['status' => Activity::STATUS_SCHEDULED]);
+
+    $this->application->update(['status' => ActivityApplication::STATUS_WITHDRAWN]);
+    $this->get($overview)->assertInertia(fn (Assert $page) => $page
+        ->where('viewer_participation.application.status', 'withdrawn')
+        ->where('viewer_participation.application.url', null)->where('permissions.can_apply', true));
+    $this->get($form)->assertOk()->assertInertia(fn (Assert $page) => $page->where('application', null));
+    $this->get($status)->assertNotFound();
+});
+
+it('recognizes a legacy manual bench seat and drops ended or transferred placements', function () {
+    $overview = route('groups.activities.overview', [$this->group, $this->run]);
+    $assignment = ($this->assign)();
+    $assignment->update(['ended_at' => now()]);
+    $this->actingAs($this->viewer)->get($overview)->assertInertia(fn (Assert $page) => $page
+        ->where('viewer_participation.placement', null)->where('viewer_participation.application.marked_missing', false));
+    $assignment->update(['attendance_status' => 'missing']);
+    $this->get($overview)->assertInertia(fn (Assert $page) => $page
+        ->where('viewer_participation.placement', null)->where('viewer_participation.application.marked_missing', true));
+    $assignment->update(['ended_at' => null, 'attendance_status' => 'assigned']);
+    $newOwner = User::factory()->create();
+    $this->application->selectedCharacter->update(['user_id' => $newOwner->id]);
+    $this->get($overview)->assertInertia(fn (Assert $page) => $page->where('viewer_participation.placement', null));
+    $this->actingAs($newOwner)->get($overview)->assertInertia(fn (Assert $page) => $page->where('viewer_participation', null));
+
+    $manual = Character::factory()->create(['user_id' => $newOwner->id]);
+    ActivitySlot::factory()->assignedTo($manual)->create([
+        'activity_id' => $this->run->id, 'group_key' => 'bench', 'slot_key' => 'legacy-bench', 'group_label' => ['en' => 'Bench'],
+    ]);
+    $this->get($overview)->assertInertia(fn (Assert $page) => $page
+        ->where('viewer_participation.application', null)
+        ->where('viewer_participation.placement.slot_kind', 'bench')
+        ->where('viewer_participation.placement.character_name', $manual->name));
+});
 
 it('preserves decisions, attendance and cancellation precedence on cards', function (string $applicationStatus, string $kind, string $attendance, bool $ended, bool $past, string $runStatus, string $expected) {
     $this->application->update(['status' => $applicationStatus]);

@@ -21,7 +21,7 @@ const markers = computed(() => [
 </script>
 
 <template>
-    <div v-if="markers.length" class="flex flex-wrap items-center gap-x-4 gap-y-2 border-b border-default px-4 py-2.5 text-xs">
+    <footer v-if="markers.length" class="flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-default px-4 py-3 text-xs sm:px-6">
         <span class="font-medium text-toned">{{ t('groups.activities.overview.board.designation_legend') }}</span>
         <ul class="flex flex-wrap items-center gap-x-4 gap-y-2" :aria-label="t('groups.activities.overview.board.designation_legend')">
             <li v-for="marker in markers" :key="marker.key" class="inline-flex items-center gap-1.5 text-muted">
@@ -29,5 +29,5 @@ const markers = computed(() => [
                 {{ t(marker.labelKey) }}
             </li>
         </ul>
-    </div>
+    </footer>
 </template>

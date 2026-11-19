@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import PageHeader from "@/components/PageHeader.vue";
+import AdminPageHeader from "@/components/Admin/AdminPageHeader.vue";
 import IntegrationPermissionPicker from '@/components/Admin/IntegrationPermissionPicker.vue';
 import type { IntegrationPermissionGroup } from '@/Types/IntegrationPermissions';
 import { permissionGroupState } from '@/utils/integrationPermissions';
@@ -7,7 +7,7 @@ import { permissionGroupState } from '@/utils/integrationPermissions';
 import { useConfirmationModal } from "@/composables/useConfirmationModal";
 import { router, useForm, usePage } from "@inertiajs/vue3";
 import { useToast } from "@nuxt/ui/composables";
-import { computed, ref, watch } from "vue";
+import { computed, nextTick, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
 
 type HealthcheckBucket = {
@@ -130,7 +130,7 @@ const healthcheckBucketClass = (status: HealthcheckBucket['status']) => {
 		return 'bg-error-500';
 	}
 
-	return 'bg-muted';
+	return 'bg-accented';
 };
 const formatHealthcheckTime = (value: string) => new Date(value).toLocaleString(locale.value);
 const healthcheckBucketTitle = (bucket: HealthcheckBucket) => t('admin.integrations.health_status.bucket_title', {
@@ -195,6 +195,8 @@ const resetForm = () => {
 	form.clearErrors();
 };
 
+const formHeading = ref<HTMLElement | null>(null);
+
 const editClient = (client: IntegrationClient) => {
 	editingClientId.value = client.id;
 	form.defaults({
@@ -208,6 +210,7 @@ const editClient = (client: IntegrationClient) => {
 	});
 	form.reset();
 	form.clearErrors();
+	void nextTick(() => formHeading.value?.focus());
 };
 
 const submit = () => {
@@ -320,18 +323,18 @@ watch(
 </script>
 
 <template>
-	<div class="w-full">
-		<PageHeader
+	<div class="min-w-0">
+		<AdminPageHeader
 			:title="t('admin.integrations.title')"
 			:subtitle="t('admin.integrations.subtitle')"
 		>
 			<UBadge
-				color="warning"
+				color="primary"
 				variant="subtle"
-				icon="i-lucide-shield"
+				icon="i-lucide-shield-check"
 				:label="t('admin.integrations.admin_only')"
 			/>
-		</PageHeader>
+		</AdminPageHeader>
 
 		<UAlert
 			v-if="credentials"
@@ -351,7 +354,7 @@ watch(
 						<p class="text-xs font-semibold uppercase tracking-wide text-muted">
 							{{ t('admin.integrations.credentials.api_token') }}
 						</p>
-						<code class="block break-all rounded-sm bg-default/70 p-3 text-xs text-highlighted">
+						<code class="block select-all break-all rounded-lg bg-default p-3 text-xs text-highlighted">
 							{{ credentials.api_token }}
 						</code>
 					</div>
@@ -359,7 +362,7 @@ watch(
 						<p class="text-xs font-semibold uppercase tracking-wide text-muted">
 							{{ t('admin.integrations.credentials.webhook_secret') }}
 						</p>
-						<code class="block break-all rounded-sm bg-default/70 p-3 text-xs text-highlighted">
+						<code class="block select-all break-all rounded-lg bg-default p-3 text-xs text-highlighted">
 							{{ credentials.webhook_signing_secret }}
 						</code>
 					</div>
@@ -374,11 +377,11 @@ watch(
 			</template>
 		</UAlert>
 
-		<div class="mt-6 grid grid-cols-1 gap-6 xl:grid-cols-[26rem_minmax(0,1fr)]">
-			<UCard class="dark:bg-elevated/25">
+		<div class="mt-6 grid grid-cols-1 items-start gap-5 xl:grid-cols-[minmax(18rem,0.8fr)_minmax(0,1.4fr)]">
+			<UCard class="min-w-0">
 				<template #header>
 					<div class="space-y-1">
-						<h2 class="text-base font-semibold text-highlighted">
+						<h2 ref="formHeading" tabindex="-1" class="scroll-mt-20 text-base font-semibold text-highlighted">
 							{{ editingClientId === null ? t('admin.integrations.form.create_title') : t('admin.integrations.form.edit_title') }}
 						</h2>
 						<p class="text-sm text-muted">
@@ -416,7 +419,7 @@ watch(
 						<IntegrationPermissionPicker v-model="form.allowed_events" :groups="options.event_groups" />
 					</UFormField>
 
-					<div class="flex flex-wrap justify-end gap-2">
+					<div class="flex flex-wrap justify-end gap-2 border-t border-default/60 pt-4">
 						<UButton
 							v-if="editingClientId !== null"
 							type="button"
@@ -437,19 +440,19 @@ watch(
 				</form>
 			</UCard>
 
-			<div class="space-y-4">
+			<div class="min-w-0 space-y-4">
 				<UCard
 					v-for="client in clients"
 					:key="client.id"
-					class="dark:bg-elevated/25"
+					class="min-w-0"
 				>
-					<div class="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+					<div class="space-y-4">
 						<div class="min-w-0 space-y-3">
 							<div class="flex flex-wrap items-center gap-2">
-								<h2 class="text-lg font-semibold text-highlighted">
+								<h2 class="break-words text-lg font-semibold text-highlighted">
 									{{ client.name }}
 								</h2>
-					<UBadge :label="t(`admin.integrations.types.${client.type}`)" color="primary" variant="subtle" />
+								<UBadge :label="t(`admin.integrations.types.${client.type}`)" color="primary" variant="subtle" />
 								<UBadge
 									:label="t(`admin.integrations.statuses.${client.status}`)"
 									:color="client.status === 'active' ? 'success' : client.status === 'paused' ? 'warning' : 'error'"
@@ -489,33 +492,33 @@ watch(
 								<span>{{ t('admin.integrations.meta.last_healthcheck', { value: client.last_healthcheck_at ?? t('admin.integrations.never') }) }}</span>
 							</div>
 
-							<div class="space-y-3 rounded-sm border border-default/60 bg-default/30 p-3">
-								<div class="flex items-center justify-between gap-3">
+							<div class="admin-inset space-y-4 p-3 sm:p-4">
+								<div class="flex flex-wrap items-center justify-between gap-2">
 									<p class="text-xs font-semibold uppercase tracking-wide text-muted">
 										{{ t('admin.integrations.health_status.title') }}
 									</p>
-									<div class="flex items-center gap-3 text-[11px] text-muted">
+									<div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted">
 										<span class="inline-flex items-center gap-1">
-											<span class="h-2 w-2 bg-success-500" />
+											<span class="size-2 rounded-full bg-success-500" />
 											{{ t('admin.integrations.health_status.statuses.healthy') }}
 										</span>
 										<span class="inline-flex items-center gap-1">
-											<span class="h-2 w-2 bg-warning-500" />
+											<span class="size-2 rounded-full bg-warning-500" />
 											{{ t('admin.integrations.health_status.statuses.degraded') }}
 										</span>
 										<span class="inline-flex items-center gap-1">
-											<span class="h-2 w-2 bg-error-500" />
+											<span class="size-2 rounded-full bg-error-500" />
 											{{ t('admin.integrations.health_status.statuses.unhealthy') }}
 										</span>
 										<span class="inline-flex items-center gap-1">
-											<span class="h-2 w-2 bg-muted" />
+											<span class="size-2 rounded-full bg-accented" />
 											{{ t('admin.integrations.health_status.statuses.unknown') }}
 										</span>
 									</div>
 								</div>
 
-								<div class="flex flex-col gap-2 border border-default/70 bg-background/40 px-3 py-2 text-xs sm:flex-row sm:items-start sm:justify-between">
-									<div class="min-w-0 space-y-1">
+								<div class="flex flex-wrap items-start justify-between gap-2 border-y border-default/60 py-3 text-xs">
+									<div class="min-w-40 flex-1 space-y-1">
 										<p class="font-semibold text-toned">
 											{{ t('admin.integrations.health_status.latest_result') }}
 										</p>
@@ -587,7 +590,7 @@ watch(
 							/>
 						</div>
 
-						<div class="flex shrink-0 flex-wrap gap-2">
+						<div class="flex flex-wrap gap-2 border-t border-default/60 pt-4">
 							<UButton color="neutral" variant="soft" icon="i-lucide-pencil" :label="t('general.edit')" @click="editClient(client)" />
 							<UButton
 								color="neutral"
@@ -604,7 +607,7 @@ watch(
 					</div>
 				</UCard>
 
-				<UCard v-if="clients.length === 0" class="dark:bg-elevated/25">
+				<UCard v-if="clients.length === 0" class="min-w-0">
 					<div class="py-10 text-center text-sm text-muted">
 						{{ t('admin.integrations.empty') }}
 					</div>

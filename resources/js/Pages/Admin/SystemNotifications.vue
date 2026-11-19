@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import PageHeader from "@/components/PageHeader.vue";
+import AdminPageHeader from "@/components/Admin/AdminPageHeader.vue";
 import type { SystemBannerRecord, SystemNotificationHistoryItem } from "@/Types/Notifications";
 import { formatNotificationTime, resolveNotificationDescription, resolveNotificationMeta, resolveNotificationTitle } from "@/utils/notificationPresentation";
-import { useForm, usePage } from "@inertiajs/vue3";
+import { Head, useForm, usePage } from "@inertiajs/vue3";
 import { useToast } from "@nuxt/ui/composables";
 import { computed, watch } from "vue";
 import { useI18n } from "vue-i18n";
@@ -131,26 +131,25 @@ const historyWithMeta = computed(() => props.history.map((item) => ({
 </script>
 
 <template>
-	<div class="w-full">
-		<PageHeader
+	<Head :title="t('admin.system_notifications.title')" />
+	<div class="min-w-0 space-y-6">
+		<AdminPageHeader
 			:title="t('admin.system_notifications.title')"
 			:subtitle="t('admin.system_notifications.subtitle')"
 		>
 			<UBadge
-				size="lg"
-				variant="subtle"
-				class="min-w-44 justify-center py-2"
+				variant="soft"
 				color="warning"
 				icon="i-lucide-shield-alert"
 				:label="t('admin.system_notifications.admin_access')"
 			/>
-		</PageHeader>
+		</AdminPageHeader>
 
-		<div class="mt-6 grid grid-cols-1 gap-6 xl:grid-cols-2">
-			<UCard class="xl:col-span-2 dark:bg-elevated/25">
+		<div class="grid grid-cols-1 items-start gap-5 xl:grid-cols-2">
+			<UCard class="xl:col-span-2">
 				<template #header>
 					<div class="flex items-start gap-3">
-						<UIcon name="i-lucide-panel-top-open" class="mt-0.5 h-5 w-5 text-emerald-500" />
+						<UIcon name="i-lucide-panel-top-open" class="mt-0.5 size-5 shrink-0 text-success" />
 						<div class="space-y-1">
 							<h2 class="text-base font-semibold text-highlighted">
 								{{ t('admin.system_notifications.banner.title') }}
@@ -163,7 +162,7 @@ const historyWithMeta = computed(() => props.history.map((item) => ({
 				</template>
 
 				<form class="space-y-4" @submit.prevent="saveBanner">
-					<div class="grid grid-cols-1 gap-6 xl:grid-cols-[minmax(0,1fr)_20rem]">
+					<div class="grid grid-cols-1 gap-5 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
 						<div class="space-y-4">
 							<UFormField
 								:label="t('admin.system_notifications.banner.fields.title')"
@@ -174,7 +173,7 @@ const historyWithMeta = computed(() => props.history.map((item) => ({
 									v-model="bannerForm.title"
 									:placeholder="t('admin.system_notifications.banner.placeholders.title')"
 									class="w-full"
-									size="xl"
+									size="lg"
 								/>
 							</UFormField>
 
@@ -188,7 +187,7 @@ const historyWithMeta = computed(() => props.history.map((item) => ({
 									:rows="5"
 									:placeholder="t('admin.system_notifications.banner.placeholders.message')"
 									class="w-full"
-									size="xl"
+									size="lg"
 								/>
 							</UFormField>
 
@@ -201,7 +200,7 @@ const historyWithMeta = computed(() => props.history.map((item) => ({
 										v-model="bannerForm.action_label"
 										:placeholder="t('admin.system_notifications.banner.placeholders.action_label')"
 										class="w-full"
-										size="xl"
+										size="lg"
 									/>
 								</UFormField>
 
@@ -213,7 +212,7 @@ const historyWithMeta = computed(() => props.history.map((item) => ({
 										v-model="bannerForm.action_url"
 										:placeholder="t('admin.system_notifications.banner.placeholders.action_url')"
 										class="w-full"
-										size="xl"
+										size="lg"
 									/>
 								</UFormField>
 							</div>
@@ -228,7 +227,7 @@ const historyWithMeta = computed(() => props.history.map((item) => ({
 								:description="props.currentBanner ? t('admin.system_notifications.banner.live_description') : t('admin.system_notifications.banner.empty_description')"
 							/>
 
-							<div class="rounded-sm border border-default bg-default/40 p-4">
+							<div class="admin-inset min-w-0 break-words p-4">
 								<p class="text-xs font-medium uppercase tracking-wide text-muted">
 									{{ t('admin.system_notifications.banner.preview') }}
 								</p>
@@ -236,7 +235,7 @@ const historyWithMeta = computed(() => props.history.map((item) => ({
 									<p class="text-sm font-semibold text-highlighted">
 										{{ bannerForm.title || t('admin.system_notifications.banner.preview_empty_title') }}
 									</p>
-									<p class="whitespace-pre-line text-sm text-toned">
+									<p class="whitespace-pre-line break-words text-sm text-toned">
 										{{ bannerForm.message || t('admin.system_notifications.banner.preview_empty_message') }}
 									</p>
 									<UButton
@@ -277,10 +276,10 @@ const historyWithMeta = computed(() => props.history.map((item) => ({
 				</form>
 			</UCard>
 
-			<UCard class="dark:bg-elevated/25">
+			<UCard>
 				<template #header>
 					<div class="flex items-start gap-3">
-						<UIcon name="i-lucide-wrench" class="mt-0.5 h-5 w-5 text-amber-500" />
+						<UIcon name="i-lucide-wrench" class="mt-0.5 size-5 shrink-0 text-warning" />
 						<div class="space-y-1">
 							<h2 class="text-base font-semibold text-highlighted">
 								{{ t('admin.system_notifications.maintenance.title') }}
@@ -302,7 +301,7 @@ const historyWithMeta = computed(() => props.history.map((item) => ({
 							v-model="maintenanceForm.headline"
 							:placeholder="t('admin.system_notifications.placeholders.headline')"
 							class="w-full"
-							size="xl"
+							size="lg"
 						/>
 					</UFormField>
 
@@ -316,7 +315,7 @@ const historyWithMeta = computed(() => props.history.map((item) => ({
 							:rows="6"
 							:placeholder="t('admin.system_notifications.placeholders.message')"
 							class="w-full"
-							size="xl"
+							size="lg"
 						/>
 					</UFormField>
 
@@ -329,7 +328,7 @@ const historyWithMeta = computed(() => props.history.map((item) => ({
 								v-model="maintenanceForm.scheduled_for"
 								type="datetime-local"
 								class="w-full"
-								size="xl"
+								size="lg"
 							/>
 						</UFormField>
 
@@ -341,7 +340,7 @@ const historyWithMeta = computed(() => props.history.map((item) => ({
 								v-model="maintenanceForm.action_url"
 								:placeholder="t('admin.system_notifications.placeholders.action_url')"
 								class="w-full"
-								size="xl"
+								size="lg"
 							/>
 						</UFormField>
 					</div>
@@ -366,10 +365,10 @@ const historyWithMeta = computed(() => props.history.map((item) => ({
 				</form>
 			</UCard>
 
-			<UCard class="dark:bg-elevated/25">
+			<UCard>
 				<template #header>
 					<div class="flex items-start gap-3">
-						<UIcon name="i-lucide-megaphone" class="mt-0.5 h-5 w-5 text-sky-500" />
+						<UIcon name="i-lucide-megaphone" class="mt-0.5 size-5 shrink-0 text-info" />
 						<div class="space-y-1">
 							<h2 class="text-base font-semibold text-highlighted">
 								{{ t('admin.system_notifications.announcement.title') }}
@@ -391,7 +390,7 @@ const historyWithMeta = computed(() => props.history.map((item) => ({
 							v-model="announcementForm.headline"
 							:placeholder="t('admin.system_notifications.placeholders.headline')"
 							class="w-full"
-							size="xl"
+							size="lg"
 						/>
 					</UFormField>
 
@@ -405,7 +404,7 @@ const historyWithMeta = computed(() => props.history.map((item) => ({
 							:rows="6"
 							:placeholder="t('admin.system_notifications.placeholders.message')"
 							class="w-full"
-							size="xl"
+							size="lg"
 						/>
 					</UFormField>
 
@@ -417,7 +416,7 @@ const historyWithMeta = computed(() => props.history.map((item) => ({
 							v-model="announcementForm.action_url"
 							:placeholder="t('admin.system_notifications.placeholders.action_url')"
 							class="w-full"
-							size="xl"
+							size="lg"
 						/>
 					</UFormField>
 
@@ -442,7 +441,7 @@ const historyWithMeta = computed(() => props.history.map((item) => ({
 			</UCard>
 		</div>
 
-		<div class="mt-8">
+		<section>
 			<h2 class="text-lg font-semibold text-highlighted">
 				{{ t('admin.system_notifications.history.title') }}
 			</h2>
@@ -450,17 +449,13 @@ const historyWithMeta = computed(() => props.history.map((item) => ({
 				{{ t('admin.system_notifications.history.subtitle') }}
 			</p>
 
-			<div class="mt-4 flex flex-col gap-4">
-				<UCard
-					v-for="item in historyWithMeta"
-					:key="item.id"
-					class="dark:bg-elevated/25"
-				>
+			<div class="admin-panel mt-4 divide-y divide-default">
+				<article v-for="item in historyWithMeta" :key="item.id" class="p-4 sm:p-5">
 					<div class="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
 						<div class="min-w-0 space-y-3">
 							<div class="flex flex-wrap items-center gap-2">
 								<UIcon :name="item.meta.icon" class="h-5 w-5 shrink-0" :class="item.meta.iconColor" />
-								<h3 class="text-base font-semibold text-highlighted">
+								<h3 class="break-words text-base font-semibold text-highlighted">
 									{{ item.title }}
 								</h3>
 								<UBadge
@@ -470,7 +465,7 @@ const historyWithMeta = computed(() => props.history.map((item) => ({
 								/>
 							</div>
 
-							<p v-if="item.description" class="whitespace-pre-line text-sm text-toned">
+							<p v-if="item.description" class="whitespace-pre-line break-words text-sm text-toned">
 								{{ item.description }}
 							</p>
 
@@ -494,14 +489,11 @@ const historyWithMeta = computed(() => props.history.map((item) => ({
 							:label="t('admin.system_notifications.history.open_link')"
 						/>
 					</div>
-				</UCard>
-
-				<UCard v-if="historyWithMeta.length === 0" class="dark:bg-elevated/25">
-					<div class="py-8 text-center text-sm text-muted">
-						{{ t('admin.system_notifications.history.empty') }}
-					</div>
-				</UCard>
+				</article>
+				<p v-if="historyWithMeta.length === 0" class="p-8 text-center text-sm text-muted">
+					{{ t('admin.system_notifications.history.empty') }}
+				</p>
 			</div>
-		</div>
+		</section>
 	</div>
 </template>

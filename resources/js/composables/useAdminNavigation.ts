@@ -56,11 +56,8 @@ export function useAdminNavigation() {
             links: [link('navigation.sidebar.admin_audit_log', 'admin.audit-log', 'i-lucide-scroll-text')],
         },
     ])
-    const items = computed(() => [overview.value, ...sections.value.map(section => section.links.length === 1 ? section.links[0] : {
-        label: section.label, icon: section.icon, active: section.links.some(item => item.active), children: section.links,
-    })])
     const mobileItems = computed(() => [[overview.value], ...sections.value.map(section => section.links)])
     const current = computed(() => [overview.value, ...sections.value.flatMap(section => section.links)].find(item => item.active) ?? overview.value)
 
-    return { overview, sections, items, mobileItems, current }
+    return { overview, sections, mobileItems, current }
 }

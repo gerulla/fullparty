@@ -148,12 +148,12 @@ const deleteRaidPosition = async (raidPosition: RaidPositionRecord) => {
 </script>
 
 <template>
-	<UCard class="dark:bg-elevated/25">
+	<UCard class="w-full min-w-0">
 		<template #header>
 			<div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
 				<div class="flex items-center gap-3">
-					<div class="flex h-10 w-10 items-center justify-center border border-default bg-muted/30">
-						<UIcon name="i-lucide-map-pin" class="h-5 w-5 text-brand-300" />
+					<div class="admin-inset flex size-10 shrink-0 items-center justify-center">
+						<UIcon name="i-lucide-map-pin" class="h-5 w-5 text-primary" />
 					</div>
 					<div>
 						<div class="flex items-center gap-2">
@@ -199,10 +199,10 @@ const deleteRaidPosition = async (raidPosition: RaidPositionRecord) => {
 			<div
 				v-for="raidPosition in filteredRaidPositions"
 				:key="raidPosition.id"
-				class="flex items-center justify-between gap-4 border border-default bg-muted/10 p-4"
+				class="admin-inset flex min-w-0 flex-wrap items-center justify-between gap-3 p-3 sm:p-4"
 			>
 				<div class="flex min-w-0 items-center gap-3">
-					<div class="flex h-12 w-12 shrink-0 items-center justify-center border border-default bg-muted/30">
+					<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-elevation-1 dark:bg-elevation-3">
 						<img
 							v-if="raidPosition.icon_url"
 							:src="raidPosition.icon_url"
@@ -254,7 +254,6 @@ const deleteRaidPosition = async (raidPosition: RaidPositionRecord) => {
 		v-model:open="isCreateModalOpen"
 		:title="t('admin.raid_positions.create_modal.title')"
 		:description="t('admin.raid_positions.create_modal.subtitle')"
-		:ui="{ content: 'rounded-sm', header: 'border-0' }"
 	>
 		<template #body>
 			<form class="flex flex-col gap-4" @submit.prevent="submitCreate">
@@ -294,7 +293,6 @@ const deleteRaidPosition = async (raidPosition: RaidPositionRecord) => {
 		v-model:open="isEditModalOpen"
 		:title="t('admin.raid_positions.edit_modal.title')"
 		:description="t('admin.raid_positions.edit_modal.subtitle', { name: editForm.name })"
-		:ui="{ content: 'rounded-sm', header: 'border-0' }"
 	>
 		<template #body>
 			<form class="flex flex-col gap-4" @submit.prevent="submitEdit">
